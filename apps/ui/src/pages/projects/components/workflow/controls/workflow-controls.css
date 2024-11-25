@@ -1,0 +1,24 @@
+.Workflow-Controls {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.Workflow-Controls-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Workflow-Controls-button {
+  padding: 6px;
+  height: 30px;
+  width: 30px;
+  border: none !important;
+}
+
+.Workflow-Controls-button svg {
+  max-height: unset;
+  max-width: unset;
+  width: 100%;
+  height: 100%;
+}

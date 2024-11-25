@@ -1,0 +1,918 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+//USER
+model User {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  email           String    @unique @db.VarChar(255)
+  emailVerifiedAt DateTime?
+  name            String    @db.VarChar(100)
+  password        String?   @db.VarChar(100)
+
+  emailVerificationToken          String?
+  emailVerificationTokenExpiresAt DateTime?
+
+  //Only used when creating account with 3rd party.
+  //Will use this to set the default profile image to workspace users.
+  rootProfileImageUrl String? @db.VarChar(255)
+
+  workspaceUsers WorkspaceUser[]
+  toursCompleted String[] //application-overview, workflow-overview
+
+  //ACTIVE WORKSPACE RELATION
+  FK_activeWorkspaceId String?
+  activeWorkspace      Workspace? @relation(fields: [FK_activeWorkspaceId], references: [id], onDelete: SetNull)
+}
+
+//WORKSPACE USER
+enum WorkspaceUserRole {
+  OWNER
+  MAINTAINER
+  MEMBER
+}
+
+model WorkspaceUser {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  profileImageUrl String?
+
+  roles WorkspaceUserRole[] @default([])
+
+  preferences WorkspaceUserPreferences?
+
+  //USER RELATION
+  FK_userId String
+  user      User   @relation(fields: [FK_userId], references: [id])
+
+  //WORKSPACE RELATION
+  FK_workspaceId String
+  workspace      Workspace @relation(fields: [FK_workspaceId], references: [id], onDelete: Cascade)
+
+  //NOTIFICATIONS
+  notifications Notification[]
+
+  //PROJECTS
+  projects           Project[]
+  createdProjects    Project[]           @relation("CreatedByWorkspaceUser")
+  createdWorkspaces  Workspace[]         @relation("CreatedByWorkspaceUser")
+  workflows          Workflow[]
+  recentWorkflows    RecentWorkflow[]
+  projectInvitations ProjectInvitation[]
+}
+
+enum WorkspaceUserPreferencesTheme {
+  DARK
+  LIGHT
+  SYSTEM
+}
+
+enum WorkspaceUserPreferencesLocale {
+  en
+  es
+}
+
+enum WorkflowOrientation {
+  HORIZONTAL
+  VERTICAL
+}
+
+model WorkspaceUserPreferences {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  theme               WorkspaceUserPreferencesTheme?
+  locale              WorkspaceUserPreferencesLocale @default(en)
+  workflowOrientation WorkflowOrientation            @default(HORIZONTAL)
+
+  //WORKSPACE USER RELATION
+  FK_workspaceUserId String        @unique
+  workspaceUser      WorkspaceUser @relation(fields: [FK_workspaceUserId], references: [id], onDelete: Cascade)
+}
+
+//WORKSPACE
+model Workspace {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name                    String  @db.VarChar(100)
+  description             String? @db.VarChar(255)
+  onboarded               Boolean @default(false)
+  inBeta                  Boolean @default(false) //This is just temporary until we do a public release
+  defaultCreatedWorkspace Boolean @default(false)
+  logoUrl                 String?
+
+  preferences    WorkspacePreferences?
+  executionQueue WorkspaceExecutionQueue?
+  billing        WorkspaceBilling?
+  usage          WorkspaceUsage?
+
+  workspaceUsers WorkspaceUser[]
+  activeUsers    User[] //Users that currently have this workspace as their active workspace
+  invitations    WorkspaceInvitation[]
+  projects       Project[]
+  workflowApps   WorkflowApp[]
+  variables      Variable[]
+  knowledge      Knowledge[]
+  connections    Connection[]          @relation(name: "WorkspaceConnection")
+
+  workflowTemplates WorkflowTemplate[]
+
+  FK_createdByWorkspaceUserId String?
+  createdByWorkspaceUser      WorkspaceUser? @relation(fields: [FK_createdByWorkspaceUserId], references: [id], name: "CreatedByWorkspaceUser", onDelete: SetNull)
+
+  credits Credit[]
+}
+
+model WorkspacePreferences {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  disabledFeatures String[]
+
+  //WORKSPACE USER RELATION
+  FK_workspaceId String    @unique
+  workspace      Workspace @relation(fields: [FK_workspaceId], references: [id], onDelete: Cascade)
+}
+
+enum BillingPlanType {
+  free
+  team
+  professional
+  business
+  custom
+}
+
+enum BillingStatus {
+  active
+  canceled
+  unpaid
+}
+
+model WorkspaceBilling {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  stripeCustomerId       String?
+  stripeSubscriptionId   String?
+  stripePriceId          String?
+  stripeCurrentPeriodEnd DateTime?
+
+  planType BillingPlanType @default(free)
+  status   BillingStatus   @default(active)
+
+  //WORKSPACE USER RELATION
+  FK_workspaceId String    @unique
+  workspace      Workspace @relation(fields: [FK_workspaceId], references: [id], onDelete: Cascade)
+}
+
+model WorkspaceUsage {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  //These are tokens, but also are used for workflows usage
+  purchasedCredits Int       @default(0) //Purchased
+  allottedCredits  Int       @default(0) //Monthly Allotment
+  refreshedAt      DateTime?
+
+  //WORKSPACE USER RELATION
+  FK_workspaceId String    @unique
+  workspace      Workspace @relation(fields: [FK_workspaceId], references: [id], onDelete: Cascade)
+}
+
+//PROJECT
+model Project {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String  @db.VarChar(100)
+  description String? @db.VarChar(1000)
+
+  //WORKFLOWS
+  workflows         Workflow[]
+  workflowTemplates WorkflowTemplate[]
+
+  //AGENTS
+  agents Agent[]
+
+  //WORKSPACE RELATION
+  FK_workspaceId String
+  workspace      Workspace @relation(fields: [FK_workspaceId], references: [id], onDelete: Cascade)
+
+  //WORKSPACE USER RELATIONS
+  workspaceUsers WorkspaceUser[]
+
+  //CREATED BY WORKSPACE USER
+  FK_createdByWorkspaceUserId String?
+  createdByWorkspaceUser      WorkspaceUser?      @relation(fields: [FK_createdByWorkspaceUserId], references: [id], name: "CreatedByWorkspaceUser", onDelete: SetNull)
+  variables                   Variable[]
+  knowledge                   Knowledge[]
+  connections                 Connection[]
+  projectInvitations          ProjectInvitation[]
+
+  //CREDITS
+  credits Credit[]
+}
+
+model ProjectInvitation {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  //WORKSPACE USER RELATION
+  FK_workspaceUserId String
+  workspaceUser      WorkspaceUser @relation(fields: [FK_workspaceUserId], references: [id], onDelete: Cascade)
+
+  //PROJECT RELATION
+  FK_projectId String
+  project      Project @relation(fields: [FK_projectId], references: [id], onDelete: Cascade)
+}
+
+enum WorkflowStrategy {
+  manual
+  poll
+  schedule
+  webhook
+}
+
+//WORKFLOW TEMPLATE
+enum SharedToOptions {
+  project
+  workspace
+  global
+}
+
+model WorkflowTemplate {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String  @db.VarChar(100)
+  description String? @db.VarChar(1000)
+
+  sharedTo SharedToOptions @default(project)
+
+  //Data from nodes
+  triggerAndActionIds String[]
+
+  //Used for mapping the workflow output to another node in the "Run Workflow" action
+  output Json? @db.JsonB
+
+  nodes Json @db.JsonB
+  edges Json @db.JsonB
+
+  //PROJECT RELATION
+  FK_projectId String?
+  project      Project? @relation(fields: [FK_projectId], references: [id], onDelete: Cascade)
+
+  FK_workspaceId String
+  workspace      Workspace @relation(fields: [FK_workspaceId], references: [id], onDelete: Cascade)
+}
+
+//WORKFLOW
+model Workflow {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String  @db.VarChar(100)
+  description String? @db.VarChar(1000)
+  isActive    Boolean @default(true)
+  isInternal  Boolean @default(false)
+
+  //Data from nodes
+  triggerAndActionIds String[]
+  subWorkflowIds      String[]
+  agentIds            String[]
+  connectionIds       String[]
+  knowledgeIds        String[]
+  variableIds         String[]
+
+  //Used for mapping the workflow output to another node in the "Run Workflow" action
+  output Json? @db.JsonB
+
+  //This is for if the trigger is a schedule type
+  nextScheduledExecution DateTime?
+  workflowOrientation    WorkflowOrientation @default(HORIZONTAL)
+
+  strategy    WorkflowStrategy?
+  pollStorage String? //Can be last poll time, last poll item identifier, .etc
+
+  // nodes WorkflowNode[]
+  // edges WorkflowEdge[]
+  nodes Json @db.JsonB
+  edges Json @db.JsonB
+
+  triggerNode Json? @db.JsonB
+
+  //PROJECT RELATION
+  FK_projectId String
+  project      Project @relation(fields: [FK_projectId], references: [id], onDelete: Cascade)
+
+  workspaceUsers       WorkspaceUser[]
+  recentWorkspaceUsers RecentWorkflow[]
+
+  //EXECUTION RELATION 
+  executions Execution[]
+
+  //CREDIT RELATION
+  credits Credit[]
+
+  //AGENT RELATION
+  agentWorkflows AgentWorkflow[]
+  agentTriggers  AgentTrigger[]
+}
+
+//AGENT
+model Agent {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String  @db.VarChar(100)
+  description String? @db.VarChar(1000)
+
+  llmProvider String
+  llmModel    String
+
+  instructions         String?
+  temperature          Float   @default(1) //0-2
+  maxTokens            Int? //1-4095
+  topP                 Float   @default(1) //0-1
+  frequencyPenalty     Float   @default(0) //0-2
+  presencePenalty      Float   @default(0) //0-2
+  maxRetries           Int     @default(0) //0 = no retries
+  seed                 Int?
+  maxToolRoundtrips    Int     @default(5) //0 = Can only call one at a time
+  messageLookbackLimit Int     @default(5)
+
+  //NEW TOOL FIELDS
+  tools    Json?          @db.JsonB
+  triggers AgentTrigger[]
+
+  //THESE ARE ALL LEGACY
+  connections      Connection[]      @relation(name: "AgentConnections")
+  agentActions     AgentAction[]
+  agentKnowledge   AgentKnowledge[]
+  agentVariables   AgentVariable[]
+  agentWorkflows   AgentWorkflow[]
+  agentWebAccess   AgentWebAccess?
+  agentPhoneAccess AgentPhoneAccess?
+
+  // New relation field for subAgents (as a parent)
+  agentParentAgents AgentSubAgent[] @relation("Subagent")
+  agentSubAgents    AgentSubAgent[] @relation("ParentAgent")
+
+  tasks Task[]
+
+  //LLM Connection RELATION
+  FK_llmConnectionId String?
+  llmConnection      Connection? @relation(fields: [FK_llmConnectionId], references: [id], onDelete: Cascade, name: "llmConnection")
+
+  //PROJECT RELATION
+  FK_projectId String
+  project      Project @relation(fields: [FK_projectId], references: [id], onDelete: Cascade)
+
+  //CREDIT RELATION
+  credits Credit[]
+}
+
+model AgentTrigger {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  node      Json   @db.JsonB
+  triggerId String
+
+  //WORKFLOW RELATION
+  FK_workflowId String?   @unique
+  workflow      Workflow? @relation(fields: [FK_workflowId], references: [id], onDelete: Cascade)
+
+  //AGENT RELATION
+  FK_agentId String
+  agent      Agent  @relation(fields: [FK_agentId], references: [id], onDelete: Cascade)
+}
+
+enum WebAccessService {
+  apify
+}
+
+model AgentWebAccess {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  service WebAccessService @default(apify)
+
+  webSearchEnabled     Boolean @default(true)
+  websiteAccessEnabled Boolean @default(true)
+
+  //AGENT RELATION
+  FK_agentId String @unique
+  agent      Agent  @relation(fields: [FK_agentId], references: [id], onDelete: Cascade)
+}
+
+enum PhoneAccessService {
+  vapi
+}
+
+model AgentPhoneAccess {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  service PhoneAccessService @default(vapi)
+
+  outboundCallsEnabled Boolean @default(true)
+  inboundCallsEnabled  Boolean @default(false)
+
+  //AGENT RELATION
+  FK_agentId String @unique
+  agent      Agent  @relation(fields: [FK_agentId], references: [id], onDelete: Cascade)
+}
+
+model AgentAction {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  actionId String //Not a db item
+
+  //AGENT RELATION
+  FK_agentId String
+  agent      Agent  @relation(fields: [FK_agentId], references: [id], onDelete: Cascade)
+}
+
+model AgentKnowledge {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  //KNOWLEDGE RELATION
+  FK_knowledgeId String
+  knowledge      Knowledge @relation(fields: [FK_knowledgeId], references: [id], onDelete: Cascade)
+
+  //AGENT RELATION
+  FK_agentId String
+  agent      Agent  @relation(fields: [FK_agentId], references: [id], onDelete: Cascade)
+}
+
+model AgentVariable {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  //VARIABLE RELATION
+  FK_variableId String
+  variable      Variable @relation(fields: [FK_variableId], references: [id], onDelete: Cascade)
+
+  //AGENT RELATION
+  FK_agentId String
+  agent      Agent  @relation(fields: [FK_agentId], references: [id], onDelete: Cascade)
+}
+
+model AgentWorkflow {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  //WORKFLOW RELATION
+  FK_workflowId String
+  workflow      Workflow @relation(fields: [FK_workflowId], references: [id], onDelete: Cascade)
+
+  //AGENT RELATION
+  FK_agentId String
+  agent      Agent  @relation(fields: [FK_agentId], references: [id], onDelete: Cascade)
+}
+
+model AgentSubAgent {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  //SUBAGENT RELATION
+  FK_subAgentId String
+  subagent      Agent  @relation(fields: [FK_subAgentId], references: [id], onDelete: Cascade, name: "Subagent")
+
+  //PARENT AGENT RELATION
+  FK_agentId  String
+  parentAgent Agent  @relation(fields: [FK_agentId], references: [id], onDelete: Cascade, name: "ParentAgent")
+}
+
+//WORKFLOW APP
+model WorkflowApp {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String @db.VarChar(100)
+  description String @db.VarChar(255)
+
+  //WORKSPACE RELATION
+  FK_workspaceId String?
+  workspace      Workspace? @relation(fields: [FK_workspaceId], references: [id], onDelete: Cascade)
+
+  actions     WorkflowAppAction[]
+  triggers    WorkflowAppTrigger[]
+  connections WorkflowAppConnection[]
+
+  // workflowNodes WorkflowNode[]
+}
+
+model WorkflowAppConnection {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String  @db.VarChar(100)
+  description String? @db.VarChar(1000)
+  inputConfig Json
+
+  //WORKFLOW APP RELATION
+  FK_workflowAppId String
+  workflowApp      WorkflowApp @relation(fields: [FK_workflowAppId], references: [id], onDelete: Cascade)
+}
+
+model WorkflowAppAction {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String @db.VarChar(100)
+  description String @db.VarChar(255)
+  inputConfig Json
+
+  //WORKFLOW APP RELATION
+  FK_workflowAppId String
+  workflowApp      WorkflowApp @relation(fields: [FK_workflowAppId], references: [id], onDelete: Cascade)
+}
+
+model WorkflowAppTrigger {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String @db.VarChar(100)
+  description String @db.VarChar(255)
+  inputConfig Json
+
+  //WORKFLOW APP RELATION
+  FK_workflowAppId String
+  workflowApp      WorkflowApp @relation(fields: [FK_workflowAppId], references: [id], onDelete: Cascade)
+}
+
+//EXECUTIONS
+enum ExecutionStatus {
+  RUNNING
+  SUCCESS
+  FAILED
+  NEEDS_INPUT
+  SCHEDULED
+  CANCELLED
+}
+
+model Execution {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  startedAt DateTime
+  stoppedAt DateTime?
+
+  status          ExecutionStatus
+  executionNumber Int
+  statusMessage   String?
+  output          Json?           @db.JsonB
+
+  nodes Json @db.JsonB
+  edges Json @db.JsonB
+
+  //This is for if a scheduled action paused the execution.
+  //We need to know when to continue it.
+  continueExecutionAt DateTime?
+  workflowOrientation WorkflowOrientation @default(HORIZONTAL)
+
+  //WORKFLOW RELATION
+  FK_workflowId String
+  workflow      Workflow @relation(fields: [FK_workflowId], references: [id], onDelete: Cascade)
+
+  workspaceExecutionQueueItem WorkspaceExecutionQueueItem?
+
+  //CREDITS
+  credits Credit[]
+}
+
+enum WorkspaceExecutionQueueStatus {
+  PENDING
+  RUNNING
+}
+
+model WorkspaceExecutionQueue {
+  id        String                        @id @default(uuid())
+  createdAt DateTime                      @default(now())
+  updatedAt DateTime                      @updatedAt
+  status    WorkspaceExecutionQueueStatus @default(PENDING)
+
+  items WorkspaceExecutionQueueItem[]
+
+  //WORKSPACE RELATION
+  FK_workspaceId String    @unique
+  workspace      Workspace @relation(fields: [FK_workspaceId], references: [id], onDelete: Cascade)
+}
+
+model WorkspaceExecutionQueueItem {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  status WorkspaceExecutionQueueStatus @default(PENDING)
+
+  //WORKSPACE RELATION 
+  FK_workspaceExecutionQueueId String
+  workspaceExecutionQueue      WorkspaceExecutionQueue @relation(fields: [FK_workspaceExecutionQueueId], references: [id], onDelete: Cascade)
+
+  // //EXECUTION RELATION
+  FK_executionId String    @unique
+  execution      Execution @relation(fields: [FK_executionId], references: [id], onDelete: Cascade)
+}
+
+//CREDITS
+model Credit {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  creditsUsed Int
+
+  details Json?
+
+  FK_workspaceId String?
+  workspace      Workspace? @relation(fields: [FK_workspaceId], references: [id], onDelete: Cascade)
+
+  FK_projectId String?
+  project      Project? @relation(fields: [FK_projectId], references: [id], onDelete: SetNull)
+
+  FK_workflowId String?
+  workflow      Workflow? @relation(fields: [FK_workflowId], references: [id], onDelete: SetNull)
+
+  FK_agentId String?
+  agent      Agent?  @relation(fields: [FK_agentId], references: [id], onDelete: SetNull)
+
+  FK_taskId String?
+  task      Task?   @relation(fields: [FK_taskId], references: [id], onDelete: SetNull)
+
+  FK_executionId String?
+  execution      Execution? @relation(fields: [FK_executionId], references: [id], onDelete: SetNull)
+
+  FK_knowledgeId String?
+  knowledge      Knowledge? @relation(fields: [FK_knowledgeId], references: [id], onDelete: SetNull)
+}
+
+//TASKS
+model Task {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String        @db.VarChar(100)
+  description String?       @db.VarChar(255)
+  messages    TaskMessage[]
+
+  customIdentifier String? @db.VarChar(255)
+
+  //WORKFLOW RELATION
+  FK_agentId String
+  agent      Agent  @relation(fields: [FK_agentId], references: [id], onDelete: Cascade)
+
+  //CREDITS
+  credits Credit[]
+}
+
+enum TaskMessageRole {
+  system
+  user
+  assistant
+  function
+  data
+  tool
+}
+
+model TaskMessage {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  content Json            @db.JsonB
+  role    TaskMessageRole
+
+  data Json? @db.JsonB
+
+  //TASK RELATION
+  FK_taskId String
+  task      Task   @relation(fields: [FK_taskId], references: [id], onDelete: Cascade)
+}
+
+//CONNECTION
+model Connection {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String  @db.VarChar(100)
+  description String? @db.VarChar(1000)
+
+  //CREDENTIALS
+  accessToken  String? @db.VarChar
+  refreshToken String? @db.VarChar
+  apiKey       String? @db.VarChar
+  username     String? @db.VarChar
+  password     String? @db.VarChar
+  publicKey    String? @db.VarChar
+  privateKey   String? @db.VarChar
+
+  //Connection metadata that was returned when authenticating
+  metadata Json? @db.JsonB
+
+  //WORKFLOW APPS AND WORKFLOW APP CONNECTION ID AREN'T DB ITEMS
+  workflowAppId String
+  connectionId  String
+
+  //WORKSPACE RELATION
+  FK_workspaceId String
+  workspace      Workspace @relation(fields: [FK_workspaceId], references: [id], onDelete: Cascade, name: "WorkspaceConnection")
+
+  //AGENT RELATION
+  agents                         Agent[] @relation(name: "AgentConnections")
+  agentsWithDefaultLlmConnection Agent[] @relation(name: "llmConnection")
+
+  //PROJECT RELATION
+  FK_projectId String?
+  project      Project? @relation(fields: [FK_projectId], references: [id], onDelete: Cascade)
+}
+
+//VARIABLES 
+enum VariableType {
+  system
+  workspace
+  project
+}
+
+enum VariableVariableType {
+  string
+  number
+  boolean
+  date
+  json
+}
+
+model Variable {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String  @db.VarChar(100)
+  description String? @db.VarChar(1000)
+
+  type     VariableType
+  dataType VariableVariableType
+
+  value Json
+
+  //WORKSPACE RELATION
+  FK_workspaceId String
+  workspace      Workspace @relation(fields: [FK_workspaceId], references: [id], onDelete: Cascade)
+
+  //PROJECT RELATION
+  FK_projectId String?
+  project      Project? @relation(fields: [FK_projectId], references: [id], onDelete: Cascade)
+
+  //AGENT RELATION
+  agentVariables AgentVariable[]
+}
+
+model Knowledge {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String  @db.VarChar(100)
+  description String? @db.VarChar(1000)
+
+  indexName  String
+  dimensions Int    @default(1536)
+
+  chunkSize    Int @default(1000)
+  chunkOverlap Int @default(100)
+
+  embeddingProvider String
+  embeddingModel    String
+  usage             KnowledgeUsage?
+  vectorRefs        KnowledgeVectorRef[]
+
+  //WORKSPACE RELATION
+  FK_workspaceId String
+  workspace      Workspace @relation(fields: [FK_workspaceId], references: [id], onDelete: Cascade)
+
+  //PROJECT RELATION
+  FK_projectId String?
+  project      Project? @relation(fields: [FK_projectId], references: [id], onDelete: Cascade)
+
+  //AGENT RELATION
+  agentKnowledge AgentKnowledge[]
+
+  credits Credit[]
+}
+
+model KnowledgeVectorRef {
+  //This id references the vector id in pinecone db
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  name String @db.VarChar(100)
+
+  s3Link String?
+
+  part Int?
+
+  //KNOWLEDGE RELATION
+  FK_knowledgeId String
+  knowledge      Knowledge @relation(fields: [FK_knowledgeId], references: [id], onDelete: Cascade)
+
+  knowledgeVectorRefGroup      KnowledgeVectorRefGroup? @relation(fields: [FK_knowledgeVectorRefGroupId], references: [id])
+  FK_knowledgeVectorRefGroupId String?
+}
+
+model KnowledgeVectorRefGroup {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  vectorRefs KnowledgeVectorRef[]
+}
+
+model KnowledgeUsage {
+  id String @id @default(uuid())
+
+  promptTokens Int
+
+  //TASK MESSAGE RELATION
+  FK_knowledgeId String    @unique
+  knowledge      Knowledge @relation(fields: [FK_knowledgeId], references: [id], onDelete: Cascade)
+}
+
+//NOTIFICATION
+model Notification {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  title   String  @db.VarChar(100)
+  message String  @db.VarChar(255)
+  link    String?
+  isRead  Boolean @default(false)
+
+  //USER RELATION
+  FK_workspaceUserId String
+  workspaceUser      WorkspaceUser @relation(fields: [FK_workspaceUserId], references: [id], onDelete: Cascade)
+}
+
+//RECENT WORKFLOWS
+model RecentWorkflow {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  //WORKFLOW RELATION
+  FK_workflowId String
+  workflow      Workflow @relation(fields: [FK_workflowId], references: [id], onDelete: Cascade)
+
+  //WORKSPACE USER RELATION
+  FK_workspaceUserId String
+  workspaceUser      WorkspaceUser @relation(fields: [FK_workspaceUserId], references: [id], onDelete: Cascade)
+}
+
+model WorkspaceInvitation {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  email String              @db.VarChar(255)
+  roles WorkspaceUserRole[] @default([])
+
+  //WORKSPACE RELATION
+  FK_workspaceId String
+  workspace      Workspace @relation(fields: [FK_workspaceId], references: [id], onDelete: Cascade)
+}

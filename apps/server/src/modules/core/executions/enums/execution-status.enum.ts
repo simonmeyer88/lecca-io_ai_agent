@@ -1,0 +1,7 @@
+export enum ExecutionStatus {
+  RUNNING = 'RUNNING',
+  SUCCESS = 'SUCCESS',
+  FAILED = 'FAILED',
+  NEEDS_INPUT = 'NEEDS_INPUT',
+  SCHEDULED = 'SCHEDULED',
+}

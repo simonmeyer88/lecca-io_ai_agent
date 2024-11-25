@@ -1,0 +1,39 @@
+.action-node {
+  border: 0.5px solid;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  line-height: 1;
+
+  /* status warning change border to yellow */
+  &.status-warning {
+    border-color: hsl(var(--status-warning));
+  }
+  &.status-error {
+    border-color: hsl(var(--status-error));
+  }
+  &.status-good {
+    border-color: hsl(var(--status-good));
+  }
+  &.status-incomplete {
+    /* Uncomment if you want border to be dashed when there is an error or warning */
+    /* border-style: dashed; */
+  }
+
+  &:hover .action-node-toolbar {
+    opacity: 1;
+  }
+}
+
+.workflow-content {
+  pointer-events: none;
+}
+
+.workflow-handle {
+  /* visibility: hidden; */
+  height: 2px;
+  width: 2px;
+  background: gray;
+  cursor: pointer !important;
+  border: gray;
+}

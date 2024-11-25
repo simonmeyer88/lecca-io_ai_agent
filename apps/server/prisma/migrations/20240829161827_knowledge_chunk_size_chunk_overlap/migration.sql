@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Knowledge" ADD COLUMN     "chunkOverlap" INTEGER NOT NULL DEFAULT 100,
+ADD COLUMN     "chunkSize" INTEGER NOT NULL DEFAULT 1000;

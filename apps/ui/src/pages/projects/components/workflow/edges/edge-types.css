@@ -1,0 +1,40 @@
+.workflow-edgeButton {
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  /* border: 0.5px solid;
+  border-radius: 30px;
+  height: 12px;
+  width: 12px; */
+
+  &.status-warning {
+    border-color: hsl(var(--status-warning));
+  }
+  &.status-error {
+    border-color: hsl(var(--status-error));
+  }
+  &.status-good {
+    border-color: hsl(var(--status-good));
+  }
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+.workflow-edgeButtonTrigger {
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  padding: 10px;
+}
+
+.workflow-placeholderPath {
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+  stroke: #bbb;
+  fill: none;
+}

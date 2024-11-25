@@ -1,0 +1,48 @@
+.template-variable {
+  color: rgb(0, 108, 181);
+  background: rgba(0, 102, 255, 0.1);
+  padding: 0.5px 3px;
+  border-radius: 4px;
+  border: 0.5px dashed rgba(0, 107, 181);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+}
+
+.template-variable:hover {
+  border-style: solid;
+}
+
+.template-variable.invalid {
+  border: 0.5px dashed red;
+  background: rgba(249, 6, 6, 0.1);
+  color: red;
+}
+
+.template-variable.loading {
+  border: 0.5px dashed rgb(128, 128, 128);
+  background: rgba(83, 78, 78, 0.1);
+  color: rgb(128, 128, 128);
+}
+
+.tiptap p {
+  margin-right: 18px;
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.tiptap.ProseMirror {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.editor-content.w-full {
+  min-height: 100px; /* Adjust based on desired default size */
+  overflow: auto; /* Ensure scrollbar appears if content exceeds editor size */
+}

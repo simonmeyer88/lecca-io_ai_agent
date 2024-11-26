@@ -19,7 +19,7 @@ export function KnowledgePage() {
               Icon={Icons.plus}
               iconPlacement="right"
             >
-              New Knowledge Notebook
+              New Notebook
             </Button>
           </Dialog.Trigger>
           <Dialog.Content>

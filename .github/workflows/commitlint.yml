@@ -1,0 +1,20 @@
+name: Lint Commit Messages
+
+on:
+  pull_request:
+    branches:
+      - main # Enforce on PRs to main (staging)
+      - prod # Enforce on PRs to prod (production)
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: wagoid/commitlint-github-action@v5

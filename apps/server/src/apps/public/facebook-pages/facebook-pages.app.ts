@@ -19,7 +19,7 @@ export class FacebookPages extends WorkflowApp {
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;
   description =
     'Facebook Pages allows businesses and organizations to create a presence on Facebook.';
-  isPublished = true;
+  isPublished = false;
 
   connections(): Connection[] {
     return [new FacebookOAuth2({ app: this })];

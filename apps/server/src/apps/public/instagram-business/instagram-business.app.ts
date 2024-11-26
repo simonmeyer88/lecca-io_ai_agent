@@ -19,7 +19,7 @@ export class InstagramBusiness extends WorkflowApp {
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;
   description =
     'Instagram for Business is a platform that allows businesses to connect with their audience through visually engaging content.';
-  isPublished = true;
+  isPublished = false;
 
   connections(): Connection[] {
     return [new InstagramBusinessOAuth2({ app: this })];

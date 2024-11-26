@@ -23,6 +23,10 @@ RUN npm install -g nx
 # This will install all app dependencies, including UI. We'll fix this in the future.
 RUN pnpm install --frozen-lockfile
 
+# Reset NX cache. We will want to fix this in the future. But it's giving an error.
+# "NX Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it."
+RUN pnpm exec nx reset
+
 # Build the project
 RUN pnpm exec nx run server:build
 

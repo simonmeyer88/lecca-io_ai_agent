@@ -20,10 +20,13 @@ export class StripeService {
     private readonly prisma: PrismaService,
     private readonly credits: CreditsService,
   ) {
-    // Initialize the Stripe client here
-    this.stripe = new Stripe(ServerConfig.STRIPE_SECRET_KEY, {
-      apiVersion: '2024-11-20.acacia',
-    });
+    if (ServerConfig.STRIPE_SECRET_KEY) {
+      this.stripe = new Stripe(ServerConfig.STRIPE_SECRET_KEY, {
+        apiVersion: '2024-11-20.acacia',
+      });
+    } else {
+      //Stripe isn't configured
+    }
   }
 
   getProducts = async () => {

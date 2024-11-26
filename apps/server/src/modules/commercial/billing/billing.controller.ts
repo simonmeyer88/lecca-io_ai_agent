@@ -8,17 +8,13 @@ import { JwtUser } from '@/types/jwt-user.type';
 
 import { StripeService } from '../stripe/stripe.service';
 
-import { BillingService } from './billing.service';
 import { CreateCheckoutSessionDto } from './dto/create-checkout-session.dto';
 
 @Controller('billing')
 @ApiTags('Billing')
 @ApiBearerAuth()
 export class BillingController {
-  constructor(
-    private readonly billingService: BillingService,
-    private readonly stripeService: StripeService,
-  ) {}
+  constructor(private readonly stripeService: StripeService) {}
 
   @Post('checkout-session')
   @Roles(['MAINTAINER'])

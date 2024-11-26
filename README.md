@@ -11,6 +11,14 @@
    `pnpm install`
 6. (Optional) Install NX Console VS Code extension.
 
+## Environment Variables
+
+1. Locate the `.env.example` file in the root directory
+2. Create a new `.env` file and copy the contents from `.env.example`
+3. Modify the variables as needed for your setup
+
+Note: These are the minimum required variables to run the platform. For full functionality, refer to `server.config.ts` for all possible environment variables and their use cases.
+
 ## Database Setup
 
 Before starting the server, you'll need a running database. This can be done using Docker:
@@ -23,14 +31,8 @@ Before starting the server, you'll need a running database. This can be done usi
 -e POSTGRES_USER=postgres
 -p "5432:5432" postgres
 `
-
-## Environment Variables
-
-1. Locate the `.env.example` file in the root directory
-2. Create a new `.env` file and copy the contents from `.env.example`
-3. Modify the variables as needed for your setup
-
-Note: These are the minimum required variables to run the platform. For full functionality, refer to `server.config.ts` for all possible environment variables and their use cases.
+3. Run the following command to migrate your database to match the prisma schema.
+   `pnpm prisma migrate dev`
 
 ## Starting the Server
 

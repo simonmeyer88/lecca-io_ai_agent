@@ -5,6 +5,7 @@ import {
   TriggerConstructorArgs,
 } from '@/apps/lib/trigger';
 import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
+
 import { GoogleForms } from '../google-forms.app';
 
 export class NewFormResponse extends TimeBasedPollTrigger {

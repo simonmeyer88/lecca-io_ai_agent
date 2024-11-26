@@ -1,10 +1,12 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
-import { z } from 'zod';
+
 import { Vapi } from '../vapi.app';
 
 export class MakePhoneCall extends Action {

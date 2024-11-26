@@ -267,10 +267,10 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
                           <Select.Value
                             placeholder={
                               field.value
-                                ? llmConnectionsForProvider.find(
+                                ? (llmConnectionsForProvider.find(
                                     (connection) =>
                                       connection.id === field.value,
-                                  )?.name ?? 'Select an LLM connection'
+                                  )?.name ?? 'Select an LLM connection')
                                 : 'Select an LLM connection'
                             }
                           />

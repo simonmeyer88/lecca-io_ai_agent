@@ -1,11 +1,13 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
+
 import { GoogleContacts } from '../google-contacts.app';
-import { z } from 'zod';
 
 export class ListContacts extends Action {
   constructor(args: ActionConstructorArgs) {

@@ -3,8 +3,9 @@ import {
   OAuth2Connection,
 } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
-import { GoogleDocs } from '../google-docs.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { GoogleDocs } from '../google-docs.app';
 
 export class GoogleDocsOAuth2 extends OAuth2Connection {
   constructor(args: ConnectionConstructorArgs) {

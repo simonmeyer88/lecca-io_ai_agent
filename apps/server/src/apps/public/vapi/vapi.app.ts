@@ -1,18 +1,20 @@
+import { Assistant } from '@vapi-ai/web/dist/api';
+
+import { Action } from '@/apps/lib/action';
+import { Connection } from '@/apps/lib/connection';
+import { InputConfig } from '@/apps/lib/input-config';
+import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { Action } from '@/apps/lib/action';
-import { Trigger } from '@/apps/lib/trigger';
-import { Connection } from '@/apps/lib/connection';
-import { VapiApiKey } from './connections/vapi.api-key';
-import { InputConfig } from '@/apps/lib/input-config';
-import { Assistant } from '@vapi-ai/web/dist/api';
-import { MakePhoneCall } from './actions/make-phone-call.action';
+import { ServerConfig } from '@/config/server.config';
+
 import { GetPhoneCall } from './actions/get-phone-call.action';
 import { ListAssistants } from './actions/list-assistants.action';
 import { ListPhoneNumbers } from './actions/list-phone-numbers.action';
-import { ServerConfig } from '@/config/server.config';
+import { MakePhoneCall } from './actions/make-phone-call.action';
+import { VapiApiKey } from './connections/vapi.api-key';
 
 export class Vapi extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

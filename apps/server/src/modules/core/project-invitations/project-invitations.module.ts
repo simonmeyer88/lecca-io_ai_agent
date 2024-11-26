@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { ProjectInvitationsService } from './project-invitations.service';
+
 import {
   ProjectInvitationsController,
   ProjectProjectInvitationsController,
 } from './project-invitations.controller';
+import { ProjectInvitationsService } from './project-invitations.service';
 
 @Module({
   exports: [ProjectInvitationsService],

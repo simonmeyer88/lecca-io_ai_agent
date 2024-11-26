@@ -1,17 +1,18 @@
 import { Action } from '@/apps/lib/action';
 import { Connection } from '@/apps/lib/connection';
+import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { LinkedinOAuth2 } from './connections/linkedin.oauth2';
-import { CreateTextPost } from './actions/create-text-post.action';
-import { InputConfig } from '@/apps/lib/input-config';
-import { CreateOrganizationTextPost } from './actions/create-organization-text-post.action';
-import { CreateOrganizationImagePost } from './actions/create-organization-image-post.action';
-import { CreateImagePost } from './actions/create-image-post.action';
 import { ServerConfig } from '@/config/server.config';
+
+import { CreateImagePost } from './actions/create-image-post.action';
+import { CreateOrganizationImagePost } from './actions/create-organization-image-post.action';
+import { CreateOrganizationTextPost } from './actions/create-organization-text-post.action';
+import { CreateTextPost } from './actions/create-text-post.action';
+import { LinkedinOAuth2 } from './connections/linkedin.oauth2';
 
 export class Linkedin extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

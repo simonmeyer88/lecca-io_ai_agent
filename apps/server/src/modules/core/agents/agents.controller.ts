@@ -1,25 +1,27 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { JwtUser } from '@/types/jwt-user.type';
-import { AgentsService } from './agents.service';
-import { CreateAgentDto } from './dto/create-agent.dto';
-import { AgentExpansionDto } from './dto/agent-expansion.dto';
-import { AgentIncludeTypeDto } from './dto/agent-include-type.dto';
-import { AgentFilterByDto } from './dto/agent-filter-by.dto';
-import { UpdateAgentDto } from './dto/update-agent.dto';
+
 import { BelongsTo } from '@/decorators/belongs-to.decorator';
-import { User } from '@/decorators/user.decorator';
 import { Expansion } from '@/decorators/expansion.decorator';
-import { IncludeType } from '@/decorators/include-type.decorator';
 import { FilterBy } from '@/decorators/filter-by.decorator';
+import { IncludeType } from '@/decorators/include-type.decorator';
+import { User } from '@/decorators/user.decorator';
+import { JwtUser } from '@/types/jwt-user.type';
+
+import { AgentsService } from './agents.service';
+import { AgentExpansionDto } from './dto/agent-expansion.dto';
+import { AgentFilterByDto } from './dto/agent-filter-by.dto';
+import { AgentIncludeTypeDto } from './dto/agent-include-type.dto';
+import { CreateAgentDto } from './dto/create-agent.dto';
+import { UpdateAgentDto } from './dto/update-agent.dto';
 
 @Controller('projects/:projectId/agents')
 @ApiTags('Agents')

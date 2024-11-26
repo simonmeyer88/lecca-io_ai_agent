@@ -5,11 +5,12 @@ import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { MicrosoftOutlookOAuth2 } from './connections/microsoft-outlook.oauth2';
+import { ServerConfig } from '@/config/server.config';
+
 import { CreateDraft } from './actions/create-draft.action';
 import { SendDraft } from './actions/send-draft.action';
+import { MicrosoftOutlookOAuth2 } from './connections/microsoft-outlook.oauth2';
 import { EmailReceived } from './triggers/email-received.trigger';
-import { ServerConfig } from '@/config/server.config';
 
 export class MicrosoftOutlook extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

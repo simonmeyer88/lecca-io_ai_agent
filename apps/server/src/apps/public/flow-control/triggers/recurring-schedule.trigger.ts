@@ -1,18 +1,20 @@
-import { InputConfig } from '@/apps/lib/input-config';
-import {
-  Trigger,
-  TriggerConstructorArgs,
-  TriggerStrategy,
-  NodeViewOptions,
-} from '@/apps/lib/trigger';
-import { RunActionArgs } from '@/apps/lib/action';
-import { z } from 'zod';
 import { BadRequestException } from '@nestjs/common';
 import { DateTime } from 'luxon';
 import { Options, RRule } from 'rrule';
-import { FlowControl } from '../flow-control.app';
+import { z } from 'zod';
+
+import { RunActionArgs } from '@/apps/lib/action';
+import { InputConfig } from '@/apps/lib/input-config';
+import {
+  NodeViewOptions,
+  Trigger,
+  TriggerConstructorArgs,
+  TriggerStrategy,
+} from '@/apps/lib/trigger';
 import { parseDateToISO } from '@/apps/utils/parse-date-to-iso';
 import { ServerConfig } from '@/config/server.config';
+
+import { FlowControl } from '../flow-control.app';
 
 export class RecurringSchedule extends Trigger {
   constructor(args: TriggerConstructorArgs) {

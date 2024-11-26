@@ -110,9 +110,9 @@ export function AddAgentSubAgentForm({
                                 }))}
                                 defaultSelectedItem={{
                                   label: field.value
-                                    ? unselectedSubAgents?.find(
+                                    ? (unselectedSubAgents?.find(
                                         (k) => k.id === field.value,
-                                      )?.name ?? 'Unknown sub-agent'
+                                      )?.name ?? 'Unknown sub-agent')
                                     : '',
                                   value: field.value,
                                 }}

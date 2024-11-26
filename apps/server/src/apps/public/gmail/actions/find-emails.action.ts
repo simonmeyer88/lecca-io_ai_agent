@@ -1,13 +1,15 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
-import { Gmail } from '../gmail.app';
 import { parseNumberOrThrow } from '@/apps/utils/parse-number-or-throw';
+
+import { Gmail } from '../gmail.app';
 import { GmailParsedEmail } from '../types/gmail.types';
-import { z } from 'zod';
 
 export class FindEmails extends Action {
   constructor(args: ActionConstructorArgs) {

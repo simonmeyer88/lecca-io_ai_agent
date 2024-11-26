@@ -1,18 +1,19 @@
 import { Action } from '@/apps/lib/action';
 import { Connection } from '@/apps/lib/connection';
+import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
+import { ServerConfig } from '@/config/server.config';
+
+import { DropboxCreateFolder } from './actions/create-folder.action';
+import { GetTemporaryLink } from './actions/get-file-link.action';
+import { DropboxListFolderContents } from './actions/list-folder-contents.action';
+import { DropboxListFolders } from './actions/list-folders.action';
 import { DropboxSearch } from './actions/search.action';
 import { DropboxOAuth2 } from './connections/dropbox.oauth2';
-import { DropboxCreateFolder } from './actions/create-folder.action';
-import { DropboxListFolders } from './actions/list-folders.action';
-import { InputConfig } from '@/apps/lib/input-config';
-import { DropboxListFolderContents } from './actions/list-folder-contents.action';
-import { GetTemporaryLink } from './actions/get-file-link.action';
-import { ServerConfig } from '@/config/server.config';
 
 export class Dropbox extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

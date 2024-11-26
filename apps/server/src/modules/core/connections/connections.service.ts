@@ -1,20 +1,23 @@
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { JwtUser } from '@/types/jwt-user.type';
 import {
   BadRequestException,
   ForbiddenException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { ConnectionIncludeTypeDto } from './dto/connection-include-type.dto';
+import { Connection } from '@prisma/client';
+
+import { WORKFLOW_APPS, WorkflowAppsKey } from '@/apps/public/workflow-apps';
+import { PrismaService } from '@/modules/global/prisma/prisma.service';
+import { JwtUser } from '@/types/jwt-user.type';
+
+import { CryptoService } from '../../global/crypto/crypto.service';
+import { ExecutionsService } from '../executions/executions.service';
+
 import { ConnectionExpansionDto } from './dto/connection-expansion.dto';
+import { ConnectionFilterByDto } from './dto/connection-filter-by.dto';
+import { ConnectionIncludeTypeDto } from './dto/connection-include-type.dto';
 import { CreateConnectionDto } from './dto/create-connection.dto';
 import { UpdateConnectionDto } from './dto/update-connection.dto';
-import { ConnectionFilterByDto } from './dto/connection-filter-by.dto';
-import { WORKFLOW_APPS, WorkflowAppsKey } from '@/apps/public/workflow-apps';
-import { CryptoService } from '../../global/crypto/crypto.service';
-import { Connection } from '@prisma/client';
-import { ExecutionsService } from '../executions/executions.service';
 
 @Injectable()
 export class ConnectionsService {

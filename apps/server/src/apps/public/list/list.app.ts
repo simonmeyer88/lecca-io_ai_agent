@@ -1,16 +1,17 @@
+import { Action } from '@/apps/lib/action';
+import { Connection } from '@/apps/lib/connection';
+import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { Action } from '@/apps/lib/action';
-import { Trigger } from '@/apps/lib/trigger';
-import { Connection } from '@/apps/lib/connection';
-import { CombineLists } from './actions/combine-lists.action';
-import { GetLastItemInList } from './actions/get-last-item-in-list.action';
-import { GetFirstItemInList } from './actions/get-first-item-in-list.action';
-import { FindItemInList } from './actions/find-item.action';
-import { CountList } from './actions/count-list.action';
 import { ServerConfig } from '@/config/server.config';
+
+import { CombineLists } from './actions/combine-lists.action';
+import { CountList } from './actions/count-list.action';
+import { FindItemInList } from './actions/find-item.action';
+import { GetFirstItemInList } from './actions/get-first-item-in-list.action';
+import { GetLastItemInList } from './actions/get-last-item-in-list.action';
 
 export class List extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

@@ -1,10 +1,11 @@
-import { Connection } from '@prisma/client';
-import { FieldConfig, InputConfig, NestedInputConfig } from './input-config';
-import { ConfigValue, WorkflowApp } from './workflow-app';
 import { BadRequestException, ForbiddenException } from '@nestjs/common';
-import { OAuth2Connection } from './connection';
+import { Connection } from '@prisma/client';
 import { CoreTool } from 'ai';
+
+import { OAuth2Connection } from './connection';
+import { FieldConfig, InputConfig, NestedInputConfig } from './input-config';
 import { NodeViewOptions } from './trigger';
+import { ConfigValue, WorkflowApp } from './workflow-app';
 
 export abstract class Action {
   constructor(args: ActionConstructorArgs) {

@@ -414,7 +414,6 @@ const Onborda: React.FC<OnbordaProps> = ({
         viewBox="0 0 54 54"
         data-name="onborda-arrow"
         className="absolute w-8 h-8 origin-center"
-         
         style={getArrowStyle(currentTourSteps?.[currentStep]?.side as any)}
       >
         <path id="triangle" d="M27 27L0 0V54L27 27Z" fill="currentColor" />
@@ -490,12 +489,10 @@ const Onborda: React.FC<OnbordaProps> = ({
                 className="absolute flex flex-col max-w-[100%] transition-all min-w-min pointer-events-auto z-[999]"
                 data-name="onborda-card"
                 style={getCardStyle(
-                   
                   currentTourSteps?.[currentStep]?.side as any,
                 )}
               >
                 <CardComponent
-                   
                   step={currentTourSteps?.[currentStep] as any}
                   currentStep={currentStep}
                   totalSteps={currentTourSteps?.length ?? 0}

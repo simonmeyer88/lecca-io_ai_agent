@@ -1,12 +1,14 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
-import { z } from 'zod';
-import { Knowledge } from '../knowledge.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { Knowledge } from '../knowledge.app';
 
 export class SearchKnowledge extends Action {
   constructor(args: ActionConstructorArgs) {

@@ -3,8 +3,9 @@ import {
   OAuth2Connection,
 } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
-import { Hubspot } from '../hubspot.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { Hubspot } from '../hubspot.app';
 
 export class HubSpotOAuth2 extends OAuth2Connection {
   constructor(args: ConnectionConstructorArgs) {

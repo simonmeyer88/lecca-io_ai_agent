@@ -1,25 +1,27 @@
+import { Client } from '@notionhq/client';
+import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+
 import { Action } from '@/apps/lib/action';
 import { Connection } from '@/apps/lib/connection';
+import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { Client } from '@notionhq/client';
-import { NotionOAuth2 } from './connections/notion.oauth2';
-import { InputConfig } from '@/apps/lib/input-config';
-import { CreatePage } from './actions/create-page.action';
-import { AppendPage } from './actions/append-to-page.action';
-import { ListDatabases } from './actions/list-databases.action';
-import { GetDatabase } from './actions/get-database.action';
-import { AddDatabaseItem } from './actions/add-database-item.action';
-import { UpdateDatabaseItem } from './actions/update-database-item.action';
-import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
-import { NewDatabaseItem } from './triggers/new-database-item.trigger';
-import { GetPage } from './actions/get-page.action';
-import { UpdatedDatabaseItem } from './triggers/updated-database-item.trigger';
-import { PageUpdated } from './triggers/page-updated.trigger';
 import { ServerConfig } from '@/config/server.config';
+
+import { AddDatabaseItem } from './actions/add-database-item.action';
+import { AppendPage } from './actions/append-to-page.action';
+import { CreatePage } from './actions/create-page.action';
+import { GetDatabase } from './actions/get-database.action';
+import { GetPage } from './actions/get-page.action';
+import { ListDatabases } from './actions/list-databases.action';
+import { UpdateDatabaseItem } from './actions/update-database-item.action';
+import { NotionOAuth2 } from './connections/notion.oauth2';
+import { NewDatabaseItem } from './triggers/new-database-item.trigger';
+import { PageUpdated } from './triggers/page-updated.trigger';
+import { UpdatedDatabaseItem } from './triggers/updated-database-item.trigger';
 
 export class Notion extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

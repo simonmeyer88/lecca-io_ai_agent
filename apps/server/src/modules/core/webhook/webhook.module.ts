@@ -1,12 +1,15 @@
 import { Module } from '@nestjs/common';
-import { ConnectionsService } from '@/modules/core/connections/connections.service';
-import { WorkflowAppsService } from '../workflow-apps/workflow-apps.service';
-import { ExecutionsService } from '@/modules/core/executions/executions.service';
-import { WebhookService } from './webhook.service';
-import { WebhookController } from './webhook.controller';
-import { TasksService } from '@/modules/core/tasks/tasks.service';
+
 import { StripeService } from '@/modules/commercial/stripe/stripe.service';
+import { ConnectionsService } from '@/modules/core/connections/connections.service';
+import { ExecutionsService } from '@/modules/core/executions/executions.service';
 import { KnowledgeService } from '@/modules/core/knowledge/knowledge.service';
+import { TasksService } from '@/modules/core/tasks/tasks.service';
+
+import { WorkflowAppsService } from '../workflow-apps/workflow-apps.service';
+
+import { WebhookController } from './webhook.controller';
+import { WebhookService } from './webhook.service';
 
 @Module({
   exports: [WebhookService],

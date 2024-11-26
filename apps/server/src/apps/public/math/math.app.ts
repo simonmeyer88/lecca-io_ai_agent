@@ -1,16 +1,17 @@
+import { Action } from '@/apps/lib/action';
+import { Connection } from '@/apps/lib/connection';
+import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { Action } from '@/apps/lib/action';
-import { Trigger } from '@/apps/lib/trigger';
-import { Connection } from '@/apps/lib/connection';
-import { Math as MathAction } from './actions/math.action';
-import { Addition } from './actions/addition.action';
-import { Subtraction } from './actions/subtraction.action';
-import { Division } from './actions/division.action';
-import { Multiplication } from './actions/multiplication.action';
 import { ServerConfig } from '@/config/server.config';
+
+import { Addition } from './actions/addition.action';
+import { Division } from './actions/division.action';
+import { Math as MathAction } from './actions/math.action';
+import { Multiplication } from './actions/multiplication.action';
+import { Subtraction } from './actions/subtraction.action';
 
 export class Math extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

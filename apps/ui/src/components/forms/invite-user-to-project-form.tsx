@@ -117,37 +117,36 @@ export function InviteUserToProjectForm(props: InviteUserToProjectFormProps) {
                           </>
                         ) : workspaceUsers?.length ? (
                           <div className="flex space-x-1 items-center">
-                              <ComboBox
-                                dropdownWidthMatchesButton
-                                className="w-full flex justify-between"
-                                fallbackLabel="Select a user"
-                                searchable={true}
-                                items={workspaceUsers
-                                  ?.filter((workspaceUser) => {
-                                    return !projectWorkspaceUsers?.find(
-                                      (projectWorkspaceUser) =>
-                                        projectWorkspaceUser?.id ===
-                                        workspaceUser.id,
-                                    );
-                                  })
-                                  .map((workspaceUser) => ({
-                                    label:
-                                      workspaceUser?.user?.name ??
-                                      'Unknown user',
-                                    value: workspaceUser?.id ?? '',
-                                  }))}
-                                defaultSelectedItem={{
-                                  label: field.value
-                                    ? workspaceUsers?.find(
-                                        ({ user }) => user?.id === field.value,
-                                      )?.user?.name ?? 'Unknown user'
-                                    : '',
-                                  value: field.value,
-                                }}
-                                searchLabel="Search users"
-                                onChange={field.onChange}
-                              />
-                            </div>
+                            <ComboBox
+                              dropdownWidthMatchesButton
+                              className="w-full flex justify-between"
+                              fallbackLabel="Select a user"
+                              searchable={true}
+                              items={workspaceUsers
+                                ?.filter((workspaceUser) => {
+                                  return !projectWorkspaceUsers?.find(
+                                    (projectWorkspaceUser) =>
+                                      projectWorkspaceUser?.id ===
+                                      workspaceUser.id,
+                                  );
+                                })
+                                .map((workspaceUser) => ({
+                                  label:
+                                    workspaceUser?.user?.name ?? 'Unknown user',
+                                  value: workspaceUser?.id ?? '',
+                                }))}
+                              defaultSelectedItem={{
+                                label: field.value
+                                  ? (workspaceUsers?.find(
+                                      ({ user }) => user?.id === field.value,
+                                    )?.user?.name ?? 'Unknown user')
+                                  : '',
+                                value: field.value,
+                              }}
+                              searchLabel="Search users"
+                              onChange={field.onChange}
+                            />
+                          </div>
                         ) : (
                           <Form.Description>
                             No users available.

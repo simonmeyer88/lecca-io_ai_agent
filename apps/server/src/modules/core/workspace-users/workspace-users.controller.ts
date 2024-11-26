@@ -1,17 +1,19 @@
-import { Controller, Get, Body, Patch, Param, Put, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, Put } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+
+import { BelongsTo } from '@/decorators/belongs-to.decorator';
+import { Expansion } from '@/decorators/expansion.decorator';
+import { FilterBy } from '@/decorators/filter-by.decorator';
+import { Roles } from '@/decorators/roles.decorator';
+import { User } from '@/decorators/user.decorator';
 import { JwtUser } from '@/types/jwt-user.type';
+
 import { UpdateProfileImageDto } from './dto/update-profile-image.dto';
 import { UpdateWorkspaceUserRolesDto } from './dto/update-workspace-user-roles.dto';
 import { UpdateWorkspaceUserDto } from './dto/update-workspace-user.dto';
 import { WorkspaceUserExpansionDto } from './dto/workspace-user-expansion.dto';
 import { WorkspaceUserFilterByDto } from './dto/workspace-user-filter-by.dto';
 import { WorkspaceUsersService } from './workspace-users.service';
-import { Roles } from '@/decorators/roles.decorator';
-import { User } from '@/decorators/user.decorator';
-import { Expansion } from '@/decorators/expansion.decorator';
-import { FilterBy } from '@/decorators/filter-by.decorator';
-import { BelongsTo } from '@/decorators/belongs-to.decorator';
 
 @Controller('workspace-users')
 @ApiTags('Workspace Users')

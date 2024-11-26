@@ -4,8 +4,9 @@ import {
   TimeBasedPollTrigger,
   TriggerConstructorArgs,
 } from '@/apps/lib/trigger';
-import { GoogleCalendar } from '../google-calendar.app';
 import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
+
+import { GoogleCalendar } from '../google-calendar.app';
 
 export class NewCalendarEvent extends TimeBasedPollTrigger {
   constructor(args: TriggerConstructorArgs) {

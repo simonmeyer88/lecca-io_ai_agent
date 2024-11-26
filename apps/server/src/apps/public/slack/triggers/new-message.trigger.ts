@@ -4,6 +4,7 @@ import {
   TriggerConstructorArgs,
   WebhookAppTrigger,
 } from '@/apps/lib/trigger';
+
 import { Slack } from '../slack.app';
 import { SlackWebhookBody } from '../types/slack.types';
 

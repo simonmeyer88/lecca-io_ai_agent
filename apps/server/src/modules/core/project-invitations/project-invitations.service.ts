@@ -4,8 +4,10 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { CreateProjectInvitationDto } from './dto/create-project-invitation.dto';
+
 import { PrismaService } from '@/modules/global/prisma/prisma.service';
+
+import { CreateProjectInvitationDto } from './dto/create-project-invitation.dto';
 
 @Injectable()
 export class ProjectInvitationsService {

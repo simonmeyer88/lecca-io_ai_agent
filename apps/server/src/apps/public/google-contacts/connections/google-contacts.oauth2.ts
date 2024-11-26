@@ -4,8 +4,9 @@ import {
   OAuth2Connection,
 } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
-import { GoogleContacts } from '../google-contacts.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { GoogleContacts } from '../google-contacts.app';
 
 export class GoogleContactsOAuth2 extends OAuth2Connection {
   constructor(args: ConnectionConstructorArgs) {

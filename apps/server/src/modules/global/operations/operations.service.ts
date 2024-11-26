@@ -1,6 +1,7 @@
-import { ServerConfig } from '@/config/server.config';
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
+
+import { ServerConfig } from '@/config/server.config';
 
 @Injectable()
 export class OperationsService {

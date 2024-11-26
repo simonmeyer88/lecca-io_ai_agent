@@ -4,9 +4,10 @@ import {
   TimeBasedPollTrigger,
   TriggerConstructorArgs,
 } from '@/apps/lib/trigger';
+import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
+
 import { GoogleDocs } from '../google-docs.app';
 import { GoogleDocumentInFolderPollType } from '../types/google-docs.type';
-import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
 
 export class NewDocumentInFolder extends TimeBasedPollTrigger {
   constructor(args: TriggerConstructorArgs) {

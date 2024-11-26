@@ -1,7 +1,8 @@
-import { IsEnum, IsOptional } from 'class-validator';
-import { WorkspaceUserPreferencesThemes } from '../enums/workspace-user-preferences-themes.enum';
-import { WorkspaceUserPreferencesLocale } from '../enums/workspace-user-preferences-locale.enum';
 import { WorkflowOrientation } from '@prisma/client';
+import { IsEnum, IsOptional } from 'class-validator';
+
+import { WorkspaceUserPreferencesLocale } from '../enums/workspace-user-preferences-locale.enum';
+import { WorkspaceUserPreferencesThemes } from '../enums/workspace-user-preferences-themes.enum';
 
 export class UpdateWorkspaceUserPreferencesDto {
   @IsEnum(WorkspaceUserPreferencesThemes)

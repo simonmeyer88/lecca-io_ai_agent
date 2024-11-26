@@ -1,14 +1,16 @@
-import { Controller, Get, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+
+import { BelongsTo } from '@/decorators/belongs-to.decorator';
+import { Expansion } from '@/decorators/expansion.decorator';
+import { IncludeType } from '@/decorators/include-type.decorator';
+import { User } from '@/decorators/user.decorator';
 import { JwtUser } from '@/types/jwt-user.type';
-import { UsersService } from './users.service';
+
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserExpansionDto } from './dto/user-expansion.dto';
 import { UserIncludeTypeDto } from './dto/user-include-type.dto';
-import { User } from '@/decorators/user.decorator';
-import { BelongsTo } from '@/decorators/belongs-to.decorator';
-import { IncludeType } from '@/decorators/include-type.decorator';
-import { Expansion } from '@/decorators/expansion.decorator';
+import { UsersService } from './users.service';
 
 @Controller('users')
 @ApiTags('Users')

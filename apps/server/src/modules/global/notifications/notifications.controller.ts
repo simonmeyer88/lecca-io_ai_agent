@@ -1,9 +1,11 @@
-import { Controller, Get, Param, Delete, Post } from '@nestjs/common';
-import { NotificationsService } from './notifications.service';
+import { Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { JwtUser } from '@/types/jwt-user.type';
-import { User } from '@/decorators/user.decorator';
+
 import { BelongsTo } from '@/decorators/belongs-to.decorator';
+import { User } from '@/decorators/user.decorator';
+import { JwtUser } from '@/types/jwt-user.type';
+
+import { NotificationsService } from './notifications.service';
 
 @Controller('notifications')
 @ApiTags('Notifications')

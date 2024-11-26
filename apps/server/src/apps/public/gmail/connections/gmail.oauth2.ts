@@ -4,8 +4,9 @@ import {
   OAuth2Connection,
 } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
-import { Gmail } from '../gmail.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { Gmail } from '../gmail.app';
 
 export class GmailOAuth2 extends OAuth2Connection {
   constructor(args: ConnectionConstructorArgs) {

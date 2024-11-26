@@ -6,7 +6,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 type HomeSummaryCardProps = {
   title: string;
   value: React.ReactNode;
-   
+
   Icon: React.ComponentType<any>;
   summary: React.ReactNode;
   isLoading: boolean;

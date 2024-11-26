@@ -1,16 +1,19 @@
 import { BadRequestException, ForbiddenException } from '@nestjs/common';
-import { FieldConfig, InputConfig, NestedInputConfig } from './input-config';
-import { ConfigValue, WorkflowApp } from './workflow-app';
 import { Connection } from '@prisma/client';
+import { CoreTool } from 'ai';
+
+import { ServerConfig } from '@/config/server.config';
+
 import {
   ExecutionNodeForRunner,
   WorkflowNodeForRunner,
 } from '../../modules/core/workflow-runner/workflow-runner.service';
-import { isValidMilli } from '../utils/is-valid-milli';
-import { OAuth2Connection } from './connection';
-import { CoreTool } from 'ai';
 import { filterDataByConditions } from '../utils/filter-data-by-conditions';
-import { ServerConfig } from '@/config/server.config';
+import { isValidMilli } from '../utils/is-valid-milli';
+
+import { OAuth2Connection } from './connection';
+import { FieldConfig, InputConfig, NestedInputConfig } from './input-config';
+import { ConfigValue, WorkflowApp } from './workflow-app';
 
 export abstract class Trigger {
   constructor(args: TriggerConstructorArgs) {

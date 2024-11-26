@@ -1,21 +1,23 @@
+import { LanguageModelV1 } from 'ai';
+
+import { Action } from '@/apps/lib/action';
+import { Connection } from '@/apps/lib/connection';
+import { InputConfig } from '@/apps/lib/input-config';
+import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { Action } from '@/apps/lib/action';
-import { Trigger } from '@/apps/lib/trigger';
-import { Connection } from '@/apps/lib/connection';
-import { SummarizeText } from './actions/summarize-text.action';
-import { TranslateText } from './actions/translate-text.action';
+import { ServerConfig } from '@/config/server.config';
+import { AiProvider } from '@/modules/global/ai-provider/ai-provider.service';
+
 import { CustomPrompt } from './actions/custom-prompt.action';
 import { DecideWithAI } from './actions/decide-with-ai.action';
 import { ExtractWithAI } from './actions/extract-with-ai.action';
-import { MessageAgent } from './actions/message-agent.action';
-import { InputConfig } from '@/apps/lib/input-config';
 import { ListAgents } from './actions/list-agents.action';
-import { ServerConfig } from '@/config/server.config';
-import { LanguageModelV1 } from 'ai';
-import { AiProvider } from '@/modules/global/ai-provider/ai-provider.service';
+import { MessageAgent } from './actions/message-agent.action';
+import { SummarizeText } from './actions/summarize-text.action';
+import { TranslateText } from './actions/translate-text.action';
 
 export class AI extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

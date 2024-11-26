@@ -1,6 +1,3 @@
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { JwtUser } from '@/types/jwt-user.type';
-import { WorkflowAccessedByWorkspaceUserEventPayload } from '@/types/event-payloads/workflow-access-by-workspace-user-event-payload.type';
 import {
   BadRequestException,
   ForbiddenException,
@@ -8,15 +5,20 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
+import { WorkflowStrategy } from '@prisma/client';
+
+import { ItemBasedPollTrigger } from '@/apps/lib/trigger';
+import { WorkflowAppsService } from '@/modules/core/workflow-apps/workflow-apps.service';
+import { WorkflowNodeForRunner } from '@/modules/core/workflow-runner/workflow-runner.service';
+import { PrismaService } from '@/modules/global/prisma/prisma.service';
+import { WorkflowAccessedByWorkspaceUserEventPayload } from '@/types/event-payloads/workflow-access-by-workspace-user-event-payload.type';
+import { JwtUser } from '@/types/jwt-user.type';
+
 import { CreateWorkflowDto } from './dto/create-workflow.dto';
 import { UpdateWorkflowDto } from './dto/update-workflow.dto';
 import { WorkflowExpansionDto } from './dto/workflow-expansion.dto';
 import { WorkflowFilterByDto } from './dto/workflow-filter-by.dto';
 import { WorkflowIncludeTypeDto } from './dto/workflow-include-type.dto';
-import { WorkflowNodeForRunner } from '@/modules/core/workflow-runner/workflow-runner.service';
-import { WorkflowStrategy } from '@prisma/client';
-import { WorkflowAppsService } from '@/modules/core/workflow-apps/workflow-apps.service';
-import { ItemBasedPollTrigger } from '@/apps/lib/trigger';
 
 @Injectable()
 export class WorkflowsService {

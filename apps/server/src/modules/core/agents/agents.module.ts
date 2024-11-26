@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
-import { AgentsService } from './agents.service';
-import { AgentsController, ProjectAgentsController } from './agents.controller';
-import { WorkflowsService } from '../workflows/workflows.service';
-import { WorkflowAppsService } from '../workflow-apps/workflow-apps.service';
-import { TasksService } from '../tasks/tasks.service';
+
 import { ConnectionsService } from '../connections/connections.service';
 import { ExecutionsService } from '../executions/executions.service';
 import { KnowledgeService } from '../knowledge/knowledge.service';
+import { TasksService } from '../tasks/tasks.service';
+import { WorkflowAppsService } from '../workflow-apps/workflow-apps.service';
+import { WorkflowsService } from '../workflows/workflows.service';
+
+import { AgentsController, ProjectAgentsController } from './agents.controller';
+import { AgentsService } from './agents.service';
 
 @Module({
   controllers: [AgentsController, ProjectAgentsController],

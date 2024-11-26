@@ -1,22 +1,24 @@
+import * as crypto from 'crypto';
+
 import { Action } from '@/apps/lib/action';
 import { Connection } from '@/apps/lib/connection';
+import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { SlackOAuth2 } from './connections/slack.oauth2';
+import { ServerConfig } from '@/config/server.config';
+
 import { CreateChannel } from './actions/create-channel.action';
-import { InputConfig } from '@/apps/lib/input-config';
-import { SendMessageToUser } from './actions/send-message-to-user.action';
-import * as crypto from 'crypto';
-import { NewMessage } from './triggers/new-message.trigger';
-import { SendMessageToChannel } from './actions/send-message-to-channel.action';
+import { GetThreadMessages } from './actions/get-thread-messages.action';
 import { ListChannels } from './actions/list-channels.action';
 import { ListUsers } from './actions/list-users.action';
 import { ReplyToMessage } from './actions/reply-to-message.action';
-import { GetThreadMessages } from './actions/get-thread-messages.action';
-import { ServerConfig } from '@/config/server.config';
+import { SendMessageToChannel } from './actions/send-message-to-channel.action';
+import { SendMessageToUser } from './actions/send-message-to-user.action';
+import { SlackOAuth2 } from './connections/slack.oauth2';
+import { NewMessage } from './triggers/new-message.trigger';
 
 export class Slack extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

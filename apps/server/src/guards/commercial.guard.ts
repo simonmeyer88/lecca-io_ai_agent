@@ -1,12 +1,13 @@
-import { ServerConfig } from '@/config/server.config';
-import { CommercialKey } from '@/decorators/commercial.decorator';
 import {
-  Injectable,
   CanActivate,
   ExecutionContext,
+  Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
+
+import { ServerConfig } from '@/config/server.config';
+import { CommercialKey } from '@/decorators/commercial.decorator';
 
 @Injectable()
 export class CommercialKeyGuard implements CanActivate {

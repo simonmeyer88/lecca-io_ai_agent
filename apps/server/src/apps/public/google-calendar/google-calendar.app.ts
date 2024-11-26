@@ -1,20 +1,22 @@
+import { google } from 'googleapis';
+
+import { Action } from '@/apps/lib/action';
+import { Connection } from '@/apps/lib/connection';
+import { InputConfig } from '@/apps/lib/input-config';
+import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { google } from 'googleapis';
-import { Action } from '@/apps/lib/action';
-import { Trigger } from '@/apps/lib/trigger';
-import { Connection } from '@/apps/lib/connection';
-import { GoogleCalendarOAuth2 } from './connections/google-calendar.oauth2';
-import { CreateEvent } from './actions/create-event.action';
-import { InputConfig } from '@/apps/lib/input-config';
-import { ListCalendars } from './actions/list-calendars.action';
-import { UpdateEvent } from './actions/update-event.action';
-import { AddGuestsToEvent } from './actions/add-guests-to-event.action';
-import { ListEvents } from './actions/list-events.action';
-import { NewCalendarEvent } from './triggers/new-calendar-event.trigger';
 import { ServerConfig } from '@/config/server.config';
+
+import { AddGuestsToEvent } from './actions/add-guests-to-event.action';
+import { CreateEvent } from './actions/create-event.action';
+import { ListCalendars } from './actions/list-calendars.action';
+import { ListEvents } from './actions/list-events.action';
+import { UpdateEvent } from './actions/update-event.action';
+import { GoogleCalendarOAuth2 } from './connections/google-calendar.oauth2';
+import { NewCalendarEvent } from './triggers/new-calendar-event.trigger';
 
 export class GoogleCalendar extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

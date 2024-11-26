@@ -1,5 +1,7 @@
 import { Global, Module } from '@nestjs/common';
+
 import { S3ManagerService } from './s3.service';
+
 @Global()
 @Module({
   imports: [],

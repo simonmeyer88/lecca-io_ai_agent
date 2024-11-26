@@ -1,11 +1,13 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
+
 import { Notion } from '../notion.app';
-import { z } from 'zod';
 
 export class AddDatabaseItem extends Action {
   constructor(args: ActionConstructorArgs) {

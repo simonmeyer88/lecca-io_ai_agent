@@ -6,7 +6,6 @@ module.exports = [
   ...nx.configs['flat/react'],
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-    // Override or add rules here
     rules: {
       'react/jsx-pascal-case': 'off',
     },

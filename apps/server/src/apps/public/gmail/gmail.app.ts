@@ -1,33 +1,35 @@
+import { google } from 'googleapis';
+import Mail from 'nodemailer/lib/mailer';
+
+import { Action } from '@/apps/lib/action';
+import { Connection } from '@/apps/lib/connection';
+import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { GmailOAuth2 } from './connections/gmail.oauth2';
-import { SendEmail } from './actions/send-email.action';
-import { EmailReceived } from './triggers/email-received.trigger';
-import { google } from 'googleapis';
-import { GetLabels } from './actions/get-labels.action';
+import { ServerConfig } from '@/config/server.config';
+
+import { ArchiveEmail } from './actions/archive-email.action';
+import { CreateDraftReply } from './actions/create-draft-reply.action';
 import { CreateDraft } from './actions/create-draft.action';
-import { SendDraft } from './actions/send-draft.action';
+import { DeleteDraft } from './actions/delete-draft.action';
+import { FindEmails } from './actions/find-emails.action';
 import { GetDrafts } from './actions/get-drafts.action';
-import { Action } from '@/apps/lib/action';
-import { Trigger } from '@/apps/lib/trigger';
-import { Connection } from '@/apps/lib/connection';
+import { GetEmailById } from './actions/get-email-by-id.action';
+import { GetLabels } from './actions/get-labels.action';
+import { GetThreadMessages } from './actions/get-thread-messages.action';
+import { LabelEmail } from './actions/label-email.action';
+import { ReplyToThread } from './actions/reply-to-thread.action';
+import { SendDraft } from './actions/send-draft.action';
+import { SendEmail } from './actions/send-email.action';
+import { GmailOAuth2 } from './connections/gmail.oauth2';
+import { EmailReceived } from './triggers/email-received.trigger';
 import {
   GmailDraft,
   GmailMessage,
   GmailParsedEmail,
 } from './types/gmail.types';
-import { LabelEmail } from './actions/label-email.action';
-import { FindEmails } from './actions/find-emails.action';
-import { ArchiveEmail } from './actions/archive-email.action';
-import { GetEmailById } from './actions/get-email-by-id.action';
-import { DeleteDraft } from './actions/delete-draft.action';
-import { ReplyToThread } from './actions/reply-to-thread.action';
-import { CreateDraftReply } from './actions/create-draft-reply.action';
-import { GetThreadMessages } from './actions/get-thread-messages.action';
-import Mail from 'nodemailer/lib/mailer';
-import { ServerConfig } from '@/config/server.config';
 
 export class Gmail extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

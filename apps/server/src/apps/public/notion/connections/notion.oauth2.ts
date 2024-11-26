@@ -5,8 +5,9 @@ import {
   OAuth2Connection,
 } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
-import { Notion } from '../notion.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { Notion } from '../notion.app';
 
 export class NotionOAuth2 extends OAuth2Connection {
   constructor(args: ConnectionConstructorArgs) {

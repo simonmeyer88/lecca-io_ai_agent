@@ -1,12 +1,14 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
-import { Slack } from '../slack.app';
-import { z } from 'zod';
 import { ServerConfig } from '@/config/server.config';
+
+import { Slack } from '../slack.app';
 
 export class SendMessageToChannel extends Action {
   constructor(args: ActionConstructorArgs) {

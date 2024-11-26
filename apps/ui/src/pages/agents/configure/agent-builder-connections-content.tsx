@@ -76,7 +76,7 @@ export function AgentBuilderConnectionsContent({ form, save }: PropType) {
       ...columns.filter((column) => column.id !== 'actions'),
       {
         id: 'actions',
-         
+
         cell: ({ row }: any) => (
           <RowActions row={row} onRevoke={removeAgentCallback} />
         ),
@@ -162,42 +162,42 @@ export function RowActions({
 }) {
   return (
     <DropdownMenu>
-        <DropdownMenu.Trigger asChild>
-          <Button
-            variant="ghost"
-            className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
-          >
-            <Icons.dotsHorizontal className="h-4 w-4" />
-            <span className="sr-only">Open menu</span>
-          </Button>
-        </DropdownMenu.Trigger>
-        <DropdownMenu.Content align="end">
-          <AlertDialog>
-            <AlertDialog.Trigger asChild>
-              <DropdownMenu.Item onSelect={(e) => e.preventDefault()}>
-                Revoke Access
-              </DropdownMenu.Item>
-            </AlertDialog.Trigger>
-            <AlertDialog.Content>
-              <AlertDialog.Header>
-                <AlertDialog.Title>Revoke</AlertDialog.Title>
-                <AlertDialog.Description>
-                  This agent will no longer be able to use this connection.
-                </AlertDialog.Description>
-              </AlertDialog.Header>
-              <AlertDialog.Footer>
-                <AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
-                <AlertDialog.Action
-                  onClick={async () => {
-                    onRevoke(row.original.id);
-                  }}
-                >
-                  Revoke
-                </AlertDialog.Action>
-              </AlertDialog.Footer>
-            </AlertDialog.Content>
-          </AlertDialog>
-        </DropdownMenu.Content>
-      </DropdownMenu>
+      <DropdownMenu.Trigger asChild>
+        <Button
+          variant="ghost"
+          className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
+        >
+          <Icons.dotsHorizontal className="h-4 w-4" />
+          <span className="sr-only">Open menu</span>
+        </Button>
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content align="end">
+        <AlertDialog>
+          <AlertDialog.Trigger asChild>
+            <DropdownMenu.Item onSelect={(e) => e.preventDefault()}>
+              Revoke Access
+            </DropdownMenu.Item>
+          </AlertDialog.Trigger>
+          <AlertDialog.Content>
+            <AlertDialog.Header>
+              <AlertDialog.Title>Revoke</AlertDialog.Title>
+              <AlertDialog.Description>
+                This agent will no longer be able to use this connection.
+              </AlertDialog.Description>
+            </AlertDialog.Header>
+            <AlertDialog.Footer>
+              <AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+              <AlertDialog.Action
+                onClick={async () => {
+                  onRevoke(row.original.id);
+                }}
+              >
+                Revoke
+              </AlertDialog.Action>
+            </AlertDialog.Footer>
+          </AlertDialog.Content>
+        </AlertDialog>
+      </DropdownMenu.Content>
+    </DropdownMenu>
   );
 }

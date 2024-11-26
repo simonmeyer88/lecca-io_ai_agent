@@ -1,13 +1,15 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
-import { z } from 'zod';
-import { Web } from '../web.app';
 import { ServerConfig } from '@/config/server.config';
 import { CreditUsageResponse } from '@/modules/global/credits/credits.service';
+
+import { Web } from '../web.app';
 
 export class ExtractStaticWebsiteContent extends Action {
   constructor(args: ActionConstructorArgs) {

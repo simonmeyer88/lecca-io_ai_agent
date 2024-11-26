@@ -3,15 +3,18 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { CreateProjectDto } from './dto/create-project.dto';
-import { UpdateProjectDto } from './dto/update-project.dto';
+
 import { PrismaService } from '@/modules/global/prisma/prisma.service';
 import { JwtUser } from '@/types/jwt-user.type';
-import { ProjectExpansionDto } from './dto/project-expansion.dto';
-import { ProjectIncludeTypeDto } from './dto/project-include-type.dto';
+
+import { CreditsService } from '../../global/credits/credits.service';
 import { PineconeService } from '../../global/pinecone/pinecone.service';
 import { S3ManagerService } from '../../global/s3/s3.service';
-import { CreditsService } from '../../global/credits/credits.service';
+
+import { CreateProjectDto } from './dto/create-project.dto';
+import { ProjectExpansionDto } from './dto/project-expansion.dto';
+import { ProjectIncludeTypeDto } from './dto/project-include-type.dto';
+import { UpdateProjectDto } from './dto/update-project.dto';
 
 @Injectable()
 export class ProjectsService {

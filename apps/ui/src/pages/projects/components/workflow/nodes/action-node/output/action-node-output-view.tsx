@@ -5,7 +5,6 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 
 import { OutputSelector } from './output-selector';
 
- 
 type ActionNodeOutputViewProps = {
   data: Record<string, any> | undefined;
   viewBuilder?: () => void;

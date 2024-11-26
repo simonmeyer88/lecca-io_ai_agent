@@ -1,27 +1,29 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
   Put,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+
+import { BelongsTo } from '@/decorators/belongs-to.decorator';
+import { Expansion } from '@/decorators/expansion.decorator';
+import { Roles } from '@/decorators/roles.decorator';
+import { User } from '@/decorators/user.decorator';
 import { JwtUser } from '@/types/jwt-user.type';
+
+import { BetaKeyDto } from './dto/beta-key.dto';
 import { CreateWorkspaceDto } from './dto/create-workspace.dto';
 import { RemoveWorkspaceUserFromWorkspaceDto } from './dto/remove-workspace-user-from-workspace.dto';
 import { UpdateLogoDto } from './dto/update-logo.dto';
 import { UpdateWorkspaceDto } from './dto/update-workspace.dto';
+import { UploadFileDto } from './dto/upload-file.dto';
 import { WorkspaceExpansionDto } from './dto/workspace-expansion.dto';
 import { WorkspacesService } from './workspaces.service';
-import { BetaKeyDto } from './dto/beta-key.dto';
-import { UploadFileDto } from './dto/upload-file.dto';
-import { User } from '@/decorators/user.decorator';
-import { Expansion } from '@/decorators/expansion.decorator';
-import { Roles } from '@/decorators/roles.decorator';
-import { BelongsTo } from '@/decorators/belongs-to.decorator';
 
 @Controller('workspaces')
 @ApiTags('Workspaces')

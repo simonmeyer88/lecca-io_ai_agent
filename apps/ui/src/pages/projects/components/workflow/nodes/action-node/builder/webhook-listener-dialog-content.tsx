@@ -21,9 +21,9 @@ export function WebhookListenerDialogContent({
 }: {
   workflowId: string | undefined;
   node: Node;
-   
+
   form: UseFormReturn<any, any, undefined>;
-   
+
   onSubmit: ((values: any) => Promise<Workflow | Agent>) | undefined;
 }) {
   const { setNodes } = useReactFlow();
@@ -209,10 +209,10 @@ export function WebhookListenerDialogContent({
       </div>
       {pollingState === 'finished' && (
         <ScrollArea className="max-h-96 overflow-y-auto">
-            <div className="flex flex-col ">
-              <JsonViewer data={node.data.output} />
-            </div>
-          </ScrollArea>
+          <div className="flex flex-col ">
+            <JsonViewer data={node.data.output} />
+          </div>
+        </ScrollArea>
       )}
       {pollingState === 'error' && (
         <div className="text-muted-foreground text-center py-4 text-sm">

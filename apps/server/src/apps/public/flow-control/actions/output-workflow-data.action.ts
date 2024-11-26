@@ -1,14 +1,16 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
-import { z } from 'zod';
 import { NodeViewOptions } from '@/apps/lib/trigger';
-import { FlowControl } from '../flow-control.app';
 import { jsonParse } from '@/apps/utils/json-parse';
 import { ServerConfig } from '@/config/server.config';
+
+import { FlowControl } from '../flow-control.app';
 
 export class OutputWorkflowData extends Action {
   constructor(args: ActionConstructorArgs) {

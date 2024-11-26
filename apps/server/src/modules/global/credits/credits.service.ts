@@ -1,19 +1,22 @@
-import { ServerConfig } from '@/config/server.config';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
 import {
   ForbiddenException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { BillingPlanType } from '@prisma/client';
+
+import { ServerConfig } from '@/config/server.config';
+import { PrismaService } from '@/modules/global/prisma/prisma.service';
+import { JwtUser } from '@/types/jwt-user.type';
+
 import {
   AiProvider,
   AiProviderService,
 } from '../ai-provider/ai-provider.service';
+
 import { CreditExpansionDto } from './dto/credit-expansion.dto';
-import { JwtUser } from '@/types/jwt-user.type';
-import { CreditIncludeTypeDto } from './dto/credit-include-type.dto';
 import { CreditFilterByDto } from './dto/credit-filter-by.dto';
+import { CreditIncludeTypeDto } from './dto/credit-include-type.dto';
 
 /**
  * We handle all the credit related operations here.

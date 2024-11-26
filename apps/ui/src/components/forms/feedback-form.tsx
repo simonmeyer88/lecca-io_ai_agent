@@ -26,8 +26,7 @@ export function FeedbackForm() {
     },
   });
 
-   
-  const onSubmit = async (_data: FeedbackType) => {
+  const onSubmit = async () => {
     setCreateStatus('loading');
     setTimeout(() => {
       //TODO: send feedback to the server

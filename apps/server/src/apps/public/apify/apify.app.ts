@@ -1,16 +1,17 @@
+import { Action } from '@/apps/lib/action';
+import { Connection } from '@/apps/lib/connection';
+import { InputConfig } from '@/apps/lib/input-config';
+import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { Action } from '@/apps/lib/action';
-import { Trigger } from '@/apps/lib/trigger';
-import { Connection } from '@/apps/lib/connection';
-import { ListTasks } from './actions/list-tasks.action';
-import { ApifyApiKey } from './connections/apify.api-key';
-import { InputConfig } from '@/apps/lib/input-config';
-import { RunTask } from './actions/run-task.action';
-import { GetDatasetItems } from './actions/get-dataset-items.action';
 import { ServerConfig } from '@/config/server.config';
+
+import { GetDatasetItems } from './actions/get-dataset-items.action';
+import { ListTasks } from './actions/list-tasks.action';
+import { RunTask } from './actions/run-task.action';
+import { ApifyApiKey } from './connections/apify.api-key';
 
 export class Apify extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

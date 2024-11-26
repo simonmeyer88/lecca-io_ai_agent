@@ -4,8 +4,9 @@ import {
   OAuth2Connection,
 } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
-import { MicrosoftExcel365 } from '../microsoft-excel-365.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { MicrosoftExcel365 } from '../microsoft-excel-365.app';
 
 export class MicrosoftExcel365OAuth2 extends OAuth2Connection {
   constructor(args: ConnectionConstructorArgs) {

@@ -15,7 +15,6 @@ export function ConditionalPathsFormFields({
   projectId,
   agentId,
 }: {
-   
   form: UseFormReturn<any, any, undefined>;
   node: Node;
   fieldConfig: FieldConfig;

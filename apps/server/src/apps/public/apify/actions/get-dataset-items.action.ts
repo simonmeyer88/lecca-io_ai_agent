@@ -1,12 +1,14 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
-import { Apify } from '../apify.app';
-import { z } from 'zod';
 import { NodeViewOptions } from '@/apps/lib/trigger';
+
+import { Apify } from '../apify.app';
 
 export class GetDatasetItems extends Action {
   constructor(args: ActionConstructorArgs) {

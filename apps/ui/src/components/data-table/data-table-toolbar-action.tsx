@@ -10,7 +10,7 @@ import { cn } from '@/utils/cn';
 
 export function DataTableToolbarAction(props: {
   title: string;
-   
+
   Icon: React.ComponentType<any>;
   options: {
     label: string;

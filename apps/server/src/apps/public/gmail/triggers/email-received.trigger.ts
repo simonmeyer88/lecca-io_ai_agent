@@ -4,8 +4,9 @@ import {
   TimeBasedPollTrigger,
   TriggerConstructorArgs,
 } from '@/apps/lib/trigger';
-import { Gmail } from '../gmail.app';
 import { isValidMilli } from '@/apps/utils/is-valid-milli';
+
+import { Gmail } from '../gmail.app';
 import { GmailParsedEmail } from '../types/gmail.types';
 
 export class EmailReceived extends TimeBasedPollTrigger {

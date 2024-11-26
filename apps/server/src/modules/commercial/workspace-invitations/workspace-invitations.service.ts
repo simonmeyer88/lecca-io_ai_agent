@@ -3,12 +3,14 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { WorkspaceUserRole } from '@prisma/client';
+
+import { UsersService } from '@/modules/core/users/users.service';
+import { WorkspacesService } from '@/modules/core/workspaces/workspaces.service';
+import { PrismaService } from '@/modules/global/prisma/prisma.service';
+
 import { CreateWorkspaceInvitationDto } from './dto/create-workspace-invitation.dto';
 import { UpdateWorkspaceInvitationDto } from './dto/update-workspace-invitation.dto';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { WorkspacesService } from '@/modules/core/workspaces/workspaces.service';
-import { UsersService } from '@/modules/core/users/users.service';
-import { WorkspaceUserRole } from '@prisma/client';
 
 @Injectable()
 export class WorkspaceInvitationsService {

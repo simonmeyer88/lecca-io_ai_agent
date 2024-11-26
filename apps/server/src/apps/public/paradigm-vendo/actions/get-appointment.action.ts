@@ -1,11 +1,13 @@
+import { z } from 'zod';
+
 import {
   Action,
-  RunActionArgs,
   ActionConstructorArgs,
+  RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
-import { z } from 'zod';
 import { NodeViewOptions } from '@/apps/lib/trigger';
+
 import { ParadigmVendo } from '../paradigm-vendo.app';
 
 export class GetAppointment extends Action {

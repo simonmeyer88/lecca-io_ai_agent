@@ -4,8 +4,9 @@ import {
   TimeBasedPollTrigger,
   TriggerConstructorArgs,
 } from '@/apps/lib/trigger';
-import { Notion } from '../notion.app';
 import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
+
+import { Notion } from '../notion.app';
 
 export class NewDatabaseItem extends TimeBasedPollTrigger {
   constructor(args: TriggerConstructorArgs) {

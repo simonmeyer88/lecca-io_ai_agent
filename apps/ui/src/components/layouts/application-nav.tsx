@@ -45,7 +45,6 @@ export default function ApplicationNav() {
 }
 
 const ListItem = React.forwardRef(
-   
   ({ className, title, children, ...props }: any, ref) => {
     return (
       <li>

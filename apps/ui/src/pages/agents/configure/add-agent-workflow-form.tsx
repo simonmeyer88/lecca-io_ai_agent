@@ -106,9 +106,9 @@ export function AddAgentWorkflowForm({
                                 }))}
                                 defaultSelectedItem={{
                                   label: field.value
-                                    ? unselectedWorkflows?.find(
+                                    ? (unselectedWorkflows?.find(
                                         (k) => k.id === field.value,
-                                      )?.name ?? 'Unknown workflow'
+                                      )?.name ?? 'Unknown workflow')
                                     : '',
                                   value: field.value,
                                 }}

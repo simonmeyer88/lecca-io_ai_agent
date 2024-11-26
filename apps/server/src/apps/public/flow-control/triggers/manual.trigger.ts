@@ -1,16 +1,18 @@
+import { z } from 'zod';
+
+import { RunActionArgs } from '@/apps/lib/action';
 import { FieldConfig, InputConfig } from '@/apps/lib/input-config';
 import {
+  NodeViewOptions,
   RunTriggerArgs,
   Trigger,
   TriggerConstructorArgs,
   TriggerStrategy,
-  NodeViewOptions,
 } from '@/apps/lib/trigger';
-import { RunActionArgs } from '@/apps/lib/action';
-import { z } from 'zod';
-import { WorkflowNodeForRunner } from '@/modules/core/workflow-runner/workflow-runner.service';
-import { FlowControl } from '../flow-control.app';
 import { ServerConfig } from '@/config/server.config';
+import { WorkflowNodeForRunner } from '@/modules/core/workflow-runner/workflow-runner.service';
+
+import { FlowControl } from '../flow-control.app';
 
 export class ManualTrigger extends Trigger {
   constructor(args: TriggerConstructorArgs) {

@@ -5,8 +5,9 @@ import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { CloseOAuth2 } from './connections/close.oauth2';
 import { ServerConfig } from '@/config/server.config';
+
+import { CloseOAuth2 } from './connections/close.oauth2';
 
 export class Close extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

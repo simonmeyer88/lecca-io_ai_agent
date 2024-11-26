@@ -3,15 +3,18 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
 import { EventEmitter2 } from '@nestjs/event-emitter';
+import * as bcrypt from 'bcrypt';
+
 import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UserIncludeTypeDto } from './dto/user-include-type.dto';
-import { UserExpansionDto } from './dto/user-expansion.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { UserDeletedEventPayload } from '@/types/event-payloads/user-deleted-event-payload.type';
+
 import { OperationsService } from '../../global/operations/operations.service';
+
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { UserExpansionDto } from './dto/user-expansion.dto';
+import { UserIncludeTypeDto } from './dto/user-include-type.dto';
 
 @Injectable()
 export class UsersService {

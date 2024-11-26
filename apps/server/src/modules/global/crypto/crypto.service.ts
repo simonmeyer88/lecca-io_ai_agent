@@ -1,6 +1,7 @@
-import { ServerConfig } from '@/config/server.config';
 import { Injectable } from '@nestjs/common';
 import * as crypto from 'crypto';
+
+import { ServerConfig } from '@/config/server.config';
 
 @Injectable()
 export class CryptoService {

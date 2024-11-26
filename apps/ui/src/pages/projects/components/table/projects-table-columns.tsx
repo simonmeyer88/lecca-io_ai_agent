@@ -1,4 +1,3 @@
- 
 import { ColumnDef } from '@tanstack/react-table';
 import { Link } from 'react-router-dom';
 

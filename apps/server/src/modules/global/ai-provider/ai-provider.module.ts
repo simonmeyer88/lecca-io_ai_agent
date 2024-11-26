@@ -1,6 +1,7 @@
 import { Global, Module } from '@nestjs/common';
-import { AiProviderService } from './ai-provider.service';
+
 import { AiProviderController } from './ai-provider.controller';
+import { AiProviderService } from './ai-provider.service';
 
 @Global()
 @Module({

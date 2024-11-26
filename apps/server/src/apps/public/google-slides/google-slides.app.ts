@@ -1,15 +1,17 @@
+import { BadRequestException } from '@nestjs/common';
+import { google } from 'googleapis';
+
+import { Action } from '@/apps/lib/action';
+import { Connection } from '@/apps/lib/connection';
+import { InputConfig } from '@/apps/lib/input-config';
+import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { google } from 'googleapis';
-import { Action } from '@/apps/lib/action';
-import { Trigger } from '@/apps/lib/trigger';
-import { Connection } from '@/apps/lib/connection';
-import { InputConfig } from '@/apps/lib/input-config';
-import { BadRequestException } from '@nestjs/common';
-import { GoogleSlidesOAuth2 } from './connection/google-slides.oauth2';
 import { ServerConfig } from '@/config/server.config';
+
+import { GoogleSlidesOAuth2 } from './connection/google-slides.oauth2';
 
 export class GoogleSlides extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

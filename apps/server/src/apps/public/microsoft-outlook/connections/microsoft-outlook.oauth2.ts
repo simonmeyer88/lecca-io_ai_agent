@@ -4,8 +4,9 @@ import {
   OAuth2Connection,
 } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
-import { MicrosoftOutlook } from '../microsoft-outlook.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { MicrosoftOutlook } from '../microsoft-outlook.app';
 
 export class MicrosoftOutlookOAuth2 extends OAuth2Connection {
   constructor(args: ConnectionConstructorArgs) {

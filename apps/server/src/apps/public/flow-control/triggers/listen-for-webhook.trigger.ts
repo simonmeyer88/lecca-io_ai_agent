@@ -1,11 +1,12 @@
+import { InputConfig } from '@/apps/lib/input-config';
 import {
   CustomWebhookTrigger,
   RunTriggerArgs,
   TriggerConstructorArgs,
 } from '@/apps/lib/trigger';
-import { InputConfig } from '@/apps/lib/input-config';
-import { FlowControl } from '../flow-control.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { FlowControl } from '../flow-control.app';
 
 export class ListenForWebhook extends CustomWebhookTrigger {
   constructor(args: TriggerConstructorArgs) {

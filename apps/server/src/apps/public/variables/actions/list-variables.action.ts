@@ -1,12 +1,14 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
-import { z } from 'zod';
-import { Variables } from '../variables.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { Variables } from '../variables.app';
 
 export class ListVariables extends Action {
   constructor(args: ActionConstructorArgs) {

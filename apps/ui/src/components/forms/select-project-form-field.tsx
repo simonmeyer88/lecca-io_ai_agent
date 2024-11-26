@@ -8,12 +8,7 @@ import { Form } from '../ui/form';
 import { Select } from '../ui/select';
 import { Skeleton } from '../ui/skeleton';
 
-export function SelectProjectField({
-  form,
-}: {
-   
-  form: UseFormReturn & any;
-}) {
+export function SelectProjectField({ form }: { form: UseFormReturn & any }) {
   const { projectId } = useParams();
   const { data: projects, isLoading: isLoadingProjects } = useApiQuery({
     service: 'projects',

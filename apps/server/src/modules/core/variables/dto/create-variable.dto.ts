@@ -1,6 +1,7 @@
 import { IsEnum, IsOptional, IsString, MaxLength } from 'class-validator';
-import { VariableType } from '../enums/variable-type.enum';
+
 import { VariableDataType } from '../enums/variable-data-type.enum';
+import { VariableType } from '../enums/variable-type.enum';
 
 export class CreateVariableDto {
   @IsString()

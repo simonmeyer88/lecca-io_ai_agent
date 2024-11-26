@@ -1,8 +1,10 @@
-import { InputConfig } from './input-config';
-import { Response, Request } from 'express';
-import { WorkflowApp } from './workflow-app';
 import { BadRequestException } from '@nestjs/common';
+import { Request, Response } from 'express';
+
 import { ServerConfig } from '@/config/server.config';
+
+import { InputConfig } from './input-config';
+import { WorkflowApp } from './workflow-app';
 
 export abstract class Connection {
   constructor(args: ConnectionConstructorArgs) {

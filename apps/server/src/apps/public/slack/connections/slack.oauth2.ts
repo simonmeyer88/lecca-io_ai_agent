@@ -4,8 +4,9 @@ import {
   OAuth2Connection,
 } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
-import { Slack } from '../slack.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { Slack } from '../slack.app';
 
 export class SlackOAuth2 extends OAuth2Connection {
   constructor(args: ConnectionConstructorArgs) {

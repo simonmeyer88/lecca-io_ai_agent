@@ -1,15 +1,17 @@
+import { createAnthropic } from '@ai-sdk/anthropic';
+
+import { Action } from '@/apps/lib/action';
+import { Connection } from '@/apps/lib/connection';
+import { InputConfig } from '@/apps/lib/input-config';
+import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { AnthropicApiKey } from './connections/anthropic.api-key';
-import { Action } from '@/apps/lib/action';
-import { Trigger } from '@/apps/lib/trigger';
-import { Connection } from '@/apps/lib/connection';
-import { InputConfig } from '@/apps/lib/input-config';
-import { ChatFromText } from './actions/chat-from-text.action';
 import { ServerConfig } from '@/config/server.config';
-import { createAnthropic } from '@ai-sdk/anthropic';
+
+import { ChatFromText } from './actions/chat-from-text.action';
+import { AnthropicApiKey } from './connections/anthropic.api-key';
 
 export class Anthropic extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

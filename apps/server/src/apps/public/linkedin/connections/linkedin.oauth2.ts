@@ -4,8 +4,9 @@ import {
   OAuth2Connection,
 } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
-import { Linkedin } from '../linkedin.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { Linkedin } from '../linkedin.app';
 
 export class LinkedinOAuth2 extends OAuth2Connection {
   constructor(args: ConnectionConstructorArgs) {

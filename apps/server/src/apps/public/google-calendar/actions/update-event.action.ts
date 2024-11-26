@@ -1,13 +1,15 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
-import { z } from 'zod';
 import { InputConfig } from '@/apps/lib/input-config';
-import { GoogleCalendar } from '../google-calendar.app';
-import { timezoneDropdown } from '@/apps/utils/timezones';
 import { parseDateToISO } from '@/apps/utils/parse-date-to-iso';
+import { timezoneDropdown } from '@/apps/utils/timezones';
+
+import { GoogleCalendar } from '../google-calendar.app';
 
 export class UpdateEvent extends Action {
   constructor(args: ActionConstructorArgs) {

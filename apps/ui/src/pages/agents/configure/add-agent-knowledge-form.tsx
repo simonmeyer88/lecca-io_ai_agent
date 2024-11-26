@@ -106,9 +106,9 @@ export function AddAgentKnowledgeForm({
                                 }))}
                                 defaultSelectedItem={{
                                   label: field.value
-                                    ? unselectedKnowledge?.find(
+                                    ? (unselectedKnowledge?.find(
                                         (k) => k.id === field.value,
-                                      )?.name ?? 'Unknown knowledge'
+                                      )?.name ?? 'Unknown knowledge')
                                     : '',
                                   value: field.value,
                                 }}

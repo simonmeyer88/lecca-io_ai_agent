@@ -106,9 +106,9 @@ export function AddAgentVariableForm({
                                 }))}
                                 defaultSelectedItem={{
                                   label: field.value
-                                    ? unselectedVariables?.find(
+                                    ? (unselectedVariables?.find(
                                         (k) => k.id === field.value,
-                                      )?.name ?? 'Unknown variable'
+                                      )?.name ?? 'Unknown variable')
                                     : '',
                                   value: field.value,
                                 }}

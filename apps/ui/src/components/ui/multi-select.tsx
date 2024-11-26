@@ -11,7 +11,7 @@ import { ScrollArea } from './scroll-area';
 
 type Item = {
   label: string;
-   
+
   value: Record<string, any> | string;
 };
 
@@ -130,7 +130,9 @@ export function MultiSelect({
             onBlur={() => setOpen(false)}
             onFocus={() => setOpen(true)}
             placeholder={
-              selected.length ? undefined : placeholder ?? 'Select option(s)...'
+              selected.length
+                ? undefined
+                : (placeholder ?? 'Select option(s)...')
             }
             className="py-0 bg-transparent outline-none placeholder:text-muted-foreground flex-1"
             disabled={disabled}

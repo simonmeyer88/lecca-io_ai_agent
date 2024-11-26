@@ -1,13 +1,15 @@
+import { z } from 'zod';
+
 import {
   Action,
-  RunActionArgs,
   ActionConstructorArgs,
+  RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
-import { z } from 'zod';
-import { Text } from '../text.app';
 import { NodeViewOptions } from '@/apps/lib/trigger';
 import { ServerConfig } from '@/config/server.config';
+
+import { Text } from '../text.app';
 
 export class Search extends Action {
   constructor(args: ActionConstructorArgs) {

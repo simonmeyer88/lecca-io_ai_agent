@@ -1,11 +1,13 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { ProjectInvitationsService } from './project-invitations.service';
-import { CreateProjectInvitationDto } from './dto/create-project-invitation.dto';
-import { JwtUser } from '@/types/jwt-user.type';
+
 import { BelongsTo } from '@/decorators/belongs-to.decorator';
 import { Roles } from '@/decorators/roles.decorator';
 import { User } from '@/decorators/user.decorator';
+import { JwtUser } from '@/types/jwt-user.type';
+
+import { CreateProjectInvitationDto } from './dto/create-project-invitation.dto';
+import { ProjectInvitationsService } from './project-invitations.service';
 
 @Controller('projects/:projectId/project-invitations')
 @ApiTags('Project Invitations')

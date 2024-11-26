@@ -1,23 +1,24 @@
+import { Action } from '@/apps/lib/action';
+import { Connection } from '@/apps/lib/connection';
+import { InputConfig } from '@/apps/lib/input-config';
+import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { Action } from '@/apps/lib/action';
-import { Trigger } from '@/apps/lib/trigger';
-import { Connection } from '@/apps/lib/connection';
+import { ServerConfig } from '@/config/server.config';
+
 import { ConditionalPaths } from './actions/conditional-paths.action';
-import { RunWorkflow } from './actions/run-workflow.action';
-import { OutputWorkflowData } from './actions/output-workflow-data.action';
-import { Schedule } from './actions/schedule.action';
-import { Pause } from './actions/pause.action';
-import { Wait } from './actions/wait.action';
 import { GetCustomInput } from './actions/get-input.data.action';
 import { ManuallyDecidePaths } from './actions/manually-decide-path.action';
-import { InputConfig } from '@/apps/lib/input-config';
+import { OutputWorkflowData } from './actions/output-workflow-data.action';
+import { Pause } from './actions/pause.action';
+import { RunWorkflow } from './actions/run-workflow.action';
+import { Schedule } from './actions/schedule.action';
+import { Wait } from './actions/wait.action';
+import { ListenForWebhook } from './triggers/listen-for-webhook.trigger';
 import { ManualTrigger } from './triggers/manual.trigger';
 import { RecurringSchedule } from './triggers/recurring-schedule.trigger';
-import { ListenForWebhook } from './triggers/listen-for-webhook.trigger';
-import { ServerConfig } from '@/config/server.config';
 
 export class FlowControl extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

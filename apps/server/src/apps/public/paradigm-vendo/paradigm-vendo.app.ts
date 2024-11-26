@@ -5,9 +5,10 @@ import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { ParadigmVendoKeyPair } from './connections/paradigm-vendo.key-pair';
-import { GetAppointment } from './actions/get-appointment.action';
 import { ServerConfig } from '@/config/server.config';
+
+import { GetAppointment } from './actions/get-appointment.action';
+import { ParadigmVendoKeyPair } from './connections/paradigm-vendo.key-pair';
 
 export class ParadigmVendo extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

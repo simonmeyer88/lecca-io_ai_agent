@@ -1,12 +1,14 @@
+import { z } from 'zod';
+
 import {
   Action,
-  RunActionArgs,
   ActionConstructorArgs,
+  RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
-import { z } from 'zod';
-import { JSON as JsonApp } from '../json.app';
 import { NodeViewOptions } from '@/apps/lib/trigger';
+
+import { JSON as JsonApp } from '../json.app';
 
 export class JsonStringify extends Action {
   constructor(args: ActionConstructorArgs) {

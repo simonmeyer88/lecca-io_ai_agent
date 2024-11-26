@@ -1,14 +1,17 @@
 import { Module } from '@nestjs/common';
+
+import { WorkflowAppsService } from '@/modules/core/workflow-apps/workflow-apps.service';
+
+import { ConnectionsService } from '../connections/connections.service';
+import { ExecutionsService } from '../executions/executions.service';
+import { KnowledgeService } from '../knowledge/knowledge.service';
+
 import {
   AgentMessageController,
   AgentTasksController,
   TasksController,
 } from './tasks.controller';
 import { TasksService } from './tasks.service';
-import { WorkflowAppsService } from '@/modules/core/workflow-apps/workflow-apps.service';
-import { ConnectionsService } from '../connections/connections.service';
-import { ExecutionsService } from '../executions/executions.service';
-import { KnowledgeService } from '../knowledge/knowledge.service';
 
 @Module({
   imports: [],

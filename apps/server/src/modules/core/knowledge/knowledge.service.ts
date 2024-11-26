@@ -1,28 +1,31 @@
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { JwtUser } from '@/types/jwt-user.type';
 import {
   ForbiddenException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { CreateKnowledgeDto } from './dto/create-knowledge.dto';
-import { KnowledgeExpansionDto } from './dto/knowledge-expansion.dto';
-import { UpdateKnowledgeDto } from './dto/update-knowledge.dto';
-import { KnowledgeIncludeTypeDto } from './dto/knowledge-include-type.dto';
-import { KnowledgeFilterByDto } from './dto/knowledge-filter-by.dto';
-import {
-  PineconeMetadata,
-  PineconeService,
-} from '../../global/pinecone/pinecone.service';
 import { QueryResponse } from '@pinecone-database/pinecone';
-import { S3ManagerService } from '../../global/s3/s3.service';
-import { SaveUploadedTextToKnowledgeDto } from './dto/save-uploaded-text-to-knowledge.dto';
+
 import { ServerConfig } from '@/config/server.config';
-import { CreditsService } from '../../global/credits/credits.service';
 import {
   AiProvider,
   AiProviderService,
 } from '@/modules/global/ai-provider/ai-provider.service';
+import { PrismaService } from '@/modules/global/prisma/prisma.service';
+import { JwtUser } from '@/types/jwt-user.type';
+
+import { CreditsService } from '../../global/credits/credits.service';
+import {
+  PineconeMetadata,
+  PineconeService,
+} from '../../global/pinecone/pinecone.service';
+import { S3ManagerService } from '../../global/s3/s3.service';
+
+import { CreateKnowledgeDto } from './dto/create-knowledge.dto';
+import { KnowledgeExpansionDto } from './dto/knowledge-expansion.dto';
+import { KnowledgeFilterByDto } from './dto/knowledge-filter-by.dto';
+import { KnowledgeIncludeTypeDto } from './dto/knowledge-include-type.dto';
+import { SaveUploadedTextToKnowledgeDto } from './dto/save-uploaded-text-to-knowledge.dto';
+import { UpdateKnowledgeDto } from './dto/update-knowledge.dto';
 
 @Injectable()
 export class KnowledgeService {

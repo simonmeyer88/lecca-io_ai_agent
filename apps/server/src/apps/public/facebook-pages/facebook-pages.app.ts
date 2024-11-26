@@ -5,8 +5,9 @@ import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { FacebookOAuth2 } from './connections/facebook-pages.oauth2';
 import { ServerConfig } from '@/config/server.config';
+
+import { FacebookOAuth2 } from './connections/facebook-pages.oauth2';
 
 export class FacebookPages extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

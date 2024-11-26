@@ -4,8 +4,9 @@ import {
   OAuth2Connection,
 } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
-import { ZohoBooks } from '../zoho-books.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { ZohoBooks } from '../zoho-books.app';
 
 export class ZohoBooksOAuth2US extends OAuth2Connection {
   constructor(args: ConnectionConstructorArgs) {

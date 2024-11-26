@@ -1,20 +1,22 @@
-import { MailService } from '@/modules/global/mail/mail.service';
-import { VerifyUserEmailDto } from '@/modules/core/users/dto/verify-user-email.dto';
-import { UsersService } from '@/modules/core/users/users.service';
-import { WorkspacesService } from '@/modules/core/workspaces/workspaces.service';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
 import {
   Injectable,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { User } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import { OAuth2Client } from 'google-auth-library';
-import { GoogleLoginDto } from './dto/google-login-dto';
-import { User } from '@prisma/client';
-import { OperationsService } from '@/modules/global/operations/operations.service';
+
 import { ServerConfig } from '@/config/server.config';
+import { VerifyUserEmailDto } from '@/modules/core/users/dto/verify-user-email.dto';
+import { UsersService } from '@/modules/core/users/users.service';
+import { WorkspacesService } from '@/modules/core/workspaces/workspaces.service';
+import { MailService } from '@/modules/global/mail/mail.service';
+import { OperationsService } from '@/modules/global/operations/operations.service';
+import { PrismaService } from '@/modules/global/prisma/prisma.service';
+
+import { GoogleLoginDto } from './dto/google-login-dto';
 
 @Injectable()
 export class AuthService {

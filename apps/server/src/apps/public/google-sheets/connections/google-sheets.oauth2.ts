@@ -3,8 +3,9 @@ import {
   OAuth2Connection,
 } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
-import { GoogleSheets } from '../google-sheets.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { GoogleSheets } from '../google-sheets.app';
 
 export class GoogleSheetsOAuth2 extends OAuth2Connection {
   constructor(args: ConnectionConstructorArgs) {

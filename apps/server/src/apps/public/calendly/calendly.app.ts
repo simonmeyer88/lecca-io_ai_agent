@@ -1,15 +1,16 @@
 import { Action } from '@/apps/lib/action';
 import { Connection } from '@/apps/lib/connection';
+import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { CalendlyOAuth2 } from './connections/calendly.oauth2';
-import { ListUserEvents } from './actions/list-user-events.action';
-import { InputConfig } from '@/apps/lib/input-config';
-import { ListOrganizationEvents } from './actions/list-organization-events.action';
 import { ServerConfig } from '@/config/server.config';
+
+import { ListOrganizationEvents } from './actions/list-organization-events.action';
+import { ListUserEvents } from './actions/list-user-events.action';
+import { CalendlyOAuth2 } from './connections/calendly.oauth2';
 
 export class Calendly extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

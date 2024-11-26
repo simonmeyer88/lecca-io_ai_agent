@@ -4,16 +4,18 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { WorkflowAppsService } from '../workflow-apps/workflow-apps.service';
-import { ExecutionsService } from '@/modules/core/executions/executions.service';
-import { ExecutionStatus } from '@/modules/core/executions/enums/execution-status.enum';
+import { OnEvent } from '@nestjs/event-emitter';
 import { Execution, Workflow } from '@prisma/client';
-import { WorkflowAppsKey } from '@/apps/public/workflow-apps';
+
 import { Action, ActionResponse } from '@/apps/lib/action';
 import { Trigger, TriggerResponse } from '@/apps/lib/trigger';
-import { OnEvent } from '@nestjs/event-emitter';
+import { WorkflowAppsKey } from '@/apps/public/workflow-apps';
+import { ExecutionStatus } from '@/modules/core/executions/enums/execution-status.enum';
+import { ExecutionsService } from '@/modules/core/executions/executions.service';
+import { PrismaService } from '@/modules/global/prisma/prisma.service';
+
 import { CreditsService } from '../../global/credits/credits.service';
+import { WorkflowAppsService } from '../workflow-apps/workflow-apps.service';
 
 @Injectable()
 export class WorkflowRunnerService {

@@ -1,26 +1,28 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
 } from '@nestjs/common';
-import { VariablesService } from './variables.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+
+import { BelongsTo } from '@/decorators/belongs-to.decorator';
+import { Expansion } from '@/decorators/expansion.decorator';
+import { FilterBy } from '@/decorators/filter-by.decorator';
+import { IncludeType } from '@/decorators/include-type.decorator';
+import { Roles } from '@/decorators/roles.decorator';
+import { User } from '@/decorators/user.decorator';
 import { JwtUser } from '@/types/jwt-user.type';
+
 import { CreateVariableDto } from './dto/create-variable.dto';
 import { UpdateVariableDto } from './dto/update-variable.dto';
 import { VariableExpansionDto } from './dto/variable-expansion.dto';
 import { VariableFilterByDto } from './dto/variable-filter-by.dto';
 import { VariableIncludeTypeDto } from './dto/variable-include-type.dto';
-import { Roles } from '@/decorators/roles.decorator';
-import { User } from '@/decorators/user.decorator';
-import { Expansion } from '@/decorators/expansion.decorator';
-import { IncludeType } from '@/decorators/include-type.decorator';
-import { FilterBy } from '@/decorators/filter-by.decorator';
-import { BelongsTo } from '@/decorators/belongs-to.decorator';
+import { VariablesService } from './variables.service';
 
 @Controller('variables')
 @ApiTags('Variables')

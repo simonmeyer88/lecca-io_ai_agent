@@ -55,7 +55,6 @@ export function CheckPollingTriggerNode({
       } else {
         throw new Error('Failed to save workflow');
       }
-       
     } catch (e: any) {
       setRunStatus('error');
       toast({

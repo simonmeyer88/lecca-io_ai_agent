@@ -1,3 +1,5 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
@@ -5,8 +7,8 @@ import {
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { parseNumberOrThrow } from '@/apps/utils/parse-number-or-throw';
+
 import { YouTube } from '../youtube.app';
-import { z } from 'zod';
 
 export class SearchVideos extends Action {
   constructor(args: ActionConstructorArgs) {

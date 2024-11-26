@@ -1,12 +1,13 @@
-import { InputConfig } from '@/apps/lib/input-config';
 import { DateTime } from 'luxon';
 
+import { InputConfig } from '@/apps/lib/input-config';
 import {
   RunTriggerArgs,
   TimeBasedPollTrigger,
   TriggerConstructorArgs,
 } from '@/apps/lib/trigger';
 import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
+
 import { SalesRabbit } from '../sales-rabbit.app';
 
 export class LeadStatusUpdatedOnDevice extends TimeBasedPollTrigger {

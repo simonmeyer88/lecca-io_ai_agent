@@ -4,28 +4,31 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { Response, Request } from 'express';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { ConnectionsService } from '@/modules/core/connections/connections.service';
-import { JwtService } from '@nestjs/jwt';
-import { RunNodeDto } from './dto/run-node.dto';
-import { Prisma } from '@prisma/client';
-import { WORKFLOW_APPS, WorkflowAppsKey } from '@/apps/public/workflow-apps';
-import { WorkflowApp } from '@/apps/lib/workflow-app';
-import { OAuth2CallbackState, OAuth2Connection } from '@/apps/lib/connection';
-import { WorkflowNodeForRunner } from '../workflow-runner/workflow-runner.service';
-import { Trigger } from '@/apps/lib/trigger';
-import { Action } from '@/apps/lib/action';
-import { ExecutionsService } from '@/modules/core/executions/executions.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { TasksService } from '@/modules/core/tasks/tasks.service';
+import { JwtService } from '@nestjs/jwt';
+import { Prisma } from '@prisma/client';
+import { Request, Response } from 'express';
+
+import { Action } from '@/apps/lib/action';
+import { OAuth2CallbackState, OAuth2Connection } from '@/apps/lib/connection';
+import { Trigger } from '@/apps/lib/trigger';
+import { WorkflowApp } from '@/apps/lib/workflow-app';
+import { WORKFLOW_APPS, WorkflowAppsKey } from '@/apps/public/workflow-apps';
+import { ConnectionsService } from '@/modules/core/connections/connections.service';
+import { ExecutionsService } from '@/modules/core/executions/executions.service';
 import { KnowledgeService } from '@/modules/core/knowledge/knowledge.service';
-import { NotificationsService } from '@/modules/global/notifications/notifications.service';
-import { S3ManagerService } from '@/modules/global/s3/s3.service';
+import { TasksService } from '@/modules/core/tasks/tasks.service';
+import { AiProviderService } from '@/modules/global/ai-provider/ai-provider.service';
 import { FileHandlerService } from '@/modules/global/file/file-handler.service';
 import { HttpService } from '@/modules/global/http/http.service';
+import { NotificationsService } from '@/modules/global/notifications/notifications.service';
+import { PrismaService } from '@/modules/global/prisma/prisma.service';
+import { S3ManagerService } from '@/modules/global/s3/s3.service';
+
 import { CreditsService } from '../../global/credits/credits.service';
-import { AiProviderService } from '@/modules/global/ai-provider/ai-provider.service';
+import { WorkflowNodeForRunner } from '../workflow-runner/workflow-runner.service';
+
+import { RunNodeDto } from './dto/run-node.dto';
 
 @Injectable()
 export class WorkflowAppsService {

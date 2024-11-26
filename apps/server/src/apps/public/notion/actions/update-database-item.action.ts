@@ -1,12 +1,14 @@
+import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
+
 import { Notion } from '../notion.app';
-import { z } from 'zod';
-import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 export class UpdateDatabaseItem extends Action {
   constructor(args: ActionConstructorArgs) {

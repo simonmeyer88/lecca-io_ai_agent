@@ -1,10 +1,12 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
-import { z } from 'zod';
 import { InputConfig } from '@/apps/lib/input-config';
+
 import { GoogleCalendar } from '../google-calendar.app';
 
 export class AddGuestsToEvent extends Action {

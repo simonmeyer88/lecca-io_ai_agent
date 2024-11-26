@@ -1,12 +1,14 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
+
 import { GoogleDocs } from '../google-docs.app';
 import { GoogleDocumentType } from '../types/google-docs.type';
-import { z } from 'zod';
 
 export class AppendToDocument extends Action {
   constructor(args: ActionConstructorArgs) {

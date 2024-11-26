@@ -1,3 +1,4 @@
+const eslintPluginReactHooks = require('eslint-plugin-react-hooks');
 const nx = require('@nx/eslint-plugin');
 
 module.exports = [
@@ -28,7 +29,11 @@ module.exports = [
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     // Override or add rules here
+    plugins: {
+      'react-hooks': eslintPluginReactHooks,
+    },
     rules: {
+      ...eslintPluginReactHooks.configs.recommended.rules,
       '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       'no-restricted-syntax': [

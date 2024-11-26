@@ -1,21 +1,23 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
 } from '@nestjs/common';
-import { WorkspaceInvitationsService } from './workspace-invitations.service';
-import { CreateWorkspaceInvitationDto } from './dto/create-workspace-invitation.dto';
-import { UpdateWorkspaceInvitationDto } from './dto/update-workspace-invitation.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { JwtUser } from '@/types/jwt-user.type';
-import { User } from '@/decorators/user.decorator';
-import { Roles } from '@/decorators/roles.decorator';
+
 import { BelongsTo } from '@/decorators/belongs-to.decorator';
 import { CommercialKey } from '@/decorators/commercial.decorator';
+import { Roles } from '@/decorators/roles.decorator';
+import { User } from '@/decorators/user.decorator';
+import { JwtUser } from '@/types/jwt-user.type';
+
+import { CreateWorkspaceInvitationDto } from './dto/create-workspace-invitation.dto';
+import { UpdateWorkspaceInvitationDto } from './dto/update-workspace-invitation.dto';
+import { WorkspaceInvitationsService } from './workspace-invitations.service';
 
 @Controller('workspace-invitations')
 @ApiTags('Workspace Invitations')

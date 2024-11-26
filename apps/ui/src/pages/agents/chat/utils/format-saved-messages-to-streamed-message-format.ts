@@ -92,7 +92,6 @@ export function formatSavedMessagesToStreamedMessageFormat({
           };
         } else {
           throw new Error(
-             
             'Unknown assistant message type: ' + (content as any).type,
           );
         }

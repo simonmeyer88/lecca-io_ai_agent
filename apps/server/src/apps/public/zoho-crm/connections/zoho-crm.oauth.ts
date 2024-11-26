@@ -4,8 +4,9 @@ import {
   OAuth2Connection,
 } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
-import { ZohoCrm } from '../zoho-crm.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { ZohoCrm } from '../zoho-crm.app';
 
 export class ZohoCrmOAuth2US extends OAuth2Connection {
   constructor(args: ConnectionConstructorArgs) {

@@ -1,14 +1,15 @@
+import { Action } from '@/apps/lib/action';
+import { Connection } from '@/apps/lib/connection';
+import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { Action } from '@/apps/lib/action';
-import { Trigger } from '@/apps/lib/trigger';
-import { Connection } from '@/apps/lib/connection';
-import { ExtractWebsiteContent } from './actions/extract-website-content.action';
-import { ExtractStaticWebsiteContent } from './actions/extract-static-website-content.action';
-import { GoogleSearch } from './actions/google-search.action';
 import { ServerConfig } from '@/config/server.config';
+
+import { ExtractStaticWebsiteContent } from './actions/extract-static-website-content.action';
+import { ExtractWebsiteContent } from './actions/extract-website-content.action';
+import { GoogleSearch } from './actions/google-search.action';
 
 export class Web extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

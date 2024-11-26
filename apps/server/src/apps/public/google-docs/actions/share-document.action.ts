@@ -1,13 +1,15 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
+import { ServerConfig } from '@/config/server.config';
+
 import { GoogleDocs } from '../google-docs.app';
 import { GoogleDocumentShareType } from '../types/google-docs.type';
-import { z } from 'zod';
-import { ServerConfig } from '@/config/server.config';
 
 export class ShareDocument extends Action {
   constructor(args: ActionConstructorArgs) {

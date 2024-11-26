@@ -1,12 +1,15 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
+
 import { Gmail } from '../gmail.app';
 import { GmailParsedEmail } from '../types/gmail.types';
-import { z } from 'zod';
+
 import MailComposer = require('nodemailer/lib/mail-composer');
 import Mail = require('nodemailer/lib/mailer');
 

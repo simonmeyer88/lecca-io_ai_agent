@@ -1,11 +1,13 @@
+import { Injectable, NotFoundException } from '@nestjs/common';
+
 import { PrismaService } from '@/modules/global/prisma/prisma.service';
 import { JwtUser } from '@/types/jwt-user.type';
-import { Injectable, NotFoundException } from '@nestjs/common';
+
 import { CreateVariableDto } from './dto/create-variable.dto';
 import { UpdateVariableDto } from './dto/update-variable.dto';
 import { VariableExpansionDto } from './dto/variable-expansion.dto';
-import { VariableIncludeTypeDto } from './dto/variable-include-type.dto';
 import { VariableFilterByDto } from './dto/variable-filter-by.dto';
+import { VariableIncludeTypeDto } from './dto/variable-include-type.dto';
 
 @Injectable()
 export class VariablesService {

@@ -1,15 +1,16 @@
+import { Action } from '@/apps/lib/action';
+import { Connection } from '@/apps/lib/connection';
+import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { Action } from '@/apps/lib/action';
-import { Trigger } from '@/apps/lib/trigger';
-import { Connection } from '@/apps/lib/connection';
+import { ServerConfig } from '@/config/server.config';
+
 import { Concatenate } from './actions/concatenate.action';
 import { Replace } from './actions/replace.action';
 import { Search } from './actions/search.action';
 import { Split } from './actions/split.action';
-import { ServerConfig } from '@/config/server.config';
 
 export class Text extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

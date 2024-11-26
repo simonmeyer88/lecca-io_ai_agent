@@ -1,19 +1,12 @@
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { JwtUser } from '@/types/jwt-user.type';
 import {
   BadRequestException,
   ForbiddenException,
-  forwardRef,
   Inject,
   Injectable,
   NotFoundException,
+  forwardRef,
 } from '@nestjs/common';
-import { TaskExpansionDto } from './dto/task-expansion.dto';
-import { UpdateTaskDto } from './dto/update-task.dto';
-import { TaskFilterByDto } from './dto/task-filter-by.dto';
-import { TaskIncludeTypeDto } from './dto/task-include-type.dto';
-import { CreateTaskDto } from './dto/create-task.dto';
-import { WorkflowAppsService } from '@/modules/core/workflow-apps/workflow-apps.service';
+import { Agent, Knowledge, Workflow } from '@prisma/client';
 import {
   CoreAssistantMessage,
   CoreMessage,
@@ -22,16 +15,26 @@ import {
   generateText,
   streamText,
 } from 'ai';
-import { WorkflowNodeForRunner } from '@/modules/core/workflow-runner/workflow-runner.service';
-import { FieldConfig, InputConfig } from '@/apps/lib/input-config';
-import { z } from 'zod';
-import { Agent, Knowledge, Workflow } from '@prisma/client';
-import { CreditsService } from '../../global/credits/credits.service';
 import { Message } from 'ai/react';
+import { z } from 'zod';
+
+import { FieldConfig, InputConfig } from '@/apps/lib/input-config';
+import { WorkflowAppsService } from '@/modules/core/workflow-apps/workflow-apps.service';
+import { WorkflowNodeForRunner } from '@/modules/core/workflow-runner/workflow-runner.service';
+import { PrismaService } from '@/modules/global/prisma/prisma.service';
+import { JwtUser } from '@/types/jwt-user.type';
+
 import {
   AiProvider,
   AiProviderService,
 } from '../../global/ai-provider/ai-provider.service';
+import { CreditsService } from '../../global/credits/credits.service';
+
+import { CreateTaskDto } from './dto/create-task.dto';
+import { TaskExpansionDto } from './dto/task-expansion.dto';
+import { TaskFilterByDto } from './dto/task-filter-by.dto';
+import { TaskIncludeTypeDto } from './dto/task-include-type.dto';
+import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Injectable()
 export class TasksService {

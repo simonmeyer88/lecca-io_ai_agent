@@ -1,14 +1,15 @@
 import { Action } from '@/apps/lib/action';
 import { Connection } from '@/apps/lib/connection';
+import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { MicrosoftExcel365OAuth2 } from './connections/microsoft-excel-365.oauth2';
-import { InputConfig } from '@/apps/lib/input-config';
-import { GetWorksheets } from './actions/get-worksheets.action';
 import { ServerConfig } from '@/config/server.config';
+
+import { GetWorksheets } from './actions/get-worksheets.action';
+import { MicrosoftExcel365OAuth2 } from './connections/microsoft-excel-365.oauth2';
 
 export class MicrosoftExcel365 extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

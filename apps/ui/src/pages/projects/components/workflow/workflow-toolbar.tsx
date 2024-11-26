@@ -1,5 +1,4 @@
 export function WorkflowToolbar() {
-   
   const onDragStart = (event: any, nodeType: any) => {
     event.dataTransfer.setData('application/reactflow', nodeType);
     event.dataTransfer.effectAllowed = 'move';

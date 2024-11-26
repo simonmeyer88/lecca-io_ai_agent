@@ -1,12 +1,15 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { BillingService } from './billing.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { StripeService } from '../stripe/stripe.service';
-import { CreateCheckoutSessionDto } from './dto/create-checkout-session.dto';
-import { JwtUser } from '@/types/jwt-user.type';
+
 import { ServerConfig } from '@/config/server.config';
 import { Roles } from '@/decorators/roles.decorator';
 import { User } from '@/decorators/user.decorator';
+import { JwtUser } from '@/types/jwt-user.type';
+
+import { StripeService } from '../stripe/stripe.service';
+
+import { BillingService } from './billing.service';
+import { CreateCheckoutSessionDto } from './dto/create-checkout-session.dto';
 
 @Controller('billing')
 @ApiTags('Billing')

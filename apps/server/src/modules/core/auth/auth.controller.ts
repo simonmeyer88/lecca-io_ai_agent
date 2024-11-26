@@ -7,21 +7,22 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
+
+import { ServerConfig } from '@/config/server.config';
+import { Public } from '@/decorators/public.decorator';
 import { CreateUserDto } from '@/modules/core/users/dto/create-user.dto';
 import { UsersService } from '@/modules/core/users/users.service';
+import { WorkspacesService } from '@/modules/core/workspaces/workspaces.service';
+
 import { AuthService } from './auth.service';
 import { GoogleLoginDto } from './dto/google-login-dto';
-import { WorkspacesService } from '@/modules/core/workspaces/workspaces.service';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { SendForgotPasswordEmailDto } from './dto/send-forgot-password-email.dto';
 import { SendVerificationEmailDto } from './dto/send-verification-email.dto';
 import { StandardLoginDto } from './dto/standard-login.dto';
 import { ValidateEmailVerificationTokenDto } from './dto/validate-email-verification-token.dto';
-
 import { VerifyTokenDto } from './dto/verify-tokens-dto';
-import { ServerConfig } from '@/config/server.config';
-import { Public } from '@/decorators/public.decorator';
 
 @Controller('auth')
 @ApiTags('Auth')

@@ -1,14 +1,16 @@
+import { LanguageModelUsage, generateObject, jsonSchema } from 'ai';
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
-import { z } from 'zod';
-import { AI } from '../ai.app';
 import { ServerConfig } from '@/config/server.config';
-import { generateObject, jsonSchema, LanguageModelUsage } from 'ai';
 import { AiProvider } from '@/modules/global/ai-provider/ai-provider.service';
+
+import { AI } from '../ai.app';
 
 export class DecideWithAI extends Action {
   constructor(args: ActionConstructorArgs) {

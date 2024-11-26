@@ -1,9 +1,11 @@
-import { ExtractJwt, Strategy } from 'passport-jwt';
-import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
-import { Request } from '@/types/request.type';
-import { AuthService } from '../auth.service';
+import { PassportStrategy } from '@nestjs/passport';
+import { ExtractJwt, Strategy } from 'passport-jwt';
+
 import { ServerConfig } from '@/config/server.config';
+import { Request } from '@/types/request.type';
+
+import { AuthService } from '../auth.service';
 
 /**
  * This strategy is the main AuthGuard used throught this application.

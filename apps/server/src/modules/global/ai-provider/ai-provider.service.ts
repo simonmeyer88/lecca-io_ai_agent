@@ -1,21 +1,24 @@
-import { ServerConfig } from '@/config/server.config';
+import { createAnthropic } from '@ai-sdk/anthropic';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { createOpenAI } from '@ai-sdk/openai';
 import {
   BadRequestException,
   ForbiddenException,
   Injectable,
 } from '@nestjs/common';
 import { Connection } from '@prisma/client';
-import { createOpenAI } from '@ai-sdk/openai';
-import { createAnthropic } from '@ai-sdk/anthropic';
 import { EmbeddingModel, LanguageModelV1 } from 'ai';
 import { createOllama } from 'ollama-ai-provider';
-import { createGoogleGenerativeAI } from '@ai-sdk/google';
+
+import { ServerConfig } from '@/config/server.config';
+
+import { CryptoService } from '../crypto/crypto.service';
+
 import { DEFAULT_PROVIDERS } from './ai-provider-defaults';
 import {
   checkIfOllamaIsRunning,
   listOllamaLlmModels as listOllamaLanguageModels,
 } from './utils/ollama-utils';
-import { CryptoService } from '../crypto/crypto.service';
 
 @Injectable()
 export class AiProviderService {

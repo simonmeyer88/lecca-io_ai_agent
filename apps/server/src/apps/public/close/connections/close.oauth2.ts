@@ -4,8 +4,9 @@ import {
   OAuth2Connection,
 } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
-import { Close } from '../close.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { Close } from '../close.app';
 
 export class CloseOAuth2 extends OAuth2Connection {
   constructor(args: ConnectionConstructorArgs) {

@@ -79,7 +79,6 @@ export function useGetNodeStatus({
       }
 
       return {
-         
         status: status as any,
         isComplete: true,
         messages: [executionStatusMessage],

@@ -1,21 +1,24 @@
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { JwtUser } from '@/types/jwt-user.type';
 import {
   BadRequestException,
   ForbiddenException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { CreateAgentDto } from './dto/create-agent.dto';
-import { AgentExpansionDto } from './dto/agent-expansion.dto';
-import { UpdateAgentDto } from './dto/update-agent.dto';
-import { AgentIncludeTypeDto } from './dto/agent-include-type.dto';
-import { AgentFilterByDto } from './dto/agent-filter-by.dto';
-import { ServerConfig } from '@/config/server.config';
-import { WorkflowNodeForRunner } from '../workflow-runner/workflow-runner.service';
 import { AgentTrigger } from '@prisma/client';
-import { WorkflowsService } from '../workflows/workflows.service';
 import { v4 } from 'uuid';
+
+import { ServerConfig } from '@/config/server.config';
+import { PrismaService } from '@/modules/global/prisma/prisma.service';
+import { JwtUser } from '@/types/jwt-user.type';
+
+import { WorkflowNodeForRunner } from '../workflow-runner/workflow-runner.service';
+import { WorkflowsService } from '../workflows/workflows.service';
+
+import { AgentExpansionDto } from './dto/agent-expansion.dto';
+import { AgentFilterByDto } from './dto/agent-filter-by.dto';
+import { AgentIncludeTypeDto } from './dto/agent-include-type.dto';
+import { CreateAgentDto } from './dto/create-agent.dto';
+import { UpdateAgentDto } from './dto/update-agent.dto';
 
 @Injectable()
 export class AgentsService {

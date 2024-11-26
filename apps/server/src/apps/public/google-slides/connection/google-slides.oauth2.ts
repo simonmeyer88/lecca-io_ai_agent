@@ -3,8 +3,9 @@ import {
   OAuth2Connection,
 } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
-import { GoogleSlides } from '../google-slides.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { GoogleSlides } from '../google-slides.app';
 
 export class GoogleSlidesOAuth2 extends OAuth2Connection {
   constructor(args: ConnectionConstructorArgs) {

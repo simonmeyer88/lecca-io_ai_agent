@@ -1,12 +1,14 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
-import { Gmail } from '../gmail.app';
 import { parseNumberOrThrow } from '@/apps/utils/parse-number-or-throw';
-import { z } from 'zod';
+
+import { Gmail } from '../gmail.app';
 
 export class GetDrafts extends Action {
   constructor(args: ActionConstructorArgs) {

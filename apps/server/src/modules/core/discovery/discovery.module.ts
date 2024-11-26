@@ -1,6 +1,7 @@
 import { Global, Module } from '@nestjs/common';
-import { DiscoveryService } from './discovery.service';
+
 import { DiscoveryController } from './discovery.controller';
+import { DiscoveryService } from './discovery.service';
 
 @Global()
 @Module({

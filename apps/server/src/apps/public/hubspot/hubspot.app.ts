@@ -1,18 +1,19 @@
 import { Action } from '@/apps/lib/action';
 import { Connection } from '@/apps/lib/connection';
+import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { HubSpotOAuth2 } from './connections/hubspot.oauth2';
+import { ServerConfig } from '@/config/server.config';
+
 import { AddContactToList } from './actions/add-contact-to-list.action';
 import { CreateContact } from './actions/create-contact.action';
-import { InputConfig } from '@/apps/lib/input-config';
-import { UpdateContact } from './actions/update-contact.action';
 import { RemoveContactFromList } from './actions/remove-contact-from-list.action';
+import { UpdateContact } from './actions/update-contact.action';
 import { UpsertContact } from './actions/upsert-contact.action';
-import { ServerConfig } from '@/config/server.config';
+import { HubSpotOAuth2 } from './connections/hubspot.oauth2';
 
 export class Hubspot extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

@@ -4,8 +4,9 @@ import {
   OAuth2Connection,
 } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
-import { InstagramBusiness } from '../instagram-business.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { InstagramBusiness } from '../instagram-business.app';
 
 export class InstagramBusinessOAuth2 extends OAuth2Connection {
   constructor(args: ConnectionConstructorArgs) {

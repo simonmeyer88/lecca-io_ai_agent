@@ -1,13 +1,14 @@
+import { Action } from '@/apps/lib/action';
+import { Connection } from '@/apps/lib/connection';
+import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { Action } from '@/apps/lib/action';
-import { Trigger } from '@/apps/lib/trigger';
-import { Connection } from '@/apps/lib/connection';
-import { JsonStringify } from './actions/json-stringify.action';
-import { JsonParse } from './actions/json-parse.action';
 import { ServerConfig } from '@/config/server.config';
+
+import { JsonParse } from './actions/json-parse.action';
+import { JsonStringify } from './actions/json-stringify.action';
 
 export class JSON extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

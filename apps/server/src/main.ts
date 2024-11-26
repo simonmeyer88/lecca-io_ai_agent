@@ -2,10 +2,10 @@ import { ValidationPipe } from '@nestjs/common';
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-import { PrismaClientExceptionFilter } from './modules/global/prisma/prisma.filter';
 import { initServerConfiguration } from './config/env.config';
 import { ServerConfig } from './config/server.config';
 import { AppModule } from './modules/core/app/app.module';
+import { PrismaClientExceptionFilter } from './modules/global/prisma/prisma.filter';
 
 async function bootstrap() {
   await initServerConfiguration();

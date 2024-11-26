@@ -1,12 +1,14 @@
+import { LanguageModelUsage, generateText } from 'ai';
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
-import { z } from 'zod';
+
 import { Gemini } from '../gemini.app';
-import { generateText, LanguageModelUsage } from 'ai';
 
 export class ChatFromText extends Action {
   constructor(args: ActionConstructorArgs) {

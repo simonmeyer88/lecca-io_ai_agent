@@ -4,8 +4,9 @@ import {
   TimeBasedPollTrigger,
   TriggerConstructorArgs,
 } from '@/apps/lib/trigger';
-import { MicrosoftOutlook } from '../microsoft-outlook.app';
 import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
+
+import { MicrosoftOutlook } from '../microsoft-outlook.app';
 
 export class EmailReceived extends TimeBasedPollTrigger {
   constructor(args: TriggerConstructorArgs) {

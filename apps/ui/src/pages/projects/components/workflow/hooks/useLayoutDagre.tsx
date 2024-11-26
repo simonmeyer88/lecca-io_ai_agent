@@ -49,7 +49,6 @@ const getLayoutedElements = (
   Dagre.layout(g);
 
   return {
-     
     nodes: nodes.map((node: any) => {
       const position = g.node(node.id);
       const x = position.x - (node.width ?? 0) / 2;

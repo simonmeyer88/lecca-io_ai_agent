@@ -4,8 +4,9 @@ import {
   TimeBasedPollTrigger,
   TriggerConstructorArgs,
 } from '@/apps/lib/trigger';
-import { ZohoCrm } from '../zoho-crm.app';
 import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
+
+import { ZohoCrm } from '../zoho-crm.app';
 
 export class NewContact extends TimeBasedPollTrigger {
   constructor(args: TriggerConstructorArgs) {

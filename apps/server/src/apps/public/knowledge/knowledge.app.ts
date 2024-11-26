@@ -1,15 +1,17 @@
+import { Action } from '@/apps/lib/action';
+import { Connection } from '@/apps/lib/connection';
+import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { Action } from '@/apps/lib/action';
-import { Trigger } from '@/apps/lib/trigger';
-import { Connection } from '@/apps/lib/connection';
-import { SearchKnowledge } from '../knowledge/actions/search-knowledge.action';
-import { SaveToKnowledge } from './actions/save-to-knowledge.action';
-import { ListKnowledge } from './actions/list-knowledge.action';
-import { CreateKnowledge } from './actions/create-knowledge.action';
 import { ServerConfig } from '@/config/server.config';
+
+import { SearchKnowledge } from '../knowledge/actions/search-knowledge.action';
+
+import { CreateKnowledge } from './actions/create-knowledge.action';
+import { ListKnowledge } from './actions/list-knowledge.action';
+import { SaveToKnowledge } from './actions/save-to-knowledge.action';
 
 export class Knowledge extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

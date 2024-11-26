@@ -5,8 +5,9 @@ import {
   OAuth2Connection,
 } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
-import { X } from '../x.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { X } from '../x.app';
 
 export class XOAuth2 extends OAuth2Connection {
   constructor(args: ConnectionConstructorArgs) {

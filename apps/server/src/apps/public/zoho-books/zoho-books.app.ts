@@ -5,8 +5,9 @@ import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { ZohoBooksOAuth2US } from './connections/zoho-books.oauth';
 import { ServerConfig } from '@/config/server.config';
+
+import { ZohoBooksOAuth2US } from './connections/zoho-books.oauth';
 
 export class ZohoBooks extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

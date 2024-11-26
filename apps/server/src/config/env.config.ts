@@ -1,5 +1,6 @@
 import { SSM } from '@aws-sdk/client-ssm';
 import * as dotenv from 'dotenv';
+
 import { ServerConfig } from './server.config';
 
 dotenv.config();

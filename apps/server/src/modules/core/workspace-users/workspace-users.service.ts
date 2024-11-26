@@ -1,20 +1,23 @@
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { JwtUser } from '@/types/jwt-user.type';
-import { UserDeletedEventPayload } from '@/types/event-payloads/user-deleted-event-payload.type';
 import {
   ForbiddenException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
+import { WorkspaceUserRole } from '@prisma/client';
+
+import { PrismaService } from '@/modules/global/prisma/prisma.service';
+import { UserDeletedEventPayload } from '@/types/event-payloads/user-deleted-event-payload.type';
+import { JwtUser } from '@/types/jwt-user.type';
+
 import { S3ManagerService } from '../../global/s3/s3.service';
+
 import { CreateWorkspaceUserDto } from './dto/create-workspace-user.dto';
 import { UpdateWorkspaceUserRolesDto } from './dto/update-workspace-user-roles.dto';
 import { UpdateWorkspaceUserDto } from './dto/update-workspace-user.dto';
 import { WorkspaceUserExpansionDto } from './dto/workspace-user-expansion.dto';
 import { WorkspaceUserFilterByDto } from './dto/workspace-user-filter-by.dto';
 import { WorkspaceUserIncludeTypeDto } from './dto/workspace-user-include-type.dto';
-import { WorkspaceUserRole } from '@prisma/client';
 
 @Injectable()
 export class WorkspaceUsersService {

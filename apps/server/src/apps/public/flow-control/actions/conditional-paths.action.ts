@@ -1,16 +1,18 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
-import { z } from 'zod';
 import {
   ConditionalPathFilter,
   filterPathsByConditions,
 } from '@/apps/utils/filter-data-by-conditions';
-import { FlowControl } from '../flow-control.app';
 import { ServerConfig } from '@/config/server.config';
+
+import { FlowControl } from '../flow-control.app';
 
 export class ConditionalPaths extends Action {
   constructor(args: ActionConstructorArgs) {

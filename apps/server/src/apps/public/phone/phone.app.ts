@@ -1,12 +1,13 @@
+import { Action } from '@/apps/lib/action';
+import { Connection } from '@/apps/lib/connection';
+import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { Action } from '@/apps/lib/action';
-import { Trigger } from '@/apps/lib/trigger';
-import { Connection } from '@/apps/lib/connection';
-import { MakePhoneCall } from './actions/make-phone-call.action';
 import { ServerConfig } from '@/config/server.config';
+
+import { MakePhoneCall } from './actions/make-phone-call.action';
 
 export class Phone extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

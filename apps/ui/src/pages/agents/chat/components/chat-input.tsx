@@ -71,7 +71,6 @@ export const ChatInput = ({
         // Generate a unique filename
         const fileName = `pasted-image-${Date.now()}.jpg`;
 
-         
         let file = blob as any;
         //Resize file if it's not a svg
         if (blob.type !== 'image/svg+xml') {

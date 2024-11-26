@@ -4,6 +4,7 @@ import {
   RunTriggerArgs,
   TriggerConstructorArgs,
 } from '@/apps/lib/trigger';
+
 import { GoogleSheets } from '../google-sheets.app';
 
 export class NewRowAdded extends LengthBasedPollTrigger {

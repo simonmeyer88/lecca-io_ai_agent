@@ -1,21 +1,22 @@
 import { Action } from '@/apps/lib/action';
 import { Connection } from '@/apps/lib/connection';
+import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { ZohoCrmOAuth2US } from './connections/zoho-crm.oauth';
+import { ServerConfig } from '@/config/server.config';
+
 import { AddUser } from './actions/add-user.action';
-import { ListUsers } from './actions/list-users.action';
-import { InputConfig } from '@/apps/lib/input-config';
 import { DeleteUser } from './actions/delete-user.action';
-import { UpsertLead } from './actions/upsert-lead.action';
+import { ListUsers } from './actions/list-users.action';
 import { SearchLeads } from './actions/search-lead.action';
 import { UpsertContact } from './actions/upsert-contact.action';
+import { UpsertLead } from './actions/upsert-lead.action';
+import { ZohoCrmOAuth2US } from './connections/zoho-crm.oauth';
 import { NewContact } from './triggers/new-contact.trigger';
 import { NewLead } from './triggers/new-lead.trigger';
-import { ServerConfig } from '@/config/server.config';
 
 export class ZohoCrm extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

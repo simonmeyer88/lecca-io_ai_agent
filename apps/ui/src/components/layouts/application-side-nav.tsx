@@ -199,7 +199,6 @@ export function MainSideNavContent({
                   icon: Icons.creditCard,
                   idSelector: 'onboarding-step13',
                 },
-             
           ].filter(Boolean) as any
         }
       />

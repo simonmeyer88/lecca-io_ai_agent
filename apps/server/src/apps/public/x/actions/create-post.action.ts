@@ -1,10 +1,12 @@
+import { z } from 'zod';
+
 import {
   Action,
   ActionConstructorArgs,
   RunActionArgs,
 } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
-import { z } from 'zod';
+
 import { X } from '../x.app';
 
 export class CreatePost extends Action {

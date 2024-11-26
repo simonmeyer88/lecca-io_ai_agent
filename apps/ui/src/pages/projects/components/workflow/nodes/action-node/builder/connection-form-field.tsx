@@ -73,9 +73,9 @@ export function ConnectionFormField({
                       }))}
                       defaultSelectedItem={{
                         label: field.value
-                          ? connections?.find(
+                          ? (connections?.find(
                               (connection) => connection.id === field.value,
-                            )?.name ?? 'Connection not found'
+                            )?.name ?? 'Connection not found')
                           : '',
                         value: field.value,
                       }}

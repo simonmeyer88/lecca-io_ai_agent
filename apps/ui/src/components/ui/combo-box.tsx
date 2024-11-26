@@ -98,7 +98,7 @@ export function ComboBox({
                 'text-muted-foreground': !label.length,
               })}
             >
-              {label.length ? label : fallbackLabel ?? 'Select an option'}
+              {label.length ? label : (fallbackLabel ?? 'Select an option')}
             </span>
             <CaretSortIcon className="ml-auto h-4 w-4 shrink-0 opacity-50" />
           </Button>

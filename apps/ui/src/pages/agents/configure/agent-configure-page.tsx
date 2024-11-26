@@ -341,7 +341,7 @@ export function AgentConfigurePage() {
             ]
       }
       actions={[
-        agentId ?? newlyCreatedAgentId ? (
+        (agentId ?? newlyCreatedAgentId) ? (
           <Button
             variant={'outline'}
             onClick={() => {

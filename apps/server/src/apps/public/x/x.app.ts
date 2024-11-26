@@ -5,10 +5,11 @@ import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { XOAuth2 } from './connections/x.oauth2';
+import { ServerConfig } from '@/config/server.config';
+
 import { CreatePost } from './actions/create-post.action';
 import { ReplyToPost } from './actions/reply-to-post.action';
-import { ServerConfig } from '@/config/server.config';
+import { XOAuth2 } from './connections/x.oauth2';
 
 export class X extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

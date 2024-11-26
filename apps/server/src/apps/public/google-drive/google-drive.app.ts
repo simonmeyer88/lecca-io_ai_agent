@@ -1,27 +1,29 @@
+import { google } from 'googleapis';
+
+import { Action } from '@/apps/lib/action';
+import { Connection } from '@/apps/lib/connection';
+import { InputConfig } from '@/apps/lib/input-config';
+import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { google } from 'googleapis';
-import { Action } from '@/apps/lib/action';
-import { Trigger } from '@/apps/lib/trigger';
-import { Connection } from '@/apps/lib/connection';
-import { GoogleDriveOAuth2 } from './connections/google-drive.oauth2';
-import { InputConfig } from '@/apps/lib/input-config';
-import { CreateFolder } from './actions/create-folder.action';
-import { NewFile } from './triggers/new-file.trigger';
-import { NewFileInFolder } from './triggers/new-file-in-folder.trigger';
-import { DeleteFile } from './actions/delete-file.action';
-import { ShareFolder } from './actions/share-folder.action';
-import { ShareFile } from './actions/share-file.action';
-import { FindFileByTitle } from './actions/find-file-by-title.action';
+import { ServerConfig } from '@/config/server.config';
+
 import { CopyFile } from './actions/copy-file.action';
+import { CreateFolder } from './actions/create-folder.action';
+import { DeleteFile } from './actions/delete-file.action';
+import { DownloadFile } from './actions/download-file.action';
+import { ExportFile } from './actions/export-file.action';
+import { FindFileByTitle } from './actions/find-file-by-title.action';
+import { FindFolderByTitle } from './actions/find-folder-by-title.action';
 import { MoveFile } from './actions/move-file.action';
 import { MoveFolder } from './actions/move-folder.action';
-import { FindFolderByTitle } from './actions/find-folder-by-title.action';
-import { ExportFile } from './actions/export-file.action';
-import { DownloadFile } from './actions/download-file.action';
-import { ServerConfig } from '@/config/server.config';
+import { ShareFile } from './actions/share-file.action';
+import { ShareFolder } from './actions/share-folder.action';
+import { GoogleDriveOAuth2 } from './connections/google-drive.oauth2';
+import { NewFileInFolder } from './triggers/new-file-in-folder.trigger';
+import { NewFile } from './triggers/new-file.trigger';
 
 export class GoogleDrive extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

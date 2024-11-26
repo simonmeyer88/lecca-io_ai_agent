@@ -1,24 +1,26 @@
+import { BadRequestException } from '@nestjs/common';
+import { google } from 'googleapis';
+
+import { Action } from '@/apps/lib/action';
+import { Connection } from '@/apps/lib/connection';
+import { InputConfig } from '@/apps/lib/input-config';
+import { Trigger } from '@/apps/lib/trigger';
 import {
   WorkflowApp,
   WorkflowAppConstructorArgs,
 } from '@/apps/lib/workflow-app';
-import { google } from 'googleapis';
-import { Action } from '@/apps/lib/action';
-import { Trigger } from '@/apps/lib/trigger';
-import { Connection } from '@/apps/lib/connection';
-import { InputConfig } from '@/apps/lib/input-config';
-import { GoogleDocsOAuth2 } from './connections/google-docs.oauth2';
-import { CreateDocumentFromTemplate } from './actions/create-document-from-template.action';
-import { BadRequestException } from '@nestjs/common';
-import { EditTemplateDocument } from './actions/edit-template-document.action';
-import { CreateDocument } from './actions/create-document.action';
-import { AppendToDocument } from './actions/append-to-document.action';
-import { FindDocumentByTitle } from './actions/find-document-by-title.action';
-import { FindDocumentByContent } from './actions/find-document-by-content.action';
-import { NewDocument } from './triggers/new-document.trigger';
-import { NewDocumentInFolder } from './triggers/new-document-in-folder.trigger';
-import { GetDocumentText } from './actions/get-document-text.action';
 import { ServerConfig } from '@/config/server.config';
+
+import { AppendToDocument } from './actions/append-to-document.action';
+import { CreateDocumentFromTemplate } from './actions/create-document-from-template.action';
+import { CreateDocument } from './actions/create-document.action';
+import { EditTemplateDocument } from './actions/edit-template-document.action';
+import { FindDocumentByContent } from './actions/find-document-by-content.action';
+import { FindDocumentByTitle } from './actions/find-document-by-title.action';
+import { GetDocumentText } from './actions/get-document-text.action';
+import { GoogleDocsOAuth2 } from './connections/google-docs.oauth2';
+import { NewDocumentInFolder } from './triggers/new-document-in-folder.trigger';
+import { NewDocument } from './triggers/new-document.trigger';
 
 export class GoogleDocs extends WorkflowApp {
   constructor(args: WorkflowAppConstructorArgs) {

@@ -1,10 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { CreateNotificationDto } from './dto/create-notification.dto';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
 import { OnEvent } from '@nestjs/event-emitter';
-import { NotificationCreateForWorkspaceUserPayload } from '@/types/event-payloads/notification-create-payload.type';
-import { MailService } from '../mail/mail.service';
+
 import { ServerConfig } from '@/config/server.config';
+import { PrismaService } from '@/modules/global/prisma/prisma.service';
+import { NotificationCreateForWorkspaceUserPayload } from '@/types/event-payloads/notification-create-payload.type';
+
+import { MailService } from '../mail/mail.service';
+
+import { CreateNotificationDto } from './dto/create-notification.dto';
 
 @Injectable()
 export class NotificationsService {

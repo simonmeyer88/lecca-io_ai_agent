@@ -1,54 +1,46 @@
-import { exec } from 'child_process';
+import axios from 'axios';
 
-const ollamaCommandExists = (command: string): Promise<boolean> => {
-  return new Promise((resolve) => {
-    exec(`command -v ${command}`, (_, stdout) => {
-      if (stdout.length) {
-        resolve(true);
-      } else {
-        resolve(false);
-      }
-    });
-  });
-};
+import { ServerConfig } from '@/config/server.config';
 
-export const checkIfOllamaIsRunning = (): Promise<boolean> => {
-  return new Promise((resolve, reject) => {
-    ollamaCommandExists('ollama').then((exists) => {
-      if (exists) {
-        exec('ollama', (error) => {
-          if (error) {
-            reject(error); // Not running or an error occurred
-          }
-          resolve(true);
-        });
-      } else {
-        resolve(false);
-      }
-    });
-  });
-};
+export async function getOllamaModelsWithDetails(): Promise<OllamaModel[]> {
+  try {
+    if (!ServerConfig.OLLAMA_BASE_URL) {
+      return [];
+    }
 
-export const listOllamaLlmModels = (): Promise<string[]> => {
-  return new Promise((resolve, reject) => {
-    exec('ollama list', (error, stdout, stderr) => {
-      if (error) {
-        reject(`Error retrieving models: ${stderr}`); // Handle error
-      }
+    const response = await axios.get(`${ServerConfig.OLLAMA_BASE_URL}/tags`);
+    return response.data.models || [];
+  } catch (error) {
+    console.error('Error fetching Ollama models:', error);
+    return [];
+  }
+}
 
-      const lines = stdout.split('\n');
-      const models: string[] = [];
+export async function ollamaIsRunning(): Promise<boolean> {
+  try {
+    if (!ServerConfig.OLLAMA_BASE_URL) {
+      return false;
+    }
 
-      // Skip the header and process the remaining lines
-      for (let i = 1; i < lines.length; i++) {
-        const line = lines[i].trim();
-        if (line) {
-          const parts = line.split(/\s+/); // Split by whitespace
-          models.push((parts as any)[0]); // Add the model name (first column)
-        }
-      }
+    await axios.get(`${ServerConfig.OLLAMA_BASE_URL}/tags`);
+    return true;
+  } catch {
+    return false;
+  }
+}
 
-      resolve(models); // Return the list of model names
-    });
-  });
-};
+type OllamaModel = Partial<{
+  name: string;
+  model: string;
+  modified_at: string;
+  size: number;
+  digest: string;
+  details: Partial<{
+    parent_model: string;
+    format: string;
+    family: string;
+    famililes: string[];
+    parameter_size: string;
+    quantization_level: string;
+  }>;
+}>;

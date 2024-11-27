@@ -16,8 +16,8 @@ import { CryptoService } from '../crypto/crypto.service';
 
 import { DEFAULT_PROVIDERS } from './ai-provider-defaults';
 import {
-  checkIfOllamaIsRunning,
-  listOllamaLlmModels as listOllamaLanguageModels,
+  getOllamaModelsWithDetails,
+  ollamaIsRunning,
 } from './utils/ollama-utils';
 
 @Injectable()
@@ -40,11 +40,11 @@ export class AiProviderService {
           }
           break;
         case 'ollama':
-          checkIfOllamaIsRunning().then((isRunning) => {
+          ollamaIsRunning().then((isRunning) => {
             if (isRunning) {
-              listOllamaLanguageModels().then((models) => {
+              getOllamaModelsWithDetails().then((models) => {
                 models.forEach((model) => {
-                  this.providers.ollama.languageModels[model] = {
+                  this.providers.ollama.languageModels[model.model] = {
                     //Just going to assume true for vision and tools for now.
                     vision: true,
                     tools: true,

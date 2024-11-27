@@ -17,99 +17,85 @@ export class CreateDraftReply extends Action {
   }
 
   app: Gmail;
-  id() {
-    return 'gmail_action_create-draft-reply';
-  }
-  name() {
-    return 'Create Draft Reply';
-  }
-  description() {
-    return 'Create a draft reply email in Gmail';
-  }
-  aiSchema() {
-    return z.object({
-      threadId: z
-        .string()
-        .min(1)
-        .describe('The thread ID of the email being replied to'),
-      to: z.string().email().describe('The email address of the recipient'),
-      cc: z.string().email().optional().describe('CC recipient email address'),
-      bcc: z
-        .string()
-        .email()
-        .optional()
-        .describe('BCC recipient email address'),
-      body: z.string().min(1).describe('The body of the reply'),
-      bodyType: z
-        .enum(['text', 'html'])
-        .describe('The format of the body: text or HTML'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        label: 'Thread ID',
-        id: 'threadId',
-        inputType: 'text',
-        placeholder: 'Enter thread ID',
-        description: 'The ID of the email thread to reply to',
-        required: {
-          missingMessage: 'Thread ID is required',
-          missingStatus: 'warning',
-        },
+  id = 'gmail_action_create-draft-reply';
+  name = 'Create Draft Reply';
+  description = 'Create a draft reply email in Gmail';
+  aiSchema = z.object({
+    threadId: z
+      .string()
+      .min(1)
+      .describe('The thread ID of the email being replied to'),
+    to: z.string().email().describe('The email address of the recipient'),
+    cc: z.string().email().optional().describe('CC recipient email address'),
+    bcc: z.string().email().optional().describe('BCC recipient email address'),
+    body: z.string().min(1).describe('The body of the reply'),
+    bodyType: z
+      .enum(['text', 'html'])
+      .describe('The format of the body: text or HTML'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      label: 'Thread ID',
+      id: 'threadId',
+      inputType: 'text',
+      placeholder: 'Enter thread ID',
+      description: 'The ID of the email thread to reply to',
+      required: {
+        missingMessage: 'Thread ID is required',
+        missingStatus: 'warning',
       },
-      {
-        label: 'Recipient',
-        id: 'to',
-        inputType: 'text',
-        placeholder: 'Add recipient',
-        description: 'The email address of the recipient',
-        required: {
-          missingMessage: 'Recipient is required',
-          missingStatus: 'warning',
-        },
+    },
+    {
+      label: 'Recipient',
+      id: 'to',
+      inputType: 'text',
+      placeholder: 'Add recipient',
+      description: 'The email address of the recipient',
+      required: {
+        missingMessage: 'Recipient is required',
+        missingStatus: 'warning',
       },
-      {
-        label: 'CC',
-        id: 'cc',
-        inputType: 'text',
-        placeholder: 'Add CC recipient (optional)',
-        description: 'The CC recipient email address (optional)',
+    },
+    {
+      label: 'CC',
+      id: 'cc',
+      inputType: 'text',
+      placeholder: 'Add CC recipient (optional)',
+      description: 'The CC recipient email address (optional)',
+    },
+    {
+      label: 'BCC',
+      id: 'bcc',
+      inputType: 'text',
+      placeholder: 'Add BCC recipient (optional)',
+      description: 'The BCC recipient email address (optional)',
+    },
+    {
+      label: 'Body',
+      id: 'body',
+      inputType: 'text',
+      placeholder: 'Add reply body',
+      description: 'The body of the reply',
+      required: {
+        missingMessage: 'Message body is required',
+        missingStatus: 'warning',
       },
-      {
-        label: 'BCC',
-        id: 'bcc',
-        inputType: 'text',
-        placeholder: 'Add BCC recipient (optional)',
-        description: 'The BCC recipient email address (optional)',
+    },
+    {
+      label: 'Body Type',
+      id: 'bodyType',
+      inputType: 'select',
+      selectOptions: [
+        { value: 'text', label: 'Text' },
+        { value: 'html', label: 'HTML' },
+      ],
+      description: 'Select the format of the email body (text or HTML)',
+      required: {
+        missingMessage: 'Body type is required',
+        missingStatus: 'warning',
       },
-      {
-        label: 'Body',
-        id: 'body',
-        inputType: 'text',
-        placeholder: 'Add reply body',
-        description: 'The body of the reply',
-        required: {
-          missingMessage: 'Message body is required',
-          missingStatus: 'warning',
-        },
-      },
-      {
-        label: 'Body Type',
-        id: 'bodyType',
-        inputType: 'select',
-        selectOptions: [
-          { value: 'text', label: 'Text' },
-          { value: 'html', label: 'HTML' },
-        ],
-        description: 'Select the format of the email body (text or HTML)',
-        required: {
-          missingMessage: 'Body type is required',
-          missingStatus: 'warning',
-        },
-      },
-    ];
-  }
+    },
+  ];
 
   async run({ configValue, connection }: RunActionArgs<ConfigValue>) {
     const buildMessage = () =>
@@ -169,4 +155,4 @@ export class CreateDraftReply extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<CreateDraftReply['aiSchema']>>;
+type ConfigValue = z.infer<CreateDraftReply['aiSchema']>;

@@ -16,31 +16,18 @@ export class GetVariable extends Action {
   }
 
   app: Variables;
-  id() {
-    return 'variables_action_get-variables';
-  }
-  needsConnection() {
-    return false;
-  }
-  name() {
-    return 'Get Variable';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
-  }
-  description() {
-    return 'Retrieve a variable by its ID.';
-  }
-  aiSchema() {
-    return z.object({
-      variableId: z
-        .string()
-        .describe('Variable ID. If you do not have the ID, please ask for it.'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [this.app.dynamicGetVariable()];
-  }
+  id = 'variables_action_get-variables';
+  needsConnection = false;
+  name = 'Get Variable';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
+  description = 'Retrieve a variable by its ID.';
+  aiSchema = z.object({
+    variableId: z
+      .string()
+      .describe('Variable ID. If you do not have the ID, please ask for it.'),
+  });
+  inputConfig: InputConfig[] = [this.app.dynamicGetVariable()];
 
   async run({
     configValue,
@@ -103,7 +90,7 @@ export class GetVariable extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<GetVariable['aiSchema']>>;
+type ConfigValue = z.infer<GetVariable['aiSchema']>;
 
 type Response = {
   variable: {

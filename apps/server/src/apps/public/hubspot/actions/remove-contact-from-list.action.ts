@@ -15,47 +15,37 @@ export class RemoveContactFromList extends Action {
   }
 
   app: Hubspot;
-  id() {
-    return 'hubspot_action_remove-contact-from-list';
-  }
-  name() {
-    return 'Remove Contact from List';
-  }
-  description() {
-    return 'Removes a contact from a static list in Hubspot';
-  }
-  aiSchema() {
-    return z.object({
-      email: z.string().email().describe('The email of the contact'),
-      listId: z
-        .string()
-        .min(1)
-        .describe('The ID of the list to remove the contact from'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'email',
-        label: 'Contact Email',
-        description: '',
-        inputType: 'text',
-        placeholder: 'Enter the contact email to remove',
-        required: {
-          missingMessage: 'Email is required',
-          missingStatus: 'warning',
-        },
+  id = 'hubspot_action_remove-contact-from-list';
+  name = 'Remove Contact from List';
+  description = 'Removes a contact from a static list in Hubspot';
+  aiSchema = z.object({
+    email: z.string().email().describe('The email of the contact'),
+    listId: z
+      .string()
+      .min(1)
+      .describe('The ID of the list to remove the contact from'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'email',
+      label: 'Contact Email',
+      description: '',
+      inputType: 'text',
+      placeholder: 'Enter the contact email to remove',
+      required: {
+        missingMessage: 'Email is required',
+        missingStatus: 'warning',
       },
-      this.app.dynamicGetStaticContactLists(),
-      {
-        id: 'markdown1',
-        inputType: 'markdown',
-        label: '',
-        description: '',
-        markdown: 'You cannot remove a contact from a dynamic list',
-      },
-    ];
-  }
+    },
+    this.app.dynamicGetStaticContactLists(),
+    {
+      id: 'markdown1',
+      inputType: 'markdown',
+      label: '',
+      description: '',
+      markdown: 'You cannot remove a contact from a dynamic list',
+    },
+  ];
 
   async run({
     configValue,
@@ -106,4 +96,4 @@ type ResponseType = {
   invalidEmails: string[];
 };
 
-type ConfigValue = z.infer<ReturnType<RemoveContactFromList['aiSchema']>>;
+type ConfigValue = z.infer<RemoveContactFromList['aiSchema']>;

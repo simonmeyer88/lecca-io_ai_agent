@@ -16,37 +16,23 @@ export class ListKnowledge extends Action {
   }
 
   app: Knowledge;
-  id() {
-    return 'knowledge_action_list-knowledge';
-  }
-  needsConnection() {
-    return false;
-  }
-  name() {
-    return 'List Knowledge Notebooks';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${`knowledge_action_search-knowledge`}.svg`;
-  }
-  description() {
-    return 'Lists all knowledge notebooks available to the project.';
-  }
-
-  aiSchema() {
-    return z.object({});
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'markdown',
-        inputType: 'markdown',
-        label: '',
-        description: '',
-        markdown:
-          "Lists all knowledge notebooks available to the project. This includes this project's notebooks and workspace notebooks.",
-      },
-    ];
-  }
+  id = 'knowledge_action_list-knowledge';
+  needsConnection = false;
+  name = 'List Knowledge Notebooks';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${`knowledge_action_search-knowledge`}.svg`;
+  description = 'Lists all knowledge notebooks available to the project.';
+  aiSchema = z.object({});
+  inputConfig: InputConfig[] = [
+    {
+      id: 'markdown',
+      inputType: 'markdown',
+      label: '',
+      description: '',
+      markdown:
+        "Lists all knowledge notebooks available to the project. This includes this project's notebooks and workspace notebooks.",
+    },
+  ];
 
   async run({
     projectId,
@@ -104,7 +90,7 @@ export class ListKnowledge extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<ListKnowledge['aiSchema']>>;
+type ConfigValue = z.infer<ListKnowledge['aiSchema']>;
 
 type Response = {
   notebooks: {

@@ -19,42 +19,26 @@ export class Pause extends Action {
   }
 
   app: FlowControl;
-  id() {
-    return 'flow-control_action_pause';
-  }
-  needsConnection() {
-    return false;
-  }
-  name() {
-    return 'Pause';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id()}.svg`;
-  }
-  description() {
-    return 'Pauses the execution until it is manually continued.';
-  }
-  availableForAgent(): boolean {
-    return false;
-  }
-  viewOptions(): NodeViewOptions {
-    return {
-      showManualInputButton: true,
-      manualInputButtonOptions: {
-        label: 'Resume',
-        tooltip: 'Once pressed, the execution will continue as normal.',
-      },
-      saveButtonOptions: {
-        hideSaveAndTestButton: true,
-      },
-    };
-  }
-  aiSchema() {
-    return z.object({});
-  }
-  isInterruptingAction() {
-    return true;
-  }
+  id = 'flow-control_action_pause';
+  needsConnection = false;
+  name = 'Pause';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id}.svg`;
+  description = 'Pauses the execution until it is manually continued.';
+  availableForAgent = false;
+  viewOptions: NodeViewOptions = {
+    showManualInputButton: true,
+    manualInputButtonOptions: {
+      label: 'Resume',
+      tooltip: 'Once pressed, the execution will continue as normal.',
+    },
+    saveButtonOptions: {
+      hideSaveAndTestButton: true,
+    },
+  };
+  aiSchema = z.object({});
+  isInterruptingAction = true;
+
   handleInterruptingResponse({
     runResponse,
   }: {
@@ -64,25 +48,24 @@ export class Pause extends Action {
       needsInput: runResponse,
     };
   }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'resumeExecution',
-        inputType: 'resume-execution',
-        description: '',
-        label: '',
-      },
-      ...this.app.dynamicInputNeededNotificationConfig(),
-      {
-        id: 'markdown1',
-        label: '',
-        description: '',
-        inputType: 'markdown',
-        markdown:
-          'Anyone with access to this workflow can resume the execution. However, the assignee is the one who will be notified.',
-      },
-    ];
-  }
+
+  inputConfig: InputConfig[] = [
+    {
+      id: 'resumeExecution',
+      inputType: 'resume-execution',
+      description: '',
+      label: '',
+    },
+    ...this.app.dynamicInputNeededNotificationConfig(),
+    {
+      id: 'markdown1',
+      label: '',
+      description: '',
+      inputType: 'markdown',
+      markdown:
+        'Anyone with access to this workflow can resume the execution. However, the assignee is the one who will be notified.',
+    },
+  ];
 
   async run({
     configValue,
@@ -189,7 +172,7 @@ export class Pause extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<Pause['aiSchema']>> & {
+type ConfigValue = z.infer<Pause['aiSchema']> & {
   sendNotification: 'true' | 'false';
   assignee: string | undefined;
   instructions: string | undefined;

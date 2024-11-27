@@ -15,60 +15,50 @@ export class CreateContact extends Action {
   }
 
   app: GoogleContacts;
-  id() {
-    return 'google-contacts_action_create-contact';
-  }
-  name() {
-    return 'Create Contact';
-  }
-  description() {
-    return 'Creates a new contact with provided details.';
-  }
-  aiSchema() {
-    return z.object({
-      name: z.string().min(1).describe('The name of the new contact.'),
-      email: z
-        .string()
-        .email()
-        .nullable()
-        .optional()
-        .describe('The email address of the new contact.'),
-      phone: z
-        .string()
-        .nullable()
-        .optional()
-        .describe('The phone number of the new contact.'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'name',
-        label: 'Contact Name',
-        description: 'The name of the new contact.',
-        inputType: 'text',
-        placeholder: 'Enter contact name',
-        required: {
-          missingMessage: 'Contact name is required',
-          missingStatus: 'warning',
-        },
+  id = 'google-contacts_action_create-contact';
+  name = 'Create Contact';
+  description = 'Creates a new contact with provided details.';
+  aiSchema = z.object({
+    name: z.string().min(1).describe('The name of the new contact.'),
+    email: z
+      .string()
+      .email()
+      .nullable()
+      .optional()
+      .describe('The email address of the new contact.'),
+    phone: z
+      .string()
+      .nullable()
+      .optional()
+      .describe('The phone number of the new contact.'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'name',
+      label: 'Contact Name',
+      description: 'The name of the new contact.',
+      inputType: 'text',
+      placeholder: 'Enter contact name',
+      required: {
+        missingMessage: 'Contact name is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'email',
-        label: 'Email Address',
-        description: '',
-        inputType: 'text',
-        placeholder: 'Enter email address',
-      },
-      {
-        id: 'phone',
-        label: 'Phone Number',
-        description: '',
-        inputType: 'text',
-        placeholder: 'Enter phone number',
-      },
-    ];
-  }
+    },
+    {
+      id: 'email',
+      label: 'Email Address',
+      description: '',
+      inputType: 'text',
+      placeholder: 'Enter email address',
+    },
+    {
+      id: 'phone',
+      label: 'Phone Number',
+      description: '',
+      inputType: 'text',
+      placeholder: 'Enter phone number',
+    },
+  ];
 
   async run({
     configValue,
@@ -102,4 +92,4 @@ export class CreateContact extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<CreateContact['aiSchema']>>;
+type ConfigValue = z.infer<CreateContact['aiSchema']>;

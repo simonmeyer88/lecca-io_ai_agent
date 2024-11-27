@@ -15,21 +15,10 @@ export class NewContact extends TimeBasedPollTrigger {
 
   app: ZohoCrm;
 
-  id() {
-    return 'zoho-crm_trigger_new-contact';
-  }
-
-  name() {
-    return 'New Contact';
-  }
-
-  description() {
-    return 'Triggers when a new contact is created in Zoho CRM';
-  }
-
-  inputConfig(): InputConfig[] {
-    return [];
-  }
+  id = 'zoho-crm_trigger_new-contact';
+  name = 'New Contact';
+  description = 'Triggers when a new contact is created in Zoho CRM';
+  inputConfig: InputConfig[] = [];
 
   async run({ connection }: RunTriggerArgs<unknown>): Promise<ContactType[]> {
     const response = await this.app.http.loggedRequest({

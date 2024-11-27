@@ -16,36 +16,26 @@ export class DeleteSheet extends Action {
   }
 
   app: GoogleSheets;
-  id() {
-    return 'google-sheets_action_delete-sheet';
-  }
-  name() {
-    return 'Delete Sheet';
-  }
-  description() {
-    return 'Delete a sheet.';
-  }
-  aiSchema() {
-    return z.object({
-      sheet: z.string().min(1).describe('The ID of the sheet to delete'),
-      spreadsheet: z
-        .string()
-        .min(1)
-        .describe('The ID of the spreadsheet that contains the sheet'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        ...this.app.dynamicSelectSpreadSheets(),
-        description: 'Select the spreadsheet of the sheet you want to delete.',
-      },
-      {
-        ...this.app.dynamicSelectSheetIds(),
-        description: 'Select the sheet you want to delete.',
-      },
-    ];
-  }
+  id = 'google-sheets_action_delete-sheet';
+  name = 'Delete Sheet';
+  description = 'Delete a sheet.';
+  aiSchema = z.object({
+    sheet: z.string().min(1).describe('The ID of the sheet to delete'),
+    spreadsheet: z
+      .string()
+      .min(1)
+      .describe('The ID of the spreadsheet that contains the sheet'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      ...this.app.dynamicSelectSpreadSheets(),
+      description: 'Select the spreadsheet of the sheet you want to delete.',
+    },
+    {
+      ...this.app.dynamicSelectSheetIds(),
+      description: 'Select the sheet you want to delete.',
+    },
+  ];
 
   async run({
     configValue,
@@ -85,4 +75,4 @@ export class DeleteSheet extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<DeleteSheet['aiSchema']>>;
+type ConfigValue = z.infer<DeleteSheet['aiSchema']>;

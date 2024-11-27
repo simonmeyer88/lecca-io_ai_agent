@@ -15,21 +15,11 @@ export class GetLabels extends Action {
   }
 
   app: Gmail;
-  id() {
-    return 'gmail_action_get-labels';
-  }
-  name() {
-    return 'Get Labels';
-  }
-  description() {
-    return 'Get labels from gmail';
-  }
-  aiSchema() {
-    return z.object({});
-  }
-  inputConfig(): InputConfig[] {
-    return [];
-  }
+  id = 'gmail_action_get-labels';
+  name = 'Get Labels';
+  description = 'Get labels from gmail';
+  aiSchema = z.object({});
+  inputConfig: InputConfig[] = [];
 
   async run({ connection }: RunActionArgs<ConfigValue>) {
     const gmail = await (this.app as Gmail).gmail({
@@ -69,4 +59,4 @@ export class GetLabels extends Action {
   }
 }
 
-type ConfigValue = null;
+type ConfigValue = z.infer<GetLabels['aiSchema']>;

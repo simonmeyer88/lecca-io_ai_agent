@@ -15,50 +15,35 @@ export class ListUsers extends Action {
   }
 
   app: ZohoCrm;
-
-  id() {
-    return 'zoho-crm_action_list-users';
-  }
-
-  name() {
-    return 'List Users';
-  }
-
-  description() {
-    return 'Retrieve a list of users.';
-  }
-
-  aiSchema() {
-    return z.object({
-      page: z.number().default(1).describe('Page number for user results'),
-      perPage: z
-        .number()
-        .max(100)
-        .default(10)
-        .describe('Number of users per page (Max: 100)'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'page',
-        label: 'Page Number',
-        description: 'The page number to retrieve',
-        inputType: 'number',
-        numberOptions: { min: 1 },
-        defaultValue: 1,
-      },
-      {
-        id: 'perPage',
-        label: 'Users per Page',
-        description: 'Number of users to retrieve per page (Max: 100)',
-        inputType: 'number',
-        numberOptions: { min: 1, max: 100, step: 1 },
-        defaultValue: 50,
-      },
-    ];
-  }
+  id = 'zoho-crm_action_list-users';
+  name = 'List Users';
+  description = 'Retrieve a list of users.';
+  aiSchema = z.object({
+    page: z.number().default(1).describe('Page number for user results'),
+    perPage: z
+      .number()
+      .max(100)
+      .default(10)
+      .describe('Number of users per page (Max: 100)'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'page',
+      label: 'Page Number',
+      description: 'The page number to retrieve',
+      inputType: 'number',
+      numberOptions: { min: 1 },
+      defaultValue: 1,
+    },
+    {
+      id: 'perPage',
+      label: 'Users per Page',
+      description: 'Number of users to retrieve per page (Max: 100)',
+      inputType: 'number',
+      numberOptions: { min: 1, max: 100, step: 1 },
+      defaultValue: 50,
+    },
+  ];
 
   async run({
     configValue,
@@ -124,4 +109,4 @@ const mock = {
   },
 };
 
-type ConfigValue = z.infer<ReturnType<ListUsers['aiSchema']>>;
+type ConfigValue = z.infer<ListUsers['aiSchema']>;

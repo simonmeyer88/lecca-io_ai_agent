@@ -16,31 +16,21 @@ export class DeleteSpreadsheet extends Action {
   }
 
   app: GoogleSheets;
-  id() {
-    return 'google-sheets_action_delete-spreadsheet';
-  }
-  name() {
-    return 'Delete Spreadsheet';
-  }
-  description() {
-    return 'Delete a spreadsheet.';
-  }
-  aiSchema() {
-    return z.object({
-      spreadsheet: z
-        .string()
-        .min(1)
-        .describe('The ID of the spreadsheet to delete'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        ...this.app.dynamicSelectSpreadSheets(),
-        description: 'Select the spreadsheet to delete.',
-      },
-    ];
-  }
+  id = 'google-sheets_action_delete-spreadsheet';
+  name = 'Delete Spreadsheet';
+  description = 'Delete a spreadsheet.';
+  aiSchema = z.object({
+    spreadsheet: z
+      .string()
+      .min(1)
+      .describe('The ID of the spreadsheet to delete'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      ...this.app.dynamicSelectSpreadSheets(),
+      description: 'Select the spreadsheet to delete.',
+    },
+  ];
 
   async run({
     configValue,
@@ -69,4 +59,4 @@ export class DeleteSpreadsheet extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<DeleteSpreadsheet['aiSchema']>>;
+type ConfigValue = z.infer<DeleteSpreadsheet['aiSchema']>;

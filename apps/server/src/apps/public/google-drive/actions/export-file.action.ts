@@ -16,122 +16,111 @@ export class ExportFile extends Action {
   }
 
   app: GoogleDrive;
-  id() {
-    return 'google-drive_action_export-file';
-  }
-  name() {
-    return 'Export File';
-  }
-  description() {
-    return 'Exports a file from Google Drive in the specified format based on the file type.';
-  }
-
-  aiSchema() {
-    return z.object({
-      file: z.string().min(1).describe('The ID of the file to export'),
-      format: z
-        .enum([
-          'application/pdf',
-          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-          'text/plain',
-          'text/html',
-          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-          'text/csv',
-          'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-        ])
-        .describe('The format to export the file in'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        ...this.app.dynamicSelectExportableFile(),
-        label: 'File to Export',
-        description: '',
+  id = 'google-drive_action_export-file';
+  name = 'Export File';
+  description =
+    'Exports a file from Google Drive in the specified format based on the file type.';
+  aiSchema = z.object({
+    file: z.string().min(1).describe('The ID of the file to export'),
+    format: z
+      .enum([
+        'application/pdf',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'text/plain',
+        'text/html',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'text/csv',
+        'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      ])
+      .describe('The format to export the file in'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      ...this.app.dynamicSelectExportableFile(),
+      label: 'File to Export',
+      description: '',
+    },
+    {
+      id: 'format',
+      label: 'Export Format',
+      description: 'Select the format to export the file',
+      inputType: 'dynamic-select',
+      loadOptions: {
+        dependsOn: ['file'],
+        forceRefresh: true,
       },
-      {
-        id: 'format',
-        label: 'Export Format',
-        description: 'Select the format to export the file',
-        inputType: 'dynamic-select',
-        loadOptions: {
-          dependsOn: ['file'],
-          forceRefresh: true,
-        },
-        _getDynamicValues: async ({ connection, extraOptions }) => {
-          const file = extraOptions['file'];
+      _getDynamicValues: async ({ connection, extraOptions }) => {
+        const file = extraOptions['file'];
 
-          if (file == null) {
-            throw new Error('File ID is required');
-          }
+        if (file == null) {
+          throw new Error('File ID is required');
+        }
 
-          const googleDrive = await this.app.googleDrive({
-            accessToken: connection.accessToken,
-            refreshToken: connection.refreshToken,
-          });
+        const googleDrive = await this.app.googleDrive({
+          accessToken: connection.accessToken,
+          refreshToken: connection.refreshToken,
+        });
 
-          const fileToExportId = file;
-          const fileMetadata = await googleDrive.files.get({
-            fileId: fileToExportId,
-            fields: 'mimeType',
-          });
+        const fileToExportId = file;
+        const fileMetadata = await googleDrive.files.get({
+          fileId: fileToExportId,
+          fields: 'mimeType',
+        });
 
-          const mimeType = fileMetadata.data.mimeType;
+        const mimeType = fileMetadata.data.mimeType;
 
-          // Provide export format options based on MIME type
-          switch (mimeType) {
-            case 'application/vnd.google-apps.document': // Google Docs
-              return [
-                { label: 'PDF', value: 'application/pdf' },
-                {
-                  label: 'Word (DOCX)',
-                  value:
-                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                },
-                { label: 'Plain Text (TXT)', value: 'text/plain' },
-                { label: 'HTML', value: 'text/html' },
-              ];
-            case 'application/vnd.google-apps.spreadsheet': // Google Sheets
-              return [
-                {
-                  label: 'Excel (XLSX)',
-                  value:
-                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                },
-                { label: 'CSV', value: 'text/csv' },
-                { label: 'PDF', value: 'application/pdf' },
-              ];
-            case 'application/vnd.google-apps.presentation': // Google Slides
-              return [
-                { label: 'PDF', value: 'application/pdf' },
-                {
-                  label: 'PowerPoint (PPTX)',
-                  value:
-                    'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-                },
-              ];
-            default:
-              return [
-                { label: 'PDF', value: 'application/pdf' }, // Fallback to PDF
-              ];
-          }
-        },
-        required: {
-          missingMessage: 'Export format is required',
-          missingStatus: 'warning',
-        },
+        // Provide export format options based on MIME type
+        switch (mimeType) {
+          case 'application/vnd.google-apps.document': // Google Docs
+            return [
+              { label: 'PDF', value: 'application/pdf' },
+              {
+                label: 'Word (DOCX)',
+                value:
+                  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+              },
+              { label: 'Plain Text (TXT)', value: 'text/plain' },
+              { label: 'HTML', value: 'text/html' },
+            ];
+          case 'application/vnd.google-apps.spreadsheet': // Google Sheets
+            return [
+              {
+                label: 'Excel (XLSX)',
+                value:
+                  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+              },
+              { label: 'CSV', value: 'text/csv' },
+              { label: 'PDF', value: 'application/pdf' },
+            ];
+          case 'application/vnd.google-apps.presentation': // Google Slides
+            return [
+              { label: 'PDF', value: 'application/pdf' },
+              {
+                label: 'PowerPoint (PPTX)',
+                value:
+                  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+              },
+            ];
+          default:
+            return [
+              { label: 'PDF', value: 'application/pdf' }, // Fallback to PDF
+            ];
+        }
       },
-      {
-        id: 'markdown',
-        label: '',
-        description: '',
-        inputType: 'markdown',
-        markdown:
-          'Exporting a file will generate a link to download the file. This link will only be available for 24 hours.',
+      required: {
+        missingMessage: 'Export format is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+    {
+      id: 'markdown',
+      label: '',
+      description: '',
+      inputType: 'markdown',
+      markdown:
+        'Exporting a file will generate a link to download the file. This link will only be available for 24 hours.',
+    },
+  ];
 
   async run({
     configValue,
@@ -217,4 +206,4 @@ type Response = {
   exportTime: string;
 };
 
-type ConfigValue = z.infer<ReturnType<ExportFile['aiSchema']>>;
+type ConfigValue = z.infer<ExportFile['aiSchema']>;

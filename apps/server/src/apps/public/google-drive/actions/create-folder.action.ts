@@ -16,48 +16,38 @@ export class CreateFolder extends Action {
   }
 
   app: GoogleDrive;
-  id() {
-    return 'google-drive_action_create-folder';
-  }
-  name() {
-    return 'New Folder';
-  }
-  description() {
-    return 'Creates a new folder.';
-  }
-  aiSchema() {
-    return z.object({
-      'folder-name': z.string().min(1).describe('The name of the new folder'),
-      'parent-folder': z
-        .string()
-        .nullable()
-        .optional()
-        .describe(
-          'The ID of the parent folder where the new folder will be saved',
-        ),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        ...this.app.dynamicSelectFolder(),
-        id: 'parent-folder',
-        label: 'Parent Folder',
-        description: 'Select where to create this new folder.',
+  id = 'google-drive_action_create-folder';
+  name = 'New Folder';
+  description = 'Creates a new folder.';
+  aiSchema = z.object({
+    'folder-name': z.string().min(1).describe('The name of the new folder'),
+    'parent-folder': z
+      .string()
+      .nullable()
+      .optional()
+      .describe(
+        'The ID of the parent folder where the new folder will be saved',
+      ),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      ...this.app.dynamicSelectFolder(),
+      id: 'parent-folder',
+      label: 'Parent Folder',
+      description: 'Select where to create this new folder.',
+    },
+    {
+      id: 'folder-name',
+      label: 'Folder Name',
+      description: 'The name of the new folder.',
+      inputType: 'text',
+      placeholder: 'Add a folder name',
+      required: {
+        missingMessage: 'Folder Name is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'folder-name',
-        label: 'Folder Name',
-        description: 'The name of the new folder.',
-        inputType: 'text',
-        placeholder: 'Add a folder name',
-        required: {
-          missingMessage: 'Folder Name is required',
-          missingStatus: 'warning',
-        },
-      },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -100,4 +90,4 @@ export class CreateFolder extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<CreateFolder['aiSchema']>>;
+type ConfigValue = z.infer<CreateFolder['aiSchema']>;

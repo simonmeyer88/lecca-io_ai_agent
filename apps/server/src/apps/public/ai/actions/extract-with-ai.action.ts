@@ -18,82 +18,70 @@ export class ExtractWithAI extends Action {
   }
 
   app: AI;
-  id() {
-    return 'ai_action_extract-with-ai';
-  }
-  needsConnection() {
-    return false;
-  }
-  name() {
-    return 'Extract with AI';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id()}.svg`;
-  }
-  description() {
-    return 'Use an AI model to extract specific fields from provided text.';
-  }
+  id = 'ai_action_extract-with-ai';
+  needsConnection = false;
+  name = 'Extract with AI';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id}.svg`;
+  description =
+    'Use an AI model to extract specific fields from provided text.';
 
-  aiSchema() {
-    return z.object({
-      provider: z.string().describe('The AI provider to use'),
-      model: z.string().describe('The ID of the model to use'),
-      textToAnalyze: z.string().min(1).describe('Text to extract data from'),
-      fieldsToExtract: z
-        .array(z.string().min(1).describe('Name of the field to extract'))
-        .describe('List of fields to extract with instructions'),
-      instructions: z
-        .string()
-        .nullable()
-        .optional()
-        .describe('Text to extract data from'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectAiProvider(),
-      this.app.dynamicSelectLlmModel(),
-      this.app.dynamicSelectLlmConnection(),
-      {
-        id: 'textToAnalyze',
-        label: 'Data to Analyze',
-        description: 'The data to extract fields from.',
-        inputType: 'text',
-        placeholder: 'Add data',
-        required: {
-          missingMessage: 'Text to analyze is required',
-          missingStatus: 'warning',
-        },
+  aiSchema = z.object({
+    provider: z.string().describe('The AI provider to use'),
+    model: z.string().describe('The ID of the model to use'),
+    textToAnalyze: z.string().min(1).describe('Text to extract data from'),
+    fieldsToExtract: z
+      .array(z.string().min(1).describe('Name of the field to extract'))
+      .describe('List of fields to extract with instructions'),
+    instructions: z
+      .string()
+      .nullable()
+      .optional()
+      .describe('Text to extract data from'),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectAiProvider(),
+    this.app.dynamicSelectLlmModel(),
+    this.app.dynamicSelectLlmConnection(),
+    {
+      id: 'textToAnalyze',
+      label: 'Data to Analyze',
+      description: 'The data to extract fields from.',
+      inputType: 'text',
+      placeholder: 'Add data',
+      required: {
+        missingMessage: 'Text to analyze is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'fieldsToExtract',
-        label: 'Fields to Extract',
-        description: 'Add the name of the field to extract',
-        inputType: 'text',
-        placeholder: 'Add field name',
-        occurenceType: 'multiple', // Allow user to add multiple fields
-        required: {
-          missingMessage: 'At least one field is required',
-          missingStatus: 'warning',
-        },
+    },
+    {
+      id: 'fieldsToExtract',
+      label: 'Fields to Extract',
+      description: 'Add the name of the field to extract',
+      inputType: 'text',
+      placeholder: 'Add field name',
+      occurenceType: 'multiple', // Allow user to add multiple fields
+      required: {
+        missingMessage: 'At least one field is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'instructions',
-        label: 'Additional Instructions',
-        description: '',
-        inputType: 'text',
-        placeholder: 'Add custom instructions',
-      },
-      {
-        id: 'markdown',
-        description: '',
-        label: '',
-        markdown:
-          "Not all models can extract data. We've tested the OpenAI models and determined those work best.",
-        inputType: 'markdown',
-      },
-    ];
-  }
+    },
+    {
+      id: 'instructions',
+      label: 'Additional Instructions',
+      description: '',
+      inputType: 'text',
+      placeholder: 'Add custom instructions',
+    },
+    {
+      id: 'markdown',
+      description: '',
+      label: '',
+      markdown:
+        "Not all models can extract data. We've tested the OpenAI models and determined those work best.",
+      inputType: 'markdown',
+    },
+  ];
 
   async run({
     configValue,
@@ -102,7 +90,7 @@ export class ExtractWithAI extends Action {
     agentId,
     executionId,
     workflowId,
-  }: RunActionArgs<ConfigValue>): Promise<PromptResponse> {
+  }: RunActionArgs<ConfigValue>): Promise<Response> {
     const {
       model,
       provider,
@@ -185,7 +173,7 @@ export class ExtractWithAI extends Action {
             workflowId,
           },
           details: {
-            actionId: this.id(),
+            actionId: this.id,
             aiProvider: provider,
             llmModel: model,
             usage: usage,
@@ -200,7 +188,7 @@ export class ExtractWithAI extends Action {
     };
   }
 
-  async mockRun(args: RunActionArgs<ConfigValue>): Promise<PromptResponse> {
+  async mockRun(args: RunActionArgs<ConfigValue>): Promise<Response> {
     const mockExtractedValues = args.configValue.fieldsToExtract.reduce(
       (acc: any, field: any) => ({
         ...acc,
@@ -220,11 +208,11 @@ export class ExtractWithAI extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<ExtractWithAI['aiSchema']>> & {
+type ConfigValue = z.infer<ExtractWithAI['aiSchema']> & {
   __internal__llmConnectionId?: string;
 };
 
-type PromptResponse = {
+type Response = {
   response: Record<string, string>;
   usage: LanguageModelUsage;
 };

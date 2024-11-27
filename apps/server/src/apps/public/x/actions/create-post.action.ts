@@ -16,45 +16,31 @@ export class CreatePost extends Action {
 
   app: X;
 
-  id() {
-    return 'x_action_create-post';
-  }
-
-  name() {
-    return 'Create Post';
-  }
-
-  description() {
-    return 'Create a text post on X.';
-  }
-
-  aiSchema() {
-    return z.object({
-      text: z.string().min(1).describe('The text to post on X'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'text',
-        label: 'Text',
-        description: 'The text of the tweet',
-        inputType: 'text',
-        placeholder: 'Enter text',
-        required: {
-          missingMessage: 'Text is required',
-          missingStatus: 'warning',
-        },
+  id = 'x_action_create-post';
+  name = 'Create Post';
+  description = 'Create a text post on X.';
+  aiSchema = z.object({
+    text: z.string().min(1).describe('The text to post on X'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'text',
+      label: 'Text',
+      description: 'The text of the tweet',
+      inputType: 'text',
+      placeholder: 'Enter text',
+      required: {
+        missingMessage: 'Text is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
     connection,
     workspaceId,
-  }: RunActionArgs<ConfigValue>): Promise<ResponseType> {
+  }: RunActionArgs<ConfigValue>): Promise<Response> {
     const { text } = configValue;
 
     const url = 'https://api.twitter.com/2/tweets/';
@@ -78,7 +64,7 @@ export class CreatePost extends Action {
     }
   }
 
-  async mockRun(): Promise<ResponseType> {
+  async mockRun(): Promise<Response> {
     return {
       data: {
         id: '1849480123456789',
@@ -89,12 +75,12 @@ export class CreatePost extends Action {
   }
 }
 
-type ResponseType = {
+type ConfigValue = z.infer<CreatePost['aiSchema']>;
+
+type Response = {
   data: {
     id: string;
     edit_history_tweet_ids: string[];
     text: string;
   };
 };
-
-type ConfigValue = z.infer<ReturnType<CreatePost['aiSchema']>>;

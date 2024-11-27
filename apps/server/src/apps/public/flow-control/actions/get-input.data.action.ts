@@ -19,50 +19,34 @@ export class GetCustomInput extends Action {
   }
 
   app: FlowControl;
-  id() {
-    return 'flow-control_action_get-custom-input';
-  }
-  needsConnection() {
-    return false;
-  }
-  name() {
-    return 'Get Input Data';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id()}.svg`;
-  }
-  description() {
-    return 'Wait for a user to provide custom input data to resume.';
-  }
-  availableForAgent(): boolean {
-    return false;
-  }
+  id = 'flow-control_action_get-custom-input';
+  needsConnection = false;
+  name = 'Get Input Data';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id}.svg`;
+  description = 'Wait for a user to provide custom input data to resume.';
+  availableForAgent = false;
 
-  viewOptions(): NodeViewOptions {
-    return {
-      showManualInputButton: true,
-      manualInputButtonOptions: {
-        label: 'Confirm Input',
+  viewOptions: NodeViewOptions = {
+    showManualInputButton: true,
+    manualInputButtonOptions: {
+      label: 'Confirm Input',
+      tooltip:
+        'Once the input is provided, the execution will resume as normal using that input.',
+    },
+    saveButtonOptions: {
+      hideSaveAndTestButton: true,
+      replaceSaveButton: {
+        label: 'Save Input Configuration',
+        type: 'mock',
         tooltip:
-          'Once the input is provided, the execution will resume as normal using that input.',
+          'Saves and updates the input data configuration that will be filled out during the execution.',
       },
-      saveButtonOptions: {
-        hideSaveAndTestButton: true,
-        replaceSaveButton: {
-          label: 'Save Input Configuration',
-          type: 'mock',
-          tooltip:
-            'Saves and updates the input data configuration that will be filled out during the execution.',
-        },
-      },
-    };
-  }
-  aiSchema() {
-    return z.object({});
-  }
-  isInterruptingAction() {
-    return true;
-  }
+    },
+  };
+  aiSchema = z.object({});
+  isInterruptingAction = true;
+
   handleInterruptingResponse({
     runResponse,
   }: {
@@ -72,34 +56,33 @@ export class GetCustomInput extends Action {
       needsInput: runResponse,
     };
   }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'inputs',
-        inputType: 'config-builder',
-        description: '',
-        label: 'Optional Input Data',
-        loadOptions: {
-          workflowOnly: true,
-        },
+
+  inputConfig: InputConfig[] = [
+    {
+      id: 'inputs',
+      inputType: 'config-builder',
+      description: '',
+      label: 'Optional Input Data',
+      loadOptions: {
+        workflowOnly: true,
       },
-      {
-        id: 'customInputConfigValues',
-        inputType: 'static-input-config',
-        label: 'Required Input Data',
-        description: 'These are the custom fields configured for this action',
-      },
-      ...this.app.dynamicInputNeededNotificationConfig(),
-      {
-        id: 'markdown1',
-        label: '',
-        description: '',
-        inputType: 'markdown',
-        markdown:
-          'Anyone with access to this workflow can enter the input data. However, the assignee is the one who will be notified.',
-      },
-    ];
-  }
+    },
+    {
+      id: 'customInputConfigValues',
+      inputType: 'static-input-config',
+      label: 'Required Input Data',
+      description: 'These are the custom fields configured for this action',
+    },
+    ...this.app.dynamicInputNeededNotificationConfig(),
+    {
+      id: 'markdown1',
+      label: '',
+      description: '',
+      inputType: 'markdown',
+      markdown:
+        'Anyone with access to this workflow can enter the input data. However, the assignee is the one who will be notified.',
+    },
+  ];
 
   async run({
     executionId,
@@ -211,7 +194,7 @@ export class GetCustomInput extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<GetCustomInput['aiSchema']>> & {
+type ConfigValue = z.infer<GetCustomInput['aiSchema']> & {
   sendNotification: 'true' | 'false';
   assignee: string | undefined;
   instructions: string | undefined;

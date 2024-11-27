@@ -15,26 +15,16 @@ export class ListTasks extends Action {
   }
 
   app: Apify;
-  id() {
-    return 'apify_action_list-tasks';
-  }
-  name() {
-    return 'List Tasks';
-  }
-  description() {
-    return 'Lists all tasks in the Apify account';
-  }
-  aiSchema() {
-    return z.object({});
-  }
-  inputConfig(): InputConfig[] {
-    return [];
-  }
+  id = 'apify_action_list-tasks';
+  name = 'List Tasks';
+  description = 'Lists all tasks in the Apify account';
+  aiSchema = z.object({});
+  inputConfig: InputConfig[] = [];
 
   async run({
     connection,
     workspaceId,
-  }: RunActionArgs<ConfigValue>): Promise<ResponseType> {
+  }: RunActionArgs<ConfigValue>): Promise<Response> {
     const url = `https://api.apify.com/v2/actor-tasks`;
 
     const result = await this.app.http.loggedRequest({
@@ -50,7 +40,7 @@ export class ListTasks extends Action {
     return { tasks: result.data?.data?.items ?? [] };
   }
 
-  async mockRun(): Promise<ResponseType> {
+  async mockRun(): Promise<Response> {
     return {
       tasks: [
         {
@@ -71,7 +61,9 @@ export class ListTasks extends Action {
   }
 }
 
-type ResponseType = {
+type ConfigValue = z.infer<ListTasks['aiSchema']>;
+
+type Response = {
   tasks: Array<{
     id: string;
     name: string;
@@ -86,5 +78,3 @@ type ResponseType = {
     username: string;
   }>;
 };
-
-type ConfigValue = z.infer<ReturnType<ListTasks['aiSchema']>>;

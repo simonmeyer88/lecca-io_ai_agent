@@ -18,60 +18,45 @@ export class TranslateText extends Action {
   }
 
   app: AI;
-  id() {
-    return 'ai_action_translate-text';
-  }
-  needsConnection() {
-    return false;
-  }
-  name() {
-    return 'Translate Text';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id()}.svg`;
-  }
-  description() {
-    return 'Translate text to another language using AI';
-  }
-
-  aiSchema() {
-    return z.object({
-      provider: z.string().describe('The AI provider to use'),
-      model: z.string().describe('The ID of the model to use'),
-      language: z.string().min(1).describe('The language to translate to'),
-      textToTranslate: z.string().min(1).describe('The text to translate'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectAiProvider(),
-      this.app.dynamicSelectLlmModel(),
-      this.app.dynamicSelectLlmConnection(),
-      {
-        id: 'language',
-        description: 'The language to translate to',
-        inputType: 'select',
-        selectOptions: languages,
-        label: 'Language',
-        required: {
-          missingMessage: 'Language is required',
-          missingStatus: 'warning',
-        },
+  id = 'ai_action_translate-text';
+  needsConnection = false;
+  name = 'Translate Text';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id}.svg`;
+  description = 'Translate text to another language using AI';
+  aiSchema = z.object({
+    provider: z.string().describe('The AI provider to use'),
+    model: z.string().describe('The ID of the model to use'),
+    language: z.string().min(1).describe('The language to translate to'),
+    textToTranslate: z.string().min(1).describe('The text to translate'),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectAiProvider(),
+    this.app.dynamicSelectLlmModel(),
+    this.app.dynamicSelectLlmConnection(),
+    {
+      id: 'language',
+      description: 'The language to translate to',
+      inputType: 'select',
+      selectOptions: languages,
+      label: 'Language',
+      required: {
+        missingMessage: 'Language is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'textToTranslate',
-        description: 'The text to translate',
-        inputType: 'text',
-        label: 'Text to Translate',
-        required: {
-          missingMessage: 'Text to translate is required',
-          missingStatus: 'warning',
-        },
-        placeholder: 'Enter text to translate',
+    },
+    {
+      id: 'textToTranslate',
+      description: 'The text to translate',
+      inputType: 'text',
+      label: 'Text to Translate',
+      required: {
+        missingMessage: 'Text to translate is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
-
+      placeholder: 'Enter text to translate',
+    },
+  ];
   async run({
     configValue,
     workspaceId,
@@ -79,7 +64,7 @@ export class TranslateText extends Action {
     agentId,
     executionId,
     workflowId,
-  }: RunActionArgs<ConfigValue>): Promise<PromptResponse> {
+  }: RunActionArgs<ConfigValue>): Promise<Response> {
     const {
       model,
       textToTranslate,
@@ -141,7 +126,7 @@ export class TranslateText extends Action {
             workflowId,
           },
           details: {
-            actionId: this.id(),
+            actionId: this.id,
             aiProvider: provider,
             llmModel: model,
             usage: usage,
@@ -155,8 +140,7 @@ export class TranslateText extends Action {
       usage: usage,
     };
   }
-
-  async mockRun(): Promise<PromptResponse> {
+  async mockRun(): Promise<Response> {
     return {
       response: 'This is a mock response',
       usage: {
@@ -168,11 +152,11 @@ export class TranslateText extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<TranslateText['aiSchema']>> & {
+type ConfigValue = z.infer<TranslateText['aiSchema']> & {
   __internal__llmConnectionId?: string;
 };
 
-type PromptResponse = {
+type Response = {
   response: string;
   usage: LanguageModelUsage;
 };

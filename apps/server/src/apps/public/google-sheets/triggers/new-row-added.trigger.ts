@@ -13,21 +13,14 @@ export class NewRowAdded extends LengthBasedPollTrigger {
   }
 
   app: GoogleSheets;
-  id() {
-    return 'google-sheets_trigger_new-row-added';
-  }
-  name() {
-    return 'New Row Added';
-  }
-  description() {
-    return 'Triggers when a new row is added to a specified sheet in a Google Spreadsheet.';
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectSpreadSheets(),
-      this.app.dynamicSelectSheetNames(),
-    ];
-  }
+  id = 'google-sheets_trigger_new-row-added';
+  name = 'New Row Added';
+  description =
+    'Triggers when a new row is added to a specified sheet in a Google Spreadsheet.';
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectSpreadSheets(),
+    this.app.dynamicSelectSheetNames(),
+  ];
   async run({
     connection,
     configValue,

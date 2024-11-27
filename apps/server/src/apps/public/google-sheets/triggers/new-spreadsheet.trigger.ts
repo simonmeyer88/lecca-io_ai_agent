@@ -15,18 +15,10 @@ export class NewSpreadsheet extends TimeBasedPollTrigger {
   }
 
   app: GoogleSheets;
-  id() {
-    return 'google-sheets_trigger_new-spreadsheet';
-  }
-  name() {
-    return 'New Spreadsheet';
-  }
-  description() {
-    return 'Triggers when a new spreadsheet is created inside any folder';
-  }
-  inputConfig(): InputConfig[] {
-    return [];
-  }
+  id = 'google-sheets_trigger_new-spreadsheet';
+  name = 'New Spreadsheet';
+  description = 'Triggers when a new spreadsheet is created inside any folder';
+  inputConfig: InputConfig[] = [];
 
   async run({
     connection,

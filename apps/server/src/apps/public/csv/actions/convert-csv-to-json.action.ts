@@ -18,92 +18,70 @@ export class ConvertCsvToJson extends Action {
 
   app: CSV;
 
-  id() {
-    return 'csv_action_convert-csv-to-json';
-  }
-
-  name() {
-    return 'Convert CSV to JSON';
-  }
-
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
-  }
-
-  needsConnection(): boolean {
-    return false;
-  }
-
-  description() {
-    return 'Converts a CSV string to a JSON array';
-  }
-
-  viewOptions(): null | NodeViewOptions {
-    return {
-      saveButtonOptions: {
-        replaceSaveAndTestButton: {
-          label: 'Save & Test',
-          type: 'real',
-        },
+  id = 'csv_action_convert-csv-to-json';
+  name = 'Convert CSV to JSON';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
+  needsConnection = false;
+  description = 'Converts a CSV string to a JSON array';
+  viewOptions: null | NodeViewOptions = {
+    saveButtonOptions: {
+      replaceSaveAndTestButton: {
+        label: 'Save & Test',
+        type: 'real',
       },
-    };
-  }
-
-  aiSchema() {
-    return z.object({
-      csv: z.string().min(1).describe('The csv text'),
-      delimiter: z.enum(['comma', 'tab']).describe('Delimiter of the csv text'),
-      hasHeaders: z
-        .enum(['true', 'false'])
-        .describe('true if the csv text has header row'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'csv',
-        label: 'CSV Text',
-        description: 'Comma separated list in text format',
-        inputType: 'text',
-        required: {
-          missingMessage: 'CSV is required',
-          missingStatus: 'warning',
-        },
+    },
+  };
+  aiSchema = z.object({
+    csv: z.string().min(1).describe('The csv text'),
+    delimiter: z.enum(['comma', 'tab']).describe('Delimiter of the csv text'),
+    hasHeaders: z
+      .enum(['true', 'false'])
+      .describe('true if the csv text has header row'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'csv',
+      label: 'CSV Text',
+      description: 'Comma separated list in text format',
+      inputType: 'text',
+      required: {
+        missingMessage: 'CSV is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'delimiter',
-        label: 'Delimiter',
-        description: 'The delimiter type for the CSV Text',
-        inputType: 'select',
-        selectOptions: [
-          {
-            label: 'Comma',
-            value: 'comma',
-          },
-          {
-            label: 'Tab',
-            value: 'tab',
-          },
-        ],
-        required: {
-          missingMessage: 'Delimiter type is required',
-          missingStatus: 'warning',
+    },
+    {
+      id: 'delimiter',
+      label: 'Delimiter',
+      description: 'The delimiter type for the CSV Text',
+      inputType: 'select',
+      selectOptions: [
+        {
+          label: 'Comma',
+          value: 'comma',
         },
-      },
-      {
-        id: 'hasHeaders',
-        label: 'CSV has header row?',
-        description: '',
-        inputType: 'switch',
-        switchOptions: {
-          checked: 'true',
-          unchecked: 'false',
-          defaultChecked: false,
+        {
+          label: 'Tab',
+          value: 'tab',
         },
+      ],
+      required: {
+        missingMessage: 'Delimiter type is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+    {
+      id: 'hasHeaders',
+      label: 'CSV has header row?',
+      description: '',
+      inputType: 'switch',
+      switchOptions: {
+        checked: 'true',
+        unchecked: 'false',
+        defaultChecked: false,
+      },
+    },
+  ];
 
   async run({ configValue }: RunActionArgs<ConfigValue>): Promise<Response> {
     const { csv, delimiter, hasHeaders } = configValue;
@@ -125,6 +103,12 @@ export class ConvertCsvToJson extends Action {
     return [];
   }
 }
+
+type ConfigValue = z.infer<ConvertCsvToJson['aiSchema']>;
+
+type Response = {
+  result: Record<string, any>[];
+};
 
 function csvToJson(
   csv_text: string,
@@ -150,9 +134,3 @@ function csvToJson(
   });
   return data;
 }
-
-type ConfigValue = z.infer<ReturnType<ConvertCsvToJson['aiSchema']>>;
-
-type Response = {
-  result: Record<string, any>[];
-};

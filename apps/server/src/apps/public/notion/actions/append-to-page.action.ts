@@ -15,37 +15,27 @@ export class AppendPage extends Action {
   }
 
   app: Notion;
-  id() {
-    return 'notion_action_append-to-page';
-  }
-  name() {
-    return 'Append to Page';
-  }
-  description() {
-    return 'Appends content to an existing page.';
-  }
-  aiSchema() {
-    return z.object({
-      page: z.string().min(1).describe('The ID of the page to append to'),
-      content: z.string().min(1).describe('The content to append to the page'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectPage(),
-      {
-        id: 'content',
-        label: 'Content',
-        description: 'The content you will append',
-        inputType: 'text',
-        placeholder: 'Enter content',
-        required: {
-          missingMessage: 'Content is required',
-          missingStatus: 'warning',
-        },
+  id = 'notion_action_append-to-page';
+  name = 'Append to Page';
+  description = 'Appends content to an existing page.';
+  aiSchema = z.object({
+    page: z.string().min(1).describe('The ID of the page to append to'),
+    content: z.string().min(1).describe('The content to append to the page'),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectPage(),
+    {
+      id: 'content',
+      label: 'Content',
+      description: 'The content you will append',
+      inputType: 'text',
+      placeholder: 'Enter content',
+      required: {
+        missingMessage: 'Content is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -126,4 +116,4 @@ export class AppendPage extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<AppendPage['aiSchema']>>;
+type ConfigValue = z.infer<AppendPage['aiSchema']>;

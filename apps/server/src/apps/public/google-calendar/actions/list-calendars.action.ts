@@ -15,21 +15,11 @@ export class ListCalendars extends Action {
   }
 
   app: GoogleCalendar;
-  id() {
-    return 'google-calendar_action_list-calendars';
-  }
-  name() {
-    return 'List Calendars';
-  }
-  description() {
-    return 'Lists all calendars for the authenticated user.';
-  }
-  aiSchema() {
-    return z.object({});
-  }
-  inputConfig(): InputConfig[] {
-    return [];
-  }
+  id = 'google-calendar_action_list-calendars';
+  name = 'List Calendars';
+  description = 'Lists all calendars for the authenticated user.';
+  aiSchema = z.object({});
+  inputConfig: InputConfig[] = [];
 
   async run({ connection }: RunActionArgs<ConfigValue>): Promise<Response> {
     const googleCalendar = await this.app.googleCalendar({
@@ -69,4 +59,4 @@ type Response = {
   calendars: (typeof mock)[];
 };
 
-type ConfigValue = z.infer<ReturnType<ListCalendars['aiSchema']>>;
+type ConfigValue = z.infer<ListCalendars['aiSchema']>;

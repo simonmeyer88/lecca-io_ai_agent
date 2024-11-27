@@ -16,49 +16,36 @@ export class UpsertContact extends Action {
 
   app: Hubspot;
 
-  id() {
-    return 'hubspot_action_upsert-contact';
-  }
-
-  name() {
-    return 'Upsert Contact';
-  }
-
-  description() {
-    return 'Creates a new contact or updates an existing one in Hubspot based on email';
-  }
-
-  aiSchema() {
-    return z.object({
-      email: z.string().email().describe('The email of the contact'),
-      properties: z
-        .array(
-          z.object({
-            field: z.string().min(1).describe('The field to set'),
-            value: z.string().min(1).describe('The value to set'),
-          }),
-        )
-        .min(1)
-        .describe('The field and value for that field'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'email',
-        label: 'Email',
-        inputType: 'text',
-        description: 'The email of the contact to create or update',
-        placeholder: 'Add new or existing email',
-        required: {
-          missingMessage: 'Email is required',
-          missingStatus: 'warning',
-        },
+  id = 'hubspot_action_upsert-contact';
+  name = 'Upsert Contact';
+  description =
+    'Creates a new contact or updates an existing one in Hubspot based on email';
+  aiSchema = z.object({
+    email: z.string().email().describe('The email of the contact'),
+    properties: z
+      .array(
+        z.object({
+          field: z.string().min(1).describe('The field to set'),
+          value: z.string().min(1).describe('The value to set'),
+        }),
+      )
+      .min(1)
+      .describe('The field and value for that field'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'email',
+      label: 'Email',
+      inputType: 'text',
+      description: 'The email of the contact to create or update',
+      placeholder: 'Add new or existing email',
+      required: {
+        missingMessage: 'Email is required',
+        missingStatus: 'warning',
       },
-      this.app.dynamicGetContactProperties(),
-    ];
-  }
+    },
+    this.app.dynamicGetContactProperties(),
+  ];
 
   async run({
     configValue,
@@ -106,4 +93,4 @@ type ResponseType = {
   vid: number;
 };
 
-type ConfigValue = z.infer<ReturnType<UpsertContact['aiSchema']>>;
+type ConfigValue = z.infer<UpsertContact['aiSchema']>;

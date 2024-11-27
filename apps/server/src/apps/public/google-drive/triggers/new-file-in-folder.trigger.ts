@@ -15,23 +15,16 @@ export class NewFileInFolder extends TimeBasedPollTrigger {
   }
 
   app: GoogleDrive;
-  id() {
-    return 'google-drive_trigger_new-file-in-folder';
-  }
-  name() {
-    return 'New File in Folder';
-  }
-  description() {
-    return 'Triggers when a new file is created inside selected folder (not subfolders).';
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        ...this.app.dynamicSelectFolder(),
-        description: 'Select the folder to watch for new files',
-      },
-    ];
-  }
+  id = 'google-drive_trigger_new-file-in-folder';
+  name = 'New File in Folder';
+  description =
+    'Triggers when a new file is created inside selected folder (not subfolders).';
+  inputConfig: InputConfig[] = [
+    {
+      ...this.app.dynamicSelectFolder(),
+      description: 'Select the folder to watch for new files',
+    },
+  ];
 
   async run({
     connection,

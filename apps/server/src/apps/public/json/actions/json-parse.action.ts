@@ -18,54 +18,34 @@ export class JsonParse extends Action {
 
   app: JsonApp;
 
-  id() {
-    return 'json_action_parse';
-  }
-
-  name() {
-    return 'JSON Parse';
-  }
-
-  needsConnection(): boolean {
-    return false;
-  }
-
-  description() {
-    return 'Parses a JSON string and returns a JavaScript object.';
-  }
-
-  viewOptions(): null | NodeViewOptions {
-    return {
-      saveButtonOptions: {
-        replaceSaveAndTestButton: {
-          label: 'Save & Test',
-          type: 'real',
-        },
+  id = 'json_action_parse';
+  name = 'JSON Parse';
+  needsConnection = false;
+  description = 'Parses a JSON string and returns a JavaScript object.';
+  viewOptions: null | NodeViewOptions = {
+    saveButtonOptions: {
+      replaceSaveAndTestButton: {
+        label: 'Save & Test',
+        type: 'real',
       },
-    };
-  }
-
-  aiSchema() {
-    return z.object({
-      jsonString: z.string().describe('JSON string to parse'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'jsonString',
-        label: 'Value',
-        description: 'The JSON string to parse into an object.',
-        inputType: 'text',
-        placeholder: 'Enter JSON string',
-        required: {
-          missingMessage: 'JSON string is required',
-          missingStatus: 'warning',
-        },
+    },
+  };
+  aiSchema = z.object({
+    jsonString: z.string().describe('JSON string to parse'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'jsonString',
+      label: 'Value',
+      description: 'The JSON string to parse into an object.',
+      inputType: 'text',
+      placeholder: 'Enter JSON string',
+      required: {
+        missingMessage: 'JSON string is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({ configValue }: RunActionArgs<ConfigValue>): Promise<Response> {
     const { jsonString } = configValue;
@@ -78,7 +58,7 @@ export class JsonParse extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<JsonParse['aiSchema']>>;
+type ConfigValue = z.infer<JsonParse['aiSchema']>;
 
 type Response = {
   result: Record<string, unknown> | unknown[] | string | number | boolean;

@@ -15,21 +15,11 @@ export class ListUsers extends Action {
   }
 
   app: Slack;
-  id() {
-    return 'slack_action_list-users';
-  }
-  name() {
-    return 'List Users';
-  }
-  description() {
-    return 'Lists all users in a Slack workspace';
-  }
-  aiSchema() {
-    return z.object({});
-  }
-  inputConfig(): InputConfig[] {
-    return [];
-  }
+  id = 'slack_action_list-users';
+  name = 'List Users';
+  description = 'Lists all users in a Slack workspace';
+  aiSchema = z.object({});
+  inputConfig: InputConfig[] = [];
 
   async run({
     connection,
@@ -112,4 +102,4 @@ type ResponseType = {
   users: User[];
 };
 
-type ConfigValue = z.infer<ReturnType<ListUsers['aiSchema']>>;
+type ConfigValue = z.infer<ListUsers['aiSchema']>;

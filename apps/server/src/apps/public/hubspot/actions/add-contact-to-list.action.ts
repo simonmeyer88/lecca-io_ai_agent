@@ -15,47 +15,37 @@ export class AddContactToList extends Action {
   }
 
   app: Hubspot;
-  id() {
-    return 'hubspot_action_add-contact-to-list';
-  }
-  name() {
-    return 'Add Contact to List';
-  }
-  description() {
-    return 'Adds a contact to a static list in Hubspot';
-  }
-  aiSchema() {
-    return z.object({
-      email: z.string().email().describe('The email of the contact'),
-      listId: z
-        .string()
-        .min(1)
-        .describe('The ID of the list to add the contact to'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'email',
-        label: 'Contact Email',
-        description: '',
-        inputType: 'text',
-        placeholder: 'Add an email',
-        required: {
-          missingMessage: 'Email is required',
-          missingStatus: 'warning',
-        },
+  id = 'hubspot_action_add-contact-to-list';
+  name = 'Add Contact to List';
+  description = 'Adds a contact to a static list in Hubspot';
+  aiSchema = z.object({
+    email: z.string().email().describe('The email of the contact'),
+    listId: z
+      .string()
+      .min(1)
+      .describe('The ID of the list to add the contact to'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'email',
+      label: 'Contact Email',
+      description: '',
+      inputType: 'text',
+      placeholder: 'Add an email',
+      required: {
+        missingMessage: 'Email is required',
+        missingStatus: 'warning',
       },
-      this.app.dynamicGetStaticContactLists(),
-      {
-        id: 'markdown1',
-        inputType: 'markdown',
-        label: '',
-        description: '',
-        markdown: 'Not that you cannot add a contact to a dynamic list',
-      },
-    ];
-  }
+    },
+    this.app.dynamicGetStaticContactLists(),
+    {
+      id: 'markdown1',
+      inputType: 'markdown',
+      label: '',
+      description: '',
+      markdown: 'Not that you cannot add a contact to a dynamic list',
+    },
+  ];
 
   async run({
     configValue,
@@ -104,4 +94,4 @@ type ResponseType = {
   invalidEmails: string[];
 };
 
-type ConfigValue = z.infer<ReturnType<AddContactToList['aiSchema']>>;
+type ConfigValue = z.infer<AddContactToList['aiSchema']>;

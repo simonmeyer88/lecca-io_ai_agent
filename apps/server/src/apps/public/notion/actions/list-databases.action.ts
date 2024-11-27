@@ -16,23 +16,13 @@ export class ListDatabases extends Action {
   }
 
   app: Notion;
-  id() {
-    return 'notion_action_list-databases';
-  }
-  name() {
-    return 'List Databases';
-  }
-  description() {
-    return 'Lists all databases in a Notion workspace';
-  }
-  aiSchema() {
-    return z.object({});
-  }
-  inputConfig(): InputConfig[] {
-    return [];
-  }
+  id = 'notion_action_list-databases';
+  name = 'List Databases';
+  description = 'Lists all databases in a Notion workspace';
+  aiSchema = z.object({});
+  inputConfig: InputConfig[] = [];
 
-  async run({ connection }: RunActionArgs<ConfigValue>): Promise<ResponseType> {
+  async run({ connection }: RunActionArgs<ConfigValue>): Promise<Response> {
     const notionLib = this.app.notionLib({
       accessToken: connection.accessToken,
     });
@@ -63,7 +53,7 @@ export class ListDatabases extends Action {
     };
   }
 
-  async mockRun(): Promise<ResponseType> {
+  async mockRun(): Promise<Response> {
     return {
       databases: [
         {
@@ -77,6 +67,6 @@ export class ListDatabases extends Action {
   }
 }
 
-type ResponseType = any;
+type ConfigValue = z.infer<ListDatabases['aiSchema']>;
 
-type ConfigValue = z.infer<ReturnType<ListDatabases['aiSchema']>>;
+type Response = any;

@@ -16,25 +16,11 @@ export class ListSpreadsheets extends Action {
 
   app: GoogleSheets;
 
-  id() {
-    return 'google-sheets_action_list-spreadsheets';
-  }
-
-  name() {
-    return 'List Spreadsheets';
-  }
-
-  description() {
-    return 'Lists all spreadsheets available in your Google Drive';
-  }
-
-  aiSchema() {
-    return z.object({});
-  }
-
-  inputConfig(): InputConfig[] {
-    return [];
-  }
+  id = 'google-sheets_action_list-spreadsheets';
+  name = 'List Spreadsheets';
+  description = 'Lists all spreadsheets available in your Google Drive';
+  aiSchema = z.object({});
+  inputConfig: InputConfig[] = [];
 
   async run({
     connection,
@@ -74,7 +60,7 @@ export class ListSpreadsheets extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<ListSpreadsheets['aiSchema']>>;
+type ConfigValue = z.infer<ListSpreadsheets['aiSchema']>;
 
 type Spreadsheet = {
   id: string;

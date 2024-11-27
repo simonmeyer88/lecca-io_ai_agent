@@ -16,47 +16,36 @@ export class DownloadFile extends Action {
   }
 
   app: GoogleDrive;
-  id() {
-    return 'google-drive_action_download-file';
-  }
-  name() {
-    return 'Download File';
-  }
-  description() {
-    return 'Downloads a file from Google Drive as-is in its original format.';
-  }
-
-  aiSchema() {
-    return z.object({
-      file: z.string().min(1).describe('The ID of the file to download'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        ...this.app.dynamicSelectDownloadableFile(),
-        label: 'File to Download',
-        description: '',
-      },
-      {
-        id: 'markdown',
-        label: '',
-        description: '',
-        inputType: 'markdown',
-        markdown:
-          'Downloading a file will generate a link to retrieve the file. This link will only be available for 24 hours.',
-      },
-      {
-        id: 'markdown2',
-        label: '',
-        description: '',
-        inputType: 'markdown',
-        markdown:
-          'Only files with binary content that can be downloaded are visible, such as PDF, images (JPEG/PNG), Word (DOCX), Excel (XLSX), and PowerPoint (PPTX). Use Export file action for other file types.',
-      },
-    ];
-  }
+  id = 'google-drive_action_download-file';
+  name = 'Download File';
+  description =
+    'Downloads a file from Google Drive as-is in its original format.';
+  aiSchema = z.object({
+    file: z.string().min(1).describe('The ID of the file to download'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      ...this.app.dynamicSelectDownloadableFile(),
+      label: 'File to Download',
+      description: '',
+    },
+    {
+      id: 'markdown',
+      label: '',
+      description: '',
+      inputType: 'markdown',
+      markdown:
+        'Downloading a file will generate a link to retrieve the file. This link will only be available for 24 hours.',
+    },
+    {
+      id: 'markdown2',
+      label: '',
+      description: '',
+      inputType: 'markdown',
+      markdown:
+        'Only files with binary content that can be downloaded are visible, such as PDF, images (JPEG/PNG), Word (DOCX), Excel (XLSX), and PowerPoint (PPTX). Use Export file action for other file types.',
+    },
+  ];
 
   async run({
     configValue,
@@ -143,4 +132,4 @@ type Response = {
   downloadTime: string;
 };
 
-type ConfigValue = z.infer<ReturnType<DownloadFile['aiSchema']>>;
+type ConfigValue = z.infer<DownloadFile['aiSchema']>;

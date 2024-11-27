@@ -20,39 +20,23 @@ export class ConditionalPaths extends Action {
   }
 
   app: FlowControl;
-  id() {
-    return 'flow-control_action_conditional-paths';
-  }
-  needsConnection() {
-    return false;
-  }
-  name() {
-    return 'Conditional Paths';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id()}.svg`;
-  }
-  description() {
-    return 'Create conditions to determine the path(s) to take.';
-  }
-  availableForAgent(): boolean {
-    return false;
-  }
-
-  aiSchema() {
-    return z.object({});
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'conditionalPathsLeccaFilters',
-        label: 'Configure Paths',
-        description:
-          'Connect actions to this node to configure your conditional paths.',
-        inputType: 'conditional-paths',
-      },
-    ];
-  }
+  id = 'flow-control_action_conditional-paths';
+  needsConnection = false;
+  name = 'Conditional Paths';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id}.svg`;
+  description = 'Create conditions to determine the path(s) to take.';
+  availableForAgent = false;
+  aiSchema = z.object({});
+  inputConfig: InputConfig[] = [
+    {
+      id: 'conditionalPathsLeccaFilters',
+      label: 'Configure Paths',
+      description:
+        'Connect actions to this node to configure your conditional paths.',
+      inputType: 'conditional-paths',
+    },
+  ];
 
   async run({ configValue }: RunActionArgs<ConfigValue>): Promise<Response> {
     if (!configValue.conditionalPathsLeccaFilters) {
@@ -73,7 +57,7 @@ export class ConditionalPaths extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<ConditionalPaths['aiSchema']>> & {
+type ConfigValue = z.infer<ConditionalPaths['aiSchema']> & {
   conditionalPathsLeccaFilters: ConditionalPathFilter[];
 };
 

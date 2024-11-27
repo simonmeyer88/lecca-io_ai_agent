@@ -16,38 +16,28 @@ export class FindFileByTitle extends Action {
   }
 
   app: GoogleDrive;
-  id() {
-    return 'google-drive_action_find-file-by-title';
-  }
-  name() {
-    return 'Find File(s) by Title';
-  }
-  description() {
-    return 'Search for a file by the title';
-  }
-  aiSchema() {
-    return z.object({
-      search: z
-        .string()
-        .min(1)
-        .describe('A search query to find a file by its title'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'search',
-        label: 'Search Query',
-        description: 'A search query to find a file by its title',
-        inputType: 'text',
-        placeholder: 'Search for...',
-        required: {
-          missingMessage: 'Search query is required',
-          missingStatus: 'warning',
-        },
+  id = 'google-drive_action_find-file-by-title';
+  name = 'Find File(s) by Title';
+  description = 'Search for a file by the title';
+  aiSchema = z.object({
+    search: z
+      .string()
+      .min(1)
+      .describe('A search query to find a file by its title'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'search',
+      label: 'Search Query',
+      description: 'A search query to find a file by its title',
+      inputType: 'text',
+      placeholder: 'Search for...',
+      required: {
+        missingMessage: 'Search query is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({ configValue, connection }: RunActionArgs<ConfigValue>): Promise<{
     data: GoogleDriveFileSearchResult[];
@@ -104,4 +94,4 @@ export class FindFileByTitle extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<FindFileByTitle['aiSchema']>>;
+type ConfigValue = z.infer<FindFileByTitle['aiSchema']>;

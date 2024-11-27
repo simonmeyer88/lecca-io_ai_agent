@@ -14,46 +14,36 @@ export class NewMessage extends WebhookAppTrigger {
   }
 
   app: Slack;
-  id() {
-    return 'slack_trigger_new-message';
-  }
-  name() {
-    return 'New Message';
-  }
-  eventType(): string {
-    return 'message';
-  }
-  description() {
-    return 'Triggered when a new message is sent in a channel.';
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        ...this.app.dynamicSelectUser(),
-        description: 'Filter by user that sent the message.',
-        selectOptions: [
-          {
-            label: 'Anyone',
-            value: 'any',
-          },
-        ],
-        defaultValue: 'any',
-        label: 'Filter by User',
-      },
-      {
-        ...this.app.dynamicSelectChannel(),
-        description: 'Filter by channel where the message was sent.',
-        selectOptions: [
-          {
-            label: 'Any Channel',
-            value: 'any',
-          },
-        ],
-        defaultValue: 'any',
-        label: 'Filter by Channel',
-      },
-    ];
-  }
+  id = 'slack_trigger_new-message';
+  name = 'New Message';
+  eventType = 'message';
+  description = 'Triggered when a new message is sent in a channel.';
+  inputConfig: InputConfig[] = [
+    {
+      ...this.app.dynamicSelectUser(),
+      description: 'Filter by user that sent the message.',
+      selectOptions: [
+        {
+          label: 'Anyone',
+          value: 'any',
+        },
+      ],
+      defaultValue: 'any',
+      label: 'Filter by User',
+    },
+    {
+      ...this.app.dynamicSelectChannel(),
+      description: 'Filter by channel where the message was sent.',
+      selectOptions: [
+        {
+          label: 'Any Channel',
+          value: 'any',
+        },
+      ],
+      defaultValue: 'any',
+      label: 'Filter by Channel',
+    },
+  ];
 
   webhookPayloadMatchesIdentifier({
     webhookBody,

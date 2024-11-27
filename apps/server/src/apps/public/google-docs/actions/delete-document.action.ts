@@ -16,28 +16,18 @@ export class DeleteDocument extends Action {
   }
 
   app: GoogleDocs;
-  id() {
-    return 'google-docs_action_delete-document';
-  }
-  name() {
-    return 'Delete Document';
-  }
-  description() {
-    return 'Delete a document.';
-  }
-  aiSchema() {
-    return z.object({
-      document: z.string().min(1).describe('The ID of the document to delete'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        ...this.app.dynamicSelectDocuments(),
-        description: 'Select the document to delete.',
-      },
-    ];
-  }
+  id = 'google-docs_action_delete-document';
+  name = 'Delete Document';
+  description = 'Delete a document.';
+  aiSchema = z.object({
+    document: z.string().min(1).describe('The ID of the document to delete'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      ...this.app.dynamicSelectDocuments(),
+      description: 'Select the document to delete.',
+    },
+  ];
 
   async run({
     configValue,
@@ -68,6 +58,4 @@ export class DeleteDocument extends Action {
   }
 }
 
-type ConfigValue = z.infer<
-  ReturnType<typeof DeleteDocument.prototype.aiSchema>
->;
+type ConfigValue = z.infer<typeof DeleteDocument.prototype.aiSchema>;

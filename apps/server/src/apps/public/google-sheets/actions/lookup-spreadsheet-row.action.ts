@@ -16,75 +16,62 @@ export class LookupSpreadsheetRow extends Action {
 
   app: GoogleSheets;
 
-  id() {
-    return 'google-sheets_action_lookup-spreadsheet-row';
-  }
-
-  name() {
-    return 'Lookup Spreadsheet Row';
-  }
-
-  description() {
-    return 'Finds a row by its column and value. Returns the first matching row found.';
-  }
-
-  aiSchema() {
-    return z.object({
-      spreadsheet: z.string().min(1).describe('The ID of the spreadsheet'),
-      sheet: z.string().min(1).describe('The name of the sheet'),
-      column: z.string().min(1).describe('The column index to search'),
-      queryValue: z
-        .string()
-        .min(1)
-        .describe('The value to search for in the column'),
-      bottomUp: z
-        .enum(['yes', 'no'])
-        .nullable()
-        .optional()
-        .default('no')
-        .describe('Search for the first result from the bottom up'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectSpreadSheets(),
-      this.app.dynamicSelectSheetNames(),
-      {
-        ...this.app.dynamicSelectColumnsDropdown(),
-        label: 'Lookup Column',
-        description: 'The column index to search for the value',
+  id = 'google-sheets_action_lookup-spreadsheet-row';
+  name = 'Lookup Spreadsheet Row';
+  description =
+    'Finds a row by its column and value. Returns the first matching row found.';
+  aiSchema = z.object({
+    spreadsheet: z.string().min(1).describe('The ID of the spreadsheet'),
+    sheet: z.string().min(1).describe('The name of the sheet'),
+    column: z.string().min(1).describe('The column index to search'),
+    queryValue: z
+      .string()
+      .min(1)
+      .describe('The value to search for in the column'),
+    bottomUp: z
+      .enum(['yes', 'no'])
+      .nullable()
+      .optional()
+      .default('no')
+      .describe('Search for the first result from the bottom up'),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectSpreadSheets(),
+    this.app.dynamicSelectSheetNames(),
+    {
+      ...this.app.dynamicSelectColumnsDropdown(),
+      label: 'Lookup Column',
+      description: 'The column index to search for the value',
+    },
+    {
+      id: 'queryValue',
+      label: 'Query Value',
+      description: 'The value to search for in the column',
+      inputType: 'text',
+      placeholder: 'Enter the value to search for',
+      required: {
+        missingMessage: 'Query value is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'queryValue',
-        label: 'Query Value',
-        description: 'The value to search for in the column',
-        inputType: 'text',
-        placeholder: 'Enter the value to search for',
-        required: {
-          missingMessage: 'Query value is required',
-          missingStatus: 'warning',
+    },
+    {
+      id: 'bottomUp',
+      label: 'Bottom Up',
+      description: 'Search for the first result from the bottom up',
+      inputType: 'select',
+      selectOptions: [
+        {
+          label: 'Yes',
+          value: 'yes',
         },
-      },
-      {
-        id: 'bottomUp',
-        label: 'Bottom Up',
-        description: 'Search for the first result from the bottom up',
-        inputType: 'select',
-        selectOptions: [
-          {
-            label: 'Yes',
-            value: 'yes',
-          },
-          {
-            label: 'No',
-            value: 'no',
-          },
-        ],
-        defaultValue: 'no',
-      },
-    ];
-  }
+        {
+          label: 'No',
+          value: 'no',
+        },
+      ],
+      defaultValue: 'no',
+    },
+  ];
 
   async run({
     configValue,
@@ -191,4 +178,4 @@ type Response =
       rowFound: boolean;
     };
 
-type ConfigValue = z.infer<ReturnType<LookupSpreadsheetRow['aiSchema']>>;
+type ConfigValue = z.infer<LookupSpreadsheetRow['aiSchema']>;

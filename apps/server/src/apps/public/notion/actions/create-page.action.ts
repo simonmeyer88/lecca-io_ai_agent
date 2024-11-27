@@ -15,53 +15,43 @@ export class CreatePage extends Action {
   }
 
   app: Notion;
-  id() {
-    return 'notion_action_create-page';
-  }
-  name() {
-    return 'Create Page';
-  }
-  description() {
-    return 'Creates a new page in Notion.';
-  }
-  aiSchema() {
-    return z.object({
-      page: z.string().min(1).describe('The ID of the parent page'),
-      title: z.string().min(1).describe('The title of the new page'),
-      content: z.string().min(1).describe('The content of the new page'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        ...this.app.dynamicSelectPage(),
-        label: 'Parent Page',
-        description: 'Select the parent page for the new page.',
+  id = 'notion_action_create-page';
+  name = 'Create Page';
+  description = 'Creates a new page in Notion.';
+  aiSchema = z.object({
+    page: z.string().min(1).describe('The ID of the parent page'),
+    title: z.string().min(1).describe('The title of the new page'),
+    content: z.string().min(1).describe('The content of the new page'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      ...this.app.dynamicSelectPage(),
+      label: 'Parent Page',
+      description: 'Select the parent page for the new page.',
+    },
+    {
+      id: 'title',
+      label: 'Title',
+      description: 'Title of the new page',
+      inputType: 'text',
+      placeholder: 'Add a title',
+      required: {
+        missingMessage: 'Title is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'title',
-        label: 'Title',
-        description: 'Title of the new page',
-        inputType: 'text',
-        placeholder: 'Add a title',
-        required: {
-          missingMessage: 'Title is required',
-          missingStatus: 'warning',
-        },
+    },
+    {
+      id: 'content',
+      label: 'Content',
+      description: 'The content of the new page.',
+      inputType: 'text',
+      placeholder: 'Enter content',
+      required: {
+        missingMessage: 'Content is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'content',
-        label: 'Content',
-        description: 'The content of the new page.',
-        inputType: 'text',
-        placeholder: 'Enter content',
-        required: {
-          missingMessage: 'Content is required',
-          missingStatus: 'warning',
-        },
-      },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -159,4 +149,4 @@ export class CreatePage extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<CreatePage['aiSchema']>>;
+type ConfigValue = z.infer<CreatePage['aiSchema']>;

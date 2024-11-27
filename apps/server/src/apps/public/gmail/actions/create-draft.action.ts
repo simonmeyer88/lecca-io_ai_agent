@@ -18,109 +18,95 @@ export class CreateDraft extends Action {
   }
 
   app: Gmail;
-  id() {
-    return 'gmail_action_create-draft';
-  }
-  name() {
-    return 'Create Draft';
-  }
-  description() {
-    return 'Create a draft email in Gmail';
-  }
-  aiSchema() {
-    return z.object({
-      to: z.string().email().describe('The email address of the recipient'),
-      subject: z.string().min(1).describe('The subject of the email'),
-      cc: z.string().email().optional().describe('CC recipient email address'),
-      bcc: z
-        .string()
-        .email()
-        .optional()
-        .describe('BCC recipient email address'),
-      body: z.string().min(1).describe('The body of the reply'),
-      bodyType: z
-        .enum(['text', 'html'])
-        .describe('The format of the body: text or HTML'),
-      attachments: z
-        .array(z.string())
-        .nullable()
-        .optional()
-        .describe('Attachment URLs'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        label: 'Recipient',
-        id: 'to',
-        inputType: 'text',
-        placeholder: 'Add recipient',
-        description: 'The email address of the recipient',
-        required: {
-          missingMessage: 'Recipient is required',
-          missingStatus: 'warning',
-        },
+  id = 'gmail_action_create-draft';
+  name = 'Create Draft';
+  description = 'Create a draft email in Gmail';
+  aiSchema = z.object({
+    to: z.string().email().describe('The email address of the recipient'),
+    subject: z.string().min(1).describe('The subject of the email'),
+    cc: z.string().email().optional().describe('CC recipient email address'),
+    bcc: z.string().email().optional().describe('BCC recipient email address'),
+    body: z.string().min(1).describe('The body of the reply'),
+    bodyType: z
+      .enum(['text', 'html'])
+      .describe('The format of the body: text or HTML'),
+    attachments: z
+      .array(z.string())
+      .nullable()
+      .optional()
+      .describe('Attachment URLs'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      label: 'Recipient',
+      id: 'to',
+      inputType: 'text',
+      placeholder: 'Add recipient',
+      description: 'The email address of the recipient',
+      required: {
+        missingMessage: 'Recipient is required',
+        missingStatus: 'warning',
       },
-      {
-        label: 'Subject',
-        id: 'subject',
-        inputType: 'text',
-        placeholder: 'Add subject',
-        description: 'The subject of the email',
-        required: {
-          missingMessage: 'Subject is required',
-          missingStatus: 'warning',
-        },
+    },
+    {
+      label: 'Subject',
+      id: 'subject',
+      inputType: 'text',
+      placeholder: 'Add subject',
+      description: 'The subject of the email',
+      required: {
+        missingMessage: 'Subject is required',
+        missingStatus: 'warning',
       },
-      {
-        label: 'CC',
-        id: 'cc',
-        inputType: 'text',
-        placeholder: 'Add CC recipient (optional)',
-        description: 'The CC recipient email address (optional)',
+    },
+    {
+      label: 'CC',
+      id: 'cc',
+      inputType: 'text',
+      placeholder: 'Add CC recipient (optional)',
+      description: 'The CC recipient email address (optional)',
+    },
+    {
+      label: 'BCC',
+      id: 'bcc',
+      inputType: 'text',
+      placeholder: 'Add BCC recipient (optional)',
+      description: 'The BCC recipient email address (optional)',
+    },
+    {
+      label: 'Body',
+      id: 'body',
+      inputType: 'text',
+      placeholder: 'Add body',
+      description: 'The body of the email',
+      required: {
+        missingMessage: 'Message body is required',
+        missingStatus: 'warning',
       },
-      {
-        label: 'BCC',
-        id: 'bcc',
-        inputType: 'text',
-        placeholder: 'Add BCC recipient (optional)',
-        description: 'The BCC recipient email address (optional)',
+    },
+    {
+      label: 'Body Type',
+      id: 'bodyType',
+      inputType: 'select',
+      selectOptions: [
+        { value: 'text', label: 'Text' },
+        { value: 'html', label: 'HTML' },
+      ],
+      defaultValue: 'text',
+      description: 'Select the format of the email body (text or HTML)',
+      required: {
+        missingMessage: 'Body type is required',
+        missingStatus: 'warning',
       },
-      {
-        label: 'Body',
-        id: 'body',
-        inputType: 'text',
-        placeholder: 'Add body',
-        description: 'The body of the email',
-        required: {
-          missingMessage: 'Message body is required',
-          missingStatus: 'warning',
-        },
-      },
-      {
-        label: 'Body Type',
-        id: 'bodyType',
-        inputType: 'select',
-        selectOptions: [
-          { value: 'text', label: 'Text' },
-          { value: 'html', label: 'HTML' },
-        ],
-        defaultValue: 'text',
-        description: 'Select the format of the email body (text or HTML)',
-        required: {
-          missingMessage: 'Body type is required',
-          missingStatus: 'warning',
-        },
-      },
-      {
-        label: 'Attachments',
-        id: 'attachments',
-        inputType: 'file',
-        occurenceType: 'multiple',
-        description: 'Add attachment url',
-      },
-    ];
-  }
+    },
+    {
+      label: 'Attachments',
+      id: 'attachments',
+      inputType: 'file',
+      occurenceType: 'multiple',
+      description: 'Add attachment url',
+    },
+  ];
 
   async run({ configValue, connection }: RunActionArgs<ConfigValue>) {
     const attachments: Mail.Attachment[] = [];
@@ -192,4 +178,4 @@ export class CreateDraft extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<CreateDraft['aiSchema']>>;
+type ConfigValue = z.infer<CreateDraft['aiSchema']>;

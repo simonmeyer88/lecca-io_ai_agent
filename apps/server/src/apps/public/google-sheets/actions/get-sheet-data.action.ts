@@ -15,70 +15,60 @@ export class GetSheetData extends Action {
   }
 
   app: GoogleSheets;
-  id() {
-    return 'google-sheets_action_get-sheet-data';
-  }
-  name() {
-    return 'Get Sheet Data';
-  }
-  description() {
-    return 'Reads data from a specified Google Sheets document and sheet.';
-  }
-  aiSchema() {
-    return z.object({
-      spreadsheet: z
-        .string()
-        .min(1)
-        .describe('The ID of the Google Sheets document.'),
-      sheet: z.string().min(1).describe('The sheet name.'),
-      range: z
-        .string()
-        .min(1)
-        .describe(
-          'The range of cells to read (e.g., "Sheet1!A1:D10"). Leave empty to read the entire sheet.',
-        )
-        .nullable()
-        .optional(),
-      loadAllData: z
-        .enum(['true', 'false'])
-        .default('true')
-        .describe('If true, all sheet data will be returned')
-        .nullable()
-        .optional(),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectSpreadSheets(),
-      this.app.dynamicSelectSheetNames(),
-      {
-        id: 'loadAllData',
-        label: 'Load All Data',
-        inputType: 'switch',
-        description: '',
-        switchOptions: {
-          checked: 'true',
-          unchecked: 'false',
-          defaultChecked: true,
-        },
+  id = 'google-sheets_action_get-sheet-data';
+  name = 'Get Sheet Data';
+  description = 'Reads data from a specified Google Sheets document and sheet.';
+  aiSchema = z.object({
+    spreadsheet: z
+      .string()
+      .min(1)
+      .describe('The ID of the Google Sheets document.'),
+    sheet: z.string().min(1).describe('The sheet name.'),
+    range: z
+      .string()
+      .min(1)
+      .describe(
+        'The range of cells to read (e.g., "Sheet1!A1:D10"). Leave empty to read the entire sheet.',
+      )
+      .nullable()
+      .optional(),
+    loadAllData: z
+      .enum(['true', 'false'])
+      .default('true')
+      .describe('If true, all sheet data will be returned')
+      .nullable()
+      .optional(),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectSpreadSheets(),
+    this.app.dynamicSelectSheetNames(),
+    {
+      id: 'loadAllData',
+      label: 'Load All Data',
+      inputType: 'switch',
+      description: '',
+      switchOptions: {
+        checked: 'true',
+        unchecked: 'false',
+        defaultChecked: true,
       },
-      {
-        id: 'range',
-        label: 'Custom Range',
-        description: 'The range of cells to read (e.g., "Sheet1!A1:D10").',
-        inputType: 'text',
-        placeholder: 'Enter range',
-        loadOptions: {
-          dependsOn: [
-            {
-              id: 'loadAllData',
-              value: 'false',
-            },
-          ],
-        },
+    },
+    {
+      id: 'range',
+      label: 'Custom Range',
+      description: 'The range of cells to read (e.g., "Sheet1!A1:D10").',
+      inputType: 'text',
+      placeholder: 'Enter range',
+      loadOptions: {
+        dependsOn: [
+          {
+            id: 'loadAllData',
+            value: 'false',
+          },
+        ],
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -122,4 +112,4 @@ export class GetSheetData extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<GetSheetData['aiSchema']>>;
+type ConfigValue = z.infer<GetSheetData['aiSchema']>;

@@ -119,7 +119,7 @@ export class WorkflowAppsService {
       );
     }
 
-    if (action.needsConnection()) {
+    if (action.needsConnection) {
       const hasAccessToConnection = await this.projectHasAccessToConnection({
         connectionId: connectionId,
         projectId,
@@ -189,7 +189,7 @@ export class WorkflowAppsService {
       );
     }
 
-    if (trigger.needsConnection()) {
+    if (trigger.needsConnection) {
       const hasAccessToConnection = await this.projectHasAccessToConnection({
         connectionId: connectionId,
         projectId,

@@ -17,48 +17,35 @@ export class GoogleSearch extends Action {
   }
 
   app: Web;
-  id() {
-    return 'web_action_google-search';
-  }
-  needsConnection() {
-    return false;
-  }
-  name() {
-    return 'Google Search';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id()}.svg`;
-  }
-  description() {
-    return 'Search the web using Google.';
-  }
-  aiSchema() {
-    return z.object({
-      q: z.string().min(1).describe('Search query for serper.dev API'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'q',
-        label: 'Search Query',
-        description: 'Google search query.',
-        inputType: 'text',
-        placeholder: 'What do you want to search for?',
-        required: {
-          missingMessage: 'Please enter a search query',
-          missingStatus: 'warning',
-        },
+  id = 'web_action_google-search';
+  needsConnection = false;
+  name = 'Google Search';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id}.svg`;
+  description = 'Search the web using Google.';
+  aiSchema = z.object({
+    q: z.string().min(1).describe('Search query for serper.dev API'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'q',
+      label: 'Search Query',
+      description: 'Google search query.',
+      inputType: 'text',
+      placeholder: 'What do you want to search for?',
+      required: {
+        missingMessage: 'Please enter a search query',
+        missingStatus: 'warning',
       },
-      {
-        id: 'markdown',
-        inputType: 'markdown',
-        description: '',
-        label: '',
-        markdown: 'Note that this action uses 1 credit per search.',
-      },
-    ];
-  }
+    },
+    {
+      id: 'markdown',
+      inputType: 'markdown',
+      description: '',
+      label: '',
+      markdown: 'Note that this action uses 1 credit per search.',
+    },
+  ];
 
   async run({
     configValue,
@@ -121,7 +108,7 @@ export class GoogleSearch extends Action {
           workflowId,
         },
         details: {
-          actionId: this.id(),
+          actionId: this.id,
         },
       },
     });
@@ -162,7 +149,7 @@ const mock = {
   ],
 };
 
-type ConfigValue = z.infer<ReturnType<GoogleSearch['aiSchema']>>;
+type ConfigValue = z.infer<GoogleSearch['aiSchema']>;
 
 type Response = {
   results: (typeof mock)[];

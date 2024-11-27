@@ -15,53 +15,38 @@ export class UpsertLead extends Action {
   }
 
   app: ZohoCrm;
-
-  id() {
-    return 'zoho-crm_action_upsert-lead';
-  }
-
-  name() {
-    return 'Upsert Lead';
-  }
-
-  description() {
-    return 'Create a new lead or update an existing lead.';
-  }
-
-  aiSchema() {
-    return z.object({
-      leadId: z
-        .string()
-        .nullable()
-        .optional()
-        .describe(
-          'The ID of the lead to update, if exists. If not provided, a new lead will be created.',
-        ),
-      fields: z
-        .array(
-          z.object({
-            field: z.string().min(1).describe('The field to update'),
-            value: z.string().min(1).describe('The value to update'),
-          }),
-        )
-        .min(1)
-        .describe('The field and value for the field to update'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'leadId',
-        label: 'Lead ID',
-        description: 'The ID of the lead you want to update (if exists).',
-        inputType: 'text',
-        placeholder: 'Enter the lead ID (optional)',
-        occurenceType: 'single',
-      },
-      this.app.dynamicGetLeadFields(),
-    ];
-  }
+  id = 'zoho-crm_action_upsert-lead';
+  name = 'Upsert Lead';
+  description = 'Create a new lead or update an existing lead.';
+  aiSchema = z.object({
+    leadId: z
+      .string()
+      .nullable()
+      .optional()
+      .describe(
+        'The ID of the lead to update, if exists. If not provided, a new lead will be created.',
+      ),
+    fields: z
+      .array(
+        z.object({
+          field: z.string().min(1).describe('The field to update'),
+          value: z.string().min(1).describe('The value to update'),
+        }),
+      )
+      .min(1)
+      .describe('The field and value for the field to update'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'leadId',
+      label: 'Lead ID',
+      description: 'The ID of the lead you want to update (if exists).',
+      inputType: 'text',
+      placeholder: 'Enter the lead ID (optional)',
+      occurenceType: 'single',
+    },
+    this.app.dynamicGetLeadFields(),
+  ];
 
   async run({
     configValue,
@@ -133,4 +118,4 @@ export class UpsertLead extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<UpsertLead['aiSchema']>>;
+type ConfigValue = z.infer<UpsertLead['aiSchema']>;

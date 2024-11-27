@@ -16,57 +16,47 @@ export class CreateDocument extends Action {
   }
 
   app: GoogleDocs;
-  id() {
-    return 'google-docs_action_create-document';
-  }
-  name() {
-    return 'New Document';
-  }
-  description() {
-    return 'Creates a new document with provided content.';
-  }
-  aiSchema() {
-    return z.object({
-      'new-name': z.string().min(1).describe('The name of the new document'),
-      // folder: z
-      //   .string()
-      //   .nullable()
-      //   .optional()
-      //   .describe('The ID of the folder where the new document will be saved'),
-      content: z.string().min(1).describe('The content of the new document'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'new-name',
-        label: 'New Document Name',
-        description: 'The name of the new document.',
-        inputType: 'text',
-        placeholder: 'Add a name',
-        required: {
-          missingMessage: 'Name is required',
-          missingStatus: 'warning',
-        },
+  id = 'google-docs_action_create-document';
+  name = 'New Document';
+  description = 'Creates a new document with provided content.';
+  aiSchema = z.object({
+    'new-name': z.string().min(1).describe('The name of the new document'),
+    // folder: z
+    //   .string()
+    //   .nullable()
+    //   .optional()
+    //   .describe('The ID of the folder where the new document will be saved'),
+    content: z.string().min(1).describe('The content of the new document'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'new-name',
+      label: 'New Document Name',
+      description: 'The name of the new document.',
+      inputType: 'text',
+      placeholder: 'Add a name',
+      required: {
+        missingMessage: 'Name is required',
+        missingStatus: 'warning',
       },
-      // {
-      //   ...this.app.dynamicSelectFolder(),
-      //   label: 'Target Folder (optional)',
-      //   description: 'Select the folder where the new document will be saved.',
-      // },
-      {
-        id: 'content',
-        label: 'Text Content',
-        description: 'The content of the new document.',
-        inputType: 'text',
-        placeholder: 'Enter text',
-        required: {
-          missingMessage: 'Content is required',
-          missingStatus: 'warning',
-        },
+    },
+    // {
+    //   ...this.app.dynamicSelectFolder(),
+    //   label: 'Target Folder (optional)',
+    //   description: 'Select the folder where the new document will be saved.',
+    // },
+    {
+      id: 'content',
+      label: 'Text Content',
+      description: 'The content of the new document.',
+      inputType: 'text',
+      placeholder: 'Enter text',
+      required: {
+        missingMessage: 'Content is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -132,4 +122,4 @@ export class CreateDocument extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<CreateDocument['aiSchema']>>;
+type ConfigValue = z.infer<CreateDocument['aiSchema']>;

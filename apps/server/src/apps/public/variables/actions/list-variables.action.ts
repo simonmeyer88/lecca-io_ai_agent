@@ -16,36 +16,23 @@ export class ListVariables extends Action {
   }
 
   app: Variables;
-  id() {
-    return 'variables_action_list-variables';
-  }
-  needsConnection() {
-    return false;
-  }
-  name() {
-    return 'List Variables';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
-  }
-  description() {
-    return 'Lists all variables available to the project.';
-  }
-  aiSchema() {
-    return z.object({});
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'markdown',
-        inputType: 'markdown',
-        label: '',
-        description: '',
-        markdown:
-          "Lists all AI agents available to the project. This includes this project's variables and workspace variables.",
-      },
-    ];
-  }
+  id = 'variables_action_list-variables';
+  needsConnection = false;
+  name = 'List Variables';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
+  description = 'Lists all variables available to the project.';
+  aiSchema = z.object({});
+  inputConfig: InputConfig[] = [
+    {
+      id: 'markdown',
+      inputType: 'markdown',
+      label: '',
+      description: '',
+      markdown:
+        "Lists all AI agents available to the project. This includes this project's variables and workspace variables.",
+    },
+  ];
 
   async run({
     projectId,
@@ -107,7 +94,7 @@ export class ListVariables extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<ListVariables['aiSchema']>>;
+type ConfigValue = z.infer<ListVariables['aiSchema']>;
 
 type Response = {
   variables: {

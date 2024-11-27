@@ -16,27 +16,14 @@ export class ListSheets extends Action {
 
   app: GoogleSheets;
 
-  id() {
-    return 'google-sheets_action_list-sheets';
-  }
-
-  name() {
-    return 'List Sheets';
-  }
-
-  description() {
-    return 'Lists all sheets available within a specific Google Spreadsheet.';
-  }
-
-  aiSchema() {
-    return z.object({
-      spreadsheet: z.string().describe('Spreadsheet ID is required'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [this.app.dynamicSelectSpreadSheets()];
-  }
+  id = 'google-sheets_action_list-sheets';
+  name = 'List Sheets';
+  description =
+    'Lists all sheets available within a specific Google Spreadsheet.';
+  aiSchema = z.object({
+    spreadsheet: z.string().describe('Spreadsheet ID is required'),
+  });
+  inputConfig: InputConfig[] = [this.app.dynamicSelectSpreadSheets()];
 
   async run({
     connection,
@@ -74,7 +61,7 @@ export class ListSheets extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<ListSheets['aiSchema']>>;
+type ConfigValue = z.infer<ListSheets['aiSchema']>;
 type Sheet = {
   id: string;
   name: string;

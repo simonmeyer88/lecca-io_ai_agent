@@ -16,47 +16,37 @@ export class SendMessageToChannel extends Action {
   }
 
   app: Slack;
-  id() {
-    return 'slack_action_send-message-to-channel';
-  }
-  name() {
-    return 'Send Message to Channel';
-  }
-  description() {
-    return 'Sends a message to a Slack channel';
-  }
-  aiSchema() {
-    return z.object({
-      channelId: z
-        .string()
-        .min(1)
-        .describe('The ID of the channel to send the message to'),
-      message: z.string().min(1).describe('The message to send to the channel'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'markdown',
-        inputType: 'markdown',
-        label: '',
-        description: '',
-        markdown: `Make sure to invite ${ServerConfig.PLATFORM_NAME} to the channel you want to send a message to. You can do this by typing \`/invite @${ServerConfig.PLATFORM_NAME}\` in the channel.`,
+  id = 'slack_action_send-message-to-channel';
+  name = 'Send Message to Channel';
+  description = 'Sends a message to a Slack channel';
+  aiSchema = z.object({
+    channelId: z
+      .string()
+      .min(1)
+      .describe('The ID of the channel to send the message to'),
+    message: z.string().min(1).describe('The message to send to the channel'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'markdown',
+      inputType: 'markdown',
+      label: '',
+      description: '',
+      markdown: `Make sure to invite ${ServerConfig.PLATFORM_NAME} to the channel you want to send a message to. You can do this by typing \`/invite @${ServerConfig.PLATFORM_NAME}\` in the channel.`,
+    },
+    this.app.dynamicSelectChannel(),
+    {
+      id: 'message',
+      label: 'Message',
+      description: 'Message to send to the channel',
+      inputType: 'text',
+      placeholder: 'Add a message',
+      required: {
+        missingMessage: 'Message is required',
+        missingStatus: 'warning',
       },
-      this.app.dynamicSelectChannel(),
-      {
-        id: 'message',
-        label: 'Message',
-        description: 'Message to send to the channel',
-        inputType: 'text',
-        placeholder: 'Add a message',
-        required: {
-          missingMessage: 'Message is required',
-          missingStatus: 'warning',
-        },
-      },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -141,4 +131,4 @@ type ResponseType = {
   };
 };
 
-type ConfigValue = z.infer<ReturnType<SendMessageToChannel['aiSchema']>>;
+type ConfigValue = z.infer<SendMessageToChannel['aiSchema']>;

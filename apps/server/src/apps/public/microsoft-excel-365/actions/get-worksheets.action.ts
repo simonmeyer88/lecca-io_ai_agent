@@ -15,26 +15,16 @@ export class GetWorksheets extends Action {
   }
 
   app: MicrosoftExcel365;
-  id() {
-    return 'microsoft-excel-365_action_get-worksheets';
-  }
-  name() {
-    return 'Get Worksheets';
-  }
-  description() {
-    return 'Get a list of worksheets from a workbook';
-  }
-  aiSchema() {
-    return z.object({
-      workbookId: z
-        .string()
-        .min(1)
-        .describe('The ID of the workbook to get worksheets from'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [this.app.dynamicSelectWorkbooks()];
-  }
+  id = 'microsoft-excel-365_action_get-worksheets';
+  name = 'Get Worksheets';
+  description = 'Get a list of worksheets from a workbook';
+  aiSchema = z.object({
+    workbookId: z
+      .string()
+      .min(1)
+      .describe('The ID of the workbook to get worksheets from'),
+  });
+  inputConfig: InputConfig[] = [this.app.dynamicSelectWorkbooks()];
 
   async run({
     configValue,
@@ -70,4 +60,4 @@ const mock = {
   visibility: 'Visible',
 };
 
-type ConfigValue = z.infer<ReturnType<GetWorksheets['aiSchema']>>;
+type ConfigValue = z.infer<GetWorksheets['aiSchema']>;

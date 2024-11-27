@@ -17,61 +17,38 @@ export class GetLastItemInList extends Action {
   }
 
   app: List;
-
-  id() {
-    return 'list_action_get-last-item';
-  }
-
-  name() {
-    return 'Get Last Item in List';
-  }
-
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
-  }
-
-  needsConnection(): boolean {
-    return false;
-  }
-
-  description() {
-    return 'Gets the last item from a list of values';
-  }
-
-  viewOptions(): null | NodeViewOptions {
-    return {
-      saveButtonOptions: {
-        replaceSaveAndTestButton: {
-          label: 'Save & Test',
-          type: 'real',
-        },
+  id = 'list_action_get-last-item';
+  name = 'Get Last Item in List';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
+  needsConnection = false;
+  description = 'Gets the last item from a list of values';
+  viewOptions: null | NodeViewOptions = {
+    saveButtonOptions: {
+      replaceSaveAndTestButton: {
+        label: 'Save & Test',
+        type: 'real',
       },
-    };
-  }
-
-  aiSchema() {
-    return z.object({
-      listOfItems: z
-        .array(z.any())
-        .describe('The list of items from which to get the last item'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'listOfItems',
-        label: 'List',
-        description:
-          'Provide a list of items, and this action will return the last item.',
-        inputType: 'text',
-        required: {
-          missingMessage: 'List is required',
-          missingStatus: 'warning',
-        },
+    },
+  };
+  aiSchema = z.object({
+    listOfItems: z
+      .array(z.any())
+      .describe('The list of items from which to get the last item'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'listOfItems',
+      label: 'List',
+      description:
+        'Provide a list of items, and this action will return the last item.',
+      inputType: 'text',
+      required: {
+        missingMessage: 'List is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({ configValue }: RunActionArgs<ConfigValue>): Promise<Response> {
     const { listOfItems } = configValue;
@@ -102,7 +79,7 @@ export class GetLastItemInList extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<GetLastItemInList['aiSchema']>>;
+type ConfigValue = z.infer<GetLastItemInList['aiSchema']>;
 
 type Response = {
   result: unknown;

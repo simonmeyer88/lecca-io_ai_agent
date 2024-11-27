@@ -17,63 +17,40 @@ export class CombineLists extends Action {
   }
 
   app: List;
-
-  id() {
-    return 'list_action_combine-lists';
-  }
-
-  name() {
-    return 'Combine Lists';
-  }
-
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
-  }
-
-  needsConnection(): boolean {
-    return false;
-  }
-
-  description() {
-    return 'Combines multiple lists into a single list';
-  }
-
-  viewOptions(): null | NodeViewOptions {
-    return {
-      saveButtonOptions: {
-        replaceSaveAndTestButton: {
-          label: 'Save & Test',
-          type: 'real',
-        },
+  id = 'list_action_combine-lists';
+  name = 'Combine Lists';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
+  needsConnection = false;
+  description = 'Combines multiple lists into a single list';
+  viewOptions: null | NodeViewOptions = {
+    saveButtonOptions: {
+      replaceSaveAndTestButton: {
+        label: 'Save & Test',
+        type: 'real',
       },
-    };
-  }
-
-  aiSchema() {
-    return z.object({
-      listOfListItems: z
-        .array(z.array(z.string()))
-        .min(1)
-        .describe('List of lists to combine'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'listOfListItems',
-        label: 'List Items',
-        description:
-          'Each item should be a string or a list of values. E.g. ["a", "b"], "c", ["d"] would become ["a", "b", "c", "d"]',
-        inputType: 'text',
-        occurenceType: 'multiple',
-        required: {
-          missingMessage: 'At least one list is required',
-          missingStatus: 'warning',
-        },
+    },
+  };
+  aiSchema = z.object({
+    listOfListItems: z
+      .array(z.array(z.string()))
+      .min(1)
+      .describe('List of lists to combine'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'listOfListItems',
+      label: 'List Items',
+      description:
+        'Each item should be a string or a list of values. E.g. ["a", "b"], "c", ["d"] would become ["a", "b", "c", "d"]',
+      inputType: 'text',
+      occurenceType: 'multiple',
+      required: {
+        missingMessage: 'At least one list is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({ configValue }: RunActionArgs<ConfigValue>): Promise<Response> {
     const { listOfListItems } = configValue;
@@ -106,7 +83,7 @@ export class CombineLists extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<CombineLists['aiSchema']>>;
+type ConfigValue = z.infer<CombineLists['aiSchema']>;
 
 type Response = {
   result: string[];

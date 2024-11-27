@@ -17,71 +17,61 @@ export class ShareSpreadsheet extends Action {
   }
 
   app: GoogleSheets;
-  id() {
-    return 'google-sheets_action_share-spreadsheet';
-  }
-  name() {
-    return 'Share Spreadsheet';
-  }
-  description() {
-    return `Share a spreadsheet that ${ServerConfig.PLATFORM_NAME} has created.`;
-  }
-  aiSchema() {
-    return z.object({
-      spreadsheet: z
-        .string()
-        .min(1)
-        .describe('The ID of the spreadsheet to share'),
-      role: z
-        .enum(['writer', 'commenter', 'reader'])
-        .describe('The role of the user'),
-      email: z.string().email().min(1).describe('The email of the user'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        ...this.app.dynamicSelectSpreadSheets(),
-        description: 'Select a spreadsheet to share',
-      },
-      {
-        id: 'role',
-        label: 'Role',
-        description: 'The role of the user',
-        inputType: 'select',
-        placeholder: 'Select a role',
-        selectOptions: [
-          {
-            label: 'Writer',
-            value: 'writer',
-          },
-          {
-            label: 'Commenter',
-            value: 'commenter',
-          },
-          {
-            label: 'Reader',
-            value: 'reader',
-          },
-        ],
-        required: {
-          missingMessage: 'Content is required',
-          missingStatus: 'warning',
+  id = 'google-sheets_action_share-spreadsheet';
+  name = 'Share Spreadsheet';
+  description = `Share a spreadsheet that ${ServerConfig.PLATFORM_NAME} has created.`;
+  aiSchema = z.object({
+    spreadsheet: z
+      .string()
+      .min(1)
+      .describe('The ID of the spreadsheet to share'),
+    role: z
+      .enum(['writer', 'commenter', 'reader'])
+      .describe('The role of the user'),
+    email: z.string().email().min(1).describe('The email of the user'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      ...this.app.dynamicSelectSpreadSheets(),
+      description: 'Select a spreadsheet to share',
+    },
+    {
+      id: 'role',
+      label: 'Role',
+      description: 'The role of the user',
+      inputType: 'select',
+      placeholder: 'Select a role',
+      selectOptions: [
+        {
+          label: 'Writer',
+          value: 'writer',
         },
-      },
-      {
-        id: 'email',
-        label: 'Email',
-        description: 'The email address of the user',
-        inputType: 'text',
-        placeholder: 'Enter email',
-        required: {
-          missingMessage: 'Email is required',
-          missingStatus: 'warning',
+        {
+          label: 'Commenter',
+          value: 'commenter',
         },
+        {
+          label: 'Reader',
+          value: 'reader',
+        },
+      ],
+      required: {
+        missingMessage: 'Content is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+    {
+      id: 'email',
+      label: 'Email',
+      description: 'The email address of the user',
+      inputType: 'text',
+      placeholder: 'Enter email',
+      required: {
+        missingMessage: 'Email is required',
+        missingStatus: 'warning',
+      },
+    },
+  ];
 
   async run({
     configValue,
@@ -121,4 +111,4 @@ export class ShareSpreadsheet extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<ShareSpreadsheet['aiSchema']>>;
+type ConfigValue = z.infer<ShareSpreadsheet['aiSchema']>;

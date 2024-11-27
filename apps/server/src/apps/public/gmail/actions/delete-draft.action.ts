@@ -16,39 +16,25 @@ export class DeleteDraft extends Action {
 
   app: Gmail;
 
-  id() {
-    return 'gmail_action_delete-draft';
-  }
-
-  name() {
-    return 'Delete Draft';
-  }
-
-  description() {
-    return 'Delete a draft email in Gmail';
-  }
-
-  aiSchema() {
-    return z.object({
-      draftId: z.string().nonempty().describe('The ID of the draft to delete'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        label: 'Draft ID',
-        id: 'draftId',
-        inputType: 'text',
-        placeholder: 'Enter the draft ID',
-        description: 'The unique ID of the draft you want to delete.',
-        required: {
-          missingMessage: 'Draft ID is required',
-          missingStatus: 'warning',
-        },
+  id = 'gmail_action_delete-draft';
+  name = 'Delete Draft';
+  description = 'Delete a draft email in Gmail';
+  aiSchema = z.object({
+    draftId: z.string().nonempty().describe('The ID of the draft to delete'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      label: 'Draft ID',
+      id: 'draftId',
+      inputType: 'text',
+      placeholder: 'Enter the draft ID',
+      description: 'The unique ID of the draft you want to delete.',
+      required: {
+        missingMessage: 'Draft ID is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({ configValue, connection }: RunActionArgs<ConfigValue>) {
     const gmail = await this.app.gmail({
@@ -69,4 +55,4 @@ export class DeleteDraft extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<DeleteDraft['aiSchema']>>;
+type ConfigValue = z.infer<DeleteDraft['aiSchema']>;

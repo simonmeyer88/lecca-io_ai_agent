@@ -49,7 +49,7 @@ export abstract class App {
 
     this.actionMap = this.actions().reduce(
       (acc, action) => {
-        acc[action.id()] = action;
+        acc[action.id] = action;
         return acc;
       },
       {} as Record<string, Action>,
@@ -57,7 +57,7 @@ export abstract class App {
 
     this.triggerMap = this.triggers().reduce(
       (acc, trigger) => {
-        acc[trigger.id()] = trigger;
+        acc[trigger.id] = trigger;
         return acc;
       },
       {} as Record<string, Trigger>,
@@ -185,11 +185,11 @@ export abstract class App {
     const tools: Record<string, CoreTool<any, any>> = {};
 
     for (const action of this.actions()) {
-      if (!args.enabledActions.includes(action.id())) {
+      if (!args.enabledActions.includes(action.id)) {
         continue;
       }
 
-      tools[action.id()] = action.toToolJSON({
+      tools[action.id] = action.toToolJSON({
         connectionId: args.connectionId,
         agentId: args.agentId,
         workflowId: args.workflowId,

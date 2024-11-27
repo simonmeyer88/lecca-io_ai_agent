@@ -16,62 +16,53 @@ export class CreateDocumentFromTemplate extends Action {
   }
 
   app: GoogleDocs;
-  id() {
-    return 'google-docs_action_create-document-from-template';
-  }
-  name() {
-    return 'New Document from Template';
-  }
-  description() {
-    return 'Creates a new document by filling out {{placeholders}} from a template document.';
-  }
-  aiSchema() {
-    return z.object({
-      document: z.string().min(1).describe('The ID of the template document'),
-      // folder: z
-      //   .string()
-      //   .nullable()
-      //   .optional()
-      //   .describe('The ID of the folder where the new document will be saved'),
-      'new-name': z.string().min(1).describe('The name of the new document'),
-      placeholders: z.array(
-        z.object({
-          key: z.string().min(1).describe('The placeholder key'),
-          value: z
-            .string()
-            .min(1)
-            .describe('The value to replace the placeholder'),
-        }),
-      ),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        ...this.app.dynamicSelectDocuments(),
-        label: 'Template Document',
-        description: 'A template document has {{placeholders}}.',
+  id = 'google-docs_action_create-document-from-template';
+  name = 'New Document from Template';
+  description =
+    'Creates a new document by filling out {{placeholders}} from a template document.';
+  aiSchema = z.object({
+    document: z.string().min(1).describe('The ID of the template document'),
+    // folder: z
+    //   .string()
+    //   .nullable()
+    //   .optional()
+    //   .describe('The ID of the folder where the new document will be saved'),
+    'new-name': z.string().min(1).describe('The name of the new document'),
+    placeholders: z.array(
+      z.object({
+        key: z.string().min(1).describe('The placeholder key'),
+        value: z
+          .string()
+          .min(1)
+          .describe('The value to replace the placeholder'),
+      }),
+    ),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      ...this.app.dynamicSelectDocuments(),
+      label: 'Template Document',
+      description: 'A template document has {{placeholders}}.',
+    },
+    {
+      id: 'new-name',
+      label: 'New Document Name',
+      description: 'The name of the new document.',
+      inputType: 'text',
+      placeholder: 'Add a name',
+      required: {
+        missingMessage: 'Name is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'new-name',
-        label: 'New Document Name',
-        description: 'The name of the new document.',
-        inputType: 'text',
-        placeholder: 'Add a name',
-        required: {
-          missingMessage: 'Name is required',
-          missingStatus: 'warning',
-        },
-      },
-      //DONT HAVE auth/drive permissions for this
-      // {
-      //   ...this.app.dynamicSelectFolder(),
-      //   label: 'Target Folder',
-      //   description: 'Select the folder where the new document will be saved.',
-      // },
-      this.app.dynamicSelectPlaceholders(),
-    ];
-  }
+    },
+    //DONT HAVE auth/drive permissions for this
+    // {
+    //   ...this.app.dynamicSelectFolder(),
+    //   label: 'Target Folder',
+    //   description: 'Select the folder where the new document will be saved.',
+    // },
+    this.app.dynamicSelectPlaceholders(),
+  ];
 
   async run({
     configValue,
@@ -183,4 +174,4 @@ export class CreateDocumentFromTemplate extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<CreateDocumentFromTemplate['aiSchema']>>;
+type ConfigValue = z.infer<CreateDocumentFromTemplate['aiSchema']>;

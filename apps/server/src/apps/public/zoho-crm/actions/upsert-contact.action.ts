@@ -15,53 +15,38 @@ export class UpsertContact extends Action {
   }
 
   app: ZohoCrm;
-
-  id() {
-    return 'zoho-crm_action_upsert-contact';
-  }
-
-  name() {
-    return 'Upsert Contact';
-  }
-
-  description() {
-    return 'Create a new contact or update an existing contact.';
-  }
-
-  aiSchema() {
-    return z.object({
-      contactId: z
-        .string()
-        .nullable()
-        .optional()
-        .describe(
-          'The ID of the contact to update, if exists. If not provided, a new contact will be created.',
-        ),
-      fields: z
-        .array(
-          z.object({
-            field: z.string().min(1).describe('The field to update'),
-            value: z.string().min(1).describe('The value to update'),
-          }),
-        )
-        .min(1)
-        .describe('The field and value for the field to update'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'contactId',
-        label: 'Contact ID',
-        description: 'The ID of the contact you want to update (if exists).',
-        inputType: 'text',
-        placeholder: 'Enter the contact ID (optional)',
-        occurenceType: 'single',
-      },
-      this.app.dynamicGetLeadFields(),
-    ];
-  }
+  id = 'zoho-crm_action_upsert-contact';
+  name = 'Upsert Contact';
+  description = 'Create a new contact or update an existing contact.';
+  aiSchema = z.object({
+    contactId: z
+      .string()
+      .nullable()
+      .optional()
+      .describe(
+        'The ID of the contact to update, if exists. If not provided, a new contact will be created.',
+      ),
+    fields: z
+      .array(
+        z.object({
+          field: z.string().min(1).describe('The field to update'),
+          value: z.string().min(1).describe('The value to update'),
+        }),
+      )
+      .min(1)
+      .describe('The field and value for the field to update'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'contactId',
+      label: 'Contact ID',
+      description: 'The ID of the contact you want to update (if exists).',
+      inputType: 'text',
+      placeholder: 'Enter the contact ID (optional)',
+      occurenceType: 'single',
+    },
+    this.app.dynamicGetLeadFields(),
+  ];
 
   async run({
     configValue,
@@ -135,4 +120,4 @@ export class UpsertContact extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<UpsertContact['aiSchema']>>;
+type ConfigValue = z.infer<UpsertContact['aiSchema']>;

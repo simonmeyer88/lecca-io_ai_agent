@@ -17,42 +17,28 @@ export class UpdateDatabaseItem extends Action {
 
   app: Notion;
 
-  id() {
-    return 'notion_action_update-database-item';
-  }
-
-  name() {
-    return 'Update Database Page';
-  }
-
-  description() {
-    return 'Updates an existing page in a Notion database';
-  }
-
-  aiSchema() {
-    return z.object({
-      page: z.string().describe('The ID of the page to update.'),
-      properties: z.array(
-        z.object({
-          key: z
-            .string()
-            .min(1)
-            .describe(
-              'The name of the property. Must match the name of the property in the database',
-            ),
-          value: z.string().min(1).describe('The value of the property.'),
-        }),
-      ),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectDatabase(),
-      this.app.dynamicSelectPageInDatabase(),
-      this.app.dynamicSelectPropertiesInPage(),
-    ];
-  }
+  id = 'notion_action_update-database-item';
+  name = 'Update Database Page';
+  description = 'Updates an existing page in a Notion database';
+  aiSchema = z.object({
+    page: z.string().describe('The ID of the page to update.'),
+    properties: z.array(
+      z.object({
+        key: z
+          .string()
+          .min(1)
+          .describe(
+            'The name of the property. Must match the name of the property in the database',
+          ),
+        value: z.string().min(1).describe('The value of the property.'),
+      }),
+    ),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectDatabase(),
+    this.app.dynamicSelectPageInDatabase(),
+    this.app.dynamicSelectPropertiesInPage(),
+  ];
 
   async run({
     connection,
@@ -114,4 +100,4 @@ export class UpdateDatabaseItem extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<UpdateDatabaseItem['aiSchema']>>;
+type ConfigValue = z.infer<UpdateDatabaseItem['aiSchema']>;

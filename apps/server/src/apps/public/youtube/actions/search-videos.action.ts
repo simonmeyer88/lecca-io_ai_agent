@@ -17,90 +17,76 @@ export class SearchVideos extends Action {
 
   app: YouTube;
 
-  id() {
-    return 'youtube_action_search-videos';
-  }
-
-  name() {
-    return 'Search Videos';
-  }
-
-  description() {
-    return 'Search for videos on YouTube using a query string';
-  }
-
-  aiSchema() {
-    return z.object({
-      query: z
-        .string()
-        .nonempty()
-        .describe('The search query string to find YouTube videos.'),
-      maxResults: z
-        .number()
-        .min(1)
-        .max(50)
-        .default(5)
-        .nullable()
-        .optional()
-        .describe('The maximum number of search results to return'),
-      videoDuration: z
-        .enum(['any', 'short', 'medium', 'long'])
-        .describe('Filter video results by duration.'),
-      videoType: z
-        .enum(['any', 'episode', 'movie'])
-        .describe('Filter video results by type.'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        label: 'Search Query',
-        id: 'query',
-        inputType: 'text',
-        placeholder: 'Enter search query',
-        description:
-          'Search for videos using keywords such as "JavaScript tutorials" or "funny cat videos".',
-        required: {
-          missingMessage: 'Search query is required',
-          missingStatus: 'warning',
-        },
+  id = 'youtube_action_search-videos';
+  name = 'Search Videos';
+  description = 'Search for videos on YouTube using a query string';
+  aiSchema = z.object({
+    query: z
+      .string()
+      .nonempty()
+      .describe('The search query string to find YouTube videos.'),
+    maxResults: z
+      .number()
+      .min(1)
+      .max(50)
+      .default(5)
+      .nullable()
+      .optional()
+      .describe('The maximum number of search results to return'),
+    videoDuration: z
+      .enum(['any', 'short', 'medium', 'long'])
+      .describe('Filter video results by duration.'),
+    videoType: z
+      .enum(['any', 'episode', 'movie'])
+      .describe('Filter video results by type.'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      label: 'Search Query',
+      id: 'query',
+      inputType: 'text',
+      placeholder: 'Enter search query',
+      description:
+        'Search for videos using keywords such as "JavaScript tutorials" or "funny cat videos".',
+      required: {
+        missingMessage: 'Search query is required',
+        missingStatus: 'warning',
       },
-      {
-        label: 'Video Duration',
-        id: 'videoDuration',
-        inputType: 'select',
-        defaultValue: 'any',
-        selectOptions: [
-          { value: 'any', label: 'Any' },
-          { value: 'short', label: 'Short (< 4 min)' },
-          { value: 'medium', label: 'Medium (4-20 min)' },
-          { value: 'long', label: 'Long (> 20 min)' },
-        ],
-        description: 'Filter videos by duration.',
-      },
-      {
-        label: 'Video Type',
-        id: 'videoType',
-        inputType: 'select',
-        defaultValue: 'any',
-        selectOptions: [
-          { value: 'any', label: 'Any' },
-          { value: 'episode', label: 'Episode' },
-          { value: 'movie', label: 'Movie' },
-        ],
-        description: 'Filter videos by type.',
-      },
-      {
-        label: 'Max Results',
-        id: 'maxResults',
-        inputType: 'number',
-        defaultValue: '5',
-        placeholder: 'Add max results',
-        description: 'The maximum number of videos to return.',
-      },
-    ];
-  }
+    },
+    {
+      label: 'Video Duration',
+      id: 'videoDuration',
+      inputType: 'select',
+      defaultValue: 'any',
+      selectOptions: [
+        { value: 'any', label: 'Any' },
+        { value: 'short', label: 'Short (< 4 min)' },
+        { value: 'medium', label: 'Medium (4-20 min)' },
+        { value: 'long', label: 'Long (> 20 min)' },
+      ],
+      description: 'Filter videos by duration.',
+    },
+    {
+      label: 'Video Type',
+      id: 'videoType',
+      inputType: 'select',
+      defaultValue: 'any',
+      selectOptions: [
+        { value: 'any', label: 'Any' },
+        { value: 'episode', label: 'Episode' },
+        { value: 'movie', label: 'Movie' },
+      ],
+      description: 'Filter videos by type.',
+    },
+    {
+      label: 'Max Results',
+      id: 'maxResults',
+      inputType: 'number',
+      defaultValue: '5',
+      placeholder: 'Add max results',
+      description: 'The maximum number of videos to return.',
+    },
+  ];
 
   async run({
     configValue,
@@ -209,6 +195,6 @@ type Response = {
   data: typeof mock;
 };
 
-type ConfigValue = z.infer<ReturnType<SearchVideos['aiSchema']>> & {
+type ConfigValue = z.infer<SearchVideos['aiSchema']> & {
   pageToken: string | null;
 };

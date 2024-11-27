@@ -15,22 +15,12 @@ export class PageUpdated extends TimeBasedPollTrigger {
 
   app: Notion;
 
-  id() {
-    return 'notion_trigger_page-updated';
-  }
+  id = 'notion_trigger_page-updated';
+  name = 'Page Updated';
+  description = 'Triggers when any page is updated in the workspace.';
 
-  name() {
-    return 'Page Updated';
-  }
-
-  description() {
-    return 'Triggers when any page is updated in the workspace.';
-  }
-
-  inputConfig(): InputConfig[] {
-    // No need for database selection since this triggers on any page update.
-    return [];
-  }
+  // No need for database selection since this triggers on any page update.
+  inputConfig: InputConfig[] = [];
 
   async run({ connection, testing }: RunTriggerArgs<unknown>): Promise<any[]> {
     const notionLib = this.app.notionLib({

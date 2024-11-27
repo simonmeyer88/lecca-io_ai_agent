@@ -21,43 +21,27 @@ export class Schedule extends Action {
   }
 
   app: FlowControl;
-  id() {
-    return 'flow-control_action_schedule';
-  }
-  needsConnection() {
-    return false;
-  }
-  name() {
-    return 'Schedule';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id()}.svg`;
-  }
-  description() {
-    return 'Pauses the execution and resumes at the scheduled time.';
-  }
-  availableForAgent(): boolean {
-    return false;
-  }
-  viewOptions(): NodeViewOptions {
-    return {
-      showManualInputButton: true,
-      manualInputButtonOptions: {
-        label: 'Manually Resume',
-        tooltip:
-          'Instead of waiting for the schedule to resume, you can manually resume the execution.',
-      },
-      saveButtonOptions: {
-        hideSaveAndTestButton: true,
-      },
-    };
-  }
-  aiSchema() {
-    return z.object({});
-  }
-  isInterruptingAction() {
-    return true;
-  }
+  id = 'flow-control_action_schedule';
+  needsConnection = false;
+  name = 'Schedule';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id}.svg`;
+  description = 'Pauses the execution and resumes at the scheduled time.';
+  availableForAgent = false;
+  viewOptions: NodeViewOptions = {
+    showManualInputButton: true,
+    manualInputButtonOptions: {
+      label: 'Manually Resume',
+      tooltip:
+        'Instead of waiting for the schedule to resume, you can manually resume the execution.',
+    },
+    saveButtonOptions: {
+      hideSaveAndTestButton: true,
+    },
+  };
+  aiSchema = z.object({});
+  isInterruptingAction = true;
+
   handleInterruptingResponse({
     runResponse,
   }: {
@@ -73,209 +57,208 @@ export class Schedule extends Action {
       };
     }
   }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'resumeExecution',
-        inputType: 'resume-execution',
-        description: '',
-        label: '',
+
+  inputConfig: InputConfig[] = [
+    {
+      id: 'resumeExecution',
+      inputType: 'resume-execution',
+      description: '',
+      label: '',
+    },
+    {
+      id: 'referenceDate',
+      label: 'Reference Date',
+      description:
+        'The date that will be used to calculate when to resume the execution.',
+      inputType: 'date-time',
+      required: {
+        missingMessage: 'Reference Date is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'referenceDate',
-        label: 'Reference Date',
-        description:
-          'The date that will be used to calculate when to resume the execution.',
-        inputType: 'date-time',
-        required: {
-          missingMessage: 'Reference Date is required',
-          missingStatus: 'warning',
+    },
+    {
+      id: 'offsetType',
+      label: 'Offset?',
+      inputType: 'select',
+      description:
+        'If there is an offset, should it be before or after the reference date?',
+      hideCustomTab: true,
+      selectOptions: [
+        {
+          label: 'No offset',
+          value: 'no-offset',
         },
+        {
+          label: 'Before',
+          value: 'before',
+        },
+        {
+          label: 'After',
+          value: 'after',
+        },
+      ],
+      defaultValue: 'no-offset',
+      required: {
+        missingMessage: 'Offset is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'offsetType',
-        label: 'Offset?',
-        inputType: 'select',
-        description:
-          'If there is an offset, should it be before or after the reference date?',
-        hideCustomTab: true,
-        selectOptions: [
+    },
+    {
+      id: 'offsetUnit',
+      label: 'Offset Unit',
+      inputType: 'select',
+      description: 'The unit of time to offset the reference date.',
+      defaultValue: 'days',
+      hideCustomTab: true,
+      selectOptions: [
+        {
+          label: 'Minutes',
+          value: 'minutes',
+        },
+        {
+          label: 'Hours',
+          value: 'hours',
+        },
+        {
+          label: 'Days',
+          value: 'days',
+        },
+        {
+          label: 'Weeks',
+          value: 'weeks',
+        },
+        {
+          label: 'Months',
+          value: 'months',
+        },
+      ],
+      loadOptions: {
+        dependsOn: [
           {
-            label: 'No offset',
-            value: 'no-offset',
-          },
-          {
-            label: 'Before',
+            id: 'offsetType',
             value: 'before',
           },
+        ],
+      },
+    },
+    {
+      id: 'offsetUnit',
+      label: 'Offset Unit',
+      inputType: 'select',
+      description: 'The unit of time to offset the reference date.',
+      defaultValue: 'days',
+      hideCustomTab: true,
+      selectOptions: [
+        {
+          label: 'Minutes',
+          value: 'minutes',
+        },
+        {
+          label: 'Hours',
+          value: 'hours',
+        },
+        {
+          label: 'Days',
+          value: 'days',
+        },
+        {
+          label: 'Weeks',
+          value: 'weeks',
+        },
+        {
+          label: 'Months',
+          value: 'months',
+        },
+      ],
+      loadOptions: {
+        dependsOn: [
           {
-            label: 'After',
+            id: 'offsetType',
             value: 'after',
           },
         ],
-        defaultValue: 'no-offset',
-        required: {
-          missingMessage: 'Offset is required',
-          missingStatus: 'warning',
-        },
       },
-      {
-        id: 'offsetUnit',
-        label: 'Offset Unit',
-        inputType: 'select',
-        description: 'The unit of time to offset the reference date.',
-        defaultValue: 'days',
-        hideCustomTab: true,
-        selectOptions: [
+    },
+    {
+      id: 'offsetAmount',
+      label: 'Offset Amount',
+      description: 'The amount of time to offset the reference date.',
+      inputType: 'number',
+      hideCustomTab: true,
+      defaultValue: 1,
+      numberOptions: {
+        min: 1,
+        step: 1,
+      },
+      loadOptions: {
+        dependsOn: [
           {
-            label: 'Minutes',
-            value: 'minutes',
-          },
-          {
-            label: 'Hours',
-            value: 'hours',
-          },
-          {
-            label: 'Days',
-            value: 'days',
-          },
-          {
-            label: 'Weeks',
-            value: 'weeks',
-          },
-          {
-            label: 'Months',
-            value: 'months',
+            id: 'offsetType',
+            value: 'before',
           },
         ],
-        loadOptions: {
-          dependsOn: [
-            {
-              id: 'offsetType',
-              value: 'before',
-            },
-          ],
-        },
       },
-      {
-        id: 'offsetUnit',
-        label: 'Offset Unit',
-        inputType: 'select',
-        description: 'The unit of time to offset the reference date.',
-        defaultValue: 'days',
-        hideCustomTab: true,
-        selectOptions: [
+    },
+    {
+      id: 'offsetAmount',
+      label: 'Offset Amount',
+      description: 'The amount of time to offset the reference date.',
+      inputType: 'number',
+      hideCustomTab: true,
+      numberOptions: {
+        min: 1,
+        step: 1,
+      },
+      defaultValue: 1,
+      loadOptions: {
+        dependsOn: [
           {
-            label: 'Minutes',
-            value: 'minutes',
-          },
-          {
-            label: 'Hours',
-            value: 'hours',
-          },
-          {
-            label: 'Days',
-            value: 'days',
-          },
-          {
-            label: 'Weeks',
-            value: 'weeks',
-          },
-          {
-            label: 'Months',
-            value: 'months',
+            id: 'offsetType',
+            value: 'after',
           },
         ],
-        loadOptions: {
-          dependsOn: [
-            {
-              id: 'offsetType',
-              value: 'after',
-            },
-          ],
-        },
       },
-      {
-        id: 'offsetAmount',
-        label: 'Offset Amount',
-        description: 'The amount of time to offset the reference date.',
-        inputType: 'number',
-        hideCustomTab: true,
-        defaultValue: 1,
-        numberOptions: {
-          min: 1,
-          step: 1,
+    },
+    {
+      id: 'howToHandlePastDates',
+      label: 'How to handle past dates?',
+      inputType: 'select',
+      hideCustomTab: true,
+      selectOptions: [
+        {
+          label: 'Always continue',
+          value: 'always-continue',
         },
-        loadOptions: {
-          dependsOn: [
-            {
-              id: 'offsetType',
-              value: 'before',
-            },
-          ],
+        {
+          label: `Continue if it's up to 15 minutes`,
+          value: 'continue-if-15-minutes',
         },
+        {
+          label: `Continue if it's up to 1 hour`,
+          value: 'continue-if-1-hour',
+        },
+        {
+          label: `Continue if it's up to 1 day`,
+          value: 'continue-if-1-day',
+        },
+        {
+          label: `Continue if it's up to 1 week`,
+          value: 'continue-if-1-week',
+        },
+        {
+          label: `Continue if it's up to 1 month`,
+          value: 'continue-if-1-month',
+        },
+      ],
+      description:
+        'If the calculated date is in the past, how should we handle it? This includes a future reference date with offsets making the calculated date in the past.',
+      defaultValue: 'always-continue',
+      required: {
+        missingMessage: 'How to handle past dates is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'offsetAmount',
-        label: 'Offset Amount',
-        description: 'The amount of time to offset the reference date.',
-        inputType: 'number',
-        hideCustomTab: true,
-        numberOptions: {
-          min: 1,
-          step: 1,
-        },
-        defaultValue: 1,
-        loadOptions: {
-          dependsOn: [
-            {
-              id: 'offsetType',
-              value: 'after',
-            },
-          ],
-        },
-      },
-      {
-        id: 'howToHandlePastDates',
-        label: 'How to handle past dates?',
-        inputType: 'select',
-        hideCustomTab: true,
-        selectOptions: [
-          {
-            label: 'Always continue',
-            value: 'always-continue',
-          },
-          {
-            label: `Continue if it's up to 15 minutes`,
-            value: 'continue-if-15-minutes',
-          },
-          {
-            label: `Continue if it's up to 1 hour`,
-            value: 'continue-if-1-hour',
-          },
-          {
-            label: `Continue if it's up to 1 day`,
-            value: 'continue-if-1-day',
-          },
-          {
-            label: `Continue if it's up to 1 week`,
-            value: 'continue-if-1-week',
-          },
-          {
-            label: `Continue if it's up to 1 month`,
-            value: 'continue-if-1-month',
-          },
-        ],
-        description:
-          'If the calculated date is in the past, how should we handle it? This includes a future reference date with offsets making the calculated date in the past.',
-        defaultValue: 'always-continue',
-        required: {
-          missingMessage: 'How to handle past dates is required',
-          missingStatus: 'warning',
-        },
-      },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -421,7 +404,7 @@ type Response = {
   immediatelyRun: boolean;
 };
 
-type ConfigValue = z.infer<ReturnType<Schedule['aiSchema']>> & {
+type ConfigValue = z.infer<Schedule['aiSchema']> & {
   referenceDate: string;
   offsetType: 'no-offset' | 'before' | 'after';
   offsetAmount: number;

@@ -15,21 +15,10 @@ export class NewLead extends TimeBasedPollTrigger {
 
   app: ZohoCrm;
 
-  id() {
-    return 'zoho-crm_trigger_new-lead';
-  }
-
-  name() {
-    return 'New Lead';
-  }
-
-  description() {
-    return 'Triggers when a new lead is created in Zoho CRM';
-  }
-
-  inputConfig(): InputConfig[] {
-    return [];
-  }
+  id = 'zoho-crm_trigger_new-lead';
+  name = 'New Lead';
+  description = 'Triggers when a new lead is created in Zoho CRM';
+  inputConfig: InputConfig[] = [];
 
   async run({
     connection,

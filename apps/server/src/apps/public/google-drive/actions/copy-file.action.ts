@@ -16,52 +16,42 @@ export class CopyFile extends Action {
   }
 
   app: GoogleDrive;
-  id() {
-    return 'google-drive_action_copy-file';
-  }
-  name() {
-    return 'Copy File';
-  }
-  description() {
-    return 'Copies a file into a designated folder.';
-  }
-  aiSchema() {
-    return z.object({
-      file: z.string().min(1).describe('The ID of the file to copy'),
-      'file-name': z.string().min(1).describe('The name of the copied file'),
-      'parent-folder': z
-        .string()
-        .nullable()
-        .optional()
-        .describe('The ID of the folder where the new document will be saved'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        ...this.app.dynamicSelectFile(),
-        label: 'File to Copy',
-        description: 'File to copy',
+  id = 'google-drive_action_copy-file';
+  name = 'Copy File';
+  description = 'Copies a file into a designated folder.';
+  aiSchema = z.object({
+    file: z.string().min(1).describe('The ID of the file to copy'),
+    'file-name': z.string().min(1).describe('The name of the copied file'),
+    'parent-folder': z
+      .string()
+      .nullable()
+      .optional()
+      .describe('The ID of the folder where the new document will be saved'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      ...this.app.dynamicSelectFile(),
+      label: 'File to Copy',
+      description: 'File to copy',
+    },
+    {
+      ...this.app.dynamicSelectFolder(),
+      id: 'parent-folder',
+      label: 'Target Folder',
+      description: 'Select the folder where the new document will be saved.',
+    },
+    {
+      id: 'file-name',
+      label: 'File Name',
+      description: 'The name of the copied file.',
+      inputType: 'text',
+      placeholder: 'Add a file name',
+      required: {
+        missingMessage: 'File Name is required',
+        missingStatus: 'warning',
       },
-      {
-        ...this.app.dynamicSelectFolder(),
-        id: 'parent-folder',
-        label: 'Target Folder',
-        description: 'Select the folder where the new document will be saved.',
-      },
-      {
-        id: 'file-name',
-        label: 'File Name',
-        description: 'The name of the copied file.',
-        inputType: 'text',
-        placeholder: 'Add a file name',
-        required: {
-          missingMessage: 'File Name is required',
-          missingStatus: 'warning',
-        },
-      },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -104,4 +94,4 @@ export class CopyFile extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<CopyFile['aiSchema']>>;
+type ConfigValue = z.infer<CopyFile['aiSchema']>;

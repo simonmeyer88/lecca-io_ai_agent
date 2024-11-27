@@ -15,23 +15,16 @@ export class NewDocumentInFolder extends TimeBasedPollTrigger {
   }
 
   app: GoogleDocs;
-  id() {
-    return 'google-docs_trigger_new-document-in-folder';
-  }
-  name() {
-    return 'New Document in Folder';
-  }
-  description() {
-    return 'Triggers when a new document is created inside selected folder (not subfolders).';
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        ...this.app.dynamicSelectFolder(),
-        description: 'Select the folder to watch for new documents',
-      },
-    ];
-  }
+  id = 'google-docs_trigger_new-document-in-folder';
+  name = 'New Document in Folder';
+  description =
+    'Triggers when a new document is created inside selected folder (not subfolders).';
+  inputConfig: InputConfig[] = [
+    {
+      ...this.app.dynamicSelectFolder(),
+      description: 'Select the folder to watch for new documents',
+    },
+  ];
 
   async run({
     connection,

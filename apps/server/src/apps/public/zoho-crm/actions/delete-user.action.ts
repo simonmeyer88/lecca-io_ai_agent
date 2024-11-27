@@ -15,31 +15,16 @@ export class DeleteUser extends Action {
   }
 
   app: ZohoCrm;
-
-  id() {
-    return 'zoho-crm_action_delete-user';
-  }
-
-  name() {
-    return 'Delete User';
-  }
-
-  description() {
-    return 'Delete a user from by user ID.';
-  }
-
-  aiSchema() {
-    return z.object({
-      userId: z
-        .string()
-        .min(1)
-        .describe('The ID of the user to delete from ZohoCRM'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [this.app.dynamicGetUsers()];
-  }
+  id = 'zoho-crm_action_delete-user';
+  name = 'Delete User';
+  description = 'Delete a user from by user ID.';
+  aiSchema = z.object({
+    userId: z
+      .string()
+      .min(1)
+      .describe('The ID of the user to delete from ZohoCRM'),
+  });
+  inputConfig: InputConfig[] = [this.app.dynamicGetUsers()];
 
   async run({
     configValue,
@@ -78,4 +63,4 @@ export class DeleteUser extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<DeleteUser['aiSchema']>>;
+type ConfigValue = z.infer<DeleteUser['aiSchema']>;

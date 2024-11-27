@@ -15,45 +15,35 @@ export class DropboxListFolderContents extends Action {
   }
 
   app: Dropbox;
-  id() {
-    return 'dropbox_action_list-folder-contents';
-  }
-  name() {
-    return 'List Folder Contents';
-  }
-  description() {
-    return 'List folder contents from Dropbox account';
-  }
-  aiSchema() {
-    return z.object({
-      path: z
-        .string()
-        .min(1)
-        .nullable()
-        .optional()
-        .describe(
-          'The path of the folder to list contents from. Leave empty if you want to retrieve the root folder',
-        ),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'path',
-        label: 'Folder Path',
-        description:
-          'The path of the folder to list contents from. Leave empty if you want to retrieve the root folder',
-        inputType: 'text',
-        placeholder: 'Leave empty to use root folder',
-      },
-    ];
-  }
+  id = 'dropbox_action_list-folder-contents';
+  name = 'List Folder Contents';
+  description = 'List folder contents from Dropbox account';
+  aiSchema = z.object({
+    path: z
+      .string()
+      .min(1)
+      .nullable()
+      .optional()
+      .describe(
+        'The path of the folder to list contents from. Leave empty if you want to retrieve the root folder',
+      ),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'path',
+      label: 'Folder Path',
+      description:
+        'The path of the folder to list contents from. Leave empty if you want to retrieve the root folder',
+      inputType: 'text',
+      placeholder: 'Leave empty to use root folder',
+    },
+  ];
 
   async run({
     configValue,
     connection,
     workspaceId,
-  }: RunActionArgs<ConfigValue>): Promise<ResponseType> {
+  }: RunActionArgs<ConfigValue>): Promise<Response> {
     const url = 'https://api.dropboxapi.com/2/files/list_folder';
 
     const data = {
@@ -79,7 +69,7 @@ export class DropboxListFolderContents extends Action {
     }
   }
 
-  async mockRun(): Promise<ResponseType> {
+  async mockRun(): Promise<Response> {
     return {
       folders: [
         {
@@ -95,7 +85,9 @@ export class DropboxListFolderContents extends Action {
   }
 }
 
-type ResponseType = {
+type ConfigValue = z.infer<DropboxListFolderContents['aiSchema']>;
+
+type Response = {
   folders: Array<{
     name: string;
     id: string;
@@ -104,5 +96,3 @@ type ResponseType = {
     '.tag': 'file' | 'folder';
   }>;
 };
-
-type ConfigValue = z.infer<ReturnType<DropboxListFolderContents['aiSchema']>>;

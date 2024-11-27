@@ -15,40 +15,30 @@ export class CreateSheet extends Action {
   }
 
   app: GoogleSheets;
-  id() {
-    return 'google-sheets_action_create-sheet';
-  }
-  name() {
-    return 'Create Sheet';
-  }
-  description() {
-    return 'Creates a new sheet in an existing Google Sheets document.';
-  }
-  aiSchema() {
-    return z.object({
-      spreadsheet: z
-        .string()
-        .min(1)
-        .describe('The ID of the Google Sheets document.'),
-      sheetTitle: z.string().min(1).describe('The title of the new sheet.'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectSpreadSheets(),
-      {
-        id: 'sheetTitle',
-        label: 'Sheet Title',
-        description: 'The title of the new sheet.',
-        inputType: 'text',
-        placeholder: 'Enter sheet title',
-        required: {
-          missingMessage: 'Sheet title is required',
-          missingStatus: 'warning',
-        },
+  id = 'google-sheets_action_create-sheet';
+  name = 'Create Sheet';
+  description = 'Creates a new sheet in an existing Google Sheets document.';
+  aiSchema = z.object({
+    spreadsheet: z
+      .string()
+      .min(1)
+      .describe('The ID of the Google Sheets document.'),
+    sheetTitle: z.string().min(1).describe('The title of the new sheet.'),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectSpreadSheets(),
+    {
+      id: 'sheetTitle',
+      label: 'Sheet Title',
+      description: 'The title of the new sheet.',
+      inputType: 'text',
+      placeholder: 'Enter sheet title',
+      required: {
+        missingMessage: 'Sheet title is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -102,4 +92,4 @@ export class CreateSheet extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<CreateSheet['aiSchema']>>;
+type ConfigValue = z.infer<CreateSheet['aiSchema']>;

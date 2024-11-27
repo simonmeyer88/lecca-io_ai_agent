@@ -14,18 +14,10 @@ export class NewFormResponse extends TimeBasedPollTrigger {
   }
 
   app: GoogleForms;
-  id() {
-    return 'google-forms_trigger_new-form-response';
-  }
-  name() {
-    return 'New Form Response';
-  }
-  description() {
-    return 'Triggers when a form is filled out';
-  }
-  inputConfig(): InputConfig[] {
-    return [this.app.dynamicSelectForm()];
-  }
+  id = 'google-forms_trigger_new-form-response';
+  name = 'New Form Response';
+  description = 'Triggers when a form is filled out';
+  inputConfig: InputConfig[] = [this.app.dynamicSelectForm()];
 
   async run({
     connection,

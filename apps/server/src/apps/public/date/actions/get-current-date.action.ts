@@ -20,64 +20,42 @@ export class GetCurrentDate extends Action {
 
   app: DateHelper;
 
-  id() {
-    return 'date_action_get-current-date';
-  }
-
-  name() {
-    return 'Get Current Date';
-  }
-
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
-  }
-
-  needsConnection(): boolean {
-    return false;
-  }
-
-  description() {
-    return 'Gets the current date using the provided timezone.';
-  }
-
-  viewOptions(): null | NodeViewOptions {
-    return {
-      saveButtonOptions: {
-        replaceSaveAndTestButton: {
-          label: 'Save & Test',
-          type: 'real',
-        },
+  id = 'date_action_get-current-date';
+  name = 'Get Current Date';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
+  needsConnection = false;
+  description = 'Gets the current date using the provided timezone.';
+  viewOptions: null | NodeViewOptions = {
+    saveButtonOptions: {
+      replaceSaveAndTestButton: {
+        label: 'Save & Test',
+        type: 'real',
       },
-    };
-  }
-
-  aiSchema() {
-    return z.object({
-      timeZone: z
-        .string()
-        .describe(
-          "IANA Time Zones follows this convention: {AREA}/{LOCATION}. Ask user if you don't know the timezone",
-        ),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'timeZone',
-        label: 'Time Zone',
-        description: 'Event time zone',
-        inputType: 'dynamic-select',
-        _getDynamicValues: async () => {
-          return timezoneDropdown;
-        },
-        required: {
-          missingMessage: 'Time Zone is required',
-          missingStatus: 'warning',
-        },
+    },
+  };
+  aiSchema = z.object({
+    timeZone: z
+      .string()
+      .describe(
+        "IANA Time Zones follows this convention: {AREA}/{LOCATION}. Ask user if you don't know the timezone",
+      ),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'timeZone',
+      label: 'Time Zone',
+      description: 'Event time zone',
+      inputType: 'dynamic-select',
+      _getDynamicValues: async () => {
+        return timezoneDropdown;
       },
-    ];
-  }
+      required: {
+        missingMessage: 'Time Zone is required',
+        missingStatus: 'warning',
+      },
+    },
+  ];
 
   async run({ configValue }: RunActionArgs<ConfigValue>): Promise<Response> {
     const timezone = configValue.timeZone;
@@ -90,7 +68,7 @@ export class GetCurrentDate extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<GetCurrentDate['aiSchema']>>;
+type ConfigValue = z.infer<GetCurrentDate['aiSchema']>;
 
 type Response = {
   date: string;

@@ -15,18 +15,10 @@ export class NewDocument extends TimeBasedPollTrigger {
   }
 
   app: GoogleDocs;
-  id() {
-    return 'google-docs_trigger_new-document';
-  }
-  name() {
-    return 'New Document';
-  }
-  description() {
-    return 'Triggers when a new document is created inside any folder';
-  }
-  inputConfig(): InputConfig[] {
-    return [];
-  }
+  id = 'google-docs_trigger_new-document';
+  name = 'New Document';
+  description = 'Triggers when a new document is created inside any folder';
+  inputConfig: InputConfig[] = [];
 
   async run({
     connection,

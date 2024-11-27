@@ -15,40 +15,30 @@ export class SendMessageToUser extends Action {
   }
 
   app: Slack;
-  id() {
-    return 'slack_action_send-message-to-user';
-  }
-  name() {
-    return 'Send Message to User';
-  }
-  description() {
-    return 'Sends a message to a user';
-  }
-  aiSchema() {
-    return z.object({
-      userId: z
-        .string()
-        .min(1)
-        .describe('The ID of the user to send the message to'),
-      message: z.string().min(1).describe('The message to send to the user'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectUser(),
-      {
-        id: 'message',
-        label: 'Message',
-        description: 'Message to send to the user',
-        inputType: 'text',
-        placeholder: 'Add a message',
-        required: {
-          missingMessage: 'Message is required',
-          missingStatus: 'warning',
-        },
+  id = 'slack_action_send-message-to-user';
+  name = 'Send Message to User';
+  description = 'Sends a message to a user';
+  aiSchema = z.object({
+    userId: z
+      .string()
+      .min(1)
+      .describe('The ID of the user to send the message to'),
+    message: z.string().min(1).describe('The message to send to the user'),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectUser(),
+    {
+      id: 'message',
+      label: 'Message',
+      description: 'Message to send to the user',
+      inputType: 'text',
+      placeholder: 'Add a message',
+      required: {
+        missingMessage: 'Message is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -133,4 +123,4 @@ type ResponseType = {
   };
 };
 
-type ConfigValue = z.infer<ReturnType<SendMessageToUser['aiSchema']>>;
+type ConfigValue = z.infer<SendMessageToUser['aiSchema']>;

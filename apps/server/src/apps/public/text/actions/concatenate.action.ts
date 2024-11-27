@@ -18,71 +18,49 @@ export class Concatenate extends Action {
 
   app: Text;
 
-  id() {
-    return 'text_action_concatenate';
-  }
-
-  name() {
-    return 'Concatenate Text';
-  }
-
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
-  }
-
-  needsConnection(): boolean {
-    return false;
-  }
-
-  description() {
-    return 'Concatenates two more texts together';
-  }
-
-  viewOptions(): null | NodeViewOptions {
-    return {
-      saveButtonOptions: {
-        replaceSaveAndTestButton: {
-          label: 'Save & Test',
-          type: 'real',
-        },
+  id = 'text_action_concatenate';
+  name = 'Concatenate Text';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
+  needsConnection = false;
+  description = 'Concatenates two more texts together';
+  viewOptions: null | NodeViewOptions = {
+    saveButtonOptions: {
+      replaceSaveAndTestButton: {
+        label: 'Save & Test',
+        type: 'real',
       },
-    };
-  }
-
-  aiSchema() {
-    return z.object({
-      texts: z.array(z.string()).min(1).describe('texts to join'),
-      separator: z
-        .string()
-        .nullable()
-        .optional()
-        .describe('The character used to join the texts'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'texts',
-        label: 'Text',
-        description: '',
-        inputType: 'text',
-        occurenceType: 'multiple',
-        required: {
-          missingMessage: 'Text is required',
-          missingStatus: 'warning',
-        },
+    },
+  };
+  aiSchema = z.object({
+    texts: z.array(z.string()).min(1).describe('texts to join'),
+    separator: z
+      .string()
+      .nullable()
+      .optional()
+      .describe('The character used to join the texts'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'texts',
+      label: 'Text',
+      description: '',
+      inputType: 'text',
+      occurenceType: 'multiple',
+      required: {
+        missingMessage: 'Text is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'separator',
-        label: 'Separator',
-        description:
-          'The text character that is used between each text. For example, if you enter ",", all the texts will be joined together with a "," between them.',
-        inputType: 'text',
-        placeholder: 'Add optional text',
-      },
-    ];
-  }
+    },
+    {
+      id: 'separator',
+      label: 'Separator',
+      description:
+        'The text character that is used between each text. For example, if you enter ",", all the texts will be joined together with a "," between them.',
+      inputType: 'text',
+      placeholder: 'Add optional text',
+    },
+  ];
 
   async run({ configValue }: RunActionArgs<ConfigValue>): Promise<Response> {
     const { texts, separator } = configValue;
@@ -95,7 +73,7 @@ export class Concatenate extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<Concatenate['aiSchema']>>;
+type ConfigValue = z.infer<Concatenate['aiSchema']>;
 
 type Response = {
   result: string;

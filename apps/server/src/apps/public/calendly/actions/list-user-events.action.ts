@@ -17,119 +17,104 @@ export class ListUserEvents extends Action {
 
   app: Calendly;
 
-  id() {
-    return 'calendly_action_list-user-events';
-  }
-
-  name() {
-    return 'List User Events';
-  }
-
-  description() {
-    return 'Retrieves a list of events for a specific user.';
-  }
-
-  aiSchema() {
-    return z.object({
-      userUri: z
-        .string()
-        .min(1)
-        .describe(
-          'User URI of the Calendly account owner whose events you want to list',
-        ),
-      startDateTime: z
-        .string()
-        .nullable()
-        .optional()
-        .describe('Start time for filtering events (ISO string, optional)'),
-      endDateTime: z
-        .string()
-        .nullable()
-        .optional()
-        .describe('End time for filtering events (ISO string, optional)'),
-      inviteeEmail: z
-        .string()
-        .nullable()
-        .optional()
-        .describe('Only return events with this invitee email'),
-      status: z.enum(['all', 'active', 'canceled']).optional().default('all'),
-      count: z.number().max(50).nullable().optional().default(20),
-      sort: z.enum(['asc', 'desc']).optional().default('asc'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicGetUserURIs(),
-      {
-        id: 'startDateTime',
-        label: 'Start Date',
-        description:
-          'Filter events that occur after this start time (ISO format)',
-        inputType: 'date-time',
-      },
-      {
-        id: 'endDateTime',
-        label: 'End Date',
-        description:
-          'Filter events that occur before this end time (ISO format)',
-        inputType: 'date-time',
-      },
-      {
-        id: 'inviteeEmail',
-        label: 'Invitee Email',
-        description: 'Only return events with this invitee email',
-        inputType: 'text',
-        placeholder: 'Add email',
-      },
-      {
-        id: 'status',
-        label: 'Status',
-        description: 'Filter events by status',
-        inputType: 'select',
-        selectOptions: [
-          {
-            label: 'All',
-            value: 'all',
-          },
-          {
-            label: 'Active',
-            value: 'active',
-          },
-          {
-            label: 'Canceled',
-            value: 'canceled',
-          },
-        ],
-        defaultValue: 'all',
-      },
-      {
-        id: 'count',
-        label: 'Count',
-        description: 'Number of events to return. Maximum is 50',
-        inputType: 'number',
-        defaultValue: 20,
-        placeholder: '20',
-      },
-      {
-        id: 'sort',
-        label: 'Sort',
-        description: 'Sort events by start time',
-        inputType: 'select',
-        selectOptions: [
-          {
-            label: 'Ascending',
-            value: 'asc',
-          },
-          {
-            label: 'Descending',
-            value: 'desc',
-          },
-        ],
-        defaultValue: 'asc',
-      },
-    ];
-  }
+  id = 'calendly_action_list-user-events';
+  name = 'List User Events';
+  description = 'Retrieves a list of events for a specific user.';
+  aiSchema = z.object({
+    userUri: z
+      .string()
+      .min(1)
+      .describe(
+        'User URI of the Calendly account owner whose events you want to list',
+      ),
+    startDateTime: z
+      .string()
+      .nullable()
+      .optional()
+      .describe('Start time for filtering events (ISO string, optional)'),
+    endDateTime: z
+      .string()
+      .nullable()
+      .optional()
+      .describe('End time for filtering events (ISO string, optional)'),
+    inviteeEmail: z
+      .string()
+      .nullable()
+      .optional()
+      .describe('Only return events with this invitee email'),
+    status: z.enum(['all', 'active', 'canceled']).optional().default('all'),
+    count: z.number().max(50).nullable().optional().default(20),
+    sort: z.enum(['asc', 'desc']).optional().default('asc'),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicGetUserURIs(),
+    {
+      id: 'startDateTime',
+      label: 'Start Date',
+      description:
+        'Filter events that occur after this start time (ISO format)',
+      inputType: 'date-time',
+    },
+    {
+      id: 'endDateTime',
+      label: 'End Date',
+      description: 'Filter events that occur before this end time (ISO format)',
+      inputType: 'date-time',
+    },
+    {
+      id: 'inviteeEmail',
+      label: 'Invitee Email',
+      description: 'Only return events with this invitee email',
+      inputType: 'text',
+      placeholder: 'Add email',
+    },
+    {
+      id: 'status',
+      label: 'Status',
+      description: 'Filter events by status',
+      inputType: 'select',
+      selectOptions: [
+        {
+          label: 'All',
+          value: 'all',
+        },
+        {
+          label: 'Active',
+          value: 'active',
+        },
+        {
+          label: 'Canceled',
+          value: 'canceled',
+        },
+      ],
+      defaultValue: 'all',
+    },
+    {
+      id: 'count',
+      label: 'Count',
+      description: 'Number of events to return. Maximum is 50',
+      inputType: 'number',
+      defaultValue: 20,
+      placeholder: '20',
+    },
+    {
+      id: 'sort',
+      label: 'Sort',
+      description: 'Sort events by start time',
+      inputType: 'select',
+      selectOptions: [
+        {
+          label: 'Ascending',
+          value: 'asc',
+        },
+        {
+          label: 'Descending',
+          value: 'desc',
+        },
+      ],
+      defaultValue: 'asc',
+    },
+  ];
 
   async run({
     configValue,
@@ -246,8 +231,8 @@ const mock = [
   },
 ];
 
+type ConfigValue = z.infer<ListUserEvents['aiSchema']>;
+
 type Response = {
   events: typeof mock;
 };
-
-type ConfigValue = z.infer<ReturnType<ListUserEvents['aiSchema']>>;

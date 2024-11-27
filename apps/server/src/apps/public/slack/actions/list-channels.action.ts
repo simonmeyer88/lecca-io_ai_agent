@@ -15,21 +15,11 @@ export class ListChannels extends Action {
   }
 
   app: Slack;
-  id() {
-    return 'slack_action_list-channels';
-  }
-  name() {
-    return 'List Channels';
-  }
-  description() {
-    return 'Lists all channels in a Slack workspace';
-  }
-  aiSchema() {
-    return z.object({});
-  }
-  inputConfig(): InputConfig[] {
-    return [];
-  }
+  id = 'slack_action_list-channels';
+  name = 'List Channels';
+  description = 'Lists all channels in a Slack workspace';
+  aiSchema = z.object({});
+  inputConfig: InputConfig[] = [];
 
   async run({
     connection,
@@ -108,4 +98,4 @@ type ResponseType = {
   channels: Channel[];
 };
 
-type ConfigValue = z.infer<ReturnType<ListChannels['aiSchema']>>;
+type ConfigValue = z.infer<ListChannels['aiSchema']>;

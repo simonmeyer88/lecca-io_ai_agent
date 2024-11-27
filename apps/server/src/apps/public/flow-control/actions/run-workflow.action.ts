@@ -18,133 +18,117 @@ export class RunWorkflow extends Action {
   }
 
   app: FlowControl;
-  needsConnection(): boolean {
-    return false;
-  }
-  id() {
-    return `flow-control_action_run-workflow`;
-  }
-  name() {
-    return 'Run Workflow';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id()}.svg`;
-  }
-  description() {
-    return 'Trigger one of your workflows.';
-  }
-
-  viewOptions(): null | NodeViewOptions {
-    return {
-      saveButtonOptions: {
-        replaceSaveAndTestButton: {
-          label: 'Save',
-          type: 'mock',
-        },
-        hideSaveButton: true,
-        //The behavior is weird if the workflow has to wait or needs input. It just ends up sitting there and timing out. So we'll just not let them run it as a test.
-        //If they want to really test it, they'll just need to go to that workflow and test it.
-        // replaceSaveButton:
-        // {
-        //   label: 'Run',
-        //   type: 'real',
-        // },
+  needsConnection = false;
+  id = `flow-control_action_run-workflow`;
+  name = 'Run Workflow';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id}.svg`;
+  description = 'Trigger one of your workflows.';
+  viewOptions: null | NodeViewOptions = {
+    saveButtonOptions: {
+      replaceSaveAndTestButton: {
+        label: 'Save',
+        type: 'mock',
       },
-    };
-  }
-  aiSchema() {
-    return z.object({});
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'workflowId',
-        label: 'Workflow',
-        inputType: 'dynamic-select',
-        description:
-          'Only manual and scheduled workflows can be triggered by a workflow.',
-        placeholder: 'Select a workflow',
-        hideCustomTab: true,
-        _getDynamicValues: async ({ projectId, workflowId }) => {
-          const projectWorkflows = await this.app.prisma.workflow.findMany({
-            where: {
-              AND: [
-                {
-                  id: { not: workflowId },
-                },
-                {
-                  FK_projectId: projectId,
-                },
-                {
-                  strategy: { in: ['manual', 'schedule'] }, //These are the only workflows that can be triggered manually at the moment
-                },
-              ],
-            },
-            select: {
-              id: true,
-              name: true,
-            },
-          });
+      hideSaveButton: true,
+      //The behavior is weird if the workflow has to wait or needs input. It just ends up sitting there and timing out. So we'll just not let them run it as a test.
+      //If they want to really test it, they'll just need to go to that workflow and test it.
+      // replaceSaveButton:
+      // {
+      //   label: 'Run',
+      //   type: 'real',
+      // },
+    },
+  };
+  aiSchema = z.object({});
+  inputConfig: InputConfig[] = [
+    {
+      id: 'workflowId',
+      label: 'Workflow',
+      inputType: 'dynamic-select',
+      description:
+        'Only manual and scheduled workflows can be triggered by a workflow.',
+      placeholder: 'Select a workflow',
+      hideCustomTab: true,
+      _getDynamicValues: async ({ projectId, workflowId }) => {
+        const projectWorkflows = await this.app.prisma.workflow.findMany({
+          where: {
+            AND: [
+              {
+                id: { not: workflowId },
+              },
+              {
+                FK_projectId: projectId,
+              },
+              {
+                strategy: { in: ['manual', 'schedule'] }, //These are the only workflows that can be triggered manually at the moment
+              },
+            ],
+          },
+          select: {
+            id: true,
+            name: true,
+          },
+        });
 
-          return projectWorkflows.map((workflow) => ({
-            label: workflow.name,
-            value: workflow.id,
-          }));
-        },
-        required: {
-          missingMessage: 'Workflow is required',
-          missingStatus: 'warning',
-        },
+        return projectWorkflows.map((workflow) => ({
+          label: workflow.name,
+          value: workflow.id,
+        }));
       },
-      {
-        id: 'customInputConfigValues',
-        inputType: 'dynamic-input-config',
-        label: 'Workflow Input Data',
-        description:
-          'These are the custom fields configured in the workflow "Manually Run" trigger.',
-        loadOptions: {
-          dependsOn: ['workflowId'],
-          workflowOnly: true,
-          forceRefresh: true,
-        },
-        _getDynamicValues: async ({ projectId, extraOptions }) => {
-          const { workflowId } = extraOptions as { workflowId: string };
-
-          if (!workflowId) {
-            throw new Error('Workflow ID is required');
-          }
-
-          const workflow = await this.app.prisma.workflow.findFirst({
-            where: {
-              AND: [
-                { id: workflowId },
-                {
-                  FK_projectId: projectId,
-                },
-              ],
-            },
-            select: {
-              triggerNode: true,
-            },
-          });
-
-          if (!workflow) {
-            throw new Error('Workflow not found');
-          }
-
-          const triggerNode = workflow.triggerNode as WorkflowNodeForRunner;
-
-          return (
-            triggerNode.value?.customInputConfig?.map((input: FieldConfig) => {
-              const formattedInput = { ...input };
-              formattedInput.label = input.id;
-              return formattedInput;
-            }) ?? []
-          ); //This should be a InputConfig
-        },
+      required: {
+        missingMessage: 'Workflow is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+    {
+      id: 'customInputConfigValues',
+      inputType: 'dynamic-input-config',
+      label: 'Workflow Input Data',
+      description:
+        'These are the custom fields configured in the workflow "Manually Run" trigger.',
+      loadOptions: {
+        dependsOn: ['workflowId'],
+        workflowOnly: true,
+        forceRefresh: true,
+      },
+      _getDynamicValues: async ({ projectId, extraOptions }) => {
+        const { workflowId } = extraOptions as { workflowId: string };
+
+        if (!workflowId) {
+          throw new Error('Workflow ID is required');
+        }
+
+        const workflow = await this.app.prisma.workflow.findFirst({
+          where: {
+            AND: [
+              { id: workflowId },
+              {
+                FK_projectId: projectId,
+              },
+            ],
+          },
+          select: {
+            triggerNode: true,
+          },
+        });
+
+        if (!workflow) {
+          throw new Error('Workflow not found');
+        }
+
+        const triggerNode = workflow.triggerNode as WorkflowNodeForRunner;
+
+        return (
+          triggerNode.value?.customInputConfig?.map((input: FieldConfig) => {
+            const formattedInput = { ...input };
+            formattedInput.label = input.id;
+            return formattedInput;
+          }) ?? []
+        ); //This should be a InputConfig
+      },
+    },
+  ];
 
   async run({
     configValue,
@@ -291,7 +275,7 @@ type Response = {
   note?: string;
 };
 
-type ConfigValue = z.infer<ReturnType<RunWorkflow['aiSchema']>> & {
+type ConfigValue = z.infer<RunWorkflow['aiSchema']> & {
   workflowId: string;
   customInputConfigValues: Record<string, string | number>;
 };

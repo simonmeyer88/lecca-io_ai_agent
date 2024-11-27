@@ -15,28 +15,19 @@ export class GetDatabase extends Action {
   }
 
   app: Notion;
-  id() {
-    return 'notion_action_get-database';
-  }
-  name() {
-    return 'Get Database';
-  }
-  description() {
-    return 'Fetches a specific database from a Notion workspace using its ID';
-  }
-  aiSchema() {
-    return z.object({
-      databaseId: z.string(),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [this.app.dynamicSelectDatabase()];
-  }
+  id = 'notion_action_get-database';
+  name = 'Get Database';
+  description =
+    'Fetches a specific database from a Notion workspace using its ID';
+  aiSchema = z.object({
+    databaseId: z.string(),
+  });
+  inputConfig: InputConfig[] = [this.app.dynamicSelectDatabase()];
 
   async run({
     connection,
     configValue,
-  }: RunActionArgs<ConfigValue>): Promise<ResponseType> {
+  }: RunActionArgs<ConfigValue>): Promise<Response> {
     const notionLib = this.app.notionLib({
       accessToken: connection.accessToken,
     });
@@ -52,7 +43,7 @@ export class GetDatabase extends Action {
     };
   }
 
-  async mockRun(): Promise<ResponseType> {
+  async mockRun(): Promise<Response> {
     return {
       database: {
         id: 'sample-database-id',
@@ -64,6 +55,6 @@ export class GetDatabase extends Action {
   }
 }
 
-type ResponseType = any;
+type ConfigValue = z.infer<GetDatabase['aiSchema']>;
 
-type ConfigValue = z.infer<ReturnType<GetDatabase['aiSchema']>>;
+type Response = any;

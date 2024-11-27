@@ -17,99 +17,84 @@ export class FindEmails extends Action {
   }
 
   app: Gmail;
-
-  id() {
-    return 'gmail_action_find-email';
-  }
-
-  name() {
-    return 'Find Emails';
-  }
-
-  description() {
-    return 'Find emails in Gmail using a query string';
-  }
-
-  aiSchema() {
-    return z.object({
-      query: z
-        .string()
-        .nonempty()
-        .describe('The search query string to filter emails.'),
-      maxResults: z
-        .number()
-        .min(1)
-        .max(10)
-        .nullable()
-        .optional()
-        .describe('The maximum number of messages to return'),
-      includeBody: z
-        .enum(['true', 'false'])
-        .default('true')
-        .describe('Choose whether to return the email as HTML, text, or both'),
-      htmlOrText: z
-        .enum(['html', 'text', 'both'])
-        .describe('Choose whether to return the email as HTML, text, or both'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        label: 'Search Query',
-        id: 'query',
-        inputType: 'text',
-        placeholder: 'Enter search query',
-        description:
-          'Behaves like the search bar in your gmail search. Try filters like "from:john@example.com", "subject:hello", "subject:meeting", "label:inbox", "keyword:party", etc.',
-        required: {
-          missingMessage: 'Search query is required',
-          missingStatus: 'warning',
-        },
+  id = 'gmail_action_find-email';
+  name = 'Find Emails';
+  description = 'Find emails in Gmail using a query string';
+  aiSchema = z.object({
+    query: z
+      .string()
+      .nonempty()
+      .describe('The search query string to filter emails.'),
+    maxResults: z
+      .number()
+      .min(1)
+      .max(10)
+      .nullable()
+      .optional()
+      .describe('The maximum number of messages to return'),
+    includeBody: z
+      .enum(['true', 'false'])
+      .default('true')
+      .describe('Choose whether to return the email as HTML, text, or both'),
+    htmlOrText: z
+      .enum(['html', 'text', 'both'])
+      .describe('Choose whether to return the email as HTML, text, or both'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      label: 'Search Query',
+      id: 'query',
+      inputType: 'text',
+      placeholder: 'Enter search query',
+      description:
+        'Behaves like the search bar in your gmail search. Try filters like "from:john@example.com", "subject:hello", "subject:meeting", "label:inbox", "keyword:party", etc.',
+      required: {
+        missingMessage: 'Search query is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'includeBody',
-        label: 'Include Email Body',
-        inputType: 'switch',
-        switchOptions: {
-          checked: 'true',
-          unchecked: 'false',
-          defaultChecked: true,
-        },
-        description:
-          'If disabled the body of the email will not be returned. This is useful for reducing the amount of data being loaded if used by an AI Agent.',
+    },
+    {
+      id: 'includeBody',
+      label: 'Include Email Body',
+      inputType: 'switch',
+      switchOptions: {
+        checked: 'true',
+        unchecked: 'false',
+        defaultChecked: true,
       },
-      {
-        label: 'HTML or Text',
-        id: 'htmlOrText',
-        inputType: 'select',
-        defaultValue: 'text',
-        selectOptions: [
-          { value: 'html', label: 'HTML' },
-          { value: 'text', label: 'Text' },
-          { value: 'both', label: 'Both' },
+      description:
+        'If disabled the body of the email will not be returned. This is useful for reducing the amount of data being loaded if used by an AI Agent.',
+    },
+    {
+      label: 'HTML or Text',
+      id: 'htmlOrText',
+      inputType: 'select',
+      defaultValue: 'text',
+      selectOptions: [
+        { value: 'html', label: 'HTML' },
+        { value: 'text', label: 'Text' },
+        { value: 'both', label: 'Both' },
+      ],
+      loadOptions: {
+        dependsOn: [
+          {
+            id: 'includeBody',
+            value: 'true',
+          },
         ],
-        loadOptions: {
-          dependsOn: [
-            {
-              id: 'includeBody',
-              value: 'true',
-            },
-          ],
-        },
-        description:
-          'Choose whether to return the email as HTML, text, or both. Not every email will have both HTML and text versions.',
       },
-      {
-        label: 'Max Results',
-        id: 'maxResults',
-        inputType: 'number',
-        defaultValue: '10',
-        placeholder: 'Add max results',
-        description: 'The maximum number of messages to return',
-      },
-    ];
-  }
+      description:
+        'Choose whether to return the email as HTML, text, or both. Not every email will have both HTML and text versions.',
+    },
+    {
+      label: 'Max Results',
+      id: 'maxResults',
+      inputType: 'number',
+      defaultValue: '10',
+      placeholder: 'Add max results',
+      description: 'The maximum number of messages to return',
+    },
+  ];
 
   async run({
     configValue,
@@ -151,6 +136,6 @@ export class FindEmails extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<FindEmails['aiSchema']>> & {
+type ConfigValue = z.infer<FindEmails['aiSchema']> & {
   pageToken: string | null;
 };

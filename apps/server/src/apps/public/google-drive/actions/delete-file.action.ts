@@ -17,35 +17,25 @@ export class DeleteFile extends Action {
   }
 
   app: GoogleDrive;
-  id() {
-    return 'google-drive_action_delete-file';
-  }
-  name() {
-    return 'Delete File';
-  }
-  description() {
-    return `Delete a file created by ${ServerConfig.PLATFORM_NAME}.`;
-  }
-  aiSchema() {
-    return z.object({
-      file: z.string().min(1).describe('The ID of the file to delete'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'markdown',
-        inputType: 'markdown',
-        label: '',
-        description: '',
-        markdown: `You will only be able to delete files that were created by ${ServerConfig.PLATFORM_NAME}.`,
-      },
-      {
-        ...this.app.dynamicSelectFile(),
-        description: 'Select the file to delete.',
-      },
-    ];
-  }
+  id = 'google-drive_action_delete-file';
+  name = 'Delete File';
+  description = `Delete a file created by ${ServerConfig.PLATFORM_NAME}.`;
+  aiSchema = z.object({
+    file: z.string().min(1).describe('The ID of the file to delete'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'markdown',
+      inputType: 'markdown',
+      label: '',
+      description: '',
+      markdown: `You will only be able to delete files that were created by ${ServerConfig.PLATFORM_NAME}.`,
+    },
+    {
+      ...this.app.dynamicSelectFile(),
+      description: 'Select the file to delete.',
+    },
+  ];
 
   async run({
     configValue,
@@ -74,4 +64,4 @@ export class DeleteFile extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<DeleteFile['aiSchema']>>;
+type ConfigValue = z.infer<DeleteFile['aiSchema']>;

@@ -783,13 +783,13 @@ export class WorkflowsService {
           clearOutput?: boolean;
         };
 
-    if (trigger.strategy() === 'manual') {
+    if (trigger.strategy === 'manual') {
       returnObject = {
         strategy: WorkflowStrategy.manual,
         defaultPollStorage: null,
         triggerNode: newTriggerNode,
       };
-    } else if (trigger.strategy().startsWith('poll')) {
+    } else if (trigger.strategy.startsWith('poll')) {
       let pollStorage: string | undefined;
 
       //1. if thre are no old nodes, then this is new, so we need to set the pollStorage
@@ -805,7 +805,7 @@ export class WorkflowsService {
           oldTriggerNode?.id !== newTriggerNode.id || //2
           oldTriggerNode?.triggerId !== newTriggerNode.triggerId //3
         ) {
-          if (trigger.strategy() === 'poll.dedupe-item-based') {
+          if (trigger.strategy === 'poll.dedupe-item-based') {
             const triggerResponses = await trigger.prepareAndRunTrigger({
               configValue: newTriggerNode.value,
               nodeId: newTriggerNode.id,
@@ -834,7 +834,7 @@ export class WorkflowsService {
                 pollStorage = itemIdentifier;
               }
             }
-          } else if (trigger.strategy() === 'poll.dedupe-length-based') {
+          } else if (trigger.strategy === 'poll.dedupe-length-based') {
             const triggerResponses = await trigger.prepareAndRunTrigger({
               configValue: newTriggerNode.value,
               nodeId: newTriggerNode.id,
@@ -855,11 +855,11 @@ export class WorkflowsService {
             } else {
               pollStorage = triggerResponses.success.length.toString();
             }
-          } else if (trigger.strategy() === 'poll.dedupe-time-based') {
+          } else if (trigger.strategy === 'poll.dedupe-time-based') {
             pollStorage = new Date().getTime().toString();
           } else {
             throw new BadRequestException(
-              `Add poll strategy to extractStrategyFromNodes: ${trigger.strategy()}`,
+              `Add poll strategy to extractStrategyFromNodes: ${trigger.strategy}`,
             );
           }
         }
@@ -870,13 +870,13 @@ export class WorkflowsService {
         defaultPollStorage: pollStorage,
         triggerNode: newTriggerNode,
       };
-    } else if (trigger.strategy().startsWith('webhook')) {
+    } else if (trigger.strategy.startsWith('webhook')) {
       returnObject = {
         strategy: WorkflowStrategy.webhook,
         defaultPollStorage: null,
         triggerNode: newTriggerNode,
       };
-    } else if (trigger.strategy().startsWith('schedule')) {
+    } else if (trigger.strategy.startsWith('schedule')) {
       //Run this because we need to get the next scheduled execution
 
       let nextScheduledExecution: string | undefined;
@@ -912,7 +912,7 @@ export class WorkflowsService {
       };
     } else {
       throw new BadRequestException(
-        `Add strategy to extractStrategyFromNodes: ${trigger.strategy()}`,
+        `Add strategy to extractStrategyFromNodes: ${trigger.strategy}`,
       );
     }
 

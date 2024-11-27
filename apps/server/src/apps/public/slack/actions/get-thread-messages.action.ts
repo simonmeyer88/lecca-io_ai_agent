@@ -16,49 +16,35 @@ export class GetThreadMessages extends Action {
 
   app: Slack;
 
-  id() {
-    return 'slack_action_get-thread-messages';
-  }
-
-  name() {
-    return 'Get Thread Messages';
-  }
-
-  description() {
-    return 'Fetches messages from a Slack thread';
-  }
-
-  aiSchema() {
-    return z.object({
-      channelId: z
-        .string()
-        .min(1)
-        .describe('The ID of the channel where the thread exists'),
-      threadTs: z
-        .string()
-        .min(1)
-        .describe(
-          'The timestamp of the original message in the thread (ts field)',
-        ),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectChannel(),
-      {
-        id: 'threadTs',
-        label: 'Thread Timestamp',
-        description: 'Timestamp of the original message in the thread',
-        inputType: 'text',
-        placeholder: 'Enter the original message timestamp (ts)',
-        required: {
-          missingMessage: 'Thread timestamp is required',
-          missingStatus: 'warning',
-        },
+  id = 'slack_action_get-thread-messages';
+  name = 'Get Thread Messages';
+  description = 'Fetches messages from a Slack thread';
+  aiSchema = z.object({
+    channelId: z
+      .string()
+      .min(1)
+      .describe('The ID of the channel where the thread exists'),
+    threadTs: z
+      .string()
+      .min(1)
+      .describe(
+        'The timestamp of the original message in the thread (ts field)',
+      ),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectChannel(),
+    {
+      id: 'threadTs',
+      label: 'Thread Timestamp',
+      description: 'Timestamp of the original message in the thread',
+      inputType: 'text',
+      placeholder: 'Enter the original message timestamp (ts)',
+      required: {
+        missingMessage: 'Thread timestamp is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -141,4 +127,4 @@ type ResponseType = {
   has_more: boolean;
 };
 
-type ConfigValue = z.infer<ReturnType<GetThreadMessages['aiSchema']>>;
+type ConfigValue = z.infer<GetThreadMessages['aiSchema']>;

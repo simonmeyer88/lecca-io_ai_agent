@@ -15,42 +15,33 @@ export class RenameSheet extends Action {
   }
 
   app: GoogleSheets;
-  id() {
-    return 'google-sheets_action_rename-sheet';
-  }
-  name() {
-    return 'Rename Sheet';
-  }
-  description() {
-    return 'Renames the title of an existing sheet in a Google Sheets document.';
-  }
-  aiSchema() {
-    return z.object({
-      spreadsheet: z
-        .string()
-        .min(1)
-        .describe('The ID of the Google Sheets document.'),
-      sheet: z.string().min(1).describe('The ID of the sheet to be updated.'),
-      newTitle: z.string().min(1).describe('The new title for the sheet.'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectSpreadSheets(),
-      this.app.dynamicSelectSheetIds(),
-      {
-        id: 'newTitle',
-        label: 'New Sheet Title',
-        description: 'The new title for the sheet.',
-        inputType: 'text',
-        placeholder: 'Enter new sheet title',
-        required: {
-          missingMessage: 'New sheet title is required',
-          missingStatus: 'warning',
-        },
+  id = 'google-sheets_action_rename-sheet';
+  name = 'Rename Sheet';
+  description =
+    'Renames the title of an existing sheet in a Google Sheets document.';
+  aiSchema = z.object({
+    spreadsheet: z
+      .string()
+      .min(1)
+      .describe('The ID of the Google Sheets document.'),
+    sheet: z.string().min(1).describe('The ID of the sheet to be updated.'),
+    newTitle: z.string().min(1).describe('The new title for the sheet.'),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectSpreadSheets(),
+    this.app.dynamicSelectSheetIds(),
+    {
+      id: 'newTitle',
+      label: 'New Sheet Title',
+      description: 'The new title for the sheet.',
+      inputType: 'text',
+      placeholder: 'Enter new sheet title',
+      required: {
+        missingMessage: 'New sheet title is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -90,4 +81,4 @@ export class RenameSheet extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<RenameSheet['aiSchema']>>;
+type ConfigValue = z.infer<RenameSheet['aiSchema']>;

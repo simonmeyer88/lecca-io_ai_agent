@@ -15,130 +15,115 @@ export class SearchLeads extends Action {
   }
 
   app: ZohoCrm;
-
-  id() {
-    return 'zoho-crm_action_search-leads';
-  }
-
-  name() {
-    return 'Search Leads';
-  }
-
-  description() {
-    return 'Search for leads in ZohoCRM based on various search criteria.';
-  }
-
-  aiSchema() {
-    return z.object({
-      page: z.number().default(1).describe('Page number for lead results'),
-      perPage: z
-        .number()
-        .max(100)
-        .default(10)
-        .describe('Number of leads per page (Max: 50)'),
-      email: z
-        .string()
-        .email()
-        .nullable()
-        .optional()
-        .describe('Email address of the lead to search for.'),
-      firstName: z
-        .string()
-        .nullable()
-        .optional()
-        .describe('First name of the lead to search for.'),
-      lastName: z
-        .string()
-        .nullable()
-        .optional()
-        .describe('Last name of the lead to search for.'),
-      company: z
-        .string()
-        .nullable()
-        .optional()
-        .describe('Company name associated with the lead to search for.'),
-      phone: z
-        .string()
-        .nullable()
-        .optional()
-        .describe('Phone number of the lead to search for.'),
-      status: z
-        .string()
-        .nullable()
-        .optional()
-        .describe('Status of the lead to search for.'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'markdown',
-        markdown: 'Enter any criteria to search by.',
-        inputType: 'markdown',
-        label: '',
-        description: '',
-      },
-      {
-        id: 'email',
-        label: 'Email',
-        description: '',
-        inputType: 'text',
-        placeholder: 'Enter the lead email',
-      },
-      {
-        id: 'firstName',
-        label: 'First Name',
-        description: '',
-        inputType: 'text',
-        placeholder: 'Enter the first name',
-      },
-      {
-        id: 'lastName',
-        label: 'Last Name',
-        description: '',
-        inputType: 'text',
-        placeholder: 'Enter the last name',
-      },
-      {
-        id: 'company',
-        label: 'Company',
-        description: '',
-        inputType: 'text',
-        placeholder: 'Enter the company name',
-      },
-      {
-        id: 'phone',
-        label: 'Phone',
-        description: '',
-        inputType: 'text',
-        placeholder: 'Enter the phone number',
-      },
-      {
-        id: 'status',
-        label: 'Status',
-        description: '',
-        inputType: 'text',
-        placeholder: 'Enter the lead status',
-      },
-      {
-        id: 'page',
-        label: 'Page Number',
-        description: 'The page number to retrieve',
-        inputType: 'number',
-        numberOptions: { min: 1 },
-        defaultValue: 1,
-      },
-      {
-        id: 'perPage',
-        label: 'Leads per Page',
-        description: 'Number of leads to retrieve per page (Max: 50)',
-        inputType: 'number',
-        numberOptions: { min: 1, max: 50, step: 1 },
-        defaultValue: 50,
-      },
-    ];
-  }
+  id = 'zoho-crm_action_search-leads';
+  name = 'Search Leads';
+  description = 'Search for leads in ZohoCRM based on various search criteria.';
+  aiSchema = z.object({
+    page: z.number().default(1).describe('Page number for lead results'),
+    perPage: z
+      .number()
+      .max(100)
+      .default(10)
+      .describe('Number of leads per page (Max: 50)'),
+    email: z
+      .string()
+      .email()
+      .nullable()
+      .optional()
+      .describe('Email address of the lead to search for.'),
+    firstName: z
+      .string()
+      .nullable()
+      .optional()
+      .describe('First name of the lead to search for.'),
+    lastName: z
+      .string()
+      .nullable()
+      .optional()
+      .describe('Last name of the lead to search for.'),
+    company: z
+      .string()
+      .nullable()
+      .optional()
+      .describe('Company name associated with the lead to search for.'),
+    phone: z
+      .string()
+      .nullable()
+      .optional()
+      .describe('Phone number of the lead to search for.'),
+    status: z
+      .string()
+      .nullable()
+      .optional()
+      .describe('Status of the lead to search for.'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'markdown',
+      markdown: 'Enter any criteria to search by.',
+      inputType: 'markdown',
+      label: '',
+      description: '',
+    },
+    {
+      id: 'email',
+      label: 'Email',
+      description: '',
+      inputType: 'text',
+      placeholder: 'Enter the lead email',
+    },
+    {
+      id: 'firstName',
+      label: 'First Name',
+      description: '',
+      inputType: 'text',
+      placeholder: 'Enter the first name',
+    },
+    {
+      id: 'lastName',
+      label: 'Last Name',
+      description: '',
+      inputType: 'text',
+      placeholder: 'Enter the last name',
+    },
+    {
+      id: 'company',
+      label: 'Company',
+      description: '',
+      inputType: 'text',
+      placeholder: 'Enter the company name',
+    },
+    {
+      id: 'phone',
+      label: 'Phone',
+      description: '',
+      inputType: 'text',
+      placeholder: 'Enter the phone number',
+    },
+    {
+      id: 'status',
+      label: 'Status',
+      description: '',
+      inputType: 'text',
+      placeholder: 'Enter the lead status',
+    },
+    {
+      id: 'page',
+      label: 'Page Number',
+      description: 'The page number to retrieve',
+      inputType: 'number',
+      numberOptions: { min: 1 },
+      defaultValue: 1,
+    },
+    {
+      id: 'perPage',
+      label: 'Leads per Page',
+      description: 'Number of leads to retrieve per page (Max: 50)',
+      inputType: 'number',
+      numberOptions: { min: 1, max: 50, step: 1 },
+      defaultValue: 50,
+    },
+  ];
 
   async run({
     configValue,
@@ -233,4 +218,4 @@ const mock = {
   },
 };
 
-type ConfigValue = z.infer<ReturnType<SearchLeads['aiSchema']>>;
+type ConfigValue = z.infer<SearchLeads['aiSchema']>;

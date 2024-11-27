@@ -16,38 +16,28 @@ export class FindDocumentByTitle extends Action {
   }
 
   app: GoogleDocs;
-  id() {
-    return 'google-docs_action_find-document-by-title';
-  }
-  name() {
-    return 'Find Document(s) by Title';
-  }
-  description() {
-    return 'Search for a document by the title';
-  }
-  aiSchema() {
-    return z.object({
-      search: z
-        .string()
-        .min(1)
-        .describe('A search query to find a document by its title'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'search',
-        label: 'Search Query',
-        description: 'A search query to find a document by its title',
-        inputType: 'text',
-        placeholder: 'Search for...',
-        required: {
-          missingMessage: 'Search query is required',
-          missingStatus: 'warning',
-        },
+  id = 'google-docs_action_find-document-by-title';
+  name = 'Find Document(s) by Title';
+  description = 'Search for a document by the title';
+  aiSchema = z.object({
+    search: z
+      .string()
+      .min(1)
+      .describe('A search query to find a document by its title'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'search',
+      label: 'Search Query',
+      description: 'A search query to find a document by its title',
+      inputType: 'text',
+      placeholder: 'Search for...',
+      required: {
+        missingMessage: 'Search query is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -103,4 +93,4 @@ export class FindDocumentByTitle extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<FindDocumentByTitle['aiSchema']>>;
+type ConfigValue = z.infer<FindDocumentByTitle['aiSchema']>;

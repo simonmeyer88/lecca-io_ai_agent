@@ -17,68 +17,54 @@ export class GetEmailById extends Action {
 
   app: Gmail;
 
-  id() {
-    return 'gmail_action_get-email-by-id';
-  }
-
-  name() {
-    return 'Get Email by ID';
-  }
-
-  description() {
-    return 'Retrieve a single email from Gmail using its message ID';
-  }
-
-  aiSchema() {
-    return z.object({
-      messageId: z
-        .string()
-        .nonempty()
-        .describe('The ID of the Gmail message to retrieve.'),
-      htmlOrText: z
-        .enum(['html', 'text', 'both'])
-        .nullable()
-        .optional()
-        .describe('Choose whether to return the email as HTML, text, or both'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        label: 'Message ID',
-        id: 'messageId',
-        inputType: 'text',
-        placeholder: 'Enter message ID',
-        description: 'The unique ID of the Gmail message you want to retrieve',
-        required: {
-          missingMessage: 'Message ID is required',
-          missingStatus: 'warning',
-        },
+  id = 'gmail_action_get-email-by-id';
+  name = 'Get Email by ID';
+  description = 'Retrieve a single email from Gmail using its message ID';
+  aiSchema = z.object({
+    messageId: z
+      .string()
+      .nonempty()
+      .describe('The ID of the Gmail message to retrieve.'),
+    htmlOrText: z
+      .enum(['html', 'text', 'both'])
+      .nullable()
+      .optional()
+      .describe('Choose whether to return the email as HTML, text, or both'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      label: 'Message ID',
+      id: 'messageId',
+      inputType: 'text',
+      placeholder: 'Enter message ID',
+      description: 'The unique ID of the Gmail message you want to retrieve',
+      required: {
+        missingMessage: 'Message ID is required',
+        missingStatus: 'warning',
       },
-      {
-        label: 'HTML or Text',
-        id: 'htmlOrText',
-        inputType: 'select',
-        defaultValue: 'text',
-        selectOptions: [
-          { value: 'html', label: 'HTML' },
-          { value: 'text', label: 'Text' },
-          { value: 'both', label: 'Both' },
+    },
+    {
+      label: 'HTML or Text',
+      id: 'htmlOrText',
+      inputType: 'select',
+      defaultValue: 'text',
+      selectOptions: [
+        { value: 'html', label: 'HTML' },
+        { value: 'text', label: 'Text' },
+        { value: 'both', label: 'Both' },
+      ],
+      loadOptions: {
+        dependsOn: [
+          {
+            id: 'includeBody',
+            value: 'true',
+          },
         ],
-        loadOptions: {
-          dependsOn: [
-            {
-              id: 'includeBody',
-              value: 'true',
-            },
-          ],
-        },
-        description:
-          'Choose whether to return the email as HTML, text, or both. Not every email will have both HTML and text versions.',
       },
-    ];
-  }
+      description:
+        'Choose whether to return the email as HTML, text, or both. Not every email will have both HTML and text versions.',
+    },
+  ];
 
   async run({
     configValue,
@@ -104,4 +90,4 @@ export class GetEmailById extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<GetEmailById['aiSchema']>>;
+type ConfigValue = z.infer<GetEmailById['aiSchema']>;

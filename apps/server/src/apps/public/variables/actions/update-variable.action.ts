@@ -17,59 +17,41 @@ export class UpdateVariable extends Action {
   }
 
   app: Variables;
-  id() {
-    return 'variables_action_update-variables';
-  }
-  needsConnection() {
-    return false;
-  }
-  name() {
-    return 'Update Variable';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
-  }
-  description() {
-    return "Updates a variable's value";
-  }
-  aiSchema() {
-    return z
-      .object({
-        variableId: z
-          .string()
-          .nullable()
-          .optional()
-          .describe(
-            'Variable ID. If you do not have the ID, please ask for it.',
-          ),
-        value: z
-          .any()
-          .nullable()
-          .optional()
-          .describe(
-            "New value for the variable. Must be string, number, boolean, or ISO date. If you don't know what type the variable is, please ask.",
-          ),
-      })
+  id = 'variables_action_update-variables';
+  needsConnection = false;
+  name = 'Update Variable';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
+  description = "Updates a variable's value";
+  aiSchema = z.object({
+    variableId: z
+      .string()
       .nullable()
-      .optional();
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicGetVariable(),
-      {
-        id: 'value',
-        label: 'New Value',
-        inputType: 'json',
-        description:
-          "New value for the variable. Must match the variable's data type.",
-        placeholder: 'Add new value',
-        required: {
-          missingStatus: 'warning',
-          missingMessage: 'Please provide a new value',
-        },
+      .optional()
+      .describe('Variable ID. If you do not have the ID, please ask for it.'),
+    value: z
+      .any()
+      .nullable()
+      .optional()
+      .describe(
+        "New value for the variable. Must be string, number, boolean, or ISO date. If you don't know what type the variable is, please ask.",
+      ),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicGetVariable(),
+    {
+      id: 'value',
+      label: 'New Value',
+      inputType: 'json',
+      description:
+        "New value for the variable. Must match the variable's data type.",
+      placeholder: 'Add new value',
+      required: {
+        missingStatus: 'warning',
+        missingMessage: 'Please provide a new value',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -184,7 +166,7 @@ export class UpdateVariable extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<UpdateVariable['aiSchema']>>;
+type ConfigValue = z.infer<UpdateVariable['aiSchema']>;
 
 type Response = {
   variable: {

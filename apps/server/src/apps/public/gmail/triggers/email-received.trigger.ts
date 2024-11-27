@@ -15,57 +15,49 @@ export class EmailReceived extends TimeBasedPollTrigger {
   }
 
   app: Gmail;
-  id() {
-    return 'gmail_trigger_email-received';
-  }
-  name() {
-    return 'Email Received';
-  }
-  description() {
-    return 'Triggers when a new email is received';
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        label: 'Labels',
-        id: 'labelIds',
-        inputType: 'dynamic-multi-select',
-        placeholder: 'Add labels',
-        description: 'The IDs of the labels to filter emails',
-        defaultValue: ['UNREAD', 'INBOX'],
-        _getDynamicValues: async ({ connection }) => {
-          const gmail = await this.app.gmail({
-            accessToken: connection.accessToken,
-            refreshToken: connection.refreshToken,
-          });
+  id = 'gmail_trigger_email-received';
+  name = 'Email Received';
+  description = 'Triggers when a new email is received';
+  inputConfig: InputConfig[] = [
+    {
+      label: 'Labels',
+      id: 'labelIds',
+      inputType: 'dynamic-multi-select',
+      placeholder: 'Add labels',
+      description: 'The IDs of the labels to filter emails',
+      defaultValue: ['UNREAD', 'INBOX'],
+      _getDynamicValues: async ({ connection }) => {
+        const gmail = await this.app.gmail({
+          accessToken: connection.accessToken,
+          refreshToken: connection.refreshToken,
+        });
 
-          const labels = await gmail.users.labels.list({
-            userId: 'me',
-          });
+        const labels = await gmail.users.labels.list({
+          userId: 'me',
+        });
 
-          return (
-            labels?.data?.labels?.map((label) => ({
-              label: label.name,
-              value: label.id,
-            })) ?? []
-          );
-        },
+        return (
+          labels?.data?.labels?.map((label) => ({
+            label: label.name,
+            value: label.id,
+          })) ?? []
+        );
       },
-      {
-        label: 'HTML or Text',
-        id: 'htmlOrText',
-        inputType: 'select',
-        defaultValue: 'text',
-        selectOptions: [
-          { value: 'html', label: 'HTML' },
-          { value: 'text', label: 'Text' },
-          { value: 'both', label: 'Both' },
-        ],
-        description:
-          'Choose whether to return the email as HTML, text, or both. Not every email will have both HTML and text versions.',
-      },
-    ];
-  }
+    },
+    {
+      label: 'HTML or Text',
+      id: 'htmlOrText',
+      inputType: 'select',
+      defaultValue: 'text',
+      selectOptions: [
+        { value: 'html', label: 'HTML' },
+        { value: 'text', label: 'Text' },
+        { value: 'both', label: 'Both' },
+      ],
+      description:
+        'Choose whether to return the email as HTML, text, or both. Not every email will have both HTML and text versions.',
+    },
+  ];
 
   async run({
     configValue,

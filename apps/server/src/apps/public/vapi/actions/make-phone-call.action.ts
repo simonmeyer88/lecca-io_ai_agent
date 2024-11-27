@@ -15,85 +15,75 @@ export class MakePhoneCall extends Action {
   }
 
   app: Vapi;
-  id() {
-    return 'vapi_action_make-phone-call';
-  }
-  name() {
-    return 'Make Phone Call';
-  }
-  description() {
-    return 'Start a phone call for selected voice agent';
-  }
-  aiSchema() {
-    return z.object({
-      name: z.string().optional().describe('Name to reference call'),
-      vapiAssistantId: z
-        .string()
-        .min(1)
-        .describe('The ID of the vapi assistant to use'),
-      vapiPhoneNumberId: z
-        .string()
-        .min(1)
-        .describe('The ID of the vapi phone number to use'),
-      customerPhoneNumber: z
-        .string()
-        .min(1)
-        .describe(
-          'The phone number to call, including the county and area code e.g. +18019999999',
-        ),
-      assistantOverrides: z.any().nullable().optional(),
-      waitForFinish: z
-        .enum(['true', 'false'])
-        .nullable()
-        .optional()
-        .describe('Wait for the call to finish before returning result?'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'name',
-        inputType: 'text',
-        description: 'For your own reference',
-        label: 'Name',
-        placeholder: 'Enter a name',
+  id = 'vapi_action_make-phone-call';
+  name = 'Make Phone Call';
+  description = 'Start a phone call for selected voice agent';
+  aiSchema = z.object({
+    name: z.string().optional().describe('Name to reference call'),
+    vapiAssistantId: z
+      .string()
+      .min(1)
+      .describe('The ID of the vapi assistant to use'),
+    vapiPhoneNumberId: z
+      .string()
+      .min(1)
+      .describe('The ID of the vapi phone number to use'),
+    customerPhoneNumber: z
+      .string()
+      .min(1)
+      .describe(
+        'The phone number to call, including the county and area code e.g. +18019999999',
+      ),
+    assistantOverrides: z.any().nullable().optional(),
+    waitForFinish: z
+      .enum(['true', 'false'])
+      .nullable()
+      .optional()
+      .describe('Wait for the call to finish before returning result?'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'name',
+      inputType: 'text',
+      description: 'For your own reference',
+      label: 'Name',
+      placeholder: 'Enter a name',
+    },
+    this.app.dynamicSelectVapiAssistants(),
+    this.app.dynamicSelectVapiPhoneNumbers(),
+    {
+      id: 'customerPhoneNumber',
+      inputType: 'text',
+      description:
+        'The phone number to call. Must include country and area code.',
+      label: 'Phone Number to Call',
+      placeholder: 'Enter full phone number, e.g. +18019999999',
+      required: {
+        missingMessage: 'Phone number is required',
+        missingStatus: 'warning',
       },
-      this.app.dynamicSelectVapiAssistants(),
-      this.app.dynamicSelectVapiPhoneNumbers(),
-      {
-        id: 'customerPhoneNumber',
-        inputType: 'text',
-        description:
-          'The phone number to call. Must include country and area code.',
-        label: 'Phone Number to Call',
-        placeholder: 'Enter full phone number, e.g. +18019999999',
-        required: {
-          missingMessage: 'Phone number is required',
-          missingStatus: 'warning',
-        },
+    },
+    {
+      id: 'assistantOverrides',
+      inputType: 'json',
+      description:
+        'Go to https://docs.vapi.ai/api-reference/calls/create-call to learn more.',
+      label: 'Assistant Overrides',
+      placeholder: 'Enter assistant overrides as JSON',
+    },
+    {
+      id: 'waitForFinish',
+      inputType: 'switch',
+      switchOptions: {
+        checked: 'true',
+        defaultChecked: true,
+        unchecked: 'false',
       },
-      {
-        id: 'assistantOverrides',
-        inputType: 'json',
-        description:
-          'Go to https://docs.vapi.ai/api-reference/calls/create-call to learn more.',
-        label: 'Assistant Overrides',
-        placeholder: 'Enter assistant overrides as JSON',
-      },
-      {
-        id: 'waitForFinish',
-        inputType: 'switch',
-        switchOptions: {
-          checked: 'true',
-          defaultChecked: true,
-          unchecked: 'false',
-        },
-        description:
-          'Wait for call to finish before returning result? Maximum wait time is 5 minutes.',
-        label: 'Wait for Call to Finish',
-      },
-    ];
-  }
+      description:
+        'Wait for call to finish before returning result? Maximum wait time is 5 minutes.',
+      label: 'Wait for Call to Finish',
+    },
+  ];
 
   async run({
     configValue,
@@ -506,6 +496,6 @@ const mockDontWait = {
   },
 };
 
-type ConfigValue = z.infer<ReturnType<MakePhoneCall['aiSchema']>>;
+type ConfigValue = z.infer<MakePhoneCall['aiSchema']>;
 
 type Response = typeof mock;

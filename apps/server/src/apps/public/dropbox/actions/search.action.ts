@@ -15,49 +15,39 @@ export class DropboxSearch extends Action {
   }
 
   app: Dropbox;
-  id() {
-    return 'dropbox_action_search';
-  }
-  name() {
-    return 'Search';
-  }
-  description() {
-    return 'Search for files and folders in Dropbox';
-  }
-  aiSchema() {
-    return z.object({
-      query: z
-        .string()
-        .min(1)
-        .describe('The search query to find files or folders'),
-      path: z
-        .string()
-        .optional()
-        .describe('The folder path to limit the search to'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'query',
-        label: 'Search Query',
-        description: 'The search query to find files or folders',
-        inputType: 'text',
-        placeholder: 'Enter search query',
-        required: {
-          missingMessage: 'Search query is required',
-          missingStatus: 'warning',
-        },
+  id = 'dropbox_action_search';
+  name = 'Search';
+  description = 'Search for files and folders in Dropbox';
+  aiSchema = z.object({
+    query: z
+      .string()
+      .min(1)
+      .describe('The search query to find files or folders'),
+    path: z
+      .string()
+      .optional()
+      .describe('The folder path to limit the search to'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'query',
+      label: 'Search Query',
+      description: 'The search query to find files or folders',
+      inputType: 'text',
+      placeholder: 'Enter search query',
+      required: {
+        missingMessage: 'Search query is required',
+        missingStatus: 'warning',
       },
-      this.app.dynamicListFolders(),
-    ];
-  }
+    },
+    this.app.dynamicListFolders(),
+  ];
 
   async run({
     configValue,
     connection,
     workspaceId,
-  }: RunActionArgs<ConfigValue>): Promise<ResponseType> {
+  }: RunActionArgs<ConfigValue>): Promise<Response> {
     const url = 'https://api.dropboxapi.com/2/files/search_v2';
 
     // Building the request payload
@@ -87,7 +77,7 @@ export class DropboxSearch extends Action {
     }
   }
 
-  async mockRun(): Promise<ResponseType> {
+  async mockRun(): Promise<Response> {
     return {
       matches: [
         {
@@ -103,7 +93,9 @@ export class DropboxSearch extends Action {
   }
 }
 
-type ResponseType = {
+type ConfigValue = z.infer<DropboxSearch['aiSchema']>;
+
+type Response = {
   matches: Array<{
     metadata: {
       name: string;
@@ -114,5 +106,3 @@ type ResponseType = {
     match_type: string;
   }>;
 };
-
-type ConfigValue = z.infer<ReturnType<DropboxSearch['aiSchema']>>;

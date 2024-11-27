@@ -14,23 +14,16 @@ export class NewSheet extends ItemBasedPollTrigger {
   }
 
   app: GoogleSheets;
-  id() {
-    return 'google-sheets_trigger_new-sheet';
-  }
-  name() {
-    return 'New Sheet';
-  }
-  description() {
-    return 'Triggers when a new sheet is created in a spreadsheet. New sheet must be at the end of the list of sheets in the spreadsheet.';
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        ...this.app.dynamicSelectSpreadSheets(),
-        description: 'Select the spreadsheet to monitor for new sheets',
-      },
-    ];
-  }
+  id = 'google-sheets_trigger_new-sheet';
+  name = 'New Sheet';
+  description =
+    'Triggers when a new sheet is created in a spreadsheet. New sheet must be at the end of the list of sheets in the spreadsheet.';
+  inputConfig: InputConfig[] = [
+    {
+      ...this.app.dynamicSelectSpreadSheets(),
+      description: 'Select the spreadsheet to monitor for new sheets',
+    },
+  ];
 
   async run({
     connection,

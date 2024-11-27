@@ -20,60 +20,42 @@ export class ManualTrigger extends Trigger {
   }
 
   app: FlowControl;
-  id() {
-    return 'flow-control_trigger_manual';
-  }
-  needsConnection() {
-    return false;
-  }
-  availableForAgent(): boolean {
-    return false;
-  }
-  name() {
-    return 'Manually Run';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/triggers/${this.id()}.svg`;
-  }
-  strategy(): TriggerStrategy {
-    return 'manual';
-  }
-  description() {
-    return 'Manually run this workflow as a user, within another workflow, or when requested by an agent.';
-  }
-  viewOptions(): NodeViewOptions {
-    return {
-      hideConditions: true,
-      saveButtonOptions: {
-        hideSaveButton: true,
-        replaceSaveAndTestButton: {
-          label: 'Save',
-          type: 'mock',
-        },
+  id = 'flow-control_trigger_manual';
+  needsConnection = false;
+  availableForAgent = false;
+  name = 'Manually Run';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/triggers/${this.id}.svg`;
+  strategy: TriggerStrategy = 'manual';
+  description =
+    'Manually run this workflow as a user, within another workflow, or when requested by an agent.';
+  viewOptions: NodeViewOptions = {
+    hideConditions: true,
+    saveButtonOptions: {
+      hideSaveButton: true,
+      replaceSaveAndTestButton: {
+        label: 'Save',
+        type: 'mock',
       },
-    };
-  }
-  aiSchema() {
-    return z.object({});
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'markdown1',
-        markdown:
-          'Run this workflow as a user, within another workflow, or when requested by an agent.',
-        label: '',
-        inputType: 'markdown',
-        description: '',
-      },
-      {
-        id: 'inputs',
-        inputType: 'config-builder',
-        description: '',
-        label: 'Optional Input Data',
-      },
-    ];
-  }
+    },
+  };
+  aiSchema = z.object({});
+  inputConfig: InputConfig[] = [
+    {
+      id: 'markdown1',
+      markdown:
+        'Run this workflow as a user, within another workflow, or when requested by an agent.',
+      label: '',
+      inputType: 'markdown',
+      description: '',
+    },
+    {
+      id: 'inputs',
+      inputType: 'config-builder',
+      description: '',
+      label: 'Optional Input Data',
+    },
+  ];
 
   async run({
     projectId,

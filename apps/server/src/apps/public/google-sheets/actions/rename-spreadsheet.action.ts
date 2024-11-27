@@ -15,43 +15,30 @@ export class RenameSpreadsheet extends Action {
   }
 
   app: GoogleSheets;
-  id() {
-    return 'google-sheets_action_rename-spreadsheet';
-  }
-  name() {
-    return 'Rename Spreadsheet';
-  }
-  description() {
-    return 'Renames the title of an existing Google Sheets document.';
-  }
-  aiSchema() {
-    return z.object({
-      spreadsheet: z
-        .string()
-        .min(1)
-        .describe('The ID of the Google Sheets document.'),
-      newTitle: z
-        .string()
-        .min(1)
-        .describe('The new title for the spreadsheet.'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectSpreadSheets(),
-      {
-        id: 'newTitle',
-        label: 'New Spreadsheet Title',
-        description: 'The new title for the spreadsheet.',
-        inputType: 'text',
-        placeholder: 'Enter new spreadsheet title',
-        required: {
-          missingMessage: 'New spreadsheet title is required',
-          missingStatus: 'warning',
-        },
+  id = 'google-sheets_action_rename-spreadsheet';
+  name = 'Rename Spreadsheet';
+  description = 'Renames the title of an existing Google Sheets document.';
+  aiSchema = z.object({
+    spreadsheet: z
+      .string()
+      .min(1)
+      .describe('The ID of the Google Sheets document.'),
+    newTitle: z.string().min(1).describe('The new title for the spreadsheet.'),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectSpreadSheets(),
+    {
+      id: 'newTitle',
+      label: 'New Spreadsheet Title',
+      description: 'The new title for the spreadsheet.',
+      inputType: 'text',
+      placeholder: 'Enter new spreadsheet title',
+      required: {
+        missingMessage: 'New spreadsheet title is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -90,4 +77,4 @@ export class RenameSpreadsheet extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<RenameSpreadsheet['aiSchema']>>;
+type ConfigValue = z.infer<RenameSpreadsheet['aiSchema']>;

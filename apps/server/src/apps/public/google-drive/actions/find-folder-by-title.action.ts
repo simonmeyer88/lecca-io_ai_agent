@@ -16,38 +16,28 @@ export class FindFolderByTitle extends Action {
   }
 
   app: GoogleDrive;
-  id() {
-    return 'google-drive_action_find-folder-by-title';
-  }
-  name() {
-    return 'Find Folder(s) by Title';
-  }
-  description() {
-    return 'Search for folder(s) by the title';
-  }
-  aiSchema() {
-    return z.object({
-      search: z
-        .string()
-        .min(1)
-        .describe('A search query to find a folder by its title'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'search',
-        label: 'Search Query',
-        description: 'A search query to find a folder by its title',
-        inputType: 'text',
-        placeholder: 'Search for...',
-        required: {
-          missingMessage: 'Search query is required',
-          missingStatus: 'warning',
-        },
+  id = 'google-drive_action_find-folder-by-title';
+  name = 'Find Folder(s) by Title';
+  description = 'Search for folder(s) by the title';
+  aiSchema = z.object({
+    search: z
+      .string()
+      .min(1)
+      .describe('A search query to find a folder by its title'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'search',
+      label: 'Search Query',
+      description: 'A search query to find a folder by its title',
+      inputType: 'text',
+      placeholder: 'Search for...',
+      required: {
+        missingMessage: 'Search query is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({ configValue, connection }: RunActionArgs<ConfigValue>): Promise<{
     data: GoogleDriveFileSearchResult[];
@@ -104,4 +94,4 @@ export class FindFolderByTitle extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<FindFolderByTitle['aiSchema']>>;
+type ConfigValue = z.infer<FindFolderByTitle['aiSchema']>;

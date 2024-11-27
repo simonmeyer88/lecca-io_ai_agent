@@ -16,60 +16,46 @@ export class AddGuestsToEvent extends Action {
 
   app: GoogleCalendar;
 
-  id() {
-    return 'google-calendar_action_add-guests-to-event';
-  }
-
-  name() {
-    return 'Add Guests to Event';
-  }
-
-  description() {
-    return 'Adds a guest to an existing event.';
-  }
-
-  aiSchema() {
-    return z.object({
-      calendarId: z.string().nullable().optional().describe('Calendar ID'),
-      eventId: z.string().min(1).describe('Event ID'),
-      guestEmails: z.array(z.string().min(1)).describe('Guest Email'),
-      sendNotifications: z
-        .enum(['true', 'false'])
-        .nullable()
-        .optional()
-        .describe('Send notifications to guests'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectCalendar(),
-      this.app.dynamicSelectEvent(),
-      {
-        id: 'guestEmails',
-        label: 'Guest Emails',
-        description: '',
-        placeholder: 'Enter an email address',
-        inputType: 'text',
-        occurenceType: 'multiple',
-        required: {
-          missingMessage: 'Guest email is required',
-          missingStatus: 'warning',
-        },
+  id = 'google-calendar_action_add-guests-to-event';
+  name = 'Add Guests to Event';
+  description = 'Adds a guest to an existing event.';
+  aiSchema = z.object({
+    calendarId: z.string().nullable().optional().describe('Calendar ID'),
+    eventId: z.string().min(1).describe('Event ID'),
+    guestEmails: z.array(z.string().min(1)).describe('Guest Email'),
+    sendNotifications: z
+      .enum(['true', 'false'])
+      .nullable()
+      .optional()
+      .describe('Send notifications to guests'),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectCalendar(),
+    this.app.dynamicSelectEvent(),
+    {
+      id: 'guestEmails',
+      label: 'Guest Emails',
+      description: '',
+      placeholder: 'Enter an email address',
+      inputType: 'text',
+      occurenceType: 'multiple',
+      required: {
+        missingMessage: 'Guest email is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'sendNotifications',
-        label: 'Send Notifications',
-        description: 'Send notifications to guests',
-        inputType: 'select',
-        selectOptions: [
-          { value: 'true', label: 'Yes' },
-          { value: 'false', label: 'No' },
-        ],
-        defaultValue: 'true',
-      },
-    ];
-  }
+    },
+    {
+      id: 'sendNotifications',
+      label: 'Send Notifications',
+      description: 'Send notifications to guests',
+      inputType: 'select',
+      selectOptions: [
+        { value: 'true', label: 'Yes' },
+        { value: 'false', label: 'No' },
+      ],
+      defaultValue: 'true',
+    },
+  ];
 
   async run({
     configValue,
@@ -107,4 +93,4 @@ export class AddGuestsToEvent extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<AddGuestsToEvent['aiSchema']>>;
+type ConfigValue = z.infer<AddGuestsToEvent['aiSchema']>;

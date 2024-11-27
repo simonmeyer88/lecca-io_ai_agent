@@ -15,56 +15,46 @@ export class CreateChannel extends Action {
   }
 
   app: Slack;
-  id() {
-    return 'slack_action_create-channel';
-  }
-  name() {
-    return 'Create Channel';
-  }
-  description() {
-    return 'Creates a new channel.';
-  }
-  aiSchema() {
-    return z.object({
-      name: z
-        .string()
-        .min(1)
-        .regex(/^[a-z0-9-]+$/)
-        .describe(
-          'The name of the new channel. Cannot contain capital letters, spaces, or punctuation. Use dashes to separate words.',
-        ),
-      private: z
-        .enum(['true', 'false'])
-        .describe('True if the channel should be private, false otherwise'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'name',
-        label: 'Channel Name',
-        description:
-          'Channel names can’t contain capital letters, spaces, or punctuation. Use dashes to separate words.',
-        inputType: 'text',
-        placeholder: 'Add a name',
-        required: {
-          missingMessage: 'Name is required',
-          missingStatus: 'warning',
-        },
+  id = 'slack_action_create-channel';
+  name = 'Create Channel';
+  description = 'Creates a new channel.';
+  aiSchema = z.object({
+    name: z
+      .string()
+      .min(1)
+      .regex(/^[a-z0-9-]+$/)
+      .describe(
+        'The name of the new channel. Cannot contain capital letters, spaces, or punctuation. Use dashes to separate words.',
+      ),
+    private: z
+      .enum(['true', 'false'])
+      .describe('True if the channel should be private, false otherwise'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'name',
+      label: 'Channel Name',
+      description:
+        'Channel names can’t contain capital letters, spaces, or punctuation. Use dashes to separate words.',
+      inputType: 'text',
+      placeholder: 'Add a name',
+      required: {
+        missingMessage: 'Name is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'private',
-        label: 'Private?',
-        description: 'Should the channel be private?',
-        inputType: 'switch',
-        switchOptions: {
-          checked: 'true',
-          unchecked: 'false',
-          defaultChecked: false,
-        },
+    },
+    {
+      id: 'private',
+      label: 'Private?',
+      description: 'Should the channel be private?',
+      inputType: 'switch',
+      switchOptions: {
+        checked: 'true',
+        unchecked: 'false',
+        defaultChecked: false,
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -180,4 +170,4 @@ type ResponseType = {
   };
 };
 
-type ConfigValue = z.infer<ReturnType<CreateChannel['aiSchema']>>;
+type ConfigValue = z.infer<CreateChannel['aiSchema']>;

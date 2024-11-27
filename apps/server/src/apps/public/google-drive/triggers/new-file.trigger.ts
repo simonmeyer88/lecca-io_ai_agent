@@ -15,18 +15,10 @@ export class NewFile extends TimeBasedPollTrigger {
   }
 
   app: GoogleDrive;
-  id() {
-    return 'google-drive_trigger_new-file';
-  }
-  name() {
-    return 'New File';
-  }
-  description() {
-    return 'Triggers when a new file is created inside any folder';
-  }
-  inputConfig(): InputConfig[] {
-    return [];
-  }
+  id = 'google-drive_trigger_new-file';
+  name = 'New File';
+  description = 'Triggers when a new file is created inside any folder';
+  inputConfig: InputConfig[] = [];
 
   async run({
     connection,

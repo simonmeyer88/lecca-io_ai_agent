@@ -17,49 +17,32 @@ export class GetAppointment extends Action {
 
   app: ParadigmVendo;
 
-  id() {
-    return 'paradigm-vendo_action_get-appointment';
-  }
-
-  name() {
-    return 'Get Appointment';
-  }
-
-  description() {
-    return 'Retrieves an appointment by ID';
-  }
-
-  viewOptions(): null | NodeViewOptions {
-    return {
-      saveButtonOptions: {
-        replaceSaveAndTestButton: {
-          label: 'Save & Test',
-          type: 'real',
-        },
+  id = 'paradigm-vendo_action_get-appointment';
+  name = 'Get Appointment';
+  description = 'Retrieves an appointment by ID';
+  viewOptions: null | NodeViewOptions = {
+    saveButtonOptions: {
+      replaceSaveAndTestButton: {
+        label: 'Save & Test',
+        type: 'real',
       },
-    };
-  }
-
-  aiSchema() {
-    return z.object({
-      id: z.string().describe('The ID of the appointment to retrieve'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'id',
-        label: 'Appointment ID',
-        description: 'Numeric ID or Integration ID fo the appointment.',
-        inputType: 'text',
-        required: {
-          missingMessage: 'ID is required',
-          missingStatus: 'warning',
-        },
+    },
+  };
+  aiSchema = z.object({
+    id: z.string().describe('The ID of the appointment to retrieve'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'id',
+      label: 'Appointment ID',
+      description: 'Numeric ID or Integration ID fo the appointment.',
+      inputType: 'text',
+      required: {
+        missingMessage: 'ID is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -185,7 +168,7 @@ const mock = {
   secondHouse: {},
 };
 
-type ConfigValue = z.infer<ReturnType<GetAppointment['aiSchema']>>;
+type ConfigValue = z.infer<GetAppointment['aiSchema']>;
 
 type Response = {
   data: typeof mock;

@@ -16,40 +16,30 @@ export class FindSpreadsheetByTitle extends Action {
   }
 
   app: GoogleSheets;
-  id() {
-    return 'google-sheets_action_find-spreadsheet-by-title';
-  }
-  name() {
-    return 'Find Spreadsheet(s) by Title';
-  }
-  description() {
-    return 'Search for a spreadsheet by the title';
-  }
-  aiSchema() {
-    return z.object({
-      search: z
-        .string()
-        .min(1)
-        .describe(
-          'A search query to find a spreadsheet by its title. This is required to search for a spreadsheet.',
-        ),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'search',
-        label: 'Search Query',
-        description: 'A search query to find a spreadsheet by its title',
-        inputType: 'text',
-        placeholder: 'Search for...',
-        required: {
-          missingMessage: 'Search query is required',
-          missingStatus: 'warning',
-        },
+  id = 'google-sheets_action_find-spreadsheet-by-title';
+  name = 'Find Spreadsheet(s) by Title';
+  description = 'Search for a spreadsheet by the title';
+  aiSchema = z.object({
+    search: z
+      .string()
+      .min(1)
+      .describe(
+        'A search query to find a spreadsheet by its title. This is required to search for a spreadsheet.',
+      ),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'search',
+      label: 'Search Query',
+      description: 'A search query to find a spreadsheet by its title',
+      inputType: 'text',
+      placeholder: 'Search for...',
+      required: {
+        missingMessage: 'Search query is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -105,4 +95,4 @@ export class FindSpreadsheetByTitle extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<FindSpreadsheetByTitle['aiSchema']>>;
+type ConfigValue = z.infer<FindSpreadsheetByTitle['aiSchema']>;

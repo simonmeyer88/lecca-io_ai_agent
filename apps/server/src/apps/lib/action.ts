@@ -1,6 +1,7 @@
 import { BadRequestException, ForbiddenException } from '@nestjs/common';
 import { Connection } from '@prisma/client';
 import { CoreTool } from 'ai';
+import { z } from 'zod';
 
 import { App, ConfigValue } from './app';
 import { OAuth2Connection } from './connection';
@@ -13,29 +14,22 @@ export abstract class Action {
   }
 
   app: App;
-  needsConnection() {
-    return true;
-  }
-  abstract id(): string;
-  abstract name(): string;
-  abstract description(): string;
-  abstract inputConfig(): InputConfig[];
-  abstract aiSchema(): any;
+  needsConnection = true;
+  abstract id: string;
+  abstract name: string;
+  abstract description: string;
+  abstract inputConfig: InputConfig[];
+  abstract aiSchema: z.ZodObject<any, any>;
   abstract run(args: RunActionArgs<unknown>): Promise<unknown>;
   abstract mockRun(args: RunActionArgs<unknown>): Promise<unknown>;
+  availableForAgent = true;
+  iconUrl: null | string = null;
 
-  availableForAgent(): boolean {
-    return true;
-  }
-  iconUrl(): null | string {
-    return null;
-  }
-  group(): null | { value: string; label: string } {
-    return null;
-  }
-  viewOptions(): null | NodeViewOptions {
-    return null;
-  }
+  /**
+   * Options to configure how the node looks in the builder.
+   */
+  viewOptions: null | NodeViewOptions = null;
+
   /**
    * An action that interrupts the execution.
    *
@@ -44,9 +38,7 @@ export abstract class Action {
    * Scheduling to continue at a later time.
    * Waiting for a webhook.
    */
-  isInterruptingAction(): boolean {
-    return false;
-  }
+  isInterruptingAction = false;
 
   /**
    * Only used if isInterruptingAction is true.
@@ -64,7 +56,7 @@ export abstract class Action {
   }: {
     runResponse: unknown;
   }): ActionResponse<unknown> {
-    if (this.isInterruptingAction()) {
+    if (this.isInterruptingAction) {
       throw new Error(
         'You must override the handleInterruptingResponse method',
       );
@@ -102,7 +94,7 @@ export abstract class Action {
       try {
         const status = error.response?.status;
         //if error status is 401, call this.refreshToken
-        if (status === 401 && this.needsConnection()) {
+        if (status === 401 && this.needsConnection) {
           const connection = await this.app.connection.findOne({
             connectionId: (args.configValue as any).connectionId,
             expansion: { credentials: true, connectionId: true },
@@ -129,7 +121,7 @@ export abstract class Action {
                   error?.response?.data ||
                   error?.response?.data?.errorDetails ||
                   error.message ||
-                  `Something went wrong while running action: ${this.name()}}`,
+                  `Something went wrong while running action: ${this.name}}`,
               };
             }
           }
@@ -141,7 +133,7 @@ export abstract class Action {
             error?.response?.data ||
             error?.response?.data?.errorDetails ||
             error.message ||
-            `Something went wrong while running action: ${this.name()}}`,
+            `Something went wrong while running action: ${this.name}}`,
         };
       } catch (error) {
         return {
@@ -150,7 +142,7 @@ export abstract class Action {
             error?.response?.data ||
             error?.response?.data?.errorDetails ||
             error.message ||
-            `Something went wrong while retrying the action: ${this.name()}}`,
+            `Something went wrong while retrying the action: ${this.name}}`,
         };
       }
     }
@@ -168,7 +160,7 @@ export abstract class Action {
   }): Promise<ActionResponse<unknown>> {
     let connection: Partial<Connection>;
 
-    if (this.needsConnection()) {
+    if (this.needsConnection) {
       const connectionId = (args.configValue as any).connectionId;
 
       if (!connectionId)
@@ -208,7 +200,7 @@ export abstract class Action {
         connection,
       });
 
-      if (this.isInterruptingAction()) {
+      if (this.isInterruptingAction) {
         //These have unique response objects when they pause the execution
         return this.handleInterruptingResponse({ runResponse });
       } else {
@@ -240,7 +232,7 @@ export abstract class Action {
     const fieldIdParts = fieldId.split('.');
 
     if (fieldIdParts.length === 1) {
-      const field = this.inputConfig().find((c) => c.id === fieldId);
+      const field = this.inputConfig.find((c) => c.id === fieldId);
       if (!field) {
         throw new BadRequestException(`Field with id ${fieldId} not found`);
       }
@@ -249,7 +241,7 @@ export abstract class Action {
       if (flatField._getDynamicValues) {
         let connection: Partial<Connection> | undefined;
 
-        if (this.needsConnection()) {
+        if (this.needsConnection) {
           connection = await this.app.connection.findOne({
             connectionId: connectionId,
             expansion: { credentials: true, connectionId: true },
@@ -313,7 +305,7 @@ export abstract class Action {
       }
     } else if (fieldIdParts.length === 2 || fieldIdParts.length === 3) {
       const NESTED_FIELD_INDEX = fieldIdParts.length === 2 ? 1 : 2;
-      const field = this.inputConfig().find((c) => c.id === fieldIdParts[0]);
+      const field = this.inputConfig.find((c) => c.id === fieldIdParts[0]);
       if (!field) {
         throw new BadRequestException(
           `Field with id ${fieldIdParts[0]} not found`,
@@ -333,7 +325,7 @@ export abstract class Action {
 
       if (nestedFieldConfig._getDynamicValues) {
         let connection: Partial<Connection> | undefined;
-        if (this.needsConnection()) {
+        if (this.needsConnection) {
           connection = await this.app.connection.findOne({
             connectionId: connectionId,
             expansion: { credentials: true, connectionId: true },
@@ -404,14 +396,14 @@ export abstract class Action {
 
   toJSON() {
     return {
-      id: this.id(),
-      name: this.name(),
-      description: this.description(),
-      inputConfig: this.inputConfig().map((c) => c),
-      needsConnection: this.needsConnection(),
-      iconUrl: this.iconUrl(),
-      viewOptions: this.viewOptions(),
-      availableForAgent: this.availableForAgent(),
+      id: this.id,
+      name: this.name,
+      description: this.description,
+      inputConfig: this.inputConfig.map((c) => c),
+      needsConnection: this.needsConnection,
+      iconUrl: this.iconUrl,
+      viewOptions: this.viewOptions,
+      availableForAgent: this.availableForAgent,
     };
   }
 
@@ -477,7 +469,7 @@ export abstract class Action {
     >,
   ): CoreTool<any, any> {
     return {
-      parameters: args.overrideConfigValueAiSchema ?? this.aiSchema(),
+      parameters: args.overrideConfigValueAiSchema ?? this.aiSchema,
 
       //This is an attempt to add the connection description to the tool description
       //so that the ai tool can better determine which tool to use if there are more
@@ -487,7 +479,7 @@ export abstract class Action {
       //for a single agent.
       description:
         args.overrideDescription ??
-        `${this.description()}${args.connectionDescription ? `: auth description - ${args.connectionDescription}` : ''}`,
+        `${this.description}${args.connectionDescription ? `: auth description - ${args.connectionDescription}` : ''}`,
       execute: async (_args: PrepareAndRunActionArgs) => {
         /**
          * Injecting extra parameters into the execute arguments.

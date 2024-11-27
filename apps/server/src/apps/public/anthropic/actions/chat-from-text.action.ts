@@ -16,90 +16,79 @@ export class ChatFromText extends Action {
   }
 
   app: Anthropic;
-  id() {
-    return 'anthropic_action_chat-from-text';
-  }
-  name() {
-    return 'Chat from Text';
-  }
-  description() {
-    return 'Chat with an AI model using text input';
-  }
-  aiSchema() {
-    return z.object({
-      model: z.string().min(1).describe('The ID of the model to use'),
-      messages: z.array(
-        z.object({
-          role: z
-            .enum(['user', 'system', 'assistant'])
-            .describe('Role of the message sender'),
-          content: z.string().min(1).describe('The content of the message'),
-        }),
-      ),
-      maxTokens: z
-        .number()
-        .int()
-        .positive()
-        .describe('The maximum tokens')
-        .nullable()
-        .optional(),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectModel(),
-      {
-        id: 'messages',
-        occurenceType: 'multiple',
-        label: 'Messages',
-        description:
-          'One or more messages and roles sent to generate a response',
-        inputConfig: [
-          {
-            id: 'role',
-            label: 'Role',
-            inputType: 'select',
-            description:
-              'Role of the message sender. The model will use this information when generating a response.',
-            hideCustomTab: true,
-            selectOptions: [
-              {
-                value: 'user',
-                label: 'User',
-              },
-              {
-                value: 'system',
-                label: 'System',
-              },
-              {
-                value: 'assistant',
-                label: 'Assistant',
-              },
-            ],
-            required: {
-              missingMessage: 'Role is required',
-              missingStatus: 'warning',
+  id = 'anthropic_action_chat-from-text';
+  name = 'Chat from Text';
+  description = 'Chat with an AI model using text input';
+  aiSchema = z.object({
+    model: z.string().min(1).describe('The ID of the model to use'),
+    messages: z.array(
+      z.object({
+        role: z
+          .enum(['user', 'system', 'assistant'])
+          .describe('Role of the message sender'),
+        content: z.string().min(1).describe('The content of the message'),
+      }),
+    ),
+    maxTokens: z
+      .number()
+      .int()
+      .positive()
+      .describe('The maximum tokens')
+      .nullable()
+      .optional(),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectModel(),
+    {
+      id: 'messages',
+      occurenceType: 'multiple',
+      label: 'Messages',
+      description: 'One or more messages and roles sent to generate a response',
+      inputConfig: [
+        {
+          id: 'role',
+          label: 'Role',
+          inputType: 'select',
+          description:
+            'Role of the message sender. The model will use this information when generating a response.',
+          hideCustomTab: true,
+          selectOptions: [
+            {
+              value: 'user',
+              label: 'User',
             },
-          },
-          {
-            id: 'content',
-            label: 'Content',
-            inputType: 'text',
-            description: 'One or more messages sent to generate a response',
-            required: {
-              missingMessage: 'Content is required',
-              missingStatus: 'warning',
+            {
+              value: 'system',
+              label: 'System',
             },
+            {
+              value: 'assistant',
+              label: 'Assistant',
+            },
+          ],
+          required: {
+            missingMessage: 'Role is required',
+            missingStatus: 'warning',
           },
-        ],
-      },
-    ];
-  }
+        },
+        {
+          id: 'content',
+          label: 'Content',
+          inputType: 'text',
+          description: 'One or more messages sent to generate a response',
+          required: {
+            missingMessage: 'Content is required',
+            missingStatus: 'warning',
+          },
+        },
+      ],
+    },
+  ];
 
   async run({
     configValue,
     connection,
-  }: RunActionArgs<ConfigValue>): Promise<ChatResponse> {
+  }: RunActionArgs<ConfigValue>): Promise<Response> {
     const anthropic = this.app.anthropic({
       apiKey: connection.apiKey,
     });
@@ -118,7 +107,7 @@ export class ChatFromText extends Action {
     };
   }
 
-  async mockRun(): Promise<ChatResponse> {
+  async mockRun(): Promise<Response> {
     return {
       response: 'This is a mock response',
       usage: {
@@ -130,9 +119,9 @@ export class ChatFromText extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<ChatFromText['aiSchema']>>;
+type ConfigValue = z.infer<ChatFromText['aiSchema']>;
 
-type ChatResponse = {
+type Response = {
   response: string;
   usage: LanguageModelUsage;
 };

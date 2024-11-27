@@ -21,28 +21,16 @@ export abstract class Trigger {
   }
 
   app: App;
-  needsConnection() {
-    return true;
-  }
+  needsConnection = true;
+  abstract id: string;
+  abstract name: string;
+  abstract strategy: TriggerStrategy;
+  abstract description: string;
+  abstract inputConfig: InputConfig[];
 
-  abstract id(): string;
-  abstract name(): string;
-  abstract strategy(): TriggerStrategy;
-  abstract description(): string;
-  abstract inputConfig(): InputConfig[];
-
-  availableForAgent(): boolean {
-    return true;
-  }
-  iconUrl(): null | string {
-    return null;
-  }
-  group(): null | { value: string; label: string } {
-    return null;
-  }
-  viewOptions(): null | NodeViewOptions {
-    return null;
-  }
+  availableForAgent = true;
+  iconUrl: null | string = null;
+  viewOptions: null | NodeViewOptions = null;
 
   /**
    * Very important that for ItemBasedPollTrigger, the response is sorted in descending order, e.g. latest/newest first.
@@ -172,7 +160,7 @@ export abstract class Trigger {
       };
     } else {
       throw new BadRequestException(
-        `Something went wrong while running poll trigger: ${this.name()}`,
+        `Something went wrong while running poll trigger: ${this.name}`,
       );
     }
   }
@@ -186,7 +174,7 @@ export abstract class Trigger {
     workflowId: string;
   }): Promise<unknown[]> {
     //This checks the strategy the action is set to and if it should run.
-    switch (this.strategy()) {
+    switch (this.strategy) {
       case 'poll.dedupe-time-based':
         return await (
           this as unknown as TimeBasedPollTrigger
@@ -213,7 +201,7 @@ export abstract class Trigger {
         });
       default:
         throw new BadRequestException(
-          `Strategy ${this.strategy()} is not supported`,
+          `Strategy ${this.strategy} is not supported`,
         );
     }
   }
@@ -297,7 +285,7 @@ export abstract class Trigger {
       }
     } else {
       throw new BadRequestException(
-        `Something went wrong while running webhook trigger: ${this.name()}`,
+        `Something went wrong while running webhook trigger: ${this.name}`,
       );
     }
   }
@@ -427,7 +415,7 @@ export abstract class Trigger {
       try {
         const status = error.response?.status;
         //if error status is 401, call this.refreshToken
-        if (status === 401 && this.needsConnection()) {
+        if (status === 401 && this.needsConnection) {
           const connection = await this.app.connection.findOne({
             connectionId: (args.configValue as any).connectionId,
             expansion: { credentials: true, connectionId: true },
@@ -468,7 +456,7 @@ export abstract class Trigger {
                   error?.response?.data ||
                   error?.response?.data?.errorDetails ||
                   error.message ||
-                  `Something went wrong while running trigger: ${this.name()}}`,
+                  `Something went wrong while running trigger: ${this.name}}`,
               };
             }
           }
@@ -480,7 +468,7 @@ export abstract class Trigger {
             error?.response?.data ||
             error?.response?.data?.errorDetails ||
             error.message ||
-            `Something went wrong while running trigger: ${this.name()}}`,
+            `Something went wrong while running trigger: ${this.name}}`,
         };
       } catch (error) {
         return {
@@ -489,7 +477,7 @@ export abstract class Trigger {
             error?.response?.data ||
             error?.response?.data?.errorDetails ||
             error.message ||
-            `Something went wrong while retrying the trigger: ${this.name()}}`,
+            `Something went wrong while retrying the trigger: ${this.name}}`,
         };
       }
     }
@@ -512,7 +500,7 @@ export abstract class Trigger {
   }): Promise<TriggerResponse<unknown>> {
     let connection: Partial<Connection>;
 
-    if (this.needsConnection()) {
+    if (this.needsConnection) {
       const connectionId = (args.configValue as any).connectionId;
 
       if (!connectionId)
@@ -572,7 +560,7 @@ export abstract class Trigger {
     const fieldIdParts = fieldId.split('.');
 
     if (fieldIdParts.length === 1) {
-      const field = this.inputConfig().find((c) => c.id === fieldId);
+      const field = this.inputConfig.find((c) => c.id === fieldId);
       if (!field) {
         throw new BadRequestException(`Field with id ${fieldId} not found`);
       }
@@ -581,7 +569,7 @@ export abstract class Trigger {
       if (flatField._getDynamicValues) {
         let connection: Partial<Connection> | undefined;
 
-        if (this.needsConnection()) {
+        if (this.needsConnection) {
           connection = await this.app.connection.findOne({
             connectionId: connectionId,
             expansion: { credentials: true, connectionId: true },
@@ -645,7 +633,7 @@ export abstract class Trigger {
       }
     } else if (fieldIdParts.length === 2 || fieldIdParts.length === 3) {
       const NESTED_FIELD_INDEX = fieldIdParts.length === 2 ? 1 : 2;
-      const field = this.inputConfig().find((c) => c.id === fieldIdParts[0]);
+      const field = this.inputConfig.find((c) => c.id === fieldIdParts[0]);
       if (!field) {
         throw new BadRequestException(
           `Field with id ${fieldIdParts[0]} not found`,
@@ -666,7 +654,7 @@ export abstract class Trigger {
       if (nestedFieldConfig._getDynamicValues) {
         let connection: Partial<Connection> | undefined;
 
-        if (this.needsConnection()) {
+        if (this.needsConnection) {
           connection = await this.app.connection.findOne({
             connectionId: connectionId,
             expansion: { credentials: true, connectionId: true },
@@ -737,22 +725,22 @@ export abstract class Trigger {
 
   toJSON() {
     return {
-      id: this.id(),
-      name: this.name(),
-      description: this.description(),
-      inputConfig: this.inputConfig().map((c) => c),
-      needsConnection: this.needsConnection(),
-      iconUrl: this.iconUrl(),
-      viewOptions: this.viewOptions(),
-      strategy: this.strategy(),
-      availableForAgent: this.availableForAgent(),
+      id: this.id,
+      name: this.name,
+      description: this.description,
+      inputConfig: this.inputConfig.map((c) => c),
+      needsConnection: this.needsConnection,
+      iconUrl: this.iconUrl,
+      viewOptions: this.viewOptions,
+      strategy: this.strategy,
+      availableForAgent: this.availableForAgent,
     };
   }
 
   toToolJSON(): CoreTool<any, any> {
     return {
-      parameters: this.inputConfig().map((c) => c),
-      description: this.description(),
+      parameters: this.inputConfig.map((c) => c),
+      description: this.description,
       execute: (args: PrepareAndRunTriggerArgs) =>
         //Skipping swapping because the tool doesn't contain references or variables.
         this.prepareAndRunTrigger({
@@ -769,16 +757,15 @@ export abstract class WebhookAppTrigger extends Trigger {
     super(args);
   }
 
-  viewOptions(): NodeViewOptions {
-    return {
-      showWebhookListenerButton: true,
-      saveButtonOptions: {
-        hideSaveAndTestButton: true,
-      },
-    };
-  }
+  viewOptions: NodeViewOptions = {
+    showWebhookListenerButton: true,
+    saveButtonOptions: {
+      hideSaveAndTestButton: true,
+    },
+  };
+  strategy: TriggerStrategy = 'webhook.app';
 
-  abstract eventType(): string;
+  abstract eventType: string;
 
   /**
    * The webhook payload must have something to identify what connection it's for.
@@ -790,10 +777,6 @@ export abstract class WebhookAppTrigger extends Trigger {
     webhookBody: unknown;
     connectionMetadata: Record<string, any>;
   }): boolean;
-
-  strategy(): TriggerStrategy {
-    return 'webhook.app';
-  }
 }
 
 export abstract class CustomWebhookTrigger extends Trigger {
@@ -801,18 +784,14 @@ export abstract class CustomWebhookTrigger extends Trigger {
     super(args);
   }
 
-  viewOptions(): NodeViewOptions {
-    return {
-      showWebhookListenerButton: true,
-      saveButtonOptions: {
-        hideSaveAndTestButton: true,
-      },
-    };
-  }
+  viewOptions: NodeViewOptions = {
+    showWebhookListenerButton: true,
+    saveButtonOptions: {
+      hideSaveAndTestButton: true,
+    },
+  };
 
-  strategy(): TriggerStrategy {
-    return 'webhook.custom';
-  }
+  strategy: TriggerStrategy = 'webhook.custom';
 }
 
 export abstract class TimeBasedPollTrigger extends Trigger {
@@ -820,9 +799,7 @@ export abstract class TimeBasedPollTrigger extends Trigger {
     super(args);
   }
 
-  strategy(): TriggerStrategy {
-    return 'poll.dedupe-time-based';
-  }
+  strategy: TriggerStrategy = 'poll.dedupe-time-based';
 
   async dedupeTimeBasedStrategy({
     triggerResponses,
@@ -905,9 +882,7 @@ export abstract class ItemBasedPollTrigger extends Trigger {
     super(args);
   }
 
-  strategy(): TriggerStrategy {
-    return 'poll.dedupe-item-based';
-  }
+  strategy: TriggerStrategy = 'poll.dedupe-item-based';
 
   async dedupeItemBasedStrategy({
     triggerResponses,
@@ -992,9 +967,7 @@ export abstract class LengthBasedPollTrigger extends Trigger {
     super(args);
   }
 
-  strategy(): TriggerStrategy {
-    return 'poll.dedupe-length-based';
-  }
+  strategy: TriggerStrategy = 'poll.dedupe-length-based';
 
   async dedupeLengthBasedStrategy({
     triggerResponses,

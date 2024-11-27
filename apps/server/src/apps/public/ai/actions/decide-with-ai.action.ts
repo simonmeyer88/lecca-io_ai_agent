@@ -18,71 +18,58 @@ export class DecideWithAI extends Action {
   }
 
   app: AI;
-  id() {
-    return 'ai_action_decide-with-ai';
-  }
-  needsConnection() {
-    return false;
-  }
-  name() {
-    return 'Decide with AI';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id()}.svg`;
-  }
-  description() {
-    return 'Allow an AI model to select an option based on the data and instructions provided.';
-  }
-
-  aiSchema() {
-    return z.object({
-      provider: z.string().describe('The AI provider to use'),
-      model: z.string().describe('The ID of the model to use'),
-      instructions: z
-        .string()
-        .min(1)
-        .describe('Instructions on how to select an option'),
-      options: z.array(z.string().min(1)).describe('An option AI can select'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectAiProvider(),
-      this.app.dynamicSelectLlmModel(),
-      this.app.dynamicSelectLlmConnection(),
-      {
-        id: 'instructions',
-        label: 'Decision Instructions',
-        description: 'How the AI should select an option.',
-        inputType: 'text',
-        placeholder: 'Add instructions',
-        required: {
-          missingMessage: 'Instructions are required',
-          missingStatus: 'warning',
-        },
+  id = 'ai_action_decide-with-ai';
+  needsConnection = false;
+  name = 'Decide with AI';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id}.svg`;
+  description =
+    'Allow an AI model to select an option based on the data and instructions provided.';
+  aiSchema = z.object({
+    provider: z.string().describe('The AI provider to use'),
+    model: z.string().describe('The ID of the model to use'),
+    instructions: z
+      .string()
+      .min(1)
+      .describe('Instructions on how to select an option'),
+    options: z.array(z.string().min(1)).describe('An option AI can select'),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectAiProvider(),
+    this.app.dynamicSelectLlmModel(),
+    this.app.dynamicSelectLlmConnection(),
+    {
+      id: 'instructions',
+      label: 'Decision Instructions',
+      description: 'How the AI should select an option.',
+      inputType: 'text',
+      placeholder: 'Add instructions',
+      required: {
+        missingMessage: 'Instructions are required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'options',
-        label: 'Options',
-        description: 'An option AI can select.',
-        placeholder: 'Add an option, e.g. True',
-        inputType: 'text',
-        occurenceType: 'multiple',
-        required: {
-          missingMessage: 'Option is required',
-          missingStatus: 'warning',
-        },
+    },
+    {
+      id: 'options',
+      label: 'Options',
+      description: 'An option AI can select.',
+      placeholder: 'Add an option, e.g. True',
+      inputType: 'text',
+      occurenceType: 'multiple',
+      required: {
+        missingMessage: 'Option is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'markdown',
-        description: '',
-        label: '',
-        markdown:
-          "Not all models can extract data. We've tested the OpenAI models and determined those work best.",
-        inputType: 'markdown',
-      },
-    ];
-  }
+    },
+    {
+      id: 'markdown',
+      description: '',
+      label: '',
+      markdown:
+        "Not all models can extract data. We've tested the OpenAI models and determined those work best.",
+      inputType: 'markdown',
+    },
+  ];
 
   async run({
     configValue,
@@ -91,7 +78,7 @@ export class DecideWithAI extends Action {
     agentId,
     executionId,
     workflowId,
-  }: RunActionArgs<ConfigValue>): Promise<PromptResponse> {
+  }: RunActionArgs<ConfigValue>): Promise<Response> {
     const {
       model,
       instructions,
@@ -165,7 +152,7 @@ export class DecideWithAI extends Action {
             workflowId,
           },
           details: {
-            actionId: this.id(),
+            actionId: this.id,
             aiProvider: provider,
             llmModel: model,
             usage: usage,
@@ -180,7 +167,7 @@ export class DecideWithAI extends Action {
     };
   }
 
-  async mockRun(): Promise<PromptResponse> {
+  async mockRun(): Promise<Response> {
     return {
       response: 'Mock Response',
       usage: {
@@ -192,11 +179,11 @@ export class DecideWithAI extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<DecideWithAI['aiSchema']>> & {
+type ConfigValue = z.infer<DecideWithAI['aiSchema']> & {
   __internal__llmConnectionId?: string;
 };
 
-type PromptResponse = {
+type Response = {
   response: string;
   usage: LanguageModelUsage;
 };

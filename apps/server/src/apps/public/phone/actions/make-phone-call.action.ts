@@ -18,179 +18,160 @@ export class MakePhoneCall extends Action {
   }
 
   app: Phone;
-  id() {
-    return 'phone_action_make-phone-call';
-  }
-  name() {
-    return 'Make Phone Call';
-  }
-  description() {
-    return `Make an AI phone call.`;
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
-  }
-
-  aiSchema() {
-    return z.object({
-      customerPhoneNumber: z
-        .string()
-        .min(1)
-        .describe(
-          'The phone number to call, including the country and area code e.g. +18019999999',
-        ),
-      systemPrompt: z
-        .string()
-        .optional()
-        .nullable()
-        .describe(
-          "The instructions given to the AI that makes the call. Pass in the relevant data needed to perform the call. If you're not sure what to put here, ask for clarification.",
-        ),
-      voice: z.enum([DEFAULT_VOICE]).optional().nullable(),
-      openingLine: z
-        .string()
-        .optional()
-        .nullable()
-        .describe('The first line the AI will say when the call is connected.'),
-      closingLine: z
-        .string()
-        .optional()
-        .nullable()
-        .describe('The last line the AI will say when the call is ending.'),
-      voicemailMessage: z
-        .string()
-        .optional()
-        .nullable()
-        .describe('The message left when the call goes to voicemail.'),
-      backgroundNoise: z
-        .enum(['office', 'off'])
-        .optional()
-        .nullable()
-        .default('off')
-        .describe('The background noise to play during the call.'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'customerPhoneNumber',
-        inputType: 'text',
-        description:
-          'The phone number to call. Must include country and area code',
-        label: 'Phone Number to Call',
-        placeholder: 'Enter full phone number, e.g. +18019999999',
-        required: {
-          missingMessage: 'Phone number is required',
-          missingStatus: 'warning',
-        },
+  id = 'phone_action_make-phone-call';
+  name = 'Make Phone Call';
+  description = `Make an AI phone call.`;
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
+  aiSchema = z.object({
+    customerPhoneNumber: z
+      .string()
+      .min(1)
+      .describe(
+        'The phone number to call, including the country and area code e.g. +18019999999',
+      ),
+    systemPrompt: z
+      .string()
+      .optional()
+      .nullable()
+      .describe(
+        "The instructions given to the AI that makes the call. Pass in the relevant data needed to perform the call. If you're not sure what to put here, ask for clarification.",
+      ),
+    voice: z.enum([DEFAULT_VOICE]).optional().nullable(),
+    openingLine: z
+      .string()
+      .optional()
+      .nullable()
+      .describe('The first line the AI will say when the call is connected.'),
+    closingLine: z
+      .string()
+      .optional()
+      .nullable()
+      .describe('The last line the AI will say when the call is ending.'),
+    voicemailMessage: z
+      .string()
+      .optional()
+      .nullable()
+      .describe('The message left when the call goes to voicemail.'),
+    backgroundNoise: z
+      .enum(['office', 'off'])
+      .optional()
+      .nullable()
+      .default('off')
+      .describe('The background noise to play during the call.'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'customerPhoneNumber',
+      inputType: 'text',
+      description:
+        'The phone number to call. Must include country and area code',
+      label: 'Phone Number to Call',
+      placeholder: 'Enter full phone number, e.g. +18019999999',
+      required: {
+        missingMessage: 'Phone number is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'voice',
-        label: 'Voice',
-        description: 'The voice to use for the call',
-        placeholder: 'Select voice',
-        inputType: 'dynamic-select',
-        defaultValue: DEFAULT_VOICE,
-        _getDynamicValues: async ({ workspaceId }) => {
-          const voices = await this.app.http.loggedRequest({
-            method: 'GET',
-            url: 'https://api.elevenlabs.io/v1/voices',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            workspaceId,
-          });
-
-          return (
-            voices.data?.voices
-              ?.map((voice: any) => {
-                const descriptionPieces: string[] = [];
-
-                if (
-                  voice.labels &&
-                  voice.labels.use_case === 'conversational'
-                ) {
-                  Object.values(voice.labels).forEach((label: any) => {
-                    if (label !== 'conversational') {
-                      descriptionPieces.push(label);
-                    }
-                  });
-                } else {
-                  return null;
-                }
-
-                const labelWithDescription = `${voice.name}${descriptionPieces?.length ? ` - ${descriptionPieces.join(', ')}` : ''}`;
-
-                return {
-                  label: labelWithDescription,
-                  value: voice.voice_id,
-                };
-              })
-              .filter(Boolean) || []
-          );
-        },
-      },
-      {
-        id: 'systemPrompt',
-        label: 'System Prompt',
-        description: 'The prompt given to the AI that makes the call.',
-        placeholder: 'Enter a prompt',
-        inputType: 'text',
-      },
-      {
-        id: 'openingLine',
-        label: 'Opening Line',
-        description:
-          'The first line the AI will say when the call is connected.',
-        placeholder: 'Add text',
-        inputType: 'text',
-      },
-      {
-        id: 'closingLine',
-        label: 'Closing Line',
-        description: 'The last line the AI will say when the call is ending.',
-        placeholder: 'Add text',
-        inputType: 'text',
-      },
-      {
-        id: 'voicemailMessage',
-        label: 'Voicemail Message',
-        description: 'The message left when the call goes to voicemail.',
-        placeholder: 'Add text',
-        inputType: 'text',
-      },
-      {
-        id: 'backgroundNoise',
-        label: 'Background Noise',
-        description: 'The background noise to play during the call.',
-        placeholder: 'Select background noise',
-        inputType: 'select',
-        selectOptions: [
-          {
-            label: 'Office',
-            value: 'office',
+    },
+    {
+      id: 'voice',
+      label: 'Voice',
+      description: 'The voice to use for the call',
+      placeholder: 'Select voice',
+      inputType: 'dynamic-select',
+      defaultValue: DEFAULT_VOICE,
+      _getDynamicValues: async ({ workspaceId }) => {
+        const voices = await this.app.http.loggedRequest({
+          method: 'GET',
+          url: 'https://api.elevenlabs.io/v1/voices',
+          headers: {
+            'Content-Type': 'application/json',
           },
-          {
-            label: 'Off',
-            value: 'off',
-          },
-        ],
-        defaultValue: 'off',
-      },
-      {
-        id: 'markdown',
-        inputType: 'markdown',
-        description: '',
-        label: '',
-        markdown:
-          'Note that this action uses credits per call. The amount depends on how long the call was. Maximum of 10 minutes.',
-      },
-    ];
-  }
+          workspaceId,
+        });
 
-  needsConnection(): boolean {
-    return false;
-  }
+        return (
+          voices.data?.voices
+            ?.map((voice: any) => {
+              const descriptionPieces: string[] = [];
+
+              if (voice.labels && voice.labels.use_case === 'conversational') {
+                Object.values(voice.labels).forEach((label: any) => {
+                  if (label !== 'conversational') {
+                    descriptionPieces.push(label);
+                  }
+                });
+              } else {
+                return null;
+              }
+
+              const labelWithDescription = `${voice.name}${descriptionPieces?.length ? ` - ${descriptionPieces.join(', ')}` : ''}`;
+
+              return {
+                label: labelWithDescription,
+                value: voice.voice_id,
+              };
+            })
+            .filter(Boolean) || []
+        );
+      },
+    },
+    {
+      id: 'systemPrompt',
+      label: 'System Prompt',
+      description: 'The prompt given to the AI that makes the call.',
+      placeholder: 'Enter a prompt',
+      inputType: 'text',
+    },
+    {
+      id: 'openingLine',
+      label: 'Opening Line',
+      description: 'The first line the AI will say when the call is connected.',
+      placeholder: 'Add text',
+      inputType: 'text',
+    },
+    {
+      id: 'closingLine',
+      label: 'Closing Line',
+      description: 'The last line the AI will say when the call is ending.',
+      placeholder: 'Add text',
+      inputType: 'text',
+    },
+    {
+      id: 'voicemailMessage',
+      label: 'Voicemail Message',
+      description: 'The message left when the call goes to voicemail.',
+      placeholder: 'Add text',
+      inputType: 'text',
+    },
+    {
+      id: 'backgroundNoise',
+      label: 'Background Noise',
+      description: 'The background noise to play during the call.',
+      placeholder: 'Select background noise',
+      inputType: 'select',
+      selectOptions: [
+        {
+          label: 'Office',
+          value: 'office',
+        },
+        {
+          label: 'Off',
+          value: 'off',
+        },
+      ],
+      defaultValue: 'off',
+    },
+    {
+      id: 'markdown',
+      inputType: 'markdown',
+      description: '',
+      label: '',
+      markdown:
+        'Note that this action uses credits per call. The amount depends on how long the call was. Maximum of 10 minutes.',
+    },
+  ];
+  needsConnection = false;
 
   async run({
     configValue,
@@ -330,7 +311,7 @@ export class MakePhoneCall extends Action {
               workflowId,
             },
             details: {
-              actionId: this.id(),
+              actionId: this.id,
               durationInMinutes:
                 (new Date(endedAt).getTime() - new Date(startedAt).getTime()) /
                 1000 /
@@ -381,6 +362,6 @@ const mock = {
   recordingUrl: '<string>',
 };
 
-type ConfigValue = z.infer<ReturnType<MakePhoneCall['aiSchema']>>;
+type ConfigValue = z.infer<MakePhoneCall['aiSchema']>;
 
 type Response = typeof mock;

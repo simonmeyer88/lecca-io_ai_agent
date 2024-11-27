@@ -16,103 +16,89 @@ export class UpdateCell extends Action {
 
   app: GoogleSheets;
 
-  id() {
-    return 'google-sheets_action_update-cell';
-  }
-
-  name() {
-    return 'Update Cell';
-  }
-
-  description() {
-    return 'Updates a specific cell in the specified sheet.';
-  }
-
-  aiSchema() {
-    return z.object({
-      spreadsheet: z.string().min(1).describe('The ID of the spreadsheet'),
-      sheet: z.string().min(1).describe('The name of the sheet'),
-      cellAddress: z.string().min(1).describe('The cell address, e.g., A1'),
-      value: z.string().min(1).describe('The value to set in the cell'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectSpreadSheets(),
-      this.app.dynamicSelectSheetNames(),
-      {
-        id: 'useCellAddress',
-        label: 'Use Cell Address',
-        description: 'Use cell address or enter row index and column',
-        inputType: 'switch',
-        switchOptions: {
-          checked: 'true',
-          unchecked: 'false',
-          defaultChecked: true,
-        },
+  id = 'google-sheets_action_update-cell';
+  name = 'Update Cell';
+  description = 'Updates a specific cell in the specified sheet.';
+  aiSchema = z.object({
+    spreadsheet: z.string().min(1).describe('The ID of the spreadsheet'),
+    sheet: z.string().min(1).describe('The name of the sheet'),
+    cellAddress: z.string().min(1).describe('The cell address, e.g., A1'),
+    value: z.string().min(1).describe('The value to set in the cell'),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectSpreadSheets(),
+    this.app.dynamicSelectSheetNames(),
+    {
+      id: 'useCellAddress',
+      label: 'Use Cell Address',
+      description: 'Use cell address or enter row index and column',
+      inputType: 'switch',
+      switchOptions: {
+        checked: 'true',
+        unchecked: 'false',
+        defaultChecked: true,
       },
-      {
-        id: 'cellAddress',
-        label: 'Cell',
-        description: 'The cell address to update, e.g., A1',
-        inputType: 'text',
-        placeholder: 'Enter cell address, e.g., A1',
-        loadOptions: {
-          dependsOn: [
-            {
-              id: 'useCellAddress',
-              value: 'true',
-            },
-          ],
-        },
+    },
+    {
+      id: 'cellAddress',
+      label: 'Cell',
+      description: 'The cell address to update, e.g., A1',
+      inputType: 'text',
+      placeholder: 'Enter cell address, e.g., A1',
+      loadOptions: {
+        dependsOn: [
+          {
+            id: 'useCellAddress',
+            value: 'true',
+          },
+        ],
       },
-      {
-        ...this.app.dynamicSelectColumnsDropdown(),
-        loadOptions: {
-          dependsOn: [
-            'spreadsheet',
-            'sheet',
-            {
-              id: 'useCellAddress',
-              value: 'false',
-            },
-          ],
-          forceRefresh: true,
-        },
-        required: undefined,
+    },
+    {
+      ...this.app.dynamicSelectColumnsDropdown(),
+      loadOptions: {
+        dependsOn: [
+          'spreadsheet',
+          'sheet',
+          {
+            id: 'useCellAddress',
+            value: 'false',
+          },
+        ],
+        forceRefresh: true,
       },
-      {
-        id: 'rowIndex',
-        label: 'Row Index',
-        description: 'The row index to update',
-        inputType: 'number',
-        numberOptions: {
-          min: 1,
-          step: 1,
-        },
-        loadOptions: {
-          dependsOn: [
-            {
-              id: 'useCellAddress',
-              value: 'false',
-            },
-          ],
-        },
+      required: undefined,
+    },
+    {
+      id: 'rowIndex',
+      label: 'Row Index',
+      description: 'The row index to update',
+      inputType: 'number',
+      numberOptions: {
+        min: 1,
+        step: 1,
       },
-      {
-        id: 'value',
-        label: 'Value',
-        description: 'The value to set in the cell',
-        inputType: 'text',
-        placeholder: 'Enter the value to set',
-        required: {
-          missingMessage: 'Value is required',
-          missingStatus: 'warning',
-        },
+      loadOptions: {
+        dependsOn: [
+          {
+            id: 'useCellAddress',
+            value: 'false',
+          },
+        ],
       },
-    ];
-  }
+    },
+    {
+      id: 'value',
+      label: 'Value',
+      description: 'The value to set in the cell',
+      inputType: 'text',
+      placeholder: 'Enter the value to set',
+      required: {
+        missingMessage: 'Value is required',
+        missingStatus: 'warning',
+      },
+    },
+  ];
 
   async run({
     configValue,
@@ -182,7 +168,7 @@ const mockResponse = {
 
 type Response = typeof mockResponse;
 
-type ConfigValue = z.infer<ReturnType<UpdateCell['aiSchema']>> & {
+type ConfigValue = z.infer<UpdateCell['aiSchema']> & {
   rowIndex: number;
   column: number;
   useCellAddress: 'true' | 'false';

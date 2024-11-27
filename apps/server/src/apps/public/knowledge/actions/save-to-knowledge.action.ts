@@ -16,133 +16,128 @@ export class SaveToKnowledge extends Action {
   }
 
   app: Knowledge;
-  id() {
-    return 'knowledge_action_save-to-knowledge';
-  }
-  needsConnection() {
-    return false;
-  }
-  name() {
-    return 'Save to Knowledge';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${`knowledge_action_search-knowledge`}.svg`;
-  }
-  description() {
-    return 'Saves text to a knowledge notebook';
-  }
-  aiSchema() {
-    return z.object({
-      data: z
-        .string()
-        .min(1)
-        .describe('The data to save to the knowledge notebook'),
-      name: z
-        .string()
-        .min(1)
-        .describe('The name of the data entry helpful for searching'),
-      chunkSize: z
-        .number()
-        .min(100)
-        .max(2000)
-        .nullable()
-        .optional()
-        .describe('The size of the chunks to chunk the text data into.'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'knowledgeId',
-        label: 'Knowledge Notebook',
-        description: 'The knowledge notebook to save the text data to',
-        placeholder: 'Select a notebook',
-        inputType: 'dynamic-select',
-        _getDynamicValues: async ({ projectId, workspaceId }) => {
-          const notebooks = await this.app.prisma.knowledge.findMany({
-            where: {
-              OR: [
-                {
-                  FK_projectId: projectId,
-                },
-                {
-                  AND: [
-                    {
-                      FK_workspaceId: workspaceId,
-                    },
-                    {
-                      FK_projectId: null,
-                    },
-                  ],
-                },
-              ],
-            },
-            select: {
-              id: true,
-              name: true,
-            },
-          });
+  id = 'knowledge_action_save-to-knowledge';
+  name = 'Save to Knowledge';
+  needsConnection = false;
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${`knowledge_action_search-knowledge`}.svg`;
+  description = 'Saves text to a knowledge notebook';
+  aiSchema = z.object({
+    knowledgeId: z
+      .string()
+      .describe('The knowledge notebook ID to save the text data to.'),
+    chunkOverlap: z
+      .number()
+      .describe(
+        'The size of the chunk overlap. This is useful for ensuring context is not lost between chunks. Maxiumum is 50%.',
+      ),
+    data: z
+      .string()
+      .min(1)
+      .describe('The data to save to the knowledge notebook'),
+    name: z
+      .string()
+      .min(1)
+      .describe('The name of the data entry helpful for searching'),
+    chunkSize: z
+      .number()
+      .min(100)
+      .max(2000)
+      .nullable()
+      .optional()
+      .describe('The size of the chunks to chunk the text data into.'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'knowledgeId',
+      label: 'Knowledge Notebook',
+      description: 'The knowledge notebook to save the text data to',
+      placeholder: 'Select a notebook',
+      inputType: 'dynamic-select',
+      _getDynamicValues: async ({ projectId, workspaceId }) => {
+        const notebooks = await this.app.prisma.knowledge.findMany({
+          where: {
+            OR: [
+              {
+                FK_projectId: projectId,
+              },
+              {
+                AND: [
+                  {
+                    FK_workspaceId: workspaceId,
+                  },
+                  {
+                    FK_projectId: null,
+                  },
+                ],
+              },
+            ],
+          },
+          select: {
+            id: true,
+            name: true,
+          },
+        });
 
-          return notebooks.map((notebook) => ({
-            label: notebook.name,
-            value: notebook.id,
-          }));
-        },
-        required: {
-          missingMessage: 'Knowledge notebook is required',
-          missingStatus: 'warning',
-        },
+        return notebooks.map((notebook) => ({
+          label: notebook.name,
+          value: notebook.id,
+        }));
       },
-      {
-        id: 'name',
-        label: 'Name',
-        description: 'The name of the data entry helpful for searching',
-        inputType: 'text',
-        placeholder: 'Add a name',
-        required: {
-          missingMessage: 'Name is required',
-          missingStatus: 'warning',
-        },
+      required: {
+        missingMessage: 'Knowledge notebook is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'data',
-        label: 'Data',
-        description: 'The data to save to the knowledge notebook',
-        inputType: 'text',
-        required: {
-          missingMessage: 'Data is required',
-          missingStatus: 'warning',
-        },
-        placeholder: 'Add data to save',
+    },
+    {
+      id: 'name',
+      label: 'Name',
+      description: 'The name of the data entry helpful for searching',
+      inputType: 'text',
+      placeholder: 'Add a name',
+      required: {
+        missingMessage: 'Name is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'chunkSize',
-        label: 'Chunk Size',
-        description:
-          'The size of the chunks to chunk the text data into. This is used for breaking the data into smaller pieces. Maximum is 2000.',
-        inputType: 'number',
-        numberOptions: {
-          min: 100,
-          max: 2000,
-          step: 1,
-        },
-        placeholder: 'Defaults to 1000',
+    },
+    {
+      id: 'data',
+      label: 'Data',
+      description: 'The data to save to the knowledge notebook',
+      inputType: 'text',
+      required: {
+        missingMessage: 'Data is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'chunkOverlap',
-        label: 'Chunk Overlap %',
-        description:
-          'The size of the chunk overlap. This is useful for ensuring context is not lost between chunks. Maxiumum is 50%.',
-        numberOptions: {
-          min: 0,
-          max: 50,
-          step: 1,
-        },
-        inputType: 'number',
-        placeholder: 'Defaults to 10%',
+      placeholder: 'Add data to save',
+    },
+    {
+      id: 'chunkSize',
+      label: 'Chunk Size',
+      description:
+        'The size of the chunks to chunk the text data into. This is used for breaking the data into smaller pieces. Maximum is 2000.',
+      inputType: 'number',
+      numberOptions: {
+        min: 100,
+        max: 2000,
+        step: 1,
       },
-    ];
-  }
+      placeholder: 'Defaults to 1000',
+    },
+    {
+      id: 'chunkOverlap',
+      label: 'Chunk Overlap %',
+      description:
+        'The size of the chunk overlap. This is useful for ensuring context is not lost between chunks. Maxiumum is 50%.',
+      numberOptions: {
+        min: 0,
+        max: 50,
+        step: 1,
+      },
+      inputType: 'number',
+      placeholder: 'Defaults to 10%',
+    },
+  ];
 
   async run({
     configValue,
@@ -218,10 +213,7 @@ export class SaveToKnowledge extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<SaveToKnowledge['aiSchema']>> & {
-  knowledgeId: string;
-  chunkOverlap: number;
-};
+type ConfigValue = z.infer<SaveToKnowledge['aiSchema']>;
 
 type Response = {
   dataSaved: true;

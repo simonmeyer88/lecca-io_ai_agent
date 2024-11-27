@@ -16,38 +16,28 @@ export class GetThreadMessages extends Action {
   }
 
   app: Gmail;
-  id() {
-    return 'gmail_action_get-thread-messages';
-  }
-  name() {
-    return 'Get Thread Messages';
-  }
-  description() {
-    return 'Retrieve messages from a Gmail thread';
-  }
-  aiSchema() {
-    return z.object({
-      threadId: z
-        .string()
-        .min(1)
-        .describe('The thread ID of the email to retrieve messages from'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        label: 'Thread ID',
-        id: 'threadId',
-        inputType: 'text',
-        placeholder: 'Add the thread ID',
-        description: 'The thread ID of the email to retrieve messages from',
-        required: {
-          missingMessage: 'Thread ID is required',
-          missingStatus: 'warning',
-        },
+  id = 'gmail_action_get-thread-messages';
+  name = 'Get Thread Messages';
+  description = 'Retrieve messages from a Gmail thread';
+  aiSchema = z.object({
+    threadId: z
+      .string()
+      .min(1)
+      .describe('The thread ID of the email to retrieve messages from'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      label: 'Thread ID',
+      id: 'threadId',
+      inputType: 'text',
+      placeholder: 'Add the thread ID',
+      description: 'The thread ID of the email to retrieve messages from',
+      required: {
+        missingMessage: 'Thread ID is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -86,4 +76,4 @@ export class GetThreadMessages extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<GetThreadMessages['aiSchema']>>;
+type ConfigValue = z.infer<GetThreadMessages['aiSchema']>;

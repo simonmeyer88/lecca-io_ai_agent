@@ -16,44 +16,30 @@ export class AddRowToSheet extends Action {
 
   app: GoogleSheets;
 
-  id() {
-    return 'google-sheets_action_add-row-to-sheet';
-  }
-
-  name() {
-    return 'Add Row to Sheet';
-  }
-
-  description() {
-    return 'Adds a new row to the specified sheet.';
-  }
-
-  aiSchema() {
-    return z.object({
-      spreadsheet: z.string().min(1).describe('The ID of the spreadsheet'),
-      sheet: z.string().min(1).describe('The name of the sheet'),
-      headerRowNumber: z
-        .number()
-        .describe('The row number the header columns are located on.'),
-      mappings: z
-        .array(
-          z.object({
-            key: z.string().min(1).nullable().optional().describe('Not used'),
-            value: z.string().min(1).describe('the value to enter in the cell'),
-          }),
-        )
-        .describe('An array of values to add to the new row.'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectSpreadSheets(),
-      this.app.dynamicSelectSheetNames(),
-      this.app.headerRowNumber(),
-      this.app.dynamicSelectHeadersMap(),
-    ];
-  }
+  id = 'google-sheets_action_add-row-to-sheet';
+  name = 'Add Row to Sheet';
+  description = 'Adds a new row to the specified sheet.';
+  aiSchema = z.object({
+    spreadsheet: z.string().min(1).describe('The ID of the spreadsheet'),
+    sheet: z.string().min(1).describe('The name of the sheet'),
+    headerRowNumber: z
+      .number()
+      .describe('The row number the header columns are located on.'),
+    mappings: z
+      .array(
+        z.object({
+          key: z.string().min(1).nullable().optional().describe('Not used'),
+          value: z.string().min(1).describe('the value to enter in the cell'),
+        }),
+      )
+      .describe('An array of values to add to the new row.'),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectSpreadSheets(),
+    this.app.dynamicSelectSheetNames(),
+    this.app.headerRowNumber(),
+    this.app.dynamicSelectHeadersMap(),
+  ];
 
   async run({
     configValue,
@@ -113,4 +99,4 @@ const mock = {
 
 type Response = typeof mock;
 
-type ConfigValue = z.infer<ReturnType<AddRowToSheet['aiSchema']>>;
+type ConfigValue = z.infer<AddRowToSheet['aiSchema']>;

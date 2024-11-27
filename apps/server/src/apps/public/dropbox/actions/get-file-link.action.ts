@@ -16,45 +16,31 @@ export class GetTemporaryLink extends Action {
 
   app: Dropbox;
 
-  id() {
-    return 'dropbox_action_get-temporary-link';
-  }
-
-  name() {
-    return 'Get Temporary Link';
-  }
-
-  description() {
-    return 'Retrieves a temporary link to a Dropbox file';
-  }
-
-  aiSchema() {
-    return z.object({
-      path: z.string().min(1).describe('The path of the file in Dropbox'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'path',
-        label: 'File Path',
-        description: 'The path to the file in your Dropbox',
-        inputType: 'text',
-        placeholder: '/path/to/file',
-        required: {
-          missingMessage: 'File path is required',
-          missingStatus: 'warning',
-        },
+  id = 'dropbox_action_get-temporary-link';
+  name = 'Get Temporary Link';
+  description = 'Retrieves a temporary link to a Dropbox file';
+  aiSchema = z.object({
+    path: z.string().min(1).describe('The path of the file in Dropbox'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'path',
+      label: 'File Path',
+      description: 'The path to the file in your Dropbox',
+      inputType: 'text',
+      placeholder: '/path/to/file',
+      required: {
+        missingMessage: 'File path is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
     connection,
     workspaceId,
-  }: RunActionArgs<ConfigValue>): Promise<ResponseType> {
+  }: RunActionArgs<ConfigValue>): Promise<Response> {
     const url = 'https://api.dropboxapi.com/2/files/get_temporary_link';
 
     const body = {
@@ -80,7 +66,7 @@ export class GetTemporaryLink extends Action {
     }
   }
 
-  async mockRun(): Promise<ResponseType> {
+  async mockRun(): Promise<Response> {
     return {
       link: 'https://www.dropbox.com/s/abc123/temporary-link?dl=0',
       metadata: {
@@ -93,7 +79,9 @@ export class GetTemporaryLink extends Action {
   }
 }
 
-type ResponseType = {
+type ConfigValue = z.infer<GetTemporaryLink['aiSchema']>;
+
+type Response = {
   link: string;
   metadata: {
     name: string;
@@ -102,5 +90,3 @@ type ResponseType = {
     id: string;
   };
 };
-
-type ConfigValue = z.infer<ReturnType<GetTemporaryLink['aiSchema']>>;

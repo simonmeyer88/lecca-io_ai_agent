@@ -15,21 +15,12 @@ export class NewCalendarEvent extends TimeBasedPollTrigger {
 
   app: GoogleCalendar;
 
-  id() {
-    return 'google-calendar_trigger_new-calendar-event';
-  }
-
-  name() {
-    return 'New Calendar Event';
-  }
-
-  description() {
-    return 'Triggers when a new event is created in a specified calendar';
-  }
-
-  inputConfig(): InputConfig[] {
-    return [this.app.dynamicSelectCalendar({ includeType: 'all' })];
-  }
+  id = 'google-calendar_trigger_new-calendar-event';
+  name = 'New Calendar Event';
+  description = 'Triggers when a new event is created in a specified calendar';
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectCalendar({ includeType: 'all' }),
+  ];
 
   async run({
     connection,

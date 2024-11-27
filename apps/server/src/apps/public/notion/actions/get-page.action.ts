@@ -16,27 +16,13 @@ export class GetPage extends Action {
 
   app: Notion;
 
-  id() {
-    return 'notion_action_get-page';
-  }
-
-  name() {
-    return 'Get Page Contents';
-  }
-
-  description() {
-    return "Fetches a page's contents";
-  }
-
-  aiSchema() {
-    return z.object({
-      pageId: z.string().min(1).describe('The ID of the page to retrieve.'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [this.app.dynamicSelectPage()];
-  }
+  id = 'notion_action_get-page';
+  name = 'Get Page Contents';
+  description = "Fetches a page's contents";
+  aiSchema = z.object({
+    pageId: z.string().min(1).describe('The ID of the page to retrieve.'),
+  });
+  inputConfig: InputConfig[] = [this.app.dynamicSelectPage()];
 
   async run({
     connection,
@@ -97,4 +83,4 @@ export class GetPage extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<GetPage['aiSchema']>>;
+type ConfigValue = z.infer<GetPage['aiSchema']>;

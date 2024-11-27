@@ -22,188 +22,171 @@ export class RecurringSchedule extends Trigger {
   }
 
   app: FlowControl;
-  id() {
-    return 'flow-control_trigger_recurring-schedule';
-  }
-  needsConnection() {
-    return false;
-  }
-  name() {
-    return 'Recurring Schedule';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/triggers/${this.id()}.svg`;
-  }
-  strategy(): TriggerStrategy {
-    return 'schedule';
-  }
-  description() {
-    return 'Schedule this trigger to run at specific times.';
-  }
-  aiSchema() {
-    return z.object({
-      start: z.string().min(1).describe('Start date as iso string'),
-      rrule: z.array(z.string().min(1).max(1).describe('An RRULE string')),
-      //NOT INCLUDING THE OTHER PROPERTIES, BECAUSE OUR AI AGENT CAN CREATE CUSTOM RRULEs USING THE rrule field
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'start',
-        label: 'Start',
-        hideCustomTab: true,
-        description: 'When to start the recurring schedule',
-        inputType: 'date-time',
-        required: {
-          missingMessage: 'Start is required',
-          missingStatus: 'warning',
-        },
+  id = 'flow-control_trigger_recurring-schedule';
+  needsConnection = false;
+  name = 'Recurring Schedule';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/triggers/${this.id}.svg`;
+  strategy: TriggerStrategy = 'schedule';
+  description = 'Schedule this trigger to run at specific times.';
+  aiSchema = z.object({
+    start: z.string().min(1).describe('Start date as iso string'),
+    rrule: z.array(z.string().min(1).max(1).describe('An RRULE string')),
+    //NOT INCLUDING THE OTHER PROPERTIES, BECAUSE OUR AI AGENT CAN CREATE CUSTOM RRULEs USING THE rrule field
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'start',
+      label: 'Start',
+      hideCustomTab: true,
+      description: 'When to start the recurring schedule',
+      inputType: 'date-time',
+      required: {
+        missingMessage: 'Start is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'rrule',
-        label: 'Repeats',
-        hideCustomTab: true,
-        description: 'Repeating frequency',
-        occurenceType: 'dynamic',
-        inputType: 'select',
-        loadOptions: {
-          dependsOn: ['start'],
-          forceRefresh: true,
-          hideRefreshButton: true,
-        },
-        _getDynamicValues: async ({ extraOptions }) => {
-          const start = extraOptions?.start;
-
-          if (!start) {
-            throw new BadRequestException('Start is required');
-          }
-
-          return this.#createDropdownOptions(start);
-        },
-        required: {
-          missingMessage: 'Repeat is required',
-          missingStatus: 'warning',
-        },
+    },
+    {
+      id: 'rrule',
+      label: 'Repeats',
+      hideCustomTab: true,
+      description: 'Repeating frequency',
+      occurenceType: 'dynamic',
+      inputType: 'select',
+      loadOptions: {
+        dependsOn: ['start'],
+        forceRefresh: true,
+        hideRefreshButton: true,
       },
-      {
-        id: 'customRepeatPeriod',
-        label: 'Repeat Period',
-        hideCustomTab: true,
-        description: 'Custom repeat period',
-        inputType: 'select',
-        defaultValue: 'DAILY',
-        selectOptions: [
+      _getDynamicValues: async ({ extraOptions }) => {
+        const start = extraOptions?.start;
+
+        if (!start) {
+          throw new BadRequestException('Start is required');
+        }
+
+        return this.#createDropdownOptions(start);
+      },
+      required: {
+        missingMessage: 'Repeat is required',
+        missingStatus: 'warning',
+      },
+    },
+    {
+      id: 'customRepeatPeriod',
+      label: 'Repeat Period',
+      hideCustomTab: true,
+      description: 'Custom repeat period',
+      inputType: 'select',
+      defaultValue: 'DAILY',
+      selectOptions: [
+        {
+          label: 'Minutes',
+          value: 'MINUTELY',
+        },
+        {
+          label: 'Hours',
+          value: 'HOURLY',
+        },
+        {
+          label: 'Days',
+          value: 'DAILY',
+        },
+        {
+          label: 'Weeks',
+          value: 'WEEKLY',
+        },
+        {
+          label: 'Months',
+          value: 'MONTHLY',
+        },
+      ],
+      loadOptions: {
+        dependsOn: [
           {
-            label: 'Minutes',
-            value: 'MINUTELY',
+            id: 'rrule',
+            value: ['custom'],
+          },
+        ],
+      },
+    },
+    {
+      id: 'customWeekDays',
+      label: 'Repeat on',
+      description: 'Week days to repeat on',
+      hideCustomTab: true,
+      inputType: 'multi-select',
+      placeholder: 'Select week days',
+      defaultValue: ['MO', 'TU', 'WE', 'TH', 'FR'],
+      selectOptions: [
+        {
+          label: 'Monday',
+          value: 'MO',
+        },
+        {
+          label: 'Tuesday',
+          value: 'TU',
+        },
+        {
+          label: 'Wednesday',
+          value: 'WE',
+        },
+        {
+          label: 'Thursday',
+          value: 'TH',
+        },
+        {
+          label: 'Friday',
+          value: 'FR',
+        },
+        {
+          label: 'Saturday',
+          value: 'SA',
+        },
+        {
+          label: 'Sunday',
+          value: 'SU',
+        },
+      ],
+      loadOptions: {
+        dependsOn: [
+          {
+            id: 'rrule',
+            value: ['custom'],
           },
           {
-            label: 'Hours',
-            value: 'HOURLY',
-          },
-          {
-            label: 'Days',
-            value: 'DAILY',
-          },
-          {
-            label: 'Weeks',
+            id: 'customRepeatPeriod',
             value: 'WEEKLY',
           },
+        ],
+      },
+    },
+    {
+      id: 'customRepeatFrequency',
+      label: 'Repeat Frequency',
+      description:
+        'Every how many hours, days, weeks, or months the schedule should repeat.',
+      hideCustomTab: true,
+      inputType: 'number',
+      defaultValue: 3,
+      numberOptions: {
+        min: 1,
+        step: 1,
+      },
+      loadOptions: {
+        dependsOn: [
           {
-            label: 'Months',
-            value: 'MONTHLY',
+            id: 'rrule',
+            value: ['custom'],
           },
         ],
-        loadOptions: {
-          dependsOn: [
-            {
-              id: 'rrule',
-              value: ['custom'],
-            },
-          ],
-        },
       },
-      {
-        id: 'customWeekDays',
-        label: 'Repeat on',
-        description: 'Week days to repeat on',
-        hideCustomTab: true,
-        inputType: 'multi-select',
-        placeholder: 'Select week days',
-        defaultValue: ['MO', 'TU', 'WE', 'TH', 'FR'],
-        selectOptions: [
-          {
-            label: 'Monday',
-            value: 'MO',
-          },
-          {
-            label: 'Tuesday',
-            value: 'TU',
-          },
-          {
-            label: 'Wednesday',
-            value: 'WE',
-          },
-          {
-            label: 'Thursday',
-            value: 'TH',
-          },
-          {
-            label: 'Friday',
-            value: 'FR',
-          },
-          {
-            label: 'Saturday',
-            value: 'SA',
-          },
-          {
-            label: 'Sunday',
-            value: 'SU',
-          },
-        ],
-        loadOptions: {
-          dependsOn: [
-            {
-              id: 'rrule',
-              value: ['custom'],
-            },
-            {
-              id: 'customRepeatPeriod',
-              value: 'WEEKLY',
-            },
-          ],
-        },
-      },
-      {
-        id: 'customRepeatFrequency',
-        label: 'Repeat Frequency',
-        description:
-          'Every how many hours, days, weeks, or months the schedule should repeat.',
-        hideCustomTab: true,
-        inputType: 'number',
-        defaultValue: 3,
-        numberOptions: {
-          min: 1,
-          step: 1,
-        },
-        loadOptions: {
-          dependsOn: [
-            {
-              id: 'rrule',
-              value: ['custom'],
-            },
-          ],
-        },
-      },
-    ];
-  }
-  viewOptions(): NodeViewOptions {
-    return {
-      saveButtonOptions: { hideSaveAndTestButton: true },
-      hideConditions: true,
-    };
-  }
+    },
+  ];
+  viewOptions: NodeViewOptions = {
+    saveButtonOptions: { hideSaveAndTestButton: true },
+    hideConditions: true,
+  };
 
   /**
    * This unique trigger returns the next occurrence of the recurring schedule
@@ -391,7 +374,7 @@ export class RecurringSchedule extends Trigger {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<RecurringSchedule['aiSchema']>> & {
+type ConfigValue = z.infer<RecurringSchedule['aiSchema']> & {
   customRepeatPeriod: 'MINUTELY' | 'HOURLY' | 'DAILY' | 'WEEKLY' | 'MONTHLY';
   customWeekDays: ('MO' | 'TU' | 'WE' | 'TH' | 'FR' | 'SA' | 'SU')[];
   customRepeatFrequency: number;

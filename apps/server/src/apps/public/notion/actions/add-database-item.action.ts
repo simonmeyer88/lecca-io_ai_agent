@@ -16,53 +16,39 @@ export class AddDatabaseItem extends Action {
 
   app: Notion;
 
-  id() {
-    return 'notion_action_add-database-item';
-  }
-
-  name() {
-    return 'Add Database Page';
-  }
-
-  description() {
-    return 'Adds a new page in a Notion database';
-  }
-
-  aiSchema() {
-    return z.object({
-      databaseId: z.string(),
-      content: z
-        .string()
-        .nullable()
-        .optional()
-        .describe('The text content of the page'),
-      properties: z.array(
-        z.object({
-          key: z
-            .string()
-            .min(1)
-            .describe(
-              'The name of the property. Must match the name of the property in the database',
-            ),
-          value: z.string().min(1).describe('The value of the property.'),
-        }),
-      ),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectDatabase(),
-      {
-        id: 'content',
-        label: 'Content',
-        placeholder: 'Add text (optional)',
-        description: 'The text content of the page',
-        inputType: 'text',
-      },
-      this.app.dynamicGetDatabaseProperties(),
-    ];
-  }
+  id = 'notion_action_add-database-item';
+  name = 'Add Database Page';
+  description = 'Adds a new page in a Notion database';
+  aiSchema = z.object({
+    databaseId: z.string(),
+    content: z
+      .string()
+      .nullable()
+      .optional()
+      .describe('The text content of the page'),
+    properties: z.array(
+      z.object({
+        key: z
+          .string()
+          .min(1)
+          .describe(
+            'The name of the property. Must match the name of the property in the database',
+          ),
+        value: z.string().min(1).describe('The value of the property.'),
+      }),
+    ),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectDatabase(),
+    {
+      id: 'content',
+      label: 'Content',
+      placeholder: 'Add text (optional)',
+      description: 'The text content of the page',
+      inputType: 'text',
+    },
+    this.app.dynamicGetDatabaseProperties(),
+  ];
 
   async run({
     connection,
@@ -129,4 +115,4 @@ export class AddDatabaseItem extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<AddDatabaseItem['aiSchema']>>;
+type ConfigValue = z.infer<AddDatabaseItem['aiSchema']>;

@@ -17,61 +17,38 @@ export class CountList extends Action {
   }
 
   app: List;
-
-  id() {
-    return 'list_action_count';
-  }
-
-  name() {
-    return 'Count list items';
-  }
-
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
-  }
-
-  needsConnection(): boolean {
-    return false;
-  }
-
-  description() {
-    return 'Counts the number of items in a list';
-  }
-
-  viewOptions(): null | NodeViewOptions {
-    return {
-      saveButtonOptions: {
-        replaceSaveAndTestButton: {
-          label: 'Save & Test',
-          type: 'real',
-        },
+  id = 'list_action_count';
+  name = 'Count list items';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
+  needsConnection = false;
+  description = 'Counts the number of items in a list';
+  viewOptions: null | NodeViewOptions = {
+    saveButtonOptions: {
+      replaceSaveAndTestButton: {
+        label: 'Save & Test',
+        type: 'real',
       },
-    };
-  }
-
-  aiSchema() {
-    return z.object({
-      listOfItems: z
-        .array(z.any())
-        .describe('The list of items from which to find the value'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'listOfItems',
-        label: 'List',
-        description:
-          'Provide a list of items where the search will be performed.',
-        inputType: 'text',
-        required: {
-          missingMessage: 'List is required',
-          missingStatus: 'warning',
-        },
+    },
+  };
+  aiSchema = z.object({
+    listOfItems: z
+      .array(z.any())
+      .describe('The list of items from which to find the value'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'listOfItems',
+      label: 'List',
+      description:
+        'Provide a list of items where the search will be performed.',
+      inputType: 'text',
+      required: {
+        missingMessage: 'List is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({ configValue }: RunActionArgs<ConfigValue>): Promise<Response> {
     const { listOfItems } = configValue;
@@ -99,7 +76,7 @@ export class CountList extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<CountList['aiSchema']>>;
+type ConfigValue = z.infer<CountList['aiSchema']>;
 
 type Response = {
   result: unknown;

@@ -16,18 +16,11 @@ export class LeadStatusUpdatedOnDevice extends TimeBasedPollTrigger {
   }
 
   app: SalesRabbit;
-  id() {
-    return 'sales-rabbit_trigger_lead-status-updated-on-device';
-  }
-  name() {
-    return 'Lead Status Updated on Device';
-  }
-  description() {
-    return 'Triggers when a lead status is updated on the device of a sales rep.';
-  }
-  inputConfig(): InputConfig[] {
-    return [];
-  }
+  id = 'sales-rabbit_trigger_lead-status-updated-on-device';
+  name = 'Lead Status Updated on Device';
+  description =
+    'Triggers when a lead status is updated on the device of a sales rep.';
+  inputConfig: InputConfig[] = [];
 
   async run({
     connection,

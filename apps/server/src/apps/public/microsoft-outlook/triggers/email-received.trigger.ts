@@ -14,43 +14,35 @@ export class EmailReceived extends TimeBasedPollTrigger {
   }
 
   app: MicrosoftOutlook;
-  id() {
-    return 'microsoft-outlook_trigger_email-received';
-  }
-  name() {
-    return 'Email Received';
-  }
-  description() {
-    return 'Triggers when a new email is received';
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        label: 'Labels',
-        id: 'labelIds',
-        inputType: 'dynamic-multi-select',
-        placeholder: 'Add labels',
-        description: 'The IDs of the labels to filter emails',
-        defaultValue: ['In'],
-        _getDynamicValues: async ({ connection, workspaceId }) => {
-          const url = 'https://graph.microsoft.com/v1.0/me/mailFolders';
-          const labels = await this.app.http.loggedRequest({
-            method: 'GET',
-            url,
-            headers: {
-              Authorization: `Bearer ${connection.accessToken}`,
-            },
-            workspaceId,
-          });
+  id = 'microsoft-outlook_trigger_email-received';
+  name = 'Email Received';
+  description = 'Triggers when a new email is received';
+  inputConfig: InputConfig[] = [
+    {
+      label: 'Labels',
+      id: 'labelIds',
+      inputType: 'dynamic-multi-select',
+      placeholder: 'Add labels',
+      description: 'The IDs of the labels to filter emails',
+      defaultValue: ['In'],
+      _getDynamicValues: async ({ connection, workspaceId }) => {
+        const url = 'https://graph.microsoft.com/v1.0/me/mailFolders';
+        const labels = await this.app.http.loggedRequest({
+          method: 'GET',
+          url,
+          headers: {
+            Authorization: `Bearer ${connection.accessToken}`,
+          },
+          workspaceId,
+        });
 
-          return labels.data.value.map((label: any) => ({
-            label: label.displayName,
-            value: label.id,
-          }));
-        },
+        return labels.data.value.map((label: any) => ({
+          label: label.displayName,
+          value: label.id,
+        }));
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,

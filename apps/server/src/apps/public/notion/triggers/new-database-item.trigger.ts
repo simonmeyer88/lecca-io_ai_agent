@@ -15,21 +15,10 @@ export class NewDatabaseItem extends TimeBasedPollTrigger {
 
   app: Notion;
 
-  id() {
-    return 'notion_trigger_new-database-item';
-  }
-
-  name() {
-    return 'New Database Page';
-  }
-
-  description() {
-    return 'Triggers when a new database page is added.';
-  }
-
-  inputConfig(): InputConfig[] {
-    return [this.app.dynamicSelectDatabase()];
-  }
+  id = 'notion_trigger_new-database-item';
+  name = 'New Database Page';
+  description = 'Triggers when a new database page is added.';
+  inputConfig: InputConfig[] = [this.app.dynamicSelectDatabase()];
 
   async run({
     connection,

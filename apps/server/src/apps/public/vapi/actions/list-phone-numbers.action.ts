@@ -16,25 +16,11 @@ export class ListPhoneNumbers extends Action {
 
   app: Vapi;
 
-  id() {
-    return 'vapi_action_list-phone-numbers';
-  }
-
-  name() {
-    return 'List Phone Numbers';
-  }
-
-  description() {
-    return 'Retrieve the list of VAPI phone numbers';
-  }
-
-  aiSchema() {
-    return z.object({});
-  }
-
-  inputConfig(): InputConfig[] {
-    return [];
-  }
+  id = 'vapi_action_list-phone-numbers';
+  name = 'List Phone Numbers';
+  description = 'Retrieve the list of VAPI phone numbers';
+  aiSchema = z.object({});
+  inputConfig: InputConfig[] = [];
 
   async run({
     connection,
@@ -76,6 +62,6 @@ const mock = {
   ],
 };
 
-type ConfigValue = z.infer<ReturnType<ListPhoneNumbers['aiSchema']>>;
+type ConfigValue = z.infer<ListPhoneNumbers['aiSchema']>;
 
 type Response = typeof mock;

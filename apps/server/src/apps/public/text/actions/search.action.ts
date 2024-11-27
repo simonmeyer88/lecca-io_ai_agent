@@ -18,87 +18,65 @@ export class Search extends Action {
 
   app: Text;
 
-  id() {
-    return 'text_action_search';
-  }
-
-  name() {
-    return 'Search Text';
-  }
-
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
-  }
-
-  needsConnection(): boolean {
-    return false;
-  }
-
-  viewOptions(): null | NodeViewOptions {
-    return {
-      saveButtonOptions: {
-        replaceSaveAndTestButton: {
-          label: 'Save & Test',
-          type: 'real',
-        },
+  id = 'text_action_search';
+  name = 'Search Text';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
+  needsConnection = false;
+  viewOptions: null | NodeViewOptions = {
+    saveButtonOptions: {
+      replaceSaveAndTestButton: {
+        label: 'Save & Test',
+        type: 'real',
       },
-    };
-  }
-
-  description() {
-    return 'Find text using a query.';
-  }
-
-  aiSchema() {
-    return z.object({
-      text: z.string().min(1).describe('text to search'),
-      query: z
-        .string()
-        .min(1)
-        .describe('Text string or regex string to search text'),
-      returnFirstResult: z
-        .enum(['true', 'false'])
-        .describe('If true, only returns the first result'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'text',
-        label: 'Text to Search',
-        description: '',
-        inputType: 'text',
-        required: {
-          missingMessage: 'Text is required',
-          missingStatus: 'warning',
-        },
+    },
+  };
+  description = 'Find text using a query.';
+  aiSchema = z.object({
+    text: z.string().min(1).describe('text to search'),
+    query: z
+      .string()
+      .min(1)
+      .describe('Text string or regex string to search text'),
+    returnFirstResult: z
+      .enum(['true', 'false'])
+      .describe('If true, only returns the first result'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'text',
+      label: 'Text to Search',
+      description: '',
+      inputType: 'text',
+      required: {
+        missingMessage: 'Text is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'query',
-        label: 'Search Query',
-        description: 'Search query can be text or a regular expression.',
-        inputType: 'text',
-        placeholder: 'Add search text or a regular expression.',
-        required: {
-          missingMessage: 'Search query is required',
-          missingStatus: 'warning',
-        },
+    },
+    {
+      id: 'query',
+      label: 'Search Query',
+      description: 'Search query can be text or a regular expression.',
+      inputType: 'text',
+      placeholder: 'Add search text or a regular expression.',
+      required: {
+        missingMessage: 'Search query is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'returnFirstResult',
-        label: 'Return first result',
-        description:
-          'The results will not be a list of results, it will just be the first result found.',
-        inputType: 'switch',
-        switchOptions: {
-          checked: 'true',
-          unchecked: 'false',
-          defaultChecked: false,
-        },
+    },
+    {
+      id: 'returnFirstResult',
+      label: 'Return first result',
+      description:
+        'The results will not be a list of results, it will just be the first result found.',
+      inputType: 'switch',
+      switchOptions: {
+        checked: 'true',
+        unchecked: 'false',
+        defaultChecked: false,
       },
-    ];
-  }
+    },
+  ];
 
   async run({ configValue }: RunActionArgs<ConfigValue>): Promise<Response> {
     const { text, query, returnFirstResult } = configValue;
@@ -131,7 +109,7 @@ export class Search extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<Search['aiSchema']>>;
+type ConfigValue = z.infer<Search['aiSchema']>;
 
 type Response =
   | {

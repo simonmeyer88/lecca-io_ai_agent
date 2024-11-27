@@ -16,38 +16,28 @@ export class FindDocumentByContent extends Action {
   }
 
   app: GoogleDocs;
-  id() {
-    return 'google-docs_action_find-document-by-content';
-  }
-  name() {
-    return 'Find Document(s) by Content';
-  }
-  description() {
-    return 'Search for a document by its content.';
-  }
-  aiSchema() {
-    return z.object({
-      search: z
-        .string()
-        .min(1)
-        .describe('A search query to find a document by its content'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'search',
-        label: 'Search Query',
-        description: 'A search query to find a document by its content.',
-        inputType: 'text',
-        placeholder: 'Search for...',
-        required: {
-          missingMessage: 'Search query is required',
-          missingStatus: 'warning',
-        },
+  id = 'google-docs_action_find-document-by-content';
+  name = 'Find Document(s) by Content';
+  description = 'Search for a document by its content.';
+  aiSchema = z.object({
+    search: z
+      .string()
+      .min(1)
+      .describe('A search query to find a document by its content'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'search',
+      label: 'Search Query',
+      description: 'A search query to find a document by its content.',
+      inputType: 'text',
+      placeholder: 'Search for...',
+      required: {
+        missingMessage: 'Search query is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -102,4 +92,4 @@ export class FindDocumentByContent extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<FindDocumentByContent['aiSchema']>>;
+type ConfigValue = z.infer<FindDocumentByContent['aiSchema']>;

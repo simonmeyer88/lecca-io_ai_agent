@@ -15,23 +15,16 @@ export class NewSpreadsheetInFolder extends TimeBasedPollTrigger {
   }
 
   app: GoogleSheets;
-  id() {
-    return 'google-sheets_trigger_new-spreadsheet-in-folder';
-  }
-  name() {
-    return 'New Spreadsheet in Folder';
-  }
-  description() {
-    return 'Triggers when a new spreadsheet is created inside selected folder (not subfolders).';
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        ...this.app.dynamicSelectFolder(),
-        description: 'Select the folder to watch for new spreadsheets',
-      },
-    ];
-  }
+  id = 'google-sheets_trigger_new-spreadsheet-in-folder';
+  name = 'New Spreadsheet in Folder';
+  description =
+    'Triggers when a new spreadsheet is created inside selected folder (not subfolders).';
+  inputConfig: InputConfig[] = [
+    {
+      ...this.app.dynamicSelectFolder(),
+      description: 'Select the folder to watch for new spreadsheets',
+    },
+  ];
 
   async run({
     connection,

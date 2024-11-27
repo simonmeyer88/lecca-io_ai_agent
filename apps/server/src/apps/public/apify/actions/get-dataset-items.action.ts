@@ -16,45 +16,33 @@ export class GetDatasetItems extends Action {
   }
 
   app: Apify;
-  id() {
-    return 'apify_action_get-dataset-items';
-  }
-  name() {
-    return 'Get Dataset Items';
-  }
-  description() {
-    return 'Retrieves a dataset items';
-  }
-  viewOptions(): null | NodeViewOptions {
-    return {
-      saveButtonOptions: {
-        replaceSaveAndTestButton: {
-          label: 'Save & Test',
-          type: 'real',
-          tooltip: 'Save and execute the action to generate a real output.',
-        },
+  id = 'apify_action_get-dataset-items';
+  name = 'Get Dataset Items';
+  description = 'Retrieves a dataset items';
+  viewOptions: null | NodeViewOptions = {
+    saveButtonOptions: {
+      replaceSaveAndTestButton: {
+        label: 'Save & Test',
+        type: 'real',
+        tooltip: 'Save and execute the action to generate a real output.',
       },
-    };
-  }
-  aiSchema() {
-    return z.object({
-      datasetId: z.string(),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'datasetId',
-        label: 'Dataset ID',
-        inputType: 'text',
-        description: 'The ID of the dataset to retrieve',
-        required: {
-          missingMessage: 'Dataset ID is required',
-          missingStatus: 'warning',
-        },
+    },
+  };
+  aiSchema = z.object({
+    datasetId: z.string(),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'datasetId',
+      label: 'Dataset ID',
+      inputType: 'text',
+      description: 'The ID of the dataset to retrieve',
+      required: {
+        missingMessage: 'Dataset ID is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     connection,
@@ -82,4 +70,4 @@ export class GetDatasetItems extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<GetDatasetItems['aiSchema']>>;
+type ConfigValue = z.infer<GetDatasetItems['aiSchema']>;

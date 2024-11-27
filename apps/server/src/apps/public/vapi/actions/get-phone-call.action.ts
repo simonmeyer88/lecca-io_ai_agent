@@ -15,38 +15,25 @@ export class GetPhoneCall extends Action {
   }
 
   app: Vapi;
-  id() {
-    return 'vapi_action_get-phone-call';
-  }
-  name() {
-    return 'Get Phone Call';
-  }
-  description() {
-    return 'Retrieve the details of an ongoing or completed phone call';
-  }
-  aiSchema() {
-    return z.object({
-      callId: z
-        .string()
-        .min(1)
-        .describe('The ID of the phone call to retrieve'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'callId',
-        inputType: 'text',
-        description: 'The ID of the phone call to retrieve',
-        label: 'Phone Call ID',
-        placeholder: 'Enter the phone call ID',
-        required: {
-          missingMessage: 'Phone call ID is required',
-          missingStatus: 'warning',
-        },
+  id = 'vapi_action_get-phone-call';
+  name = 'Get Phone Call';
+  description = 'Retrieve the details of an ongoing or completed phone call';
+  aiSchema = z.object({
+    callId: z.string().min(1).describe('The ID of the phone call to retrieve'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'callId',
+      inputType: 'text',
+      description: 'The ID of the phone call to retrieve',
+      label: 'Phone Call ID',
+      placeholder: 'Enter the phone call ID',
+      required: {
+        missingMessage: 'Phone call ID is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -383,6 +370,6 @@ const mock = {
   name: '<string>',
 };
 
-type ConfigValue = z.infer<ReturnType<GetPhoneCall['aiSchema']>>;
+type ConfigValue = z.infer<GetPhoneCall['aiSchema']>;
 
 type Response = typeof mock;

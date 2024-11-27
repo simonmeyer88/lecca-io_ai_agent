@@ -15,58 +15,43 @@ export class ReplyToPost extends Action {
   }
 
   app: X;
-
-  id() {
-    return 'x_action_reply-to-text-post';
-  }
-
-  name() {
-    return 'Reply to Post';
-  }
-
-  description() {
-    return 'Reply to a post on X';
-  }
-
-  aiSchema() {
-    return z.object({
-      tweetId: z.string().min(1).describe('The ID of the tweet to reply to.'),
-      text: z.string().min(1).describe('The text content of reply.'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'tweetId',
-        label: 'Tweet ID',
-        description: 'The ID of the tweet to reply to.',
-        placeholder: 'Enter tweet ID',
-        inputType: 'text',
-        required: {
-          missingMessage: 'Tweet ID is required',
-          missingStatus: 'warning',
-        },
+  id = 'x_action_reply-to-text-post';
+  name = 'Reply to Post';
+  description = 'Reply to a post on X';
+  aiSchema = z.object({
+    tweetId: z.string().min(1).describe('The ID of the tweet to reply to.'),
+    text: z.string().min(1).describe('The text content of reply.'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'tweetId',
+      label: 'Tweet ID',
+      description: 'The ID of the tweet to reply to.',
+      placeholder: 'Enter tweet ID',
+      inputType: 'text',
+      required: {
+        missingMessage: 'Tweet ID is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'text',
-        label: 'Text',
-        description: 'The text of the reply.',
-        inputType: 'text',
-        placeholder: 'Enter text',
-        required: {
-          missingMessage: 'Text is required',
-          missingStatus: 'warning',
-        },
+    },
+    {
+      id: 'text',
+      label: 'Text',
+      description: 'The text of the reply.',
+      inputType: 'text',
+      placeholder: 'Enter text',
+      required: {
+        missingMessage: 'Text is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
     connection,
     workspaceId,
-  }: RunActionArgs<ConfigValue>): Promise<ResponseType> {
+  }: RunActionArgs<ConfigValue>): Promise<Response> {
     const { text, tweetId } = configValue;
 
     if (!tweetId) {
@@ -99,7 +84,7 @@ export class ReplyToPost extends Action {
     }
   }
 
-  async mockRun(): Promise<ResponseType> {
+  async mockRun(): Promise<Response> {
     return {
       data: {
         id: '1849480123456789',
@@ -110,12 +95,12 @@ export class ReplyToPost extends Action {
   }
 }
 
-type ResponseType = {
+type ConfigValue = z.infer<ReplyToPost['aiSchema']>;
+
+type Response = {
   data: {
     id: string;
     edit_history_tweet_ids: string[];
     text: string;
   };
 };
-
-type ConfigValue = z.infer<ReturnType<ReplyToPost['aiSchema']>>;

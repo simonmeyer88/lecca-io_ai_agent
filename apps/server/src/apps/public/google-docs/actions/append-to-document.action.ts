@@ -16,47 +16,34 @@ export class AppendToDocument extends Action {
   }
 
   app: GoogleDocs;
-  id() {
-    return 'google-docs_action_append-to-document';
-  }
-  name() {
-    return 'Append to Document';
-  }
-  description() {
-    return 'Appends text to an existing document.';
-  }
-  aiSchema() {
-    return z.object({
-      document: z
-        .string()
-        .min(1)
-        .describe('The ID of the document to append to'),
-      content: z
-        .string()
-        .min(1)
-        .describe('The content to append to the document'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        ...this.app.dynamicSelectDocuments(),
-        label: 'Document',
-        description: 'Select a document to append text to.',
+  id = 'google-docs_action_append-to-document';
+  name = 'Append to Document';
+  description = 'Appends text to an existing document.';
+  aiSchema = z.object({
+    document: z.string().min(1).describe('The ID of the document to append to'),
+    content: z
+      .string()
+      .min(1)
+      .describe('The content to append to the document'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      ...this.app.dynamicSelectDocuments(),
+      label: 'Document',
+      description: 'Select a document to append text to.',
+    },
+    {
+      id: 'content',
+      label: 'Text Content',
+      description: 'The content that will be appended.',
+      inputType: 'text',
+      placeholder: 'Enter text',
+      required: {
+        missingMessage: 'Content is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'content',
-        label: 'Text Content',
-        description: 'The content that will be appended.',
-        inputType: 'text',
-        placeholder: 'Enter text',
-        required: {
-          missingMessage: 'Content is required',
-          missingStatus: 'warning',
-        },
-      },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -118,4 +105,4 @@ export class AppendToDocument extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<AppendToDocument['aiSchema']>>;
+type ConfigValue = z.infer<AppendToDocument['aiSchema']>;

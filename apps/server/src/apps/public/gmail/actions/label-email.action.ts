@@ -16,73 +16,56 @@ export class LabelEmail extends Action {
 
   app: Gmail;
 
-  id() {
-    return 'gmail_action_label-email';
-  }
-
-  name() {
-    return 'Label Email';
-  }
-
-  description() {
-    return 'Apply labels to a specific email in Gmail';
-  }
-
-  aiSchema() {
-    return z
-      .object({
-        messageId: z
-          .string()
-          .min(1)
-          .describe(
-            "The ID of the message (email) to label. If you don't have it, ask for it or retrieve it.",
-          ),
-        labelId: z
-          .string()
-          .min(1)
-          .describe(
-            "The ID of the gmail label to apply. If you don't have it, ask for it or retrieve it.",
-          ),
-      })
-      .nullable()
-      .optional();
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'messageId',
-        label: 'Message ID',
-        inputType: 'text',
-        description: 'The message ID of the email to label.',
-        required: {
-          missingMessage: 'Message ID is required',
-          missingStatus: 'warning',
-        },
+  id = 'gmail_action_label-email';
+  name = 'Label Email';
+  description = 'Apply labels to a specific email in Gmail';
+  aiSchema = z.object({
+    messageId: z
+      .string()
+      .min(1)
+      .describe(
+        "The ID of the message (email) to label. If you don't have it, ask for it or retrieve it.",
+      ),
+    labelId: z
+      .string()
+      .min(1)
+      .describe(
+        "The ID of the gmail label to apply. If you don't have it, ask for it or retrieve it.",
+      ),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'messageId',
+      label: 'Message ID',
+      inputType: 'text',
+      description: 'The message ID of the email to label.',
+      required: {
+        missingMessage: 'Message ID is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'labelId',
-        label: 'Labels',
-        description: 'Select the label(s) to apply to the email',
-        inputType: 'dynamic-multi-select',
-        _getDynamicValues: async ({ connection }) => {
-          const gmail = await (this.app as Gmail).gmail({
-            accessToken: connection.accessToken,
-            refreshToken: connection.refreshToken,
-          });
+    },
+    {
+      id: 'labelId',
+      label: 'Labels',
+      description: 'Select the label(s) to apply to the email',
+      inputType: 'dynamic-multi-select',
+      _getDynamicValues: async ({ connection }) => {
+        const gmail = await (this.app as Gmail).gmail({
+          accessToken: connection.accessToken,
+          refreshToken: connection.refreshToken,
+        });
 
-          const labels = await gmail.users.labels.list({
-            userId: 'me',
-          });
+        const labels = await gmail.users.labels.list({
+          userId: 'me',
+        });
 
-          return labels.data.labels.map((label) => ({
-            label: label.name,
-            value: label.id,
-          }));
-        },
+        return labels.data.labels.map((label) => ({
+          label: label.name,
+          value: label.id,
+        }));
       },
-    ];
-  }
+    },
+  ];
 
   async run({ configValue, connection }: RunActionArgs<ConfigValue>) {
     const gmail = await (this.app as Gmail).gmail({
@@ -108,7 +91,4 @@ export class LabelEmail extends Action {
   }
 }
 
-type ConfigValue = {
-  messageId: string;
-  labelId: string;
-};
+type ConfigValue = z.infer<LabelEmail['aiSchema']>;

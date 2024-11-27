@@ -15,21 +15,11 @@ export class ListAssistants extends Action {
   }
 
   app: Vapi;
-  id() {
-    return 'vapi_action_list-assistants';
-  }
-  name() {
-    return 'List Assistants';
-  }
-  description() {
-    return 'Retrieve the list of VAPI assistants';
-  }
-  aiSchema() {
-    return z.object({});
-  }
-  inputConfig(): InputConfig[] {
-    return [];
-  }
+  id = 'vapi_action_list-assistants';
+  name = 'List Assistants';
+  description = 'Retrieve the list of VAPI assistants';
+  aiSchema = z.object({});
+  inputConfig: InputConfig[] = [];
 
   async run({
     connection,
@@ -80,6 +70,6 @@ const mock = {
   ],
 };
 
-type ConfigValue = z.infer<ReturnType<ListAssistants['aiSchema']>>;
+type ConfigValue = z.infer<ListAssistants['aiSchema']>;
 
 type Response = typeof mock;

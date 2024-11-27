@@ -55,8 +55,8 @@ export class WebhookService {
     //all the triggers that use this event type
     const eventTriggers = app.triggers().filter((trigger) => {
       return (
-        trigger.strategy() === 'webhook.app' &&
-        (trigger as WebhookAppTrigger).eventType?.() === event
+        trigger.strategy === 'webhook.app' &&
+        (trigger as WebhookAppTrigger).eventType === event
       );
     });
 
@@ -74,7 +74,7 @@ export class WebhookService {
               {
                 triggerNode: {
                   path: ['triggerId'],
-                  equals: trigger.id(),
+                  equals: trigger.id,
                 },
               },
             ],

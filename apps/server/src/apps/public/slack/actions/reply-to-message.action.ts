@@ -15,58 +15,47 @@ export class ReplyToMessage extends Action {
   }
 
   app: Slack;
-  id() {
-    return 'slack_action_reply-to-message';
-  }
-  name() {
-    return 'Reply to Message';
-  }
-  description() {
-    return 'Replies to a message in a Slack thread';
-  }
-  aiSchema() {
-    return z.object({
-      channelId: z
-        .string()
-        .min(1)
-        .describe('The ID of the channel where the message was sent'),
-      threadTs: z
-        .string()
-        .min(1)
-        .describe(
-          'The timestamp of the message to reply to. Indicated by the ts field in the message object',
-        ),
-      message: z.string().min(1).describe('The message to send as a reply'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicSelectChannel(),
-      {
-        id: 'threadTs',
-        label: 'Thread Timestamp',
-        description: 'Timestamp of the original message to reply to',
-        inputType: 'text',
-        placeholder: 'Enter message timestamp (ts)',
-        required: {
-          missingMessage: 'Thread timestamp is required',
-          missingStatus: 'warning',
-        },
+  id = 'slack_action_reply-to-message';
+  name = 'Reply to Message';
+  description = 'Replies to a message in a Slack thread';
+  aiSchema = z.object({
+    channelId: z
+      .string()
+      .min(1)
+      .describe('The ID of the channel where the message was sent'),
+    threadTs: z
+      .string()
+      .min(1)
+      .describe(
+        'The timestamp of the message to reply to. Indicated by the ts field in the message object',
+      ),
+    message: z.string().min(1).describe('The message to send as a reply'),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicSelectChannel(),
+    {
+      id: 'threadTs',
+      label: 'Thread Timestamp',
+      description: 'Timestamp of the original message to reply to',
+      inputType: 'text',
+      placeholder: 'Enter message timestamp (ts)',
+      required: {
+        missingMessage: 'Thread timestamp is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'message',
-        label: 'Message',
-        description: 'Message to send as a reply',
-        inputType: 'text',
-        placeholder: 'Add a reply message',
-        required: {
-          missingMessage: 'Message is required',
-          missingStatus: 'warning',
-        },
+    },
+    {
+      id: 'message',
+      label: 'Message',
+      description: 'Message to send as a reply',
+      inputType: 'text',
+      placeholder: 'Add a reply message',
+      required: {
+        missingMessage: 'Message is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -152,4 +141,4 @@ type ResponseType = {
   };
 };
 
-type ConfigValue = z.infer<ReturnType<ReplyToMessage['aiSchema']>>;
+type ConfigValue = z.infer<ReplyToMessage['aiSchema']>;

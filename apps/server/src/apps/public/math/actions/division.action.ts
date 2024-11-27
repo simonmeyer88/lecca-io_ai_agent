@@ -18,68 +18,46 @@ export class Division extends Action {
 
   app: MathApp;
 
-  id() {
-    return 'math_action_division';
-  }
-
-  name() {
-    return 'Division';
-  }
-
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
-  }
-
-  needsConnection(): boolean {
-    return false;
-  }
-
-  description() {
-    return 'Divides one number by another.';
-  }
-
-  viewOptions(): null | NodeViewOptions {
-    return {
-      saveButtonOptions: {
-        replaceSaveAndTestButton: {
-          label: 'Save & Test',
-          type: 'real',
-        },
+  id = 'math_action_division';
+  name = 'Division';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
+  needsConnection = false;
+  description = 'Divides one number by another.';
+  viewOptions: null | NodeViewOptions = {
+    saveButtonOptions: {
+      replaceSaveAndTestButton: {
+        label: 'Save & Test',
+        type: 'real',
       },
-    };
-  }
-
-  aiSchema() {
-    return z.object({
-      number1: z.number(),
-      number2: z.number(),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'number1',
-        label: 'First Number',
-        description: '',
-        inputType: 'number',
-        required: {
-          missingMessage: 'First number is required',
-          missingStatus: 'warning',
-        },
+    },
+  };
+  aiSchema = z.object({
+    number1: z.number(),
+    number2: z.number(),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'number1',
+      label: 'First Number',
+      description: '',
+      inputType: 'number',
+      required: {
+        missingMessage: 'First number is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'number2',
-        label: 'Second Number',
-        description: '',
-        inputType: 'number',
-        required: {
-          missingMessage: 'Second number is required',
-          missingStatus: 'warning',
-        },
+    },
+    {
+      id: 'number2',
+      label: 'Second Number',
+      description: '',
+      inputType: 'number',
+      required: {
+        missingMessage: 'Second number is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({ configValue }: RunActionArgs<ConfigValue>): Promise<Response> {
     const num1 = Number(configValue.number1);
@@ -93,7 +71,7 @@ export class Division extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<Division['aiSchema']>>;
+type ConfigValue = z.infer<Division['aiSchema']>;
 
 type Response = {
   result: number;

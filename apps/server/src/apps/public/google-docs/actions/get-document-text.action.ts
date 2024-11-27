@@ -15,34 +15,24 @@ export class GetDocumentText extends Action {
   }
 
   app: GoogleDocs;
-  id() {
-    return 'google-docs_action_get-document-text';
-  }
-  name() {
-    return 'Get Document Text';
-  }
-  description() {
-    return 'Get the text of a Google Document';
-  }
-  aiSchema() {
-    return z.object({
-      documentId: z.string().min(1).describe('The Google Document ID'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'documentId',
-        label: 'Document Id',
-        description: '',
-        inputType: 'text',
-        required: {
-          missingMessage: 'Document ID is required',
-          missingStatus: 'warning',
-        },
+  id = 'google-docs_action_get-document-text';
+  name = 'Get Document Text';
+  description = 'Get the text of a Google Document';
+  aiSchema = z.object({
+    documentId: z.string().min(1).describe('The Google Document ID'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'documentId',
+      label: 'Document Id',
+      description: '',
+      inputType: 'text',
+      required: {
+        missingMessage: 'Document ID is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -83,4 +73,4 @@ export class GetDocumentText extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<GetDocumentText['aiSchema']>>;
+type ConfigValue = z.infer<GetDocumentText['aiSchema']>;

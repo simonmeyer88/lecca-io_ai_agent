@@ -16,35 +16,21 @@ export class CreateContact extends Action {
 
   app: Hubspot;
 
-  id() {
-    return 'hubspot_action_create-contact';
-  }
-
-  name() {
-    return 'Create Contact';
-  }
-
-  description() {
-    return 'Creates a new contact in Hubspot';
-  }
-
-  aiSchema() {
-    return z.object({
-      properties: z
-        .array(
-          z.object({
-            field: z.string().min(1).describe('The field to set'),
-            value: z.string().min(1).describe('The value to set'),
-          }),
-        )
-        .min(1)
-        .describe('The field and value for that field'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [this.app.dynamicGetContactProperties()];
-  }
+  id = 'hubspot_action_create-contact';
+  name = 'Create Contact';
+  description = 'Creates a new contact in Hubspot';
+  aiSchema = z.object({
+    properties: z
+      .array(
+        z.object({
+          field: z.string().min(1).describe('The field to set'),
+          value: z.string().min(1).describe('The value to set'),
+        }),
+      )
+      .min(1)
+      .describe('The field and value for that field'),
+  });
+  inputConfig: InputConfig[] = [this.app.dynamicGetContactProperties()];
 
   async run({
     configValue,
@@ -108,4 +94,4 @@ type ResponseType = {
   };
 };
 
-type ConfigValue = z.infer<ReturnType<CreateContact['aiSchema']>>;
+type ConfigValue = z.infer<CreateContact['aiSchema']>;

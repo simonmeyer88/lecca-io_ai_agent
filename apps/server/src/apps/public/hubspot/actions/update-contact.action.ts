@@ -16,55 +16,40 @@ export class UpdateContact extends Action {
 
   app: Hubspot;
 
-  id() {
-    return 'hubspot_action_update-contact';
-  }
-
-  name() {
-    return 'Update Contact';
-  }
-
-  description() {
-    return 'Updates an existing contact in Hubspot';
-  }
-
-  aiSchema() {
-    return z.object({
-      identifier: z
-        .string()
-        .min(1)
-        .describe(
-          'The unique identifier of the contact (e.g., email or contact ID)',
-        ),
-      properties: z
-        .array(
-          z.object({
-            field: z.string().min(1).describe('The field to update'),
-            value: z.string().min(1).describe('The value to update'),
-          }),
-        )
-        .min(1)
-        .describe('The field and value for the field to update'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'identifier',
-        label: 'Contact Email',
-        description:
-          'The unique identifier of the contact (e.g., email or VID)',
-        placeholder: 'Enter a contact email or VID',
-        inputType: 'text',
-        required: {
-          missingMessage: 'Please provide an identifier',
-          missingStatus: 'warning',
-        },
+  id = 'hubspot_action_update-contact';
+  name = 'Update Contact';
+  description = 'Updates an existing contact in Hubspot';
+  aiSchema = z.object({
+    identifier: z
+      .string()
+      .min(1)
+      .describe(
+        'The unique identifier of the contact (e.g., email or contact ID)',
+      ),
+    properties: z
+      .array(
+        z.object({
+          field: z.string().min(1).describe('The field to update'),
+          value: z.string().min(1).describe('The value to update'),
+        }),
+      )
+      .min(1)
+      .describe('The field and value for the field to update'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'identifier',
+      label: 'Contact Email',
+      description: 'The unique identifier of the contact (e.g., email or VID)',
+      placeholder: 'Enter a contact email or VID',
+      inputType: 'text',
+      required: {
+        missingMessage: 'Please provide an identifier',
+        missingStatus: 'warning',
       },
-      this.app.dynamicGetContactProperties(),
-    ];
-  }
+    },
+    this.app.dynamicGetContactProperties(),
+  ];
 
   async run({
     configValue,
@@ -118,4 +103,4 @@ type ResponseType = {
   updated: boolean;
 };
 
-type ConfigValue = z.infer<ReturnType<UpdateContact['aiSchema']>>;
+type ConfigValue = z.infer<UpdateContact['aiSchema']>;

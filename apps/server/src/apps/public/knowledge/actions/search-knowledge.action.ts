@@ -16,125 +16,110 @@ export class SearchKnowledge extends Action {
   }
 
   app: Knowledge;
-  needsConnection(): boolean {
-    return false;
-  }
-  id() {
-    return `knowledge_action_search-knowledge`;
-  }
-  name() {
-    return 'Search Knowledge';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id()}.svg`;
-  }
-  description() {
-    return 'Search your knowledge notebooks.';
-  }
+  needsConnection = false;
+  id = `knowledge_action_search-knowledge`;
+  name = 'Search Knowledge';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id}.svg`;
+  description = 'Search your knowledge notebooks.';
+  aiSchema = z.object({
+    knowledgeId: z.string().describe('The knowledge notebook ID to search.'),
+    searchQuery: z
+      .string()
+      .min(1)
+      .describe('The text to query the knowledge notebook (vector database).'),
+    shouldLimit: z
+      .enum(['true', 'false'])
+      .describe('Whether to limit the number of results returned.'),
+    limit: z
+      .number()
+      .min(1)
+      .nullable()
+      .optional()
+      .describe('The number of maximum results to return. Default is 3.'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'knowledgeId',
+      label: 'Noteboook',
+      inputType: 'dynamic-select',
+      description: 'The knowledge notebook to to query for knowledge.',
+      placeholder: 'Select a notebook',
+      hideCustomTab: true,
+      _getDynamicValues: async ({ workspaceId, projectId }) => {
+        const projectKnowledge = await this.app.prisma.knowledge.findMany({
+          where: {
+            OR: [
+              {
+                FK_projectId: projectId,
+              },
+              {
+                AND: [
+                  {
+                    FK_workspaceId: workspaceId,
+                  },
+                  {
+                    FK_projectId: null,
+                  },
+                ],
+              },
+            ],
+          },
+          select: {
+            id: true,
+            name: true,
+          },
+        });
 
-  aiSchema() {
-    return z.object({
-      searchQuery: z
-        .string()
-        .min(1)
-        .describe(
-          'The text to query the knowledge notebook (vector database).',
-        ),
-      shouldLimit: z
-        .enum(['true', 'false'])
-        .describe('Whether to limit the number of results returned.'),
-      limit: z
-        .number()
-        .min(1)
-        .nullable()
-        .optional()
-        .describe('The number of maximum results to return. Default is 3.'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'knowledgeId',
-        label: 'Noteboook',
-        inputType: 'dynamic-select',
-        description: 'The knowledge notebook to to query for knowledge.',
-        placeholder: 'Select a notebook',
-        hideCustomTab: true,
-        _getDynamicValues: async ({ workspaceId, projectId }) => {
-          const projectKnowledge = await this.app.prisma.knowledge.findMany({
-            where: {
-              OR: [
-                {
-                  FK_projectId: projectId,
-                },
-                {
-                  AND: [
-                    {
-                      FK_workspaceId: workspaceId,
-                    },
-                    {
-                      FK_projectId: null,
-                    },
-                  ],
-                },
-              ],
-            },
-            select: {
-              id: true,
-              name: true,
-            },
-          });
-
-          return projectKnowledge.map((knowledge) => ({
-            label: knowledge.name,
-            value: knowledge.id,
-          }));
-        },
-        required: {
-          missingMessage: 'Knowledge notebook is required',
-          missingStatus: 'warning',
-        },
+        return projectKnowledge.map((knowledge) => ({
+          label: knowledge.name,
+          value: knowledge.id,
+        }));
       },
-      {
-        id: 'searchQuery',
-        inputType: 'text',
-        label: 'Search Query',
-        description: 'The search query to find information in the notebook.',
-        required: {
-          missingMessage: 'Search query is required',
-          missingStatus: 'warning',
-        },
-        placeholder: 'Add a search query',
+      required: {
+        missingMessage: 'Knowledge notebook is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'shouldLimit',
-        inputType: 'switch',
-        label: 'Limit Results? The default limit is 3.',
-        description: '',
-        switchOptions: {
-          checked: 'true',
-          unchecked: 'false',
-          defaultChecked: false,
-        },
+    },
+    {
+      id: 'searchQuery',
+      inputType: 'text',
+      label: 'Search Query',
+      description: 'The search query to find information in the notebook.',
+      required: {
+        missingMessage: 'Search query is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'limit',
-        inputType: 'number',
-        label: 'Limit',
-        description:
-          'The number of maximum results to return. There may be less results returned if there are less results available.',
-        placeholder: 'Add a limit',
-        loadOptions: {
-          dependsOn: [
-            {
-              id: 'shouldLimit',
-              value: 'true',
-            },
-          ],
-        },
+      placeholder: 'Add a search query',
+    },
+    {
+      id: 'shouldLimit',
+      inputType: 'switch',
+      label: 'Limit Results? The default limit is 3.',
+      description: '',
+      switchOptions: {
+        checked: 'true',
+        unchecked: 'false',
+        defaultChecked: false,
       },
-    ];
-  }
+    },
+    {
+      id: 'limit',
+      inputType: 'number',
+      label: 'Limit',
+      description:
+        'The number of maximum results to return. There may be less results returned if there are less results available.',
+      placeholder: 'Add a limit',
+      loadOptions: {
+        dependsOn: [
+          {
+            id: 'shouldLimit',
+            value: 'true',
+          },
+        ],
+      },
+    },
+  ];
 
   async run({
     configValue,
@@ -212,6 +197,4 @@ type Response = {
   results: string[];
 };
 
-type ConfigValue = z.infer<ReturnType<SearchKnowledge['aiSchema']>> & {
-  knowledgeId: string;
-};
+type ConfigValue = z.infer<SearchKnowledge['aiSchema']>;

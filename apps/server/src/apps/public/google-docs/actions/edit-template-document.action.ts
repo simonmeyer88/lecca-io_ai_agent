@@ -15,39 +15,29 @@ export class EditTemplateDocument extends Action {
   }
 
   app: GoogleDocs;
-  id() {
-    return 'google-docs_action_edit-template-file';
-  }
-  name() {
-    return 'Edit Template Document';
-  }
-  description() {
-    return 'Edits a template document by replacing {{placeholders}}.';
-  }
-  aiSchema() {
-    return z.object({
-      document: z.string().min(1).describe('The ID of the template document'),
-      placeholders: z.array(
-        z.object({
-          key: z.string().min(1).describe('The placeholder key'),
-          value: z
-            .string()
-            .min(1)
-            .describe('The value to replace the placeholder'),
-        }),
-      ),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        ...this.app.dynamicSelectDocuments(),
-        label: 'Template Document',
-        description: 'A template document has {{placeholders}}.',
-      },
-      this.app.dynamicSelectPlaceholders(),
-    ];
-  }
+  id = 'google-docs_action_edit-template-file';
+  name = 'Edit Template Document';
+  description = 'Edits a template document by replacing {{placeholders}}.';
+  aiSchema = z.object({
+    document: z.string().min(1).describe('The ID of the template document'),
+    placeholders: z.array(
+      z.object({
+        key: z.string().min(1).describe('The placeholder key'),
+        value: z
+          .string()
+          .min(1)
+          .describe('The value to replace the placeholder'),
+      }),
+    ),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      ...this.app.dynamicSelectDocuments(),
+      label: 'Template Document',
+      description: 'A template document has {{placeholders}}.',
+    },
+    this.app.dynamicSelectPlaceholders(),
+  ];
 
   async run({ configValue, connection }: RunActionArgs<ConfigValue>) {
     const googleDocs = await this.app.googleDocs({
@@ -100,4 +90,4 @@ export class EditTemplateDocument extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<EditTemplateDocument['aiSchema']>>;
+type ConfigValue = z.infer<EditTemplateDocument['aiSchema']>;

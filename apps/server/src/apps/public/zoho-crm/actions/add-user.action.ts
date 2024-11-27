@@ -17,122 +17,102 @@ export class AddUser extends Action {
 
   app: ZohoCrm;
 
-  id() {
-    return 'zoho-crm_action_add-user';
-  }
-
-  name() {
-    return 'Add User';
-  }
-
-  description() {
-    return 'Add a new user to ZohoCRM.';
-  }
-
-  aiSchema() {
-    return z.object({
-      firstName: z
-        .string()
-        .min(1)
-        .describe('The first name of the user to add'),
-      lastName: z.string().min(1).describe('The last name of the user to add'),
-      email: z.string().email().describe('The email of the user to add'),
-      role: z.string().min(1).describe('The role ID to assign to the user'),
-      profile: z
-        .string()
-        .min(1)
-        .describe('The profile ID to assign to the user'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'firstName',
-        label: 'First Name',
-        description: 'The first name of the user',
-        inputType: 'text',
-        required: {
-          missingMessage: 'First name is required',
-          missingStatus: 'warning',
-        },
+  id = 'zoho-crm_action_add-user';
+  name = 'Add User';
+  description = 'Add a new user to ZohoCRM.';
+  aiSchema = z.object({
+    firstName: z.string().min(1).describe('The first name of the user to add'),
+    lastName: z.string().min(1).describe('The last name of the user to add'),
+    email: z.string().email().describe('The email of the user to add'),
+    role: z.string().min(1).describe('The role ID to assign to the user'),
+    profile: z.string().min(1).describe('The profile ID to assign to the user'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'firstName',
+      label: 'First Name',
+      description: 'The first name of the user',
+      inputType: 'text',
+      required: {
+        missingMessage: 'First name is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'lastName',
-        label: 'Last Name',
-        description: 'The last name of the user',
-        inputType: 'text',
-        required: {
-          missingMessage: 'Last name is required',
-          missingStatus: 'warning',
-        },
+    },
+    {
+      id: 'lastName',
+      label: 'Last Name',
+      description: 'The last name of the user',
+      inputType: 'text',
+      required: {
+        missingMessage: 'Last name is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'email',
-        label: 'Email',
-        description: 'The email of the user',
-        inputType: 'text',
-        required: {
-          missingMessage: 'Email is required',
-          missingStatus: 'warning',
-        },
+    },
+    {
+      id: 'email',
+      label: 'Email',
+      description: 'The email of the user',
+      inputType: 'text',
+      required: {
+        missingMessage: 'Email is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'role',
-        label: 'Role',
-        description: 'The role of the user',
-        inputType: 'dynamic-select',
-        _getDynamicValues: async ({ connection, workspaceId }) => {
-          const url = `https://www.zohoapis.com/crm/v2/settings/roles`;
+    },
+    {
+      id: 'role',
+      label: 'Role',
+      description: 'The role of the user',
+      inputType: 'dynamic-select',
+      _getDynamicValues: async ({ connection, workspaceId }) => {
+        const url = `https://www.zohoapis.com/crm/v2/settings/roles`;
 
-          const response = await this.app.http.loggedRequest({
-            method: 'GET',
-            url,
-            headers: {
-              Authorization: `Zoho-oauthtoken ${connection.accessToken}`,
-            },
-            workspaceId,
-          });
+        const response = await this.app.http.loggedRequest({
+          method: 'GET',
+          url,
+          headers: {
+            Authorization: `Zoho-oauthtoken ${connection.accessToken}`,
+          },
+          workspaceId,
+        });
 
-          return response.data.roles.map((role: any) => ({
-            label: role.display_label,
-            value: role.id,
-          }));
-        },
-        required: {
-          missingMessage: 'Role is required',
-          missingStatus: 'warning',
-        },
+        return response.data.roles.map((role: any) => ({
+          label: role.display_label,
+          value: role.id,
+        }));
       },
-      {
-        id: 'profile',
-        label: 'Profile',
-        description: 'The profile of the user',
-        inputType: 'dynamic-select',
-        _getDynamicValues: async ({ connection, workspaceId }) => {
-          const url = `https://www.zohoapis.com/crm/v7/settings/profiles`;
-
-          const response = await this.app.http.loggedRequest({
-            method: 'GET',
-            url,
-            headers: {
-              Authorization: `Zoho-oauthtoken ${connection.accessToken}`,
-            },
-            workspaceId,
-          });
-
-          return response.data.profiles.map((profile: any) => ({
-            label: profile.display_label,
-            value: profile.id,
-          }));
-        },
-        required: {
-          missingMessage: 'Profile is required',
-          missingStatus: 'warning',
-        },
+      required: {
+        missingMessage: 'Role is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+    {
+      id: 'profile',
+      label: 'Profile',
+      description: 'The profile of the user',
+      inputType: 'dynamic-select',
+      _getDynamicValues: async ({ connection, workspaceId }) => {
+        const url = `https://www.zohoapis.com/crm/v7/settings/profiles`;
+
+        const response = await this.app.http.loggedRequest({
+          method: 'GET',
+          url,
+          headers: {
+            Authorization: `Zoho-oauthtoken ${connection.accessToken}`,
+          },
+          workspaceId,
+        });
+
+        return response.data.profiles.map((profile: any) => ({
+          label: profile.display_label,
+          value: profile.id,
+        }));
+      },
+      required: {
+        missingMessage: 'Profile is required',
+        missingStatus: 'warning',
+      },
+    },
+  ];
 
   async run({
     configValue,
@@ -188,4 +168,4 @@ const mock = {
   status: 'success',
 };
 
-type ConfigValue = z.infer<ReturnType<AddUser['aiSchema']>>;
+type ConfigValue = z.infer<AddUser['aiSchema']>;

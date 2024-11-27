@@ -15,58 +15,48 @@ export class ListContacts extends Action {
   }
 
   app: GoogleContacts;
-  id() {
-    return 'google-contacts_action_list-contacts';
-  }
-  name() {
-    return 'List Contacts';
-  }
-  description() {
-    return 'Retrieves a list of contacts.';
-  }
-  aiSchema() {
-    return z.object({
-      pageSize: z
-        .number()
-        .min(1)
-        .max(1000)
-        .nullable()
-        .optional()
-        .default(100)
-        .describe('The number of contacts to retrieve per page. Max is 1000.'),
-      pageToken: z
-        .string()
-        .nullable()
-        .optional()
-        .describe(
-          'Token for retrieving the next page of results. Leave empty to start from the first page.',
-        ),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'pageSize',
-        label: 'Page Size',
-        description: 'The number of contacts to retrieve per page.',
-        inputType: 'number',
-        placeholder: 'Enter page size (1-1000)',
-        numberOptions: {
-          min: 1,
-          max: 1000,
-        },
-        defaultValue: 100,
+  id = 'google-contacts_action_list-contacts';
+  name = 'List Contacts';
+  description = 'Retrieves a list of contacts.';
+  aiSchema = z.object({
+    pageSize: z
+      .number()
+      .min(1)
+      .max(1000)
+      .nullable()
+      .optional()
+      .default(100)
+      .describe('The number of contacts to retrieve per page. Max is 1000.'),
+    pageToken: z
+      .string()
+      .nullable()
+      .optional()
+      .describe(
+        'Token for retrieving the next page of results. Leave empty to start from the first page.',
+      ),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'pageSize',
+      label: 'Page Size',
+      description: 'The number of contacts to retrieve per page.',
+      inputType: 'number',
+      placeholder: 'Enter page size (1-1000)',
+      numberOptions: {
+        min: 1,
+        max: 1000,
       },
-      {
-        id: 'pageToken',
-        label: 'Page Token',
-        description:
-          'Token for retrieving the next page of results. Leave empty to start from the first page.',
-        inputType: 'text',
-        placeholder: 'Enter page token',
-      },
-    ];
-  }
+      defaultValue: 100,
+    },
+    {
+      id: 'pageToken',
+      label: 'Page Token',
+      description:
+        'Token for retrieving the next page of results. Leave empty to start from the first page.',
+      inputType: 'text',
+      placeholder: 'Enter page token',
+    },
+  ];
 
   async run({
     configValue,
@@ -112,4 +102,4 @@ export class ListContacts extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<ListContacts['aiSchema']>>;
+type ConfigValue = z.infer<ListContacts['aiSchema']>;

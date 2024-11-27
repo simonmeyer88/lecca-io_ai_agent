@@ -16,36 +16,22 @@ export class ListAgents extends Action {
   }
 
   app: AI;
-  id() {
-    return 'ai_action_list-agents';
-  }
-  needsConnection() {
-    return false;
-  }
-  name() {
-    return 'List Agents';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${`ai_action_message-agent`}.svg`;
-  }
-  description() {
-    return 'Lists all AI agents available to the project.';
-  }
-
-  aiSchema() {
-    return z.object({});
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'markdown',
-        inputType: 'markdown',
-        label: '',
-        description: '',
-        markdown: 'Lists all AI agents available to the project.',
-      },
-    ];
-  }
+  id = 'ai_action_list-agents';
+  needsConnection = false;
+  name = 'List Agents';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${`ai_action_message-agent`}.svg`;
+  description = 'Lists all AI agents available to the project.';
+  aiSchema = z.object({});
+  inputConfig: InputConfig[] = [
+    {
+      id: 'markdown',
+      inputType: 'markdown',
+      label: '',
+      description: '',
+      markdown: 'Lists all AI agents available to the project.',
+    },
+  ];
 
   async run({ projectId }: RunActionArgs<ConfigValue>): Promise<Response> {
     const projectAgents = await this.app.prisma.agent.findMany({
@@ -86,7 +72,7 @@ export class ListAgents extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<ListAgents['aiSchema']>>;
+type ConfigValue = z.infer<ListAgents['aiSchema']>;
 
 type Response = {
   agents: {

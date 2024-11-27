@@ -17,57 +17,44 @@ export class ExtractWebsiteContent extends Action {
   }
 
   app: Web;
-  id() {
-    return 'web_action_extract-website-content';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
-  }
-  name() {
-    return 'Extract Website Content';
-  }
-  description() {
-    return 'Visits a website and extracts the text content';
-  }
-  aiSchema() {
-    return z.object({
-      url: z.string().min(1).describe('The URL of the website to visit'),
-    });
-  }
-  needsConnection(): boolean {
-    return false;
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'url',
-        label: 'URL',
-        description: 'The URL of the website to visit',
-        inputType: 'text',
-        placeholder: 'Add URL',
-        required: {
-          missingMessage: 'Please enter a URL',
-          missingStatus: 'warning',
-        },
+  id = 'web_action_extract-website-content';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
+  name = 'Extract Website Content';
+  description = 'Visits a website and extracts the text content';
+  aiSchema = z.object({
+    url: z.string().min(1).describe('The URL of the website to visit'),
+  });
+  needsConnection = false;
+  inputConfig: InputConfig[] = [
+    {
+      id: 'url',
+      label: 'URL',
+      description: 'The URL of the website to visit',
+      inputType: 'text',
+      placeholder: 'Add URL',
+      required: {
+        missingMessage: 'Please enter a URL',
+        missingStatus: 'warning',
       },
-      {
-        id: 'markdown',
-        label: '',
-        description: '',
-        inputType: 'markdown',
-        markdown:
-          'If the website is static, use the "Extract Static Website Content" action instead. If the website loads dynamic data using Javascript, then use this action.',
-      },
-      {
-        id: 'markdown2',
-        inputType: 'markdown',
-        description: '',
-        label: '',
-        markdown:
-          'Note that this action uses credits per run. The amount depends on the duration of the process.',
-      },
-    ];
-  }
+    },
+    {
+      id: 'markdown',
+      label: '',
+      description: '',
+      inputType: 'markdown',
+      markdown:
+        'If the website is static, use the "Extract Static Website Content" action instead. If the website loads dynamic data using Javascript, then use this action.',
+    },
+    {
+      id: 'markdown2',
+      inputType: 'markdown',
+      description: '',
+      label: '',
+      markdown:
+        'Note that this action uses credits per run. The amount depends on the duration of the process.',
+    },
+  ];
 
   async run({
     configValue,
@@ -149,7 +136,7 @@ export class ExtractWebsiteContent extends Action {
           workflowId,
         },
         details: {
-          actionId: this.id(),
+          actionId: this.id,
         },
       },
     });
@@ -175,7 +162,7 @@ type ResponseType = {
   creditUsage?: CreditUsageResponse;
 };
 
-type ConfigValue = z.infer<ReturnType<ExtractWebsiteContent['aiSchema']>>;
+type ConfigValue = z.infer<ExtractWebsiteContent['aiSchema']>;
 
 type RunSyncResponse = {
   id: string;

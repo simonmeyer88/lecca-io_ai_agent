@@ -15,46 +15,36 @@ export class GetContact extends Action {
   }
 
   app: GoogleContacts;
-  id() {
-    return 'google-contacts_action_get-contact';
-  }
-  name() {
-    return 'Get Contact';
-  }
-  description() {
-    return 'Retrieves a contact by their resource name.';
-  }
-  aiSchema() {
-    return z.object({
-      'resource-name': z
-        .string()
-        .min(1)
-        .describe('The resource name of the contact to retrieve'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'markdown',
-        inputType: 'markdown',
-        markdown:
-          'Get Contact retrieves a contact by their resource name. This is an id like people/c123456789.',
-        description: '',
-        label: '',
+  id = 'google-contacts_action_get-contact';
+  name = 'Get Contact';
+  description = 'Retrieves a contact by their resource name.';
+  aiSchema = z.object({
+    'resource-name': z
+      .string()
+      .min(1)
+      .describe('The resource name of the contact to retrieve'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'markdown',
+      inputType: 'markdown',
+      markdown:
+        'Get Contact retrieves a contact by their resource name. This is an id like people/c123456789.',
+      description: '',
+      label: '',
+    },
+    {
+      id: 'resource-name',
+      label: 'Resource Name',
+      description: 'The resource name of the contact to retrieve.',
+      inputType: 'text',
+      placeholder: 'Enter resource name',
+      required: {
+        missingMessage: 'Resource name is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'resource-name',
-        label: 'Resource Name',
-        description: 'The resource name of the contact to retrieve.',
-        inputType: 'text',
-        placeholder: 'Enter resource name',
-        required: {
-          missingMessage: 'Resource name is required',
-          missingStatus: 'warning',
-        },
-      },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -85,4 +75,4 @@ export class GetContact extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<GetContact['aiSchema']>>;
+type ConfigValue = z.infer<GetContact['aiSchema']>;

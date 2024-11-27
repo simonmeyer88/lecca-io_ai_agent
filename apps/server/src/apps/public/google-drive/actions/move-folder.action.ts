@@ -16,45 +16,35 @@ export class MoveFolder extends Action {
   }
 
   app: GoogleDrive;
-  id() {
-    return 'google-drive_action_move-folder';
-  }
-  name() {
-    return 'Move Folder';
-  }
-  description() {
-    return `Moves a folder created by ${ServerConfig.PLATFORM_NAME} into another folder.`;
-  }
-  aiSchema() {
-    return z.object({
-      'folder-to-move': z
-        .string()
-        .min(1)
-        .describe('The ID of the folder to move'),
-      'target-folder': z
-        .string()
-        .min(1)
-        .describe('The ID of the folder where the folder will be moved to'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        ...this.app.dynamicSelectFolder(),
-        id: 'folder-to-move',
-        label: 'Folder to Move',
-        selectOptions: undefined, //Beause we can't move root, so lets not include that option
-        defaultValue: undefined,
-        description: '',
-      },
-      {
-        ...this.app.dynamicSelectFolder(),
-        id: 'target-folder',
-        label: 'Folder Destination',
-        description: 'Select the folder where the file will be moved to.',
-      },
-    ];
-  }
+  id = 'google-drive_action_move-folder';
+  name = 'Move Folder';
+  description = `Moves a folder created by ${ServerConfig.PLATFORM_NAME} into another folder.`;
+  aiSchema = z.object({
+    'folder-to-move': z
+      .string()
+      .min(1)
+      .describe('The ID of the folder to move'),
+    'target-folder': z
+      .string()
+      .min(1)
+      .describe('The ID of the folder where the folder will be moved to'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      ...this.app.dynamicSelectFolder(),
+      id: 'folder-to-move',
+      label: 'Folder to Move',
+      selectOptions: undefined, //Beause we can't move root, so lets not include that option
+      defaultValue: undefined,
+      description: '',
+    },
+    {
+      ...this.app.dynamicSelectFolder(),
+      id: 'target-folder',
+      label: 'Folder Destination',
+      description: 'Select the folder where the file will be moved to.',
+    },
+  ];
 
   async run({
     configValue,
@@ -106,4 +96,4 @@ type Response = {
   targetFolderId: string;
 };
 
-type ConfigValue = z.infer<ReturnType<MoveFolder['aiSchema']>>;
+type ConfigValue = z.infer<MoveFolder['aiSchema']>;

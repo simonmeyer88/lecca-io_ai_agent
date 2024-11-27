@@ -18,100 +18,76 @@ export class Replace extends Action {
 
   app: Text;
 
-  id() {
-    return 'text_action_replace';
-  }
-
-  name() {
-    return 'Replace';
-  }
-
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
-  }
-
-  needsConnection(): boolean {
-    return false;
-  }
-
-  description() {
-    return 'Replaces search results.';
-  }
-
-  viewOptions(): null | NodeViewOptions {
-    return {
-      saveButtonOptions: {
-        replaceSaveAndTestButton: {
-          label: 'Save & Test',
-          type: 'real',
-        },
+  id = 'text_action_replace';
+  name = 'Replace';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
+  needsConnection = false;
+  description = 'Replaces search results.';
+  viewOptions: null | NodeViewOptions = {
+    saveButtonOptions: {
+      replaceSaveAndTestButton: {
+        label: 'Save & Test',
+        type: 'real',
       },
-    };
-  }
-
-  aiSchema() {
-    return z.object({
-      text: z.string().min(1).describe('text to search'),
-      query: z
-        .string()
-        .min(1)
-        .describe('Text string or regex string to search text'),
-      replaceValue: z
-        .string()
-        .describe('Value that will replace search results'),
-      replaceFirstResult: z
-        .enum(['true', 'false'])
-        .describe('If true, only returns the first result'),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'text',
-        label: 'Text to Search',
-        description: '',
-        inputType: 'text',
-        required: {
-          missingMessage: 'Text is required',
-          missingStatus: 'warning',
-        },
+    },
+  };
+  aiSchema = z.object({
+    text: z.string().min(1).describe('text to search'),
+    query: z
+      .string()
+      .min(1)
+      .describe('Text string or regex string to search text'),
+    replaceValue: z.string().describe('Value that will replace search results'),
+    replaceFirstResult: z
+      .enum(['true', 'false'])
+      .describe('If true, only returns the first result'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'text',
+      label: 'Text to Search',
+      description: '',
+      inputType: 'text',
+      required: {
+        missingMessage: 'Text is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'query',
-        label: 'Search Query',
-        description: 'Search query can be text or a regular expression.',
-        inputType: 'text',
-        placeholder: 'Add search text or a regular expression.',
-        required: {
-          missingMessage: 'Search query is required',
-          missingStatus: 'warning',
-        },
+    },
+    {
+      id: 'query',
+      label: 'Search Query',
+      description: 'Search query can be text or a regular expression.',
+      inputType: 'text',
+      placeholder: 'Add search text or a regular expression.',
+      required: {
+        missingMessage: 'Search query is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'replaceValue',
-        label: 'Replace Value',
-        description: 'Value that will replace all results',
-        inputType: 'text',
-        placeholder: 'Add value',
-        required: {
-          missingMessage: 'Replace value is required',
-          missingStatus: 'warning',
-        },
+    },
+    {
+      id: 'replaceValue',
+      label: 'Replace Value',
+      description: 'Value that will replace all results',
+      inputType: 'text',
+      placeholder: 'Add value',
+      required: {
+        missingMessage: 'Replace value is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'replaceFirstResult',
-        label: 'Replace first result',
-        description: '',
-        inputType: 'switch',
-        switchOptions: {
-          checked: 'true',
-          unchecked: 'false',
-          defaultChecked: false,
-        },
+    },
+    {
+      id: 'replaceFirstResult',
+      label: 'Replace first result',
+      description: '',
+      inputType: 'switch',
+      switchOptions: {
+        checked: 'true',
+        unchecked: 'false',
+        defaultChecked: false,
       },
-    ];
-  }
+    },
+  ];
 
   async run({ configValue }: RunActionArgs<ConfigValue>): Promise<Response> {
     const { text, query, replaceFirstResult, replaceValue } = configValue;
@@ -140,7 +116,7 @@ export class Replace extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<Replace['aiSchema']>>;
+type ConfigValue = z.infer<Replace['aiSchema']>;
 
 type Response = {
   result: string | null;

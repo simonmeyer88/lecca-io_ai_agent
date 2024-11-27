@@ -15,59 +15,49 @@ export class RunTask extends Action {
   }
 
   app: Apify;
-  id() {
-    return 'apify_action_run-task';
-  }
-  name() {
-    return 'Run Task';
-  }
-  description() {
-    return 'Runs a specified Apify task';
-  }
-  aiSchema() {
-    return z.object({
-      taskId: z.string().min(1).describe('The ID of the task to run'),
-      schema: z
-        .object({})
-        .nullable()
-        .optional()
-        .describe('Ask for any schema overrides to apply to the task as JSON'),
-      waitForFinish: z
-        .enum(['true', 'false'])
-        .nullable()
-        .optional()
-        .describe('Whether to wait for the task to finish before returning'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      this.app.dynamicListTasks(),
-      {
-        id: 'waitForFinish',
-        label: 'Wait for Finish',
-        description:
-          'Wait for the task to finish before returning. If waiting, the action will timeout after 60 seconds.',
-        inputType: 'switch',
-        switchOptions: {
-          checked: 'true',
-          unchecked: 'false',
-          defaultChecked: true,
-        },
+  id = 'apify_action_run-task';
+  name = 'Run Task';
+  description = 'Runs a specified Apify task';
+  aiSchema = z.object({
+    taskId: z.string().min(1).describe('The ID of the task to run'),
+    schema: z
+      .object({})
+      .nullable()
+      .optional()
+      .describe('Ask for any schema overrides to apply to the task as JSON'),
+    waitForFinish: z
+      .enum(['true', 'false'])
+      .nullable()
+      .optional()
+      .describe('Whether to wait for the task to finish before returning'),
+  });
+  inputConfig: InputConfig[] = [
+    this.app.dynamicListTasks(),
+    {
+      id: 'waitForFinish',
+      label: 'Wait for Finish',
+      description:
+        'Wait for the task to finish before returning. If waiting, the action will timeout after 60 seconds.',
+      inputType: 'switch',
+      switchOptions: {
+        checked: 'true',
+        unchecked: 'false',
+        defaultChecked: true,
       },
-      {
-        id: 'showSchemaMap',
-        label: 'Override Input Schema?',
-        description: '',
-        inputType: 'switch',
-        switchOptions: {
-          checked: 'true',
-          unchecked: 'false',
-          defaultChecked: false,
-        },
+    },
+    {
+      id: 'showSchemaMap',
+      label: 'Override Input Schema?',
+      description: '',
+      inputType: 'switch',
+      switchOptions: {
+        checked: 'true',
+        unchecked: 'false',
+        defaultChecked: false,
       },
-      this.app.dynamicListTaskInputSchema(),
-    ];
-  }
+    },
+    this.app.dynamicListTaskInputSchema(),
+  ];
 
   async run({
     configValue,
@@ -111,21 +101,21 @@ export class RunTask extends Action {
     }
   }
 
-  async mockRun(): Promise<ResponseType> {
-    return { data: mockRunDetails };
+  async mockRun(): Promise<Response> {
+    return { data: mock };
   }
 }
 
-type ResponseType = {
-  data: typeof mockRunDetails;
-};
-
-type ConfigValue = Omit<z.infer<ReturnType<RunTask['aiSchema']>>, 'schema'> & {
+type ConfigValue = Omit<z.infer<RunTask['aiSchema']>, 'schema'> & {
   schema: { key: string; value: string }[]; //Because the AI will pass in an object, but the input config is an array objects
   showSchemaMap: 'true' | 'false';
 };
 
-const mockRunDetails = {
+type Response = {
+  data: typeof mock;
+};
+
+const mock = {
   id: 'id',
   actId: 'act-id',
   userId: 'user-id',

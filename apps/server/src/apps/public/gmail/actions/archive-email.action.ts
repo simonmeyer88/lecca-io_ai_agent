@@ -15,35 +15,25 @@ export class ArchiveEmail extends Action {
   }
 
   app: Gmail;
-  id() {
-    return 'gmail_action_archive-email';
-  }
-  name() {
-    return 'Archive Email';
-  }
-  description() {
-    return 'Archive an email in Gmail';
-  }
-  aiSchema() {
-    return z.object({
-      messageId: z.string().min(1).describe('The ID of the email to archive'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        label: 'Message ID',
-        id: 'messageId',
-        inputType: 'text',
-        placeholder: 'Add message ID',
-        description: 'The ID of the email to archive',
-        required: {
-          missingMessage: 'Message ID is required',
-          missingStatus: 'warning',
-        },
+  id = 'gmail_action_archive-email';
+  name = 'Archive Email';
+  description = 'Archive an email in Gmail';
+  aiSchema = z.object({
+    messageId: z.string().min(1).describe('The ID of the email to archive'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      label: 'Message ID',
+      id: 'messageId',
+      inputType: 'text',
+      placeholder: 'Add message ID',
+      description: 'The ID of the email to archive',
+      required: {
+        missingMessage: 'Message ID is required',
+        missingStatus: 'warning',
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -71,4 +61,4 @@ export class ArchiveEmail extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<ArchiveEmail['aiSchema']>>;
+type ConfigValue = z.infer<ArchiveEmail['aiSchema']>;

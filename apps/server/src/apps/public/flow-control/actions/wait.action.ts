@@ -18,27 +18,14 @@ export class Wait extends Action {
   }
 
   app: FlowControl;
-  id() {
-    return 'flow-control_action_wait';
-  }
-  needsConnection() {
-    return false;
-  }
-  name() {
-    return 'Wait';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id()}.svg`;
-  }
-  description() {
-    return 'Pauses the execution for a period of time before continuing.';
-  }
-  availableForAgent(): boolean {
-    return false;
-  }
-  isInterruptingAction() {
-    return true;
-  }
+  id = 'flow-control_action_wait';
+  needsConnection = false;
+  name = 'Wait';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id}.svg`;
+  description = 'Pauses the execution for a period of time before continuing.';
+  availableForAgent = false;
+  isInterruptingAction = true;
   handleInterruptingResponse({
     runResponse,
   }: {
@@ -54,76 +41,70 @@ export class Wait extends Action {
       };
     }
   }
-  viewOptions(): NodeViewOptions {
-    return {
-      saveButtonOptions: {
-        hideSaveAndTestButton: true,
-      },
-    };
-  }
-  aiSchema() {
-    return z.object({});
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'timeUnit',
-        description: 'The unit of time to wait.',
-        inputType: 'select',
-        label: 'Time Unit',
-        hideCustomTab: true,
-        selectOptions: [
-          {
-            label: 'Seconds',
-            value: 'seconds',
-          },
-          {
-            label: 'Minutes',
-            value: 'minutes',
-          },
-          {
-            label: 'Hours',
-            value: 'hours',
-          },
-          {
-            label: 'Days',
-            value: 'days',
-          },
-        ],
-        defaultValue: 'minutes',
-        required: {
-          missingMessage: 'Time unit is required.',
-          missingStatus: 'warning',
+  viewOptions: NodeViewOptions = {
+    saveButtonOptions: {
+      hideSaveAndTestButton: true,
+    },
+  };
+  aiSchema = z.object({});
+  inputConfig: InputConfig[] = [
+    {
+      id: 'timeUnit',
+      description: 'The unit of time to wait.',
+      inputType: 'select',
+      label: 'Time Unit',
+      hideCustomTab: true,
+      selectOptions: [
+        {
+          label: 'Seconds',
+          value: 'seconds',
         },
-      },
-      {
-        id: 'timeValue',
-        description: 'The number of time units to wait before continuing.',
-        inputType: 'number',
-        numberOptions: {
-          min: 1,
-          step: 1,
+        {
+          label: 'Minutes',
+          value: 'minutes',
         },
-        label: 'Time to Wait',
-        required: {
-          missingMessage: 'Time to wait is required.',
-          missingStatus: 'warning',
+        {
+          label: 'Hours',
+          value: 'hours',
         },
-        defaultValue: '30',
-        loadOptions: {
-          dependsOn: ['timeUnit'],
+        {
+          label: 'Days',
+          value: 'days',
         },
+      ],
+      defaultValue: 'minutes',
+      required: {
+        missingMessage: 'Time unit is required.',
+        missingStatus: 'warning',
       },
-      {
-        id: 'markdown',
-        description: '',
-        label: '',
-        inputType: 'markdown',
-        markdown:
-          'If the wait time is greater than 2 minutes, the execution status will change to **Scheduled**',
+    },
+    {
+      id: 'timeValue',
+      description: 'The number of time units to wait before continuing.',
+      inputType: 'number',
+      numberOptions: {
+        min: 1,
+        step: 1,
       },
-    ];
-  }
+      label: 'Time to Wait',
+      required: {
+        missingMessage: 'Time to wait is required.',
+        missingStatus: 'warning',
+      },
+      defaultValue: '30',
+      loadOptions: {
+        dependsOn: ['timeUnit'],
+      },
+    },
+    {
+      id: 'markdown',
+      description: '',
+      label: '',
+      inputType: 'markdown',
+      markdown:
+        'If the wait time is greater than 2 minutes, the execution status will change to **Scheduled**',
+    },
+  ];
 
   async run({ configValue }: RunActionArgs<ConfigValue>): Promise<unknown> {
     if (!configValue) {
@@ -185,7 +166,7 @@ export class Wait extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<Wait['aiSchema']>> & {
+type ConfigValue = z.infer<Wait['aiSchema']> & {
   timeUnit: 'seconds' | 'minutes' | 'hours' | 'days';
   timeValue: string;
 };

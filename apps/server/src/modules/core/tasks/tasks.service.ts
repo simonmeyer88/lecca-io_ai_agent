@@ -1352,7 +1352,7 @@ export class TasksService {
           const { newSchema } = this.#filterAiSchemaWithUserInput({
             zodSchema: zodSchema.parameters,
             userInput: cleanedUserInput,
-            inputConfigSchema: toolAction.inputConfig(),
+            inputConfigSchema: toolAction.inputConfig,
           });
 
           zodSchema.parameters = newSchema;

@@ -15,48 +15,38 @@ export class SendDraft extends Action {
   }
 
   app: MicrosoftOutlook;
-  id() {
-    return 'microsoft-outlook_action_send-draft';
-  }
-  name() {
-    return 'Send Draft';
-  }
-  description() {
-    return 'Send a draft from Outlook';
-  }
-  aiSchema() {
-    return z.object({
-      draftId: z.string().min(1).describe('The ID of the draft to send'),
-    });
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'draftId',
-        label: 'Draft',
-        description: 'The draft to send',
-        inputType: 'dynamic-select',
-        _getDynamicValues: async ({ connection, workspaceId }) => {
-          const url =
-            'https://graph.microsoft.com/v1.0/me/mailFolders/drafts/messages';
+  id = 'microsoft-outlook_action_send-draft';
+  name = 'Send Draft';
+  description = 'Send a draft from Outlook';
+  aiSchema = z.object({
+    draftId: z.string().min(1).describe('The ID of the draft to send'),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'draftId',
+      label: 'Draft',
+      description: 'The draft to send',
+      inputType: 'dynamic-select',
+      _getDynamicValues: async ({ connection, workspaceId }) => {
+        const url =
+          'https://graph.microsoft.com/v1.0/me/mailFolders/drafts/messages';
 
-          const drafts = await this.app.http.loggedRequest({
-            method: 'GET',
-            url,
-            headers: {
-              Authorization: `Bearer ${connection.accessToken}`,
-            },
-            workspaceId,
-          });
+        const drafts = await this.app.http.loggedRequest({
+          method: 'GET',
+          url,
+          headers: {
+            Authorization: `Bearer ${connection.accessToken}`,
+          },
+          workspaceId,
+        });
 
-          return drafts.data.value.map((draft: any) => ({
-            label: !draft.subject ? 'No Subject' : draft.subject,
-            value: draft.id,
-          }));
-        },
+        return drafts.data.value.map((draft: any) => ({
+          label: !draft.subject ? 'No Subject' : draft.subject,
+          value: draft.id,
+        }));
       },
-    ];
-  }
+    },
+  ];
 
   async run({
     configValue,
@@ -83,4 +73,4 @@ export class SendDraft extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<SendDraft['aiSchema']>>;
+type ConfigValue = z.infer<SendDraft['aiSchema']>;

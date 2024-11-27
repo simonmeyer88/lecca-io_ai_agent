@@ -18,63 +18,46 @@ export class OutputWorkflowData extends Action {
   }
 
   app: FlowControl;
-  id() {
-    return 'flow-control_action_output-workflow-data';
-  }
-  needsConnection() {
-    return false;
-  }
-  name() {
-    return 'Output Workflow Data';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id()}.svg`;
-  }
-  description() {
-    return 'Outputs data that can be used by an agent or another workflow.';
-  }
-  availableForAgent(): boolean {
-    return false;
-  }
-
-  aiSchema() {
-    return z.object({});
-  }
-  viewOptions(): NodeViewOptions {
-    return {
-      saveButtonOptions: {
-        hideSaveButton: true,
-        replaceSaveAndTestButton: {
-          label: 'Save & Generate Output',
-          //Real, but since it's not in an execution it will only save output to workflow
-          //I would make it mock, but then I'd have to duplicate a lot of the code. and not having an execution works fine to check if it's mocking.
-          type: 'mock',
-          tooltip:
-            'Saves the output data to this workflow. This will allow other workflows using the "Run Workflow" action to map this output data within their workflow.',
-        },
+  id = 'flow-control_action_output-workflow-data';
+  needsConnection = false;
+  name = 'Output Workflow Data';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id}.svg`;
+  description =
+    'Outputs data that can be used by an agent or another workflow.';
+  availableForAgent = false;
+  aiSchema = z.object({});
+  viewOptions: NodeViewOptions = {
+    saveButtonOptions: {
+      hideSaveButton: true,
+      replaceSaveAndTestButton: {
+        label: 'Save & Generate Output',
+        //Real, but since it's not in an execution it will only save output to workflow
+        //I would make it mock, but then I'd have to duplicate a lot of the code. and not having an execution works fine to check if it's mocking.
+        type: 'mock',
+        tooltip:
+          'Saves the output data to this workflow. This will allow other workflows using the "Run Workflow" action to map this output data within their workflow.',
       },
-    };
-  }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'markdown1',
-        markdown:
-          '**Only use this action once per workflow**. When this action runs, it will save the output to the execution. That saved output will be used by other workflows when they use the **Run Workflow** action with this workflow.',
-        label: '',
-        inputType: 'markdown',
-        description: '',
-      },
-      {
-        id: 'output',
-        inputType: 'json',
-        description:
-          'This data will be available to other workflows or agents that run this workflow as an aciton.',
-        label: 'Ouput Data',
-        placeholder: 'Enter output data',
-      },
-    ];
-  }
+    },
+  };
+  inputConfig: InputConfig[] = [
+    {
+      id: 'markdown1',
+      markdown:
+        '**Only use this action once per workflow**. When this action runs, it will save the output to the execution. That saved output will be used by other workflows when they use the **Run Workflow** action with this workflow.',
+      label: '',
+      inputType: 'markdown',
+      description: '',
+    },
+    {
+      id: 'output',
+      inputType: 'json',
+      description:
+        'This data will be available to other workflows or agents that run this workflow as an aciton.',
+      label: 'Ouput Data',
+      placeholder: 'Enter output data',
+    },
+  ];
 
   async run(args: RunActionArgs<ConfigValue>): Promise<Response> {
     const workflowId = args.workflowId;
@@ -123,7 +106,7 @@ export class OutputWorkflowData extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<OutputWorkflowData['aiSchema']>> & {
+type ConfigValue = z.infer<OutputWorkflowData['aiSchema']> & {
   output: { key: string; value: string }[];
 };
 

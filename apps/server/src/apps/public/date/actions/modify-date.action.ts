@@ -20,140 +20,117 @@ export class ModifyDate extends Action {
 
   app: DateHelper;
 
-  id() {
-    return 'date_action_modify-date';
-  }
-
-  name() {
-    return 'Add/Subtract Time';
-  }
-
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
-  }
-
-  needsConnection(): boolean {
-    return false;
-  }
-
-  description() {
-    return 'Adds or subtracts time from the selected date.';
-  }
-
-  viewOptions(): null | NodeViewOptions {
-    return {
-      saveButtonOptions: {
-        replaceSaveAndTestButton: {
-          label: 'Save & Test',
-          type: 'real',
-        },
+  id = 'date_action_modify-date';
+  name = 'Add/Subtract Time';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
+  needsConnection = false;
+  description = 'Adds or subtracts time from the selected date.';
+  viewOptions: null | NodeViewOptions = {
+    saveButtonOptions: {
+      replaceSaveAndTestButton: {
+        label: 'Save & Test',
+        type: 'real',
       },
-    };
-  }
-
-  aiSchema() {
-    return z.object({
-      date: z
-        .string()
-        .min(1)
-        .describe('Time in ISO String format with timezone or UTC'),
-      modifiers: z.array(
-        z.object({
-          modifier: z.enum([
-            'seconds',
-            'minutes',
-            'hours',
-            'days',
-            'weeks',
-            'months',
-            'years',
-          ]),
-          value: z.number().int().describe('Value to add or subtract'),
-        }),
-      ),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'date',
-        label: 'Date',
-        description:
-          'Event start time in ISO String format with timezone or UTC',
-        inputType: 'date-time',
-        required: {
-          missingMessage: 'Start DateTime is required',
-          missingStatus: 'warning',
-        },
+    },
+  };
+  aiSchema = z.object({
+    date: z
+      .string()
+      .min(1)
+      .describe('Time in ISO String format with timezone or UTC'),
+    modifiers: z.array(
+      z.object({
+        modifier: z.enum([
+          'seconds',
+          'minutes',
+          'hours',
+          'days',
+          'weeks',
+          'months',
+          'years',
+        ]),
+        value: z.number().int().describe('Value to add or subtract'),
+      }),
+    ),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'date',
+      label: 'Date',
+      description: 'Event start time in ISO String format with timezone or UTC',
+      inputType: 'date-time',
+      required: {
+        missingMessage: 'Start DateTime is required',
+        missingStatus: 'warning',
       },
-      {
-        id: 'modifiers',
-        label: 'Add/Subtract',
-        description: 'Add or subtract time from the selected date',
-        occurenceType: 'multiple',
-        required: {
-          missingMessage: 'At least one modifier is required',
-          missingStatus: 'warning',
-        },
-        inputConfig: [
-          {
-            id: 'modifier',
-            label: 'Modifier',
-            inputType: 'select',
-            description: '',
-            selectOptions: [
-              {
-                label: 'Seconds',
-                value: 'seconds',
-              },
-              {
-                label: 'Minutes',
-                value: 'minutes',
-              },
-              {
-                label: 'Hours',
-                value: 'hours',
-              },
-              {
-                label: 'Days',
-                value: 'days',
-              },
-              {
-                label: 'Weeks',
-                value: 'weeks',
-              },
-              {
-                label: 'Months',
-                value: 'months',
-              },
-              {
-                label: 'Years',
-                value: 'years',
-              },
-            ],
-            required: {
-              missingMessage: 'Modifier is required',
-              missingStatus: 'warning',
+    },
+    {
+      id: 'modifiers',
+      label: 'Add/Subtract',
+      description: 'Add or subtract time from the selected date',
+      occurenceType: 'multiple',
+      required: {
+        missingMessage: 'At least one modifier is required',
+        missingStatus: 'warning',
+      },
+      inputConfig: [
+        {
+          id: 'modifier',
+          label: 'Modifier',
+          inputType: 'select',
+          description: '',
+          selectOptions: [
+            {
+              label: 'Seconds',
+              value: 'seconds',
             },
+            {
+              label: 'Minutes',
+              value: 'minutes',
+            },
+            {
+              label: 'Hours',
+              value: 'hours',
+            },
+            {
+              label: 'Days',
+              value: 'days',
+            },
+            {
+              label: 'Weeks',
+              value: 'weeks',
+            },
+            {
+              label: 'Months',
+              value: 'months',
+            },
+            {
+              label: 'Years',
+              value: 'years',
+            },
+          ],
+          required: {
+            missingMessage: 'Modifier is required',
+            missingStatus: 'warning',
           },
-          {
-            id: 'value',
-            label: 'Value',
-            inputType: 'number',
-            description: 'Value to add or subtract',
-            numberOptions: {
-              step: 1,
-            },
-            required: {
-              missingMessage: 'Value is required',
-              missingStatus: 'warning',
-            },
+        },
+        {
+          id: 'value',
+          label: 'Value',
+          inputType: 'number',
+          description: 'Value to add or subtract',
+          numberOptions: {
+            step: 1,
           },
-        ],
-      },
-    ];
-  }
+          required: {
+            missingMessage: 'Value is required',
+            missingStatus: 'warning',
+          },
+        },
+      ],
+    },
+  ];
 
   async run({ configValue }: RunActionArgs<ConfigValue>): Promise<Response> {
     const { date, modifiers } = configValue;
@@ -205,7 +182,7 @@ export class ModifyDate extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<ModifyDate['aiSchema']>>;
+type ConfigValue = z.infer<ModifyDate['aiSchema']>;
 
 type Response = {
   date: string;

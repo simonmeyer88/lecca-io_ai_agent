@@ -19,50 +19,33 @@ export class ManuallyDecidePaths extends Action {
   }
 
   app: FlowControl;
-  id() {
-    return 'flow-control_action_manually-decide-paths';
-  }
-  needsConnection() {
-    return false;
-  }
-  name() {
-    return 'Manually Decide Path';
-  }
-  iconUrl(): null | string {
-    return `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id()}.svg`;
-  }
-  description() {
-    return 'Wait for a user to manually decide which path to take.';
-  }
-  availableForAgent(): boolean {
-    return false;
-  }
-
-  viewOptions(): NodeViewOptions {
-    return {
-      showManualInputButton: true,
-      manualInputButtonOptions: {
-        label: 'Confirm Path',
+  id = 'flow-control_action_manually-decide-paths';
+  needsConnection = false;
+  name = 'Manually Decide Path';
+  iconUrl: null | string =
+    `${ServerConfig.INTEGRATION_ICON_BASE_URL}/actions/${this.id}.svg`;
+  description = 'Wait for a user to manually decide which path to take.';
+  availableForAgent = false;
+  viewOptions: NodeViewOptions = {
+    showManualInputButton: true,
+    manualInputButtonOptions: {
+      label: 'Confirm Path',
+      tooltip:
+        'Once confirmed, the path will be selected and the execution will continue.',
+    },
+    saveButtonOptions: {
+      hideSaveAndTestButton: true,
+      replaceSaveButton: {
+        label: 'Save Path Options',
+        type: 'save',
         tooltip:
-          'Once confirmed, the path will be selected and the execution will continue.',
+          'Saves and updates the options that will be available for the user to select.',
       },
-      saveButtonOptions: {
-        hideSaveAndTestButton: true,
-        replaceSaveButton: {
-          label: 'Save Path Options',
-          type: 'save',
-          tooltip:
-            'Saves and updates the options that will be available for the user to select.',
-        },
-      },
-    };
-  }
-  aiSchema() {
-    return z.object({});
-  }
-  isInterruptingAction() {
-    return true;
-  }
+    },
+  };
+  aiSchema = z.object({});
+  isInterruptingAction = true;
+
   handleInterruptingResponse({
     runResponse,
   }: {
@@ -72,26 +55,25 @@ export class ManuallyDecidePaths extends Action {
       needsInput: runResponse,
     };
   }
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'markdown',
-        label: '',
-        description: '',
-        inputType: 'markdown',
-        markdown:
-          "Make sure to click **Save Path Options** after adding or removing paths. Or else the path updates won't be saved.",
-      },
-      {
-        id: 'decidePathOptions',
-        label: 'Configure Paths',
-        description:
-          'Connect actions to this node to configure your path options.',
-        inputType: 'decide-paths',
-      },
-      ...this.app.dynamicInputNeededNotificationConfig(),
-    ];
-  }
+
+  inputConfig: InputConfig[] = [
+    {
+      id: 'markdown',
+      label: '',
+      description: '',
+      inputType: 'markdown',
+      markdown:
+        "Make sure to click **Save Path Options** after adding or removing paths. Or else the path updates won't be saved.",
+    },
+    {
+      id: 'decidePathOptions',
+      label: 'Configure Paths',
+      description:
+        'Connect actions to this node to configure your path options.',
+      inputType: 'decide-paths',
+    },
+    ...this.app.dynamicInputNeededNotificationConfig(),
+  ];
 
   async run({
     executionId,
@@ -206,7 +188,7 @@ export class ManuallyDecidePaths extends Action {
   }
 }
 
-type ConfigValue = z.infer<ReturnType<ManuallyDecidePaths['aiSchema']>> & {
+type ConfigValue = z.infer<ManuallyDecidePaths['aiSchema']> & {
   instructions: string | undefined;
   sendNotification: 'true' | 'false';
   assignee: string | undefined;

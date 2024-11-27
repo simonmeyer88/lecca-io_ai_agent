@@ -16,61 +16,50 @@ export class ListLeadStatusActivities extends Action {
   }
 
   app: SalesRabbit;
-  id() {
-    return 'sales-rabbit_action_list-lead-status-activities';
-  }
-  name() {
-    return 'List Lead Status Activities';
-  }
-  description() {
-    return 'Lists lead status activities.';
-  }
-  aiSchema() {
-    return z.object({
-      page: z.number().int().positive().default(1),
-      perPage: z.number().int().positive().max(500).default(100),
-      ifStatusModifiedSince: z
-        .string()
-        .describe(
-          'Return results that have had their status modified since this date. ISO format.',
-        )
-        .nullable()
-        .optional(),
-    });
-  }
-
-  inputConfig(): InputConfig[] {
-    return [
-      {
-        id: 'page',
-        inputType: 'number',
-        label: 'Page',
-        description: 'The result page number to return.',
-        numberOptions: {
-          min: 1,
-        },
-        defaultValue: 1,
+  id = 'sales-rabbit_action_list-lead-status-activities';
+  name = 'List Lead Status Activities';
+  description = 'Lists lead status activities.';
+  aiSchema = z.object({
+    page: z.number().int().positive().default(1),
+    perPage: z.number().int().positive().max(500).default(100),
+    ifStatusModifiedSince: z
+      .string()
+      .describe(
+        'Return results that have had their status modified since this date. ISO format.',
+      )
+      .nullable()
+      .optional(),
+  });
+  inputConfig: InputConfig[] = [
+    {
+      id: 'page',
+      inputType: 'number',
+      label: 'Page',
+      description: 'The result page number to return.',
+      numberOptions: {
+        min: 1,
       },
-      {
-        id: 'perPage',
-        inputType: 'number',
-        label: 'Per Page',
-        description: 'The number of results per page.',
-        numberOptions: {
-          min: 1,
-          max: 100,
-        },
-        defaultValue: 50,
+      defaultValue: 1,
+    },
+    {
+      id: 'perPage',
+      inputType: 'number',
+      label: 'Per Page',
+      description: 'The number of results per page.',
+      numberOptions: {
+        min: 1,
+        max: 100,
       },
-      {
-        id: 'ifStatusModifiedSince',
-        inputType: 'date-time',
-        label: 'Status Modified Since',
-        description:
-          'Only return results that have had their status modified since this date.',
-      },
-    ];
-  }
+      defaultValue: 50,
+    },
+    {
+      id: 'ifStatusModifiedSince',
+      inputType: 'date-time',
+      label: 'Status Modified Since',
+      description:
+        'Only return results that have had their status modified since this date.',
+    },
+  ];
 
   async run({
     connection,
@@ -136,4 +125,4 @@ const mock = {
   dispositionerProximityStatus: 'At location',
 };
 
-type ConfigValue = z.infer<ReturnType<ListLeadStatusActivities['aiSchema']>>;
+type ConfigValue = z.infer<ListLeadStatusActivities['aiSchema']>;

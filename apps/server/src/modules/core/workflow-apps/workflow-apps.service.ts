@@ -385,7 +385,7 @@ export class WorkflowAppsService {
 
     if (!connection) {
       throw new NotFoundException(`Connection (${connectionId}) not found`);
-    } else if (connection.connectionType() !== 'oauth2') {
+    } else if (connection.connectionType !== 'oauth2') {
       throw new BadRequestException(
         `Connection (${connectionId}) is not an OAuth2 connection`,
       );

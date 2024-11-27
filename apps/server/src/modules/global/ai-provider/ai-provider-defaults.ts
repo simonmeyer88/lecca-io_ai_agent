@@ -2,7 +2,7 @@ import { AiProviders } from './ai-provider.service';
 
 export const DEFAULT_PROVIDERS: AiProviders = {
   openai: {
-    appConnectionId: 'openai-connection-api-key',
+    appConnectionId: 'openai_connection_api-key',
     languageModels: {
       'gpt-4o': {
         vision: true,
@@ -62,7 +62,7 @@ export const DEFAULT_PROVIDERS: AiProviders = {
     },
   },
   anthropic: {
-    appConnectionId: 'anthropic-connection-api-key',
+    appConnectionId: 'anthropic_connection_api-key',
     languageModels: {
       'claude-3-5-sonnet-latest': {
         vision: true,
@@ -112,7 +112,7 @@ export const DEFAULT_PROVIDERS: AiProviders = {
     embeddingModels: {},
   },
   gemini: {
-    appConnectionId: 'gemini-connection-api-key',
+    appConnectionId: 'gemini_connection_api-key',
     languageModels: {
       'gemini-1.5-flash': {
         vision: true,

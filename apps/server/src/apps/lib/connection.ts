@@ -12,11 +12,13 @@ export abstract class Connection {
   }
 
   app: App;
-  abstract id(): string;
-  abstract name(): string;
-  abstract description(): string;
-  abstract inputConfig(): InputConfig[];
-  abstract connectionType(): ConnectionType;
+  // abstract id: string;
+  // Id must be a string_connection_string
+  abstract id: string;
+  abstract name: string;
+  abstract description: string;
+  abstract inputConfig: InputConfig[];
+  abstract connectionType: ConnectionType;
 
   connectApp(args: {
     workspaceId: string;
@@ -24,7 +26,7 @@ export abstract class Connection {
     res: Response;
     req: Request;
   }) {
-    switch (this.connectionType()) {
+    switch (this.connectionType) {
       case 'apiKey':
         return (this as unknown as ApiKeyConnection).connectApiKeyApp(args);
       case 'basic':
@@ -39,7 +41,7 @@ export abstract class Connection {
   }
 
   hasValidServerConfig() {
-    switch (this.connectionType()) {
+    switch (this.connectionType) {
       case 'apiKey':
         return true;
       case 'basic':
@@ -51,18 +53,18 @@ export abstract class Connection {
         // If the connection is an OAuth2 connection, check if the client ID and secret are set
         // If they are not set, the ServerConfig is not configured with the necessary values
         // to make this a valid connection.
-        return !!connection.clientId() && !!connection.clientSecret();
+        return !!connection.clientId && !!connection.clientSecret;
       }
     }
   }
 
   toJSON() {
     return {
-      id: this.id(),
-      name: this.name(),
-      description: this.description(),
-      inputConfig: this.inputConfig().map((c) => c),
-      connectionType: this.connectionType(),
+      id: this.id,
+      name: this.name,
+      description: this.description,
+      inputConfig: this.inputConfig.map((c) => c),
+      connectionType: this.connectionType,
       valid: this.hasValidServerConfig(),
     };
   }
@@ -73,15 +75,13 @@ export abstract class OAuth2Connection extends Connection {
     super(args);
   }
 
-  abstract authorizeUrl(): string;
-  abstract tokenUrl(): string;
-  abstract clientId(): string;
-  abstract clientSecret(): string;
-  abstract scopes(): string[];
+  abstract authorizeUrl: string;
+  abstract tokenUrl: string;
+  abstract clientId: string;
+  abstract clientSecret: string;
+  abstract scopes: string[];
 
-  scopeDelimiter(): string {
-    return ',';
-  }
+  scopeDelimiter = ',';
 
   /**
    * Most APIs use the body to send the authorization token
@@ -89,13 +89,9 @@ export abstract class OAuth2Connection extends Connection {
    *
    * For example, the Notion API uses the header to pass the client id and secret
    */
-  authorizationMethod(): OAuth2AuthorizationMethod {
-    return 'body';
-  }
+  authorizationMethod: OAuth2AuthorizationMethod = 'body';
 
-  grantType(): OAuth2GrantType {
-    return 'authorization_code';
-  }
+  grantType: OAuth2GrantType = 'authorization_code';
 
   /**
    * By default we'll use ServerConfig.NGROK_TUNNEL_URL with ngrok
@@ -103,54 +99,42 @@ export abstract class OAuth2Connection extends Connection {
    * and since prod is already using the api subdomain, we cont use the tunnel subdomain.
    * So we'll use localhost
    */
-  redirectToLocalHostInDevelopment(): boolean {
-    return false;
-  }
+  redirectToLocalHostInDevelopment = false;
 
   /**
    * If you need to add extra params to the authorize url add them here.
    */
-  extraAuthParams(): Record<string, string> | null {
-    return null;
-  }
+  extraAuthParams: Record<string, string> | null = null;
 
   /**
    * If you need to add extra params to the refresh token url add them here
    */
-  extraRefreshParams(): Record<string, string> | null {
-    return null;
-  }
+  extraRefreshParams: Record<string, string> | null = null;
 
   /**
    * If you need to add extra heads to the authorize request add them here.
    */
-  extraAuthHeaders(): Record<string, string> | null {
-    return null;
-  }
+  extraAuthHeaders: Record<string, string> | null = null;
 
-  pkce(): boolean {
-    return false;
-  }
+  pkce = false;
 
-  connectionType(): ConnectionType {
-    return 'oauth2';
-  }
+  connectionType: ConnectionType = 'oauth2';
 
   async generateAuthorizeUrl(args: GenerateAuthorizeUrlArgs): Promise<string> {
     const statePayload: OAuth2CallbackState = {
       name: args.configValue?.name,
       appId: this.app.id,
-      connectionId: this.id(),
+      connectionId: this.id,
       description: args.configValue?.description,
       workspaceId: args.workspaceId,
       // projectId: args.configValue?.projectId,
     };
 
     // Create a URL object from this.authUrl() to handle possible existing query params
-    const authorizeUrl = new URL(this.authorizeUrl());
+    const authorizeUrl = new URL(this.authorizeUrl);
     const params = authorizeUrl.searchParams;
 
-    if (this.pkce()) {
+    if (this.pkce) {
       const codeChallenge = Date.now().toString();
 
       statePayload.codeVerifier = codeChallenge;
@@ -162,23 +146,23 @@ export abstract class OAuth2Connection extends Connection {
     const encryptedPayload = this.#encryptCallbackState(statePayload);
     const state = JSON.stringify(encryptedPayload);
 
-    const scopes = this.scopes();
+    const scopes = this.scopes;
 
     // Add required query parameters
-    params.set('client_id', this.clientId());
+    params.set('client_id', this.clientId);
     if (scopes.length) {
-      params.set('scope', scopes.join(this.scopeDelimiter()));
+      params.set('scope', scopes.join(this.scopeDelimiter));
     }
     params.set('state', state);
     params.set('response_type', 'code');
     params.set(
       'redirect_uri',
-      this.redirectToLocalHostInDevelopment()
+      this.redirectToLocalHostInDevelopment
         ? this.app.redirectUrlLocalHostInDevelopment
         : this.app.redirectUrlNgrokTunnelInDevelopment,
     );
 
-    const extraParams = this.extraAuthParams?.();
+    const extraParams = this.extraAuthParams;
     if (extraParams && typeof extraParams === 'object') {
       // Append each extra param to the URL's search parameters
       Object.entries(extraParams).forEach(([key, value]) => {
@@ -206,37 +190,37 @@ export abstract class OAuth2Connection extends Connection {
     }
 
     const state = this.#decryptCallbackState(stateToken);
-    const url = this.tokenUrl();
+    const url = this.tokenUrl;
     const data = new URLSearchParams();
 
-    data.append('grant_type', this.grantType());
+    data.append('grant_type', this.grantType);
     data.append(
       'redirect_uri',
-      this.redirectToLocalHostInDevelopment()
+      this.redirectToLocalHostInDevelopment
         ? this.app.redirectUrlLocalHostInDevelopment
         : this.app.redirectUrlNgrokTunnelInDevelopment,
     );
     data.append('code', code);
 
-    if (this.pkce() && state.codeVerifier) {
+    if (this.pkce && state.codeVerifier) {
       data.append('code_verifier', state.codeVerifier);
     }
 
     const headers: Record<string, string> = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      ...this.extraAuthHeaders?.(),
+      ...this.extraAuthHeaders,
     };
 
-    if (this.authorizationMethod() === 'header') {
+    if (this.authorizationMethod === 'header') {
       headers['Authorization'] = `Basic ${Buffer.from(
-        `${this.clientId()}:${this.clientSecret()}`,
+        `${this.clientId}:${this.clientSecret}`,
       ).toString('base64')}`;
-    } else if (this.authorizationMethod() === 'body') {
-      data.append('client_id', this.clientId());
-      data.append('client_secret', this.clientSecret());
+    } else if (this.authorizationMethod === 'body') {
+      data.append('client_id', this.clientId);
+      data.append('client_secret', this.clientSecret);
     } else {
       throw new Error(
-        `Invalid authorization method: ${this.authorizationMethod()}`,
+        `Invalid authorization method: ${this.authorizationMethod}`,
       );
     }
 
@@ -278,7 +262,7 @@ export abstract class OAuth2Connection extends Connection {
       throw new Error('No refresh token found, cannot refresh access token');
     }
 
-    const url = this.tokenUrl();
+    const url = this.tokenUrl;
 
     // Use URLSearchParams to handle the required parameters
     const data = new URLSearchParams();
@@ -289,21 +273,21 @@ export abstract class OAuth2Connection extends Connection {
       'Content-Type': 'application/x-www-form-urlencoded',
     };
 
-    if (this.authorizationMethod() === 'header') {
+    if (this.authorizationMethod === 'header') {
       headers['Authorization'] = `Basic ${Buffer.from(
-        `${this.clientId()}:${this.clientSecret()}`,
+        `${this.clientId}:${this.clientSecret}`,
       ).toString('base64')}`;
-    } else if (this.authorizationMethod() === 'body') {
-      data.append('client_id', this.clientId());
-      data.append('client_secret', this.clientSecret());
+    } else if (this.authorizationMethod === 'body') {
+      data.append('client_id', this.clientId);
+      data.append('client_secret', this.clientSecret);
     } else {
       throw new Error(
-        `Invalid authorization method: ${this.authorizationMethod()}`,
+        `Invalid authorization method: ${this.authorizationMethod}`,
       );
     }
 
     // Add extra parameters if needed (you can make this more dynamic)
-    const extraParams = this.extraRefreshParams?.();
+    const extraParams = this.extraRefreshParams;
     if (extraParams && typeof extraParams === 'object') {
       Object.entries(extraParams).forEach(([key, value]) => {
         data.append(key, value);
@@ -367,7 +351,7 @@ export abstract class OAuth2Connection extends Connection {
         name: state.name,
         description: state.description,
         workflowAppId: this.app.id,
-        connectionId: this.id(),
+        connectionId: this.id,
         FK_workspaceId: state.workspaceId,
         FK_projectId: state.projectId,
         accessToken: tokens.accessToken,
@@ -404,9 +388,7 @@ export abstract class ApiKeyConnection extends Connection {
     super(args);
   }
 
-  connectionType(): ConnectionType {
-    return 'apiKey';
-  }
+  connectionType: ConnectionType = 'apiKey';
   async connectApiKeyApp(args: {
     workspaceId: string;
     configValue: ApiKeyConfigValues;
@@ -418,7 +400,7 @@ export abstract class ApiKeyConnection extends Connection {
         name: args.configValue.name,
         description: args.configValue.description,
         workflowAppId: this.app.id,
-        connectionId: this.id(),
+        connectionId: this.id,
         FK_workspaceId: args.workspaceId,
         FK_projectId: args.configValue.projectId,
         apiKey: args.configValue.apiKey,
@@ -436,9 +418,7 @@ export abstract class BasicAuthConnection extends Connection {
     super(args);
   }
 
-  connectionType(): ConnectionType {
-    return 'basic';
-  }
+  connectionType: ConnectionType = 'basic';
 
   async connectBasicAuthApp(args: {
     workspaceId: string;
@@ -451,7 +431,7 @@ export abstract class BasicAuthConnection extends Connection {
         name: args.configValue.name,
         description: args.configValue.description,
         workflowAppId: this.app.id,
-        connectionId: this.id(),
+        connectionId: this.id,
         FK_workspaceId: args.workspaceId,
         FK_projectId: args.configValue.projectId,
         username: args.configValue.username,
@@ -470,9 +450,7 @@ export abstract class KeyPairConnection extends Connection {
     super(args);
   }
 
-  connectionType(): ConnectionType {
-    return 'keyPair';
-  }
+  connectionType: ConnectionType = 'keyPair';
 
   async connectKeyPairApp(args: {
     workspaceId: string;
@@ -485,7 +463,7 @@ export abstract class KeyPairConnection extends Connection {
         name: args.configValue.name,
         description: args.configValue.description,
         workflowAppId: this.app.id,
-        connectionId: this.id(),
+        connectionId: this.id,
         FK_workspaceId: args.workspaceId,
         FK_projectId: args.configValue.projectId,
         privateKey: args.configValue.privateKey,

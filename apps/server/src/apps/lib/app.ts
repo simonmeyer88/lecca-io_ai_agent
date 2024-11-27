@@ -41,7 +41,16 @@ export abstract class App {
     //Create maps for easy access
     this.connectionMap = this.connections().reduce(
       (acc, connection) => {
-        acc[connection.id()] = connection;
+        // Add the current/new format
+        acc[connection.id] = connection;
+
+        // Always add the old format by converting _connection_ to -connection-
+        const oldFormatId = connection.id.replace(
+          /_connection_/g,
+          '-connection-',
+        );
+        acc[oldFormatId] = connection;
+
         return acc;
       },
       {} as Record<string, Connection>,

@@ -37,11 +37,11 @@ Before starting the server, you'll need a running database. This can be done usi
 ## Starting the Server
 
 Run the following command in the root directory:
-`npx nx run server:serve:development`
+`pnpm nx serve server`
 
 You should see a log of all available services running. If any required environment variables are missing, error messages will appear in the logs.
 
 ## Starting the UI
 
 Run the following command in the root directory:
-`npx nx run ui:serve`
+`pnpm nx serve ui`

@@ -59,22 +59,22 @@ export class WorkspaceUsersService {
 
     //Anytime a workspace user is created, we create a few default things for them.
 
-    // // 1. Create Default Project
-    // const defaultProject = await this.prisma.project.create({
-    //   data: {
-    //     name: 'Personal Project',
-    //     FK_createdByWorkspaceUserId: newWorkspaceUser.id,
-    //     FK_workspaceId: newWorkspaceUser.FK_workspaceId,
-    //     workspaceUsers: {
-    //       connect: {
-    //         id: newWorkspaceUser.id,
-    //       },
-    //     },
-    //   },
-    //   select: {
-    //     id: true,
-    //   },
-    // });
+    // 1. Create Default Project
+    await this.prisma.project.create({
+      data: {
+        name: `${user.name.split(' ')[0]}'s Project`,
+        FK_createdByWorkspaceUserId: newWorkspaceUser.id,
+        FK_workspaceId: newWorkspaceUser.FK_workspaceId,
+        workspaceUsers: {
+          connect: {
+            id: newWorkspaceUser.id,
+          },
+        },
+      },
+      select: {
+        id: true,
+      },
+    });
 
     // // 2. Create Default Agent
     // await this.prisma.agent.create({

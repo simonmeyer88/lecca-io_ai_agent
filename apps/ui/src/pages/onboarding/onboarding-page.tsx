@@ -6,6 +6,8 @@ import useApiQuery from '@/api/use-api-query';
 import { CreateConnectionForm } from '@/components/forms/create-connection-form';
 import { CreateProjectForm } from '@/components/forms/create-project-form';
 import { JoinWorkspaceForm } from '@/components/forms/join-workspace-form';
+import { SelectProjectForAgentForm } from '@/components/forms/select-project-for-agent-form';
+import { SelectProjectForWorkflowForm } from '@/components/forms/select-project-for-workflow-form';
 import { Icons } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -240,7 +242,7 @@ function CreateWorkflowStep({ previousStep }: { previousStep: () => void }) {
         <OnboardingTile
           title="Create Workflow"
           Icon={Icons.workflow}
-          description="You'll be asked to create a project first."
+          description="Start with a trigger, then add actions to automate your tasks."
           onClick={() => {
             onboardMutation.mutateAsync(
               {
@@ -256,14 +258,12 @@ function CreateWorkflowStep({ previousStep }: { previousStep: () => void }) {
               },
             );
           }}
-          DialogContent={
-            <CreateProjectForm redirectRelativeToProjectIdPath="/workflows/new" />
-          }
+          DialogContent={<SelectProjectForWorkflowForm />}
         />
         <OnboardingTile
           title="Create Agent"
           Icon={Icons.agent}
-          description="You'll be asked to create a project first."
+          description="Give it instructions, configure tools, and setup triggers."
           onClick={() => {
             onboardMutation.mutateAsync(
               {
@@ -279,7 +279,7 @@ function CreateWorkflowStep({ previousStep }: { previousStep: () => void }) {
               },
             );
           }}
-          DialogContent={<CreateProjectForm />}
+          DialogContent={<SelectProjectForAgentForm />}
         />
       </Card.Content>
       <Card.Footer className="flex justify-between space-x-2">

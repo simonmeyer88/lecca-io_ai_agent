@@ -1,19 +1,16 @@
 import { google } from 'googleapis';
 
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { SearchVideos } from './actions/search-videos.action';
 import { YoutubeOAuth2 } from './connections/youtube.oauth2';
 
-export class YouTube extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class YouTube extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

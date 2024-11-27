@@ -1,13 +1,10 @@
 import { google } from 'googleapis';
 
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { AddGuestsToEvent } from './actions/add-guests-to-event.action';
@@ -18,8 +15,8 @@ import { UpdateEvent } from './actions/update-event.action';
 import { GoogleCalendarOAuth2 } from './connections/google-calendar.oauth2';
 import { NewCalendarEvent } from './triggers/new-calendar-event.trigger';
 
-export class GoogleCalendar extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class GoogleCalendar extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

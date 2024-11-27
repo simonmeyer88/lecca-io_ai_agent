@@ -1,20 +1,17 @@
 import { google } from 'googleapis';
 
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { GoogleFormsOAuth2 } from './connections/google-forms.oauth2';
 import { NewFormResponse } from './triggers/new-form-response.trigger';
 
-export class GoogleForms extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class GoogleForms extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

@@ -2,13 +2,10 @@ import { BadRequestException } from '@nestjs/common';
 import { google } from 'googleapis';
 
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { AppendToDocument } from './actions/append-to-document.action';
@@ -22,8 +19,8 @@ import { GoogleDocsOAuth2 } from './connections/google-docs.oauth2';
 import { NewDocumentInFolder } from './triggers/new-document-in-folder.trigger';
 import { NewDocument } from './triggers/new-document.trigger';
 
-export class GoogleDocs extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class GoogleDocs extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

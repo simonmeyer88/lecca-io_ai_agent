@@ -1,19 +1,16 @@
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { GetVariable } from './actions/get-variable.action';
 import { ListVariables } from './actions/list-variables.action';
 import { UpdateVariable } from './actions/update-variable.action';
 
-export class Variables extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class Variables extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

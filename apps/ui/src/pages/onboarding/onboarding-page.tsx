@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import useApiMutation from '@/api/use-api-mutation';
 import useApiQuery from '@/api/use-api-query';
 import { CreateConnectionForm } from '@/components/forms/create-connection-form';
-import { CreateProjectForm } from '@/components/forms/create-project-form';
 import { JoinWorkspaceForm } from '@/components/forms/join-workspace-form';
 import { SelectProjectForAgentForm } from '@/components/forms/select-project-for-agent-form';
 import { SelectProjectForWorkflowForm } from '@/components/forms/select-project-for-workflow-form';

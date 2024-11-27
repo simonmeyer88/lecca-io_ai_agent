@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Post, Req, Res } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Request, Response } from 'express';
 
-import { WorkflowAppsKey } from '@/apps/public/workflow-apps';
+import { AppKeys } from '@/apps/public/apps';
 import { Public } from '@/decorators/public.decorator';
 import { Roles } from '@/decorators/roles.decorator';
 import { User } from '@/decorators/user.decorator';
@@ -49,7 +49,7 @@ export class WorkflowAppsController {
   @Post(':appId/actions/:actionId/dynamic-values')
   @Roles()
   retrieveActionDynamicValues(
-    @Param('appId') appId: WorkflowAppsKey,
+    @Param('appId') appId: AppKeys,
     @Param('actionId') actionId: string,
     @Body() body: Record<string, any>,
     @User() user: JwtUser,
@@ -71,7 +71,7 @@ export class WorkflowAppsController {
   @Post(':appId/triggers/:triggerId/dynamic-values')
   @Roles()
   retrieveTriggerDynamicValues(
-    @Param('appId') appId: WorkflowAppsKey,
+    @Param('appId') appId: AppKeys,
     @Param('triggerId') triggerId: string,
     @Body() body: Record<string, any>,
     @User() user: JwtUser,
@@ -94,7 +94,7 @@ export class WorkflowAppsController {
   @Roles()
   connectApp(
     @User() user: JwtUser,
-    @Param('appId') appId: WorkflowAppsKey,
+    @Param('appId') appId: AppKeys,
     @Param('connectionId') connectionId: string,
     @Res() res: Response,
     @Req() req: Request,

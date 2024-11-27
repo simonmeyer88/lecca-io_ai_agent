@@ -1,13 +1,10 @@
 import { LanguageModelV1 } from 'ai';
 
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 import { AiProvider } from '@/modules/global/ai-provider/ai-provider.service';
 
@@ -19,8 +16,8 @@ import { MessageAgent } from './actions/message-agent.action';
 import { SummarizeText } from './actions/summarize-text.action';
 import { TranslateText } from './actions/translate-text.action';
 
-export class AI extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class AI extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

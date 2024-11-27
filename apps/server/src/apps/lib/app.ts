@@ -22,8 +22,8 @@ import { Action } from './action';
 import { Connection } from './connection';
 import { Trigger } from './trigger';
 
-export abstract class WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export abstract class App {
+  constructor(args: AppContructorArgs) {
     this.prisma = args.prisma;
     this.connection = args.connection;
     this.execution = args.execution;
@@ -529,7 +529,7 @@ export abstract class WorkflowApp {
   };
 }
 
-export type WorkflowAppConstructorArgs = {
+export type AppContructorArgs = {
   prisma: PrismaService;
   connection: ConnectionsService;
   execution: ExecutionsService;
@@ -545,9 +545,7 @@ export type WorkflowAppConstructorArgs = {
   aiProviders: AiProviderService;
 };
 
-export type WorkflowAppConstructor = new (
-  args: WorkflowAppConstructorArgs,
-) => WorkflowApp;
+export type AppConstructor = new (args: AppContructorArgs) => App;
 
 export type ConfigValue<T> = {
   connectionId?: string;

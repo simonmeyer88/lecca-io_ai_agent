@@ -1,16 +1,13 @@
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { FacebookOAuth2 } from './connections/facebook-pages.oauth2';
 
-export class FacebookPages extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class FacebookPages extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

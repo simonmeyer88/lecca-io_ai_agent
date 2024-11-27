@@ -2,12 +2,9 @@ import { google } from 'googleapis';
 import Mail from 'nodemailer/lib/mailer';
 
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { ArchiveEmail } from './actions/archive-email.action';
@@ -31,8 +28,8 @@ import {
   GmailParsedEmail,
 } from './types/gmail.types';
 
-export class Gmail extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class Gmail extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

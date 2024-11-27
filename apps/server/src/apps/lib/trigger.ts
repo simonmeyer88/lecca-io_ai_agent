@@ -11,16 +11,16 @@ import {
 import { filterDataByConditions } from '../utils/filter-data-by-conditions';
 import { isValidMilli } from '../utils/is-valid-milli';
 
+import { App, ConfigValue } from './app';
 import { OAuth2Connection } from './connection';
 import { FieldConfig, InputConfig, NestedInputConfig } from './input-config';
-import { ConfigValue, WorkflowApp } from './workflow-app';
 
 export abstract class Trigger {
   constructor(args: TriggerConstructorArgs) {
     this.app = args.app;
   }
 
-  app: WorkflowApp;
+  app: App;
   needsConnection() {
     return true;
   }
@@ -1037,7 +1037,7 @@ export abstract class LengthBasedPollTrigger extends Trigger {
 }
 
 export type TriggerConstructorArgs = {
-  app: WorkflowApp;
+  app: App;
 };
 
 export type RunTriggerArgs<T, INPUT_DATA = unknown> = {

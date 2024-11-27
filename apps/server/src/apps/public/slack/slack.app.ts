@@ -1,13 +1,10 @@
 import * as crypto from 'crypto';
 
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { CreateChannel } from './actions/create-channel.action';
@@ -20,8 +17,8 @@ import { SendMessageToUser } from './actions/send-message-to-user.action';
 import { SlackOAuth2 } from './connections/slack.oauth2';
 import { NewMessage } from './triggers/new-message.trigger';
 
-export class Slack extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class Slack extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

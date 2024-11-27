@@ -1,11 +1,8 @@
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { AddUser } from './actions/add-user.action';
@@ -18,8 +15,8 @@ import { ZohoCrmOAuth2US } from './connections/zoho-crm.oauth';
 import { NewContact } from './triggers/new-contact.trigger';
 import { NewLead } from './triggers/new-lead.trigger';
 
-export class ZohoCrm extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class ZohoCrm extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

@@ -1,13 +1,10 @@
 import { Assistant } from '@vapi-ai/web/dist/api';
 
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { GetPhoneCall } from './actions/get-phone-call.action';
@@ -16,8 +13,8 @@ import { ListPhoneNumbers } from './actions/list-phone-numbers.action';
 import { MakePhoneCall } from './actions/make-phone-call.action';
 import { VapiApiKey } from './connections/vapi.api-key';
 
-export class Vapi extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class Vapi extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

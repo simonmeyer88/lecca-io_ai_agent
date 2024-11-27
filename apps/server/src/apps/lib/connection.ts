@@ -3,15 +3,15 @@ import { Request, Response } from 'express';
 
 import { ServerConfig } from '@/config/server.config';
 
+import { App } from './app';
 import { InputConfig } from './input-config';
-import { WorkflowApp } from './workflow-app';
 
 export abstract class Connection {
   constructor(args: ConnectionConstructorArgs) {
     this.app = args.app;
   }
 
-  app: WorkflowApp;
+  app: App;
   abstract id(): string;
   abstract name(): string;
   abstract description(): string;
@@ -500,7 +500,7 @@ export abstract class KeyPairConnection extends Connection {
 }
 
 export type ConnectionConstructorArgs = {
-  app: WorkflowApp;
+  app: App;
 };
 
 export type OAuth2CallbackState = {

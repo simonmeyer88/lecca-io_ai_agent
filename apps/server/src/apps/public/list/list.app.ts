@@ -1,10 +1,7 @@
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { CombineLists } from './actions/combine-lists.action';
@@ -13,8 +10,8 @@ import { FindItemInList } from './actions/find-item.action';
 import { GetFirstItemInList } from './actions/get-first-item-in-list.action';
 import { GetLastItemInList } from './actions/get-last-item-in-list.action';
 
-export class List extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class List extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

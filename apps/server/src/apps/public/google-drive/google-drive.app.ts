@@ -1,13 +1,10 @@
 import { google } from 'googleapis';
 
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { CopyFile } from './actions/copy-file.action';
@@ -25,8 +22,8 @@ import { GoogleDriveOAuth2 } from './connections/google-drive.oauth2';
 import { NewFileInFolder } from './triggers/new-file-in-folder.trigger';
 import { NewFile } from './triggers/new-file.trigger';
 
-export class GoogleDrive extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class GoogleDrive extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

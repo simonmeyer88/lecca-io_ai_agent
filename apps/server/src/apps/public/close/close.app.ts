@@ -1,16 +1,13 @@
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { CloseOAuth2 } from './connections/close.oauth2';
 
-export class Close extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class Close extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

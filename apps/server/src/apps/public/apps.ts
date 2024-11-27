@@ -1,4 +1,4 @@
-import { WorkflowAppConstructor } from '../lib/workflow-app';
+import { AppConstructor } from '../lib/app';
 
 import { AI } from './ai/ai.app';
 import { Anthropic } from './anthropic/anthropic.app';
@@ -46,8 +46,11 @@ import { ZohoCrm } from './zoho-crm/zoho-crm.app';
 
 /**
  * Add new workflow apps here.
+ *
+ * Called APPS_NO_TYPES because it's just an object without the types.
+ * We'll export it with types at the bottom of this file.
  */
-const WORKFLOW_APPS_NO_TYPES = {
+const APPS_NO_TYPES = {
   ai: AI,
   anthropic: Anthropic,
   apify: Apify,
@@ -93,7 +96,6 @@ const WORKFLOW_APPS_NO_TYPES = {
   'zoho-crm': ZohoCrm,
 } as const;
 
-export type WorkflowAppsKey = keyof typeof WORKFLOW_APPS_NO_TYPES;
+export type AppKeys = keyof typeof APPS_NO_TYPES;
 
-export const WORKFLOW_APPS: Record<WorkflowAppsKey, WorkflowAppConstructor> =
-  WORKFLOW_APPS_NO_TYPES;
+export const APPS: Record<AppKeys, AppConstructor> = APPS_NO_TYPES;

@@ -2,17 +2,17 @@ import { BadRequestException, ForbiddenException } from '@nestjs/common';
 import { Connection } from '@prisma/client';
 import { CoreTool } from 'ai';
 
+import { App, ConfigValue } from './app';
 import { OAuth2Connection } from './connection';
 import { FieldConfig, InputConfig, NestedInputConfig } from './input-config';
 import { NodeViewOptions } from './trigger';
-import { ConfigValue, WorkflowApp } from './workflow-app';
 
 export abstract class Action {
   constructor(args: ActionConstructorArgs) {
     this.app = args.app;
   }
 
-  app: WorkflowApp;
+  app: App;
   needsConnection() {
     return true;
   }
@@ -552,7 +552,7 @@ export abstract class Action {
 }
 
 export type ActionConstructorArgs = {
-  app: WorkflowApp;
+  app: App;
 };
 
 export type RunActionArgs<T> = {

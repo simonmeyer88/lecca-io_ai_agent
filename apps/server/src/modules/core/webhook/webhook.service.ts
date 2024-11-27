@@ -3,7 +3,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Connection, ExecutionStatus } from '@prisma/client';
 
 import { CustomWebhookTrigger, WebhookAppTrigger } from '@/apps/lib/trigger';
-import { WorkflowAppsKey } from '@/apps/public/workflow-apps';
+import { AppKeys } from '@/apps/public/apps';
 import { PrismaService } from '@/modules/global/prisma/prisma.service';
 
 import { WorkflowAppsService } from '../workflow-apps/workflow-apps.service';
@@ -26,7 +26,7 @@ export class WebhookService {
     rawBody,
     headers,
   }: {
-    appId: WorkflowAppsKey;
+    appId: AppKeys;
     rawBody: unknown;
     headers: Record<string, string>;
   }) {

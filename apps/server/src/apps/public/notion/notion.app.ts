@@ -2,13 +2,10 @@ import { Client } from '@notionhq/client';
 import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { AddDatabaseItem } from './actions/add-database-item.action';
@@ -23,8 +20,8 @@ import { NewDatabaseItem } from './triggers/new-database-item.trigger';
 import { PageUpdated } from './triggers/page-updated.trigger';
 import { UpdatedDatabaseItem } from './triggers/updated-database-item.trigger';
 
-export class Notion extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class Notion extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

@@ -1,18 +1,15 @@
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { FormatDate } from './actions/format-date.action';
 import { GetCurrentDate } from './actions/get-current-date.action';
 import { ModifyDate } from './actions/modify-date.action';
 
-export class DateHelper extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class DateHelper extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

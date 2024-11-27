@@ -1,14 +1,11 @@
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
-export class XML extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class XML extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

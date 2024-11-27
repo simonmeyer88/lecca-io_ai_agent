@@ -1,12 +1,9 @@
 import { google } from 'googleapis';
 
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { CreateContact } from './actions/create-contact.action';
@@ -14,8 +11,8 @@ import { GetContact as GetContactByResourceName } from './actions/get-contact-by
 import { ListContacts } from './actions/list-contacts.action';
 import { GoogleContactsOAuth2 } from './connections/google-contacts.oauth2';
 
-export class GoogleContacts extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class GoogleContacts extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

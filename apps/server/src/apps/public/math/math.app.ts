@@ -1,10 +1,7 @@
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { Addition } from './actions/addition.action';
@@ -13,8 +10,8 @@ import { Math as MathAction } from './actions/math.action';
 import { Multiplication } from './actions/multiplication.action';
 import { Subtraction } from './actions/subtraction.action';
 
-export class Math extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class Math extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

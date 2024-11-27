@@ -1,11 +1,8 @@
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { GetDatasetItems } from './actions/get-dataset-items.action';
@@ -13,8 +10,8 @@ import { ListTasks } from './actions/list-tasks.action';
 import { RunTask } from './actions/run-task.action';
 import { ApifyApiKey } from './connections/apify.api-key';
 
-export class Apify extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class Apify extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

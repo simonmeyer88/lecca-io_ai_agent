@@ -1,10 +1,7 @@
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { CreateDraft } from './actions/create-draft.action';
@@ -12,8 +9,8 @@ import { SendDraft } from './actions/send-draft.action';
 import { MicrosoftOutlookOAuth2 } from './connections/microsoft-outlook.oauth2';
 import { EmailReceived } from './triggers/email-received.trigger';
 
-export class MicrosoftOutlook extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class MicrosoftOutlook extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

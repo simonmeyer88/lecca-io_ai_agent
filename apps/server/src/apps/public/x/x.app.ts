@@ -1,18 +1,15 @@
 import { Action } from '@/apps/lib/action';
+import { App, AppContructorArgs } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
-import {
-  WorkflowApp,
-  WorkflowAppConstructorArgs,
-} from '@/apps/lib/workflow-app';
 import { ServerConfig } from '@/config/server.config';
 
 import { CreatePost } from './actions/create-post.action';
 import { ReplyToPost } from './actions/reply-to-post.action';
 import { XOAuth2 } from './connections/x.oauth2';
 
-export class X extends WorkflowApp {
-  constructor(args: WorkflowAppConstructorArgs) {
+export class X extends App {
+  constructor(args: AppContructorArgs) {
     super(args);
   }
 

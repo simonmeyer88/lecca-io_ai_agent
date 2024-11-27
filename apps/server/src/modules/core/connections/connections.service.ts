@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Connection } from '@prisma/client';
 
-import { WORKFLOW_APPS, WorkflowAppsKey } from '@/apps/public/workflow-apps';
+import { APPS, AppKeys } from '@/apps/public/apps';
 import { PrismaService } from '@/modules/global/prisma/prisma.service';
 import { JwtUser } from '@/types/jwt-user.type';
 
@@ -145,8 +145,8 @@ export class ConnectionsService {
 
     if (expansion?.workflowApp) {
       connections.forEach((connection) => {
-        (connection as any).workflowApp = new WORKFLOW_APPS[
-          connection.workflowAppId as WorkflowAppsKey
+        (connection as any).workflowApp = new APPS[
+          connection.workflowAppId as AppKeys
         ]({
           /**
            * NEED TO IMPROVE THIS TO NOT WASTE SO MUCH MEMORY

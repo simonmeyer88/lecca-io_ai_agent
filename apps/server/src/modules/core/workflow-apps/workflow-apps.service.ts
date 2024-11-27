@@ -10,10 +10,10 @@ import { Prisma } from '@prisma/client';
 import { Request, Response } from 'express';
 
 import { Action } from '@/apps/lib/action';
+import { App } from '@/apps/lib/app';
 import { OAuth2CallbackState, OAuth2Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
-import { WorkflowApp } from '@/apps/lib/workflow-app';
-import { WORKFLOW_APPS, WorkflowAppsKey } from '@/apps/public/workflow-apps';
+import { APPS, AppKeys } from '@/apps/public/apps';
 import { ConnectionsService } from '@/modules/core/connections/connections.service';
 import { ExecutionsService } from '@/modules/core/executions/executions.service';
 import { KnowledgeService } from '@/modules/core/knowledge/knowledge.service';
@@ -47,8 +47,8 @@ export class WorkflowAppsService {
     private credits: CreditsService,
     private aiProviders: AiProviderService,
   ) {
-    this.apps = {} as Record<string, WorkflowApp>;
-    Object.entries(WORKFLOW_APPS).forEach(([key, value]) => {
+    this.apps = {} as Record<string, App>;
+    Object.entries(APPS).forEach(([key, value]) => {
       (this.apps as any)[key] = new value({
         prisma: this.prisma,
         connection: this.connection,
@@ -67,7 +67,7 @@ export class WorkflowAppsService {
     });
   }
 
-  apps: Record<WorkflowAppsKey, WorkflowApp>;
+  apps: Record<AppKeys, App>;
 
   findAll() {
     return Object.values(this.apps);
@@ -85,7 +85,7 @@ export class WorkflowAppsService {
     projectId,
     extraOptions,
   }: {
-    appId: WorkflowAppsKey;
+    appId: AppKeys;
     actionId: string;
     fieldId: string;
     connectionId: string;
@@ -155,7 +155,7 @@ export class WorkflowAppsService {
     projectId,
     extraOptions,
   }: {
-    appId: WorkflowAppsKey;
+    appId: AppKeys;
     triggerId: string;
     fieldId: string;
     connectionId: string;
@@ -257,7 +257,7 @@ export class WorkflowAppsService {
       throw new NotFoundException(`Node (${nodeId}) not found`);
     }
 
-    const appId = nodeToRun.appId as WorkflowAppsKey;
+    const appId = nodeToRun.appId as AppKeys;
     const actionId = nodeToRun.actionId as string | undefined;
     const triggerId = nodeToRun.triggerId as string | undefined;
     const value = nodeToRun.value as Record<string, any>;
@@ -334,7 +334,7 @@ export class WorkflowAppsService {
     res,
     req,
   }: {
-    appId: WorkflowAppsKey;
+    appId: AppKeys;
     connectionId: string;
     workspaceId: string;
     value: Record<string, any>;
@@ -372,7 +372,7 @@ export class WorkflowAppsService {
 
     const state = this.jwt.decode<OAuth2CallbackState>(stateToken);
 
-    const appId = state.appId as WorkflowAppsKey;
+    const appId = state.appId as AppKeys;
     const connectionId = state.connectionId;
 
     const app = this.apps[appId];
@@ -678,7 +678,7 @@ export class WorkflowAppsService {
   }: {
     node: WorkflowNodeForRunner;
   }): Trigger | undefined {
-    const workflowApp = this.apps[node.appId as WorkflowAppsKey];
+    const workflowApp = this.apps[node.appId as AppKeys];
 
     if (!workflowApp) {
       throw new NotFoundException(`App (${node.appId}) not found`);
@@ -692,7 +692,7 @@ export class WorkflowAppsService {
   }: {
     node: WorkflowNodeForRunner;
   }): Action | undefined {
-    const workflowApp = this.apps[node.appId as WorkflowAppsKey];
+    const workflowApp = this.apps[node.appId as AppKeys];
 
     if (!workflowApp) {
       throw new NotFoundException(`App (${node.appId}) not found`);

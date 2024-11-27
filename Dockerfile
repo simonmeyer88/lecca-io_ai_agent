@@ -23,10 +23,6 @@ RUN npm install -g nx
 # This will install all app dependencies, including UI. We'll fix this in the future.
 RUN pnpm install --frozen-lockfile
 
-# Reset NX cache. We will want to fix this in the future. But it's giving an error.
-# "NX Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it."
-RUN pnpm exec nx reset
-
 # Build the project
 RUN pnpm exec nx run server:build
 
@@ -34,5 +30,5 @@ RUN pnpm exec nx run server:build
 EXPOSE 9094
 
 # Start the application
-CMD ["sh", "-c", "pnpm prisma migrate deploy && pnpm exec nx run server:serve --configuration=production"]
+CMD ["sh", "-c", "pnpm prisma migrate deploy && node dist/apps/server/main.js"]
 

@@ -201,6 +201,8 @@ export class AgentsService {
         maxToolRoundtrips: expansion?.maxToolRoundtrips ?? false,
         messageLookbackLimit: expansion?.messageLookbackLimit ?? false,
         tools: expansion?.tools ?? false,
+        toolIds: expansion?.toolIds ?? false,
+        triggerIds: expansion?.triggerIds ?? false,
         llmModel: expansion?.llmModel ?? false,
         llmProvider: expansion?.llmProvider ?? false,
         llmConnection: expansion?.llmConnection
@@ -723,6 +725,8 @@ export class AgentsService {
         messageLookbackLimit: expansion?.messageLookbackLimit ?? false,
         tools: expansion?.tools ?? false,
         triggers: expansion?.triggers ?? false,
+        toolIds: expansion?.toolIds ?? false,
+        triggerIds: expansion?.triggerIds ?? false,
         llmModel: expansion?.llmModel ?? false,
         llmProvider: expansion?.llmProvider ?? false,
         llmConnection: expansion?.llmConnection

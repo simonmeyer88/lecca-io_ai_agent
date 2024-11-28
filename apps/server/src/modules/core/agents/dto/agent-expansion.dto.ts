@@ -108,4 +108,12 @@ export class AgentExpansionDto {
   @IsOptional()
   @IsBoolean()
   llmProvider?: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  toolIds?: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  triggerIds?: boolean;
 }

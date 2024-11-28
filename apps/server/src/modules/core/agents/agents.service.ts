@@ -531,6 +531,14 @@ export class AgentsService {
       data: {
         ...data,
         triggers: undefined, //We'll handle this below in another function.
+        toolIds: (data as UpdateAgentDto).tools
+          ? (data as UpdateAgentDto).tools.map((tool) => tool.actionId)
+          : undefined,
+        triggerIds: (data as UpdateAgentDto).triggers
+          ? (data as UpdateAgentDto).triggers.map(
+              (trigger) => trigger.node.triggerId,
+            )
+          : undefined,
         agentActions: actionIds
           ? {
               deleteMany: {},

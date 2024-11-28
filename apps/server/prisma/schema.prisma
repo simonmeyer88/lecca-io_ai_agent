@@ -353,6 +353,11 @@ model Agent {
   llmProvider String
   llmModel    String
 
+  //Metadata
+  toolIds    String[]
+  triggerIds String[]
+
+  //Configuration
   instructions         String?
   temperature          Float   @default(1) //0-2
   maxTokens            Int? //1-4095

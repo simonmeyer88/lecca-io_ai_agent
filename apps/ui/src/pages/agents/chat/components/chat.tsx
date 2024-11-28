@@ -30,6 +30,8 @@ type Props = {
 
 export function Chat(props: Props) {
   const { aiProviders } = useUser();
+  const preventScroll = useRef(false);
+  const prevScrollTopRef = useRef(0);
   const [imageData, setImageData] = useState<string[]>([]);
   const [isLoadingResponse, setIsLoadingResponse] = useState(false);
   const activeTaskId = useMemo(() => props.taskId ?? v4(), [props.taskId]);
@@ -40,29 +42,18 @@ export function Chat(props: Props) {
   const messageMeta = useRef<MessageMeta>(new MessageMeta(setRerender));
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
-  //The 30 is the offset, the 64 is from the bottom padding we have (pb-16)
-  const scrollOffset = 30 + 64 + 60;
 
-  const scrollToBottom = useCallback(
-    (args?: { force?: boolean }) => {
-      const container = messagesEndRef.current;
-      if (container) {
-        const { scrollTop, clientHeight, scrollHeight } = container;
-        if (
-          args?.force ||
-          scrollTop + clientHeight >= scrollHeight - scrollOffset
-        ) {
-          setTimeout(() => {
-            container.scrollTo({
-              top: container.scrollHeight + 200,
-              behavior: 'smooth',
-            });
-          }, 0);
-        }
-      }
-    },
-    [scrollOffset],
-  );
+  const scrollToBottom = useCallback((args?: { force?: boolean }) => {
+    const container = messagesEndRef.current;
+    if (container && (args?.force || !preventScroll.current)) {
+      setTimeout(() => {
+        container.scrollTo({
+          top: container.scrollHeight,
+          behavior: 'smooth',
+        });
+      }, 0);
+    }
+  }, []);
 
   const canStream = useMemo(() => {
     const llmModel =
@@ -233,6 +224,8 @@ export function Chat(props: Props) {
     api: `${import.meta.env.VITE_SERVER_URL}/agents/${props.agent.id}/tasks/${props.taskId ?? activeTaskId}/stream-message`,
     keepLastMessageOnError: true,
     experimental_prepareRequestBody: ({ messages }) => {
+      preventScroll.current = false; // Reset the prevent scroll state
+      prevScrollTopRef.current = 0; // Reset the scroll top state
       const preparedMessages = prepareMessagesToSend({ messages });
       return { messages: preparedMessages } as any;
     },
@@ -240,6 +233,8 @@ export function Chat(props: Props) {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
     },
     onFinish: () => {
+      preventScroll.current = false; // Reset the prevent scroll state
+      prevScrollTopRef.current = 0; // Reset the scroll top state
       if (!props.taskId) {
         //This is a new task, so we need to update the URL
         window.history.pushState(
@@ -381,6 +376,27 @@ export function Chat(props: Props) {
   useEffect(() => {
     scrollToBottom();
   }, [messages, scrollToBottom]);
+
+  useEffect(() => {
+    // If we scroll up, then we should prevent auto-scrolling
+    const container = messagesEndRef.current;
+
+    const handleScroll = () => {
+      if (container) {
+        const currentScrollTop = container.scrollTop;
+
+        // If current scroll position is less than previous, user is scrolling up
+        if (currentScrollTop < prevScrollTopRef.current) {
+          preventScroll.current = true;
+        }
+
+        prevScrollTopRef.current = currentScrollTop;
+      }
+    };
+
+    container?.addEventListener('scroll', handleScroll);
+    return () => container?.removeEventListener('scroll', handleScroll);
+  }, []);
 
   if (!agents || !workspaceUsers || !knowledge || !apps || !workflows) {
     return <Loader />;

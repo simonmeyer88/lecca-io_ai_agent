@@ -357,7 +357,16 @@ export class WorkflowsService {
   }) {
     const recentWorkflows = await this.prisma.recentWorkflow.findMany({
       where: {
-        FK_workspaceUserId: workspaceUserId,
+        AND: [
+          {
+            FK_workspaceUserId: workspaceUserId,
+          },
+          {
+            workflow: {
+              isInternal: false,
+            },
+          },
+        ],
       },
       select: {
         workflow: {

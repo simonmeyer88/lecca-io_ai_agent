@@ -28,6 +28,8 @@ export const agentSchema = z.object({
   seed: z.number().optional(),
   maxToolRoundtrips: z.number().optional(),
   messageLookbackLimit: z.number().optional(),
+  toolIds: z.array(z.string()).optional(),
+  triggerIds: z.array(z.string()).optional(),
   llmConnection: z
     .object({
       id: z.string().uuid(),

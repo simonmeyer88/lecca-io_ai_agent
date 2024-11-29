@@ -50,7 +50,7 @@ import { ZohoCrm } from './zoho-crm/zoho-crm.app';
  * Called APPS_NO_TYPES because it's just an object without the types.
  * We'll export it with types at the bottom of this file.
  */
-const APPS_NO_TYPES = {
+const _APPS = {
   ai: AI,
   anthropic: Anthropic,
   apify: Apify,
@@ -96,6 +96,6 @@ const APPS_NO_TYPES = {
   'zoho-crm': ZohoCrm,
 } as const;
 
-export type AppKeys = keyof typeof APPS_NO_TYPES;
+export type AppKeys = keyof typeof _APPS;
 
-export const APPS: Record<AppKeys, AppConstructor> = APPS_NO_TYPES;
+export const APPS: Record<AppKeys, AppConstructor> = _APPS;

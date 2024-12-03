@@ -1,6 +1,6 @@
 import { InputConfig } from '@/apps/lib/input-config';
 import { RunTriggerArgs, TimeBasedPollTrigger } from '@/apps/lib/trigger';
-import { isValidMilli } from '@/apps/utils/is-valid-milli';
+import { isValidMilliOrNull } from '@/apps/utils/is-valid-milli';
 
 import { Gmail } from '../gmail.app';
 import { GmailParsedEmail } from '../types/gmail.types';
@@ -87,7 +87,7 @@ export class EmailReceived extends TimeBasedPollTrigger {
   }
 
   extractTimestampFromResponse({ response }: { response: GmailParsedEmail }) {
-    return isValidMilli(response?.internalDate);
+    return isValidMilliOrNull(response?.internalDate);
   }
 }
 

@@ -1,7 +1,7 @@
 /**
  * Returns the value if it is a valid millisecond timestamp, otherwise returns null.
  */
-export function isValidMilli(value: any): string | null {
+export function isValidMilliOrNull(value: any): string | null {
   //Check if the value is a number or a numeric string
 
   if (typeof value === 'number') {

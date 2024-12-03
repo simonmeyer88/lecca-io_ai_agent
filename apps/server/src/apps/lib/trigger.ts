@@ -9,7 +9,7 @@ import {
   WorkflowNodeForRunner,
 } from '../../modules/core/workflow-runner/workflow-runner.service';
 import { filterDataByConditions } from '../utils/filter-data-by-conditions';
-import { isValidMilli } from '../utils/is-valid-milli';
+import { isValidMilliOrNull } from '../utils/is-valid-milli';
 
 import { App, ConfigValue } from './app';
 import { OAuth2Connection } from './connection';
@@ -824,7 +824,7 @@ export abstract class TimeBasedPollTrigger extends Trigger {
         return true;
       }
 
-      if (isValidMilli(pollStorage)) {
+      if (isValidMilliOrNull(pollStorage)) {
         if (parseInt(timestamp) > parseInt(pollStorage)) {
           newPollStorage =
             parseInt(timestamp) > parseInt(newPollStorage ?? pollStorage)
@@ -840,7 +840,7 @@ export abstract class TimeBasedPollTrigger extends Trigger {
         //is if this workflow had a different trigger type and then it changed to a time type.
         //We handle clearing the pollStorage in the workflow service, but incase we miss something
         //we'll keep this here.
-        if (isValidMilli(newPollStorage)) {
+        if (isValidMilliOrNull(newPollStorage)) {
           newPollStorage =
             parseInt(timestamp) > parseInt(newPollStorage)
               ? timestamp

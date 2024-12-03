@@ -1,10 +1,6 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { ServerConfig } from '@/config/server.config';
 import { CreditUsageResponse } from '@/modules/global/credits/credits.service';
@@ -12,10 +8,6 @@ import { CreditUsageResponse } from '@/modules/global/credits/credits.service';
 import { Web } from '../web.app';
 
 export class GoogleSearch extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: Web;
   id = 'web_action_google-search';
   needsConnection = false;

@@ -2,7 +2,7 @@ import { BadRequestException } from '@nestjs/common';
 import { google } from 'googleapis';
 
 import { Action } from '@/apps/lib/action';
-import { App, AppContructorArgs } from '@/apps/lib/app';
+import { App } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
@@ -11,10 +11,6 @@ import { ServerConfig } from '@/config/server.config';
 import { GoogleSlidesOAuth2 } from './connection/google-slides.oauth2';
 
 export class GoogleSlides extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'google-slides';
   name = 'Google Slides';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;

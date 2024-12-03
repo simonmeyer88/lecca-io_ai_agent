@@ -1,22 +1,13 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { parseDateToISO } from '@/apps/utils/parse-date-to-iso';
 
 import { GoogleCalendar } from '../google-calendar.app';
 
 export class ListEvents extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: GoogleCalendar;
-
   id = 'google-calendar_action_list-events';
   name = 'List Events';
   description =

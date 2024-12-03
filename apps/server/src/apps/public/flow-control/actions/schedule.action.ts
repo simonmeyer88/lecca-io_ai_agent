@@ -1,12 +1,7 @@
 import { DateTime } from 'luxon';
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  ActionResponse,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, ActionResponse, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { NodeViewOptions } from '@/apps/lib/trigger';
 import { parseDateToISO } from '@/apps/utils/parse-date-to-iso';
@@ -16,10 +11,6 @@ import { ExecutionNodeForRunner } from '@/modules/core/workflow-runner/workflow-
 import { FlowControl } from '../flow-control.app';
 
 export class Schedule extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: FlowControl;
   id = 'flow-control_action_schedule';
   needsConnection = false;

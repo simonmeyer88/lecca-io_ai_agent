@@ -1,7 +1,7 @@
 import { google } from 'googleapis';
 
 import { Action } from '@/apps/lib/action';
-import { App, AppContructorArgs } from '@/apps/lib/app';
+import { App } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
 import { ServerConfig } from '@/config/server.config';
@@ -12,10 +12,6 @@ import { ListContacts } from './actions/list-contacts.action';
 import { GoogleContactsOAuth2 } from './connections/google-contacts.oauth2';
 
 export class GoogleContacts extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'google-contacts';
   name = 'Google Contacts';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;

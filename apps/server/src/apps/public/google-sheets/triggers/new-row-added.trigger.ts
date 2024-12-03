@@ -1,17 +1,9 @@
 import { InputConfig } from '@/apps/lib/input-config';
-import {
-  LengthBasedPollTrigger,
-  RunTriggerArgs,
-  TriggerConstructorArgs,
-} from '@/apps/lib/trigger';
+import { LengthBasedPollTrigger, RunTriggerArgs } from '@/apps/lib/trigger';
 
 import { GoogleSheets } from '../google-sheets.app';
 
 export class NewRowAdded extends LengthBasedPollTrigger {
-  constructor(args: TriggerConstructorArgs) {
-    super(args);
-  }
-
   app: GoogleSheets;
   id = 'google-sheets_trigger_new-row-added';
   name = 'New Row Added';

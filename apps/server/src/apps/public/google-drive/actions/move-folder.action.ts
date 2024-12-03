@@ -1,20 +1,12 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { ServerConfig } from '@/config/server.config';
 
 import { GoogleDrive } from '../google-drive.app';
 
 export class MoveFolder extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: GoogleDrive;
   id = 'google-drive_action_move-folder';
   name = 'Move Folder';

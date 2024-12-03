@@ -1,19 +1,11 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 
 import { MicrosoftOutlook } from '../microsoft-outlook.app';
 
 export class SendDraft extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: MicrosoftOutlook;
   id = 'microsoft-outlook_action_send-draft';
   name = 'Send Draft';

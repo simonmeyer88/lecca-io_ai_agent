@@ -1,19 +1,11 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 
 import { ZohoCrm } from '../zoho-crm.app';
 
 export class UpsertLead extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: ZohoCrm;
   id = 'zoho-crm_action_upsert-lead';
   name = 'Upsert Lead';

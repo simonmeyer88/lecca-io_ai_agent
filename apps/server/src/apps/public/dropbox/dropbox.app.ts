@@ -1,5 +1,5 @@
 import { Action } from '@/apps/lib/action';
-import { App, AppContructorArgs } from '@/apps/lib/app';
+import { App } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
@@ -13,10 +13,6 @@ import { DropboxSearch } from './actions/search.action';
 import { DropboxOAuth2 } from './connections/dropbox.oauth2';
 
 export class Dropbox extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'dropbox';
   name = 'Dropbox';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;

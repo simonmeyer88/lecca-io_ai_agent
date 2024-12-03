@@ -1,19 +1,11 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 
 import { GoogleDocs } from '../google-docs.app';
 
 export class GetDocumentText extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: GoogleDocs;
   id = 'google-docs_action_get-document-text';
   name = 'Get Document Text';

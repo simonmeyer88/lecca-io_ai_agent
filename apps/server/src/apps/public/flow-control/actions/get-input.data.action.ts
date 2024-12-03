@@ -1,11 +1,6 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  ActionResponse,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, ActionResponse, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { NodeViewOptions } from '@/apps/lib/trigger';
 import { ServerConfig } from '@/config/server.config';
@@ -14,10 +9,6 @@ import { ExecutionNodeForRunner } from '@/modules/core/workflow-runner/workflow-
 import { FlowControl } from '../flow-control.app';
 
 export class GetCustomInput extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: FlowControl;
   id = 'flow-control_action_get-custom-input';
   needsConnection = false;

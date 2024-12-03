@@ -1,18 +1,10 @@
 import { InputConfig } from '@/apps/lib/input-config';
-import {
-  RunTriggerArgs,
-  TimeBasedPollTrigger,
-  TriggerConstructorArgs,
-} from '@/apps/lib/trigger';
+import { RunTriggerArgs, TimeBasedPollTrigger } from '@/apps/lib/trigger';
 import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
 
 import { GoogleForms } from '../google-forms.app';
 
 export class NewFormResponse extends TimeBasedPollTrigger {
-  constructor(args: TriggerConstructorArgs) {
-    super(args);
-  }
-
   app: GoogleForms;
   id = 'google-forms_trigger_new-form-response';
   name = 'New Form Response';

@@ -1,5 +1,5 @@
 import { Action } from '@/apps/lib/action';
-import { App, AppContructorArgs } from '@/apps/lib/app';
+import { App } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
 import { ServerConfig } from '@/config/server.config';
@@ -11,10 +11,6 @@ import { GetFirstItemInList } from './actions/get-first-item-in-list.action';
 import { GetLastItemInList } from './actions/get-last-item-in-list.action';
 
 export class List extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'list';
   name = 'List Heper';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;

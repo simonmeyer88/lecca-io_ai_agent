@@ -2,7 +2,7 @@ import { BadRequestException } from '@nestjs/common';
 import { google } from 'googleapis';
 
 import { Action } from '@/apps/lib/action';
-import { App, AppContructorArgs } from '@/apps/lib/app';
+import { App } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
@@ -20,10 +20,6 @@ import { NewDocumentInFolder } from './triggers/new-document-in-folder.trigger';
 import { NewDocument } from './triggers/new-document.trigger';
 
 export class GoogleDocs extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'google-docs';
   name = 'Google Docs';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;

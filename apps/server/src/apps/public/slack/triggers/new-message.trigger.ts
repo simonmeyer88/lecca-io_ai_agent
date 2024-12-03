@@ -1,18 +1,10 @@
 import { InputConfig } from '@/apps/lib/input-config';
-import {
-  RunTriggerArgs,
-  TriggerConstructorArgs,
-  WebhookAppTrigger,
-} from '@/apps/lib/trigger';
+import { RunTriggerArgs, WebhookAppTrigger } from '@/apps/lib/trigger';
 
 import { Slack } from '../slack.app';
 import { SlackWebhookBody } from '../types/slack.types';
 
 export class NewMessage extends WebhookAppTrigger {
-  constructor(args: TriggerConstructorArgs) {
-    super(args);
-  }
-
   app: Slack;
   id = 'slack_trigger_new-message';
   name = 'New Message';

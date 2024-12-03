@@ -18,10 +18,6 @@ import { SlackOAuth2 } from './connections/slack.oauth2';
 import { NewMessage } from './triggers/new-message.trigger';
 
 export class Slack extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'slack';
   name = 'Slack';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;

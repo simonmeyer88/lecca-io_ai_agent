@@ -1,10 +1,6 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { NodeViewOptions } from '@/apps/lib/trigger';
 import { ServerConfig } from '@/config/server.config';
@@ -12,12 +8,7 @@ import { ServerConfig } from '@/config/server.config';
 import { Text } from '../text.app';
 
 export class Search extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: Text;
-
   id = 'text_action_search';
   name = 'Search Text';
   iconUrl: null | string =

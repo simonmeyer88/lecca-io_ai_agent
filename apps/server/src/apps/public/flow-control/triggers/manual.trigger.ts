@@ -6,7 +6,6 @@ import {
   NodeViewOptions,
   RunTriggerArgs,
   Trigger,
-  TriggerConstructorArgs,
   TriggerStrategy,
 } from '@/apps/lib/trigger';
 import { ServerConfig } from '@/config/server.config';
@@ -15,10 +14,6 @@ import { WorkflowNodeForRunner } from '@/modules/core/workflow-runner/workflow-r
 import { FlowControl } from '../flow-control.app';
 
 export class ManualTrigger extends Trigger {
-  constructor(args: TriggerConstructorArgs) {
-    super(args);
-  }
-
   app: FlowControl;
   id = 'flow-control_trigger_manual';
   needsConnection = false;

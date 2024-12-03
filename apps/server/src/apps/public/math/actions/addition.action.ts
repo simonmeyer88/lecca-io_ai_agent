@@ -1,10 +1,6 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { NodeViewOptions } from '@/apps/lib/trigger';
 import { ServerConfig } from '@/config/server.config';
@@ -12,10 +8,6 @@ import { ServerConfig } from '@/config/server.config';
 import { Math as MathApp } from '../math.app';
 
 export class Addition extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: MathApp;
 
   id = 'math_action_addition';

@@ -1,19 +1,11 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 
 import { GoogleContacts } from '../google-contacts.app';
 
 export class CreateContact extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: GoogleContacts;
   id = 'google-contacts_action_create-contact';
   name = 'Create Contact';

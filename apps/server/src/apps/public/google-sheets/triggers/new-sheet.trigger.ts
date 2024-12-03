@@ -1,18 +1,10 @@
 import { InputConfig } from '@/apps/lib/input-config';
-import {
-  ItemBasedPollTrigger,
-  RunTriggerArgs,
-  TriggerConstructorArgs,
-} from '@/apps/lib/trigger';
+import { ItemBasedPollTrigger, RunTriggerArgs } from '@/apps/lib/trigger';
 
 import { GoogleSheets } from '../google-sheets.app';
 import { GoogleSheetsWorksheetPollType } from '../types/google-sheets.type';
 
 export class NewSheet extends ItemBasedPollTrigger {
-  constructor(args: TriggerConstructorArgs) {
-    super(args);
-  }
-
   app: GoogleSheets;
   id = 'google-sheets_trigger_new-sheet';
   name = 'New Sheet';

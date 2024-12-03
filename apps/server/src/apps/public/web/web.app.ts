@@ -1,5 +1,5 @@
 import { Action } from '@/apps/lib/action';
-import { App, AppContructorArgs } from '@/apps/lib/app';
+import { App } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
 import { ServerConfig } from '@/config/server.config';
@@ -9,10 +9,6 @@ import { ExtractWebsiteContent } from './actions/extract-website-content.action'
 import { GoogleSearch } from './actions/google-search.action';
 
 export class Web extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'web';
   name = 'Web';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;

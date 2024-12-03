@@ -1,21 +1,12 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 
 import { Gmail } from '../gmail.app';
 
 export class LabelEmail extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: Gmail;
-
   id = 'gmail_action_label-email';
   name = 'Label Email';
   description = 'Apply labels to a specific email in Gmail';

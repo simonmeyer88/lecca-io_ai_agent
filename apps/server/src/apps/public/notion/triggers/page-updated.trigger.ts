@@ -1,18 +1,10 @@
 import { InputConfig } from '@/apps/lib/input-config';
-import {
-  RunTriggerArgs,
-  TimeBasedPollTrigger,
-  TriggerConstructorArgs,
-} from '@/apps/lib/trigger';
+import { RunTriggerArgs, TimeBasedPollTrigger } from '@/apps/lib/trigger';
 import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
 
 import { Notion } from '../notion.app';
 
 export class PageUpdated extends TimeBasedPollTrigger {
-  constructor(args: TriggerConstructorArgs) {
-    super(args);
-  }
-
   app: Notion;
 
   id = 'notion_trigger_page-updated';

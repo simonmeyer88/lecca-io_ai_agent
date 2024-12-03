@@ -1,7 +1,7 @@
 import { google } from 'googleapis';
 
 import { Action } from '@/apps/lib/action';
-import { App, AppContructorArgs } from '@/apps/lib/app';
+import { App } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
@@ -16,10 +16,6 @@ import { GoogleCalendarOAuth2 } from './connections/google-calendar.oauth2';
 import { NewCalendarEvent } from './triggers/new-calendar-event.trigger';
 
 export class GoogleCalendar extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'google-calendar';
   name = 'Google Calendar';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;

@@ -1,20 +1,12 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { ServerConfig } from '@/config/server.config';
 
 import { Variables } from '../variables.app';
 
 export class ListVariables extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: Variables;
   id = 'variables_action_list-variables';
   needsConnection = false;

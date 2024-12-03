@@ -1,5 +1,5 @@
 import { Action } from '@/apps/lib/action';
-import { App, AppContructorArgs } from '@/apps/lib/app';
+import { App } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
 import { ServerConfig } from '@/config/server.config';
@@ -9,10 +9,6 @@ import { ReplyToPost } from './actions/reply-to-post.action';
 import { XOAuth2 } from './connections/x.oauth2';
 
 export class X extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'x';
   name = 'X (Twitter)';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;

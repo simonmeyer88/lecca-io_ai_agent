@@ -1,5 +1,5 @@
 import { Action } from '@/apps/lib/action';
-import { App, AppContructorArgs } from '@/apps/lib/app';
+import { App } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
@@ -13,10 +13,6 @@ import { UpsertContact } from './actions/upsert-contact.action';
 import { HubSpotOAuth2 } from './connections/hubspot.oauth2';
 
 export class Hubspot extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'hubspot';
   name = 'HubSpot';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;

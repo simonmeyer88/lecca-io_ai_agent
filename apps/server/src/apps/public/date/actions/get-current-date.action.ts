@@ -1,11 +1,7 @@
 import { DateTime } from 'luxon';
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { NodeViewOptions } from '@/apps/lib/trigger';
 import { timezoneDropdown } from '@/apps/utils/timezones';
@@ -14,12 +10,7 @@ import { ServerConfig } from '@/config/server.config';
 import { DateHelper } from '../date.app';
 
 export class GetCurrentDate extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: DateHelper;
-
   id = 'date_action_get-current-date';
   name = 'Get Current Date';
   iconUrl: null | string =

@@ -1,20 +1,12 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { parseNumberOrThrow } from '@/apps/utils/parse-number-or-throw';
 
 import { YouTube } from '../youtube.app';
 
 export class SearchVideos extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: YouTube;
 
   id = 'youtube_action_search-videos';

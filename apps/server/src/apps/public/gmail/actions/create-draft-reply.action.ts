@@ -1,10 +1,6 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 
 import { Gmail } from '../gmail.app';
@@ -12,10 +8,6 @@ import { Gmail } from '../gmail.app';
 import MailComposer = require('nodemailer/lib/mail-composer');
 
 export class CreateDraftReply extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: Gmail;
   id = 'gmail_action_create-draft-reply';
   name = 'Create Draft Reply';

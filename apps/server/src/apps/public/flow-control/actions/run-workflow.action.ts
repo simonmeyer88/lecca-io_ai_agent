@@ -1,10 +1,6 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { FieldConfig, InputConfig } from '@/apps/lib/input-config';
 import { NodeViewOptions } from '@/apps/lib/trigger';
 import { ServerConfig } from '@/config/server.config';
@@ -13,10 +9,6 @@ import { WorkflowNodeForRunner } from '@/modules/core/workflow-runner/workflow-r
 import { FlowControl } from '../flow-control.app';
 
 export class RunWorkflow extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: FlowControl;
   needsConnection = false;
   id = `flow-control_action_run-workflow`;

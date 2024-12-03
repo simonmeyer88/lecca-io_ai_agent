@@ -1,21 +1,12 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 
 import { Dropbox } from '../dropbox.app';
 
 export class GetTemporaryLink extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: Dropbox;
-
   id = 'dropbox_action_get-temporary-link';
   name = 'Get Temporary Link';
   description = 'Retrieves a temporary link to a Dropbox file';

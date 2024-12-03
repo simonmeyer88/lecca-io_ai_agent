@@ -1,10 +1,6 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { NodeViewOptions } from '@/apps/lib/trigger';
 import { jsonParse } from '@/apps/utils/json-parse';
@@ -12,10 +8,6 @@ import { jsonParse } from '@/apps/utils/json-parse';
 import { JSON as JsonApp } from '../json.app';
 
 export class JsonParse extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: JsonApp;
 
   id = 'json_action_parse';

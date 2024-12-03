@@ -1,10 +1,6 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { parseDateToISO } from '@/apps/utils/parse-date-to-iso';
 import { timezoneDropdown } from '@/apps/utils/timezones';
@@ -12,12 +8,7 @@ import { timezoneDropdown } from '@/apps/utils/timezones';
 import { GoogleCalendar } from '../google-calendar.app';
 
 export class CreateEvent extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: GoogleCalendar;
-
   id = 'google-calendar_action_create-event';
   name = 'Create Event';
   description = 'Creates an event in your selected calendar.';

@@ -2,7 +2,7 @@ import { google } from 'googleapis';
 import Mail from 'nodemailer/lib/mailer';
 
 import { Action } from '@/apps/lib/action';
-import { App, AppContructorArgs } from '@/apps/lib/app';
+import { App } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
 import { ServerConfig } from '@/config/server.config';
@@ -29,10 +29,6 @@ import {
 } from './types/gmail.types';
 
 export class Gmail extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'gmail';
   name = 'Gmail';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;

@@ -1,20 +1,11 @@
 import { InputConfig } from '@/apps/lib/input-config';
-import {
-  RunTriggerArgs,
-  TimeBasedPollTrigger,
-  TriggerConstructorArgs,
-} from '@/apps/lib/trigger';
+import { RunTriggerArgs, TimeBasedPollTrigger } from '@/apps/lib/trigger';
 import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
 
 import { GoogleCalendar } from '../google-calendar.app';
 
 export class NewCalendarEvent extends TimeBasedPollTrigger {
-  constructor(args: TriggerConstructorArgs) {
-    super(args);
-  }
-
   app: GoogleCalendar;
-
   id = 'google-calendar_trigger_new-calendar-event';
   name = 'New Calendar Event';
   description = 'Triggers when a new event is created in a specified calendar';

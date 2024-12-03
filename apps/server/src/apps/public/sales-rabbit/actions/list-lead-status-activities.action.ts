@@ -1,20 +1,12 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { parseDateToISO } from '@/apps/utils/parse-date-to-iso';
 
 import { SalesRabbit } from '../sales-rabbit.app';
 
 export class ListLeadStatusActivities extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: SalesRabbit;
   id = 'sales-rabbit_action_list-lead-status-activities';
   name = 'List Lead Status Activities';

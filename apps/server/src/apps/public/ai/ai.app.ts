@@ -1,7 +1,7 @@
 import { LanguageModelV1 } from 'ai';
 
 import { Action } from '@/apps/lib/action';
-import { App, AppContructorArgs } from '@/apps/lib/app';
+import { App } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
@@ -17,10 +17,6 @@ import { SummarizeText } from './actions/summarize-text.action';
 import { TranslateText } from './actions/translate-text.action';
 
 export class AI extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'ai';
   name = 'AI';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;

@@ -1,5 +1,5 @@
 import { Action } from '@/apps/lib/action';
-import { App, AppContructorArgs } from '@/apps/lib/app';
+import { App } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
@@ -9,10 +9,6 @@ import { GetWorksheets } from './actions/get-worksheets.action';
 import { MicrosoftExcel365OAuth2 } from './connections/microsoft-excel-365.oauth2';
 
 export class MicrosoftExcel365 extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'microsoft-excel-365';
   name = 'Microsoft Excel 365';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;

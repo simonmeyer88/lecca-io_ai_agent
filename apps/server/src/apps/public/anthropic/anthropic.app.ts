@@ -1,7 +1,7 @@
 import { createAnthropic } from '@ai-sdk/anthropic';
 
 import { Action } from '@/apps/lib/action';
-import { App, AppContructorArgs } from '@/apps/lib/app';
+import { App } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
@@ -11,10 +11,6 @@ import { ChatFromText } from './actions/chat-from-text.action';
 import { AnthropicApiKey } from './connections/anthropic.api-key';
 
 export class Anthropic extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'anthropic';
   name = 'Anthropic Claude';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;

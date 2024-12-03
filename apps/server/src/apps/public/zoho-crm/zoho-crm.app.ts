@@ -16,10 +16,6 @@ import { NewContact } from './triggers/new-contact.trigger';
 import { NewLead } from './triggers/new-lead.trigger';
 
 export class ZohoCrm extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'zoho-crm';
   name = 'Zoho CRM';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;

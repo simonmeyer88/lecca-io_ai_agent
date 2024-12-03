@@ -1,10 +1,6 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import {
   ConditionalPathFilter,
@@ -15,10 +11,6 @@ import { ServerConfig } from '@/config/server.config';
 import { FlowControl } from '../flow-control.app';
 
 export class ConditionalPaths extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: FlowControl;
   id = 'flow-control_action_conditional-paths';
   needsConnection = false;

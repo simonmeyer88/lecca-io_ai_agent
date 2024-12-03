@@ -1,11 +1,7 @@
 import { LanguageModelUsage, generateObject, jsonSchema } from 'ai';
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { ServerConfig } from '@/config/server.config';
 import { AiProvider } from '@/modules/global/ai-provider/ai-provider.service';
@@ -13,10 +9,6 @@ import { AiProvider } from '@/modules/global/ai-provider/ai-provider.service';
 import { AI } from '../ai.app';
 
 export class DecideWithAI extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: AI;
   id = 'ai_action_decide-with-ai';
   needsConnection = false;

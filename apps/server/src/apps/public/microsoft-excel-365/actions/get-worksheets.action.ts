@@ -1,19 +1,11 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 
 import { MicrosoftExcel365 } from '../microsoft-excel-365.app';
 
 export class GetWorksheets extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: MicrosoftExcel365;
   id = 'microsoft-excel-365_action_get-worksheets';
   name = 'Get Worksheets';

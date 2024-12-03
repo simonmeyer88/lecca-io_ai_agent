@@ -1,19 +1,11 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 
 import { Slack } from '../slack.app';
 
 export class ListChannels extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: Slack;
   id = 'slack_action_list-channels';
   name = 'List Channels';

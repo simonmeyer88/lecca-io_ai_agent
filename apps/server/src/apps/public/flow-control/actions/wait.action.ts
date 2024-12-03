@@ -1,11 +1,6 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  ActionResponse,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, ActionResponse, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { NodeViewOptions } from '@/apps/lib/trigger';
 import { ServerConfig } from '@/config/server.config';
@@ -13,10 +8,6 @@ import { ServerConfig } from '@/config/server.config';
 import { FlowControl } from '../flow-control.app';
 
 export class Wait extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: FlowControl;
   id = 'flow-control_action_wait';
   needsConnection = false;

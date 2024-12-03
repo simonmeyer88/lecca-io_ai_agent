@@ -1,21 +1,13 @@
 import { v4 } from 'uuid';
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { ServerConfig } from '@/config/server.config';
 
 import { AI } from '../ai.app';
 
 export class MessageAgent extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: AI;
   needsConnection = false;
   id = `ai_action_message-agent`;

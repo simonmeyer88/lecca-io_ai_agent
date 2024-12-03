@@ -1,19 +1,11 @@
 import { InputConfig } from '@/apps/lib/input-config';
-import {
-  RunTriggerArgs,
-  TimeBasedPollTrigger,
-  TriggerConstructorArgs,
-} from '@/apps/lib/trigger';
+import { RunTriggerArgs, TimeBasedPollTrigger } from '@/apps/lib/trigger';
 import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
 
 import { GoogleDocs } from '../google-docs.app';
 import { GoogleDocumentPollType } from '../types/google-docs.type';
 
 export class NewDocument extends TimeBasedPollTrigger {
-  constructor(args: TriggerConstructorArgs) {
-    super(args);
-  }
-
   app: GoogleDocs;
   id = 'google-docs_trigger_new-document';
   name = 'New Document';

@@ -1,19 +1,11 @@
 import { InputConfig } from '@/apps/lib/input-config';
-import {
-  RunTriggerArgs,
-  TimeBasedPollTrigger,
-  TriggerConstructorArgs,
-} from '@/apps/lib/trigger';
+import { RunTriggerArgs, TimeBasedPollTrigger } from '@/apps/lib/trigger';
 import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
 
 import { GoogleDrive } from '../google-drive.app';
 import { GoogleDriveFilePollType } from '../types/google-drive.type';
 
 export class NewFileInFolder extends TimeBasedPollTrigger {
-  constructor(args: TriggerConstructorArgs) {
-    super(args);
-  }
-
   app: GoogleDrive;
   id = 'google-drive_trigger_new-file-in-folder';
   name = 'New File in Folder';

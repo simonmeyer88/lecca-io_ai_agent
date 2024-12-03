@@ -1,20 +1,11 @@
 import { InputConfig } from '@/apps/lib/input-config';
-import {
-  RunTriggerArgs,
-  TimeBasedPollTrigger,
-  TriggerConstructorArgs,
-} from '@/apps/lib/trigger';
+import { RunTriggerArgs, TimeBasedPollTrigger } from '@/apps/lib/trigger';
 import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
 
 import { ZohoCrm } from '../zoho-crm.app';
 
 export class NewLead extends TimeBasedPollTrigger {
-  constructor(args: TriggerConstructorArgs) {
-    super(args);
-  }
-
   app: ZohoCrm;
-
   id = 'zoho-crm_trigger_new-lead';
   name = 'New Lead';
   description = 'Triggers when a new lead is created in Zoho CRM';

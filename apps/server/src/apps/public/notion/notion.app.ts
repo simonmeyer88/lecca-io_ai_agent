@@ -2,7 +2,7 @@ import { Client } from '@notionhq/client';
 import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 import { Action } from '@/apps/lib/action';
-import { App, AppContructorArgs } from '@/apps/lib/app';
+import { App } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
@@ -21,10 +21,6 @@ import { PageUpdated } from './triggers/page-updated.trigger';
 import { UpdatedDatabaseItem } from './triggers/updated-database-item.trigger';
 
 export class Notion extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'notion';
   name = 'Notion';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;

@@ -1,20 +1,12 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { ServerConfig } from '@/config/server.config';
 
 import { Knowledge } from '../knowledge.app';
 
 export class SearchKnowledge extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: Knowledge;
   needsConnection = false;
   id = `knowledge_action_search-knowledge`;

@@ -1,5 +1,5 @@
 import { Action } from '@/apps/lib/action';
-import { App, AppContructorArgs } from '@/apps/lib/app';
+import { App } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
 import { ServerConfig } from '@/config/server.config';
@@ -11,10 +11,6 @@ import { Multiplication } from './actions/multiplication.action';
 import { Subtraction } from './actions/subtraction.action';
 
 export class Math extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'math';
   name = 'Math Helper';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;

@@ -2,7 +2,7 @@ import { BadRequestException } from '@nestjs/common';
 import { google } from 'googleapis';
 
 import { Action } from '@/apps/lib/action';
-import { App, AppContructorArgs } from '@/apps/lib/app';
+import { App } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { InputConfig } from '@/apps/lib/input-config';
 import { Trigger } from '@/apps/lib/trigger';
@@ -27,10 +27,6 @@ import { NewSpreadsheetInFolder } from './triggers/new-spreadsheet-in-folder.tri
 import { NewSpreadsheet } from './triggers/new-spreadsheet.trigger';
 
 export class GoogleSheets extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'google-sheets';
   name = 'Google Sheets';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;

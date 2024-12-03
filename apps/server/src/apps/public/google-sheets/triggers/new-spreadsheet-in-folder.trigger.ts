@@ -1,19 +1,11 @@
 import { InputConfig } from '@/apps/lib/input-config';
-import {
-  RunTriggerArgs,
-  TimeBasedPollTrigger,
-  TriggerConstructorArgs,
-} from '@/apps/lib/trigger';
+import { RunTriggerArgs, TimeBasedPollTrigger } from '@/apps/lib/trigger';
 import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
 
 import { GoogleSheets } from '../google-sheets.app';
 import { GoogleSheetsInFolderPollType } from '../types/google-sheets.type';
 
 export class NewSpreadsheetInFolder extends TimeBasedPollTrigger {
-  constructor(args: TriggerConstructorArgs) {
-    super(args);
-  }
-
   app: GoogleSheets;
   id = 'google-sheets_trigger_new-spreadsheet-in-folder';
   name = 'New Spreadsheet in Folder';

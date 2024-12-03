@@ -1,20 +1,12 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { parseDateToISO } from '@/apps/utils/parse-date-to-iso';
 
 import { Calendly } from '../calendly.app';
 
 export class ListOrganizationEvents extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: Calendly;
   id = 'calendly_action_list-organization-events';
   name = 'List Organization Events';

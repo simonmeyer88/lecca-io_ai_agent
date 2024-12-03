@@ -1,10 +1,6 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { ServerConfig } from '@/config/server.config';
 
@@ -13,10 +9,6 @@ import { Phone } from '../phone.app';
 const DEFAULT_VOICE = 'cjVigY5qzO86Huf0OWal'; //Eric - American, friendly, middle-aged, male
 
 export class MakePhoneCall extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: Phone;
   id = 'phone_action_make-phone-call';
   name = 'Make Phone Call';

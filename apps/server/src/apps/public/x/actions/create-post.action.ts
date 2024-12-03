@@ -1,19 +1,11 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 
 import { X } from '../x.app';
 
 export class CreatePost extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: X;
 
   id = 'x_action_create-post';

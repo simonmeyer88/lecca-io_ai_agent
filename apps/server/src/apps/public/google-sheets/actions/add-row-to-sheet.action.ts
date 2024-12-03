@@ -1,21 +1,12 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 
 import { GoogleSheets } from '../google-sheets.app';
 
 export class AddRowToSheet extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: GoogleSheets;
-
   id = 'google-sheets_action_add-row-to-sheet';
   name = 'Add Row to Sheet';
   description = 'Adds a new row to the specified sheet.';

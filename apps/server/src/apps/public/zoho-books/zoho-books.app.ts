@@ -1,5 +1,5 @@
 import { Action } from '@/apps/lib/action';
-import { App, AppContructorArgs } from '@/apps/lib/app';
+import { App } from '@/apps/lib/app';
 import { Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
 import { ServerConfig } from '@/config/server.config';
@@ -7,10 +7,6 @@ import { ServerConfig } from '@/config/server.config';
 import { ZohoBooksOAuth2US } from './connections/zoho-books.oauth';
 
 export class ZohoBooks extends App {
-  constructor(args: AppContructorArgs) {
-    super(args);
-  }
-
   id = 'zoho-books';
   name = 'Zoho Books';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.png`;

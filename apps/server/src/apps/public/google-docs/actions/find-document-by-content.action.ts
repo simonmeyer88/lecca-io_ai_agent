@@ -1,20 +1,12 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 
 import { GoogleDocs } from '../google-docs.app';
 import { GoogleDocumentSearchResult } from '../types/google-docs.type';
 
 export class FindDocumentByContent extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: GoogleDocs;
   id = 'google-docs_action_find-document-by-content';
   name = 'Find Document(s) by Content';

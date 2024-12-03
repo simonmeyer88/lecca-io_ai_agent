@@ -1,19 +1,11 @@
 import { InputConfig } from '@/apps/lib/input-config';
-import {
-  RunTriggerArgs,
-  TimeBasedPollTrigger,
-  TriggerConstructorArgs,
-} from '@/apps/lib/trigger';
+import { RunTriggerArgs, TimeBasedPollTrigger } from '@/apps/lib/trigger';
 import { isValidMilli } from '@/apps/utils/is-valid-milli';
 
 import { Gmail } from '../gmail.app';
 import { GmailParsedEmail } from '../types/gmail.types';
 
 export class EmailReceived extends TimeBasedPollTrigger {
-  constructor(args: TriggerConstructorArgs) {
-    super(args);
-  }
-
   app: Gmail;
   id = 'gmail_trigger_email-received';
   name = 'Email Received';

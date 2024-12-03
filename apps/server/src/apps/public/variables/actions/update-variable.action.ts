@@ -1,10 +1,6 @@
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { parseDateToISO } from '@/apps/utils/parse-date-to-iso';
 import { ServerConfig } from '@/config/server.config';
@@ -12,10 +8,6 @@ import { ServerConfig } from '@/config/server.config';
 import { Variables } from '../variables.app';
 
 export class UpdateVariable extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: Variables;
   id = 'variables_action_update-variables';
   needsConnection = false;

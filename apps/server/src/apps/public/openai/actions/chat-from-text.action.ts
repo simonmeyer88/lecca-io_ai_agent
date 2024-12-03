@@ -1,20 +1,12 @@
 import { LanguageModelUsage, generateText } from 'ai';
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 
 import { OpenAI } from '../openai.app';
 
 export class ChatFromText extends Action {
-  constructor(args: ActionConstructorArgs) {
-    super(args);
-  }
-
   app: OpenAI;
   id = 'openai_action_chat-from-text';
   name = 'Chat from Text';

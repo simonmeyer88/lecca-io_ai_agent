@@ -220,7 +220,7 @@ export function AdditionalSideNavContent({
       links={[
         {
           title: 'Docs',
-          to: 'https://docs.lecca.io',
+          to: 'https://lecca.io/docs/overview',
           newTab: true,
           icon: Icons.infoCircle,
         },

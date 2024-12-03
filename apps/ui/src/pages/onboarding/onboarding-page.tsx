@@ -228,7 +228,7 @@ function CreateWorkflowStep({ previousStep }: { previousStep: () => void }) {
         <br />
         <Card.Description>
           <Link
-            to="https://docs.lecca.io"
+            to="https://lecca.io/docs/overview"
             target="_blank"
             className="flex items-center space-x-2 hover:underline"
           >

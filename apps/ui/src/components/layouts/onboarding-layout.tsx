@@ -15,7 +15,7 @@ export function OnboardingLayout() {
         <div className="absolute space-x-2 right-4 top-4 md:right-8 md:top-8">
           <Button variant={'link'} asChild>
             <Link
-              to="https://docs.lecca.io"
+              to="https://lecca.io/docs/overview"
               target="_blank"
               className="space-x-2"
             >

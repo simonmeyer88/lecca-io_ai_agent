@@ -40,7 +40,7 @@ export class EmailReceived extends TimeBasedPollTrigger {
     configValue,
     connection,
     workspaceId,
-  }: RunTriggerArgs<EmailReceivedConfigValue>): Promise<(typeof mock)[]> {
+  }: RunTriggerArgs<ConfigValue>): Promise<(typeof mock)[]> {
     const url = `https://graph.microsoft.com/v1.0/me/messages?$top=5&$filter=${configValue.labelIds
       .map((labelId) => `containsAny(parentFolderId, '${labelId}')`)
       .join(' or ')}`;
@@ -109,6 +109,6 @@ const mock = {
   },
 };
 
-type EmailReceivedConfigValue = {
+type ConfigValue = {
   labelIds: string[];
 };

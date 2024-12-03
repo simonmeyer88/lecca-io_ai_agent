@@ -1,7 +1,7 @@
 /**
  * This is assuming date string is formatted 2024-06-08T16:23:21.257Z
  */
-export function DateStringToMilliOrNull(
+export function dateStringToMilliOrNull(
   value: string | undefined | null,
 ): string | null {
   if (!value) {

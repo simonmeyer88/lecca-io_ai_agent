@@ -1,6 +1,6 @@
 import { InputConfig } from '@/apps/lib/input-config';
 import { RunTriggerArgs, TimeBasedPollTrigger } from '@/apps/lib/trigger';
-import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
+import { dateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
 
 import { GoogleDocs } from '../google-docs.app';
 import { GoogleDocumentPollType } from '../types/google-docs.type';
@@ -53,7 +53,7 @@ export class NewDocument extends TimeBasedPollTrigger {
     response: GoogleDocumentPollType;
   }) {
     if (response.createdTime) {
-      return DateStringToMilliOrNull(response.createdTime);
+      return dateStringToMilliOrNull(response.createdTime);
     } else {
       return null;
     }

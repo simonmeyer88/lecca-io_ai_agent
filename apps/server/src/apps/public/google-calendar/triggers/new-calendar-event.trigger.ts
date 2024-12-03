@@ -1,6 +1,6 @@
 import { InputConfig } from '@/apps/lib/input-config';
 import { RunTriggerArgs, TimeBasedPollTrigger } from '@/apps/lib/trigger';
-import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
+import { dateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
 
 import { GoogleCalendar } from '../google-calendar.app';
 
@@ -59,7 +59,7 @@ export class NewCalendarEvent extends TimeBasedPollTrigger {
 
   extractTimestampFromResponse({ response }: { response: any }) {
     if (response.created) {
-      return DateStringToMilliOrNull(response.created);
+      return dateStringToMilliOrNull(response.created);
     } else {
       return null;
     }

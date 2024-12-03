@@ -1,6 +1,6 @@
 import { InputConfig } from '@/apps/lib/input-config';
 import { RunTriggerArgs, TimeBasedPollTrigger } from '@/apps/lib/trigger';
-import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
+import { dateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
 
 import { GoogleSheets } from '../google-sheets.app';
 import { GoogleSheetsInFolderPollType } from '../types/google-sheets.type';
@@ -75,7 +75,7 @@ export class NewSpreadsheetInFolder extends TimeBasedPollTrigger {
     response: GoogleSheetsInFolderPollType;
   }) {
     if (response.createdTime) {
-      return DateStringToMilliOrNull(response.createdTime);
+      return dateStringToMilliOrNull(response.createdTime);
     } else {
       return null;
     }

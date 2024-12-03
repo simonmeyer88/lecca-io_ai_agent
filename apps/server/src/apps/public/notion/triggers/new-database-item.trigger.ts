@@ -1,6 +1,6 @@
 import { InputConfig } from '@/apps/lib/input-config';
 import { RunTriggerArgs, TimeBasedPollTrigger } from '@/apps/lib/trigger';
-import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
+import { dateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
 
 import { Notion } from '../notion.app';
 
@@ -71,7 +71,7 @@ export class NewDatabaseItem extends TimeBasedPollTrigger {
   }
 
   extractTimestampFromResponse({ response }: { response: any }) {
-    return DateStringToMilliOrNull(response.data.created_time);
+    return dateStringToMilliOrNull(response.data.created_time);
   }
 }
 

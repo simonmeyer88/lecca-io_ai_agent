@@ -1,6 +1,6 @@
 import { InputConfig } from '@/apps/lib/input-config';
 import { RunTriggerArgs, TimeBasedPollTrigger } from '@/apps/lib/trigger';
-import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
+import { dateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
 
 import { ZohoCrm } from '../zoho-crm.app';
 
@@ -37,7 +37,7 @@ export class NewContact extends TimeBasedPollTrigger {
   }
 
   extractTimestampFromResponse({ response }: { response: ContactType }) {
-    return DateStringToMilliOrNull(response.Created_Time);
+    return dateStringToMilliOrNull(response.Created_Time);
   }
 }
 

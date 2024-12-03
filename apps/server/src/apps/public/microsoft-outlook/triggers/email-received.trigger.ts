@@ -1,6 +1,6 @@
 import { InputConfig } from '@/apps/lib/input-config';
 import { RunTriggerArgs, TimeBasedPollTrigger } from '@/apps/lib/trigger';
-import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
+import { dateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
 
 import { MicrosoftOutlook } from '../microsoft-outlook.app';
 
@@ -63,7 +63,7 @@ export class EmailReceived extends TimeBasedPollTrigger {
 
   extractTimestampFromResponse({ response }: { response: typeof mock }) {
     //return timestamp from response.createdDateTime
-    return DateStringToMilliOrNull(response.createdDateTime);
+    return dateStringToMilliOrNull(response.createdDateTime);
   }
 }
 

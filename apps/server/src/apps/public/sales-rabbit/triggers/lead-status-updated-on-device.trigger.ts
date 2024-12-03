@@ -2,7 +2,7 @@ import { DateTime } from 'luxon';
 
 import { InputConfig } from '@/apps/lib/input-config';
 import { RunTriggerArgs, TimeBasedPollTrigger } from '@/apps/lib/trigger';
-import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
+import { dateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
 
 import { SalesRabbit } from '../sales-rabbit.app';
 
@@ -51,9 +51,9 @@ export class LeadStatusUpdatedOnDevice extends TimeBasedPollTrigger {
 
   extractTimestampFromResponse({ response }: { response: typeof mock }) {
     if (response.currentOnDeviceStatusModified.endsWith('Z')) {
-      return DateStringToMilliOrNull(response.currentOnDeviceStatusModified);
+      return dateStringToMilliOrNull(response.currentOnDeviceStatusModified);
     } else {
-      return DateStringToMilliOrNull(
+      return dateStringToMilliOrNull(
         response.currentOnDeviceStatusModified + 'Z',
       );
     }

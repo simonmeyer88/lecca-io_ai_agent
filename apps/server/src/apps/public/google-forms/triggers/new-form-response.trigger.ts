@@ -1,6 +1,6 @@
 import { InputConfig } from '@/apps/lib/input-config';
 import { RunTriggerArgs, TimeBasedPollTrigger } from '@/apps/lib/trigger';
-import { DateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
+import { dateStringToMilliOrNull } from '@/apps/utils/date-string-to-milli-or-null';
 
 import { GoogleForms } from '../google-forms.app';
 
@@ -56,7 +56,7 @@ export class NewFormResponse extends TimeBasedPollTrigger {
 
   extractTimestampFromResponse({ response }: { response: ResponseType }) {
     if (response.createTime) {
-      return DateStringToMilliOrNull(response.createTime);
+      return dateStringToMilliOrNull(response.createTime);
     } else {
       return null;
     }

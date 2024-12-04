@@ -1,7 +1,11 @@
 import { evaluate } from 'mathjs';
 import { z } from 'zod';
 
-import { Action, RunActionArgs } from '@/apps/lib/action';
+import {
+  Action,
+  ActionConstructorArgs,
+  RunActionArgs,
+} from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { NodeViewOptions } from '@/apps/lib/trigger';
 import { ServerConfig } from '@/config/server.config';

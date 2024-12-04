@@ -20,7 +20,7 @@ export class AI extends App {
   id = 'ai';
   name = 'AI';
   logoUrl = `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.id}.svg`;
-  description = `AI actions offered by ${ServerConfig.PLATFORM_NAME}`;
+  description = `AI actions offered by ${ServerConfig.PLATFORM_NAME}.`;
   isPublished = Object.keys(this.aiProviders.providers).length > 0;
   needsConnection = false;
 

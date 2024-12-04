@@ -120,7 +120,6 @@
     "reflect-metadata": "^0.2.2",
     "rrule": "^2.8.1",
     "rxjs": "^7.8.1",
-    "starter-kit": "link:@types/@tiptap/starter-kit",
     "stripe": "^17.4.0",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",

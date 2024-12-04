@@ -352,9 +352,6 @@ importers:
       rxjs:
         specifier: ^7.8.1
         version: 7.8.1
-      starter-kit:
-        specifier: link:@types/@tiptap/starter-kit
-        version: link:@types/@tiptap/starter-kit
       stripe:
         specifier: ^17.4.0
         version: 17.4.0

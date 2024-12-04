@@ -66,7 +66,7 @@ export class TasksService {
       const agent = await this.getAgentDataForMessaging({ agentId });
 
       //6. Generate AI response
-      if (agent.llmConnection) {
+      if (!agent.llmConnection) {
         await this.creditsService.checkIfWorkspaceHasLlmCredits({
           aiProvider: agent.llmProvider as AiProvider,
           model: agent.llmModel,
@@ -944,7 +944,7 @@ export class TasksService {
           select: {
             id: true,
             connectionId: true,
-            apiKey: true, //This is assuming we're only supporting openai for now / api key
+            apiKey: true, //This is assuming we're only supporting api key connections
           },
         },
         tools: true,

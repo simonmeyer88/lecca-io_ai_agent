@@ -25,25 +25,19 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Create package.json for release dependencies
-        run: |
-          echo '{"dependencies": {
-            "semantic-release": "latest",
-            "@semantic-release/changelog": "latest",
-            "@semantic-release/git": "latest",
-            "@semantic-release/github": "latest",
-            "@semantic-release/npm": "latest"
-          }}' > release-deps-package.json
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: release-deps-package.json
 
       - name: Install semantic-release packages
-        run: npm install --no-package-lock --prefix . --package-lock-only=false --no-save
+        run: |
+          npm install --no-save \
+            semantic-release \
+            @semantic-release/changelog \
+            @semantic-release/git \
+            @semantic-release/github \
+            @semantic-release/npm
 
       - name: Create Release
         env:

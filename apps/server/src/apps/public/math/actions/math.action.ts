@@ -19,7 +19,7 @@ export class Math extends Action {
   iconUrl: null | string =
     `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
   needsConnection = false;
-  description = 'Evaluate a mathematical expression.';
+  description = 'Evaluate a mathematical expression';
   viewOptions: null | NodeViewOptions = {
     saveButtonOptions: {
       replaceSaveAndTestButton: {

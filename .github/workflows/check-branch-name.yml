@@ -3,8 +3,7 @@ name: Check Branch Name
 on:
   pull_request:
     branches:
-      - main # Enforce on PRs to main (staging)
-      - prod # Enforce on PRs to prod (production)
+      - main # Enforce on PRs to main
 jobs:
   check_branch_name:
     runs-on: ubuntu-latest
@@ -21,20 +20,14 @@ jobs:
           prod_regex="^(release\/.+|hotfix\/.+|main)$"
           main_regex="^(fix|perf|ci|feat|test|docs|chore|refactor|)\/.+$"
 
-          if [[ "$target_branch" == "prod" ]]; then
-            echo "Checking if branch name is valid for $target_branch branch."
-            if [[ ! "$branch_name" =~ $prod_regex ]]; then
-              echo "Branch name does not meet $target_branch branch requirements. Must start with 'release/' or 'hotfix/'."
-            exit 1
-            fi
-          elif [[ "$target_branch" == "main" ]]; then
+          if [[ "$target_branch" == "main" ]]; then
             echo "Checking if branch name is valid for $target_branch branch."
             if [[ ! "$branch_name" =~ $main_regex ]]; then
               echo "Branch name does not meet $target_branch branch requirements. Must start with 'bugfix/', 'feature/', 'integration/', 'test/', 'docs/', 'chore/', or 'refactor/'."
               exit 1
             fi
           else
-            echo "Target branch is not 'prod' or 'main'. Skipping checks."
+            echo "Target branch is not 'main'. Skipping checks."
             exit 1
           fi
         shell: bash

@@ -1,11 +1,7 @@
 import { evaluate } from 'mathjs';
 import { z } from 'zod';
 
-import {
-  Action,
-  ActionConstructorArgs,
-  RunActionArgs,
-} from '@/apps/lib/action';
+import { Action, RunActionArgs } from '@/apps/lib/action';
 import { InputConfig } from '@/apps/lib/input-config';
 import { NodeViewOptions } from '@/apps/lib/trigger';
 import { ServerConfig } from '@/config/server.config';
@@ -19,7 +15,7 @@ export class Math extends Action {
   iconUrl: null | string =
     `${ServerConfig.INTEGRATION_ICON_BASE_URL}/apps/${this.app.id}.svg`;
   needsConnection = false;
-  description = 'Evaluate a mathematical expression.';
+  description = 'Evaluate a mathematical expression';
   viewOptions: null | NodeViewOptions = {
     saveButtonOptions: {
       replaceSaveAndTestButton: {

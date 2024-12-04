@@ -66,11 +66,13 @@ export class TasksService {
       const agent = await this.getAgentDataForMessaging({ agentId });
 
       //6. Generate AI response
-      await this.creditsService.checkIfWorkspaceHasLlmCredits({
-        aiProvider: agent.llmProvider as AiProvider,
-        model: agent.llmModel,
-        workspaceId,
-      });
+      if (agent.llmConnection) {
+        await this.creditsService.checkIfWorkspaceHasLlmCredits({
+          aiProvider: agent.llmProvider as AiProvider,
+          model: agent.llmModel,
+          workspaceId,
+        });
+      }
 
       const llmProviderClient = this.aiProviderService.getAiLlmProviderClient({
         aiProvider: agent.llmProvider as any,
@@ -202,11 +204,13 @@ export class TasksService {
 
       const messagesForContext = taskMessages.concat(inputMessages as any);
 
-      await this.creditsService.checkIfWorkspaceHasLlmCredits({
-        aiProvider: agent.llmProvider as AiProvider,
-        model: agent.llmModel,
-        workspaceId,
-      });
+      if (!agent.llmConnection) {
+        await this.creditsService.checkIfWorkspaceHasLlmCredits({
+          aiProvider: agent.llmProvider as AiProvider,
+          model: agent.llmModel,
+          workspaceId,
+        });
+      }
 
       const llmProviderClient = this.aiProviderService.getAiLlmProviderClient({
         aiProvider: agent.llmProvider as AiProvider,

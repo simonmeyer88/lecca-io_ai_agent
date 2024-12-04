@@ -3,8 +3,7 @@ name: Lint Commit Messages
 on:
   pull_request:
     branches:
-      - main # Enforce on PRs to main (staging)
-      - prod # Enforce on PRs to prod (production)
+      - main
 
 permissions:
   contents: read

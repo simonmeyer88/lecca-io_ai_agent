@@ -49,8 +49,7 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          # Extract version from git ref (refs/tags/v1.0.0 -> 1.0.0)
-          VERSION: ${{ trimPrefix(github.ref, 'refs/tags/v') }}
+          VERSION: ${{ github.ref_name }}
         run: |
           # Build and tag with version number
           docker build -t $ECR_REGISTRY/$SERVER_ECR_REPOSITORY:$VERSION -f apps/server/Dockerfile .

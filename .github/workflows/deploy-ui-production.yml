@@ -30,7 +30,7 @@ jobs:
       - name: Build and push UI image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          VERSION: ${{ trimPrefix(github.ref, 'refs/tags/v') }}
+          VERSION: ${{ github.ref_name }}
         run: |
           docker build -t $ECR_REGISTRY/$UI_ECR_REPOSITORY:$VERSION -f apps/ui/Dockerfile .
           docker tag $ECR_REGISTRY/$UI_ECR_REPOSITORY:$VERSION $ECR_REGISTRY/$UI_ECR_REPOSITORY:latest

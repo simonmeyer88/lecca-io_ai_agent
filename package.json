@@ -4,6 +4,7 @@
   "license": "Custom: Apache-2.0 with Commons Clause",
   "scripts": {},
   "private": true,
+  "prepare": "husky install",
   "dependencies": {
     "@ai-sdk/anthropic": "^1.0.2",
     "@ai-sdk/google": "^1.0.3",

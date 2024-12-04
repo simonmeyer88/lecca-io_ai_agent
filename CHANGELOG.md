@@ -1,3 +1,10 @@
+## [0.2.3](https://github.com/lecca-digital/lecca-io/compare/v0.2.2...v0.2.3) (2024-12-04)
+
+
+### Bug Fixes
+
+* Add vercel-build script to package.json ([c28e575](https://github.com/lecca-digital/lecca-io/commit/c28e5753f1a02d182dde3b40b02e4eafc352305d))
+
 ## [0.2.2](https://github.com/lecca-digital/lecca-io/compare/v0.2.1...v0.2.2) (2024-12-04)
 
 

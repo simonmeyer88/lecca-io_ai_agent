@@ -1,47 +1,46 @@
-# Setting up your development environment
+# Lecca.io
 
-## Initial Setup
+Lecca.io is an AI platform that allows you to configure and deploy Large Language Models (LLMs) equipped with powerful tools and workflows. Build, customize, and automate your AI agents with ease.
 
-1. Clone the repo
-2. `cd lecca-io`
-3. Install Node.js (version > 20) and npm
-4. Install pnpm globally:
-   `npm install -g pnpm`
-5. Install dependencies:
-   `pnpm install`
-6. (Optional) Install NX Console VS Code extension.
+## 🚀 Quick Start
 
-## Environment Variables
+Visit [app.lecca.io](https://app.lecca.io) to use the cloud version immediately. Add your API keys and start building intelligent agents for free.
 
-1. Locate the `.env.example` file in the root directory
-2. Create a new `.env` file and copy the contents from `.env.example`
-3. Modify the variables as needed for your setup
+Want to self-host or contribute? Check out our [development guide](https://www.lecca.io/docs/development).
 
-Note: These are the minimum required variables to run the platform. For full functionality, refer to `server.config.ts` for all possible environment variables and their use cases.
+## ✨ Key Features
 
-## Database Setup
+- **Custom LLM Configuration**: Choose from multiple AI providers and models
+- **Tool Integration**: Equip your agents with powerful tools to interact with various services
+- **Workflow Builder**: Create complex automation workflows similar to n8n, Make.com, or Zapier
+- **Build in RAG**: Enjoy basic built-in RAG features to easily upload and query data
+- **Build your own tools**: Build custom apps, actions, and triggers using our [docs](https://www.lecca.io/docs/development)
+- **Automate LLMs**: Configure triggers that will enable your AI Agents to work autonomously.
 
-Before starting the server, you'll need a running database. This can be done using Docker:
+## 🔧 Available Tools
 
-1. Install Docker for your OS if you don't have it.
-2. Run the following command (customize values as needed):
-   `docker run --name docker-container-name -d
--e POSTGRES_DB=mydb
--e POSTGRES_PASSWORD=password123
--e POSTGRES_USER=postgres
--p "5432:5432" postgres
-`
-3. Run the following command to migrate your database to match the prisma schema.
-   `pnpm prisma migrate dev`
+_Visit our [Tools](https://www.lecca.io/tools) page for a complete list_
 
-## Starting the Server
+## 🤖 Supported AI Providers
 
-Run the following command in the root directory:
-`pnpm nx serve server`
+_Visit our [AI Providers](https://www.lecca.io/ai-providers) page for a complete list_
 
-You should see a log of all available services running. If any required environment variables are missing, error messages will appear in the logs.
+## 📖 Documentation
 
-## Starting the UI
+- [Concepts](https://www.lecca.io/docs)
+- [Local Development](https://www.lecca.io/docs/development)
+- [Creating Custom Apps](https://www.lecca.io/docs/development/tools/apps/create-app)
+- [Adding AI Providers](https://www.lecca.io/docs/development/ai-providers/adding-provider)
+- [Running Ollama Locally](https://www.lecca.io/docs/development/ai-providers/running-ollama)
 
-Run the following command in the root directory:
-`pnpm nx serve ui`
+## 🤝 Contributing
+
+We welcome contributions! See our [Development Docs](https://www.lecca.io/docs/development) for more details.
+
+## 📄 License
+
+[License details here]
+
+---
+
+Built with ❤️ by Lecca Digital (Tony Ramirez)

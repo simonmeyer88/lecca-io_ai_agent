@@ -39,7 +39,6 @@ import { Vapi } from './vapi/vapi.app';
 import { Variables } from './variables/variables.app';
 import { Web } from './web/web.app';
 import { X } from './x/x.app';
-import { XML } from './xml/xml.app';
 import { YouTube } from './youtube/youtube.app';
 import { ZohoBooks } from './zoho-books/zoho-books.app';
 import { ZohoCrm } from './zoho-crm/zoho-crm.app';
@@ -90,7 +89,6 @@ const _APPS = {
   variables: Variables,
   web: Web,
   x: X,
-  xml: XML,
   youtube: YouTube,
   'zoho-books': ZohoBooks,
   'zoho-crm': ZohoCrm,

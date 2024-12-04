@@ -95,21 +95,25 @@ export class AgentTasksController {
     @Body() data: MessageTaskDto,
     @Res() response: Response,
   ) {
-    const lastMessage = data.messages[data.messages.length - 1];
+    try {
+      const lastMessage = data.messages[data.messages.length - 1];
 
-    const result = await this.tasksService.messageTaskOrCreateTaskIfNotFound({
-      agentId,
-      taskId,
-      messages: [lastMessage],
-      requestingWorkspaceUserId: user.workspaceUserId,
-      workspaceId: user.workspaceId,
-      customIdentifier: undefined,
-    });
+      const result = await this.tasksService.messageTaskOrCreateTaskIfNotFound({
+        agentId,
+        taskId,
+        messages: [lastMessage],
+        requestingWorkspaceUserId: user.workspaceUserId,
+        workspaceId: user.workspaceId,
+        customIdentifier: undefined,
+      });
 
-    if (typeof result === 'string' || Array.isArray(result)) {
-      return response.status(200).json(result);
-    } else {
-      return result.pipeDataStreamToResponse(response);
+      if (typeof result === 'string' || Array.isArray(result)) {
+        return response.status(200).json(result);
+      } else {
+        return result.pipeDataStreamToResponse(response);
+      }
+    } catch (error) {
+      return response.status(500).json({ error: error.message });
     }
   }
 }

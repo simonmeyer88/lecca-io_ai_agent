@@ -39,7 +39,7 @@ We welcome contributions! See our [Development Docs](https://www.lecca.io/docs/d
 
 ## 📄 License
 
-[License details here]
+Lecca.io Community Edition is distributed under the [Apache-2.0 License with Commons Clause](https://faircode.io/). Enterprise features are available under the [Commercial License](./LICENSE_EE).
 
 ---
 

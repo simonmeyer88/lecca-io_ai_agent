@@ -1,0 +1,23 @@
+# Exclude everything
+../../*
+
+# Then include only what we need
+!../../package.json
+!../../pnpm-lock.yaml
+!../../nx.json
+!../../tsconfig.base.json
+!../../libs
+!../../apps/ui
+
+# Node specific
+node_modules
+npm-debug.log
+
+# Build outputs
+dist
+build
+
+# Dev files
+.env
+*.test.ts
+*.spec.ts

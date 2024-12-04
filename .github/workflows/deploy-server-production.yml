@@ -1,18 +1,12 @@
 name: Deploy to Amazon ECS Production
 
 on:
-  push:
-    branches:
-      - prod
-    paths:
-      - 'apps/server/**'
-      - '.aws/**'
-      - 'Dockerfile'
-      - '.github/workflows/deploy-server-production.yml'
+  release:
+    types: [published]
 
 env:
   AWS_REGION: us-east-2 # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: server-core # set this to your Amazon ECR repository name
+  SERVER_ECR_REPOSITORY: server-core # set this to your Amazon ECR repository name
   ECS_SERVICE: lecca-io-server-core-service # set this to your Amazon ECS service name
   ECS_CLUSTER: lecca-io-server-core # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION:
@@ -55,17 +49,16 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
+          # Extract version from git ref (refs/tags/v1.0.0 -> 1.0.0)
+          VERSION: ${{ trimPrefix(github.ref, 'refs/tags/v') }}
         run: |
-          # Build a docker container and
-          # push it to ECR so that it can
-          # be deployed to ECS.
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          # Build and tag with version number
+          docker build -t $ECR_REGISTRY/$SERVER_ECR_REPOSITORY:$VERSION -f apps/server/Dockerfile .
+          docker tag $ECR_REGISTRY/$SERVER_ECR_REPOSITORY:$VERSION $ECR_REGISTRY/$SERVER_ECR_REPOSITORY:latest
+          docker push $ECR_REGISTRY/$SERVER_ECR_REPOSITORY:$VERSION
+          docker push $ECR_REGISTRY/$SERVER_ECR_REPOSITORY:latest
 
-          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+          echo "image=$ECR_REGISTRY/$SERVER_ECR_REPOSITORY:$VERSION" >> $GITHUB_OUTPUT
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def

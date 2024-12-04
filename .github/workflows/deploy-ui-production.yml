@@ -1,0 +1,46 @@
+name: Deploy UI to Production
+
+on:
+  release:
+    types: [published]
+
+env:
+  AWS_REGION: us-east-2
+  UI_ECR_REPOSITORY: lecca-io/ui
+
+jobs:
+  deploy-ui:
+    name: Deploy UI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push UI image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          VERSION: ${{ trimPrefix(github.ref, 'refs/tags/v') }}
+        run: |
+          docker build -t $ECR_REGISTRY/$UI_ECR_REPOSITORY:$VERSION -f apps/ui/Dockerfile .
+          docker tag $ECR_REGISTRY/$UI_ECR_REPOSITORY:$VERSION $ECR_REGISTRY/$UI_ECR_REPOSITORY:latest
+          docker push $ECR_REGISTRY/$UI_ECR_REPOSITORY:$VERSION
+          docker push $ECR_REGISTRY/$UI_ECR_REPOSITORY:latest
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'

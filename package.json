@@ -2,7 +2,9 @@
   "name": "lecca-io",
   "version": "0.2.1",
   "license": "Custom: Apache-2.0 with Commons Clause",
-  "scripts": {},
+  "scripts": {
+    "vercel-build": "nx build ui"
+  },
   "private": true,
   "prepare": "husky install",
   "dependencies": {

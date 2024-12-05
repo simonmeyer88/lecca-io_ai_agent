@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/lecca-digital/lecca-io/compare/v0.2.3...v0.3.0) (2024-12-05)
+
+
+### Features
+
+* **ui:** Add conditional tracking using VITE_ENABLE_ANALYTICS env variable ([327d53b](https://github.com/lecca-digital/lecca-io/commit/327d53ba90234dfe645c1f5abbb0989c4c415e1f))
+
 ## [0.2.3](https://github.com/lecca-digital/lecca-io/compare/v0.2.2...v0.2.3) (2024-12-04)
 
 

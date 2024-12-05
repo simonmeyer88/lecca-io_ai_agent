@@ -19,7 +19,7 @@ export class Knowledge extends App {
   isPublished =
     !!ServerConfig.PINECONE_API_KEY &&
     !!ServerConfig.PINECONE_API_KEY &&
-    !!ServerConfig.OPENAI_EMBEDDING_API_KEY &&
+    !!ServerConfig.OPENAI_API_KEY &&
     !!ServerConfig.S3_ACCESS_KEY_ID &&
     !!ServerConfig.S3_SECRET_ACCESS_KEY &&
     !!ServerConfig.S3_BUCKET_ID &&

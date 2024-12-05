@@ -209,7 +209,7 @@ export class AiProviderService {
       //We'll use our own model and api key if they don't have it. (We'll use their credits)
       switch (aiProvider) {
         case 'openai':
-          apiKey = ServerConfig.OPENAI_EMBEDDING_API_KEY;
+          apiKey = ServerConfig.OPENAI_API_KEY;
           break;
         case 'ollama':
           apiKey = null;

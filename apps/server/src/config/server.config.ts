@@ -160,15 +160,6 @@ export const ServerConfig = {
   GEMINI_API_KEY: process.env.GEMINI_API_KEY,
 
   /**
-   * Used for embedding text into vectors using the OpenAI API.
-   * This is used when uploading data to knowledge notebooks and querying them.
-   *
-   * This is a separate key from the OPENAI_API_KEY because it is used for a different purpose,
-   * but it is still the same type of key.
-   */
-  OPENAI_EMBEDDING_API_KEY: process.env.OPENAI_EMBEDDING_API_KEY,
-
-  /**
    * Used for the Pinecone API for storing and querying vectors.
    * This is used when uploading data to knowledge notebooks and querying them.
    */

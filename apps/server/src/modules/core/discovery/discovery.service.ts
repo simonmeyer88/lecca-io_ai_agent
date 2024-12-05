@@ -21,7 +21,7 @@ export class DiscoveryService {
       ServerConfig.S3_REGION != null &&
       ServerConfig.S3_BUCKET_ID != null &&
       ServerConfig.PINECONE_API_KEY != null &&
-      ServerConfig.OPENAI_EMBEDDING_API_KEY != null;
+      ServerConfig.OPENAI_API_KEY != null;
 
     //This is for the Email feature of the platform.
     const EMAILS =
@@ -143,7 +143,7 @@ export class DiscoveryService {
               break;
             case 'KNOWLEDGE':
               reason =
-                'Missing S3 or Pinecone configuration or OPENAI_EMBEDDING_API_KEY not set';
+                'Missing S3 or Pinecone configuration or OPENAI_API_KEY not set';
               break;
             case 'BILLING': {
               break;

@@ -5,37 +5,43 @@ on:
     types: [published]
 
 env:
-  AWS_REGION: us-east-2
-  UI_ECR_REPOSITORY: lecca-io/ui
+  UI_REGISTRY: ghcr.io
+  UI_IMAGE_NAME: ${{ github.repository }}/ui
 
 jobs:
-  deploy-ui:
-    name: Deploy UI
+  build-and-push:
+    name: Build and Push Image
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          registry: ${{ env.UI_REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
-
-      - name: Build and push UI image
+      - name: Build and push Docker image
         env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           VERSION: ${{ github.ref_name }}
         run: |
-          docker build -t $ECR_REGISTRY/$UI_ECR_REPOSITORY:$VERSION -f apps/ui/Dockerfile .
-          docker tag $ECR_REGISTRY/$UI_ECR_REPOSITORY:$VERSION $ECR_REGISTRY/$UI_ECR_REPOSITORY:latest
-          docker push $ECR_REGISTRY/$UI_ECR_REPOSITORY:$VERSION
-          docker push $ECR_REGISTRY/$UI_ECR_REPOSITORY:latest
+          docker build -t ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:$VERSION -f apps/ui/Dockerfile .
+          docker tag ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:$VERSION ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:latest
+          docker push ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:$VERSION
+          docker push ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:latest
+
+  deploy-to-vercel:
+    name: Deploy to Vercel
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v20

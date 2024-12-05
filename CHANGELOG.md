@@ -1,3 +1,10 @@
+## [0.3.1](https://github.com/lecca-digital/lecca-io/compare/v0.3.0...v0.3.1) (2024-12-05)
+
+
+### Bug Fixes
+
+* Point to new container registry ([c6f3024](https://github.com/lecca-digital/lecca-io/commit/c6f30246c1934ffed9d0a5d819a44886efa83001))
+
 # [0.3.0](https://github.com/lecca-digital/lecca-io/compare/v0.2.3...v0.3.0) (2024-12-05)
 
 

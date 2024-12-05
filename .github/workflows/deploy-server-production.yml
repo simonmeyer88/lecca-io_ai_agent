@@ -1,4 +1,4 @@
-name: Deploy to Amazon ECS Production
+name: Build Docker Image & Deploy to ECS
 
 on:
   release:

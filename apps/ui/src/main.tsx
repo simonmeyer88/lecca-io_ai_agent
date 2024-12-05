@@ -13,6 +13,8 @@ import { AppRoutes } from '@/router/routes';
 import { ApplicationSideNavProvider } from './providers/application-side-nav-provider';
 import { UserProvider } from './providers/user-provider';
 
+const enableAnalytics = import.meta.env.VITE_ENABLE_ANALYTICS === 'true';
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={appQueryClient}>
@@ -24,8 +26,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </UserProvider>
       </BrowserRouter>
       <Toaster />
-      <Analytics />
-      <SpeedInsights />
+      {enableAnalytics && (
+        <>
+          <Analytics />
+          <SpeedInsights />
+        </>
+      )}
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>,

@@ -1,6 +1,6 @@
 {
   "name": "lecca-io",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "license": "Custom: Apache-2.0 with Commons Clause",
   "scripts": {
     "vercel-build": "nx build ui"

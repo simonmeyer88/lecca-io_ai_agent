@@ -1,6 +1,6 @@
 Portions of this software are licensed as follows:
 
-- All files that reside under the "apps/server/src/modules/commercial" directory of this repository is licensed under the license defined in "LICENSE_EE" in the root of this repository.
+- All files that reside under the "packages/server/src/modules/commercial" directory of this repository is licensed under the license defined in "LICENSE_EE" in the root of this repository.
 - All third party components incorporated into the Lecca.io Software are licensed under the original license provided by the owner of the applicable component.
 - Content outside of the above mentioned files or restrictions is available under the "Apache License with the Commons Clause" as defined below.
 

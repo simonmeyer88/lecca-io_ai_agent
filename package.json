@@ -223,6 +223,6 @@
     "webpack-cli": "^5.1.4"
   },
   "prisma": {
-    "schema": "./apps/server/prisma/schema.prisma"
+    "schema": "./packages/server/prisma/schema.prisma"
   }
 }

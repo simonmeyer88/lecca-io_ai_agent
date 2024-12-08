@@ -7,7 +7,7 @@
 !../../nx.json
 !../../tsconfig.base.json
 !../../libs
-!../../apps/ui
+!../../packages/ui
 
 # Node specific
 node_modules

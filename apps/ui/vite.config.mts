@@ -7,7 +7,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/apps/ui',
+  cacheDir: '../../node_modules/.vite/packages/ui',
   server: {
     port: 5173,
     host: 'localhost',
@@ -27,7 +27,7 @@ export default defineConfig({
   //  plugins: [ nxViteTsPaths() ],
   // },
   build: {
-    outDir: '../../dist/apps/ui',
+    outDir: '../../dist/packages/ui',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {

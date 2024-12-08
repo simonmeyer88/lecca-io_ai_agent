@@ -14,6 +14,10 @@
     ],
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
+  "workspaceLayout": {
+    "appsDir": "packages",
+    "libsDir": "packages"
+  },
   "cli": {
     "packageManager": "pnpm"
   },
@@ -46,7 +50,7 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/server-e2e/**/*"]
+      "exclude": ["packages/server-e2e/**/*"]
     },
     {
       "plugin": "@nx/webpack/plugin",

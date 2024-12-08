@@ -30,7 +30,7 @@ jobs:
         env:
           VERSION: ${{ github.ref_name }}
         run: |
-          docker build -t ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:$VERSION -f apps/ui/Dockerfile .
+          docker build -t ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:$VERSION -f packages/ui/Dockerfile .
           docker tag ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:$VERSION ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:latest
           docker push ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:$VERSION
           docker push ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:latest

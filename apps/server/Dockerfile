@@ -6,7 +6,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 COPY nx.json tsconfig.base.json ./
 COPY jest.preset.js eslint.config.js ./
-COPY apps/server ./apps/server
+COPY packages/server ./packages/server
 
 # Install pnpm and other global dependencies
 RUN npm install -g pnpm @nestjs/cli nx
@@ -23,10 +23,10 @@ FROM node:20.6.0-alpine
 WORKDIR /app
 
 # Copy built files and necessary runtime files
-COPY --from=builder /app/dist/apps/server ./dist
+COPY --from=builder /app/dist/packages/server ./dist
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./
-COPY --from=builder /app/apps/server/prisma ./prisma
+COPY --from=builder /app/packages/server/prisma ./prisma
 
 
 EXPOSE 9094

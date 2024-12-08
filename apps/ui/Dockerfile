@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 COPY nx.json tsconfig.base.json ./
 COPY jest.preset.js eslint.config.js ./
-COPY apps/ui ./apps/ui
+COPY packages/ui ./packages/ui
 
 # Install pnpm and other global dependencies
 RUN npm install -g pnpm nx
@@ -22,7 +22,7 @@ RUN pnpm exec nx run ui:build
 FROM nginx:alpine
 
 # Copy built static files to nginx serve directory
-COPY --from=builder /app/dist/apps/ui /usr/share/nginx/html
+COPY --from=builder /app/dist/packages/ui /usr/share/nginx/html
 
 # Copy nginx config if you have custom configuration
 # COPY nginx.conf /etc/nginx/conf.d/default.conf

@@ -38,7 +38,7 @@ jobs:
         env:
           VERSION: ${{ github.ref_name }}
         run: |
-          docker build -t ${{ env.SERVER_REGISTRY }}/${{ env.SERVER_IMAGE_NAME }}:$VERSION -f apps/server/Dockerfile .
+          docker build -t ${{ env.SERVER_REGISTRY }}/${{ env.SERVER_IMAGE_NAME }}:$VERSION -f packages/server/Dockerfile .
           docker tag ${{ env.SERVER_REGISTRY }}/${{ env.SERVER_IMAGE_NAME }}:$VERSION ${{ env.SERVER_REGISTRY }}/${{ env.SERVER_IMAGE_NAME }}:latest
           docker push ${{ env.SERVER_REGISTRY }}/${{ env.SERVER_IMAGE_NAME }}:$VERSION
           docker push ${{ env.SERVER_REGISTRY }}/${{ env.SERVER_IMAGE_NAME }}:latest

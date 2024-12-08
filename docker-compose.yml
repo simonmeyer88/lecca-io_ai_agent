@@ -2,7 +2,7 @@ services:
   server:
     build:
       context: .
-      dockerfile: apps/server/Dockerfile
+      dockerfile: packages/server/Dockerfile
     ports:
       - '9094:9094'
     env_file:
@@ -11,7 +11,7 @@ services:
   ui:
     build:
       context: .
-      dockerfile: apps/ui/Dockerfile
+      dockerfile: packages/ui/Dockerfile
     ports:
       - '5173:80'
     env_file:

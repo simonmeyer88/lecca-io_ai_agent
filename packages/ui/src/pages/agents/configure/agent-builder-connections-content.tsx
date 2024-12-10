@@ -3,19 +3,19 @@ import { useCallback, useMemo } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { DataTable } from '@/components/data-table/data-table';
-import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { CreateConnectionForm } from '@/components/forms/create-connection-form';
-import { Icons } from '@/components/icons';
-import { AlertDialog } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-import { Form } from '@/components/ui/form';
-import { UpdateAgentType } from '@/models/agent/agent-model';
-import { Connection } from '@/models/connections-model';
-import { columns } from '@/pages/connections/table/connections-table-columns';
+import useApiQuery from '../../../api/use-api-query';
+import { DataTable } from '../../../components/data-table/data-table';
+import { EmptyPlaceholder } from '../../../components/empty-placeholder';
+import { CreateConnectionForm } from '../../../components/forms/create-connection-form';
+import { Icons } from '../../../components/icons';
+import { AlertDialog } from '../../../components/ui/alert-dialog';
+import { Button } from '../../../components/ui/button';
+import { Dialog } from '../../../components/ui/dialog';
+import { DropdownMenu } from '../../../components/ui/dropdown-menu';
+import { Form } from '../../../components/ui/form';
+import { UpdateAgentType } from '../../../models/agent/agent-model';
+import { Connection } from '../../../models/connections-model';
+import { columns } from '../../connections/table/connections-table-columns';
 
 import { AddAgentConnectionForm } from './add-agent-connection-form';
 

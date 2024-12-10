@@ -1,16 +1,16 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { Link } from 'react-router-dom';
 
-import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header';
-import { Icons } from '@/components/icons';
-import { Badge } from '@/components/ui/badge';
-import { Popover } from '@/components/ui/popover';
-import { Execution } from '@/models/execution-model';
+import { DataTableColumnHeader } from '../../../../components/data-table/data-table-column-header';
+import { Icons } from '../../../../components/icons';
+import { Badge } from '../../../../components/ui/badge';
+import { Popover } from '../../../../components/ui/popover';
+import { Execution } from '../../../../models/execution-model';
 import {
   newDateOrUndefined,
   timeAgo,
   toLocaleStringOrUndefined,
-} from '@/utils/dates';
+} from '../../../../utils/dates';
 
 import { DataTableRowActions } from './executions-table-row-actions';
 

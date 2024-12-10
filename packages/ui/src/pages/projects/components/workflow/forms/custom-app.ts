@@ -1,4 +1,4 @@
-import { WorkflowApp } from '@/models/workflow/workflow-app-model';
+import { WorkflowApp } from '../../../../../models/workflow/workflow-app-model';
 
 import { CUSTOM_ACTIONS } from './custom-action';
 import { CUSTOM_TRIGGERS } from './custom-triggers';

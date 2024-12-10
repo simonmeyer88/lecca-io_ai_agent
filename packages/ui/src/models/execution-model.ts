@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { newDateOrUndefined } from '@/utils/dates';
+import { newDateOrUndefined } from '../utils/dates';
 
 import { workflowEdgeSchema } from './workflow/edge/workflow-edge-model';
 import { savedWorkflowNodeSchema } from './workflow/node/node-model';

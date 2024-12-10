@@ -1,5 +1,4 @@
-import { CreateUserType } from '@/models/user-model';
-
+import { CreateUserType } from '../../models/user-model';
 import { ApiLibrary } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 import { mockTokenSchema } from '../mock-models/mock-token-models';

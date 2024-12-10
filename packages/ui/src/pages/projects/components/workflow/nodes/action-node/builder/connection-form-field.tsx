@@ -1,15 +1,15 @@
 import { UseFormReturn } from 'react-hook-form';
 
-import useApiQuery from '@/api/use-api-query';
-import { CreateConnectionForm } from '@/components/forms/create-connection-form';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { ComboBox } from '@/components/ui/combo-box';
-import { Dialog } from '@/components/ui/dialog';
-import { Form } from '@/components/ui/form';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Tooltip } from '@/components/ui/tooltip';
-import { WorkflowApp } from '@/models/workflow/workflow-app-model';
+import useApiQuery from '../../../../../../../api/use-api-query';
+import { CreateConnectionForm } from '../../../../../../../components/forms/create-connection-form';
+import { Icons } from '../../../../../../../components/icons';
+import { Button } from '../../../../../../../components/ui/button';
+import { ComboBox } from '../../../../../../../components/ui/combo-box';
+import { Dialog } from '../../../../../../../components/ui/dialog';
+import { Form } from '../../../../../../../components/ui/form';
+import { Skeleton } from '../../../../../../../components/ui/skeleton';
+import { Tooltip } from '../../../../../../../components/ui/tooltip';
+import { WorkflowApp } from '../../../../../../../models/workflow/workflow-app-model';
 
 import { SharedLabelAndTooltip } from './shared-label-and-tooltip';
 

@@ -4,12 +4,12 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 
-import { api } from '@/api/api-library';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Form } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import { api } from '../../api/api-library';
+import { Icons } from '../../components/icons';
+import { Button } from '../../components/ui/button';
+import { Card } from '../../components/ui/card';
+import { Form } from '../../components/ui/form';
+import { Input } from '../../components/ui/input';
 
 const forgotPasswordSchema = z.object({
   email: z.string().min(6, {

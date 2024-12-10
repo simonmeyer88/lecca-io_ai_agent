@@ -1,17 +1,17 @@
 import { useMemo, useState } from 'react';
 
-import { Icons } from '@/components/icons';
-import { MarkdownViewer } from '@/components/markdown-viewer';
-import { Avatar } from '@/components/ui/avatar';
-import { Tooltip } from '@/components/ui/tooltip';
-import { useUser } from '@/hooks/useUser';
-import { Agent } from '@/models/agent/agent-model';
-import { FormattedTaskUserMessage } from '@/models/task/formatted-task-message-model';
-import { WorkflowApp } from '@/models/workflow/workflow-app-model';
-import { Workflow } from '@/models/workflow/workflow-model';
-import { WorkspaceUser } from '@/models/workspace-user-model';
-import { cn } from '@/utils/cn';
-import { toLocaleStringOrUndefined } from '@/utils/dates';
+import { Icons } from '../../../../components/icons';
+import { MarkdownViewer } from '../../../../components/markdown-viewer';
+import { Avatar } from '../../../../components/ui/avatar';
+import { Tooltip } from '../../../../components/ui/tooltip';
+import { useUser } from '../../../../hooks/useUser';
+import { Agent } from '../../../../models/agent/agent-model';
+import { FormattedTaskUserMessage } from '../../../../models/task/formatted-task-message-model';
+import { WorkflowApp } from '../../../../models/workflow/workflow-app-model';
+import { Workflow } from '../../../../models/workflow/workflow-model';
+import { WorkspaceUser } from '../../../../models/workspace-user-model';
+import { cn } from '../../../../utils/cn';
+import { toLocaleStringOrUndefined } from '../../../../utils/dates';
 
 import { MessageCardWrapper } from './message-card-wrapper';
 import { MessageImage } from './message-image';

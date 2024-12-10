@@ -1,6 +1,6 @@
 import { Handle, Position } from 'reactflow';
 
-import { ContextMenu } from '@/components/ui/context-menu';
+import { ContextMenu } from '../../../../../components/ui/context-menu';
 
 export const RootAgentNode = () => {
   return (

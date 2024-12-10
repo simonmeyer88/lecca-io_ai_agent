@@ -1,7 +1,7 @@
 import React from 'react';
 
-import useApiQuery from '@/api/use-api-query';
-import { WorkflowApp } from '@/models/workflow/workflow-app-model';
+import useApiQuery from '../../api/use-api-query';
+import { WorkflowApp } from '../../models/workflow/workflow-app-model';
 
 type ProjectAgentContextProps = {
   //

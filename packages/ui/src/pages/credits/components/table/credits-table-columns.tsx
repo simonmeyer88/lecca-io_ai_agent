@@ -1,12 +1,11 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { Link } from 'react-router-dom';
 
-import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header';
-import { Badge } from '@/components/ui/badge';
-import { Dialog } from '@/components/ui/dialog';
-import { Credit } from '@/models/credits-model';
-import { toLocaleStringOrUndefined } from '@/utils/dates';
-
+import { DataTableColumnHeader } from '../../../../components/data-table/data-table-column-header';
+import { Badge } from '../../../../components/ui/badge';
+import { Dialog } from '../../../../components/ui/dialog';
+import { Credit } from '../../../../models/credits-model';
+import { toLocaleStringOrUndefined } from '../../../../utils/dates';
 import { CreditDetailsDialogContent } from '../credit-details-dialog-content';
 
 import { DataTableRowActions } from './credits-table-row-actions';

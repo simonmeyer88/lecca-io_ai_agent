@@ -1,4 +1,4 @@
-import { Workflow } from '@/models/workflow/workflow-model';
+import { Workflow } from '../../models/workflow/workflow-model';
 
 export const WORKFLOW_MOCK: Workflow = {
   id: '8736629e-f598-4fe3-a3a8-2cdac1615de5',

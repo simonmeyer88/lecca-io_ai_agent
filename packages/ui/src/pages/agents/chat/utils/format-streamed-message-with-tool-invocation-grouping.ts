@@ -1,7 +1,7 @@
 import { v4 } from 'uuid';
 
-import { FormattedTaskMessage } from '@/models/task/formatted-task-message-model';
-import { StreamedTaskAssistantMessageToolInvocation } from '@/models/task/streamed-task-message-model';
+import { FormattedTaskMessage } from '../../../../models/task/formatted-task-message-model';
+import { StreamedTaskAssistantMessageToolInvocation } from '../../../../models/task/streamed-task-message-model';
 
 /**
  * NOT USING THIS ATM. TO MANY RERENDERS IT WASN'T WORKING. BUT WILL KEEP INCASE WE NEED IN FUTURE

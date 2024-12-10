@@ -1,21 +1,21 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
-import { CreateConnectionForm } from '@/components/forms/create-connection-form';
-import { JoinWorkspaceForm } from '@/components/forms/join-workspace-form';
-import { SelectProjectForAgentForm } from '@/components/forms/select-project-for-agent-form';
-import { SelectProjectForWorkflowForm } from '@/components/forms/select-project-for-workflow-form';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Carousel, CarouselApi } from '@/components/ui/carousel';
-import { Dialog } from '@/components/ui/dialog';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Skeleton } from '@/components/ui/skeleton';
-import { useUser } from '@/hooks/useUser';
-import { WorkspaceInvitation } from '@/models/workspace-invitation-model';
+import useApiMutation from '../../api/use-api-mutation';
+import useApiQuery from '../../api/use-api-query';
+import { CreateConnectionForm } from '../../components/forms/create-connection-form';
+import { JoinWorkspaceForm } from '../../components/forms/join-workspace-form';
+import { SelectProjectForAgentForm } from '../../components/forms/select-project-for-agent-form';
+import { SelectProjectForWorkflowForm } from '../../components/forms/select-project-for-workflow-form';
+import { Icons } from '../../components/icons';
+import { Button } from '../../components/ui/button';
+import { Card } from '../../components/ui/card';
+import { Carousel, CarouselApi } from '../../components/ui/carousel';
+import { Dialog } from '../../components/ui/dialog';
+import { ScrollArea } from '../../components/ui/scroll-area';
+import { Skeleton } from '../../components/ui/skeleton';
+import { useUser } from '../../hooks/useUser';
+import { WorkspaceInvitation } from '../../models/workspace-invitation-model';
 
 export function OnboardingPage() {
   const { data: workspaceInvitations, isLoading: isLoadingInvitations } =

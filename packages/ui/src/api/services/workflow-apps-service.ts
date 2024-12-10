@@ -3,14 +3,13 @@ import { z } from 'zod';
 import {
   CreateWorkflowAppActionType,
   workflowAppActionSchema,
-} from '@/models/workflow/workflow-app-action-model';
+} from '../../models/workflow/workflow-app-action-model';
 import {
   CreateWorkflowAppType,
   UpdateWorkflowAppType,
   WorkflowApp,
   workflowAppSchema,
-} from '@/models/workflow/workflow-app-model';
-
+} from '../../models/workflow/workflow-app-model';
 import { ApiLibrary, ApiLibraryConfig, appQueryClient } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 import { WORKFLOW_APPS_MOCK } from '../mocks/workflow-apps-mock';

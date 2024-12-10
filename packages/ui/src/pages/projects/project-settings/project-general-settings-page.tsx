@@ -3,22 +3,22 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
-import { Loader } from '@/components/loaders/loader';
-import { AlertDialog } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Form } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Separator } from '@/components/ui/separator';
-import { Textarea } from '@/components/ui/textarea';
-import { toast } from '@/hooks/useToast';
-import { useUser } from '@/hooks/useUser';
+import useApiMutation from '../../../api/use-api-mutation';
+import useApiQuery from '../../../api/use-api-query';
+import { Loader } from '../../../components/loaders/loader';
+import { AlertDialog } from '../../../components/ui/alert-dialog';
+import { Button } from '../../../components/ui/button';
+import { Card } from '../../../components/ui/card';
+import { Form } from '../../../components/ui/form';
+import { Input } from '../../../components/ui/input';
+import { Separator } from '../../../components/ui/separator';
+import { Textarea } from '../../../components/ui/textarea';
+import { toast } from '../../../hooks/useToast';
+import { useUser } from '../../../hooks/useUser';
 import {
   UpdateProjectType,
   updateProjectSchema,
-} from '@/models/project/project-model';
+} from '../../../models/project/project-model';
 
 export default function ProjectGeneralSettingsPage() {
   const { workspaceUser } = useUser();

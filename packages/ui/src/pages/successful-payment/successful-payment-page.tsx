@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Icons } from '@/components/icons';
-import { Loader } from '@/components/loaders/loader';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { useUser } from '@/hooks/useUser';
+import { Icons } from '../../components/icons';
+import { Loader } from '../../components/loaders/loader';
+import { Button } from '../../components/ui/button';
+import { Card } from '../../components/ui/card';
+import { useUser } from '../../hooks/useUser';
 
 export function SuccessfulPaymentPage() {
   const { initializeUserContextData } = useUser();

@@ -2,14 +2,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import useApiMutation from '@/api/use-api-mutation';
-import { useToast } from '@/hooks/useToast';
+import useApiMutation from '../../api/use-api-mutation';
+import { useToast } from '../../hooks/useToast';
 import {
   UpdateWorkspaceInvitationType,
   WorkspaceInvitation,
   updateWorkspaceInvitationSchema,
-} from '@/models/workspace-invitation-model';
-
+} from '../../models/workspace-invitation-model';
 import { Icons } from '../icons';
 import { Button } from '../ui/button';
 import { Dialog } from '../ui/dialog';

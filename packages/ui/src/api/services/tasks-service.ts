@@ -1,12 +1,11 @@
-import { FormattedTaskMessage } from '@/models/task/formatted-task-message-model';
-import { SavedTaskMessage } from '@/models/task/saved-task-message-model';
+import { FormattedTaskMessage } from '../../models/task/formatted-task-message-model';
+import { SavedTaskMessage } from '../../models/task/saved-task-message-model';
 import {
   CreateTaskType,
   Task,
   UpdateTaskType,
   taskSchema,
-} from '@/models/task/task-model';
-
+} from '../../models/task/task-model';
 import { ApiLibrary, ApiLibraryConfig, appQueryClient } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 

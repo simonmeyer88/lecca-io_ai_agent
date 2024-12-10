@@ -3,19 +3,19 @@ import { useCallback, useMemo } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { DataTable } from '@/components/data-table/data-table';
-import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { CreateKnowledgeForm } from '@/components/forms/create-knowledge-form';
-import { Icons } from '@/components/icons';
-import { AlertDialog } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-import { Form } from '@/components/ui/form';
-import { UpdateAgentType } from '@/models/agent/agent-model';
-import { Knowledge } from '@/models/knowledge-model';
-import { columns } from '@/pages/knowledge/components/table/knowledge-table-columns';
+import useApiQuery from '../../../api/use-api-query';
+import { DataTable } from '../../../components/data-table/data-table';
+import { EmptyPlaceholder } from '../../../components/empty-placeholder';
+import { CreateKnowledgeForm } from '../../../components/forms/create-knowledge-form';
+import { Icons } from '../../../components/icons';
+import { AlertDialog } from '../../../components/ui/alert-dialog';
+import { Button } from '../../../components/ui/button';
+import { Dialog } from '../../../components/ui/dialog';
+import { DropdownMenu } from '../../../components/ui/dropdown-menu';
+import { Form } from '../../../components/ui/form';
+import { UpdateAgentType } from '../../../models/agent/agent-model';
+import { Knowledge } from '../../../models/knowledge-model';
+import { columns } from '../../knowledge/components/table/knowledge-table-columns';
 
 import { AddAgentKnowledgeForm } from './add-agent-knowledge-form';
 

@@ -2,14 +2,13 @@ import { useMemo, useState } from 'react';
 import { Node, useReactFlow } from 'reactflow';
 import { v4 } from 'uuid';
 
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { ComboBox } from '@/components/ui/combo-box';
-import { Form } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Tooltip } from '@/components/ui/tooltip';
-import { useProjectWorkflow } from '@/hooks/useProjectWorkflow';
-
+import { Icons } from '../../../../../../components/icons';
+import { Button } from '../../../../../../components/ui/button';
+import { ComboBox } from '../../../../../../components/ui/combo-box';
+import { Form } from '../../../../../../components/ui/form';
+import { Input } from '../../../../../../components/ui/input';
+import { Tooltip } from '../../../../../../components/ui/tooltip';
+import { useProjectWorkflow } from '../../../../../../hooks/useProjectWorkflow';
 import { useUpdateFlow } from '../../hooks/useUpdateFlow';
 import {
   NodeStatus,

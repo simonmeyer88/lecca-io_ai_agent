@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { api } from '@/api/api-library';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Dialog } from '@/components/ui/dialog';
-import { useProjectWorkflow } from '@/hooks/useProjectWorkflow';
-import { useToast } from '@/hooks/useToast';
+import { api } from '../../../../../../../api/api-library';
+import { Icons } from '../../../../../../../components/icons';
+import { Button } from '../../../../../../../components/ui/button';
+import { Card } from '../../../../../../../components/ui/card';
+import { Dialog } from '../../../../../../../components/ui/dialog';
+import { useProjectWorkflow } from '../../../../../../../hooks/useProjectWorkflow';
+import { useToast } from '../../../../../../../hooks/useToast';
 
 /**
  * Not actually a node, but appears on the canvas like an node

@@ -3,18 +3,18 @@ import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { api } from '@/api/api-library';
-import useApiMutation from '@/api/use-api-mutation';
-import { AvatarUploader } from '@/components/avatar-uploader';
-import { AlertDialog } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Form } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Separator } from '@/components/ui/separator';
-import { useToast } from '@/hooks/useToast';
-import { useUser } from '@/hooks/useUser';
-import { UpdateUserType, updateUserSchema } from '@/models/user-model';
+import { api } from '../../../api/api-library';
+import useApiMutation from '../../../api/use-api-mutation';
+import { AvatarUploader } from '../../../components/avatar-uploader';
+import { AlertDialog } from '../../../components/ui/alert-dialog';
+import { Button } from '../../../components/ui/button';
+import { Card } from '../../../components/ui/card';
+import { Form } from '../../../components/ui/form';
+import { Input } from '../../../components/ui/input';
+import { Separator } from '../../../components/ui/separator';
+import { useToast } from '../../../hooks/useToast';
+import { useUser } from '../../../hooks/useUser';
+import { UpdateUserType, updateUserSchema } from '../../../models/user-model';
 
 export default function UserAccountPage() {
   const { toast } = useToast();

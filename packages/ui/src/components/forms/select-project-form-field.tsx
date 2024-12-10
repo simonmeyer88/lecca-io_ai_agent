@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-
+import useApiQuery from '../../api/use-api-query';
 import { Form } from '../ui/form';
 import { Select } from '../ui/select';
 import { Skeleton } from '../ui/skeleton';

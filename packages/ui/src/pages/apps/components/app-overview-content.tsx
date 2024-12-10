@@ -1,8 +1,8 @@
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { ListView } from '@/components/ui/list-view';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { WorkflowApp } from '@/models/workflow/workflow-app-model';
+import { Icons } from '../../../components/icons';
+import { Button } from '../../../components/ui/button';
+import { ListView } from '../../../components/ui/list-view';
+import { ScrollArea } from '../../../components/ui/scroll-area';
+import { WorkflowApp } from '../../../models/workflow/workflow-app-model';
 
 type Props = {
   app: WorkflowApp;

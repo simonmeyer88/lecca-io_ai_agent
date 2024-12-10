@@ -2,14 +2,14 @@ import { ColumnDef } from '@tanstack/react-table';
 import { isValid } from 'date-fns';
 import { Link } from 'react-router-dom';
 
-import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header';
-import { UpdateVariableForm } from '@/components/forms/update-variable-form';
-import { Icons } from '@/components/icons';
-import { Badge } from '@/components/ui/badge';
-import { Dialog } from '@/components/ui/dialog';
-import { Popover } from '@/components/ui/popover';
-import { Variable } from '@/models/variable-model';
-import { toLocaleDateStringOrUndefined } from '@/utils/dates';
+import { DataTableColumnHeader } from '../../../../components/data-table/data-table-column-header';
+import { UpdateVariableForm } from '../../../../components/forms/update-variable-form';
+import { Icons } from '../../../../components/icons';
+import { Badge } from '../../../../components/ui/badge';
+import { Dialog } from '../../../../components/ui/dialog';
+import { Popover } from '../../../../components/ui/popover';
+import { Variable } from '../../../../models/variable-model';
+import { toLocaleDateStringOrUndefined } from '../../../../utils/dates';
 
 import { DataTableRowActions } from './variables-table-row-actions';
 

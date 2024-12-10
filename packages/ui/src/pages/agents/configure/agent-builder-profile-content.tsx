@@ -1,11 +1,11 @@
 import { UseFormReturn } from 'react-hook-form';
 
-import { Checkbox } from '@/components/ui/checkbox';
-import { Form } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { useUser } from '@/hooks/useUser';
-import { UpdateAgentType } from '@/models/agent/agent-model';
+import { Checkbox } from '../../../components/ui/checkbox';
+import { Form } from '../../../components/ui/form';
+import { Input } from '../../../components/ui/input';
+import { Textarea } from '../../../components/ui/textarea';
+import { useUser } from '../../../hooks/useUser';
+import { UpdateAgentType } from '../../../models/agent/agent-model';
 
 type PropType = {
   form: UseFormReturn<UpdateAgentType>;

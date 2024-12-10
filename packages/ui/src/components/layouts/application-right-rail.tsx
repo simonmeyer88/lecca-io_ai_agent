@@ -1,14 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
 
-import { ResizablePanel } from '@/components/ui/resizable';
-import { Tooltip } from '@/components/ui/tooltip';
-import { useApplicationSideNav } from '@/hooks/useApplicationSideNav';
-import { useUser } from '@/hooks/useUser';
-import { cn } from '@/utils/cn';
-
+import { useApplicationSideNav } from '../../hooks/useApplicationSideNav';
+import { useUser } from '../../hooks/useUser';
+import { cn } from '../../utils/cn';
 import { Icons } from '../icons';
 import { Button, buttonVariants } from '../ui/button';
+import { ResizablePanel } from '../ui/resizable';
 import { Separator } from '../ui/separator';
+import { Tooltip } from '../ui/tooltip';
 
 export function ApplicationRightRail() {
   const { rightRailIsCollapsed } = useApplicationSideNav();

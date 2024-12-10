@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Dialog } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
+import { Button } from '../../../../components/ui/button';
+import { Card } from '../../../../components/ui/card';
+import { Dialog } from '../../../../components/ui/dialog';
+import { Input } from '../../../../components/ui/input';
 
 type Props = {
   setImageData: React.Dispatch<React.SetStateAction<string[]>>;

@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import PageLayout from '@/components/layouts/page-layout';
-import { PageSideNavLink } from '@/components/layouts/page-side-nav';
-import { Loader } from '@/components/loaders/loader';
-import { NavProjectSelector } from '@/pages/projects/components/nav-selectors/nav-project-selector';
-import { NavWorkflowSelector } from '@/pages/projects/components/nav-selectors/nav-workflow-selector';
+import useApiQuery from '../../../api/use-api-query';
+import PageLayout from '../../../components/layouts/page-layout';
+import { PageSideNavLink } from '../../../components/layouts/page-side-nav';
+import { Loader } from '../../../components/loaders/loader';
+import { NavProjectSelector } from '../../projects/components/nav-selectors/nav-project-selector';
+import { NavWorkflowSelector } from '../../projects/components/nav-selectors/nav-workflow-selector';
 
 export function WorkflowSettingsLayout() {
   const { projectId, workflowId } = useParams();

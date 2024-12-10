@@ -1,12 +1,11 @@
 import { ColumnDef } from '@tanstack/react-table';
 
-import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header';
-import { Icons } from '@/components/icons';
-import { Dialog } from '@/components/ui/dialog';
-import { Popover } from '@/components/ui/popover';
-import { KnowledgeVectorRef } from '@/models/knowledge-vector-ref-model';
-import { toLocaleDateStringOrUndefined } from '@/utils/dates';
-
+import { DataTableColumnHeader } from '../../../../../components/data-table/data-table-column-header';
+import { Icons } from '../../../../../components/icons';
+import { Dialog } from '../../../../../components/ui/dialog';
+import { Popover } from '../../../../../components/ui/popover';
+import { KnowledgeVectorRef } from '../../../../../models/knowledge-vector-ref-model';
+import { toLocaleDateStringOrUndefined } from '../../../../../utils/dates';
 import { ViewVectorRefDataContent } from '../view-vector-ref-data-content';
 
 import { DataTableRowActions } from './vector-ref-table-row-actions';

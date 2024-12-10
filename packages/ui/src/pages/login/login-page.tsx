@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { api } from '@/api/api-library';
-import { GoogleSignIn } from '@/components/google-sign-in';
-import { Button, buttonVariants } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { useToast } from '@/hooks/useToast';
-import { useUser } from '@/hooks/useUser';
-import { cn } from '@/utils/cn';
+import { api } from '../../api/api-library';
+import { GoogleSignIn } from '../../components/google-sign-in';
+import { Button, buttonVariants } from '../../components/ui/button';
+import { Input } from '../../components/ui/input';
+import { Label } from '../../components/ui/label';
+import { useToast } from '../../hooks/useToast';
+import { useUser } from '../../hooks/useUser';
+import { cn } from '../../utils/cn';
 
 export default function LoginPage() {
   const { toast } = useToast();

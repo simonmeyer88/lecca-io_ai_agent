@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { newDateOrUndefined } from '@/utils/dates';
+import { newDateOrUndefined } from '../../utils/dates';
 
 export const streamedTaskUserMessageSchema = z.object({
   id: z.string(),

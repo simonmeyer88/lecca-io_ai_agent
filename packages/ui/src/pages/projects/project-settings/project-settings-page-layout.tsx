@@ -1,11 +1,10 @@
 import React, { useMemo } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import PageLayout from '@/components/layouts/page-layout';
-import { PageSideNavLink } from '@/components/layouts/page-side-nav';
-import { Loader } from '@/components/loaders/loader';
-
+import useApiQuery from '../../../api/use-api-query';
+import PageLayout from '../../../components/layouts/page-layout';
+import { PageSideNavLink } from '../../../components/layouts/page-side-nav';
+import { Loader } from '../../../components/loaders/loader';
 import { NavProjectSelector } from '../components/nav-selectors/nav-project-selector';
 
 export function ProjectSettingsLayout() {

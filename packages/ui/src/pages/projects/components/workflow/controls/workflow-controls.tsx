@@ -1,10 +1,9 @@
 import { useCallback } from 'react';
 import { ControlButton, Panel, useReactFlow } from 'reactflow';
 
-import { Icons } from '@/components/icons';
-import { Tooltip } from '@/components/ui/tooltip';
-import { useProjectWorkflow } from '@/hooks/useProjectWorkflow';
-
+import { Icons } from '../../../../../components/icons';
+import { Tooltip } from '../../../../../components/ui/tooltip';
+import { useProjectWorkflow } from '../../../../../hooks/useProjectWorkflow';
 import { useLayoutDagre } from '../hooks/useLayoutDagre';
 
 import './workflow-controls.css';

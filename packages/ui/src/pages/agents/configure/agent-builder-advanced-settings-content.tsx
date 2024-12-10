@@ -2,26 +2,26 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { Form } from '@/components/ui/form';
-import { Select } from '@/components/ui/select';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Slider } from '@/components/ui/slider';
-import { Textarea } from '@/components/ui/textarea';
-import { Tooltip } from '@/components/ui/tooltip';
-import { useUser } from '@/hooks/useUser';
+import useApiMutation from '../../../api/use-api-mutation';
+import useApiQuery from '../../../api/use-api-query';
+import { Icons } from '../../../components/icons';
+import { Button } from '../../../components/ui/button';
+import { Form } from '../../../components/ui/form';
+import { Select } from '../../../components/ui/select';
+import { Skeleton } from '../../../components/ui/skeleton';
+import { Slider } from '../../../components/ui/slider';
+import { Textarea } from '../../../components/ui/textarea';
+import { Tooltip } from '../../../components/ui/tooltip';
+import { useUser } from '../../../hooks/useUser';
 import {
   Agent,
   UpdateAgentType,
   createAgentSchema,
-} from '@/models/agent/agent-model';
-import { AiProvider } from '@/models/ai-provider-model';
-import { Connection } from '@/models/connections-model';
-import { cn } from '@/utils/cn';
-import { debounce } from '@/utils/debounce';
+} from '../../../models/agent/agent-model';
+import { AiProvider } from '../../../models/ai-provider-model';
+import { Connection } from '../../../models/connections-model';
+import { cn } from '../../../utils/cn';
+import { debounce } from '../../../utils/debounce';
 
 type PropType = {
   agent: Agent;

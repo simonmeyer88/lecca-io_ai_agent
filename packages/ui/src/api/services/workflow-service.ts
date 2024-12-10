@@ -3,8 +3,7 @@ import {
   UpdateWorkflowType,
   Workflow,
   workflowSchema,
-} from '@/models/workflow/workflow-model';
-
+} from '../../models/workflow/workflow-model';
 import { ApiLibrary, ApiLibraryConfig, appQueryClient } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 import { WORKFLOW_MOCK } from '../mocks/workflow-mock';

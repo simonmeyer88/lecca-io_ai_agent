@@ -1,9 +1,9 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-import PageLayout from '@/components/layouts/page-layout';
-import { PageSideNavLink } from '@/components/layouts/page-side-nav';
-import { useUser } from '@/hooks/useUser';
+import PageLayout from '../../components/layouts/page-layout';
+import { PageSideNavLink } from '../../components/layouts/page-side-nav';
+import { useUser } from '../../hooks/useUser';
 
 export default function LayoutComponent() {
   const { workspace, enabledFeatures } = useUser();

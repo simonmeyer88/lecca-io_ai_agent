@@ -1,9 +1,8 @@
 import React from 'react';
 import { Edge, NodeProps, useReactFlow } from 'reactflow';
 
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-import { useProjectWorkflow } from '@/hooks/useProjectWorkflow';
-
+import { DropdownMenu } from '../../../../../../components/ui/dropdown-menu';
+import { useProjectWorkflow } from '../../../../../../hooks/useProjectWorkflow';
 import { SelectNodeTypeForm } from '../../forms/select-node-type-form';
 import { useUpdateFlow } from '../../hooks/useUpdateFlow';
 

@@ -10,7 +10,7 @@ import {
   useStore,
 } from 'reactflow';
 
-import { WorkflowOrientation } from '@/models/workspace-user-preferences-model';
+import { WorkflowOrientation } from '../../../../../models/workspace-user-preferences-model';
 
 // initialize the tree layout (see https://observablehq.com/@d3/tree for examples)
 const horizontalLayout = tree<Node>()

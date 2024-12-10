@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-
+import { Icons } from '../../../../components/icons';
+import { Button } from '../../../../components/ui/button';
 import { HomeSummaryCard } from '../home-summary-card';
 
 export function BillingSummaryCard() {

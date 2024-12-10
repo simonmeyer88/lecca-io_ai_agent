@@ -1,22 +1,22 @@
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import { useState } from 'react';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
-import { InviteUsertoWorkspaceForm } from '@/components/forms/invite-user-to-workspace-form';
-import { Icons } from '@/components/icons';
-import PageLayout from '@/components/layouts/page-layout';
-import { GridLoader } from '@/components/loaders/grid-loader';
-import { AlertDialog } from '@/components/ui/alert-dialog';
-import { Avatar } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Dialog } from '@/components/ui/dialog';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-import { Input } from '@/components/ui/input';
-import { Skeleton } from '@/components/ui/skeleton';
-import { useToast } from '@/hooks/useToast';
-import { useUser } from '@/hooks/useUser';
+import useApiMutation from '../../api/use-api-mutation';
+import useApiQuery from '../../api/use-api-query';
+import { InviteUsertoWorkspaceForm } from '../../components/forms/invite-user-to-workspace-form';
+import { Icons } from '../../components/icons';
+import PageLayout from '../../components/layouts/page-layout';
+import { GridLoader } from '../../components/loaders/grid-loader';
+import { AlertDialog } from '../../components/ui/alert-dialog';
+import { Avatar } from '../../components/ui/avatar';
+import { Button } from '../../components/ui/button';
+import { Card } from '../../components/ui/card';
+import { Dialog } from '../../components/ui/dialog';
+import { DropdownMenu } from '../../components/ui/dropdown-menu';
+import { Input } from '../../components/ui/input';
+import { Skeleton } from '../../components/ui/skeleton';
+import { useToast } from '../../hooks/useToast';
+import { useUser } from '../../hooks/useUser';
 
 export function TeamMembersPage() {
   const { workspaceUser: currentWorkspaceUser } = useUser();

@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import useApiMutation from '@/api/use-api-mutation';
-import { useUser } from '@/hooks/useUser';
-import { WorkspaceInvitation } from '@/models/workspace-invitation-model';
-
+import useApiMutation from '../../api/use-api-mutation';
+import { useUser } from '../../hooks/useUser';
+import { WorkspaceInvitation } from '../../models/workspace-invitation-model';
 import { Button } from '../ui/button';
 import { Card } from '../ui/card';
 

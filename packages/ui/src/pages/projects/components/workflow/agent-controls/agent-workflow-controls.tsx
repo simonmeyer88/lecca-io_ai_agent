@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { ControlButton, Panel, useReactFlow } from 'reactflow';
 
-import { Icons } from '@/components/icons';
+import { Icons } from '../../../../../components/icons';
 
 import './workflow-controls.css';
 

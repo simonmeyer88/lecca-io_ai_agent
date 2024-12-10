@@ -1,22 +1,22 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
-import { CreateProjectForm } from '@/components/forms/create-project-form';
-import { InviteUsertoWorkspaceForm } from '@/components/forms/invite-user-to-workspace-form';
-import { SelectProjectForAgentForm } from '@/components/forms/select-project-for-agent-form';
-import { SelectProjectForWorkflowForm } from '@/components/forms/select-project-for-workflow-form';
-import { Icons } from '@/components/icons';
-import { Avatar } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { ListView } from '@/components/ui/list-view';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { useToast } from '@/hooks/useToast';
-import { useUser } from '@/hooks/useUser';
-import { WorkspaceInvitation } from '@/models/workspace-invitation-model';
-import { Workspace } from '@/models/workspace-model';
+import useApiMutation from '../../api/use-api-mutation';
+import useApiQuery from '../../api/use-api-query';
+import { CreateProjectForm } from '../../components/forms/create-project-form';
+import { InviteUsertoWorkspaceForm } from '../../components/forms/invite-user-to-workspace-form';
+import { SelectProjectForAgentForm } from '../../components/forms/select-project-for-agent-form';
+import { SelectProjectForWorkflowForm } from '../../components/forms/select-project-for-workflow-form';
+import { Icons } from '../../components/icons';
+import { Avatar } from '../../components/ui/avatar';
+import { Button } from '../../components/ui/button';
+import { Dialog } from '../../components/ui/dialog';
+import { ListView } from '../../components/ui/list-view';
+import { ScrollArea } from '../../components/ui/scroll-area';
+import { useToast } from '../../hooks/useToast';
+import { useUser } from '../../hooks/useUser';
+import { WorkspaceInvitation } from '../../models/workspace-invitation-model';
+import { Workspace } from '../../models/workspace-model';
 
 import { HomeSection } from './components/home-section';
 import { HomeSectionRecentWorkflows } from './components/home-sections/home-section-recent-workflows';

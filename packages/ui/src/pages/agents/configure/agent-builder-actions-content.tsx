@@ -3,21 +3,21 @@ import { useCallback, useMemo } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { DataTable } from '@/components/data-table/data-table';
-import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header';
-import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { Icons } from '@/components/icons';
-import { AlertDialog } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-import { Form } from '@/components/ui/form';
-import { Popover } from '@/components/ui/popover';
-import { UpdateAgentType } from '@/models/agent/agent-model';
-import { Connection } from '@/models/connections-model';
-import { WorkflowAppActionType } from '@/models/workflow/workflow-app-action-model';
-import { WorkflowApp } from '@/models/workflow/workflow-app-model';
+import useApiQuery from '../../../api/use-api-query';
+import { DataTable } from '../../../components/data-table/data-table';
+import { DataTableColumnHeader } from '../../../components/data-table/data-table-column-header';
+import { EmptyPlaceholder } from '../../../components/empty-placeholder';
+import { Icons } from '../../../components/icons';
+import { AlertDialog } from '../../../components/ui/alert-dialog';
+import { Button } from '../../../components/ui/button';
+import { Dialog } from '../../../components/ui/dialog';
+import { DropdownMenu } from '../../../components/ui/dropdown-menu';
+import { Form } from '../../../components/ui/form';
+import { Popover } from '../../../components/ui/popover';
+import { UpdateAgentType } from '../../../models/agent/agent-model';
+import { Connection } from '../../../models/connections-model';
+import { WorkflowAppActionType } from '../../../models/workflow/workflow-app-action-model';
+import { WorkflowApp } from '../../../models/workflow/workflow-app-model';
 
 import { AddAgentActionForm } from './add-agent-action-form';
 

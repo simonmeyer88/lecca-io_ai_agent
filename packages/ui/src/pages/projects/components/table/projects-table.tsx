@@ -1,13 +1,13 @@
 import React from 'react';
 
-import useApiQuery from '@/api/use-api-query';
-import { DataTable } from '@/components/data-table/data-table';
-import { DataTableToolbarAction } from '@/components/data-table/data-table-toolbar-action';
-import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { CreateProjectForm } from '@/components/forms/create-project-form';
-import { Icons } from '@/components/icons';
-import { Dialog } from '@/components/ui/dialog';
-import { useUser } from '@/hooks/useUser';
+import useApiQuery from '../../../../api/use-api-query';
+import { DataTable } from '../../../../components/data-table/data-table';
+import { DataTableToolbarAction } from '../../../../components/data-table/data-table-toolbar-action';
+import { EmptyPlaceholder } from '../../../../components/empty-placeholder';
+import { CreateProjectForm } from '../../../../components/forms/create-project-form';
+import { Icons } from '../../../../components/icons';
+import { Dialog } from '../../../../components/ui/dialog';
+import { useUser } from '../../../../hooks/useUser';
 
 import { columns } from './projects-table-columns';
 

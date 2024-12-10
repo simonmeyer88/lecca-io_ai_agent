@@ -2,13 +2,13 @@
 import React, { useState } from 'react';
 import { useReactFlow } from 'reactflow';
 
-import { api } from '@/api/api-library';
-import useApiQuery from '@/api/use-api-query';
-import { useToast } from '@/hooks/useToast';
-import { Agent } from '@/models/agent/agent-model';
-import { WorkflowApp } from '@/models/workflow/workflow-app-model';
-import { Workflow } from '@/models/workflow/workflow-model';
-import { useUndoRedo } from '@/pages/projects/components/workflow/hooks/useUndoRedo';
+import { api } from '../../api/api-library';
+import useApiQuery from '../../api/use-api-query';
+import { useToast } from '../../hooks/useToast';
+import { Agent } from '../../models/agent/agent-model';
+import { WorkflowApp } from '../../models/workflow/workflow-app-model';
+import { Workflow } from '../../models/workflow/workflow-model';
+import { useUndoRedo } from '../../pages/projects/components/workflow/hooks/useUndoRedo';
 
 type ProjectWorkflowContextProps = {
   workflowApps?: WorkflowApp[];

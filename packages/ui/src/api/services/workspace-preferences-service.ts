@@ -2,8 +2,7 @@ import {
   UpdateWorkspacePreferencesType,
   WorkspacePreferences,
   workspacePreferencesSchema,
-} from '@/models/workspace-preferences-model';
-
+} from '../../models/workspace-preferences-model';
 import { ApiLibrary, ApiLibraryConfig, appQueryClient } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 

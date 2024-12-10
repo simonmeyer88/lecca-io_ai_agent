@@ -1,5 +1,5 @@
-import { Agent } from '@/models/agent/agent-model';
-import { AgentWorkflow } from '@/pages/projects/components/agent/agent-workflow';
+import { Agent } from '../../../models/agent/agent-model';
+import { AgentWorkflow } from '../../projects/components/agent/agent-workflow';
 
 export function AgentWorkflowContainer({
   agent,

@@ -1,6 +1,6 @@
-import { Card } from '@/components/ui/card';
-import { Carousel } from '@/components/ui/carousel';
-import { YoutubeIframe } from '@/components/youtube-iframe';
+import { Card } from '../../../components/ui/card';
+import { Carousel } from '../../../components/ui/carousel';
+import { YoutubeIframe } from '../../../components/youtube-iframe';
 
 type LearningItem = {
   title: string;

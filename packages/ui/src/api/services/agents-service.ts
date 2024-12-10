@@ -3,9 +3,8 @@ import {
   CreateAgentType,
   UpdateAgentType,
   agentSchema,
-} from '@/models/agent/agent-model';
-import { MessageTaskType } from '@/models/task/task-model';
-
+} from '../../models/agent/agent-model';
+import { MessageTaskType } from '../../models/task/task-model';
 import { ApiLibrary, ApiLibraryConfig, appQueryClient } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 

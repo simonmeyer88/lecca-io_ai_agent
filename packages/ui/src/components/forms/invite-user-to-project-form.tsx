@@ -2,14 +2,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
-import { useToast } from '@/hooks/useToast';
+import useApiMutation from '../../api/use-api-mutation';
+import useApiQuery from '../../api/use-api-query';
+import { useToast } from '../../hooks/useToast';
 import {
   CreateProjectInvitationType,
   createProjectInvitationSchema,
-} from '@/models/project/project-invitation-model';
-
+} from '../../models/project/project-invitation-model';
 import { Icons } from '../icons';
 import { Button } from '../ui/button';
 import { ComboBox } from '../ui/combo-box';

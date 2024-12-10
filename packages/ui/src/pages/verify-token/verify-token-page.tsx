@@ -1,9 +1,9 @@
 import { useCallback, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { api } from '@/api/api-library';
-import { Loader } from '@/components/loaders/loader';
-import { useUser } from '@/hooks/useUser';
+import { api } from '../../api/api-library';
+import { Loader } from '../../components/loaders/loader';
+import { useUser } from '../../hooks/useUser';
 
 export function VerifyTokenPage() {
   const [searchParams] = useSearchParams();

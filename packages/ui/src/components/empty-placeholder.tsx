@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
-import { Button } from '@/components/ui/button';
-import { cn } from '@/utils/cn';
+import { cn } from '../utils/cn';
 
+import { Button } from './ui/button';
 import { Dialog } from './ui/dialog';
 
 type EmptyPlaceholderProps = {

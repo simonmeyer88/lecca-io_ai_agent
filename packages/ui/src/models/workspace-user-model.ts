@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { newDateOrUndefined } from '@/utils/dates';
+import { newDateOrUndefined } from '../utils/dates';
 
 import { userSchema } from './user-model';
 

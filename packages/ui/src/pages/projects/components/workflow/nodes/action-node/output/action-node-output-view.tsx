@@ -1,7 +1,7 @@
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { Form } from '@/components/ui/form';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { Icons } from '../../../../../../../components/icons';
+import { Button } from '../../../../../../../components/ui/button';
+import { Form } from '../../../../../../../components/ui/form';
+import { ScrollArea } from '../../../../../../../components/ui/scroll-area';
 
 import { OutputSelector } from './output-selector';
 

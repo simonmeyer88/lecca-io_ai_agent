@@ -1,12 +1,12 @@
 import { CheckIcon } from '@radix-ui/react-icons';
 import React from 'react';
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Command } from '@/components/ui/command';
-import { Popover } from '@/components/ui/popover';
-import { Separator } from '@/components/ui/separator';
-import { cn } from '@/utils/cn';
+import { cn } from '../../utils/cn';
+import { Badge } from '../ui/badge';
+import { Button } from '../ui/button';
+import { Command } from '../ui/command';
+import { Popover } from '../ui/popover';
+import { Separator } from '../ui/separator';
 
 export function DataTableToolbarAction(props: {
   title: string;

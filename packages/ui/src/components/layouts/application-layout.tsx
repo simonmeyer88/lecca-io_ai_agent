@@ -1,14 +1,8 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-import NavigationBar from '@/components/layouts/application-nav';
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from '@/components/ui/resizable';
-import { useApplicationSideNav } from '@/hooks/useApplicationSideNav';
-import { useUser } from '@/hooks/useUser';
-
+import NavigationBar from '../../components/layouts/application-nav';
+import { useApplicationSideNav } from '../../hooks/useApplicationSideNav';
+import { useUser } from '../../hooks/useUser';
 import { ErrorBoundary } from '../error-boundary/error-boundary';
 import { Icons } from '../icons';
 import { OnboardingCard } from '../onboarda/OnboardingCard';
@@ -16,6 +10,11 @@ import { tours } from '../onboarda/OnboardingTours';
 import Onborda from '../onboarda/Onborda';
 import { OnbordaProvider } from '../onboarda/OnbordaContext';
 import { Button } from '../ui/button';
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from '../ui/resizable';
 import { Tooltip } from '../ui/tooltip';
 
 import { ApplicationSideNav } from './application-side-nav';

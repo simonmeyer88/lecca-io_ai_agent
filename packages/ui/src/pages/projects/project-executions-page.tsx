@@ -1,13 +1,12 @@
 import { useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { DataTable } from '@/components/data-table/data-table';
-import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { Icons } from '@/components/icons';
-import PageLayout from '@/components/layouts/page-layout';
-import { PageLoader } from '@/components/loaders/page-loader';
-import { TableLoader } from '@/components/loaders/table-loader';
-
+import useApiQuery from '../../api/use-api-query';
+import { DataTable } from '../../components/data-table/data-table';
+import { EmptyPlaceholder } from '../../components/empty-placeholder';
+import { Icons } from '../../components/icons';
+import PageLayout from '../../components/layouts/page-layout';
+import { PageLoader } from '../../components/loaders/page-loader';
+import { TableLoader } from '../../components/loaders/table-loader';
 import { columns } from '../executions/components/table/executions-table-columns';
 
 import { NavProjectSelector } from './components/nav-selectors/nav-project-selector';

@@ -2,11 +2,11 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { Edge, Node, useReactFlow } from 'reactflow';
 
-import { DynamicInput } from '@/components/dynamic-input/dynamic-input';
-import { ComboBox } from '@/components/ui/combo-box';
-import { Form } from '@/components/ui/form';
-import { FieldConfig } from '@/models/workflow/input-config-model';
-import { cn } from '@/utils/cn';
+import { DynamicInput } from '../../../../../../../components/dynamic-input/dynamic-input';
+import { ComboBox } from '../../../../../../../components/ui/combo-box';
+import { Form } from '../../../../../../../components/ui/form';
+import { FieldConfig } from '../../../../../../../models/workflow/input-config-model';
+import { cn } from '../../../../../../../utils/cn';
 
 export function DecidePathsFormFields({
   form,

@@ -2,19 +2,19 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import useApiMutation from '@/api/use-api-mutation';
-import { Button } from '@/components/ui/button';
-import { Form } from '@/components/ui/form';
-import { MultiSelect } from '@/components/ui/multi-select';
-import { Separator } from '@/components/ui/separator';
-import { ToastAction } from '@/components/ui/toast';
-import { toast } from '@/hooks/useToast';
-import { useUser } from '@/hooks/useUser';
+import useApiMutation from '../../api/use-api-mutation';
+import { Button } from '../../components/ui/button';
+import { Form } from '../../components/ui/form';
+import { MultiSelect } from '../../components/ui/multi-select';
+import { Separator } from '../../components/ui/separator';
+import { ToastAction } from '../../components/ui/toast';
+import { toast } from '../../hooks/useToast';
+import { useUser } from '../../hooks/useUser';
 import {
   FEATURES_THAT_CAN_BE_DISABLED,
   UpdateWorkspacePreferencesType,
   updateWorkspacePreferencesSchema,
-} from '@/models/workspace-preferences-model';
+} from '../../models/workspace-preferences-model';
 
 export default function WorkspacePreferencesPage() {
   const { workspacePreferences, setWorkspacePreferences } = useUser();

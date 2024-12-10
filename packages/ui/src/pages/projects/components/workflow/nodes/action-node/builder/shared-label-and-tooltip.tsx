@@ -1,7 +1,7 @@
-import { Icons } from '@/components/icons';
-import { Form } from '@/components/ui/form';
-import { Tooltip } from '@/components/ui/tooltip';
-import { cn } from '@/utils/cn';
+import { Icons } from '../../../../../../../components/icons';
+import { Form } from '../../../../../../../components/ui/form';
+import { Tooltip } from '../../../../../../../components/ui/tooltip';
+import { cn } from '../../../../../../../utils/cn';
 
 export const SharedLabelAndTooltip = ({
   label,

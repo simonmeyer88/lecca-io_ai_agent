@@ -2,13 +2,12 @@ import React, { useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { Handle, NodeProps, Position, useReactFlow } from 'reactflow';
 
-import { ErrorBoundary } from '@/components/error-boundary/error-boundary';
-import { Icons } from '@/components/icons';
-import { ContextMenu } from '@/components/ui/context-menu';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-import { useProjectWorkflow } from '@/hooks/useProjectWorkflow';
-import { cn } from '@/utils/cn';
-
+import { ErrorBoundary } from '../../../../../../components/error-boundary/error-boundary';
+import { Icons } from '../../../../../../components/icons';
+import { ContextMenu } from '../../../../../../components/ui/context-menu';
+import { DropdownMenu } from '../../../../../../components/ui/dropdown-menu';
+import { useProjectWorkflow } from '../../../../../../hooks/useProjectWorkflow';
+import { cn } from '../../../../../../utils/cn';
 import { SelectNodeTypeForm } from '../../forms/select-node-type-form';
 import { useGetNodeStatus } from '../../hooks/useGetNodeStatus';
 import { useUpdateFlow } from '../../hooks/useUpdateFlow';

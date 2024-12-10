@@ -1,15 +1,15 @@
 import { useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { UploadFileKnowledgeForm } from '@/components/forms/upload-file-knowledge-form';
-import { UploadRawTextKnowledgeForm } from '@/components/forms/upload-raw-text-knowledge-form';
-import { Icons } from '@/components/icons';
-import PageLayout from '@/components/layouts/page-layout';
-import { Loader } from '@/components/loaders/loader';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-import { NavKnowledgeSelector } from '@/pages/projects/components/nav-selectors/nav-knowledge-selector';
+import useApiQuery from '../../../api/use-api-query';
+import { UploadFileKnowledgeForm } from '../../../components/forms/upload-file-knowledge-form';
+import { UploadRawTextKnowledgeForm } from '../../../components/forms/upload-raw-text-knowledge-form';
+import { Icons } from '../../../components/icons';
+import PageLayout from '../../../components/layouts/page-layout';
+import { Loader } from '../../../components/loaders/loader';
+import { Button } from '../../../components/ui/button';
+import { Dialog } from '../../../components/ui/dialog';
+import { DropdownMenu } from '../../../components/ui/dropdown-menu';
+import { NavKnowledgeSelector } from '../../projects/components/nav-selectors/nav-knowledge-selector';
 
 import { VectorRefTable } from './components/table/vector-ref-table';
 

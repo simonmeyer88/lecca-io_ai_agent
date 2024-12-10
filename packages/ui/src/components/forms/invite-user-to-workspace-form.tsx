@@ -3,14 +3,13 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-import useApiMutation from '@/api/use-api-mutation';
-import { useToast } from '@/hooks/useToast';
-import { useUser } from '@/hooks/useUser';
+import useApiMutation from '../../api/use-api-mutation';
+import { useToast } from '../../hooks/useToast';
+import { useUser } from '../../hooks/useUser';
 import {
   CreateWorkspaceInvitationType,
   createWorkspaceInvitationSchema,
-} from '@/models/workspace-invitation-model';
-
+} from '../../models/workspace-invitation-model';
 import { Icons } from '../icons';
 import { Button } from '../ui/button';
 import { Dialog } from '../ui/dialog';

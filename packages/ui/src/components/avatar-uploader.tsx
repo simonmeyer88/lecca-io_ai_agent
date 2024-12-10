@@ -1,9 +1,8 @@
 import React from 'react';
 import Resizer from 'react-image-file-resizer';
 
-import { Icons } from '@/components/icons';
-import { Avatar } from '@/components/ui/avatar';
-
+import { Icons } from './icons';
+import { Avatar } from './ui/avatar';
 import { Button } from './ui/button';
 
 export function AvatarUploader({

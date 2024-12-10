@@ -1,8 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 
-import { Workflow } from '@/models/workflow/workflow-model';
-import { cn } from '@/utils/cn';
-
+import { Workflow } from '../../models/workflow/workflow-model';
+import { cn } from '../../utils/cn';
 import { WorkflowDropdownMenu } from '../dropdown-menus/workflow-dropdown-menu';
 import { EmptyPlaceholder } from '../empty-placeholder';
 import { Icons } from '../icons';

@@ -1,5 +1,4 @@
-import { Credit, creditSchema } from '@/models/credits-model';
-
+import { Credit, creditSchema } from '../../models/credits-model';
 import { ApiLibrary, ApiLibraryConfig } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 

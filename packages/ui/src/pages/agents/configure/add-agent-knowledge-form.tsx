@@ -4,13 +4,13 @@ import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { z } from 'zod';
 
-import useApiQuery from '@/api/use-api-query';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { ComboBox } from '@/components/ui/combo-box';
-import { Dialog } from '@/components/ui/dialog';
-import { Form } from '@/components/ui/form';
-import { Skeleton } from '@/components/ui/skeleton';
+import useApiQuery from '../../../api/use-api-query';
+import { Icons } from '../../../components/icons';
+import { Button } from '../../../components/ui/button';
+import { ComboBox } from '../../../components/ui/combo-box';
+import { Dialog } from '../../../components/ui/dialog';
+import { Form } from '../../../components/ui/form';
+import { Skeleton } from '../../../components/ui/skeleton';
 
 const selectAgentSchema = z.object({
   knowledgeId: z.string().uuid(),

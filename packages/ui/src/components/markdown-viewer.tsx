@@ -4,8 +4,8 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { darcula as darkTheme } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { oneLight as lightTheme } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-import { useUser } from '@/hooks/useUser';
-import { cn } from '@/utils/cn';
+import { useUser } from '../hooks/useUser';
+import { cn } from '../utils/cn';
 
 import { Icons } from './icons';
 import { Button } from './ui/button';

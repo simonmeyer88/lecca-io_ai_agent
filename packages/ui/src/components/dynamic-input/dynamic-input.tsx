@@ -11,9 +11,8 @@ import { isValid } from 'date-fns';
 import React, { useMemo } from 'react';
 import { Node as ReactFlowNode, useReactFlow } from 'reactflow';
 
-import useApiQuery from '@/api/use-api-query';
-import { cn } from '@/utils/cn';
-
+import useApiQuery from '../../api/use-api-query';
+import { cn } from '../../utils/cn';
 import { Icons } from '../icons';
 import { Popover } from '../ui/popover';
 import { Separator } from '../ui/separator';

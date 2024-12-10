@@ -1,8 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
-import useApiMutation from '@/api/use-api-mutation';
-import { toast } from '@/hooks/useToast';
-
+import useApiMutation from '../../api/use-api-mutation';
+import { toast } from '../../hooks/useToast';
 import { Icons } from '../icons';
 import { Button } from '../ui/button';
 import { DropdownMenu } from '../ui/dropdown-menu';

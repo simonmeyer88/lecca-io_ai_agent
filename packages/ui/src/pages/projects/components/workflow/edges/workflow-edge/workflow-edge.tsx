@@ -6,10 +6,9 @@ import {
   getSimpleBezierPath,
 } from 'reactflow';
 
-import { Icons } from '@/components/icons';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-import { useProjectWorkflow } from '@/hooks/useProjectWorkflow';
-
+import { Icons } from '../../../../../../components/icons';
+import { DropdownMenu } from '../../../../../../components/ui/dropdown-menu';
+import { useProjectWorkflow } from '../../../../../../hooks/useProjectWorkflow';
 import { SelectNodeTypeForm } from '../../forms/select-node-type-form';
 import { useUpdateFlow } from '../../hooks/useUpdateFlow';
 import '../edge-types.css';

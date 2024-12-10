@@ -1,13 +1,12 @@
 import confetti from 'canvas-confetti';
 import React from 'react';
 
-import useApiMutation from '@/api/use-api-mutation';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { useUser } from '@/hooks/useUser';
-import { User } from '@/models/user-model';
-
+import useApiMutation from '../../api/use-api-mutation';
+import { useUser } from '../../hooks/useUser';
+import { User } from '../../models/user-model';
 import { Icons } from '../icons';
+import { Button } from '../ui/button';
+import { Card } from '../ui/card';
 
 import { useOnborda } from './OnbordaContext';
 import { CardComponentProps } from './types';

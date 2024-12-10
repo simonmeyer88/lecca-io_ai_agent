@@ -1,12 +1,12 @@
-import useApiQuery from '@/api/use-api-query';
-import { DataTable } from '@/components/data-table/data-table';
-import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { UploadFileKnowledgeForm } from '@/components/forms/upload-file-knowledge-form';
-import { UploadRawTextKnowledgeForm } from '@/components/forms/upload-raw-text-knowledge-form';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
+import useApiQuery from '../../../../../api/use-api-query';
+import { DataTable } from '../../../../../components/data-table/data-table';
+import { EmptyPlaceholder } from '../../../../../components/empty-placeholder';
+import { UploadFileKnowledgeForm } from '../../../../../components/forms/upload-file-knowledge-form';
+import { UploadRawTextKnowledgeForm } from '../../../../../components/forms/upload-raw-text-knowledge-form';
+import { Icons } from '../../../../../components/icons';
+import { Button } from '../../../../../components/ui/button';
+import { Dialog } from '../../../../../components/ui/dialog';
+import { DropdownMenu } from '../../../../../components/ui/dropdown-menu';
 
 import { columns } from './vector-ref-table-columns';
 

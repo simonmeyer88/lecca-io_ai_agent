@@ -3,13 +3,12 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
+import useApiMutation from '../../api/use-api-mutation';
+import useApiQuery from '../../api/use-api-query';
 import {
   CreateProjectType,
   createProjectSchema,
-} from '@/models/project/project-model';
-
+} from '../../models/project/project-model';
 import { Icons } from '../icons';
 import { Button } from '../ui/button';
 import { Dialog } from '../ui/dialog';

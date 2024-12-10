@@ -4,13 +4,13 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-import { api } from '@/api/api-library';
-import { GoogleSignIn } from '@/components/google-sign-in';
-import { Button, buttonVariants } from '@/components/ui/button';
-import { Form } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { CreateUserType, createUserSchema } from '@/models/user-model';
-import { cn } from '@/utils/cn';
+import { api } from '../../api/api-library';
+import { GoogleSignIn } from '../../components/google-sign-in';
+import { Button, buttonVariants } from '../../components/ui/button';
+import { Form } from '../../components/ui/form';
+import { Input } from '../../components/ui/input';
+import { CreateUserType, createUserSchema } from '../../models/user-model';
+import { cn } from '../../utils/cn';
 
 export function WelcomePage() {
   const navigate = useNavigate();

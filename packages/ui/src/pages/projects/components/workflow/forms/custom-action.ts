@@ -1,4 +1,4 @@
-import { WorkflowApp } from '@/models/workflow/workflow-app-model';
+import { WorkflowApp } from '../../../../../models/workflow/workflow-app-model';
 
 export const CUSTOM_ACTIONS: WorkflowApp['actions'] = [
   {

@@ -2,17 +2,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import useApiMutation from '@/api/use-api-mutation';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { Form } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import useApiMutation from '../../../../api/use-api-mutation';
+import { Icons } from '../../../../components/icons';
+import { Button } from '../../../../components/ui/button';
+import { Form } from '../../../../components/ui/form';
+import { Input } from '../../../../components/ui/input';
 import {
   Agent,
   UpdateAgentType,
   createAgentSchema,
-} from '@/models/agent/agent-model';
-import { debounce } from '@/utils/debounce';
+} from '../../../../models/agent/agent-model';
+import { debounce } from '../../../../utils/debounce';
 
 type NewChatWelcomeProps = {
   agent: Agent;

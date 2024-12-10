@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { api, appQueryClient } from '@/api/api-library';
-import { useProjectWorkflow } from '@/hooks/useProjectWorkflow';
-import { Execution } from '@/models/execution-model';
+import { api, appQueryClient } from '../../api/api-library';
+import { useProjectWorkflow } from '../../hooks/useProjectWorkflow';
+import { Execution } from '../../models/execution-model';
 
 export function ExecutionProvider({ children }: { children: React.ReactNode }) {
   const { executionId, projectId } = useParams();

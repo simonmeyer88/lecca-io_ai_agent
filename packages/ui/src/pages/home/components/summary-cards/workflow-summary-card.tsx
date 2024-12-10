@@ -1,10 +1,9 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-
+import useApiQuery from '../../../../api/use-api-query';
+import { Icons } from '../../../../components/icons';
+import { Button } from '../../../../components/ui/button';
 import { HomeSummaryCard } from '../home-summary-card';
 
 export function WorkflowSummaryCard() {

@@ -1,8 +1,7 @@
 import { Node, NodeProps, useReactFlow } from 'reactflow';
 import { v4 } from 'uuid';
 
-import { useProjectWorkflow } from '@/hooks/useProjectWorkflow';
-
+import { useProjectWorkflow } from '../../../../../hooks/useProjectWorkflow';
 import { setActionNodeData, setTriggerNodeData } from '../nodes/node-utils';
 
 // this hook implements the logic for clicking a placeholder node

@@ -3,8 +3,7 @@ import {
   UpdateWorkspaceInvitationType,
   WorkspaceInvitation,
   workspaceInvitationSchema,
-} from '@/models/workspace-invitation-model';
-
+} from '../../models/workspace-invitation-model';
 import { ApiLibrary, ApiLibraryConfig, appQueryClient } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 

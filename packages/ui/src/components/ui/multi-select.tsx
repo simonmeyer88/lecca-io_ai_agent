@@ -1,12 +1,11 @@
 import { Command as CommandPrimitive } from 'cmdk';
 import * as React from 'react';
 
-import { Badge } from '@/components/ui/badge';
-import { Command } from '@/components/ui/command';
-import { cn } from '@/utils/cn';
-
+import { cn } from '../../utils/cn';
 import { Icons } from '../icons';
 
+import { Badge } from './badge';
+import { Command } from './command';
 import { ScrollArea } from './scroll-area';
 
 type Item = {

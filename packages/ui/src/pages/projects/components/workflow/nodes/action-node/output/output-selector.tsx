@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 import { JSONTree } from 'react-json-tree';
 
-import { Icons } from '@/components/icons';
-import { JsonViewer } from '@/components/json-viewer';
-import { Button } from '@/components/ui/button';
-import { useUser } from '@/hooks/useUser';
+import { Icons } from '../../../../../../../components/icons';
+import { JsonViewer } from '../../../../../../../components/json-viewer';
+import { Button } from '../../../../../../../components/ui/button';
+import { useUser } from '../../../../../../../hooks/useUser';
 
 export type OutputSelectorOnClickArgs = {
   path: any;

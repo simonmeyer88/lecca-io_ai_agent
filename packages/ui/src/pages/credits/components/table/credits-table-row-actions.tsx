@@ -1,11 +1,10 @@
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import { Row } from '@tanstack/react-table';
 
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-import { Credit } from '@/models/credits-model';
-
+import { Button } from '../../../../components/ui/button';
+import { Dialog } from '../../../../components/ui/dialog';
+import { DropdownMenu } from '../../../../components/ui/dropdown-menu';
+import { Credit } from '../../../../models/credits-model';
 import { CreditDetailsDialogContent } from '../credit-details-dialog-content';
 
 export function DataTableRowActions({ row }: { row: Row<Credit> }) {

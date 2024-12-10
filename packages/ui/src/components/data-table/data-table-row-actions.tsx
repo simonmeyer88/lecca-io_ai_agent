@@ -1,11 +1,11 @@
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import { Row } from '@tanstack/react-table';
 
-import { labels } from '@/components/data-table/data/data';
-import { Button } from '@/components/ui/button';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-
 import { AlertDialog } from '../ui/alert-dialog';
+import { Button } from '../ui/button';
+import { DropdownMenu } from '../ui/dropdown-menu';
+
+import { labels } from './data/data';
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;

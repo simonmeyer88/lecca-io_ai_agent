@@ -6,14 +6,13 @@ import { useDropzone } from 'react-dropzone';
 import { UseFormReturn, useForm } from 'react-hook-form';
 import pdfToText from 'react-pdftotext';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
-import { useToast } from '@/hooks/useToast';
+import useApiMutation from '../../api/use-api-mutation';
+import useApiQuery from '../../api/use-api-query';
+import { useToast } from '../../hooks/useToast';
 import {
   UploadFileKnowledgeType,
   uploadFileKnowledgeSchema,
-} from '@/models/knowledge-model';
-
+} from '../../models/knowledge-model';
 import { Icons } from '../icons';
 import { Accordion } from '../ui/accordion';
 import { Button } from '../ui/button';

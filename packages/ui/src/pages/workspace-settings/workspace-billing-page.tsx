@@ -1,16 +1,16 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { api } from '@/api/api-library';
-import useApiQuery from '@/api/use-api-query';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Tabs } from '@/components/ui/tabs';
-import { useUser } from '@/hooks/useUser';
-import { cn } from '@/utils/cn';
+import { api } from '../../api/api-library';
+import useApiQuery from '../../api/use-api-query';
+import { Icons } from '../../components/icons';
+import { Button } from '../../components/ui/button';
+import { Card } from '../../components/ui/card';
+import { Separator } from '../../components/ui/separator';
+import { Skeleton } from '../../components/ui/skeleton';
+import { Tabs } from '../../components/ui/tabs';
+import { useUser } from '../../hooks/useUser';
+import { cn } from '../../utils/cn';
 
 export function WorkspaceBillingPage() {
   const [searchParams] = useSearchParams();

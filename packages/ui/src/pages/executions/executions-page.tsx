@@ -1,4 +1,4 @@
-import PageLayout from '@/components/layouts/page-layout';
+import PageLayout from '../../components/layouts/page-layout';
 
 import ExecutionsTable from './components/table/executions-table';
 

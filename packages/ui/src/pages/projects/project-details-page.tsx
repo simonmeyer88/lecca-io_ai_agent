@@ -1,18 +1,18 @@
 import { Link, useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { InviteUserToProjectForm } from '@/components/forms/invite-user-to-project-form';
-import { SelectProjectForAgentForm } from '@/components/forms/select-project-for-agent-form';
-import { Icons } from '@/components/icons';
-import PageLayout from '@/components/layouts/page-layout';
-import { ListViewLoader } from '@/components/loaders/list-view-loader';
-import { Loader } from '@/components/loaders/loader';
-import { Avatar } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { ListView } from '@/components/ui/list-view';
-import { Separator } from '@/components/ui/separator';
-import { useUser } from '@/hooks/useUser';
+import useApiQuery from '../../api/use-api-query';
+import { InviteUserToProjectForm } from '../../components/forms/invite-user-to-project-form';
+import { SelectProjectForAgentForm } from '../../components/forms/select-project-for-agent-form';
+import { Icons } from '../../components/icons';
+import PageLayout from '../../components/layouts/page-layout';
+import { ListViewLoader } from '../../components/loaders/list-view-loader';
+import { Loader } from '../../components/loaders/loader';
+import { Avatar } from '../../components/ui/avatar';
+import { Button } from '../../components/ui/button';
+import { Dialog } from '../../components/ui/dialog';
+import { ListView } from '../../components/ui/list-view';
+import { Separator } from '../../components/ui/separator';
+import { useUser } from '../../hooks/useUser';
 
 import { NavProjectSelector } from './components/nav-selectors/nav-project-selector';
 import { ProjectDetailsSectionRecentWorkflows } from './components/project-details-sections/project-details-section-active-workflows';

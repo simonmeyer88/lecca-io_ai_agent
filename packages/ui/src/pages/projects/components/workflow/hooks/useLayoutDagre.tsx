@@ -3,7 +3,7 @@ import { timer } from 'd3-timer';
 import { useRef } from 'react';
 import { Edge, Node, useNodesInitialized, useReactFlow } from 'reactflow';
 
-import { WorkflowOrientation } from '@/models/workspace-user-preferences-model';
+import { WorkflowOrientation } from '../../../../../models/workspace-user-preferences-model';
 
 /**
  * The only reason we're not using dagre yet is because it always completeley redraws the graph.

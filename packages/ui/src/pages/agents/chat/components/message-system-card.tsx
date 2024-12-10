@@ -1,5 +1,5 @@
-import { Icons } from '@/components/icons';
-import { MarkdownViewer } from '@/components/markdown-viewer';
+import { Icons } from '../../../../components/icons';
+import { MarkdownViewer } from '../../../../components/markdown-viewer';
 
 import { MessageCardWrapper } from './message-card-wrapper';
 

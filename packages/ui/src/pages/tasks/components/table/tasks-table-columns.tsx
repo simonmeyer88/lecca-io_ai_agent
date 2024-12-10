@@ -1,9 +1,9 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { Link } from 'react-router-dom';
 
-import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header';
-import { Task } from '@/models/task/task-model';
-import { timeAgo, toLocaleStringOrUndefined } from '@/utils/dates';
+import { DataTableColumnHeader } from '../../../../components/data-table/data-table-column-header';
+import { Task } from '../../../../models/task/task-model';
+import { timeAgo, toLocaleStringOrUndefined } from '../../../../utils/dates';
 
 import { DataTableRowActions } from './tasks-table-row-actions';
 

@@ -3,34 +3,33 @@ import { Link } from 'react-router-dom';
 import ReactFlow, { NodeProps, useReactFlow } from 'reactflow';
 import { v4 } from 'uuid';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
-import { Icons } from '@/components/icons';
-import { Accordion } from '@/components/ui/accordion';
-import { Button } from '@/components/ui/button';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-import { Tooltip } from '@/components/ui/tooltip';
-import { useProjectWorkflow } from '@/hooks/useProjectWorkflow';
-import { useToast } from '@/hooks/useToast';
-import { Agent } from '@/models/agent/agent-model';
-import { AgentTrigger } from '@/models/agent/agent-trigger-model';
+import useApiMutation from '../../../../api/use-api-mutation';
+import useApiQuery from '../../../../api/use-api-query';
+import { Icons } from '../../../../components/icons';
+import { Accordion } from '../../../../components/ui/accordion';
+import { Button } from '../../../../components/ui/button';
+import { DropdownMenu } from '../../../../components/ui/dropdown-menu';
+import { Tooltip } from '../../../../components/ui/tooltip';
+import { useProjectWorkflow } from '../../../../hooks/useProjectWorkflow';
+import { useToast } from '../../../../hooks/useToast';
+import { Agent } from '../../../../models/agent/agent-model';
+import { AgentTrigger } from '../../../../models/agent/agent-trigger-model';
 import {
   SavedActionNode,
   SavedTriggerNode,
-} from '@/models/workflow/node/node-model';
-import { WorkflowApp } from '@/models/workflow/workflow-app-model';
-import { SelectNodeTypeForm } from '@/pages/projects/components/workflow/forms/select-node-type-form';
-import actionNode from '@/pages/projects/components/workflow/nodes/action-node/action-node';
-import { WorkflowNodePopover } from '@/pages/projects/components/workflow/nodes/action-node/action-node-popover';
+} from '../../../../models/workflow/node/node-model';
+import { WorkflowApp } from '../../../../models/workflow/workflow-app-model';
+import actionNode from '../../../../pages/projects/components/workflow/nodes/action-node/action-node';
+import placeholderNode from '../../../../pages/projects/components/workflow/nodes/placeholder-node/placeholder-node';
+import { cn } from '../../../../utils/cn';
+import { SelectNodeTypeForm } from '../../../projects/components/workflow/forms/select-node-type-form';
+import { WorkflowNodePopover } from '../../../projects/components/workflow/nodes/action-node/action-node-popover';
 import {
   formatNodesForSaving,
   loadNodesFromSavedState,
   setActionNodeData,
   setTriggerNodeData,
-} from '@/pages/projects/components/workflow/nodes/node-utils';
-import placeholderNode from '@/pages/projects/components/workflow/nodes/placeholder-node/placeholder-node';
-import { cn } from '@/utils/cn';
-
+} from '../../../projects/components/workflow/nodes/node-utils';
 import { AgentBuilderAdvancedSettingsContent } from '../../configure/agent-builder-advanced-settings-content';
 
 type AgentConfigureToolbarProps = {

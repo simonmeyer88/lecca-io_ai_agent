@@ -2,15 +2,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { UseFormReturn, useForm } from 'react-hook-form';
 
-import { appQueryClient } from '@/api/api-library';
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
+import { appQueryClient } from '../../api/api-library';
+import useApiMutation from '../../api/use-api-mutation';
+import useApiQuery from '../../api/use-api-query';
 import {
   CreateConnectionType,
   createConnectionSchema,
-} from '@/models/connections-model';
-import { WorkflowApp } from '@/models/workflow/workflow-app-model';
-
+} from '../../models/connections-model';
+import { WorkflowApp } from '../../models/workflow/workflow-app-model';
 import { Icons } from '../icons';
 import { Button } from '../ui/button';
 import { ComboBox } from '../ui/combo-box';

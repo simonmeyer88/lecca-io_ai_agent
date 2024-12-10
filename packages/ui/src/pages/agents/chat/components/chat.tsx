@@ -3,15 +3,14 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRef } from 'react';
 import { v4 } from 'uuid';
 
-import { api } from '@/api/api-library';
-import useApiQuery from '@/api/use-api-query';
-import { Loader } from '@/components/loaders/loader';
-import { useUser } from '@/hooks/useUser';
-import { Agent } from '@/models/agent/agent-model';
-import { AiProvider } from '@/models/ai-provider-model';
-import { FormattedTaskMessage } from '@/models/task/formatted-task-message-model';
-import { WorkflowApp } from '@/models/workflow/workflow-app-model';
-
+import { api } from '../../../../api/api-library';
+import useApiQuery from '../../../../api/use-api-query';
+import { Loader } from '../../../../components/loaders/loader';
+import { useUser } from '../../../../hooks/useUser';
+import { Agent } from '../../../../models/agent/agent-model';
+import { AiProvider } from '../../../../models/ai-provider-model';
+import { FormattedTaskMessage } from '../../../../models/task/formatted-task-message-model';
+import { WorkflowApp } from '../../../../models/workflow/workflow-app-model';
 import { formatSavedMessagesToStreamedMessageFormat } from '../utils/format-saved-messages-to-streamed-message-format';
 import { MessageMeta } from '../utils/message-meta';
 

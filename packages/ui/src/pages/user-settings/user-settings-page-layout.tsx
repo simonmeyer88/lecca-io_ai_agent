@@ -1,8 +1,8 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-import PageLayout from '@/components/layouts/page-layout';
-import { PageSideNavLink } from '@/components/layouts/page-side-nav';
+import PageLayout from '../../components/layouts/page-layout';
+import { PageSideNavLink } from '../../components/layouts/page-side-nav';
 
 const leftRailNavigationItems: React.ReactNode[] = [
   <PageSideNavLink

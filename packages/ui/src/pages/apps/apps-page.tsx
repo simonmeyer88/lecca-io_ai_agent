@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
-import useApiQuery from '@/api/use-api-query';
-import { CreateConnectionForm } from '@/components/forms/create-connection-form';
-import PageLayout from '@/components/layouts/page-layout';
-import { GridLoader } from '@/components/loaders/grid-loader';
-import { Badge } from '@/components/ui/badge';
-import { Card } from '@/components/ui/card';
-import { Dialog } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Skeleton } from '@/components/ui/skeleton';
+import useApiQuery from '../../api/use-api-query';
+import { CreateConnectionForm } from '../../components/forms/create-connection-form';
+import PageLayout from '../../components/layouts/page-layout';
+import { GridLoader } from '../../components/loaders/grid-loader';
+import { Badge } from '../../components/ui/badge';
+import { Card } from '../../components/ui/card';
+import { Dialog } from '../../components/ui/dialog';
+import { Input } from '../../components/ui/input';
+import { Skeleton } from '../../components/ui/skeleton';
 
 import { AppOverviewContent } from './components/app-overview-content';
 

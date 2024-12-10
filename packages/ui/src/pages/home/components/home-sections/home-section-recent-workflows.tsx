@@ -1,16 +1,16 @@
 import { useMemo } from 'react';
 
-import useApiQuery from '@/api/use-api-query';
-import { DataTable } from '@/components/data-table/data-table';
-import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { SelectProjectForAgentForm } from '@/components/forms/select-project-for-agent-form';
-import { SelectProjectForWorkflowForm } from '@/components/forms/select-project-for-workflow-form';
-import { Icons } from '@/components/icons';
-import { TableLoader } from '@/components/loaders/table-loader';
-import { Card } from '@/components/ui/card';
-import { Dialog } from '@/components/ui/dialog';
-import { Tooltip } from '@/components/ui/tooltip';
-import { columns } from '@/pages/workflows/components/table/workflows-table-columns';
+import useApiQuery from '../../../../api/use-api-query';
+import { DataTable } from '../../../../components/data-table/data-table';
+import { EmptyPlaceholder } from '../../../../components/empty-placeholder';
+import { SelectProjectForAgentForm } from '../../../../components/forms/select-project-for-agent-form';
+import { SelectProjectForWorkflowForm } from '../../../../components/forms/select-project-for-workflow-form';
+import { Icons } from '../../../../components/icons';
+import { TableLoader } from '../../../../components/loaders/table-loader';
+import { Card } from '../../../../components/ui/card';
+import { Dialog } from '../../../../components/ui/dialog';
+import { Tooltip } from '../../../../components/ui/tooltip';
+import { columns } from '../../../workflows/components/table/workflows-table-columns';
 
 export function HomeSectionRecentWorkflows() {
   const { data: workflows, isLoading: isLoadingWorkflows } = useApiQuery({

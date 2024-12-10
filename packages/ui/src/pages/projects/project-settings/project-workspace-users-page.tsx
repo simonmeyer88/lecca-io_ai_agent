@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { ListViewLoader } from '@/components/loaders/list-view-loader';
-import { Avatar } from '@/components/ui/avatar';
-import { ListView } from '@/components/ui/list-view';
-import { Separator } from '@/components/ui/separator';
+import useApiQuery from '../../../api/use-api-query';
+import { ListViewLoader } from '../../../components/loaders/list-view-loader';
+import { Avatar } from '../../../components/ui/avatar';
+import { ListView } from '../../../components/ui/list-view';
+import { Separator } from '../../../components/ui/separator';
 
 export function ProjectWorkspaceUsersPage() {
   const { projectId } = useParams();

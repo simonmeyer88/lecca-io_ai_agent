@@ -2,8 +2,7 @@ import { Slot, Slottable } from '@radix-ui/react-slot';
 import { type VariantProps, cva } from 'class-variance-authority';
 import * as React from 'react';
 
-import { cn } from '@/utils/cn';
-
+import { cn } from '../../utils/cn';
 import { Icons } from '../icons';
 
 const buttonVariants = cva(

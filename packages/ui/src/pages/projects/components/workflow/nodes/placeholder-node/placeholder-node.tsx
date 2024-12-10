@@ -1,11 +1,10 @@
 import { useMemo } from 'react';
 import { Handle, NodeProps, Position, useReactFlow } from 'reactflow';
 
-import { Icons } from '@/components/icons';
-import { ContextMenu } from '@/components/ui/context-menu';
-import { useProjectWorkflow } from '@/hooks/useProjectWorkflow';
-import { cn } from '@/utils/cn';
-
+import { Icons } from '../../../../../../components/icons';
+import { ContextMenu } from '../../../../../../components/ui/context-menu';
+import { useProjectWorkflow } from '../../../../../../hooks/useProjectWorkflow';
+import { cn } from '../../../../../../utils/cn';
 import { useUpdateFlow } from '../../hooks/useUpdateFlow';
 import '../node-types.css';
 

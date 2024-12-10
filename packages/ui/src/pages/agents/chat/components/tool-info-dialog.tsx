@@ -1,9 +1,9 @@
-import { JsonViewer } from '@/components/json-viewer';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { Separator } from '@/components/ui/separator';
-import { Tabs } from '@/components/ui/tabs';
-import { StreamedTaskAssistantMessageToolInvocation } from '@/models/task/streamed-task-message-model';
+import { JsonViewer } from '../../../../components/json-viewer';
+import { Button } from '../../../../components/ui/button';
+import { Dialog } from '../../../../components/ui/dialog';
+import { Separator } from '../../../../components/ui/separator';
+import { Tabs } from '../../../../components/ui/tabs';
+import { StreamedTaskAssistantMessageToolInvocation } from '../../../../models/task/streamed-task-message-model';
 
 export function ToolInfoDialog({
   tool,

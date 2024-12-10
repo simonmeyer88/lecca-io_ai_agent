@@ -1,8 +1,8 @@
 import { v4 } from 'uuid';
 
-import { FormattedTaskMessage } from '@/models/task/formatted-task-message-model';
-import { SavedTaskMessage } from '@/models/task/saved-task-message-model';
-import { StreamedTaskAssistantMessageToolInvocation } from '@/models/task/streamed-task-message-model';
+import { FormattedTaskMessage } from '../../../../models/task/formatted-task-message-model';
+import { SavedTaskMessage } from '../../../../models/task/saved-task-message-model';
+import { StreamedTaskAssistantMessageToolInvocation } from '../../../../models/task/streamed-task-message-model';
 
 export function formatSavedMessagesToStreamedMessageFormat({
   messages,

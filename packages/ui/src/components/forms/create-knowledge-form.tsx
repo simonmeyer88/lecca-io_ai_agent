@@ -2,13 +2,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
+import useApiMutation from '../../api/use-api-mutation';
+import useApiQuery from '../../api/use-api-query';
 import {
   CreateKnowledgeType,
   createKnowledgeSchema,
-} from '@/models/knowledge-model';
-
+} from '../../models/knowledge-model';
 import { Icons } from '../icons';
 import { Button } from '../ui/button';
 import { Dialog } from '../ui/dialog';

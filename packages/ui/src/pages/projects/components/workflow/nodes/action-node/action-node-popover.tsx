@@ -1,11 +1,10 @@
 import React from 'react';
 import { Node, NodeProps } from 'reactflow';
 
-import { Dialog } from '@/components/ui/dialog';
-import { Drawer } from '@/components/ui/drawer';
-import { Popover } from '@/components/ui/popover';
-import { cn } from '@/utils/cn';
-
+import { Dialog } from '../../../../../../components/ui/dialog';
+import { Drawer } from '../../../../../../components/ui/drawer';
+import { Popover } from '../../../../../../components/ui/popover';
+import { cn } from '../../../../../../utils/cn';
 import { NodeStatus } from '../node-utils';
 
 import { WorkflowNodeConfigForm } from './action-node-config-form';

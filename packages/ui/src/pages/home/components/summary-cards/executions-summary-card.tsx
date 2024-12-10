@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { DateRange } from 'react-day-picker';
 
-import { appQueryClient } from '@/api/api-library';
-import useApiQuery from '@/api/use-api-query';
-import { Icons } from '@/components/icons';
-import { DateRangePicker } from '@/components/ui/date-range-picker';
-
+import { appQueryClient } from '../../../../api/api-library';
+import useApiQuery from '../../../../api/use-api-query';
+import { Icons } from '../../../../components/icons';
+import { DateRangePicker } from '../../../../components/ui/date-range-picker';
 import { HomeSummaryCard } from '../home-summary-card';
 
 const DEFAULT_DATE_RANGE: DateRange = {

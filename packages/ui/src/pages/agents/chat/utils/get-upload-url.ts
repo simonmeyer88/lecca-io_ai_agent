@@ -1,4 +1,4 @@
-import { api } from '@/api/api-library';
+import { api } from '../../../../api/api-library';
 
 export const getUploadUrlForTempFile = async ({
   fileName,

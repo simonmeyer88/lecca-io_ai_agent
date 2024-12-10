@@ -2,12 +2,12 @@ import { CheckIcon, PlusCircledIcon } from '@radix-ui/react-icons';
 import { Column } from '@tanstack/react-table';
 import * as React from 'react';
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Command } from '@/components/ui/command';
-import { Popover } from '@/components/ui/popover';
-import { Separator } from '@/components/ui/separator';
-import { cn } from '@/utils/cn';
+import { cn } from '../../utils/cn';
+import { Badge } from '../ui/badge';
+import { Button } from '../ui/button';
+import { Command } from '../ui/command';
+import { Popover } from '../ui/popover';
+import { Separator } from '../ui/separator';
 
 interface DataTableFacetedFilterProps<TData, TValue> {
   column?: Column<TData, TValue>;

@@ -2,14 +2,14 @@ import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import { Row } from '@tanstack/react-table';
 import { useState } from 'react';
 
-import useApiMutation from '@/api/use-api-mutation';
-import { UpdateConnectionForm } from '@/components/forms/update-connection-form';
-import { AlertDialog } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-import { useToast } from '@/hooks/useToast';
-import { Connection } from '@/models/connections-model';
+import useApiMutation from '../../../api/use-api-mutation';
+import { UpdateConnectionForm } from '../../../components/forms/update-connection-form';
+import { AlertDialog } from '../../../components/ui/alert-dialog';
+import { Button } from '../../../components/ui/button';
+import { Dialog } from '../../../components/ui/dialog';
+import { DropdownMenu } from '../../../components/ui/dropdown-menu';
+import { useToast } from '../../../hooks/useToast';
+import { Connection } from '../../../models/connections-model';
 
 export function DataTableRowActions({ row }: { row: Row<Connection> }) {
   const { toast } = useToast();

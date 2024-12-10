@@ -1,8 +1,8 @@
-import { CreateVariableForm } from '@/components/forms/create-variable-form';
-import { Icons } from '@/components/icons';
-import PageLayout from '@/components/layouts/page-layout';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
+import { CreateVariableForm } from '../../components/forms/create-variable-form';
+import { Icons } from '../../components/icons';
+import PageLayout from '../../components/layouts/page-layout';
+import { Button } from '../../components/ui/button';
+import { Dialog } from '../../components/ui/dialog';
 
 import { VariablesTable } from './components/table/variables-table';
 

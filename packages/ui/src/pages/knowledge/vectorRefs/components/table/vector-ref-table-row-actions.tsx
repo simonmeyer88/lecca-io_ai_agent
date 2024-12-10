@@ -3,14 +3,13 @@ import { Row } from '@tanstack/react-table';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import useApiMutation from '@/api/use-api-mutation';
-import { AlertDialog } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-import { useToast } from '@/hooks/useToast';
-import { KnowledgeVectorRef } from '@/models/knowledge-vector-ref-model';
-
+import useApiMutation from '../../../../../api/use-api-mutation';
+import { AlertDialog } from '../../../../../components/ui/alert-dialog';
+import { Button } from '../../../../../components/ui/button';
+import { Dialog } from '../../../../../components/ui/dialog';
+import { DropdownMenu } from '../../../../../components/ui/dropdown-menu';
+import { useToast } from '../../../../../hooks/useToast';
+import { KnowledgeVectorRef } from '../../../../../models/knowledge-vector-ref-model';
 import { ViewVectorRefDataContent } from '../view-vector-ref-data-content';
 
 export function DataTableRowActions({ row }: { row: Row<KnowledgeVectorRef> }) {

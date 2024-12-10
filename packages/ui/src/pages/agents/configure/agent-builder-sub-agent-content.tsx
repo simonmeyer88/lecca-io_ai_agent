@@ -3,18 +3,17 @@ import { useCallback, useMemo } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { DataTable } from '@/components/data-table/data-table';
-import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { SelectProjectForAgentForm } from '@/components/forms/select-project-for-agent-form';
-import { Icons } from '@/components/icons';
-import { AlertDialog } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-import { Form } from '@/components/ui/form';
-import { Agent, UpdateAgentType } from '@/models/agent/agent-model';
-
+import useApiQuery from '../../../api/use-api-query';
+import { DataTable } from '../../../components/data-table/data-table';
+import { EmptyPlaceholder } from '../../../components/empty-placeholder';
+import { SelectProjectForAgentForm } from '../../../components/forms/select-project-for-agent-form';
+import { Icons } from '../../../components/icons';
+import { AlertDialog } from '../../../components/ui/alert-dialog';
+import { Button } from '../../../components/ui/button';
+import { Dialog } from '../../../components/ui/dialog';
+import { DropdownMenu } from '../../../components/ui/dropdown-menu';
+import { Form } from '../../../components/ui/form';
+import { Agent, UpdateAgentType } from '../../../models/agent/agent-model';
 import { columns } from '../components/table/agents-table-columns';
 
 import { AddAgentSubAgentForm } from './add-agent-sub-agent-form';

@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { ComboBox } from '@/components/ui/combo-box';
+import useApiQuery from '../../../../api/use-api-query';
+import { Icons } from '../../../../components/icons';
+import { Button } from '../../../../components/ui/button';
+import { ComboBox } from '../../../../components/ui/combo-box';
 
 export function NavAgentSelector() {
   const { projectId, agentId } = useParams();

@@ -6,12 +6,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
-import { appQueryClient } from '@/api/api-library';
-import { Toaster } from '@/components/ui/toaster';
-import { AppRoutes } from '@/router/routes';
-
+import { appQueryClient } from './api/api-library';
+import { Toaster } from './components/ui/toaster';
 import { ApplicationSideNavProvider } from './providers/application-side-nav-provider';
 import { UserProvider } from './providers/user-provider';
+import { AppRoutes } from './router/routes';
 
 const enableAnalytics = import.meta.env.VITE_ENABLE_ANALYTICS === 'true';
 

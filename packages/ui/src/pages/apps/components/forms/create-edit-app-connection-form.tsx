@@ -1,4 +1,4 @@
-import { WorkflowApp } from '@/models/workflow/workflow-app-model';
+import { WorkflowApp } from '../../../../models/workflow/workflow-app-model';
 
 type CreateEditAppConnectionFormProps = {
   app: WorkflowApp;

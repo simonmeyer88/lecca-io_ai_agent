@@ -1,5 +1,7 @@
-import { BillingProduct, billingProductSchema } from '@/models/billing-model';
-
+import {
+  BillingProduct,
+  billingProductSchema,
+} from '../../models/billing-model';
 import { ApiLibrary, ApiLibraryConfig } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 

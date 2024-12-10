@@ -13,13 +13,13 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 import { v4 } from 'uuid';
 
-import { ErrorBoundary } from '@/components/error-boundary/error-boundary';
-import { Loader } from '@/components/loaders/loader';
-import { useProjectWorkflow } from '@/hooks/useProjectWorkflow';
-import { useUser } from '@/hooks/useUser';
-import { Execution as ExecutionModel } from '@/models/execution-model';
-import { WorkflowTemplate as WorkflowTemplateModel } from '@/models/workflow-template-model';
-import { Workflow as WorkflowModel } from '@/models/workflow/workflow-model';
+import { ErrorBoundary } from '../../../../components/error-boundary/error-boundary';
+import { Loader } from '../../../../components/loaders/loader';
+import { useProjectWorkflow } from '../../../../hooks/useProjectWorkflow';
+import { useUser } from '../../../../hooks/useUser';
+import { Execution as ExecutionModel } from '../../../../models/execution-model';
+import { WorkflowTemplate as WorkflowTemplateModel } from '../../../../models/workflow-template-model';
+import { Workflow as WorkflowModel } from '../../../../models/workflow/workflow-model';
 
 import { WorkflowControls } from './controls/workflow-controls';
 import placeholderEdge from './edges/placeholder-edge/placeholder-edge';

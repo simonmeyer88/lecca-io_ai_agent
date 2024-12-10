@@ -1,4 +1,4 @@
-import { WorkflowApp } from '@/models/workflow/workflow-app-model';
+import { WorkflowApp } from '../../../../models/workflow/workflow-app-model';
 
 type CreateEditAppActionFormProps = {
   app: WorkflowApp;
@@ -22,32 +22,32 @@ export function CreateEditAppActionForm(props: CreateEditAppActionFormProps) {
 // import { useEffect, useState } from 'react';
 // import { useForm } from 'react-hook-form';
 
-// import useApiMutation from '@/api/use-api-mutation';
-// import { EmptyPlaceholder } from '@/components/empty-placeholder';
-// import { Icons } from '@/components/icons';
-// import { Button } from '@/components/ui/button';
-// import { Card } from '@/components/ui/card';
-// import { Dialog } from '@/components/ui/dialog';
-// import { DropdownMenu } from '@/components/ui/dropdown-menu';
-// import { Form } from '@/components/ui/form';
-// import { Input } from '@/components/ui/input';
-// import { ScrollArea } from '@/components/ui/scroll-area';
-// import { Select } from '@/components/ui/select';
-// import { Textarea } from '@/components/ui/textarea';
-// import { useToast } from '@/hooks/useToast';
+// import useApiMutation from '../../../../api/use-api-mutation';
+// import { EmptyPlaceholder } from '../../../../components/empty-placeholder';
+// import { Icons } from '../../../../components/icons';
+// import { Button } from '../../../../components/ui/button';
+// import { Card } from '../../../../components/ui/card';
+// import { Dialog } from '../../../../components/ui/dialog';
+// import { DropdownMenu } from '../../../../components/ui/dropdown-menu';
+// import { Form } from '../../../../components/ui/form';
+// import { Input } from '../../../../components/ui/input';
+// import { ScrollArea } from '../../../../components/ui/scroll-area';
+// import { Select } from '../../../../components/ui/select';
+// import { Textarea } from '../../../../components/ui/textarea';
+// import { useToast } from '../../../../hooks/useToast';
 // import {
 //   CreateFieldConfigType,
 //   FieldConfig,
 //   createFieldConfigSchema,
-// } from '@/models/workflow/input-config-model';
+// } from '../../../../models/workflow/input-config-model';
 // import {
 //   CreateWorkflowAppActionType,
 //   UpdateWorkflowAppActionType,
 //   WorkflowAppActionType,
 //   createWorkflowAppActionSchema,
-// } from '@/models/workflow/workflow-app-action-model';
-// import { WorkflowApp } from '@/models/workflow/workflow-app-model';
-// import { DynamicFormField } from '@/pages/projects/components/workflow/nodes/action-node/builder/dynamic-form-field';
+// } from '../../../../models/workflow/workflow-app-action-model';
+// import { WorkflowApp } from '../../../../models/workflow/workflow-app-model';
+// import { DynamicFormField } from '../../../../pages/projects/components/workflow/nodes/action-node/builder/dynamic-form-field';
 
 // type CreateEditAppActionFormProps = {
 //   app: WorkflowApp;

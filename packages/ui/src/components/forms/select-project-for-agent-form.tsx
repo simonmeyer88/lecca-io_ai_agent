@@ -4,10 +4,9 @@ import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { z } from 'zod';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
-import { useToast } from '@/hooks/useToast';
-
+import useApiMutation from '../../api/use-api-mutation';
+import useApiQuery from '../../api/use-api-query';
+import { useToast } from '../../hooks/useToast';
 import { Icons } from '../icons';
 import { Button } from '../ui/button';
 import { ComboBox } from '../ui/combo-box';

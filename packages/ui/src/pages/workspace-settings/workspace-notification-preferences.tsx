@@ -2,16 +2,16 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import useApiMutation from '@/api/use-api-mutation';
-import { Button } from '@/components/ui/button';
-import { Form } from '@/components/ui/form';
-import { Separator } from '@/components/ui/separator';
-import { toast } from '@/hooks/useToast';
-import { useUser } from '@/hooks/useUser';
+import useApiMutation from '../../api/use-api-mutation';
+import { Button } from '../../components/ui/button';
+import { Form } from '../../components/ui/form';
+import { Separator } from '../../components/ui/separator';
+import { toast } from '../../hooks/useToast';
+import { useUser } from '../../hooks/useUser';
 import {
   UpdateWorkspacePreferencesType,
   updateWorkspacePreferencesSchema,
-} from '@/models/workspace-preferences-model';
+} from '../../models/workspace-preferences-model';
 
 export default function WorkspaceNotificationPreferencesPage() {
   const { setWorkspacePreferences } = useUser();

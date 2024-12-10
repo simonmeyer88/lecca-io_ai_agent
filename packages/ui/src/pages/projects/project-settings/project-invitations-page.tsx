@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
-import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { InviteUserToProjectForm } from '@/components/forms/invite-user-to-project-form';
-import { Icons } from '@/components/icons';
-import { ListViewLoader } from '@/components/loaders/list-view-loader';
-import { AlertDialog } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { ListView } from '@/components/ui/list-view';
-import { Separator } from '@/components/ui/separator';
-import { useToast } from '@/hooks/useToast';
+import useApiMutation from '../../../api/use-api-mutation';
+import useApiQuery from '../../../api/use-api-query';
+import { EmptyPlaceholder } from '../../../components/empty-placeholder';
+import { InviteUserToProjectForm } from '../../../components/forms/invite-user-to-project-form';
+import { Icons } from '../../../components/icons';
+import { ListViewLoader } from '../../../components/loaders/list-view-loader';
+import { AlertDialog } from '../../../components/ui/alert-dialog';
+import { Button } from '../../../components/ui/button';
+import { Dialog } from '../../../components/ui/dialog';
+import { ListView } from '../../../components/ui/list-view';
+import { Separator } from '../../../components/ui/separator';
+import { useToast } from '../../../hooks/useToast';
 
 export function ProjectInvitationsPage() {
   const { projectId } = useParams();

@@ -2,13 +2,12 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Edge, Node, useReactFlow } from 'reactflow';
 
-import useApiQuery from '@/api/use-api-query';
+import useApiQuery from '../../api/use-api-query';
 import {
   OutputSelector,
   OutputSelectorOnClickArgs,
-} from '@/pages/projects/components/workflow/nodes/action-node/output/output-selector';
-import { cn } from '@/utils/cn';
-
+} from '../../pages/projects/components/workflow/nodes/action-node/output/output-selector';
+import { cn } from '../../utils/cn';
 import { Icons } from '../icons';
 import { ListViewLoader } from '../loaders/list-view-loader';
 import { Input } from '../ui/input';

@@ -2,8 +2,7 @@ import {
   UpdateWorkflowTemplateType,
   WorkflowTemplate,
   workflowTemplateSchema,
-} from '@/models/workflow-template-model';
-
+} from '../../models/workflow-template-model';
 import { ApiLibrary, ApiLibraryConfig, appQueryClient } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 

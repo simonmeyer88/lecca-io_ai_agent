@@ -3,9 +3,9 @@ import { format, setMonth } from 'date-fns';
 import * as React from 'react';
 import { DayPicker, useDayPicker, useNavigation } from 'react-day-picker';
 
-import { buttonVariants } from '@/components/ui/button';
-import { cn } from '@/utils/cn';
+import { cn } from '../../utils/cn';
 
+import { buttonVariants } from './button';
 import { Select } from './select';
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;

@@ -1,11 +1,11 @@
 import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons';
 import * as React from 'react';
 
-import { Button } from '@/components/ui/button';
-import { Command } from '@/components/ui/command';
-import { Popover } from '@/components/ui/popover';
-import { cn } from '@/utils/cn';
+import { cn } from '../../utils/cn';
 
+import { Button } from './button';
+import { Command } from './command';
+import { Popover } from './popover';
 import { ScrollArea } from './scroll-area';
 import { Skeleton } from './skeleton';
 

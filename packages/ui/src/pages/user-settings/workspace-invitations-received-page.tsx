@@ -1,11 +1,11 @@
-import useApiQuery from '@/api/use-api-query';
-import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { JoinWorkspaceForm } from '@/components/forms/join-workspace-form';
-import { ListViewLoader } from '@/components/loaders/list-view-loader';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { ListView } from '@/components/ui/list-view';
-import { Separator } from '@/components/ui/separator';
+import useApiQuery from '../../api/use-api-query';
+import { EmptyPlaceholder } from '../../components/empty-placeholder';
+import { JoinWorkspaceForm } from '../../components/forms/join-workspace-form';
+import { ListViewLoader } from '../../components/loaders/list-view-loader';
+import { Button } from '../../components/ui/button';
+import { Dialog } from '../../components/ui/dialog';
+import { ListView } from '../../components/ui/list-view';
+import { Separator } from '../../components/ui/separator';
 
 export function WorkspaceInvitationsReceivedPage() {
   const { data: invitations, isLoading: isLoadingInvitations } = useApiQuery({

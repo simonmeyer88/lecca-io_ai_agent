@@ -2,16 +2,16 @@ import { useEffect, useMemo, useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { Node, useReactFlow } from 'reactflow';
 
-import { api } from '@/api/api-library';
-import { Icons } from '@/components/icons';
-import { JsonViewer } from '@/components/json-viewer';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/useToast';
-import { Agent } from '@/models/agent/agent-model';
-import { Workflow } from '@/models/workflow/workflow-model';
+import { api } from '../../../../../../../api/api-library';
+import { Icons } from '../../../../../../../components/icons';
+import { JsonViewer } from '../../../../../../../components/json-viewer';
+import { Button } from '../../../../../../../components/ui/button';
+import { Dialog } from '../../../../../../../components/ui/dialog';
+import { ScrollArea } from '../../../../../../../components/ui/scroll-area';
+import { Textarea } from '../../../../../../../components/ui/textarea';
+import { useToast } from '../../../../../../../hooks/useToast';
+import { Agent } from '../../../../../../../models/agent/agent-model';
+import { Workflow } from '../../../../../../../models/workflow/workflow-model';
 
 export function WebhookListenerDialogContent({
   workflowId,

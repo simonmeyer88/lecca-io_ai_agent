@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-import { Loader } from '@/components/loaders/loader';
-import { useUser } from '@/hooks/useUser';
+import { Loader } from '../components/loaders/loader';
+import { useUser } from '../hooks/useUser';
 
 export const AuthenticatedRoute = () => {
   const { isAuthenticated, isLoading } = useUser();

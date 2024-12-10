@@ -1,4 +1,4 @@
-import PageLayout from '@/components/layouts/page-layout';
+import PageLayout from '../../components/layouts/page-layout';
 
 export function BillingPage() {
   return (

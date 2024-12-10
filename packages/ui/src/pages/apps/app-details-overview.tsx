@@ -3,20 +3,20 @@ import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
-import { Button } from '@/components/ui/button';
-import { Form } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Separator } from '@/components/ui/separator';
-import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/useToast';
-import { useUser } from '@/hooks/useUser';
+import useApiMutation from '../../api/use-api-mutation';
+import useApiQuery from '../../api/use-api-query';
+import { Button } from '../../components/ui/button';
+import { Form } from '../../components/ui/form';
+import { Input } from '../../components/ui/input';
+import { Separator } from '../../components/ui/separator';
+import { Textarea } from '../../components/ui/textarea';
+import { useToast } from '../../hooks/useToast';
+import { useUser } from '../../hooks/useUser';
 import {
   UpdateWorkflowAppType,
   updateWorkflowAppSchema,
-} from '@/models/workflow/workflow-app-model';
-import { cn } from '@/utils/cn';
+} from '../../models/workflow/workflow-app-model';
+import { cn } from '../../utils/cn';
 
 export function AppDetailsOverview() {
   const { workspaceUser: user } = useUser();

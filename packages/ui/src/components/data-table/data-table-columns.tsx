@@ -1,14 +1,11 @@
 import { ColumnDef } from '@tanstack/react-table';
 
-import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header';
-import { DataTableRowActions } from '@/components/data-table/data-table-row-actions';
-import {
-  labels,
-  priorities,
-  statuses,
-} from '@/components/data-table/data/data';
-import { Badge } from '@/components/ui/badge';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Badge } from '../ui/badge';
+import { Checkbox } from '../ui/checkbox';
+
+import { DataTableColumnHeader } from './data-table-column-header';
+import { DataTableRowActions } from './data-table-row-actions';
+import { labels, priorities, statuses } from './data/data';
 
 export const columns: ColumnDef<any>[] = [
   //Above in the generic This is where you would put the data model

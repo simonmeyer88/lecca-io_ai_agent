@@ -1,15 +1,15 @@
 import React, { useMemo } from 'react';
 
-import useApiQuery from '@/api/use-api-query';
-import { Icons } from '@/components/icons';
-import { Dialog } from '@/components/ui/dialog';
-import { Agent } from '@/models/agent/agent-model';
-import { Knowledge } from '@/models/knowledge-model';
-import { StreamedTaskAssistantMessageToolInvocation } from '@/models/task/streamed-task-message-model';
-import { WorkflowAppActionType } from '@/models/workflow/workflow-app-action-model';
-import { WorkflowApp } from '@/models/workflow/workflow-app-model';
-import { Workflow } from '@/models/workflow/workflow-model';
-import { cn } from '@/utils/cn';
+import useApiQuery from '../../../../api/use-api-query';
+import { Icons } from '../../../../components/icons';
+import { Dialog } from '../../../../components/ui/dialog';
+import { Agent } from '../../../../models/agent/agent-model';
+import { Knowledge } from '../../../../models/knowledge-model';
+import { StreamedTaskAssistantMessageToolInvocation } from '../../../../models/task/streamed-task-message-model';
+import { WorkflowAppActionType } from '../../../../models/workflow/workflow-app-action-model';
+import { WorkflowApp } from '../../../../models/workflow/workflow-app-model';
+import { Workflow } from '../../../../models/workflow/workflow-model';
+import { cn } from '../../../../utils/cn';
 
 import { ToolInfoDialog } from './tool-info-dialog';
 

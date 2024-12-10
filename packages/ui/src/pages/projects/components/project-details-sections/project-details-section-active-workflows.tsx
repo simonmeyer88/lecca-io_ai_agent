@@ -1,13 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { DataTable } from '@/components/data-table/data-table';
-import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { Icons } from '@/components/icons';
-import { TableLoader } from '@/components/loaders/table-loader';
-import { Button } from '@/components/ui/button';
-import { Tooltip } from '@/components/ui/tooltip';
-import { columns } from '@/pages/workflows/components/table/workflows-table-columns';
+import useApiQuery from '../../../../api/use-api-query';
+import { DataTable } from '../../../../components/data-table/data-table';
+import { EmptyPlaceholder } from '../../../../components/empty-placeholder';
+import { Icons } from '../../../../components/icons';
+import { TableLoader } from '../../../../components/loaders/table-loader';
+import { Button } from '../../../../components/ui/button';
+import { Tooltip } from '../../../../components/ui/tooltip';
+import { columns } from '../../../workflows/components/table/workflows-table-columns';
 
 type Props = {
   projectId: string;

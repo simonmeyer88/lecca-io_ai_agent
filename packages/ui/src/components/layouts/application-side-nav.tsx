@@ -2,22 +2,21 @@ import { IconProps } from '@radix-ui/react-icons/dist/types';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-import useApiMutation from '@/api/use-api-mutation';
-import { ResizablePanel } from '@/components/ui/resizable';
-import { Tooltip } from '@/components/ui/tooltip';
-import { useApplicationSideNav } from '@/hooks/useApplicationSideNav';
-import { useUser } from '@/hooks/useUser';
-import { Theme } from '@/models/workspace-user-preferences-model';
-import { cn } from '@/utils/cn';
-
+import useApiMutation from '../../api/use-api-mutation';
+import { useApplicationSideNav } from '../../hooks/useApplicationSideNav';
+import { useUser } from '../../hooks/useUser';
+import { Theme } from '../../models/workspace-user-preferences-model';
+import { cn } from '../../utils/cn';
 import { Icons } from '../icons';
 import { useOnborda } from '../onboarda/OnbordaContext';
 import { Avatar } from '../ui/avatar';
 import { buttonVariants } from '../ui/button';
 import { DropdownMenu } from '../ui/dropdown-menu';
+import { ResizablePanel } from '../ui/resizable';
 import { Select } from '../ui/select';
 import { Separator } from '../ui/separator';
 import { Sheet } from '../ui/sheet';
+import { Tooltip } from '../ui/tooltip';
 
 import WorkspaceSelector from './workspace-selector';
 

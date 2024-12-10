@@ -1,7 +1,6 @@
 import { z } from 'zod';
 
-import { Execution, executionSchema } from '@/models/execution-model';
-
+import { Execution, executionSchema } from '../../models/execution-model';
 import { ApiLibrary, ApiLibraryConfig, appQueryClient } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 

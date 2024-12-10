@@ -3,12 +3,12 @@ import { Row } from '@tanstack/react-table';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import useApiMutation from '@/api/use-api-mutation';
-import { AlertDialog } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-import { useToast } from '@/hooks/useToast';
-import { Project } from '@/models/project/project-model';
+import useApiMutation from '../../../../api/use-api-mutation';
+import { AlertDialog } from '../../../../components/ui/alert-dialog';
+import { Button } from '../../../../components/ui/button';
+import { DropdownMenu } from '../../../../components/ui/dropdown-menu';
+import { useToast } from '../../../../hooks/useToast';
+import { Project } from '../../../../models/project/project-model';
 
 export function DataTableRowActions({ row }: { row: Row<Project> }) {
   const { toast } = useToast();

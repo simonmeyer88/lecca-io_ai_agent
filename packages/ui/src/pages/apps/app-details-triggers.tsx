@@ -1,17 +1,17 @@
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { Icons } from '@/components/icons';
-import { Loader } from '@/components/loaders/loader';
-import { AlertDialog } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Dialog } from '@/components/ui/dialog';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-import { Separator } from '@/components/ui/separator';
-import { useUser } from '@/hooks/useUser';
+import useApiQuery from '../../api/use-api-query';
+import { EmptyPlaceholder } from '../../components/empty-placeholder';
+import { Icons } from '../../components/icons';
+import { Loader } from '../../components/loaders/loader';
+import { AlertDialog } from '../../components/ui/alert-dialog';
+import { Button } from '../../components/ui/button';
+import { Card } from '../../components/ui/card';
+import { Dialog } from '../../components/ui/dialog';
+import { DropdownMenu } from '../../components/ui/dropdown-menu';
+import { Separator } from '../../components/ui/separator';
+import { useUser } from '../../hooks/useUser';
 
 import { CreateEditAppTriggerForm } from './components/forms/create-edit-app-trigger-form';
 

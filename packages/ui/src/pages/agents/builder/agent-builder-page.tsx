@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { api, appQueryClient } from '@/api/api-library';
-import PageLayout from '@/components/layouts/page-layout';
-import { PageLoader } from '@/components/loaders/page-loader';
-import { Skeleton } from '@/components/ui/skeleton';
-import { useToast } from '@/hooks/useToast';
-import { Agent } from '@/models/agent/agent-model';
-import { Project } from '@/models/project/project-model';
-import { NavAgentSelector } from '@/pages/projects/components/nav-selectors/nav-agent-selector';
-
+import { api, appQueryClient } from '../../../api/api-library';
+import PageLayout from '../../../components/layouts/page-layout';
+import { PageLoader } from '../../../components/loaders/page-loader';
+import { Skeleton } from '../../../components/ui/skeleton';
+import { useToast } from '../../../hooks/useToast';
+import { Agent } from '../../../models/agent/agent-model';
+import { Project } from '../../../models/project/project-model';
+import { NavAgentSelector } from '../../projects/components/nav-selectors/nav-agent-selector';
 import { NavProjectSelector } from '../../projects/components/nav-selectors/nav-project-selector';
 
 import { AgentWorkflowContainer } from './agent-workflow-container';

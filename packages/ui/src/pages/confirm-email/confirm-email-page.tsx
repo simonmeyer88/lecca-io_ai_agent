@@ -5,12 +5,12 @@ import { useForm } from 'react-hook-form';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { z } from 'zod';
 
-import { api } from '@/api/api-library';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Form } from '@/components/ui/form';
-import { InputOTP } from '@/components/ui/input-otp';
+import { api } from '../../api/api-library';
+import { Icons } from '../../components/icons';
+import { Button } from '../../components/ui/button';
+import { Card } from '../../components/ui/card';
+import { Form } from '../../components/ui/form';
+import { InputOTP } from '../../components/ui/input-otp';
 
 const confirmEmailPinSchema = z.object({
   pin: z.string().min(6, {

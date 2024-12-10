@@ -1,11 +1,11 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { Link } from 'react-router-dom';
 
-import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header';
-import { Icons } from '@/components/icons';
-import { Popover } from '@/components/ui/popover';
-import { Knowledge } from '@/models/knowledge-model';
-import { toLocaleDateStringOrUndefined } from '@/utils/dates';
+import { DataTableColumnHeader } from '../../../../components/data-table/data-table-column-header';
+import { Icons } from '../../../../components/icons';
+import { Popover } from '../../../../components/ui/popover';
+import { Knowledge } from '../../../../models/knowledge-model';
+import { toLocaleDateStringOrUndefined } from '../../../../utils/dates';
 
 import { DataTableRowActions } from './knowledge-table-row-actions';
 

@@ -1,5 +1,4 @@
-import { UpdateUserType, User, userSchema } from '@/models/user-model';
-
+import { UpdateUserType, User, userSchema } from '../../models/user-model';
 import { ApiLibrary, ApiLibraryConfig, appQueryClient } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 

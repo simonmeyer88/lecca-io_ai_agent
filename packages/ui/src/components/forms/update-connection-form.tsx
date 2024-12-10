@@ -2,13 +2,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { UseFormReturn, useForm } from 'react-hook-form';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
+import useApiMutation from '../../api/use-api-mutation';
+import useApiQuery from '../../api/use-api-query';
 import {
   UpdateConnectionType,
   updateConnectionSchema,
-} from '@/models/connections-model';
-
+} from '../../models/connections-model';
 import { Icons } from '../icons';
 import { Button } from '../ui/button';
 import { Dialog } from '../ui/dialog';

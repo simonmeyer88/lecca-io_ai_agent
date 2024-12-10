@@ -8,7 +8,7 @@ import {
   ApiLibraryConfig,
   api,
   appQueryClient,
-} from '@/api/api-library';
+} from './api-library';
 
 const MOCK_API_CALLS = import.meta.env.VITE_MOCK_API_CALLS === 'true';
 const LOG_API_CALLS = import.meta.env.VITE_LOG_API_CALLS === 'true';

@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
 
-import useApiQuery from '@/api/use-api-query';
-import { DataTable } from '@/components/data-table/data-table';
-import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { Icons } from '@/components/icons';
-import { TableLoader } from '@/components/loaders/table-loader';
-import { Tooltip } from '@/components/ui/tooltip';
-import { columns } from '@/pages/executions/components/table/executions-table-columns';
+import useApiQuery from '../../../../api/use-api-query';
+import { DataTable } from '../../../../components/data-table/data-table';
+import { EmptyPlaceholder } from '../../../../components/empty-placeholder';
+import { Icons } from '../../../../components/icons';
+import { TableLoader } from '../../../../components/loaders/table-loader';
+import { Tooltip } from '../../../../components/ui/tooltip';
+import { columns } from '../../../executions/components/table/executions-table-columns';
 
 export function HomeSectionRecentExecutions() {
   const { data: executions, isLoading: isLoadingExecutions } = useApiQuery({

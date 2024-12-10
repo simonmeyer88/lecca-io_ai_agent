@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { Edge, Node, useReactFlow } from 'reactflow';
 
-import { Tabs } from '@/components/ui/tabs';
-import { FieldConfig } from '@/models/workflow/input-config-model';
+import { Tabs } from '../../../../../../../components/ui/tabs';
+import { FieldConfig } from '../../../../../../../models/workflow/input-config-model';
 
 import { FilterFormFields, LeccaFilter } from './lecca-filter-form-fields';
 

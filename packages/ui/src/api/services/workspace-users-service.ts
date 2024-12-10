@@ -2,8 +2,7 @@ import {
   UpdateWorkspaceUserType,
   WorkspaceUser,
   workspaceUserSchema,
-} from '@/models/workspace-user-model';
-
+} from '../../models/workspace-user-model';
 import { ApiLibrary, ApiLibraryConfig, appQueryClient } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 

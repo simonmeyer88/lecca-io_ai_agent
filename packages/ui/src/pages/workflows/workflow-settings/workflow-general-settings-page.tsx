@@ -3,24 +3,24 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
-import { Icons } from '@/components/icons';
-import { Loader } from '@/components/loaders/loader';
-import { AlertDialog } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Form } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Separator } from '@/components/ui/separator';
-import { Textarea } from '@/components/ui/textarea';
-import { ToastAction } from '@/components/ui/toast';
-import { toast } from '@/hooks/useToast';
-import { useUser } from '@/hooks/useUser';
+import useApiMutation from '../../../api/use-api-mutation';
+import useApiQuery from '../../../api/use-api-query';
+import { Icons } from '../../../components/icons';
+import { Loader } from '../../../components/loaders/loader';
+import { AlertDialog } from '../../../components/ui/alert-dialog';
+import { Button } from '../../../components/ui/button';
+import { Card } from '../../../components/ui/card';
+import { Form } from '../../../components/ui/form';
+import { Input } from '../../../components/ui/input';
+import { Separator } from '../../../components/ui/separator';
+import { Textarea } from '../../../components/ui/textarea';
+import { ToastAction } from '../../../components/ui/toast';
+import { toast } from '../../../hooks/useToast';
+import { useUser } from '../../../hooks/useUser';
 import {
   UpdateWorkflowType,
   updateWorkflowSchema,
-} from '@/models/workflow/workflow-model';
+} from '../../../models/workflow/workflow-model';
 
 export default function WorkflowGeneralSettingsPage() {
   const { workflowId, projectId } = useParams();

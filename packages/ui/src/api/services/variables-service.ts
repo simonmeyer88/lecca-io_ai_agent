@@ -3,8 +3,7 @@ import {
   UpdateVariableType,
   Variable,
   variableSchema,
-} from '@/models/variable-model';
-
+} from '../../models/variable-model';
 import { ApiLibrary, ApiLibraryConfig } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 

@@ -1,9 +1,8 @@
 import { useState } from 'react';
 
-import useApiMutation from '@/api/use-api-mutation';
-import { useToast } from '@/hooks/useToast';
-import { ProjectInvitation } from '@/models/project/project-invitation-model';
-
+import useApiMutation from '../../api/use-api-mutation';
+import { useToast } from '../../hooks/useToast';
+import { ProjectInvitation } from '../../models/project/project-invitation-model';
 import { Icons } from '../icons';
 import { Button } from '../ui/button';
 import { Card } from '../ui/card';

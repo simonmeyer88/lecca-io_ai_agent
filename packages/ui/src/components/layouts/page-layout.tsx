@@ -1,10 +1,9 @@
 import React from 'react';
 
-import PageNav, { Breadcrumbs } from '@/components/layouts/page-nav';
-import { cn } from '@/utils/cn';
-
+import { cn } from '../../utils/cn';
 import { ScrollArea } from '../ui/scroll-area';
 
+import PageNav, { Breadcrumbs } from './page-nav';
 import { PageSideNav } from './page-side-nav';
 
 export default function PageLayout({

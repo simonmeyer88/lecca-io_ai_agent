@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { appQueryClient } from '@/api/api-library';
-import useApiQuery from '@/api/use-api-query';
-import { DataTable } from '@/components/data-table/data-table';
-import { DataTableToolbarAction } from '@/components/data-table/data-table-toolbar-action';
-import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { useUser } from '@/hooks/useUser';
+import { appQueryClient } from '../../../../api/api-library';
+import useApiQuery from '../../../../api/use-api-query';
+import { DataTable } from '../../../../components/data-table/data-table';
+import { DataTableToolbarAction } from '../../../../components/data-table/data-table-toolbar-action';
+import { EmptyPlaceholder } from '../../../../components/empty-placeholder';
+import { Icons } from '../../../../components/icons';
+import { Button } from '../../../../components/ui/button';
+import { useUser } from '../../../../hooks/useUser';
 
 import { columns } from './executions-table-columns';
 

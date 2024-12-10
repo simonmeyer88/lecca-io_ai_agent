@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
-import { WorkflowDropdownMenu } from '@/components/dropdown-menus/workflow-dropdown-menu';
-import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { Icons } from '@/components/icons';
-import PageLayout from '@/components/layouts/page-layout';
-import { GridLoader } from '@/components/loaders/grid-loader';
-import { PageLoader } from '@/components/loaders/page-loader';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Switch } from '@/components/ui/switch';
-import { useToast } from '@/hooks/useToast';
-import { Workflow } from '@/models/workflow/workflow-model';
-import { toLocaleDateStringOrUndefined } from '@/utils/dates';
+import useApiMutation from '../../api/use-api-mutation';
+import useApiQuery from '../../api/use-api-query';
+import { WorkflowDropdownMenu } from '../../components/dropdown-menus/workflow-dropdown-menu';
+import { EmptyPlaceholder } from '../../components/empty-placeholder';
+import { Icons } from '../../components/icons';
+import PageLayout from '../../components/layouts/page-layout';
+import { GridLoader } from '../../components/loaders/grid-loader';
+import { PageLoader } from '../../components/loaders/page-loader';
+import { Button } from '../../components/ui/button';
+import { Card } from '../../components/ui/card';
+import { Input } from '../../components/ui/input';
+import { Switch } from '../../components/ui/switch';
+import { useToast } from '../../hooks/useToast';
+import { Workflow } from '../../models/workflow/workflow-model';
+import { toLocaleDateStringOrUndefined } from '../../utils/dates';
 
 import { NavProjectSelector } from './components/nav-selectors/nav-project-selector';
 

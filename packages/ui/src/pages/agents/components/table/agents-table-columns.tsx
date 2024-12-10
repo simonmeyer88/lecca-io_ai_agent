@@ -2,15 +2,15 @@ import { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header';
-import { Icons } from '@/components/icons';
-import { Avatar } from '@/components/ui/avatar';
-import { Dialog } from '@/components/ui/dialog';
-import { Popover } from '@/components/ui/popover';
-import { Agent } from '@/models/agent/agent-model';
-import { AppOverviewContent } from '@/pages/apps/components/app-overview-content';
-import { toLocaleDateStringOrUndefined } from '@/utils/dates';
+import useApiQuery from '../../../../api/use-api-query';
+import { DataTableColumnHeader } from '../../../../components/data-table/data-table-column-header';
+import { Icons } from '../../../../components/icons';
+import { Avatar } from '../../../../components/ui/avatar';
+import { Dialog } from '../../../../components/ui/dialog';
+import { Popover } from '../../../../components/ui/popover';
+import { Agent } from '../../../../models/agent/agent-model';
+import { toLocaleDateStringOrUndefined } from '../../../../utils/dates';
+import { AppOverviewContent } from '../../../apps/components/app-overview-content';
 
 import { DataTableRowActions } from './agents-table-row-actions';
 

@@ -2,7 +2,7 @@ import { DashIcon } from '@radix-ui/react-icons';
 import { OTPInput, OTPInputContext } from 'input-otp';
 import * as React from 'react';
 
-import { cn } from '@/utils/cn';
+import { cn } from '../../utils/cn';
 
 const InputOTPRoot = React.forwardRef<
   React.ElementRef<typeof OTPInput>,

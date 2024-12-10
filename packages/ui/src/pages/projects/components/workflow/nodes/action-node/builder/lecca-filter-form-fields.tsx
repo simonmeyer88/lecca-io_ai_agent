@@ -4,21 +4,20 @@ import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { Node, useReactFlow } from 'reactflow';
 
-import { DynamicInput } from '@/components/dynamic-input/dynamic-input';
+import { DynamicInput } from '../../../../../../../components/dynamic-input/dynamic-input';
 import {
   KEY_NAME_DELIMITER,
   createNodeAndEdgeMaps,
   findAllPreviousNodes,
-} from '@/components/dynamic-input/references-popover';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { ComboBox } from '@/components/ui/combo-box';
-import { DateTimePicker } from '@/components/ui/date-time-picker';
-import { Popover } from '@/components/ui/popover';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Tooltip } from '@/components/ui/tooltip';
-import { cn } from '@/utils/cn';
-
+} from '../../../../../../../components/dynamic-input/references-popover';
+import { Icons } from '../../../../../../../components/icons';
+import { Button } from '../../../../../../../components/ui/button';
+import { ComboBox } from '../../../../../../../components/ui/combo-box';
+import { DateTimePicker } from '../../../../../../../components/ui/date-time-picker';
+import { Popover } from '../../../../../../../components/ui/popover';
+import { ScrollArea } from '../../../../../../../components/ui/scroll-area';
+import { Tooltip } from '../../../../../../../components/ui/tooltip';
+import { cn } from '../../../../../../../utils/cn';
 import {
   OutputSelector,
   OutputSelectorOnClickArgs,

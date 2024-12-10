@@ -1,6 +1,6 @@
 import { NoInfer, useMutation } from '@tanstack/react-query';
 
-import { useToast } from '@/hooks/useToast';
+import { useToast } from '../hooks/useToast';
 
 import { api, appQueryClient } from './api-library';
 

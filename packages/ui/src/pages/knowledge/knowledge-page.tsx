@@ -1,8 +1,8 @@
-import { CreateKnowledgeForm } from '@/components/forms/create-knowledge-form';
-import { Icons } from '@/components/icons';
-import PageLayout from '@/components/layouts/page-layout';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
+import { CreateKnowledgeForm } from '../../components/forms/create-knowledge-form';
+import { Icons } from '../../components/icons';
+import PageLayout from '../../components/layouts/page-layout';
+import { Button } from '../../components/ui/button';
+import { Dialog } from '../../components/ui/dialog';
 
 import { KnowledgeTable } from './components/table/knowledge-table';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Dialog } from '@/components/ui/dialog';
-import { Popover } from '@/components/ui/popover';
+import { Dialog } from '../../../../../../../components/ui/dialog';
+import { Popover } from '../../../../../../../components/ui/popover';
 
 export function CloseDialogOrPopoverButton({
   children,

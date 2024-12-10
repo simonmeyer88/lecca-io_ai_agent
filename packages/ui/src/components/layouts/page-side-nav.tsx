@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import { buttonVariants } from '@/components/ui/button';
-import { cn } from '@/utils/cn';
+import { cn } from '../../utils/cn';
+import { buttonVariants } from '../ui/button';
 
 interface PageSideNavProps extends React.HTMLAttributes<HTMLElement> {
   items: React.ReactNode[];

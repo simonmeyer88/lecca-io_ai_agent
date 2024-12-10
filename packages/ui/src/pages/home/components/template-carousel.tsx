@@ -1,8 +1,8 @@
 import Autoplay from 'embla-carousel-autoplay';
 
-import useApiQuery from '@/api/use-api-query';
-import { Carousel } from '@/components/ui/carousel';
-import { WorkflowTemplateCard } from '@/pages/templates/workflow-templates-page';
+import useApiQuery from '../../../api/use-api-query';
+import { Carousel } from '../../../components/ui/carousel';
+import { WorkflowTemplateCard } from '../../templates/workflow-templates-page';
 
 export function TemplateCarousel() {
   const { data: apps } = useApiQuery({

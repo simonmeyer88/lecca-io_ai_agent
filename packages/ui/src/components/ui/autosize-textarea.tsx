@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useImperativeHandle } from 'react';
 
-import { cn } from '@/utils/cn';
+import { cn } from '../../utils/cn';
 
 interface UseAutosizeTextAreaProps {
   textAreaRef: HTMLTextAreaElement | null;

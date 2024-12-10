@@ -1,5 +1,7 @@
-import { Notification, notificationSchema } from '@/models/notifications-model';
-
+import {
+  Notification,
+  notificationSchema,
+} from '../../models/notifications-model';
 import { ApiLibrary, ApiLibraryConfig, appQueryClient } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 

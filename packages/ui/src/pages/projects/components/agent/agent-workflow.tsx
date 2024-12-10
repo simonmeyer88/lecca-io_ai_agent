@@ -10,10 +10,9 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 import { v4 } from 'uuid';
 
-import { Loader } from '@/components/loaders/loader';
-import { useProjectAgent } from '@/hooks/useProjectAgent';
-import { Agent } from '@/models/agent/agent-model';
-
+import { Loader } from '../../../../components/loaders/loader';
+import { useProjectAgent } from '../../../../hooks/useProjectAgent';
+import { Agent } from '../../../../models/agent/agent-model';
 import { AgentWorkflowControls } from '../workflow/agent-controls/agent-workflow-controls';
 import { useLayout } from '../workflow/hooks/useLayout';
 

@@ -3,10 +3,11 @@ import { format } from 'date-fns';
 import React, { useEffect } from 'react';
 import { DateRange } from 'react-day-picker';
 
-import { Button } from '@/components/ui/button';
-import { Calendar } from '@/components/ui/calendar';
-import { Popover } from '@/components/ui/popover';
-import { cn } from '@/utils/cn';
+import { cn } from '../../utils/cn';
+
+import { Button } from './button';
+import { Calendar } from './calendar';
+import { Popover } from './popover';
 
 type DateRangePickerProps = {
   value?: DateRange;

@@ -1,16 +1,16 @@
 import { useEffect, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { Icons } from '@/components/icons';
-import PageLayout from '@/components/layouts/page-layout';
-import { Loader } from '@/components/loaders/loader';
-import { Button } from '@/components/ui/button';
-import { useApplicationSideNav } from '@/hooks/useApplicationSideNav';
-import { FormattedTaskMessage } from '@/models/task/formatted-task-message-model';
-import { NavAgentSelector } from '@/pages/projects/components/nav-selectors/nav-agent-selector';
-import { NavProjectSelector } from '@/pages/projects/components/nav-selectors/nav-project-selector';
-import { NavTaskSelector } from '@/pages/projects/components/nav-selectors/task-selector';
+import useApiQuery from '../../../api/use-api-query';
+import { Icons } from '../../../components/icons';
+import PageLayout from '../../../components/layouts/page-layout';
+import { Loader } from '../../../components/loaders/loader';
+import { Button } from '../../../components/ui/button';
+import { useApplicationSideNav } from '../../../hooks/useApplicationSideNav';
+import { FormattedTaskMessage } from '../../../models/task/formatted-task-message-model';
+import { NavAgentSelector } from '../../projects/components/nav-selectors/nav-agent-selector';
+import { NavProjectSelector } from '../../projects/components/nav-selectors/nav-project-selector';
+import { NavTaskSelector } from '../../projects/components/nav-selectors/task-selector';
 
 import { Chat } from './components/chat';
 import { formatSavedMessagesToStreamedMessageFormat } from './utils/format-saved-messages-to-streamed-message-format';

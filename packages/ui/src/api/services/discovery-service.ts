@@ -1,5 +1,4 @@
-import { Features, featuresSchema } from '@/models/discovery-model';
-
+import { Features, featuresSchema } from '../../models/discovery-model';
 import { ApiLibrary } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 

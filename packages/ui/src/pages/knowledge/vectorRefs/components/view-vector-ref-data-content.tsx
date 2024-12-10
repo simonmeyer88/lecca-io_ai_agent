@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 
-import { appQueryClient } from '@/api/api-library';
-import useApiQuery from '@/api/use-api-query';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { appQueryClient } from '../../../../api/api-library';
+import useApiQuery from '../../../../api/use-api-query';
+import { Icons } from '../../../../components/icons';
+import { Button } from '../../../../components/ui/button';
+import { Card } from '../../../../components/ui/card';
 
 export function ViewVectorRefDataContent({
   vectorRefId,

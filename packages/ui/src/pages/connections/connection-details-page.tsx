@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import PageLayout from '@/components/layouts/page-layout';
-import { Loader } from '@/components/loaders/loader';
+import useApiQuery from '../../api/use-api-query';
+import PageLayout from '../../components/layouts/page-layout';
+import { Loader } from '../../components/loaders/loader';
 
 export default function ConnectionDetailsPage() {
   const { connectionId } = useParams();

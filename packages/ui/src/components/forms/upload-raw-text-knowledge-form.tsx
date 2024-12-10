@@ -2,14 +2,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
-import { toast } from '@/hooks/useToast';
+import useApiMutation from '../../api/use-api-mutation';
+import useApiQuery from '../../api/use-api-query';
+import { toast } from '../../hooks/useToast';
 import {
   UploadRawTextKnowledgeType,
   uploadRawTextKnowledgeSchema,
-} from '@/models/knowledge-model';
-
+} from '../../models/knowledge-model';
 import { Icons } from '../icons';
 import { AutosizeTextarea } from '../ui/autosize-textarea';
 import { Button } from '../ui/button';

@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { Loader } from '@/components/loaders/loader';
+import useApiQuery from '../../api/use-api-query';
+import { Loader } from '../../components/loaders/loader';
 
 /**
  * This page fetches the agent and then redirects to the project agent details page.

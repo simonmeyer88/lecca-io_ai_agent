@@ -3,8 +3,7 @@ import {
   UpdateWorkspaceType,
   Workspace,
   workspaceSchema,
-} from '@/models/workspace-model';
-
+} from '../../models/workspace-model';
 import { ApiLibrary, ApiLibraryConfig, appQueryClient } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 

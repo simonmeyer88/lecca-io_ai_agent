@@ -1,15 +1,15 @@
 import { useState } from 'react';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
-import { CreateProjectForm } from '@/components/forms/create-project-form';
-import { Icons } from '@/components/icons';
-import PageLayout from '@/components/layouts/page-layout';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { ListView } from '@/components/ui/list-view';
-import { useToast } from '@/hooks/useToast';
-import { ProjectInvitation } from '@/models/project/project-invitation-model';
+import useApiMutation from '../../api/use-api-mutation';
+import useApiQuery from '../../api/use-api-query';
+import { CreateProjectForm } from '../../components/forms/create-project-form';
+import { Icons } from '../../components/icons';
+import PageLayout from '../../components/layouts/page-layout';
+import { Button } from '../../components/ui/button';
+import { Dialog } from '../../components/ui/dialog';
+import { ListView } from '../../components/ui/list-view';
+import { useToast } from '../../hooks/useToast';
+import { ProjectInvitation } from '../../models/project/project-invitation-model';
 
 import ProjectsTable from './components/table/projects-table';
 

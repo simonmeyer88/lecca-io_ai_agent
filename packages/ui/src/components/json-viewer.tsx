@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { JSONTree } from 'react-json-tree';
 
-import { useUser } from '@/hooks/useUser';
+import { useUser } from '../hooks/useUser';
 
 const THEME = {
   scheme: 'custom-light',

@@ -1,14 +1,13 @@
 import React, { useCallback } from 'react';
 
-import { Icons } from '@/components/icons';
-import { AutosizeTextarea } from '@/components/ui/autosize-textarea';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-import { Label } from '@/components/ui/label';
-import { Tooltip } from '@/components/ui/tooltip';
-import { cn } from '@/utils/cn';
-
+import { Icons } from '../../../../components/icons';
+import { AutosizeTextarea } from '../../../../components/ui/autosize-textarea';
+import { Button } from '../../../../components/ui/button';
+import { Dialog } from '../../../../components/ui/dialog';
+import { DropdownMenu } from '../../../../components/ui/dropdown-menu';
+import { Label } from '../../../../components/ui/label';
+import { Tooltip } from '../../../../components/ui/tooltip';
+import { cn } from '../../../../utils/cn';
 import { getUploadUrlForTempFile } from '../utils/get-upload-url';
 import { resizeFile } from '../utils/resize-file';
 

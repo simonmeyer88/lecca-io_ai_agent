@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { AgentDropdownMenu } from '@/components/dropdown-menus/agent-dropdown-menu';
-import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { SelectProjectForAgentForm } from '@/components/forms/select-project-for-agent-form';
-import { Icons } from '@/components/icons';
-import PageLayout from '@/components/layouts/page-layout';
-import { GridLoader } from '@/components/loaders/grid-loader';
-import { PageLoader } from '@/components/loaders/page-loader';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Dialog } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Agent } from '@/models/agent/agent-model';
-import { toLocaleDateStringOrUndefined } from '@/utils/dates';
+import useApiQuery from '../../api/use-api-query';
+import { AgentDropdownMenu } from '../../components/dropdown-menus/agent-dropdown-menu';
+import { EmptyPlaceholder } from '../../components/empty-placeholder';
+import { SelectProjectForAgentForm } from '../../components/forms/select-project-for-agent-form';
+import { Icons } from '../../components/icons';
+import PageLayout from '../../components/layouts/page-layout';
+import { GridLoader } from '../../components/loaders/grid-loader';
+import { PageLoader } from '../../components/loaders/page-loader';
+import { Button } from '../../components/ui/button';
+import { Card } from '../../components/ui/card';
+import { Dialog } from '../../components/ui/dialog';
+import { Input } from '../../components/ui/input';
+import { Agent } from '../../models/agent/agent-model';
+import { toLocaleDateStringOrUndefined } from '../../utils/dates';
 
 import { NavProjectSelector } from './components/nav-selectors/nav-project-selector';
 

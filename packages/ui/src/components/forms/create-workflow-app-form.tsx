@@ -3,12 +3,11 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import useApiMutation from '@/api/use-api-mutation';
+import useApiMutation from '../../api/use-api-mutation';
 import {
   CreateWorkflowAppType,
   createWorkflowAppSchema,
-} from '@/models/workflow/workflow-app-model';
-
+} from '../../models/workflow/workflow-app-model';
 import { Icons } from '../icons';
 import { Button } from '../ui/button';
 import { Dialog } from '../ui/dialog';

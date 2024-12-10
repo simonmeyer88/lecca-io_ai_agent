@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import { Icons } from '@/components/icons';
-import { MarkdownViewer } from '@/components/markdown-viewer';
-import { Agent } from '@/models/agent/agent-model';
+import { Icons } from '../../../../components/icons';
+import { MarkdownViewer } from '../../../../components/markdown-viewer';
+import { Agent } from '../../../../models/agent/agent-model';
 
 import { MessageCardWrapper } from './message-card-wrapper';
 

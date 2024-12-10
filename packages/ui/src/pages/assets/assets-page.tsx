@@ -1,6 +1,6 @@
-import PageLayout from '@/components/layouts/page-layout';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
+import PageLayout from '../../components/layouts/page-layout';
+import { Button } from '../../components/ui/button';
+import { Dialog } from '../../components/ui/dialog';
 
 export default function AssetsPage() {
   return (

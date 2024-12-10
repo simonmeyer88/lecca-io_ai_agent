@@ -1,7 +1,6 @@
 import { z } from 'zod';
 
-import { newDateOrUndefined } from '@/utils/dates';
-
+import { newDateOrUndefined } from '../../utils/dates';
 import { WORKFLOW_ORIENTATIONS } from '../workspace-user-preferences-model';
 
 import { placeholderEdgeSchema } from './edge/placeholder-edge-model';

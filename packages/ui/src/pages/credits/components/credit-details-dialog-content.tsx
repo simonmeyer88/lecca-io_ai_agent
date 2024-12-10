@@ -1,9 +1,9 @@
-import useApiQuery from '@/api/use-api-query';
-import { JsonViewer } from '@/components/json-viewer';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Dialog } from '@/components/ui/dialog';
-import { toLocaleStringOrUndefined } from '@/utils/dates';
+import useApiQuery from '../../../api/use-api-query';
+import { JsonViewer } from '../../../components/json-viewer';
+import { Button } from '../../../components/ui/button';
+import { Card } from '../../../components/ui/card';
+import { Dialog } from '../../../components/ui/dialog';
+import { toLocaleStringOrUndefined } from '../../../utils/dates';
 
 export function CreditDetailsDialogContent({ creditId }: { creditId: string }) {
   const { data, isLoading } = useApiQuery({

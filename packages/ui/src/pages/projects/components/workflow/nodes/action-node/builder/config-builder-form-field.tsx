@@ -2,25 +2,25 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { Node } from 'reactflow';
 
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { ComboBox } from '@/components/ui/combo-box';
-import { DatePicker } from '@/components/ui/date-picker';
-import { DateTimePicker } from '@/components/ui/date-time-picker';
-import { Input } from '@/components/ui/input';
-import { MultiSelect } from '@/components/ui/multi-select';
-import { Popover } from '@/components/ui/popover';
-import { Separator } from '@/components/ui/separator';
-import { Table } from '@/components/ui/table';
-import { Tooltip } from '@/components/ui/tooltip';
+import { Icons } from '../../../../../../../components/icons';
+import { Button } from '../../../../../../../components/ui/button';
+import { Checkbox } from '../../../../../../../components/ui/checkbox';
+import { ComboBox } from '../../../../../../../components/ui/combo-box';
+import { DatePicker } from '../../../../../../../components/ui/date-picker';
+import { DateTimePicker } from '../../../../../../../components/ui/date-time-picker';
+import { Input } from '../../../../../../../components/ui/input';
+import { MultiSelect } from '../../../../../../../components/ui/multi-select';
+import { Popover } from '../../../../../../../components/ui/popover';
+import { Separator } from '../../../../../../../components/ui/separator';
+import { Table } from '../../../../../../../components/ui/table';
+import { Tooltip } from '../../../../../../../components/ui/tooltip';
 import {
   COMMON_INPUT_TYPES,
   CommonInputType,
   FieldConfig,
   InputConfig,
-} from '@/models/workflow/input-config-model';
-import { cn } from '@/utils/cn';
+} from '../../../../../../../models/workflow/input-config-model';
+import { cn } from '../../../../../../../utils/cn';
 
 export function ConfigBuilderFormField({
   readonly,

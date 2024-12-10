@@ -4,19 +4,19 @@ import { ControllerRenderProps, FieldValues, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { NodeProps } from 'reactflow';
 
-import { api } from '@/api/api-library';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { DatePicker } from '@/components/ui/date-picker';
-import { DateTimePicker } from '@/components/ui/date-time-picker';
-import { Dialog } from '@/components/ui/dialog';
-import { Form } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Select } from '@/components/ui/select';
-import { Tooltip } from '@/components/ui/tooltip';
-import { useProjectWorkflow } from '@/hooks/useProjectWorkflow';
-import { useToast } from '@/hooks/useToast';
-import { FieldConfig } from '@/models/workflow/input-config-model';
+import { api } from '../../../../../../api/api-library';
+import { Icons } from '../../../../../../components/icons';
+import { Button } from '../../../../../../components/ui/button';
+import { DatePicker } from '../../../../../../components/ui/date-picker';
+import { DateTimePicker } from '../../../../../../components/ui/date-time-picker';
+import { Dialog } from '../../../../../../components/ui/dialog';
+import { Form } from '../../../../../../components/ui/form';
+import { Input } from '../../../../../../components/ui/input';
+import { Select } from '../../../../../../components/ui/select';
+import { Tooltip } from '../../../../../../components/ui/tooltip';
+import { useProjectWorkflow } from '../../../../../../hooks/useProjectWorkflow';
+import { useToast } from '../../../../../../hooks/useToast';
+import { FieldConfig } from '../../../../../../models/workflow/input-config-model';
 
 /**
  * Not actually a node, but appears on the canvas like an node

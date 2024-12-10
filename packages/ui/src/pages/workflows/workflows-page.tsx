@@ -1,8 +1,8 @@
-import { SelectProjectForWorkflowForm } from '@/components/forms/select-project-for-workflow-form';
-import { Icons } from '@/components/icons';
-import PageLayout from '@/components/layouts/page-layout';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
+import { SelectProjectForWorkflowForm } from '../../components/forms/select-project-for-workflow-form';
+import { Icons } from '../../components/icons';
+import PageLayout from '../../components/layouts/page-layout';
+import { Button } from '../../components/ui/button';
+import { Dialog } from '../../components/ui/dialog';
 
 import WorkflowsTable from './components/table/workflows-table';
 

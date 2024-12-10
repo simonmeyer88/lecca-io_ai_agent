@@ -3,24 +3,24 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { api } from '@/api/api-library';
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
-import { AvatarUploader } from '@/components/avatar-uploader';
-import { AlertDialog } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Form } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Separator } from '@/components/ui/separator';
-import { Textarea } from '@/components/ui/textarea';
-import { Tooltip } from '@/components/ui/tooltip';
-import { toast } from '@/hooks/useToast';
-import { useUser } from '@/hooks/useUser';
+import { api } from '../../api/api-library';
+import useApiMutation from '../../api/use-api-mutation';
+import useApiQuery from '../../api/use-api-query';
+import { AvatarUploader } from '../../components/avatar-uploader';
+import { AlertDialog } from '../../components/ui/alert-dialog';
+import { Button } from '../../components/ui/button';
+import { Card } from '../../components/ui/card';
+import { Form } from '../../components/ui/form';
+import { Input } from '../../components/ui/input';
+import { Separator } from '../../components/ui/separator';
+import { Textarea } from '../../components/ui/textarea';
+import { Tooltip } from '../../components/ui/tooltip';
+import { toast } from '../../hooks/useToast';
+import { useUser } from '../../hooks/useUser';
 import {
   UpdateWorkspaceType,
   updateWorkspaceSchema,
-} from '@/models/workspace-model';
+} from '../../models/workspace-model';
 
 export default function WorkspaceSettingsPage() {
   const { workspaceUser, workspace, setWorkspace } = useUser();

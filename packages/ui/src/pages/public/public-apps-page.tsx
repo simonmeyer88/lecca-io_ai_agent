@@ -1,12 +1,11 @@
 import { useState } from 'react';
 
-import useApiQuery from '@/api/use-api-query';
-import { GridLoader } from '@/components/loaders/grid-loader';
-import { Card } from '@/components/ui/card';
-import { Dialog } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Skeleton } from '@/components/ui/skeleton';
-
+import useApiQuery from '../../api/use-api-query';
+import { GridLoader } from '../../components/loaders/grid-loader';
+import { Card } from '../../components/ui/card';
+import { Dialog } from '../../components/ui/dialog';
+import { Input } from '../../components/ui/input';
+import { Skeleton } from '../../components/ui/skeleton';
 import { AppOverviewContent } from '../apps/components/app-overview-content';
 
 export function PublicAppsPage() {

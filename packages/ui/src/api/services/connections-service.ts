@@ -3,8 +3,7 @@ import {
   CreateConnectionType,
   UpdateConnectionType,
   connectionSchema,
-} from '@/models/connections-model';
-
+} from '../../models/connections-model';
 import { ApiLibrary, ApiLibraryConfig } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 

@@ -1,7 +1,6 @@
 import { z } from 'zod';
 
-import { newDateOrUndefined } from '@/utils/dates';
-
+import { newDateOrUndefined } from '../../utils/dates';
 import { savedActionNodeSchema } from '../workflow/node/node-model';
 
 import { agentTriggerSchema } from './agent-trigger-model';

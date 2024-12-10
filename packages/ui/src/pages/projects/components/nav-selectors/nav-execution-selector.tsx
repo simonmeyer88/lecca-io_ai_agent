@@ -1,10 +1,10 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { ComboBox } from '@/components/ui/combo-box';
-import { timeAgo } from '@/utils/dates';
+import useApiQuery from '../../../../api/use-api-query';
+import { Icons } from '../../../../components/icons';
+import { Button } from '../../../../components/ui/button';
+import { ComboBox } from '../../../../components/ui/combo-box';
+import { timeAgo } from '../../../../utils/dates';
 
 export function NavExecutionSelector() {
   const { projectId, executionId } = useParams();

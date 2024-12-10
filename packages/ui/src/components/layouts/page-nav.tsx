@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { cn } from '@/utils/cn';
-
+import { cn } from '../../utils/cn';
 import { Icons } from '../icons';
 import { Breadcrumb } from '../ui/breadcrumb';
 import { Button } from '../ui/button';

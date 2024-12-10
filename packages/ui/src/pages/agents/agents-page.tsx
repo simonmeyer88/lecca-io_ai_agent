@@ -1,8 +1,8 @@
-import { SelectProjectForAgentForm } from '@/components/forms/select-project-for-agent-form';
-import { Icons } from '@/components/icons';
-import PageLayout from '@/components/layouts/page-layout';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
+import { SelectProjectForAgentForm } from '../../components/forms/select-project-for-agent-form';
+import { Icons } from '../../components/icons';
+import PageLayout from '../../components/layouts/page-layout';
+import { Button } from '../../components/ui/button';
+import { Dialog } from '../../components/ui/dialog';
 
 import { AgentsTableWithData } from './components/table/agents-table';
 

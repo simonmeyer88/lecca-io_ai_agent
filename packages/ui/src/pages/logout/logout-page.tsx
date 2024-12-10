@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { api } from '@/api/api-library';
-import { useUser } from '@/hooks/useUser';
+import { api } from '../../api/api-library';
+import { useUser } from '../../hooks/useUser';
 
 export default function LogoutPage() {
   const { logout } = useUser();

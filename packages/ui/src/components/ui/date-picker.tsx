@@ -1,10 +1,11 @@
 import { CalendarIcon } from '@radix-ui/react-icons';
 import { format } from 'date-fns';
 
-import { Button } from '@/components/ui/button';
-import { Calendar } from '@/components/ui/calendar';
-import { Popover } from '@/components/ui/popover';
-import { cn } from '@/utils/cn';
+import { cn } from '../../utils/cn';
+
+import { Button } from './button';
+import { Calendar } from './calendar';
+import { Popover } from './popover';
 
 type DatePickerProps = {
   value?: Date;

@@ -4,9 +4,8 @@ import {
   UpdateKnowledgeType,
   UploadFileKnowledgeType,
   knowledgeSchema,
-} from '@/models/knowledge-model';
-import { KnowledgeVectorRef } from '@/models/knowledge-vector-ref-model';
-
+} from '../../models/knowledge-model';
+import { KnowledgeVectorRef } from '../../models/knowledge-vector-ref-model';
 import { ApiLibrary, ApiLibraryConfig, appQueryClient } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 

@@ -2,14 +2,14 @@
 import React, { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { api, appQueryClient } from '@/api/api-library';
-import { AiProviders } from '@/models/ai-provider-model';
-import { Features, defaultEnabledFeatures } from '@/models/discovery-model';
-import { User } from '@/models/user-model';
-import { Workspace } from '@/models/workspace-model';
-import { WorkspacePreferences } from '@/models/workspace-preferences-model';
-import { WorkspaceUser } from '@/models/workspace-user-model';
-import { WorkspaceUserPreferences } from '@/models/workspace-user-preferences-model';
+import { api, appQueryClient } from '../api/api-library';
+import { AiProviders } from '../models/ai-provider-model';
+import { Features, defaultEnabledFeatures } from '../models/discovery-model';
+import { User } from '../models/user-model';
+import { Workspace } from '../models/workspace-model';
+import { WorkspacePreferences } from '../models/workspace-preferences-model';
+import { WorkspaceUser } from '../models/workspace-user-model';
+import { WorkspaceUserPreferences } from '../models/workspace-user-preferences-model';
 
 interface UserContextProps {
   enabledFeatures: Features;

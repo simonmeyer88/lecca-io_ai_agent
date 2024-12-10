@@ -2,14 +2,14 @@ import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import { Row } from '@tanstack/react-table';
 import { useState } from 'react';
 
-import useApiMutation from '@/api/use-api-mutation';
-import { UpdateVariableForm } from '@/components/forms/update-variable-form';
-import { AlertDialog } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-import { useToast } from '@/hooks/useToast';
-import { Variable } from '@/models/variable-model';
+import useApiMutation from '../../../../api/use-api-mutation';
+import { UpdateVariableForm } from '../../../../components/forms/update-variable-form';
+import { AlertDialog } from '../../../../components/ui/alert-dialog';
+import { Button } from '../../../../components/ui/button';
+import { Dialog } from '../../../../components/ui/dialog';
+import { DropdownMenu } from '../../../../components/ui/dropdown-menu';
+import { useToast } from '../../../../hooks/useToast';
+import { Variable } from '../../../../models/variable-model';
 
 export function DataTableRowActions({ row }: { row: Row<Variable> }) {
   const { toast } = useToast();

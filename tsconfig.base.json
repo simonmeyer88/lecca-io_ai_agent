@@ -16,8 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@lecca-io/apps": ["packages/apps/src/index.ts"],
-      "@lecca-io/toolkit": ["packages/toolkit/src/index.ts"],
-      "@lecca-io/server/*": ["packages/server/src/*"]
+      "@lecca-io/toolkit": ["packages/toolkit/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

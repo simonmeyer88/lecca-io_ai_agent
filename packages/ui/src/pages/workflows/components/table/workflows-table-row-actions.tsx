@@ -3,12 +3,12 @@ import { Row } from '@tanstack/react-table';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import useApiMutation from '@/api/use-api-mutation';
-import { AlertDialog } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { DropdownMenu } from '@/components/ui/dropdown-menu';
-import { useToast } from '@/hooks/useToast';
-import { Workflow } from '@/models/workflow/workflow-model';
+import useApiMutation from '../../../../api/use-api-mutation';
+import { AlertDialog } from '../../../../components/ui/alert-dialog';
+import { Button } from '../../../../components/ui/button';
+import { DropdownMenu } from '../../../../components/ui/dropdown-menu';
+import { useToast } from '../../../../hooks/useToast';
+import { Workflow } from '../../../../models/workflow/workflow-model';
 
 export function DataTableRowActions({ row }: { row: Row<Workflow> }) {
   const { toast } = useToast();

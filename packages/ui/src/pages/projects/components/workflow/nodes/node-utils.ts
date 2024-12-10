@@ -1,19 +1,22 @@
 import { Edge, Node, NodeProps } from 'reactflow';
 import { v4 } from 'uuid';
 
-import { Connection } from '@/models/connections-model';
-import { Variable } from '@/models/variable-model';
-import { FieldConfig, InputConfig } from '@/models/workflow/input-config-model';
+import { Connection } from '../../../../../models/connections-model';
+import { Variable } from '../../../../../models/variable-model';
+import {
+  FieldConfig,
+  InputConfig,
+} from '../../../../../models/workflow/input-config-model';
 import {
   SavedActionNode,
   SavedTriggerNode,
   SavedWorkflowNode,
-} from '@/models/workflow/node/node-model';
+} from '../../../../../models/workflow/node/node-model';
 import {
   MappedWorkflowApps,
   WorkflowApp,
-} from '@/models/workflow/workflow-app-model';
-import { UnionEdgeType as WorfklowEdgeType } from '@/models/workflow/workflow-model';
+} from '../../../../../models/workflow/workflow-app-model';
+import { UnionEdgeType as WorkflowEdgeType } from '../../../../../models/workflow/workflow-model';
 
 import { ConditionalPathFilter } from './action-node/builder/conditional-paths-form-fields';
 import { DecidePathOptions } from './action-node/builder/decide-paths-form-fields';
@@ -545,13 +548,13 @@ export function getDefaultsFromInputConfig(inputConfig: InputConfig) {
   return defaults;
 }
 
-export function formatEdgesForSaving(edges: Edge[]): WorfklowEdgeType[] {
+export function formatEdgesForSaving(edges: Edge[]): WorkflowEdgeType[] {
   return edges.map((edge) => {
     return {
       id: edge.id,
       source: edge.source,
       target: edge.target,
-      type: edge.type as WorfklowEdgeType['type'],
+      type: edge.type as WorkflowEdgeType['type'],
       animated: true,
     };
   });

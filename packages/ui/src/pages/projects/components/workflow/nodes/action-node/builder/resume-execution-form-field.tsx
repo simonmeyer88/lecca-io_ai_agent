@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { Node } from 'reactflow';
 
-import { useProjectWorkflow } from '@/hooks/useProjectWorkflow';
+import { useProjectWorkflow } from '../../../../../../../hooks/useProjectWorkflow';
 
 export function ResumeExecutionFormField({
   form,

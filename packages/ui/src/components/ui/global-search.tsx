@@ -1,14 +1,14 @@
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { Command } from '@/components/ui/command';
-import { Input } from '@/components/ui/input';
-import { useUser } from '@/hooks/useUser';
-import { Agent } from '@/models/agent/agent-model';
-import { Project } from '@/models/project/project-model';
-import { Workflow } from '@/models/workflow/workflow-model';
+import useApiQuery from '../../api/use-api-query';
+import { useUser } from '../../hooks/useUser';
+import { Agent } from '../../models/agent/agent-model';
+import { Project } from '../../models/project/project-model';
+import { Workflow } from '../../models/workflow/workflow-model';
 
+import { Command } from './command';
+import { Input } from './input';
 import { ScrollArea } from './scroll-area';
 
 export function GlobalSearch() {

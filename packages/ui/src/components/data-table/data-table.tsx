@@ -15,11 +15,11 @@ import {
 } from '@tanstack/react-table';
 import * as React from 'react';
 
-import { DataTablePagination } from '@/components/data-table/data-table-pagination';
-import { DataTableToolbar } from '@/components/data-table/data-table-toolbar';
-import { Table } from '@/components/ui/table';
-
 import { TableLoader } from '../loaders/table-loader';
+import { Table } from '../ui/table';
+
+import { DataTablePagination } from './data-table-pagination';
+import { DataTableToolbar } from './data-table-toolbar';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { Tooltip } from '@/components/ui/tooltip';
-import { cn } from '@/utils/cn';
+import { Icons } from '../../../../components/icons';
+import { Button } from '../../../../components/ui/button';
+import { Tooltip } from '../../../../components/ui/tooltip';
+import { cn } from '../../../../utils/cn';
 import {
   toLocaleStringOrUndefined,
   toLocaleTimeOrDateTimeOrUndefined,
-} from '@/utils/dates';
+} from '../../../../utils/dates';
 
 export function MessageCardWrapper({
   children,

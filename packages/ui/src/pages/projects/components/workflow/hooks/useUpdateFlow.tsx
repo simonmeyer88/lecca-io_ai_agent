@@ -1,8 +1,7 @@
 import { useReactFlow } from 'reactflow';
 import { v4 } from 'uuid';
 
-import { useProjectWorkflow } from '@/hooks/useProjectWorkflow';
-
+import { useProjectWorkflow } from '../../../../../hooks/useProjectWorkflow';
 import { setActionNodeData, setTriggerNodeData } from '../nodes/node-utils';
 
 export function useUpdateFlow() {

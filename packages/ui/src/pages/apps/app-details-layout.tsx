@@ -2,14 +2,14 @@ import React from 'react';
 import { useMemo } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 
-import useApiQuery from '@/api/use-api-query';
-import { CreateConnectionForm } from '@/components/forms/create-connection-form';
-import { Icons } from '@/components/icons';
-import PageLayout from '@/components/layouts/page-layout';
-import { PageSideNavLink } from '@/components/layouts/page-side-nav';
-import { PageLoader } from '@/components/loaders/page-loader';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
+import useApiQuery from '../../api/use-api-query';
+import { CreateConnectionForm } from '../../components/forms/create-connection-form';
+import { Icons } from '../../components/icons';
+import PageLayout from '../../components/layouts/page-layout';
+import { PageSideNavLink } from '../../components/layouts/page-side-nav';
+import { PageLoader } from '../../components/loaders/page-loader';
+import { Button } from '../../components/ui/button';
+import { Dialog } from '../../components/ui/dialog';
 
 export const AppDetailsLayout = () => {
   const { appId } = useParams();

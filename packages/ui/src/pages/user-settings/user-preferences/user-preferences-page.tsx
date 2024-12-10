@@ -2,17 +2,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import useApiMutation from '@/api/use-api-mutation';
-import { Button } from '@/components/ui/button';
-import { Form } from '@/components/ui/form';
-import { RadioGroup } from '@/components/ui/radio-group';
-import { Separator } from '@/components/ui/separator';
-import { toast } from '@/hooks/useToast';
-import { useUser } from '@/hooks/useUser';
+import useApiMutation from '../../../api/use-api-mutation';
+import { Button } from '../../../components/ui/button';
+import { Form } from '../../../components/ui/form';
+import { RadioGroup } from '../../../components/ui/radio-group';
+import { Separator } from '../../../components/ui/separator';
+import { toast } from '../../../hooks/useToast';
+import { useUser } from '../../../hooks/useUser';
 import {
   UpdateWorkspaceUserPreferencesType,
   updateWorkspaceUserPreferencesSchema,
-} from '@/models/workspace-user-preferences-model';
+} from '../../../models/workspace-user-preferences-model';
 
 export default function UserPreferencesPage() {
   const {

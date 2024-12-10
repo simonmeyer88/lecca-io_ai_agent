@@ -1,9 +1,8 @@
 import { useMemo } from 'react';
 import { NodeProps, useReactFlow } from 'reactflow';
 
-import useApiQuery from '@/api/use-api-query';
-import { useProjectWorkflow } from '@/hooks/useProjectWorkflow';
-
+import useApiQuery from '../../../../../api/use-api-query';
+import { useProjectWorkflow } from '../../../../../hooks/useProjectWorkflow';
 import { NodeStatus, getNodeStatus } from '../nodes/node-utils';
 
 export function useGetNodeStatus({

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Card } from '@/components/ui/card';
-import { Skeleton } from '@/components/ui/skeleton';
+import { Card } from '../../../components/ui/card';
+import { Skeleton } from '../../../components/ui/skeleton';
 
 type HomeSummaryCardProps = {
   title: string;

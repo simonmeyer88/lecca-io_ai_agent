@@ -3,13 +3,12 @@ import { isValid } from 'date-fns';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import useApiMutation from '@/api/use-api-mutation';
+import useApiMutation from '../../api/use-api-mutation';
 import {
   CreateVariableType,
   Variable,
   createVariableSchema,
-} from '@/models/variable-model';
-
+} from '../../models/variable-model';
 import { Icons } from '../icons';
 import { Button } from '../ui/button';
 import { DateTimePicker } from '../ui/date-time-picker';

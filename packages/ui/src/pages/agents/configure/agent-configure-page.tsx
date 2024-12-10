@@ -3,27 +3,26 @@ import { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
-import { api, appQueryClient } from '@/api/api-library';
-import useApiMutation from '@/api/use-api-mutation';
-import PageLayout from '@/components/layouts/page-layout';
-import { PageLoader } from '@/components/loaders/page-loader';
-import { useOnborda } from '@/components/onboarda/OnbordaContext';
-import { Button } from '@/components/ui/button';
-import { Form } from '@/components/ui/form';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Tabs } from '@/components/ui/tabs';
-import { useToast } from '@/hooks/useToast';
-import { useUser } from '@/hooks/useUser';
+import { api, appQueryClient } from '../../../api/api-library';
+import useApiMutation from '../../../api/use-api-mutation';
+import PageLayout from '../../../components/layouts/page-layout';
+import { PageLoader } from '../../../components/loaders/page-loader';
+import { useOnborda } from '../../../components/onboarda/OnbordaContext';
+import { Button } from '../../../components/ui/button';
+import { Form } from '../../../components/ui/form';
+import { Skeleton } from '../../../components/ui/skeleton';
+import { Tabs } from '../../../components/ui/tabs';
+import { useToast } from '../../../hooks/useToast';
+import { useUser } from '../../../hooks/useUser';
 import {
   Agent,
   CreateAgentType,
   UpdateAgentType,
   createAgentSchema,
-} from '@/models/agent/agent-model';
-import { AiProvider } from '@/models/ai-provider-model';
-import { Project } from '@/models/project/project-model';
-import { NavAgentSelector } from '@/pages/projects/components/nav-selectors/nav-agent-selector';
-
+} from '../../../models/agent/agent-model';
+import { AiProvider } from '../../../models/ai-provider-model';
+import { Project } from '../../../models/project/project-model';
+import { NavAgentSelector } from '../../projects/components/nav-selectors/nav-agent-selector';
 import { NavProjectSelector } from '../../projects/components/nav-selectors/nav-project-selector';
 
 import { AgentBuilderActionsContent } from './agent-builder-actions-content';

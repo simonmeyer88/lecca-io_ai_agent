@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 
-import { cn } from '@/utils/cn';
-
+import { cn } from '../../utils/cn';
 import { Skeleton } from '../ui/skeleton';
 
 export function ListViewLoader({

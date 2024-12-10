@@ -8,24 +8,26 @@ import {
 } from 'react-hook-form';
 import { Node } from 'reactflow';
 
-import { api, appQueryClient } from '@/api/api-library';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { Form } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Popover } from '@/components/ui/popover';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Separator } from '@/components/ui/separator';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Tooltip } from '@/components/ui/tooltip';
-import { useProjectWorkflow } from '@/hooks/useProjectWorkflow';
-import { useToast } from '@/hooks/useToast';
-import { Agent } from '@/models/agent/agent-model';
-import { FieldConfig, InputConfig } from '@/models/workflow/input-config-model';
-import { Workflow } from '@/models/workflow/workflow-model';
-import { cn } from '@/utils/cn';
-
+import { api, appQueryClient } from '../../../../../../../api/api-library';
+import { Icons } from '../../../../../../../components/icons';
+import { Button } from '../../../../../../../components/ui/button';
+import { Dialog } from '../../../../../../../components/ui/dialog';
+import { Form } from '../../../../../../../components/ui/form';
+import { Input } from '../../../../../../../components/ui/input';
+import { Popover } from '../../../../../../../components/ui/popover';
+import { ScrollArea } from '../../../../../../../components/ui/scroll-area';
+import { Separator } from '../../../../../../../components/ui/separator';
+import { Skeleton } from '../../../../../../../components/ui/skeleton';
+import { Tooltip } from '../../../../../../../components/ui/tooltip';
+import { useProjectWorkflow } from '../../../../../../../hooks/useProjectWorkflow';
+import { useToast } from '../../../../../../../hooks/useToast';
+import { Agent } from '../../../../../../../models/agent/agent-model';
+import {
+  FieldConfig,
+  InputConfig,
+} from '../../../../../../../models/workflow/input-config-model';
+import { Workflow } from '../../../../../../../models/workflow/workflow-model';
+import { cn } from '../../../../../../../utils/cn';
 import { getDefaultsFromInputConfig } from '../../node-utils';
 
 import { CloseDialogOrPopoverButton } from './close-dialog-popover-button';

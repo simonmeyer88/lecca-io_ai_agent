@@ -10,11 +10,10 @@ import {
   useFormContext,
 } from 'react-hook-form';
 
-import { Label } from '@/components/ui/label';
-import { cn } from '@/utils/cn';
-
+import { cn } from '../../utils/cn';
 import { Icons } from '../icons';
 
+import { Label } from './label';
 import { Tooltip } from './tooltip';
 
 const FormRoot = FormProvider;

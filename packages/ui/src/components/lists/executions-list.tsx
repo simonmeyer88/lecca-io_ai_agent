@@ -1,6 +1,5 @@
-import { Execution } from '@/models/execution-model';
-import { cn } from '@/utils/cn';
-
+import { Execution } from '../../models/execution-model';
+import { cn } from '../../utils/cn';
 import { WorkflowDropdownMenu } from '../dropdown-menus/workflow-dropdown-menu';
 import { EmptyPlaceholder } from '../empty-placeholder';
 import { Icons } from '../icons';

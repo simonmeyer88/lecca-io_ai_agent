@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { NavigationMenu } from '@/components/ui/navigation-menu';
-import { cn } from '@/utils/cn';
-
+import { cn } from '../../utils/cn';
 import { Icons } from '../icons';
 import { Button } from '../ui/button';
+import { NavigationMenu } from '../ui/navigation-menu';
 import { ScrollArea } from '../ui/scroll-area';
 import { Separator } from '../ui/separator';
 import { Sheet } from '../ui/sheet';

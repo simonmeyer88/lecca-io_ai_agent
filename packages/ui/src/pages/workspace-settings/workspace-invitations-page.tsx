@@ -1,13 +1,13 @@
-import useApiQuery from '@/api/use-api-query';
-import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { EditWorkspaceInvitationForm } from '@/components/forms/edit-workspace-invitation-form';
-import { InviteUsertoWorkspaceForm } from '@/components/forms/invite-user-to-workspace-form';
-import { Icons } from '@/components/icons';
-import { ListViewLoader } from '@/components/loaders/list-view-loader';
-import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
-import { ListView } from '@/components/ui/list-view';
-import { Separator } from '@/components/ui/separator';
+import useApiQuery from '../../api/use-api-query';
+import { EmptyPlaceholder } from '../../components/empty-placeholder';
+import { EditWorkspaceInvitationForm } from '../../components/forms/edit-workspace-invitation-form';
+import { InviteUsertoWorkspaceForm } from '../../components/forms/invite-user-to-workspace-form';
+import { Icons } from '../../components/icons';
+import { ListViewLoader } from '../../components/loaders/list-view-loader';
+import { Button } from '../../components/ui/button';
+import { Dialog } from '../../components/ui/dialog';
+import { ListView } from '../../components/ui/list-view';
+import { Separator } from '../../components/ui/separator';
 
 export function WorkspaceInvitationsPage() {
   const { data: invitations, isLoading: isLoadingInvitations } = useApiQuery({

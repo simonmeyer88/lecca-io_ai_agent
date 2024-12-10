@@ -6,18 +6,17 @@ import {
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import useApiMutation from '@/api/use-api-mutation';
-import useApiQuery from '@/api/use-api-query';
-import { Button } from '@/components/ui/button';
-import { Command } from '@/components/ui/command';
-import { Dialog } from '@/components/ui/dialog';
-import { Popover } from '@/components/ui/popover';
-import { useUser } from '@/hooks/useUser';
-import { Workspace } from '@/models/workspace-model';
-import { cn } from '@/utils/cn';
-
+import useApiMutation from '../../api/use-api-mutation';
+import useApiQuery from '../../api/use-api-query';
+import { useUser } from '../../hooks/useUser';
+import { Workspace } from '../../models/workspace-model';
+import { cn } from '../../utils/cn';
 import { CreateWorkspaceForm } from '../forms/create-workspace-form';
 import { Avatar } from '../ui/avatar';
+import { Button } from '../ui/button';
+import { Command } from '../ui/command';
+import { Dialog } from '../ui/dialog';
+import { Popover } from '../ui/popover';
 import { ScrollArea } from '../ui/scroll-area';
 
 export default function WorkspaceSelector({

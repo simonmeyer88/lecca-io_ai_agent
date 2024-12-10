@@ -1,13 +1,13 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { Link } from 'react-router-dom';
 
-import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header';
-import { UpdateConnectionForm } from '@/components/forms/update-connection-form';
-import { Icons } from '@/components/icons';
-import { Dialog } from '@/components/ui/dialog';
-import { Popover } from '@/components/ui/popover';
-import { Connection } from '@/models/connections-model';
-import { toLocaleDateStringOrUndefined } from '@/utils/dates';
+import { DataTableColumnHeader } from '../../../components/data-table/data-table-column-header';
+import { UpdateConnectionForm } from '../../../components/forms/update-connection-form';
+import { Icons } from '../../../components/icons';
+import { Dialog } from '../../../components/ui/dialog';
+import { Popover } from '../../../components/ui/popover';
+import { Connection } from '../../../models/connections-model';
+import { toLocaleDateStringOrUndefined } from '../../../utils/dates';
 
 import { DataTableRowActions } from './connections-table-row-actions';
 

@@ -23,9 +23,13 @@ export class Trigger {
     this.inputConfig = args.inputConfig;
     this.run = args.run;
     this.mockRun = args.mockRun;
-    this.availableForAgent = args.availableForAgent;
-    this.needsConnection = args.needsConnection;
+    this.availableForAgent = args.availableForAgent ?? true;
+    this.needsConnection = args.needsConnection ?? true;
     this.iconUrl = args.iconUrl;
+
+    if (args.strategy) {
+      this.strategy = args.strategy;
+    }
   }
 
   app: App;
@@ -34,9 +38,8 @@ export class Trigger {
   description: string;
   strategy: TriggerStrategy;
   inputConfig: InputConfig[];
-  needsConnection = true;
-
-  availableForAgent = true;
+  needsConnection: boolean;
+  availableForAgent: boolean;
   iconUrl: null | string = null;
   viewOptions: null | NodeViewOptions = null;
 
@@ -734,9 +737,12 @@ export class Trigger {
   }
 }
 
-export abstract class WebhookAppTrigger extends Trigger {
-  constructor(args: TriggerConstructorArgs) {
+export class WebhookAppTrigger extends Trigger {
+  constructor(args: WebhookAppTriggerConstructorArgs) {
     super(args);
+
+    this.eventType = args.eventType;
+    this.webhookPayloadMatchesIdentifier = args.webhookPayloadMatchesIdentifier;
   }
 
   viewOptions: NodeViewOptions = {
@@ -746,8 +752,7 @@ export abstract class WebhookAppTrigger extends Trigger {
     },
   };
   strategy: TriggerStrategy = 'webhook.app';
-
-  abstract eventType: string;
+  eventType: string;
 
   /**
    * The webhook payload must have something to identify what connection it's for.
@@ -755,13 +760,13 @@ export abstract class WebhookAppTrigger extends Trigger {
    * team id in the connection metadata. When we save the oauth2 connection, we save
    * this metadata.
    */
-  abstract webhookPayloadMatchesIdentifier(args: {
+  webhookPayloadMatchesIdentifier: (args: {
     webhookBody: unknown;
     connectionMetadata: Record<string, any>;
-  }): boolean;
+  }) => boolean;
 }
 
-export abstract class CustomWebhookTrigger extends Trigger {
+export class CustomWebhookTrigger extends Trigger {
   constructor(args: TriggerConstructorArgs) {
     super(args);
   }
@@ -776,9 +781,11 @@ export abstract class CustomWebhookTrigger extends Trigger {
   strategy: TriggerStrategy = 'webhook.custom';
 }
 
-export abstract class TimeBasedPollTrigger extends Trigger {
-  constructor(args: TriggerConstructorArgs) {
+export class TimeBasedPollTrigger extends Trigger {
+  constructor(args: TimeBasedPollTriggerConstructorArgs) {
     super(args);
+
+    this.extractTimestampFromResponse = args.extractTimestampFromResponse;
   }
 
   strategy: TriggerStrategy = 'poll.dedupe-time-based';
@@ -854,14 +861,14 @@ export abstract class TimeBasedPollTrigger extends Trigger {
    * Should return a millisecond timestamp or null if it can't be extracted.
    * Use the DateStringToMilliOrNull function to convert a date string to a millisecond timestamp.
    */
-  abstract extractTimestampFromResponse(args: {
-    response: unknown;
-  }): string | null;
+  extractTimestampFromResponse: (args: { response: unknown }) => string | null;
 }
 
-export abstract class ItemBasedPollTrigger extends Trigger {
-  constructor(args: TriggerConstructorArgs) {
+export class ItemBasedPollTrigger extends Trigger {
+  constructor(args: ItemBasedPollTriggerConstructorArgs) {
     super(args);
+    this.extractItemIdentifierFromResponse =
+      args.extractItemIdentifierFromResponse;
   }
 
   strategy: TriggerStrategy = 'poll.dedupe-item-based';
@@ -939,13 +946,13 @@ export abstract class ItemBasedPollTrigger extends Trigger {
     }
   }
 
-  abstract extractItemIdentifierFromResponse(args: {
+  extractItemIdentifierFromResponse: (args: {
     response: unknown;
-  }): string | null;
+  }) => string | null;
 }
 
-export abstract class LengthBasedPollTrigger extends Trigger {
-  constructor(args: TriggerConstructorArgs) {
+export class LengthBasedPollTrigger extends Trigger {
+  constructor(args: LengthBasedPollTriggerConstructorArgs) {
     super(args);
   }
 
@@ -997,11 +1004,34 @@ export type TriggerConstructorArgs = {
   name: string;
   description: string;
   inputConfig: InputConfig[];
+  strategy: TriggerStrategy;
   run: (args: RunTriggerArgs<unknown>) => Promise<unknown[]>;
   mockRun: (args: RunTriggerArgs<unknown>) => Promise<unknown[]>;
   availableForAgent: boolean;
   needsConnection: boolean;
   iconUrl: string | undefined;
+};
+
+export type LengthBasedPollTriggerConstructorArgs = TriggerConstructorArgs;
+
+export type ItemBasedPollTriggerConstructorArgs = TriggerConstructorArgs & {
+  extractItemIdentifierFromResponse: (args: {
+    response: unknown;
+  }) => string | null;
+};
+
+export type TimeBasedPollTriggerConstructorArgs = TriggerConstructorArgs & {
+  extractTimestampFromResponse: (args: { response: unknown }) => string | null;
+};
+
+export type CustomWebhookTriggerConstructorArgs = TriggerConstructorArgs;
+
+export type WebhookAppTriggerConstructorArgs = TriggerConstructorArgs & {
+  eventType: string;
+  webhookPayloadMatchesIdentifier: (args: {
+    webhookBody: unknown;
+    connectionMetadata: Record<string, any>;
+  }) => boolean;
 };
 
 export type RunTriggerArgs<T, InputData = unknown> = {

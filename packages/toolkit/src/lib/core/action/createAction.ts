@@ -16,9 +16,10 @@ export type CreateActionArgs<T extends z.ZodObject<any, any>> = {
   description: string;
   inputConfig: InputConfig;
   aiSchema: T;
-  iconUrl?: string;
-  needsConnection?: boolean;
+  needsConnection: boolean;
   viewOptions?: ViewOptions;
   run: (args: RunActionArgs<z.infer<T>>) => Promise<any>;
   mockRun: (args: RunActionArgs<z.infer<T>>) => Promise<any>;
+  iconUrl?: string;
+  availableForAgent?: boolean;
 };

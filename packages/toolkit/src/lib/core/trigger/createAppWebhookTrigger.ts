@@ -22,15 +22,17 @@ export type CreateAppWebhookTriggerArgs<
   name: string;
   description: string;
   inputConfig: InputConfig;
+  needsConnection: boolean;
   iconUrl?: string;
-  needsConnection?: boolean;
   viewOptions?: ViewOptions;
+  availableForAgent?: boolean;
   run: (
     args: RunTriggerArgs<ConfigValue, InputData>,
   ) => Promise<ResponseItem[]>;
   mockRun: (
     args: RunTriggerArgs<ConfigValue, InputData>,
   ) => Promise<ResponseItem[]>;
+  eventType: string;
   webhookPayloadMatchesIdentifier: (
     args: WebhookPayloadMatchesIdentifierArgs<InputData>,
   ) => boolean;

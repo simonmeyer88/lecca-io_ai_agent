@@ -16,7 +16,7 @@ export type CreateAppArgs = {
   description: string;
   logoUrl: string;
   isPublished?: boolean;
-  needsConnection?: boolean;
+  needsConnection: boolean;
   availableForAgent?: boolean;
   actions: ReturnType<typeof createAction>[];
   triggers: any;

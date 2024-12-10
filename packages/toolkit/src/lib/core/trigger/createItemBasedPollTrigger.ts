@@ -20,12 +20,13 @@ export type CreateItemBasedPollTriggerArgs<
   name: string;
   description: string;
   inputConfig: InputConfig;
+  needsConnection: boolean;
   iconUrl?: string;
-  needsConnection?: boolean;
   viewOptions?: ViewOptions;
+  availableForAgent?: boolean;
   run: (args: RunTriggerArgs<ConfigValue>) => Promise<ResponseItem[]>;
   mockRun: (args: RunTriggerArgs<ConfigValue>) => Promise<ResponseItem[]>;
   extractItemIdentifierFromResponse: (args: {
     response: ResponseItem;
-  }) => string | number;
+  }) => string | null;
 };

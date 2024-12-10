@@ -1,3 +1,4 @@
+import { CreateAppArgs } from '@lecca-io/toolkit';
 import { NotFoundException } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { JwtService } from '@nestjs/jwt';
@@ -19,7 +20,15 @@ import { S3ManagerService } from '../../modules/global/s3/s3.service';
 
 import { Action } from './action';
 import { Connection } from './connection';
-import { Trigger } from './trigger';
+import {
+  CustomWebhookTrigger,
+  ItemBasedPollTrigger,
+  LengthBasedPollTrigger,
+  TimeBasedPollTrigger,
+  Trigger,
+  TriggerConstructorArgs,
+  WebhookAppTrigger,
+} from './trigger';
 
 export class App {
   constructor(args: AppContructorArgs) {
@@ -27,12 +36,9 @@ export class App {
     this.name = args.name;
     this.description = args.description;
     this.logoUrl = args.logoUrl;
-    this.isPublished = args.isPublished;
-    this.needsConnection = args.needsConnection;
-    this.availableForAgent = args.availableForAgent;
-    this.actions = args.actions;
-    this.triggers = args.triggers;
-    this.connections = args.connections;
+    this.isPublished = args.isPublished ?? true;
+    this.needsConnection = args.needsConnection ?? true;
+    this.availableForAgent = args.availableForAgent ?? true;
     this.verifyWebhookRequest = args.verifyWebhookRequest;
     this.parseWebhookEventType = args.parseWebhookEventType;
     this.prisma = args.prisma;
@@ -49,7 +55,126 @@ export class App {
     this.credits = args.credits;
     this.aiProviders = args.aiProviders;
 
-    //Create maps for easy access
+    //Action Class Instances
+    this.actions = args._actions.map(
+      (action) =>
+        new Action({
+          app: this,
+          id: action.id,
+          name: action.name,
+          description: action.description,
+          inputConfig: action.inputConfig,
+          aiSchema: action.aiSchema,
+          availableForAgent: action.availableForAgent,
+          run: action.run,
+          mockRun: action.mockRun,
+          needsConnection: action.needsConnection,
+          iconUrl: action.iconUrl,
+        }),
+    );
+
+    this.actionMap = this.actions.reduce(
+      (acc, action) => {
+        acc[action.id] = action;
+        return acc;
+      },
+      {} as Record<string, Action>,
+    );
+
+    //Trigger Class Instances
+    this.triggers = args._triggers.map((trigger) => {
+      const baseArgs: TriggerConstructorArgs = {
+        app: this,
+        id: trigger.id,
+        name: trigger.name,
+        description: trigger.description,
+        inputConfig: trigger.inputConfig,
+        availableForAgent: trigger.availableForAgent,
+        run: trigger.run,
+        mockRun: trigger.mockRun,
+        needsConnection: trigger.needsConnection,
+        iconUrl: trigger.iconUrl,
+        strategy: trigger.strategy,
+      };
+
+      switch (trigger.strategy) {
+        case 'manual':
+          return new Trigger(baseArgs);
+        case 'poll.dedupe-time-based':
+          if (!trigger.extractTimestampFromResponse) {
+            throw new Error(
+              `extractTimestampFromResponse is required for time-based triggers`,
+            );
+          }
+
+          return new TimeBasedPollTrigger({
+            ...baseArgs,
+            extractTimestampFromResponse: trigger.extractTimestampFromResponse,
+          });
+        case 'poll.dedupe-item-based':
+          if (!trigger.extractItemIdentifierFromResponse) {
+            throw new Error(
+              `extractItemIdentifierFromResponse is required for item-based triggers`,
+            );
+          }
+
+          return new ItemBasedPollTrigger({
+            ...baseArgs,
+            extractItemIdentifierFromResponse:
+              trigger.extractItemIdentifierFromResponse,
+          });
+        case 'poll.dedupe-length-based':
+          return new LengthBasedPollTrigger(baseArgs);
+        case 'webhook.app':
+          if (!this.verifyWebhookRequest) {
+            throw new Error(
+              `verifyWebhookRequest method is required for webhook triggers. Please add it to the ${this.name} app.`,
+            );
+          } else if (!this.parseWebhookEventType) {
+            throw new Error(
+              `parseWebhookEventType method is required for webhook triggers. Please add it to the ${this.name} app.`,
+            );
+          } else if (!trigger.eventType) {
+            throw new Error(
+              `eventType is required for webhook triggers. Please add it to the ${trigger.name} trigger.`,
+            );
+          } else if (!trigger.webhookPayloadMatchesIdentifier) {
+            throw new Error(
+              `webhookPayloadMatchesIdentifier method is required for webhook triggers. Please add it to the ${trigger.name} trigger.`,
+            );
+          }
+
+          return new WebhookAppTrigger({
+            ...baseArgs,
+            webhookPayloadMatchesIdentifier:
+              trigger.webhookPayloadMatchesIdentifier,
+            eventType: trigger.eventType,
+          });
+        case 'webhook.custom':
+          return new CustomWebhookTrigger(baseArgs);
+        case 'schedule':
+          return new Trigger(baseArgs);
+        default:
+          throw new Error(
+            `Unknown trigger strategy: ${trigger.strategy} for ${trigger.name}`,
+          );
+      }
+    });
+
+    this.triggerMap = this.triggers.reduce(
+      (acc, trigger) => {
+        acc[trigger.id] = trigger;
+        return acc;
+      },
+      {} as Record<string, Trigger>,
+    );
+
+    //Connection Class Instances
+    this.connections = [];
+    // this.connections = args._connections.map(
+    //   (connection) => new Connection({}),
+    // );
+
     this.connectionMap = this.connections.reduce(
       (acc, connection) => {
         // Add the current/new format
@@ -65,22 +190,6 @@ export class App {
         return acc;
       },
       {} as Record<string, Connection>,
-    );
-
-    this.actionMap = this.actions.reduce(
-      (acc, action) => {
-        acc[action.id] = action;
-        return acc;
-      },
-      {} as Record<string, Action>,
-    );
-
-    this.triggerMap = this.triggers.reduce(
-      (acc, trigger) => {
-        acc[trigger.id] = trigger;
-        return acc;
-      },
-      {} as Record<string, Trigger>,
     );
   }
 
@@ -123,12 +232,12 @@ export class App {
   /**
    * If the app needs a connection to work
    */
-  needsConnection = true;
+  needsConnection;
 
   /**
    * If the app is available for the agent to use
    */
-  availableForAgent = true;
+  availableForAgent: boolean;
 
   /**
    * Return `false` if app doesn't support webhook triggers or if the webhook request is invalid
@@ -557,9 +666,9 @@ export type AppContructorArgs = {
   isPublished: boolean;
   needsConnection: boolean;
   availableForAgent: boolean;
-  actions: Action[];
-  triggers: Trigger[];
-  connections: Connection[];
+  _actions: CreateAppArgs['actions'];
+  _triggers: CreateAppArgs['triggers'];
+  _connections: CreateAppArgs['connections'];
   verifyWebhookRequest: any;
   parseWebhookEventType: any;
   prisma: PrismaService;

@@ -9,7 +9,6 @@ import { Execution, Workflow } from '@prisma/client';
 
 import { Action, ActionResponse } from '@/apps/lib/action';
 import { Trigger, TriggerResponse } from '@/apps/lib/trigger';
-import { AppKeys } from '@/apps/public/apps';
 import { ExecutionStatus } from '@/modules/core/executions/enums/execution-status.enum';
 import { ExecutionsService } from '@/modules/core/executions/executions.service';
 import { PrismaService } from '@/modules/global/prisma/prisma.service';
@@ -550,7 +549,7 @@ export class WorkflowRunnerService {
     type: 'action' | 'trigger';
     inputData?: Record<string, any>;
   }) {
-    const appId = node.appId as AppKeys;
+    const appId = node.appId;
     const value = node.value as Record<string, any>;
     const app = this.workflowAppService.apps[appId];
 
@@ -1080,7 +1079,7 @@ export type ExecutionForRunner = Pick<
 export type WorkflowNodeForRunner = {
   id: string;
   position: { x: number; y: number };
-  appId: AppKeys;
+  appId: string;
   nodeType: 'action' | 'trigger' | 'placeholder' | 'decide-path';
   actionId: string | undefined;
   triggerId: string | undefined;

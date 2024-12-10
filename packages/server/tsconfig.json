@@ -15,7 +15,8 @@
     "esModuleInterop": true,
     "paths": {
       "@/*": ["src/*"],
-      "@lecca-io/apps": ["../apps/src/index.ts"]
+      "@lecca-io/apps": ["../apps/src/index.ts"],
+      "@lecca-io/toolkit": ["../toolkit/src/index.ts"]
     },
     "lib": ["es2021"]
   }

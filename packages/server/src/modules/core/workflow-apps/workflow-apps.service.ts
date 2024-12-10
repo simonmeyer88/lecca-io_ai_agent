@@ -1,3 +1,4 @@
+import apps from '@lecca-io/apps';
 import {
   BadRequestException,
   ForbiddenException,
@@ -13,7 +14,6 @@ import { Action } from '@/apps/lib/action';
 import { App } from '@/apps/lib/app';
 import { OAuth2CallbackState, OAuth2Connection } from '@/apps/lib/connection';
 import { Trigger } from '@/apps/lib/trigger';
-import { APPS, AppKeys } from '@/apps/public/apps';
 import { ConnectionsService } from '@/modules/core/connections/connections.service';
 import { ExecutionsService } from '@/modules/core/executions/executions.service';
 import { KnowledgeService } from '@/modules/core/knowledge/knowledge.service';
@@ -48,8 +48,23 @@ export class WorkflowAppsService {
     private aiProviders: AiProviderService,
   ) {
     this.apps = {} as Record<string, App>;
-    Object.entries(APPS).forEach(([key, value]) => {
-      (this.apps as any)[key] = new value({
+    Object.entries(apps).forEach(([key, value]) => {
+      (this.apps as any)[key] = new App({
+        id: value.id,
+        name: value.name,
+        description: value.description,
+        logoUrl: value.logoUrl,
+        actions: [],
+        triggers: [],
+        connections: [],
+        // actions: value.actions,
+        // triggers: value.triggers,
+        // connections: value.connections,
+        isPublished: value.isPublished,
+        availableForAgent: value.availableForAgent,
+        needsConnection: value.needsConnection,
+        parseWebhookEventType: value.parseWebhookEventType,
+        verifyWebhookRequest: value.verifyWebhookRequest,
         prisma: this.prisma,
         connection: this.connection,
         execution: this.execution,
@@ -67,7 +82,7 @@ export class WorkflowAppsService {
     });
   }
 
-  apps: Record<AppKeys, App>;
+  apps: Record<string, App>;
 
   findAll() {
     return Object.values(this.apps);
@@ -85,7 +100,7 @@ export class WorkflowAppsService {
     projectId,
     extraOptions,
   }: {
-    appId: AppKeys;
+    appId: string;
     actionId: string;
     fieldId: string;
     connectionId: string;
@@ -155,7 +170,7 @@ export class WorkflowAppsService {
     projectId,
     extraOptions,
   }: {
-    appId: AppKeys;
+    appId: string;
     triggerId: string;
     fieldId: string;
     connectionId: string;
@@ -257,7 +272,7 @@ export class WorkflowAppsService {
       throw new NotFoundException(`Node (${nodeId}) not found`);
     }
 
-    const appId = nodeToRun.appId as AppKeys;
+    const appId = nodeToRun.appId as string;
     const actionId = nodeToRun.actionId as string | undefined;
     const triggerId = nodeToRun.triggerId as string | undefined;
     const value = nodeToRun.value as Record<string, any>;
@@ -334,7 +349,7 @@ export class WorkflowAppsService {
     res,
     req,
   }: {
-    appId: AppKeys;
+    appId: string;
     connectionId: string;
     workspaceId: string;
     value: Record<string, any>;
@@ -372,7 +387,7 @@ export class WorkflowAppsService {
 
     const state = this.jwt.decode<OAuth2CallbackState>(stateToken);
 
-    const appId = state.appId as AppKeys;
+    const appId = state.appId;
     const connectionId = state.connectionId;
 
     const app = this.apps[appId];
@@ -678,7 +693,7 @@ export class WorkflowAppsService {
   }: {
     node: WorkflowNodeForRunner;
   }): Trigger | undefined {
-    const workflowApp = this.apps[node.appId as AppKeys];
+    const workflowApp = this.apps[node.appId];
 
     if (!workflowApp) {
       throw new NotFoundException(`App (${node.appId}) not found`);
@@ -692,7 +707,7 @@ export class WorkflowAppsService {
   }: {
     node: WorkflowNodeForRunner;
   }): Action | undefined {
-    const workflowApp = this.apps[node.appId as AppKeys];
+    const workflowApp = this.apps[node.appId];
 
     if (!workflowApp) {
       throw new NotFoundException(`App (${node.appId}) not found`);

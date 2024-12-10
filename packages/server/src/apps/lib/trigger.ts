@@ -15,18 +15,27 @@ import { App, ConfigValue } from './app';
 import { OAuth2Connection } from './connection';
 import { FieldConfig, InputConfig, NestedInputConfig } from './input-config';
 
-export abstract class Trigger {
+export class Trigger {
   constructor(args: TriggerConstructorArgs) {
     this.app = args.app;
+    this.id = args.id;
+    this.name = args.name;
+    this.description = args.description;
+    this.inputConfig = args.inputConfig;
+    this.run = args.run;
+    this.mockRun = args.mockRun;
+    this.availableForAgent = args.availableForAgent;
+    this.needsConnection = args.needsConnection;
+    this.iconUrl = args.iconUrl;
   }
 
   app: App;
+  id: string;
+  name: string;
+  description: string;
+  strategy: TriggerStrategy;
+  inputConfig: InputConfig[];
   needsConnection = true;
-  abstract id: string;
-  abstract name: string;
-  abstract strategy: TriggerStrategy;
-  abstract description: string;
-  abstract inputConfig: InputConfig[];
 
   availableForAgent = true;
   iconUrl: null | string = null;
@@ -35,34 +44,8 @@ export abstract class Trigger {
   /**
    * Very important that for ItemBasedPollTrigger, the response is sorted in descending order, e.g. latest/newest first.
    */
-  abstract run(args: {
-    /**
-     * webhook data
-     */
-    inputData?: unknown;
-    configValue: unknown;
-    connection?: Partial<Connection>;
-    workflowId?: string;
-    workspaceId: string;
-    projectId: string;
-
-    /**
-     * If this is true, the action won't necessarily be mocked,
-     * but the action will run in a way that it returns data or in a way that makes sense to test.
-     * For example, some triggers only search for recent data, but if the user is testing a node,
-     * they may not have recent data, but they want to have real data they can map values with and test
-     * that they're workflow is working properly.
-     * */
-    testing?: boolean;
-  }): Promise<unknown[]>;
-  abstract mockRun(args: {
-    inputData?: unknown;
-    configValue: unknown;
-    connection?: Partial<Connection>;
-    workflowId?: string;
-    workspaceId: string;
-    projectId: string;
-  }): Promise<unknown[]>;
+  run: (args: RunTriggerArgs<unknown>) => Promise<unknown[]>;
+  mockRun: (args: RunTriggerArgs<unknown>) => Promise<unknown[]>;
 
   /**POLLING METHODS */
   async runExecutionCheckForPollingWorkflows(args: {
@@ -1011,15 +994,24 @@ export abstract class LengthBasedPollTrigger extends Trigger {
 
 export type TriggerConstructorArgs = {
   app: App;
+  id: string;
+  name: string;
+  description: string;
+  inputConfig: InputConfig[];
+  run: (args: RunTriggerArgs<unknown>) => Promise<unknown[]>;
+  mockRun: (args: RunTriggerArgs<unknown>) => Promise<unknown[]>;
+  availableForAgent: boolean;
+  needsConnection: boolean;
+  iconUrl: string | undefined;
 };
 
-export type RunTriggerArgs<T, INPUT_DATA = unknown> = {
-  inputData?: INPUT_DATA;
+export type RunTriggerArgs<T, InputData = unknown> = {
+  inputData?: InputData;
   configValue: ConfigValue<T>;
+  connection?: Partial<Connection>;
   projectId: string;
   workspaceId: string;
   workflowId?: string;
-  connection?: Partial<Connection>;
   testing?: boolean;
 };
 

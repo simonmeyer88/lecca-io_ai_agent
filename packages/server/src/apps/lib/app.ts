@@ -22,8 +22,20 @@ import { Action } from './action';
 import { Connection } from './connection';
 import { Trigger } from './trigger';
 
-export abstract class App {
+export class App {
   constructor(args: AppContructorArgs) {
+    this.id = args.id;
+    this.name = args.name;
+    this.description = args.description;
+    this.logoUrl = args.logoUrl;
+    this.isPublished = args.isPublished;
+    this.needsConnection = args.needsConnection;
+    this.availableForAgent = args.availableForAgent;
+    this.actions = args.actions;
+    this.triggers = args.triggers;
+    this.connections = args.connections;
+    this.verifyWebhookRequest = args.verifyWebhookRequest;
+    this.parseWebhookEventType = args.parseWebhookEventType;
     this.prisma = args.prisma;
     this.connection = args.connection;
     this.execution = args.execution;
@@ -39,7 +51,7 @@ export abstract class App {
     this.aiProviders = args.aiProviders;
 
     //Create maps for easy access
-    this.connectionMap = this.connections().reduce(
+    this.connectionMap = this.connections.reduce(
       (acc, connection) => {
         // Add the current/new format
         acc[connection.id] = connection;
@@ -56,7 +68,7 @@ export abstract class App {
       {} as Record<string, Connection>,
     );
 
-    this.actionMap = this.actions().reduce(
+    this.actionMap = this.actions.reduce(
       (acc, action) => {
         acc[action.id] = action;
         return acc;
@@ -64,7 +76,7 @@ export abstract class App {
       {} as Record<string, Action>,
     );
 
-    this.triggerMap = this.triggers().reduce(
+    this.triggerMap = this.triggers.reduce(
       (acc, trigger) => {
         acc[trigger.id] = trigger;
         return acc;
@@ -103,11 +115,11 @@ export abstract class App {
     this.redirectUrlNgrokTunnelInDevelopment,
   );
 
-  abstract id: string;
-  abstract name: string;
-  abstract logoUrl: string;
-  abstract description: string;
-  abstract isPublished: boolean;
+  id: string;
+  name: string;
+  logoUrl: string;
+  description: string;
+  isPublished: boolean;
 
   /**
    * If the app needs a connection to work
@@ -137,17 +149,17 @@ export abstract class App {
     throw new Error(`Parse webhook event not implemented for ${this.name}.`);
   }
 
-  abstract connections(): Connection[];
+  connections: Connection[];
   connectionMap: Record<string, Connection>;
 
-  abstract actions(): Action[];
+  actions: Action[];
   actionMap: Record<string, Action>;
 
-  abstract triggers(): Trigger[];
+  triggers: Trigger[];
   triggerMap: Record<string, Trigger>;
 
   toJSON() {
-    const connections = this.connections();
+    const connections = this.connections;
 
     //We will iterate over every connection to make sure the client_id, client_secret, .etc are
     //configured in the ServerConfig via environment variables. If not, we will set isPublished to false.
@@ -172,8 +184,8 @@ export abstract class App {
       logoUrl: this.logoUrl,
       description: this.description,
       connections: connectionsJSON,
-      actions: this.actions().map((a) => a.toJSON()),
-      triggers: this.triggers().map((t) => t.toJSON()),
+      actions: this.actions.map((a) => a.toJSON()),
+      triggers: this.triggers.map((t) => t.toJSON()),
       needsConnection: this.needsConnection,
       availableForAgent: this.availableForAgent,
     };
@@ -193,7 +205,7 @@ export abstract class App {
   }): Record<string, CoreTool<any, any>> {
     const tools: Record<string, CoreTool<any, any>> = {};
 
-    for (const action of this.actions()) {
+    for (const action of this.actions) {
       if (!args.enabledActions.includes(action.id)) {
         continue;
       }
@@ -539,6 +551,18 @@ export abstract class App {
 }
 
 export type AppContructorArgs = {
+  id: string;
+  name: string;
+  description: string;
+  logoUrl: string;
+  isPublished: boolean;
+  needsConnection: boolean;
+  availableForAgent: boolean;
+  actions: Action[];
+  triggers: Trigger[];
+  connections: Connection[];
+  verifyWebhookRequest: any;
+  parseWebhookEventType: any;
   prisma: PrismaService;
   connection: ConnectionsService;
   execution: ExecutionsService;

@@ -8,22 +8,32 @@ import { OAuth2Connection } from './connection';
 import { FieldConfig, InputConfig, NestedInputConfig } from './input-config';
 import { NodeViewOptions } from './trigger';
 
-export abstract class Action {
+export class Action {
   constructor(args: ActionConstructorArgs) {
     this.app = args.app;
+    this.id = args.id;
+    this.name = args.name;
+    this.description = args.description;
+    this.inputConfig = args.inputConfig;
+    this.aiSchema = args.aiSchema;
+    this.run = args.run;
+    this.mockRun = args.mockRun;
+    this.availableForAgent = args.availableForAgent;
+    this.needsConnection = args.needsConnection;
+    this.iconUrl = args.iconUrl;
   }
 
   app: App;
-  needsConnection = true;
-  abstract id: string;
-  abstract name: string;
-  abstract description: string;
-  abstract inputConfig: InputConfig[];
-  abstract aiSchema: z.ZodObject<any, any>;
-  abstract run(args: RunActionArgs<unknown>): Promise<unknown>;
-  abstract mockRun(args: RunActionArgs<unknown>): Promise<unknown>;
+  id: string;
+  name: string;
+  description: string;
+  inputConfig: InputConfig[];
+  aiSchema: z.ZodObject<any, any>;
+  run: (args: RunActionArgs<unknown>) => Promise<unknown>;
+  mockRun: (args: RunActionArgs<unknown>) => Promise<unknown>;
   availableForAgent = true;
   iconUrl: null | string = null;
+  needsConnection = true;
 
   /**
    * Options to configure how the node looks in the builder.
@@ -545,6 +555,16 @@ export abstract class Action {
 
 export type ActionConstructorArgs = {
   app: App;
+  id: string;
+  name: string;
+  description: string;
+  inputConfig: InputConfig[];
+  aiSchema: z.ZodObject<any, any>;
+  run: (args: RunActionArgs<unknown>) => Promise<unknown>;
+  mockRun: (args: RunActionArgs<unknown>) => Promise<unknown>;
+  availableForAgent: boolean;
+  needsConnection: boolean;
+  iconUrl?: string;
 };
 
 export type RunActionArgs<T> = {

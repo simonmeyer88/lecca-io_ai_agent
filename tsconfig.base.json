@@ -15,8 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@lecca-io/toolkit": ["packages/toolkit/src/index.ts"],
-      "@lecca-io/apps": ["packages/apps/src/index.ts"]
+      "@lecca-io/apps": ["packages/apps/src/index.ts"],
+      "@lecca-io/toolkit": ["packages/toolkit/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

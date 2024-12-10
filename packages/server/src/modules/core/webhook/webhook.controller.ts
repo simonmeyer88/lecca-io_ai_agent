@@ -2,7 +2,6 @@ import { Controller, Get, Param, Post, Put, Req, Res } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Request, Response } from 'express';
 
-import { AppKeys } from '@/apps/public/apps';
 import { Public } from '@/decorators/public.decorator';
 import { StripeService } from '@/modules/commercial/stripe/stripe.service';
 
@@ -38,7 +37,7 @@ export class WebhookController {
    */
   @Post('apps/:appId')
   async appEvent(
-    @Param('appId') appId: AppKeys,
+    @Param('appId') appId: string,
     @Req() req: Request,
     @Res() res: Response,
   ) {

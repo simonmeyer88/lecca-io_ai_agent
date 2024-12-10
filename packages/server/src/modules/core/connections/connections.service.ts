@@ -1,3 +1,4 @@
+import apps from '@lecca-io/apps';
 import {
   BadRequestException,
   ForbiddenException,
@@ -6,12 +7,10 @@ import {
 } from '@nestjs/common';
 import { Connection } from '@prisma/client';
 
-import { APPS, AppKeys } from '@/apps/public/apps';
 import { PrismaService } from '@/modules/global/prisma/prisma.service';
 import { JwtUser } from '@/types/jwt-user.type';
 
 import { CryptoService } from '../../global/crypto/crypto.service';
-import { ExecutionsService } from '../executions/executions.service';
 
 import { ConnectionExpansionDto } from './dto/connection-expansion.dto';
 import { ConnectionFilterByDto } from './dto/connection-filter-by.dto';
@@ -23,7 +22,6 @@ import { UpdateConnectionDto } from './dto/update-connection.dto';
 export class ConnectionsService {
   constructor(
     private prisma: PrismaService,
-    private execution: ExecutionsService,
     private cryptoService: CryptoService,
   ) {}
 
@@ -145,29 +143,7 @@ export class ConnectionsService {
 
     if (expansion?.workflowApp) {
       connections.forEach((connection) => {
-        (connection as any).workflowApp = new APPS[
-          connection.workflowAppId as AppKeys
-        ]({
-          /**
-           * NEED TO IMPROVE THIS TO NOT WASTE SO MUCH MEMORY
-           *
-           * None of thesse matters, we just need to create a new instance of the workflow apps.
-           * so we can get the metadata and other information.
-           */
-          connection: this,
-          prisma: this.prisma,
-          execution: this.execution,
-          notification: null,
-          fileHandler: null,
-          knowledge: undefined,
-          s3: null,
-          task: null,
-          jwt: null,
-          http: null,
-          eventEmitter: null,
-          credits: null,
-          aiProviders: null,
-        });
+        (connection as any).workflowApp = apps[connection.workflowAppId];
       });
     }
 

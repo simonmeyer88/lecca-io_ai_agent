@@ -3,7 +3,6 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Connection, ExecutionStatus } from '@prisma/client';
 
 import { CustomWebhookTrigger, WebhookAppTrigger } from '@/apps/lib/trigger';
-import { AppKeys } from '@/apps/public/apps';
 import { PrismaService } from '@/modules/global/prisma/prisma.service';
 
 import { WorkflowAppsService } from '../workflow-apps/workflow-apps.service';
@@ -26,7 +25,7 @@ export class WebhookService {
     rawBody,
     headers,
   }: {
-    appId: AppKeys;
+    appId: string;
     rawBody: unknown;
     headers: Record<string, string>;
   }) {
@@ -53,7 +52,7 @@ export class WebhookService {
 
     //Using the event type, we need to get a list of
     //all the triggers that use this event type
-    const eventTriggers = app.triggers().filter((trigger) => {
+    const eventTriggers = app.triggers.filter((trigger) => {
       return (
         trigger.strategy === 'webhook.app' &&
         (trigger as WebhookAppTrigger).eventType === event

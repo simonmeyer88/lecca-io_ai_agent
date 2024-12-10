@@ -6,10 +6,9 @@ import {
 import { OnEvent } from '@nestjs/event-emitter';
 import { WorkspaceUserRole } from '@prisma/client';
 
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { UserDeletedEventPayload } from '@/types/event-payloads/user-deleted-event-payload.type';
-import { JwtUser } from '@/types/jwt-user.type';
-
+import { UserDeletedEventPayload } from '../../../types/event-payloads/user-deleted-event-payload.type';
+import { JwtUser } from '../../../types/jwt-user.type';
+import { PrismaService } from '../../global/prisma/prisma.service';
 import { S3ManagerService } from '../../global/s3/s3.service';
 
 import { CreateWorkspaceUserDto } from './dto/create-workspace-user.dto';

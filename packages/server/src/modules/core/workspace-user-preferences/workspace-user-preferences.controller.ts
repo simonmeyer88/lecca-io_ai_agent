@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Patch } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-import { Roles } from '@/decorators/roles.decorator';
-import { User } from '@/decorators/user.decorator';
-import { JwtUser } from '@/types/jwt-user.type';
+import { Roles } from '../../../decorators/roles.decorator';
+import { User } from '../../../decorators/user.decorator';
+import { JwtUser } from '../../../types/jwt-user.type';
 
 import { UpdateWorkspaceUserPreferencesDto } from './dto/update-workspace-user-preferences.dto';
 import { WorkspaceUserPreferencesService } from './workspace-user-preferences.service';

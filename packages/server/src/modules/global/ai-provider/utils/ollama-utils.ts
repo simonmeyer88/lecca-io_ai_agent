@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { ServerConfig } from '@/config/server.config';
+import { ServerConfig } from '../../../../config/server.config';
 
 export async function getOllamaModelsWithDetails(): Promise<OllamaModel[]> {
   try {

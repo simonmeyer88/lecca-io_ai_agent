@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
 
-import { WorkflowAppsService } from '@/modules/core/workflow-apps/workflow-apps.service';
-
 import { ConnectionsService } from '../connections/connections.service';
 import { ExecutionsService } from '../executions/executions.service';
 import { KnowledgeService } from '../knowledge/knowledge.service';
+import { WorkflowAppsService } from '../workflow-apps/workflow-apps.service';
 
 import {
   AgentMessageController,

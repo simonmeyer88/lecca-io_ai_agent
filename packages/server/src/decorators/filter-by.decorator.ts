@@ -6,16 +6,16 @@ import {
 import { plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
 
-import { AgentFilterByDto } from '@/modules/core/agents/dto/agent-filter-by.dto';
-import { ConnectionFilterByDto } from '@/modules/core/connections/dto/connection-filter-by.dto';
-import { ExecutionFilterByDto } from '@/modules/core/executions/dto/execution-filter-by.dto';
-import { KnowledgeFilterByDto } from '@/modules/core/knowledge/dto/knowledge-filter-by.dto';
-import { TaskFilterByDto } from '@/modules/core/tasks/dto/task-filter-by.dto';
-import { VariableFilterByDto } from '@/modules/core/variables/dto/variable-filter-by.dto';
-import { WorkflowTemplateFilterByDto } from '@/modules/core/workflow-templates/dto/workflow-template-filter-by.dto';
-import { WorkflowFilterByDto } from '@/modules/core/workflows/dto/workflow-filter-by.dto';
-import { WorkspaceUserFilterByDto } from '@/modules/core/workspace-users/dto/workspace-user-filter-by.dto';
-import { CreditFilterByDto } from '@/modules/global/credits/dto/credit-filter-by.dto';
+import { AgentFilterByDto } from '../modules/core/agents/dto/agent-filter-by.dto';
+import { ConnectionFilterByDto } from '../modules/core/connections/dto/connection-filter-by.dto';
+import { ExecutionFilterByDto } from '../modules/core/executions/dto/execution-filter-by.dto';
+import { KnowledgeFilterByDto } from '../modules/core/knowledge/dto/knowledge-filter-by.dto';
+import { TaskFilterByDto } from '../modules/core/tasks/dto/task-filter-by.dto';
+import { VariableFilterByDto } from '../modules/core/variables/dto/variable-filter-by.dto';
+import { WorkflowTemplateFilterByDto } from '../modules/core/workflow-templates/dto/workflow-template-filter-by.dto';
+import { WorkflowFilterByDto } from '../modules/core/workflows/dto/workflow-filter-by.dto';
+import { WorkspaceUserFilterByDto } from '../modules/core/workspace-users/dto/workspace-user-filter-by.dto';
+import { CreditFilterByDto } from '../modules/global/credits/dto/credit-filter-by.dto';
 
 /**
  * Also make sure you add all your filer by dtos to the filterByDtoMap below.

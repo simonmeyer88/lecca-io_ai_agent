@@ -2,8 +2,8 @@ import { Controller, Get, Param, Post, Put, Req, Res } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Request, Response } from 'express';
 
-import { Public } from '@/decorators/public.decorator';
-import { StripeService } from '@/modules/commercial/stripe/stripe.service';
+import { Public } from '../../../decorators/public.decorator';
+import { StripeService } from '../../commercial/stripe/stripe.service';
 
 import { WebhookService } from './webhook.service';
 

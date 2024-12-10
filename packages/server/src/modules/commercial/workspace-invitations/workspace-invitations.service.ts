@@ -5,9 +5,9 @@ import {
 } from '@nestjs/common';
 import { WorkspaceUserRole } from '@prisma/client';
 
-import { UsersService } from '@/modules/core/users/users.service';
-import { WorkspacesService } from '@/modules/core/workspaces/workspaces.service';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
+import { UsersService } from '../../core/users/users.service';
+import { WorkspacesService } from '../../core/workspaces/workspaces.service';
+import { PrismaService } from '../../global/prisma/prisma.service';
 
 import { CreateWorkspaceInvitationDto } from './dto/create-workspace-invitation.dto';
 import { UpdateWorkspaceInvitationDto } from './dto/update-workspace-invitation.dto';

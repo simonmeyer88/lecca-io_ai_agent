@@ -10,22 +10,24 @@ import { JwtService } from '@nestjs/jwt';
 import { Prisma } from '@prisma/client';
 import { Request, Response } from 'express';
 
-import { Action } from '@/apps/lib/action';
-import { App } from '@/apps/lib/app';
-import { OAuth2CallbackState, OAuth2Connection } from '@/apps/lib/connection';
-import { Trigger } from '@/apps/lib/trigger';
-import { ConnectionsService } from '@/modules/core/connections/connections.service';
-import { ExecutionsService } from '@/modules/core/executions/executions.service';
-import { KnowledgeService } from '@/modules/core/knowledge/knowledge.service';
-import { TasksService } from '@/modules/core/tasks/tasks.service';
-import { AiProviderService } from '@/modules/global/ai-provider/ai-provider.service';
-import { FileHandlerService } from '@/modules/global/file/file-handler.service';
-import { HttpService } from '@/modules/global/http/http.service';
-import { NotificationsService } from '@/modules/global/notifications/notifications.service';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { S3ManagerService } from '@/modules/global/s3/s3.service';
-
+import { Action } from '../../../apps/lib/action';
+import { App } from '../../../apps/lib/app';
+import {
+  OAuth2CallbackState,
+  OAuth2Connection,
+} from '../../../apps/lib/connection';
+import { Trigger } from '../../../apps/lib/trigger';
+import { AiProviderService } from '../../global/ai-provider/ai-provider.service';
 import { CreditsService } from '../../global/credits/credits.service';
+import { FileHandlerService } from '../../global/file/file-handler.service';
+import { HttpService } from '../../global/http/http.service';
+import { NotificationsService } from '../../global/notifications/notifications.service';
+import { PrismaService } from '../../global/prisma/prisma.service';
+import { S3ManagerService } from '../../global/s3/s3.service';
+import { ConnectionsService } from '../connections/connections.service';
+import { ExecutionsService } from '../executions/executions.service';
+import { KnowledgeService } from '../knowledge/knowledge.service';
+import { TasksService } from '../tasks/tasks.service';
 import { WorkflowNodeForRunner } from '../workflow-runner/workflow-runner.service';
 
 import { RunNodeDto } from './dto/run-node.dto';

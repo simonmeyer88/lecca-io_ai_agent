@@ -5,7 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
+import { PrismaService } from '../../global/prisma/prisma.service';
 
 import { CreateProjectInvitationDto } from './dto/create-project-invitation.dto';
 

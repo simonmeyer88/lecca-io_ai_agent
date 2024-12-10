@@ -10,16 +10,15 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 
-import { BelongsToGuard } from '@/guards/belongs-to.guard';
-import { CommercialKeyGuard } from '@/guards/commercial.guard';
-import { JwtAuthGuard } from '@/guards/jwt.guard';
-import { RolesGuard } from '@/guards/roles.guard';
-import { WorkspaceInvitationsModule } from '@/modules/commercial/workspace-invitations/workspace-invitations.module';
-
+import { BelongsToGuard } from '../../../guards/belongs-to.guard';
+import { CommercialKeyGuard } from '../../../guards/commercial.guard';
+import { JwtAuthGuard } from '../../../guards/jwt.guard';
+import { RolesGuard } from '../../../guards/roles.guard';
 import { JsonBodyMiddleware } from '../../../middleware/json-body.middleware';
 import { JsonUrlEncodedMiddleware } from '../../../middleware/json-url-encoded.middleware';
 import { RawBodyMiddleware } from '../../../middleware/raw-body.middleware';
 import { BillingModule } from '../../commercial/billing/billing.module';
+import { WorkspaceInvitationsModule } from '../../commercial/workspace-invitations/workspace-invitations.module';
 import { AiProviderModule } from '../../global/ai-provider/ai-provider.module';
 import { CreditsModule } from '../../global/credits/credits.module';
 import { CryptoModule } from '../../global/crypto/crypto.module';

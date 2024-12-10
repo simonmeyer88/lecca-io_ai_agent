@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-import { Public } from '@/decorators/public.decorator';
+import { Public } from '../../../decorators/public.decorator';
 
 import { AiProviderService } from './ai-provider.service';
 

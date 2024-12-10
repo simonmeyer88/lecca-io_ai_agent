@@ -8,13 +8,13 @@ import { User } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import { OAuth2Client } from 'google-auth-library';
 
-import { ServerConfig } from '@/config/server.config';
-import { VerifyUserEmailDto } from '@/modules/core/users/dto/verify-user-email.dto';
-import { UsersService } from '@/modules/core/users/users.service';
-import { WorkspacesService } from '@/modules/core/workspaces/workspaces.service';
-import { MailService } from '@/modules/global/mail/mail.service';
-import { OperationsService } from '@/modules/global/operations/operations.service';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
+import { ServerConfig } from '../../../config/server.config';
+import { MailService } from '../../global/mail/mail.service';
+import { OperationsService } from '../../global/operations/operations.service';
+import { PrismaService } from '../../global/prisma/prisma.service';
+import { VerifyUserEmailDto } from '../users/dto/verify-user-email.dto';
+import { UsersService } from '../users/users.service';
+import { WorkspacesService } from '../workspaces/workspaces.service';
 
 import { GoogleLoginDto } from './dto/google-login-dto';
 

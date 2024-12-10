@@ -10,13 +10,13 @@ import {
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-import { BelongsTo } from '@/decorators/belongs-to.decorator';
-import { Expansion } from '@/decorators/expansion.decorator';
-import { FilterBy } from '@/decorators/filter-by.decorator';
-import { IncludeType } from '@/decorators/include-type.decorator';
-import { User } from '@/decorators/user.decorator';
-import { WorkflowAccessedByWorkspaceUserEventPayload } from '@/types/event-payloads/workflow-access-by-workspace-user-event-payload.type';
-import { JwtUser } from '@/types/jwt-user.type';
+import { BelongsTo } from '../../../decorators/belongs-to.decorator';
+import { Expansion } from '../../../decorators/expansion.decorator';
+import { FilterBy } from '../../../decorators/filter-by.decorator';
+import { IncludeType } from '../../../decorators/include-type.decorator';
+import { User } from '../../../decorators/user.decorator';
+import { WorkflowAccessedByWorkspaceUserEventPayload } from '../../../types/event-payloads/workflow-access-by-workspace-user-event-payload.type';
+import { JwtUser } from '../../../types/jwt-user.type';
 
 import { CreateWorkflowDto } from './dto/create-workflow.dto';
 import { UpdateWorkflowDto } from './dto/update-workflow.dto';

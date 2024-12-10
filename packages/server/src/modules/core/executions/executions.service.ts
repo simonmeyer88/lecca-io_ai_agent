@@ -5,16 +5,15 @@ import {
 } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 
+import { JwtUser } from '../../../types/jwt-user.type';
+import { CreditsService } from '../../global/credits/credits.service';
+import { PrismaService } from '../../global/prisma/prisma.service';
 import {
   ExecutionNodeForRunner,
   ImmediatelyRunExecutionPayload,
   RunExecutionQueueForWorkspacePayload,
   WorkflowNodeForRunner,
-} from '@/modules/core/workflow-runner/workflow-runner.service';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { JwtUser } from '@/types/jwt-user.type';
-
-import { CreditsService } from '../../global/credits/credits.service';
+} from '../workflow-runner/workflow-runner.service';
 
 import { ExecutionExpansionDto } from './dto/execution-expansion.dto';
 import { ExecutionFilterByDto } from './dto/execution-filter-by.dto';

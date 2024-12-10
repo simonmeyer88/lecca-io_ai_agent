@@ -7,12 +7,12 @@ import {
 import { OnEvent } from '@nestjs/event-emitter';
 import { WorkflowStrategy } from '@prisma/client';
 
-import { ItemBasedPollTrigger } from '@/apps/lib/trigger';
-import { WorkflowAppsService } from '@/modules/core/workflow-apps/workflow-apps.service';
-import { WorkflowNodeForRunner } from '@/modules/core/workflow-runner/workflow-runner.service';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { WorkflowAccessedByWorkspaceUserEventPayload } from '@/types/event-payloads/workflow-access-by-workspace-user-event-payload.type';
-import { JwtUser } from '@/types/jwt-user.type';
+import { ItemBasedPollTrigger } from '../../../apps/lib/trigger';
+import { WorkflowAccessedByWorkspaceUserEventPayload } from '../../../types/event-payloads/workflow-access-by-workspace-user-event-payload.type';
+import { JwtUser } from '../../../types/jwt-user.type';
+import { PrismaService } from '../../global/prisma/prisma.service';
+import { WorkflowAppsService } from '../workflow-apps/workflow-apps.service';
+import { WorkflowNodeForRunner } from '../workflow-runner/workflow-runner.service';
 
 import { CreateWorkflowDto } from './dto/create-workflow.dto';
 import { UpdateWorkflowDto } from './dto/update-workflow.dto';

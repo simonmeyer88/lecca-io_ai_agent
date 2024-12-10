@@ -5,14 +5,13 @@ import {
 } from '@nestjs/common';
 import { BillingPlanType } from '@prisma/client';
 
-import { ServerConfig } from '@/config/server.config';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { JwtUser } from '@/types/jwt-user.type';
-
+import { ServerConfig } from '../../../config/server.config';
+import { JwtUser } from '../../../types/jwt-user.type';
 import {
   AiProvider,
   AiProviderService,
 } from '../ai-provider/ai-provider.service';
+import { PrismaService } from '../prisma/prisma.service';
 
 import { CreditExpansionDto } from './dto/credit-expansion.dto';
 import { CreditFilterByDto } from './dto/credit-filter-by.dto';

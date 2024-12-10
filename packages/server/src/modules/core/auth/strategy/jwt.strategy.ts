@@ -2,9 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
-import { ServerConfig } from '@/config/server.config';
-import { Request } from '@/types/request.type';
-
+import { ServerConfig } from '../../../../config/server.config';
+import { Request } from '../../../../types/request.type';
 import { AuthService } from '../auth.service';
 
 /**

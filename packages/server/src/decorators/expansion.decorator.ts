@@ -6,19 +6,19 @@ import {
 import { plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
 
-import { AgentExpansionDto } from '@/modules/core/agents/dto/agent-expansion.dto';
-import { ConnectionExpansionDto } from '@/modules/core/connections/dto/connection-expansion.dto';
-import { ExecutionExpansionDto } from '@/modules/core/executions/dto/execution-expansion.dto';
-import { KnowledgeExpansionDto } from '@/modules/core/knowledge/dto/knowledge-expansion.dto';
-import { ProjectExpansionDto } from '@/modules/core/projects/dto/project-expansion.dto';
-import { TaskExpansionDto } from '@/modules/core/tasks/dto/task-expansion.dto';
-import { UserExpansionDto } from '@/modules/core/users/dto/user-expansion.dto';
-import { VariableExpansionDto } from '@/modules/core/variables/dto/variable-expansion.dto';
-import { WorkflowTemplateExpansionDto } from '@/modules/core/workflow-templates/dto/workflow-template-expansion.dto';
-import { WorkflowExpansionDto } from '@/modules/core/workflows/dto/workflow-expansion.dto';
-import { WorkspaceUserExpansionDto } from '@/modules/core/workspace-users/dto/workspace-user-expansion.dto';
-import { WorkspaceExpansionDto } from '@/modules/core/workspaces/dto/workspace-expansion.dto';
-import { CreditExpansionDto } from '@/modules/global/credits/dto/credit-expansion.dto';
+import { AgentExpansionDto } from '../modules/core/agents/dto/agent-expansion.dto';
+import { ConnectionExpansionDto } from '../modules/core/connections/dto/connection-expansion.dto';
+import { ExecutionExpansionDto } from '../modules/core/executions/dto/execution-expansion.dto';
+import { KnowledgeExpansionDto } from '../modules/core/knowledge/dto/knowledge-expansion.dto';
+import { ProjectExpansionDto } from '../modules/core/projects/dto/project-expansion.dto';
+import { TaskExpansionDto } from '../modules/core/tasks/dto/task-expansion.dto';
+import { UserExpansionDto } from '../modules/core/users/dto/user-expansion.dto';
+import { VariableExpansionDto } from '../modules/core/variables/dto/variable-expansion.dto';
+import { WorkflowTemplateExpansionDto } from '../modules/core/workflow-templates/dto/workflow-template-expansion.dto';
+import { WorkflowExpansionDto } from '../modules/core/workflows/dto/workflow-expansion.dto';
+import { WorkspaceUserExpansionDto } from '../modules/core/workspace-users/dto/workspace-user-expansion.dto';
+import { WorkspaceExpansionDto } from '../modules/core/workspaces/dto/workspace-expansion.dto';
+import { CreditExpansionDto } from '../modules/global/credits/dto/credit-expansion.dto';
 
 /**
  * Also make sure you add all your include type dtos to the expansionDtoMap below.

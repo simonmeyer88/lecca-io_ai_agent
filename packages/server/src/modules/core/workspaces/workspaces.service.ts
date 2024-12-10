@@ -7,10 +7,9 @@ import {
 import { WorkspaceUserRole } from '@prisma/client';
 import { v4 } from 'uuid';
 
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-
 import { CreditsService } from '../../global/credits/credits.service';
 import { PineconeService } from '../../global/pinecone/pinecone.service';
+import { PrismaService } from '../../global/prisma/prisma.service';
 import { S3ManagerService } from '../../global/s3/s3.service';
 import { UsersService } from '../users/users.service';
 import { WorkspaceUsersService } from '../workspace-users/workspace-users.service';

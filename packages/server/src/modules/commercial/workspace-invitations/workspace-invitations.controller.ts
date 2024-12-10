@@ -9,11 +9,11 @@ import {
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-import { BelongsTo } from '@/decorators/belongs-to.decorator';
-import { CommercialKey } from '@/decorators/commercial.decorator';
-import { Roles } from '@/decorators/roles.decorator';
-import { User } from '@/decorators/user.decorator';
-import { JwtUser } from '@/types/jwt-user.type';
+import { BelongsTo } from '../../../decorators/belongs-to.decorator';
+import { CommercialKey } from '../../../decorators/commercial.decorator';
+import { Roles } from '../../../decorators/roles.decorator';
+import { User } from '../../../decorators/user.decorator';
+import { JwtUser } from '../../../types/jwt-user.type';
 
 import { CreateWorkspaceInvitationDto } from './dto/create-workspace-invitation.dto';
 import { UpdateWorkspaceInvitationDto } from './dto/update-workspace-invitation.dto';

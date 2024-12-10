@@ -7,10 +7,9 @@ import {
 import { AgentTrigger } from '@prisma/client';
 import { v4 } from 'uuid';
 
-import { ServerConfig } from '@/config/server.config';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { JwtUser } from '@/types/jwt-user.type';
-
+import { ServerConfig } from '../../../config/server.config';
+import { JwtUser } from '../../../types/jwt-user.type';
+import { PrismaService } from '../../global/prisma/prisma.service';
 import { WorkflowNodeForRunner } from '../workflow-runner/workflow-runner.service';
 import { WorkflowsService } from '../workflows/workflows.service';
 

@@ -4,11 +4,10 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { JwtUser } from '@/types/jwt-user.type';
-
+import { JwtUser } from '../../../types/jwt-user.type';
 import { CreditsService } from '../../global/credits/credits.service';
 import { PineconeService } from '../../global/pinecone/pinecone.service';
+import { PrismaService } from '../../global/prisma/prisma.service';
 import { S3ManagerService } from '../../global/s3/s3.service';
 
 import { CreateProjectDto } from './dto/create-project.dto';

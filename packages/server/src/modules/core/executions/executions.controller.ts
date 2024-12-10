@@ -10,13 +10,13 @@ import {
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-import { BelongsTo } from '@/decorators/belongs-to.decorator';
-import { Expansion } from '@/decorators/expansion.decorator';
-import { FilterBy } from '@/decorators/filter-by.decorator';
-import { IncludeType } from '@/decorators/include-type.decorator';
-import { Roles } from '@/decorators/roles.decorator';
-import { User } from '@/decorators/user.decorator';
-import { JwtUser } from '@/types/jwt-user.type';
+import { BelongsTo } from '../../../decorators/belongs-to.decorator';
+import { Expansion } from '../../../decorators/expansion.decorator';
+import { FilterBy } from '../../../decorators/filter-by.decorator';
+import { IncludeType } from '../../../decorators/include-type.decorator';
+import { Roles } from '../../../decorators/roles.decorator';
+import { User } from '../../../decorators/user.decorator';
+import { JwtUser } from '../../../types/jwt-user.type';
 
 import { ExecutionExpansionDto } from './dto/execution-expansion.dto';
 import { ExecutionFilterByDto } from './dto/execution-filter-by.dto';

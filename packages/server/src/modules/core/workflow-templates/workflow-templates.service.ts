@@ -4,9 +4,9 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 
-import { WorkflowNodeForRunner } from '@/modules/core/workflow-runner/workflow-runner.service';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { JwtUser } from '@/types/jwt-user.type';
+import { JwtUser } from '../../../types/jwt-user.type';
+import { PrismaService } from '../../global/prisma/prisma.service';
+import { WorkflowNodeForRunner } from '../workflow-runner/workflow-runner.service';
 
 import { CreateWorkflowTemplateDto } from './dto/create-workflow-template.dto';
 import { WorkflowTemplateExpansionDto } from './dto/workflow-template-expansion.dto';

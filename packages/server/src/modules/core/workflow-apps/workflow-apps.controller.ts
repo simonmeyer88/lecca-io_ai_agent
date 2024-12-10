@@ -2,10 +2,10 @@ import { Body, Controller, Get, Param, Post, Req, Res } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Request, Response } from 'express';
 
-import { Public } from '@/decorators/public.decorator';
-import { Roles } from '@/decorators/roles.decorator';
-import { User } from '@/decorators/user.decorator';
-import { JwtUser } from '@/types/jwt-user.type';
+import { Public } from '../../../decorators/public.decorator';
+import { Roles } from '../../../decorators/roles.decorator';
+import { User } from '../../../decorators/user.decorator';
+import { JwtUser } from '../../../types/jwt-user.type';
 
 import { RunNodeDto } from './dto/run-node.dto';
 import { WorkflowAppsService } from './workflow-apps.service';

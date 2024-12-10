@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 
-import { ServerConfig } from '@/config/server.config';
+import { ServerConfig } from '../../../config/server.config';
 import {
   AiProviderService,
   AiProviders,
-} from '@/modules/global/ai-provider/ai-provider.service';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
+} from '../../global/ai-provider/ai-provider.service';
+import { PrismaService } from '../../global/prisma/prisma.service';
 
 @Injectable()
 export class DiscoveryService {

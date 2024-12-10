@@ -18,17 +18,16 @@ import {
 import { Message } from 'ai/react';
 import { z } from 'zod';
 
-import { FieldConfig, InputConfig } from '@/apps/lib/input-config';
-import { WorkflowAppsService } from '@/modules/core/workflow-apps/workflow-apps.service';
-import { WorkflowNodeForRunner } from '@/modules/core/workflow-runner/workflow-runner.service';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { JwtUser } from '@/types/jwt-user.type';
-
+import { FieldConfig, InputConfig } from '../../../apps/lib/input-config';
+import { JwtUser } from '../../../types/jwt-user.type';
 import {
   AiProvider,
   AiProviderService,
 } from '../../global/ai-provider/ai-provider.service';
 import { CreditsService } from '../../global/credits/credits.service';
+import { PrismaService } from '../../global/prisma/prisma.service';
+import { WorkflowAppsService } from '../workflow-apps/workflow-apps.service';
+import { WorkflowNodeForRunner } from '../workflow-runner/workflow-runner.service';
 
 import { CreateTaskDto } from './dto/create-task.dto';
 import { TaskExpansionDto } from './dto/task-expansion.dto';

@@ -8,11 +8,11 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 
-import { ServerConfig } from '@/config/server.config';
-import { Public } from '@/decorators/public.decorator';
-import { CreateUserDto } from '@/modules/core/users/dto/create-user.dto';
-import { UsersService } from '@/modules/core/users/users.service';
-import { WorkspacesService } from '@/modules/core/workspaces/workspaces.service';
+import { ServerConfig } from '../../../config/server.config';
+import { Public } from '../../../decorators/public.decorator';
+import { CreateUserDto } from '../users/dto/create-user.dto';
+import { UsersService } from '../users/users.service';
+import { WorkspacesService } from '../workspaces/workspaces.service';
 
 import { AuthService } from './auth.service';
 import { GoogleLoginDto } from './dto/google-login-dto';

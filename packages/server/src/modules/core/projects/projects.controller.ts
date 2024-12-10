@@ -9,12 +9,12 @@ import {
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-import { BelongsTo } from '@/decorators/belongs-to.decorator';
-import { Expansion } from '@/decorators/expansion.decorator';
-import { IncludeType } from '@/decorators/include-type.decorator';
-import { Roles } from '@/decorators/roles.decorator';
-import { User } from '@/decorators/user.decorator';
-import { JwtUser } from '@/types/jwt-user.type';
+import { BelongsTo } from '../../../decorators/belongs-to.decorator';
+import { Expansion } from '../../../decorators/expansion.decorator';
+import { IncludeType } from '../../../decorators/include-type.decorator';
+import { Roles } from '../../../decorators/roles.decorator';
+import { User } from '../../../decorators/user.decorator';
+import { JwtUser } from '../../../types/jwt-user.type';
 
 import { CreateProjectDto } from './dto/create-project.dto';
 import { ProjectExpansionDto } from './dto/project-expansion.dto';

@@ -6,18 +6,18 @@ import {
 import { plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
 
-import { AgentIncludeTypeDto } from '@/modules/core/agents/dto/agent-include-type.dto';
-import { ConnectionIncludeTypeDto } from '@/modules/core/connections/dto/connection-include-type.dto';
-import { ExecutionIncludeTypeDto } from '@/modules/core/executions/dto/execution-include-type.dto';
-import { KnowledgeIncludeTypeDto } from '@/modules/core/knowledge/dto/knowledge-include-type.dto';
-import { ProjectIncludeTypeDto } from '@/modules/core/projects/dto/project-include-type.dto';
-import { TaskIncludeTypeDto } from '@/modules/core/tasks/dto/task-include-type.dto';
-import { UserIncludeTypeDto } from '@/modules/core/users/dto/user-include-type.dto';
-import { VariableIncludeTypeDto } from '@/modules/core/variables/dto/variable-include-type.dto';
-import { WorkflowTemplateIncludeTypeDto } from '@/modules/core/workflow-templates/dto/workflow-template-include-type.dto';
-import { WorkflowIncludeTypeDto } from '@/modules/core/workflows/dto/workflow-include-type.dto';
-import { WorkspaceUserIncludeTypeDto } from '@/modules/core/workspace-users/dto/workspace-user-include-type.dto';
-import { CreditIncludeTypeDto } from '@/modules/global/credits/dto/credit-include-type.dto';
+import { AgentIncludeTypeDto } from '../modules/core/agents/dto/agent-include-type.dto';
+import { ConnectionIncludeTypeDto } from '../modules/core/connections/dto/connection-include-type.dto';
+import { ExecutionIncludeTypeDto } from '../modules/core/executions/dto/execution-include-type.dto';
+import { KnowledgeIncludeTypeDto } from '../modules/core/knowledge/dto/knowledge-include-type.dto';
+import { ProjectIncludeTypeDto } from '../modules/core/projects/dto/project-include-type.dto';
+import { TaskIncludeTypeDto } from '../modules/core/tasks/dto/task-include-type.dto';
+import { UserIncludeTypeDto } from '../modules/core/users/dto/user-include-type.dto';
+import { VariableIncludeTypeDto } from '../modules/core/variables/dto/variable-include-type.dto';
+import { WorkflowTemplateIncludeTypeDto } from '../modules/core/workflow-templates/dto/workflow-template-include-type.dto';
+import { WorkflowIncludeTypeDto } from '../modules/core/workflows/dto/workflow-include-type.dto';
+import { WorkspaceUserIncludeTypeDto } from '../modules/core/workspace-users/dto/workspace-user-include-type.dto';
+import { CreditIncludeTypeDto } from '../modules/global/credits/dto/credit-include-type.dto';
 
 /**
  * Also make sure you add all your include type dtos to the includeTypeDtoMap below.

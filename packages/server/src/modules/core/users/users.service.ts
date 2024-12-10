@@ -6,10 +6,9 @@ import {
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import * as bcrypt from 'bcrypt';
 
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { UserDeletedEventPayload } from '@/types/event-payloads/user-deleted-event-payload.type';
-
+import { UserDeletedEventPayload } from '../../../types/event-payloads/user-deleted-event-payload.type';
 import { OperationsService } from '../../global/operations/operations.service';
+import { PrismaService } from '../../global/prisma/prisma.service';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';

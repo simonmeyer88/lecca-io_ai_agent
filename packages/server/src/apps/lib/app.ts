@@ -3,20 +3,19 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { JwtService } from '@nestjs/jwt';
 import { CoreTool } from 'ai';
 
-import { ServerConfig } from '@/config/server.config';
-import { ConnectionsService } from '@/modules/core/connections/connections.service';
-import { ExecutionsService } from '@/modules/core/executions/executions.service';
-import { KnowledgeService } from '@/modules/core/knowledge/knowledge.service';
-import { TasksService } from '@/modules/core/tasks/tasks.service';
-import { AiProviderService } from '@/modules/global/ai-provider/ai-provider.service';
-import { CreditsService } from '@/modules/global/credits/credits.service';
-import { FileHandlerService } from '@/modules/global/file/file-handler.service';
-import { HttpService } from '@/modules/global/http/http.service';
-import { NotificationsService } from '@/modules/global/notifications/notifications.service';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { S3ManagerService } from '@/modules/global/s3/s3.service';
-
+import { ServerConfig } from '../../config/server.config';
+import { ConnectionsService } from '../../modules/core/connections/connections.service';
+import { ExecutionsService } from '../../modules/core/executions/executions.service';
+import { KnowledgeService } from '../../modules/core/knowledge/knowledge.service';
+import { TasksService } from '../../modules/core/tasks/tasks.service';
 import { WorkflowNodeForRunner } from '../../modules/core/workflow-runner/workflow-runner.service';
+import { AiProviderService } from '../../modules/global/ai-provider/ai-provider.service';
+import { CreditsService } from '../../modules/global/credits/credits.service';
+import { FileHandlerService } from '../../modules/global/file/file-handler.service';
+import { HttpService } from '../../modules/global/http/http.service';
+import { NotificationsService } from '../../modules/global/notifications/notifications.service';
+import { PrismaService } from '../../modules/global/prisma/prisma.service';
+import { S3ManagerService } from '../../modules/global/s3/s3.service';
 
 import { Action } from './action';
 import { Connection } from './connection';

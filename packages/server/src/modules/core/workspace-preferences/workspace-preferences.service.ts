@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
+import { PrismaService } from '../../global/prisma/prisma.service';
 
 import { UpdateWorkspacePreferencesDto } from './dto/update-workspace-preferences.dto';
 

@@ -2,9 +2,11 @@ import { ForbiddenException, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Connection, ExecutionStatus } from '@prisma/client';
 
-import { CustomWebhookTrigger, WebhookAppTrigger } from '@/apps/lib/trigger';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-
+import {
+  CustomWebhookTrigger,
+  WebhookAppTrigger,
+} from '../../../apps/lib/trigger';
+import { PrismaService } from '../../global/prisma/prisma.service';
 import { WorkflowAppsService } from '../workflow-apps/workflow-apps.service';
 import {
   ExecutionNodeForRunner,

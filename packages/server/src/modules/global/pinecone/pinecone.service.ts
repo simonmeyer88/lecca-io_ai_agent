@@ -5,7 +5,7 @@ import {
   QueryResponse,
 } from '@pinecone-database/pinecone';
 
-import { ServerConfig } from '@/config/server.config';
+import { ServerConfig } from '../../../config/server.config';
 
 @Injectable()
 export class PineconeService {

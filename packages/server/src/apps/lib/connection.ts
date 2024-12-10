@@ -1,7 +1,7 @@
 import { BadRequestException } from '@nestjs/common';
 import { Request, Response } from 'express';
 
-import { ServerConfig } from '@/config/server.config';
+import { ServerConfig } from '../../config/server.config';
 
 import { App } from './app';
 import { InputConfig } from './input-config';

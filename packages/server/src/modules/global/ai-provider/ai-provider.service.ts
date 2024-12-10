@@ -10,8 +10,7 @@ import { Connection } from '@prisma/client';
 import { EmbeddingModel, LanguageModelV1 } from 'ai';
 import { createOllama } from 'ollama-ai-provider';
 
-import { ServerConfig } from '@/config/server.config';
-
+import { ServerConfig } from '../../../config/server.config';
 import { CryptoService } from '../crypto/crypto.service';
 
 import { DEFAULT_PROVIDERS } from './ai-provider-defaults';

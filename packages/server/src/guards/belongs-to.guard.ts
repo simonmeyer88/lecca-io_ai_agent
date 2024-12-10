@@ -8,25 +8,24 @@ import {
 import { Reflector } from '@nestjs/core';
 import { WorkspaceUserRole } from '@prisma/client';
 
-import { WorkspaceInvitationsService } from '@/modules/commercial/workspace-invitations/workspace-invitations.service';
-import { AgentsService } from '@/modules/core/agents/agents.service';
-import { ConnectionsService } from '@/modules/core/connections/connections.service';
-import { ExecutionsService } from '@/modules/core/executions/executions.service';
-import { KnowledgeService } from '@/modules/core/knowledge/knowledge.service';
-import { ProjectInvitationsService } from '@/modules/core/project-invitations/project-invitations.service';
-import { ProjectsService } from '@/modules/core/projects/projects.service';
-import { TasksService } from '@/modules/core/tasks/tasks.service';
-import { UsersService } from '@/modules/core/users/users.service';
-import { VariablesService } from '@/modules/core/variables/variables.service';
-import { WorkflowAppsService } from '@/modules/core/workflow-apps/workflow-apps.service';
-import { WorkflowTemplatesService } from '@/modules/core/workflow-templates/workflow-templates.service';
-import { WorkflowsService } from '@/modules/core/workflows/workflows.service';
-import { WorkspaceUsersService } from '@/modules/core/workspace-users/workspace-users.service';
-import { CreditsService } from '@/modules/global/credits/credits.service';
-import { NotificationsService } from '@/modules/global/notifications/notifications.service';
-import { JwtUser } from '@/types/jwt-user.type';
-
 import { BelongsTo } from '../decorators/belongs-to.decorator';
+import { WorkspaceInvitationsService } from '../modules/commercial/workspace-invitations/workspace-invitations.service';
+import { AgentsService } from '../modules/core/agents/agents.service';
+import { ConnectionsService } from '../modules/core/connections/connections.service';
+import { ExecutionsService } from '../modules/core/executions/executions.service';
+import { KnowledgeService } from '../modules/core/knowledge/knowledge.service';
+import { ProjectInvitationsService } from '../modules/core/project-invitations/project-invitations.service';
+import { ProjectsService } from '../modules/core/projects/projects.service';
+import { TasksService } from '../modules/core/tasks/tasks.service';
+import { UsersService } from '../modules/core/users/users.service';
+import { VariablesService } from '../modules/core/variables/variables.service';
+import { WorkflowAppsService } from '../modules/core/workflow-apps/workflow-apps.service';
+import { WorkflowTemplatesService } from '../modules/core/workflow-templates/workflow-templates.service';
+import { WorkflowsService } from '../modules/core/workflows/workflows.service';
+import { WorkspaceUsersService } from '../modules/core/workspace-users/workspace-users.service';
+import { CreditsService } from '../modules/global/credits/credits.service';
+import { NotificationsService } from '../modules/global/notifications/notifications.service';
+import { JwtUser } from '../types/jwt-user.type';
 
 /**
  * This guard checks if the user or workspace owns the resource they are trying to access.

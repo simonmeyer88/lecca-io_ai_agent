@@ -7,10 +7,9 @@ import {
 } from '@nestjs/common';
 import { Connection } from '@prisma/client';
 
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { JwtUser } from '@/types/jwt-user.type';
-
+import { JwtUser } from '../../../types/jwt-user.type';
 import { CryptoService } from '../../global/crypto/crypto.service';
+import { PrismaService } from '../../global/prisma/prisma.service';
 
 import { ConnectionExpansionDto } from './dto/connection-expansion.dto';
 import { ConnectionFilterByDto } from './dto/connection-filter-by.dto';

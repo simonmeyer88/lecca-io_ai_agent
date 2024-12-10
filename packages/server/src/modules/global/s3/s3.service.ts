@@ -11,7 +11,7 @@ import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { Injectable } from '@nestjs/common';
 import { Readable } from 'stream';
 
-import { ServerConfig } from '@/config/server.config';
+import { ServerConfig } from '../../../config/server.config';
 
 const env_prefix =
   ServerConfig.ENVIRONMENT === 'production' ? 'production/' : 'development/';

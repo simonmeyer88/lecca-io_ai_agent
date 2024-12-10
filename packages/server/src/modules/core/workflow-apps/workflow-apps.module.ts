@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 
-import { ServerConfig } from '@/config/server.config';
-import { ConnectionsService } from '@/modules/core/connections/connections.service';
-import { ExecutionsService } from '@/modules/core/executions/executions.service';
-import { KnowledgeService } from '@/modules/core/knowledge/knowledge.service';
-import { TasksService } from '@/modules/core/tasks/tasks.service';
+import { ServerConfig } from '../../../config/server.config';
+import { ConnectionsService } from '../connections/connections.service';
+import { ExecutionsService } from '../executions/executions.service';
+import { KnowledgeService } from '../knowledge/knowledge.service';
+import { TasksService } from '../tasks/tasks.service';
 
 import { WorkflowAppsController } from './workflow-apps.controller';
 import { WorkflowAppsService } from './workflow-apps.service';

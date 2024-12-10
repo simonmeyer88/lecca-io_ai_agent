@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
-import { ServerConfig } from '@/config/server.config';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-
+import { ServerConfig } from '../../../config/server.config';
 import { CreditsService } from '../../global/credits/credits.service';
+import { PrismaService } from '../../global/prisma/prisma.service';
 
 import { DevUpdateWorkspaceCreditDto } from './dto/dev-update-workspace-credit.dto';
 

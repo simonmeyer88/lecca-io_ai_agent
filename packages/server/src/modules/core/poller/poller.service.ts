@@ -4,11 +4,10 @@ import { Cron } from '@nestjs/schedule';
 import { BillingPlanType, WorkflowStrategy } from '@prisma/client';
 import { JsonValue } from '@prisma/client/runtime/library';
 
-import { ServerConfig } from '@/config/server.config';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { S3ManagerService } from '@/modules/global/s3/s3.service';
-
+import { ServerConfig } from '../../../config/server.config';
 import { CreditsService } from '../../global/credits/credits.service';
+import { PrismaService } from '../../global/prisma/prisma.service';
+import { S3ManagerService } from '../../global/s3/s3.service';
 import { WorkflowAppsService } from '../workflow-apps/workflow-apps.service';
 import {
   ExecutionNodeForRunner,

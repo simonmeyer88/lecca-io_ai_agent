@@ -2,8 +2,7 @@ import { BadRequestException, ForbiddenException } from '@nestjs/common';
 import { Connection } from '@prisma/client';
 import { CoreTool } from 'ai';
 
-import { ServerConfig } from '@/config/server.config';
-
+import { ServerConfig } from '../../config/server.config';
 import {
   ExecutionNodeForRunner,
   WorkflowNodeForRunner,

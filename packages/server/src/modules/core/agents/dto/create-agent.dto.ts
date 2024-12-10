@@ -9,8 +9,7 @@ import {
   Min,
 } from 'class-validator';
 
-import { WorkflowNodeForRunner } from '@/modules/core/workflow-runner/workflow-runner.service';
-
+import { WorkflowNodeForRunner } from '../../workflow-runner/workflow-runner.service';
 import { PartialOrSavedAgentTrigger } from '../agents.service';
 
 export class CreateAgentDto {

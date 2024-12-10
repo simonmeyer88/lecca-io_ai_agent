@@ -5,19 +5,18 @@ import {
 } from '@nestjs/common';
 import { QueryResponse } from '@pinecone-database/pinecone';
 
-import { ServerConfig } from '@/config/server.config';
+import { ServerConfig } from '../../../config/server.config';
+import { JwtUser } from '../../../types/jwt-user.type';
 import {
   AiProvider,
   AiProviderService,
-} from '@/modules/global/ai-provider/ai-provider.service';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-import { JwtUser } from '@/types/jwt-user.type';
-
+} from '../../global/ai-provider/ai-provider.service';
 import { CreditsService } from '../../global/credits/credits.service';
 import {
   PineconeMetadata,
   PineconeService,
 } from '../../global/pinecone/pinecone.service';
+import { PrismaService } from '../../global/prisma/prisma.service';
 import { S3ManagerService } from '../../global/s3/s3.service';
 
 import { CreateKnowledgeDto } from './dto/create-knowledge.dto';

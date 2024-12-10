@@ -7,10 +7,9 @@ import { BillingPlanType } from '@prisma/client';
 import { Request } from 'express';
 import Stripe from 'stripe';
 
-import { ServerConfig } from '@/config/server.config';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-
+import { ServerConfig } from '../../../config/server.config';
 import { CreditsService } from '../../global/credits/credits.service';
+import { PrismaService } from '../../global/prisma/prisma.service';
 
 @Injectable()
 export class StripeService {

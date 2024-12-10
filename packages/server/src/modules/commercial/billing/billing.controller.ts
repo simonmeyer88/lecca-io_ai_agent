@@ -1,11 +1,10 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-import { ServerConfig } from '@/config/server.config';
-import { Roles } from '@/decorators/roles.decorator';
-import { User } from '@/decorators/user.decorator';
-import { JwtUser } from '@/types/jwt-user.type';
-
+import { ServerConfig } from '../../../config/server.config';
+import { Roles } from '../../../decorators/roles.decorator';
+import { User } from '../../../decorators/user.decorator';
+import { JwtUser } from '../../../types/jwt-user.type';
 import { StripeService } from '../stripe/stripe.service';
 
 import { CreateCheckoutSessionDto } from './dto/create-checkout-session.dto';

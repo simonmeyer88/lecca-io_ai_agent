@@ -7,13 +7,12 @@ import {
 import { OnEvent } from '@nestjs/event-emitter';
 import { Execution, Workflow } from '@prisma/client';
 
-import { Action, ActionResponse } from '@/apps/lib/action';
-import { Trigger, TriggerResponse } from '@/apps/lib/trigger';
-import { ExecutionStatus } from '@/modules/core/executions/enums/execution-status.enum';
-import { ExecutionsService } from '@/modules/core/executions/executions.service';
-import { PrismaService } from '@/modules/global/prisma/prisma.service';
-
+import { Action, ActionResponse } from '../../../apps/lib/action';
+import { Trigger, TriggerResponse } from '../../../apps/lib/trigger';
 import { CreditsService } from '../../global/credits/credits.service';
+import { PrismaService } from '../../global/prisma/prisma.service';
+import { ExecutionStatus } from '../executions/enums/execution-status.enum';
+import { ExecutionsService } from '../executions/executions.service';
 import { WorkflowAppsService } from '../workflow-apps/workflow-apps.service';
 
 @Injectable()

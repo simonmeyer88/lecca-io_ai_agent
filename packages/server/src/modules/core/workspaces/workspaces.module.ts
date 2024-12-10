@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 
-import { ServerConfig } from '@/config/server.config';
-
+import { ServerConfig } from '../../../config/server.config';
 import { UsersService } from '../users/users.service';
 import { WorkspaceUsersService } from '../workspace-users/workspace-users.service';
 

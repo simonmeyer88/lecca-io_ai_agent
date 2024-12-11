@@ -2,16 +2,17 @@ import { createApp } from '@lecca-io/toolkit';
 import crypto from 'crypto';
 
 import { createChannel } from './actions/create-channel.action';
+import { slackOAuth2 } from './connections/slack.oauth2';
 
 export const slack = createApp({
   id: 'slack',
   name: 'Slack',
   description:
     'Slack is a messaging app for business that connects people to the information they need.',
-  logoUrl: '',
+  logoUrl: 'https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/slack.svg',
   actions: [createChannel],
   triggers: [],
-  connections: [],
+  connections: [slackOAuth2],
   verifyWebhookRequest: ({ webhookBody, webhookHeaders }) => {
     if (!process.env.INTEGRATIONS_SLACK_SIGNING_SECRET) {
       throw new Error('Slack signing secret is not set');

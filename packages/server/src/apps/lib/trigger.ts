@@ -24,7 +24,7 @@ export class Trigger {
     this.run = args.run;
     this.mockRun = args.mockRun;
     this.availableForAgent = args.availableForAgent ?? true;
-    this.needsConnection = args.needsConnection ?? true;
+    this.needsConnection = args.needsConnection ?? args.app.needsConnection;
     this.iconUrl = args.iconUrl;
     this.strategy = args.strategy;
   }

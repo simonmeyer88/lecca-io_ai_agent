@@ -18,8 +18,8 @@ export class Action {
     this.aiSchema = args.aiSchema;
     this.run = args.run;
     this.mockRun = args.mockRun;
-    this.availableForAgent = args.availableForAgent;
-    this.needsConnection = args.needsConnection;
+    this.availableForAgent = args.availableForAgent ?? true;
+    this.needsConnection = args.needsConnection ?? args.app.needsConnection;
     this.iconUrl = args.iconUrl;
   }
 
@@ -31,9 +31,9 @@ export class Action {
   aiSchema: z.ZodObject<any, any>;
   run: (args: RunActionArgs<unknown>) => Promise<unknown>;
   mockRun: (args: RunActionArgs<unknown>) => Promise<unknown>;
-  availableForAgent = true;
-  iconUrl: null | string = null;
-  needsConnection = true;
+  availableForAgent: boolean;
+  iconUrl: null | string;
+  needsConnection: boolean;
 
   /**
    * Options to configure how the node looks in the builder.

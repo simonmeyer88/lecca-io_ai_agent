@@ -66,7 +66,7 @@ export class Connection {
       id: this.id,
       name: this.name,
       description: this.description,
-      inputConfig: this.inputConfig.map((c) => c),
+      inputConfig: (this.inputConfig ?? []).map((c) => c),
       connectionType: this.connectionType,
       valid: this.hasValidServerConfig(),
     };

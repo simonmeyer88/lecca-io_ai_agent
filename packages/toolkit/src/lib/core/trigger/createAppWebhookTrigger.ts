@@ -22,7 +22,7 @@ export type CreateAppWebhookTriggerArgs<
   name: string;
   description: string;
   inputConfig: InputConfig;
-  needsConnection: boolean;
+  needsConnection?: boolean;
   iconUrl?: string;
   viewOptions?: ViewOptions;
   availableForAgent?: boolean;

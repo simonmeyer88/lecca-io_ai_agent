@@ -1,3 +1,4 @@
+import { FieldConfig, InputConfig, NestedInputConfig } from '@lecca-io/toolkit';
 import { BadRequestException, ForbiddenException } from '@nestjs/common';
 import { Connection } from '@prisma/client';
 import { CoreTool } from 'ai';
@@ -5,7 +6,6 @@ import { z } from 'zod';
 
 import { App, ConfigValue } from './app';
 import { OAuth2Connection } from './connection';
-import { FieldConfig, InputConfig, NestedInputConfig } from './input-config';
 import { NodeViewOptions } from './trigger';
 
 export class Action {
@@ -27,7 +27,7 @@ export class Action {
   id: string;
   name: string;
   description: string;
-  inputConfig: InputConfig[];
+  inputConfig: InputConfig;
   aiSchema: z.ZodObject<any, any>;
   run: (args: RunActionArgs<unknown>) => Promise<unknown>;
   mockRun: (args: RunActionArgs<unknown>) => Promise<unknown>;
@@ -558,7 +558,7 @@ export type ActionConstructorArgs = {
   id: string;
   name: string;
   description: string;
-  inputConfig: InputConfig[];
+  inputConfig: InputConfig;
   aiSchema: z.ZodObject<any, any>;
   run: (args: RunActionArgs<unknown>) => Promise<unknown>;
   mockRun: (args: RunActionArgs<unknown>) => Promise<unknown>;

@@ -1,3 +1,4 @@
+import { FieldConfig, InputConfig, NestedInputConfig } from '@lecca-io/toolkit';
 import { BadRequestException, ForbiddenException } from '@nestjs/common';
 import { Connection } from '@prisma/client';
 import { CoreTool } from 'ai';
@@ -12,7 +13,6 @@ import { isValidMilliOrNull } from '../utils/is-valid-milli';
 
 import { App, ConfigValue } from './app';
 import { OAuth2Connection } from './connection';
-import { FieldConfig, InputConfig, NestedInputConfig } from './input-config';
 
 export class Trigger {
   constructor(args: TriggerConstructorArgs) {
@@ -26,10 +26,7 @@ export class Trigger {
     this.availableForAgent = args.availableForAgent ?? true;
     this.needsConnection = args.needsConnection ?? true;
     this.iconUrl = args.iconUrl;
-
-    if (args.strategy) {
-      this.strategy = args.strategy;
-    }
+    this.strategy = args.strategy;
   }
 
   app: App;
@@ -37,7 +34,7 @@ export class Trigger {
   name: string;
   description: string;
   strategy: TriggerStrategy;
-  inputConfig: InputConfig[];
+  inputConfig: InputConfig;
   needsConnection: boolean;
   availableForAgent: boolean;
   iconUrl: null | string = null;
@@ -743,6 +740,7 @@ export class WebhookAppTrigger extends Trigger {
 
     this.eventType = args.eventType;
     this.webhookPayloadMatchesIdentifier = args.webhookPayloadMatchesIdentifier;
+    this.strategy = 'webhook.app';
   }
 
   viewOptions: NodeViewOptions = {
@@ -751,7 +749,6 @@ export class WebhookAppTrigger extends Trigger {
       hideSaveAndTestButton: true,
     },
   };
-  strategy: TriggerStrategy = 'webhook.app';
   eventType: string;
 
   /**
@@ -769,6 +766,8 @@ export class WebhookAppTrigger extends Trigger {
 export class CustomWebhookTrigger extends Trigger {
   constructor(args: TriggerConstructorArgs) {
     super(args);
+
+    this.strategy = 'webhook.custom';
   }
 
   viewOptions: NodeViewOptions = {
@@ -777,8 +776,6 @@ export class CustomWebhookTrigger extends Trigger {
       hideSaveAndTestButton: true,
     },
   };
-
-  strategy: TriggerStrategy = 'webhook.custom';
 }
 
 export class TimeBasedPollTrigger extends Trigger {
@@ -786,9 +783,9 @@ export class TimeBasedPollTrigger extends Trigger {
     super(args);
 
     this.extractTimestampFromResponse = args.extractTimestampFromResponse;
-  }
 
-  strategy: TriggerStrategy = 'poll.dedupe-time-based';
+    this.strategy = 'poll.dedupe-time-based';
+  }
 
   async dedupeTimeBasedStrategy({
     triggerResponses,
@@ -869,9 +866,9 @@ export class ItemBasedPollTrigger extends Trigger {
     super(args);
     this.extractItemIdentifierFromResponse =
       args.extractItemIdentifierFromResponse;
-  }
 
-  strategy: TriggerStrategy = 'poll.dedupe-item-based';
+    this.strategy = 'poll.dedupe-item-based';
+  }
 
   async dedupeItemBasedStrategy({
     triggerResponses,
@@ -954,9 +951,9 @@ export class ItemBasedPollTrigger extends Trigger {
 export class LengthBasedPollTrigger extends Trigger {
   constructor(args: LengthBasedPollTriggerConstructorArgs) {
     super(args);
-  }
 
-  strategy: TriggerStrategy = 'poll.dedupe-length-based';
+    this.strategy = 'poll.dedupe-length-based';
+  }
 
   async dedupeLengthBasedStrategy({
     triggerResponses,
@@ -1003,7 +1000,7 @@ export type TriggerConstructorArgs = {
   id: string;
   name: string;
   description: string;
-  inputConfig: InputConfig[];
+  inputConfig: InputConfig;
   strategy: TriggerStrategy;
   run: (args: RunTriggerArgs<unknown>) => Promise<unknown[]>;
   mockRun: (args: RunTriggerArgs<unknown>) => Promise<unknown[]>;

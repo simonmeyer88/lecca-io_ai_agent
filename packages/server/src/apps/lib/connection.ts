@@ -1,24 +1,27 @@
+import { InputConfig } from '@lecca-io/toolkit';
 import { BadRequestException } from '@nestjs/common';
 import { Request, Response } from 'express';
 
 import { ServerConfig } from '../../config/server.config';
 
 import { App } from './app';
-import { InputConfig } from './input-config';
 
-export abstract class Connection {
+export class Connection {
   constructor(args: ConnectionConstructorArgs) {
     this.app = args.app;
+    this.id = args.id;
+    this.name = args.name;
+    this.description = args.description;
+    this.inputConfig = args.inputConfig;
+    this.connectionType = args.connectionType;
   }
 
   app: App;
-  // abstract id: string;
-  // Id must be a string_connection_string
-  abstract id: string;
-  abstract name: string;
-  abstract description: string;
-  abstract inputConfig: InputConfig[];
-  abstract connectionType: ConnectionType;
+  id: string;
+  name: string;
+  description: string;
+  inputConfig: InputConfig;
+  connectionType: ConnectionType;
 
   connectApp(args: {
     workspaceId: string;
@@ -70,18 +73,34 @@ export abstract class Connection {
   }
 }
 
-export abstract class OAuth2Connection extends Connection {
-  constructor(args: ConnectionConstructorArgs) {
+export class OAuth2Connection extends Connection {
+  constructor(args: OAuth2ConnectionConstructorArgs) {
     super(args);
+
+    this.authorizeUrl = args.authorizeUrl;
+    this.tokenUrl = args.tokenUrl;
+    this.clientId = args.clientId;
+    this.clientSecret = args.clientSecret;
+    this.scopes = args.scopes || [];
+    this.scopeDelimiter = args.scopeDelimiter || ',';
+    this.authorizationMethod = args.authorizationMethod || 'body';
+    this.grantType = args.grantType || 'authorization_code';
+    this.redirectToLocalHostInDevelopment =
+      args.redirectToLocalHostInDevelopment ?? false;
+    this.extraAuthParams = args.extraAuthParams || null;
+    this.extraRefreshParams = args.extraRefreshParams || null;
+    this.extraAuthHeaders = args.extraAuthHeaders || null;
+    this.pkce = args.pkce || false;
+
+    this.connectionType = 'oauth2';
   }
 
-  abstract authorizeUrl: string;
-  abstract tokenUrl: string;
-  abstract clientId: string;
-  abstract clientSecret: string;
-  abstract scopes: string[];
-
-  scopeDelimiter = ',';
+  authorizeUrl: string;
+  tokenUrl: string;
+  clientId: string;
+  clientSecret: string;
+  scopes: string[];
+  scopeDelimiter: string;
 
   /**
    * Most APIs use the body to send the authorization token
@@ -89,9 +108,9 @@ export abstract class OAuth2Connection extends Connection {
    *
    * For example, the Notion API uses the header to pass the client id and secret
    */
-  authorizationMethod: OAuth2AuthorizationMethod = 'body';
+  authorizationMethod: OAuth2AuthorizationMethod;
 
-  grantType: OAuth2GrantType = 'authorization_code';
+  grantType: OAuth2GrantType;
 
   /**
    * By default we'll use ServerConfig.NGROK_TUNNEL_URL with ngrok
@@ -99,26 +118,24 @@ export abstract class OAuth2Connection extends Connection {
    * and since prod is already using the api subdomain, we cont use the tunnel subdomain.
    * So we'll use localhost
    */
-  redirectToLocalHostInDevelopment = false;
+  redirectToLocalHostInDevelopment: boolean;
 
   /**
    * If you need to add extra params to the authorize url add them here.
    */
-  extraAuthParams: Record<string, string> | null = null;
+  extraAuthParams: Record<string, string> | null;
 
   /**
    * If you need to add extra params to the refresh token url add them here
    */
-  extraRefreshParams: Record<string, string> | null = null;
+  extraRefreshParams: Record<string, string> | null;
 
   /**
    * If you need to add extra heads to the authorize request add them here.
    */
-  extraAuthHeaders: Record<string, string> | null = null;
+  extraAuthHeaders: Record<string, string> | null;
 
-  pkce = false;
-
-  connectionType: ConnectionType = 'oauth2';
+  pkce: boolean;
 
   async generateAuthorizeUrl(args: GenerateAuthorizeUrlArgs): Promise<string> {
     const statePayload: OAuth2CallbackState = {
@@ -383,12 +400,12 @@ export abstract class OAuth2Connection extends Connection {
   }
 }
 
-export abstract class ApiKeyConnection extends Connection {
+export class ApiKeyConnection extends Connection {
   constructor(args: ConnectionConstructorArgs) {
     super(args);
+    this.connectionType = 'apiKey';
   }
 
-  connectionType: ConnectionType = 'apiKey';
   async connectApiKeyApp(args: {
     workspaceId: string;
     configValue: ApiKeyConfigValues;
@@ -413,12 +430,11 @@ export abstract class ApiKeyConnection extends Connection {
   }
 }
 
-export abstract class BasicAuthConnection extends Connection {
+export class BasicAuthConnection extends Connection {
   constructor(args: ConnectionConstructorArgs) {
     super(args);
+    this.connectionType = 'basic';
   }
-
-  connectionType: ConnectionType = 'basic';
 
   async connectBasicAuthApp(args: {
     workspaceId: string;
@@ -445,12 +461,11 @@ export abstract class BasicAuthConnection extends Connection {
   }
 }
 
-export abstract class KeyPairConnection extends Connection {
+export class KeyPairConnection extends Connection {
   constructor(args: ConnectionConstructorArgs) {
     super(args);
+    this.connectionType = 'keyPair';
   }
-
-  connectionType: ConnectionType = 'keyPair';
 
   async connectKeyPairApp(args: {
     workspaceId: string;
@@ -479,7 +494,34 @@ export abstract class KeyPairConnection extends Connection {
 
 export type ConnectionConstructorArgs = {
   app: App;
+  id: string;
+  name: string;
+  description: string;
+  inputConfig: InputConfig;
+  connectionType: ConnectionType;
 };
+
+export type OAuth2ConnectionConstructorArgs = ConnectionConstructorArgs & {
+  authorizeUrl: string;
+  tokenUrl: string;
+  clientId: string;
+  clientSecret: string;
+  scopes: string[];
+  scopeDelimiter?: string;
+  authorizationMethod?: OAuth2AuthorizationMethod;
+  grantType?: OAuth2GrantType;
+  redirectToLocalHostInDevelopment?: boolean;
+  extraAuthParams?: Record<string, string> | null;
+  extraRefreshParams?: Record<string, string> | null;
+  extraAuthHeaders?: Record<string, string> | null;
+  pkce?: boolean;
+};
+
+export type ApiKeyConnectionConstructorArgs = ConnectionConstructorArgs;
+
+export type BasicAuthConnectionConstructorArgs = ConnectionConstructorArgs;
+
+export type KeyPairConnectionConstructorArgs = ConnectionConstructorArgs;
 
 export type OAuth2CallbackState = {
   name: string;

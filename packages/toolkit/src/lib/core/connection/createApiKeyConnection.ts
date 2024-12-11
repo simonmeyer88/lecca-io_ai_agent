@@ -1,9 +1,10 @@
+import { ConnectionType } from '../../types/connection.types';
 import { InputConfig } from '../../types/input-config.types';
 
 export function createApiKeyConnection(args: CreateApiKeyConnectionArgs) {
   return {
     ...args,
-    connectionType: 'apiKey',
+    connectionType: 'apiKey' as ConnectionType,
   };
 }
 

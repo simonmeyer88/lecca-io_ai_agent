@@ -1,4 +1,4 @@
-import { CreateAppArgs } from '@lecca-io/toolkit';
+import { CreateAppArgs, createOAuth2Connection } from '@lecca-io/toolkit';
 import { NotFoundException } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { JwtService } from '@nestjs/jwt';
@@ -19,7 +19,14 @@ import { PrismaService } from '../../modules/global/prisma/prisma.service';
 import { S3ManagerService } from '../../modules/global/s3/s3.service';
 
 import { Action } from './action';
-import { Connection } from './connection';
+import {
+  ApiKeyConnection,
+  BasicAuthConnection,
+  Connection,
+  ConnectionConstructorArgs,
+  KeyPairConnection,
+  OAuth2Connection,
+} from './connection';
 import {
   CustomWebhookTrigger,
   ItemBasedPollTrigger,
@@ -170,10 +177,53 @@ export class App {
     );
 
     //Connection Class Instances
-    this.connections = [];
-    // this.connections = args._connections.map(
-    //   (connection) => new Connection({}),
-    // );
+    this.connections = args._connections.map((connection) => {
+      const baseArgs: ConnectionConstructorArgs = {
+        app: this,
+        id: connection.id,
+        name: connection.name,
+        description: connection.description,
+        connectionType: connection.connectionType,
+        inputConfig: connection.inputConfig,
+      };
+
+      switch (connection.connectionType) {
+        case 'apiKey':
+          return new ApiKeyConnection(baseArgs);
+        case 'basic':
+          return new BasicAuthConnection(baseArgs);
+        case 'keyPair':
+          return new KeyPairConnection(baseArgs);
+        case 'oauth2': {
+          const oAuth2Connection = connection as ReturnType<
+            typeof createOAuth2Connection
+          >;
+
+          return new OAuth2Connection({
+            ...baseArgs,
+            authorizeUrl: oAuth2Connection.authorizeUrl,
+            tokenUrl: oAuth2Connection.tokenUrl,
+            clientId: oAuth2Connection.clientId,
+            clientSecret: oAuth2Connection.clientSecret,
+            scopes: oAuth2Connection.scopes,
+            scopeDelimiter: oAuth2Connection.scopeDelimiter,
+            inputConfig: oAuth2Connection.inputConfig,
+            authorizationMethod: oAuth2Connection.authorizationMethod,
+            pkce: oAuth2Connection.pkce,
+            extraAuthParams: oAuth2Connection.extraAuthParams,
+            extraAuthHeaders: oAuth2Connection.extraAuthHeaders,
+            extraRefreshParams: oAuth2Connection.extraRefreshParams,
+            grantType: 'authorization_code',
+            redirectToLocalHostInDevelopment:
+              oAuth2Connection.redirectToLocalHostInDevelopment,
+          });
+        }
+        default:
+          throw new Error(
+            `Unknown connection type: ${connection.connectionType} for ${connection.name}`,
+          );
+      }
+    });
 
     this.connectionMap = this.connections.reduce(
       (acc, connection) => {

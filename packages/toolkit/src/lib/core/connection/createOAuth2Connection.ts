@@ -1,9 +1,10 @@
+import { ConnectionType } from '../../types/connection.types';
 import { InputConfig } from '../../types/input-config.types';
 
 export function createOAuth2Connection(args: CreateOAuth2ConnectionArgs) {
   return {
     ...args,
-    connectionType: 'oauth2',
+    connectionType: 'oauth2' as ConnectionType,
   };
 }
 
@@ -16,10 +17,10 @@ export type CreateOAuth2ConnectionArgs = {
   clientId: string | undefined;
   clientSecret: string | undefined;
   scopes: string[];
+  scopeDelimiter?: string;
   inputConfig?: InputConfig;
   authorizationMethod?: OAuth2AuthorizationMethod;
   pkce?: boolean;
-  scopeDelimiter?: string;
   /**
    * If you need to add extra params to the authorize url add them here.
    */
@@ -28,6 +29,10 @@ export type CreateOAuth2ConnectionArgs = {
    * If you need to add extra heads to the authorize request add them here.
    */
   extraAuthHeaders?: Record<string, string>;
+  /**
+   * If you need to add extra params to the token url when refreshing
+   */
+  extraRefreshParams?: Record<string, string>;
   /**
    * By default we'll use process.env['NGROK_TUNNEL_URL'] with ngrok
    * But there are some platforms like microsoft that only allow one subdomain

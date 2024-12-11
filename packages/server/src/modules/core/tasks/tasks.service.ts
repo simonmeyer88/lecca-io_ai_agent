@@ -1,3 +1,4 @@
+import { FieldConfig, InputConfig } from '@lecca-io/toolkit';
 import {
   BadRequestException,
   ForbiddenException,
@@ -18,7 +19,6 @@ import {
 import { Message } from 'ai/react';
 import { z } from 'zod';
 
-import { FieldConfig, InputConfig } from '../../../apps/lib/input-config';
 import { JwtUser } from '../../../types/jwt-user.type';
 import {
   AiProvider,
@@ -1373,7 +1373,7 @@ export class TasksService {
   }: {
     zodSchema: z.ZodObject<any, any>;
     userInput: Record<string, any>;
-    inputConfigSchema: InputConfig[];
+    inputConfigSchema: InputConfig;
   }) => {
     const shape = zodSchema.shape;
     const omittedFields: string[] = [];

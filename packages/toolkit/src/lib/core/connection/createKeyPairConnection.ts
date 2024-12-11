@@ -1,9 +1,10 @@
+import { ConnectionType } from '../../types/connection.types';
 import { InputConfig } from '../../types/input-config.types';
 
 export function createKeyPairConnection(args: CreateKeyPairConnectionArgs) {
   return {
     ...args,
-    connectionType: 'keyPair',
+    connectionType: 'keyPair' as ConnectionType,
   };
 }
 

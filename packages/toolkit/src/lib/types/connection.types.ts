@@ -8,3 +8,5 @@ export type ConnectionData = {
   privateKey: string | null;
   metadata: any | null;
 };
+
+export type ConnectionType = 'oauth2' | 'basic' | 'apiKey' | 'keyPair';

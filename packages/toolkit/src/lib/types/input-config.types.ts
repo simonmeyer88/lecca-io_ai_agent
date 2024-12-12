@@ -189,6 +189,8 @@ export type FieldConfig = BaseFieldConfig & {
     workflowId: string | undefined;
     agentId: string | undefined;
     http: InjectedServices['http'];
+    prisma: InjectedServices['prisma'];
+    aiProviders: InjectedServices['aiProviders'];
   }) => Promise<SelectOptions[]>;
 };
 

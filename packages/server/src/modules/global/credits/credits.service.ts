@@ -329,7 +329,7 @@ export class CreditsService {
       workspaceWithUsage?.usage?.purchasedCredits;
 
     const hasEnoughCredits =
-      minimumCreditsRequired <= totalAvailableCredits || 0;
+      minimumCreditsRequired <= (totalAvailableCredits || 0);
 
     if (!hasEnoughCredits && throwIfFalse) {
       if (this.isBillingEnabled() === true) {
@@ -457,7 +457,7 @@ export class CreditsService {
       workspaceWithUsage?.usage?.purchasedCredits;
 
     const hasEnoughCredits =
-      minimumCreditsRequired <= totalAvailableCredits || 0;
+      minimumCreditsRequired <= (totalAvailableCredits || 0);
 
     if (!hasEnoughCredits && throwIfFalse) {
       if (this.isBillingEnabled() === true) {

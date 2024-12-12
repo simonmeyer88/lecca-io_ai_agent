@@ -3,6 +3,8 @@ import {
   InjectedServices,
   InputConfig,
   NestedInputConfig,
+  filterDataByConditions,
+  isValidMilliOrNull,
 } from '@lecca-io/toolkit';
 import { BadRequestException, ForbiddenException } from '@nestjs/common';
 import { Connection } from '@prisma/client';
@@ -13,8 +15,6 @@ import {
   ExecutionNodeForRunner,
   WorkflowNodeForRunner,
 } from '../../modules/core/workflow-runner/workflow-runner.service';
-import { filterDataByConditions } from '../utils/filter-data-by-conditions';
-import { isValidMilliOrNull } from '../utils/is-valid-milli';
 
 import { App, ConfigValue } from './app';
 import { OAuth2Connection } from './connection';
@@ -504,6 +504,9 @@ export class Trigger {
           http: this.app.http,
           fileHandler: this.app.fileHandler,
           s3: this.app.s3,
+          aiProviders: this.app.aiProviders,
+          credits: this.app.credits,
+          task: this.app.task,
         }),
       };
     } else {
@@ -520,6 +523,9 @@ export class Trigger {
           http: this.app.http,
           fileHandler: this.app.fileHandler,
           s3: this.app.s3,
+          aiProviders: this.app.aiProviders,
+          credits: this.app.credits,
+          task: this.app.task,
         }),
       };
     }
@@ -572,6 +578,8 @@ export class Trigger {
             workflowId,
             agentId,
             http: this.app.http,
+            prisma: this.app.prisma,
+            aiProviders: this.app.aiProviders,
           });
         } catch (err) {
           const status = err.response?.status;
@@ -603,6 +611,8 @@ export class Trigger {
                   workflowId,
                   agentId,
                   http: this.app.http,
+                  prisma: this.app.prisma,
+                  aiProviders: this.app.aiProviders,
                 });
               } catch {
                 throw new ForbiddenException(
@@ -659,6 +669,8 @@ export class Trigger {
             workflowId,
             agentId,
             http: this.app.http,
+            prisma: this.app.prisma,
+            aiProviders: this.app.aiProviders,
           });
         } catch (err) {
           const status = err.response?.status;
@@ -690,6 +702,8 @@ export class Trigger {
                   workflowId,
                   agentId,
                   http: this.app.http,
+                  prisma: this.app.prisma,
+                  aiProviders: this.app.aiProviders,
                 });
               } catch {
                 throw new ForbiddenException(
@@ -1051,6 +1065,9 @@ export type RunTriggerArgs<T, InputData = unknown> = {
   http: InjectedServices['http'];
   fileHandler: InjectedServices['fileHandler'];
   s3: InjectedServices['s3'];
+  aiProviders: InjectedServices['aiProviders'];
+  credits: InjectedServices['credits'];
+  task: InjectedServices['task'];
 };
 
 export type TriggerResponse<T> = {

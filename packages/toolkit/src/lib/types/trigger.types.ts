@@ -14,4 +14,8 @@ export type RunTriggerArgs<ConfigValue, InputData = unknown> = {
   http: InjectedServices['http'];
   fileHandler: InjectedServices['fileHandler'];
   s3: InjectedServices['s3'];
+  aiProviders: InjectedServices['aiProviders'];
+  credits: InjectedServices['credits'];
+  task: InjectedServices['task'];
+  knowledge: InjectedServices['knowledge'];
 };

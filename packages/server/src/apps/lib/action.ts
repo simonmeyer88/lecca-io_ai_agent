@@ -206,6 +206,9 @@ export class Action {
           http: this.app.http,
           fileHandler: this.app.fileHandler,
           s3: this.app.s3,
+          aiProviders: this.app.aiProviders,
+          credits: this.app.credits,
+          task: this.app.task,
         }),
       };
     } else {
@@ -221,6 +224,9 @@ export class Action {
         http: this.app.http,
         fileHandler: this.app.fileHandler,
         s3: this.app.s3,
+        aiProviders: this.app.aiProviders,
+        credits: this.app.credits,
+        task: this.app.task,
       });
 
       if (this.isInterruptingAction) {
@@ -281,6 +287,8 @@ export class Action {
             workflowId,
             agentId,
             http: this.app.http,
+            prisma: this.app.prisma,
+            aiProviders: this.app.aiProviders,
           });
         } catch (err) {
           const status = err.response?.status;
@@ -312,6 +320,8 @@ export class Action {
                   workflowId,
                   agentId,
                   http: this.app.http,
+                  prisma: this.app.prisma,
+                  aiProviders: this.app.aiProviders,
                 });
               } catch {
                 throw new ForbiddenException(
@@ -367,6 +377,8 @@ export class Action {
             workflowId,
             agentId,
             http: this.app.http,
+            prisma: this.app.prisma,
+            aiProviders: this.app.aiProviders,
           });
         } catch (err) {
           const status = err.response?.status;
@@ -398,6 +410,8 @@ export class Action {
                   workflowId,
                   agentId,
                   http: this.app.http,
+                  prisma: this.app.prisma,
+                  aiProviders: this.app.aiProviders,
                 });
               } catch {
                 throw new ForbiddenException(
@@ -597,6 +611,9 @@ export type RunActionArgs<T> = {
   http: InjectedServices['http'];
   fileHandler: InjectedServices['fileHandler'];
   s3: InjectedServices['s3'];
+  aiProviders: InjectedServices['aiProviders'];
+  credits: InjectedServices['credits'];
+  task: InjectedServices['task'];
 };
 
 /**

@@ -1,4 +1,5 @@
 import type { PrismaClient } from '@prisma/client';
+import { LanguageModelV1, Message } from 'ai';
 import { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
 
 export type InjectedServices = {
@@ -44,6 +45,133 @@ export type InjectedServices = {
       fileName: string;
     }) => Promise<string>;
   };
+  aiProviders: {
+    providers: Record<string, any>; //TODO
+    getAiLlmProviderClient: ({
+      aiProvider,
+      llmModel,
+      llmConnection,
+      workspaceId,
+    }) => LanguageModelV1;
+  };
+  credits: {
+    checkIfWorkspaceHasLlmCredits: (args: {
+      workspaceId: string;
+      aiProvider: any; //TODO
+      model: string;
+      throwIfFalse?: boolean;
+    }) => Promise<boolean>;
+    transformLlmTokensToCredits: (args: {
+      aiProvider: any; //TODO;
+      model: string;
+      data: {
+        inputTokens: number;
+        outputTokens: number;
+      };
+    }) => number;
+    updateWorkspaceCredits: (
+      args: UpdateWorkspaceCreditsData,
+    ) => Promise<CreditUsageResponse>;
+    checkIfWorkspaceHasEnoughCredits: (args: {
+      workspaceId: string;
+      usageType: UsageType;
+      throwIfFalse?: boolean;
+      overrideMinimumRequired?: number;
+    }) => Promise<boolean>;
+    transformCostToCredits: (args: {
+      data: any; //TODO
+      usageType: UsageType;
+    }) => number;
+  };
+  task: {
+    create: (args: {
+      data: any & {
+        /**
+         * This is if the UI sends a uuid
+         */
+        id?: string;
+      };
+      agentId: string;
+    }) => Promise<any>; //TODO
+    messageTask: (args: MessageTaskProps) => Promise<any>; //TODO
+  };
+  knowledge: {
+    create: (args: {
+      data: any; //TODO
+      workspaceId: string;
+      expansion: Record<string, any>; //TODO
+    }) => any; //TODO;
+    queryKnowledge: (args: {
+      query: string;
+      workspaceId: string;
+      knowledgeId: string;
+      limit?: number;
+    }) => Promise<string[]>;
+    saveUploadedTextToKnowledge: (args: {
+      data: any; //TODO
+      knowledgeId: string;
+      workspaceId: string;
+    }) => Promise<boolean>;
+  };
+};
+
+type MessageTaskProps = {
+  taskId: string;
+  messages: Message[];
+  requestingWorkspaceUserId?: string;
+  requestingWorkflowId?: string;
+  requestingAgentId?: string;
+  workspaceId: string;
+
+  /**
+   * `default: true`
+   */
+  shouldStream?: boolean;
+
+  /**
+   * `default: true`
+   * If true, only the assistant response text will be returned.
+   * If false, the entire repsonse message array including tools and text responses will be returned.
+   */
+  simpleResponse?: boolean;
+};
+
+type UsageType =
+  | 'serper'
+  | 'extract-dynamic-website-content'
+  | 'extract-static-website-content'
+  | 'vapi'
+  | 'openai-text-embedding-ada-002'
+  | 'workflow-execution'
+  | 'ollama';
+
+type UpdateWorkspaceCreditsData = {
+  workspaceId: string;
+  projectId: string | undefined;
+  creditsUsed: number;
+  data: {
+    ref:
+      | {
+          workflowId?: string;
+          executionId?: string;
+          agentId?: string;
+          taskId?: string;
+          knowledgeId?: string;
+        }
+      | undefined;
+    details: Record<string, any>;
+  };
+};
+
+export type CreditUsageResponse = {
+  originalallottedCredits: number;
+  originalPurchasedCredits: number;
+  originalTotalCredits: number;
+  updatedallottedCredits: number;
+  updatedPurchasedCredits: number;
+  updatedTotalCredits: number;
+  creditsUsed: number;
+  creditsUpdatedAt: string;
 };
 
 type HttpRequestArgs = {

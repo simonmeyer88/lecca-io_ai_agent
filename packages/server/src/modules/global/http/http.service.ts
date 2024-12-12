@@ -12,7 +12,7 @@ export class HttpService {
     });
   }
 
-  async loggedRequest(options: {
+  async request(options: {
     method: Extract<
       Method,
       | 'GET'

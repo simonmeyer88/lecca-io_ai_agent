@@ -12,3 +12,4 @@ export * from './createNumberInputField';
 export * from './createSelectInputField';
 export * from './createSwitchInputField';
 export * from './createTextInputField';
+export * from './createMarkdownField';

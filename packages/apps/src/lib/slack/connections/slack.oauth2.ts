@@ -7,7 +7,7 @@ export const slackOAuth2 = createOAuth2Connection({
   authorizeUrl: 'https://slack.com/oauth/v2/authorize',
   tokenUrl: 'https://slack.com/api/oauth.v2.access',
   clientId: process.env.INTEGRATION_SLACK_CLIENT_ID,
-  clientSecret: process.env.INTEGRATION_SLACK_CLIENT_ID,
+  clientSecret: process.env.INTEGRATION_SLACK_CLIENT_SECRET,
   scopes: [
     'users:read.email',
     'reactions:write',

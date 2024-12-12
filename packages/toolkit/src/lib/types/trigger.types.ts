@@ -1,4 +1,5 @@
 import { ConnectionData } from './connection.types';
+import { InjectedServices } from './services.types';
 
 export type RunTriggerArgs<ConfigValue, InputData = unknown> = {
   inputData?: InputData;
@@ -9,4 +10,8 @@ export type RunTriggerArgs<ConfigValue, InputData = unknown> = {
   workflowId?: string;
   executionId: string | undefined;
   testing?: boolean;
+  prisma: InjectedServices['prisma'];
+  http: InjectedServices['http'];
+  fileHandler: InjectedServices['fileHandler'];
+  s3: InjectedServices['s3'];
 };

@@ -241,7 +241,7 @@ export class OAuth2Connection extends Connection {
       );
     }
 
-    const result = await this.app.http.loggedRequest({
+    const result = await this.app.http.request({
       method: 'POST',
       url,
       data,
@@ -312,7 +312,7 @@ export class OAuth2Connection extends Connection {
     }
 
     // Make the POST request to refresh the token
-    const result = await this.app.http.loggedRequest({
+    const result = await this.app.http.request({
       method: 'POST',
       url,
       data,

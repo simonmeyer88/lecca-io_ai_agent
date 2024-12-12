@@ -3,7 +3,9 @@
   "version": "0.3.1",
   "license": "Custom: Apache-2.0 with Commons Clause",
   "scripts": {
-    "vercel-build": "nx build ui"
+    "vercel-build": "nx build ui",
+    "start:tunnel": "dotenv -- cross-var ngrok http --domain=tunnel.lecca.io %PORT%",
+    "start:stripe": "dotenv -- cross-var stripe listen --forward-to %SERVER_URL%/webhooks/stripe"
   },
   "private": true,
   "prepare": "husky install",

@@ -1,4 +1,9 @@
-import { FieldConfig, InputConfig, NestedInputConfig } from '@lecca-io/toolkit';
+import {
+  FieldConfig,
+  InjectedServices,
+  InputConfig,
+  NestedInputConfig,
+} from '@lecca-io/toolkit';
 import { BadRequestException, ForbiddenException } from '@nestjs/common';
 import { Connection } from '@prisma/client';
 import { CoreTool } from 'ai';
@@ -197,6 +202,10 @@ export class Action {
           workspaceId: args.workspaceId,
           executionId: args.executionId,
           connection,
+          prisma: this.app.prisma,
+          http: this.app.http,
+          fileHandler: this.app.fileHandler,
+          s3: this.app.s3,
         }),
       };
     } else {
@@ -208,6 +217,10 @@ export class Action {
         workspaceId: args.workspaceId,
         executionId: args.executionId,
         connection,
+        prisma: this.app.prisma,
+        http: this.app.http,
+        fileHandler: this.app.fileHandler,
+        s3: this.app.s3,
       });
 
       if (this.isInterruptingAction) {
@@ -267,6 +280,7 @@ export class Action {
             workspaceId,
             workflowId,
             agentId,
+            http: this.app.http,
           });
         } catch (err) {
           const status = err.response?.status;
@@ -297,6 +311,7 @@ export class Action {
                   workspaceId,
                   workflowId,
                   agentId,
+                  http: this.app.http,
                 });
               } catch {
                 throw new ForbiddenException(
@@ -351,6 +366,7 @@ export class Action {
             workspaceId,
             workflowId,
             agentId,
+            http: this.app.http,
           });
         } catch (err) {
           const status = err.response?.status;
@@ -381,6 +397,7 @@ export class Action {
                   workspaceId,
                   workflowId,
                   agentId,
+                  http: this.app.http,
                 });
               } catch {
                 throw new ForbiddenException(
@@ -576,6 +593,10 @@ export type RunActionArgs<T> = {
   executionId: string | undefined;
   agentId: string | undefined;
   testing?: boolean;
+  prisma: InjectedServices['prisma'];
+  http: InjectedServices['http'];
+  fileHandler: InjectedServices['fileHandler'];
+  s3: InjectedServices['s3'];
 };
 
 /**

@@ -375,6 +375,10 @@ export class WebhookService {
       projectId: undefined,
       workflowId: undefined,
       workspaceId: undefined,
+      http: this.workflowAppService.apps['flow-control'].http,
+      prisma: this.workflowAppService.apps['flow-control'].prisma,
+      fileHandler: this.workflowAppService.apps['flow-control'].fileHandler,
+      s3: this.workflowAppService.apps['flow-control'].s3,
     });
 
     if (successfulRun) {

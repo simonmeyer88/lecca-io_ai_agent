@@ -1,4 +1,9 @@
-import { FieldConfig, InputConfig, NestedInputConfig } from '@lecca-io/toolkit';
+import {
+  FieldConfig,
+  InjectedServices,
+  InputConfig,
+  NestedInputConfig,
+} from '@lecca-io/toolkit';
 import { BadRequestException, ForbiddenException } from '@nestjs/common';
 import { Connection } from '@prisma/client';
 import { CoreTool } from 'ai';
@@ -465,21 +470,12 @@ export class Trigger {
     }
   }
 
-  async runTrigger(args: {
-    configValue: unknown;
-    nodeId: string;
-    workflowId: string;
-    projectId: string;
-    workspaceId: string;
-    executionId?: string;
-    shouldMock?: boolean;
-    testing?: boolean;
-    /**
-     * webhook data or injected data from somewhere else.
-     * Currently using this for passing webhook data in and for passing "Run Workflow" data into the "Manually Run" trigger.
-     */
-    inputData: unknown;
-  }): Promise<TriggerResponse<unknown>> {
+  async runTrigger(
+    args: Omit<
+      PrepareAndRunTriggerArgs,
+      'skipSwapping' | 'skipValidatingConditions'
+    >,
+  ): Promise<TriggerResponse<unknown>> {
     let connection: Partial<Connection>;
 
     if (this.needsConnection) {
@@ -504,6 +500,10 @@ export class Trigger {
           workspaceId: args.workspaceId,
           projectId: args.projectId,
           workflowId: args.workflowId,
+          prisma: this.app.prisma,
+          http: this.app.http,
+          fileHandler: this.app.fileHandler,
+          s3: this.app.s3,
         }),
       };
     } else {
@@ -516,6 +516,10 @@ export class Trigger {
           projectId: args.projectId,
           workflowId: args.workflowId,
           testing: args.testing,
+          prisma: this.app.prisma,
+          http: this.app.http,
+          fileHandler: this.app.fileHandler,
+          s3: this.app.s3,
         }),
       };
     }
@@ -567,6 +571,7 @@ export class Trigger {
             workspaceId,
             workflowId,
             agentId,
+            http: this.app.http,
           });
         } catch (err) {
           const status = err.response?.status;
@@ -597,6 +602,7 @@ export class Trigger {
                   workspaceId,
                   workflowId,
                   agentId,
+                  http: this.app.http,
                 });
               } catch {
                 throw new ForbiddenException(
@@ -652,6 +658,7 @@ export class Trigger {
             workspaceId,
             workflowId,
             agentId,
+            http: this.app.http,
           });
         } catch (err) {
           const status = err.response?.status;
@@ -682,6 +689,7 @@ export class Trigger {
                   workspaceId,
                   workflowId,
                   agentId,
+                  http: this.app.http,
                 });
               } catch {
                 throw new ForbiddenException(
@@ -1039,6 +1047,10 @@ export type RunTriggerArgs<T, InputData = unknown> = {
   workspaceId: string;
   workflowId?: string;
   testing?: boolean;
+  prisma: InjectedServices['prisma'];
+  http: InjectedServices['http'];
+  fileHandler: InjectedServices['fileHandler'];
+  s3: InjectedServices['s3'];
 };
 
 export type TriggerResponse<T> = {

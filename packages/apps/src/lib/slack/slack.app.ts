@@ -2,6 +2,12 @@ import { createApp } from '@lecca-io/toolkit';
 import crypto from 'crypto';
 
 import { createChannel } from './actions/create-channel.action';
+import { getThreadMessages } from './actions/get-thread-messages.action';
+import { listChannels } from './actions/list-channels.action';
+import { listUsers } from './actions/list-users.action';
+import { replyToMessage } from './actions/reply-to-message.action';
+import { sendMessageToChannel } from './actions/send-message-to-channel.action';
+import { sendMessageToUser } from './actions/send-message-to-user.action';
 import { slackOAuth2 } from './connections/slack.oauth2';
 
 export const slack = createApp({
@@ -10,11 +16,19 @@ export const slack = createApp({
   description:
     'Slack is a messaging app for business that connects people to the information they need.',
   logoUrl: 'https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/slack.svg',
-  actions: [createChannel],
+  actions: [
+    sendMessageToUser,
+    sendMessageToChannel,
+    replyToMessage,
+    getThreadMessages,
+    createChannel,
+    listChannels,
+    listUsers,
+  ],
   triggers: [],
   connections: [slackOAuth2],
   verifyWebhookRequest: ({ webhookBody, webhookHeaders }) => {
-    if (!process.env.INTEGRATIONS_SLACK_SIGNING_SECRET) {
+    if (!process.env.INTEGRATION_SLACK_SIGNING_SECRET) {
       throw new Error('Slack signing secret is not set');
     }
 
@@ -24,7 +38,7 @@ export const slack = createApp({
     const signatureBaseString = `v0:${timestamp}:${webhookBody}`;
     const hmac = crypto.createHmac(
       'sha256',
-      process.env.INTEGRATIONS_SLACK_SIGNING_SECRET,
+      process.env.INTEGRATION_SLACK_SIGNING_SECRET,
     );
     hmac.update(signatureBaseString);
     const computedSignature = `v0=${hmac.digest('hex')}`;

@@ -1,5 +1,7 @@
 import { Connection } from '@prisma/client';
 
+import { InjectedServices } from './services.types';
+
 export const INPUT_TYPES = [
   'text',
   'file',
@@ -186,6 +188,7 @@ export type FieldConfig = BaseFieldConfig & {
     workspaceId: string;
     workflowId: string | undefined;
     agentId: string | undefined;
+    http: InjectedServices['http'];
   }) => Promise<SelectOptions[]>;
 };
 

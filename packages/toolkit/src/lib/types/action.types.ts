@@ -10,5 +10,8 @@ export type RunActionArgs<ConfigValue> = {
   executionId: string | undefined;
   agentId: string | undefined;
   testing?: boolean;
-  http?: InjectedServices['http'];
+  prisma: InjectedServices['prisma'];
+  http: InjectedServices['http'];
+  fileHandler: InjectedServices['fileHandler'];
+  s3: InjectedServices['s3'];
 };

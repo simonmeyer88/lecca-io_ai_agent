@@ -13,6 +13,7 @@ if (!newVersion) {
 const packagePaths = [
   'packages/toolkit/package.json',
   'packages/apps/package.json',
+  'package.json',
 ];
 
 // Update each package.json

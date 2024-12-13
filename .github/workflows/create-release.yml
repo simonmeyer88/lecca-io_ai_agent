@@ -25,6 +25,8 @@ jobs:
         uses: cycjimmy/semantic-release-action@v4
         with:
           extra_plugins: |
+            @semantic-release/changelog
             @semantic-release/exec
+            @semantic-release/git
         env:
           GITHUB_TOKEN: ${{ secrets.LECCA_IO_RELEASE_TOKEN }}

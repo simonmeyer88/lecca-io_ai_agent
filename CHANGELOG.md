@@ -1,3 +1,10 @@
+## [0.4.1](https://github.com/lecca-digital/lecca-io/compare/v0.4.0...v0.4.1) (2024-12-13)
+
+
+### Bug Fixes
+
+* Trigger release (test) ([0289046](https://github.com/lecca-digital/lecca-io/commit/02890460ae3dbacef3add75067d35f0d8c7ff243))
+
 # [0.4.0](https://github.com/lecca-digital/lecca-io/compare/v0.3.1...v0.4.0) (2024-12-13)
 
 

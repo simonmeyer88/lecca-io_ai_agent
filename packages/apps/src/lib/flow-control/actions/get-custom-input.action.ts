@@ -144,7 +144,7 @@ export const getCustomInput = createAction({
     const returnInputData: Record<string, any> = {};
 
     for (const input of Object.values(configValue.customInputConfig ?? {})) {
-      returnInputData[input.id] = '';
+      returnInputData[(input as any).id] = '';
     }
 
     return returnInputData;

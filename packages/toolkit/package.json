@@ -4,8 +4,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./index.js",
-  "types": "./index.d.ts",
+  "main": "./src/index.js",
+  "types": ".src/index.d.ts",
   "license": "Custom: Apache-2.0 with Commons Clause",
   "repository": {
     "type": "git",

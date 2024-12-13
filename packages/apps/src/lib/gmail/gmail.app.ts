@@ -14,6 +14,7 @@ import { replyToThread } from './actions/reply-to-thread.action';
 import { sendDraft } from './actions/send-draft.action';
 import { sendEmail } from './actions/send-email.action';
 import { gmailOAuth2 } from './connections/gmail.oauth2';
+import { emailReceived } from './triggers/email-received.trigger';
 
 export const gmail = createApp({
   id: 'gmail',
@@ -35,7 +36,7 @@ export const gmail = createApp({
     deleteDraft,
     archiveEmail,
   ],
-  triggers: [],
+  triggers: [emailReceived],
   connections: [gmailOAuth2],
   needsConnection: true,
 });

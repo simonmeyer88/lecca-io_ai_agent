@@ -12,6 +12,8 @@ import { moveFolder } from './actions/move-folder.action';
 import { shareFile } from './actions/share-file.action';
 import { shareFolder } from './actions/share-folder.action';
 import { googleDriveOAuth2 } from './connections/google-drive.oauth2';
+import { newFileInFolder } from './triggers/new-file-in-folder.trigger';
+import { newFile } from './triggers/new-file.trigger';
 
 export const googleDrive = createApp({
   id: 'google-drive',
@@ -33,7 +35,7 @@ export const googleDrive = createApp({
     moveFolder,
     deleteFile,
   ],
-  triggers: [],
+  triggers: [newFileInFolder, newFile],
   connections: [googleDriveOAuth2],
   needsConnection: true,
 });

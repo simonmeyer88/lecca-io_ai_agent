@@ -40,5 +40,5 @@ export type CreateAppWebhookTriggerArgs<
 
 export type WebhookPayloadMatchesIdentifierArgs<InputData> = {
   webhookBody: InputData;
-  connectionMetadata: unknown;
+  connectionMetadata: any;
 };

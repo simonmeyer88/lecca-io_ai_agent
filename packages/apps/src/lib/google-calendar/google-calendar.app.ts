@@ -6,6 +6,7 @@ import { listCalendars } from './actions/list-calendars.action';
 import { listEvents } from './actions/list-events.action';
 import { updateEvent } from './actions/update-event.action';
 import { googleCalendarOAuth2 } from './connections/google-calendar.oauth2';
+import { newCalendarEvent } from './triggers/new-calendar-event.trigger';
 
 export const googleCalendar = createApp({
   id: 'google-calendar',
@@ -21,7 +22,7 @@ export const googleCalendar = createApp({
     listCalendars,
     listEvents,
   ],
-  triggers: [],
+  triggers: [newCalendarEvent],
   connections: [googleCalendarOAuth2],
   needsConnection: true,
 });

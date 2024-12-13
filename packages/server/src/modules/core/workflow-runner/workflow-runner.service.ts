@@ -1,3 +1,4 @@
+import { ActionResponse } from '@lecca-io/toolkit';
 import {
   BadRequestException,
   ForbiddenException,
@@ -7,7 +8,7 @@ import {
 import { OnEvent } from '@nestjs/event-emitter';
 import { Execution, Workflow } from '@prisma/client';
 
-import { Action, ActionResponse } from '../../../apps/lib/action';
+import { Action } from '../../../apps/lib/action';
 import { Trigger, TriggerResponse } from '../../../apps/lib/trigger';
 import { CreditsService } from '../../global/credits/credits.service';
 import { PrismaService } from '../../global/prisma/prisma.service';

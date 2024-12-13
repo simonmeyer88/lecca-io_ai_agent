@@ -13,6 +13,10 @@ import { renameSheet } from './actions/rename-sheet.action';
 import { renameSpreadsheet } from './actions/rename-spreadsheet.action';
 import { updateCell } from './actions/update-cell.action';
 import { googleSheetsOAuth2 } from './connections/google-sheets.oauth2';
+import { newRowAdded } from './triggers/new-row-added.trigger';
+import { newSheet } from './triggers/new-sheet.trigger';
+import { newSpreadsheetInFolder } from './triggers/new-spreadsheet-in-folder.trigger';
+import { newSpreadsheet } from './triggers/new-spreadsheet.trigger';
 
 export const googleSheets = createApp({
   id: 'google-sheets',
@@ -36,7 +40,7 @@ export const googleSheets = createApp({
     // shareSpreadsheet, // Need scope auth/drive to do this.
     // deleteSpreadsheet, // Need scope auth/drive to do this.
   ],
-  triggers: [],
+  triggers: [newRowAdded, newSpreadsheet, newSpreadsheetInFolder, newSheet],
   connections: [googleSheetsOAuth2],
   needsConnection: true,
 });

@@ -7,6 +7,8 @@ import { searchLeads } from './actions/search-lead.action';
 import { upsertContact } from './actions/upsert-contact.action';
 import { upsertLead } from './actions/upsert-lead.action';
 import { zohoCrmOAuth2US } from './connections/zoho-crm.oauth2';
+import { newContact } from './triggers/new-contact.trigger';
+import { newLead } from './triggers/new-lead.trigger';
 
 export const zohoCrm = createApp({
   id: 'zoho-crm',
@@ -23,7 +25,7 @@ export const zohoCrm = createApp({
     listUsers,
     deleteUser,
   ],
-  triggers: [],
+  triggers: [newContact, newLead],
   connections: [zohoCrmOAuth2US],
   needsConnection: true,
 });

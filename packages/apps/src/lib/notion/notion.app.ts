@@ -8,6 +8,9 @@ import { getPage } from './actions/get-page.action';
 import { listDatabases } from './actions/list-databases.action';
 import { updateDatabaseItem } from './actions/update-database-item.action';
 import { notionOAuth2 } from './connections/notion.oauth2';
+import { newDatabaseItem } from './triggers/new-database-item.trigger';
+import { pageUpdated } from './triggers/page-updated.trigger';
+import { updatedDatabaseItem } from './triggers/updated-database-item.trigger';
 
 export const notion = createApp({
   id: 'notion',
@@ -23,7 +26,7 @@ export const notion = createApp({
     listDatabases,
     getDatabase,
   ],
-  triggers: [],
+  triggers: [pageUpdated, newDatabaseItem, updatedDatabaseItem],
   connections: [notionOAuth2],
   needsConnection: true,
 });

@@ -33,7 +33,7 @@ export const shared = {
       },
     }),
   },
-  googleForms({
+  googleForm({
     accessToken,
     refreshToken,
   }: {

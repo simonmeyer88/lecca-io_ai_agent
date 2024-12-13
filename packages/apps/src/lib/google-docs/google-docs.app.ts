@@ -8,6 +8,8 @@ import { findDocumentByContent } from './actions/find-document-by-content.action
 import { findDocumentByTitle } from './actions/find-document-by-title.action';
 import { getDocumentText } from './actions/get-document-text.action';
 import { googleDocsOAuth2 } from './connections/google-docs.oauth2';
+import { newDocumentInFolder } from './triggers/new-document-in-folder.trigger';
+import { newDocument } from './triggers/new-document.trigger';
 
 export const googleDocs = createApp({
   id: 'google-docs',
@@ -27,7 +29,7 @@ export const googleDocs = createApp({
     // shareDocument, //Need scope auth/drive to do this.
     // deleteDocument, //Need scope auth/drive to do this.
   ],
-  triggers: [],
+  triggers: [newDocumentInFolder, newDocument],
   connections: [googleDocsOAuth2],
   needsConnection: true,
 });

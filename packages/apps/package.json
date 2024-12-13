@@ -1,4 +1,14 @@
 {
   "name": "@lecca-io/apps",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./src/index.js",
+  "types": ".src/index.d.ts",
+  "license": "Apache-2.0 with Commons Clause",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lecca-digital/lecca-io"
+  }
 }

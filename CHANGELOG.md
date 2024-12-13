@@ -1,3 +1,15 @@
+## [0.4.3](https://github.com/lecca-digital/lecca-io/compare/v0.4.2...v0.4.3) (2024-12-13)
+
+
+### Bug Fixes
+
+* Add deps to create-release.yml ([7498261](https://github.com/lecca-digital/lecca-io/commit/749826140c635acd35273f1a0dd7b81603b96317))
+* Add pnpm to create-release.yml ([bac8d1f](https://github.com/lecca-digital/lecca-io/commit/bac8d1f00955d22f3c13ee9483c6bccca7236f99))
+* Install @semantic-release/exec ([7f7e139](https://github.com/lecca-digital/lecca-io/commit/7f7e139d23ab4d9cb61780c13f0b3721457acb85))
+* Remove semantic exec ([311efc6](https://github.com/lecca-digital/lecca-io/commit/311efc65c12cea6da1f28edaf82dc01352b0361d))
+* Use nx release publish ([ded6561](https://github.com/lecca-digital/lecca-io/commit/ded656103a557ea2f26716b9989aecc16236e369))
+* Use semantic release in toolkit yml ([5ff43d9](https://github.com/lecca-digital/lecca-io/commit/5ff43d923059466a0f4c817c71059047107c232d))
+
 ## [0.4.2](https://github.com/lecca-digital/lecca-io/compare/v0.4.1...v0.4.2) (2024-12-13)
 
 

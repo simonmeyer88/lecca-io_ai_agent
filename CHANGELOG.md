@@ -1,3 +1,10 @@
+## [0.4.2](https://github.com/lecca-digital/lecca-io/compare/v0.4.1...v0.4.2) (2024-12-13)
+
+
+### Bug Fixes
+
+* Update server dockerfile to include libs ([5451a48](https://github.com/lecca-digital/lecca-io/commit/5451a4852425869dbd1466622f73815bc903dcb1))
+
 ## [0.4.1](https://github.com/lecca-digital/lecca-io/compare/v0.4.0...v0.4.1) (2024-12-13)
 
 

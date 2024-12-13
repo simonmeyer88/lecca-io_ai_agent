@@ -1,3 +1,18 @@
+# [0.4.0](https://github.com/lecca-digital/lecca-io/compare/v0.3.1...v0.4.0) (2024-12-13)
+
+
+### Bug Fixes
+
+* **server:** Update action, connection, and trigger constructor defaults ([bc1bde5](https://github.com/lecca-digital/lecca-io/commit/bc1bde5761239fe54746189bfeac67c4836064fb))
+
+
+### Features
+
+* **server:** Convert all triggers to new format ([1bb1a7c](https://github.com/lecca-digital/lecca-io/commit/1bb1a7c5b3dfb3d7da2baa0236508fbb845250f0))
+* **server:** Update trigger constructor to build from js object ([fbd8fd6](https://github.com/lecca-digital/lecca-io/commit/fbd8fd6f6cc64e95cb8ff30448195aff44436b70))
+* Support apps, actions, and triggers from js object (WIP) ([3c1064a](https://github.com/lecca-digital/lecca-io/commit/3c1064a2d28f8a5d4dd0ed8bb6b5d98d873568ab))
+* **toolkit:** Create toolkit and apps packages (WIP) ([a5d3c65](https://github.com/lecca-digital/lecca-io/commit/a5d3c653d723db6cafd7692595331205065530fc))
+
 ## [0.3.1](https://github.com/lecca-digital/lecca-io/compare/v0.3.0...v0.3.1) (2024-12-05)
 
 

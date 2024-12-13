@@ -1,7 +1,7 @@
 {
   "name": "lecca-io",
   "version": "0.4.2",
-  "license": "Custom: Apache-2.0 with Commons Clause",
+  "license": "Apache-2.0 with Commons Clause",
   "scripts": {
     "vercel-build": "nx build ui",
     "start:tunnel": "dotenv -- cross-var ngrok http --domain=tunnel.lecca.io %PORT%",

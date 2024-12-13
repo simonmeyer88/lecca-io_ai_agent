@@ -1,3 +1,13 @@
+## [0.4.5](https://github.com/lecca-digital/lecca-io/compare/v0.4.4...v0.4.5) (2024-12-13)
+
+
+### Bug Fixes
+
+* Add extra_plugins option to release action ([6f80f0c](https://github.com/lecca-digital/lecca-io/commit/6f80f0c35760f8815cbdebb9481c67c3faa2f0bb))
+* Add plugins to yml ([319b306](https://github.com/lecca-digital/lecca-io/commit/319b3061abdde6b1fe62cd8ac8f87e9abc83666d))
+* Update update-package-versions name ([fdb58ca](https://github.com/lecca-digital/lecca-io/commit/fdb58caba16cfa8258eb1b1b5f8904b54f3c5e16))
+* Use semantic-release/exec to update lib package.json ([14f8d40](https://github.com/lecca-digital/lecca-io/commit/14f8d401e1af808311148908d7c19e9f2e953f10))
+
 ## [0.4.4](https://github.com/lecca-digital/lecca-io/compare/v0.4.3...v0.4.4) (2024-12-13)
 
 

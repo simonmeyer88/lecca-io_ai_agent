@@ -1,3 +1,10 @@
+## [0.4.4](https://github.com/lecca-digital/lecca-io/compare/v0.4.3...v0.4.4) (2024-12-13)
+
+
+### Bug Fixes
+
+* Publish apps and toolkit ([4960454](https://github.com/lecca-digital/lecca-io/commit/4960454409fc5fcdfee6eb452a543802674e5143))
+
 ## [0.4.3](https://github.com/lecca-digital/lecca-io/compare/v0.4.2...v0.4.3) (2024-12-13)
 
 

@@ -8,7 +8,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "node scripts/update-versions.js ${nextRelease.version}"
+        "prepareCmd": "node scripts/update-package-versions.js ${nextRelease.version}"
       }
     ],
     [

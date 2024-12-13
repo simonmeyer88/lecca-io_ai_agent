@@ -382,6 +382,9 @@ export class WebhookService {
       aiProviders: this.workflowAppService.apps['flow-control'].aiProviders,
       credits: this.workflowAppService.apps['flow-control'].credits,
       task: this.workflowAppService.apps['flow-control'].task,
+      knowledge: this.workflowAppService.apps['flow-control'].knowledge,
+      notification: this.workflowAppService.apps['flow-control'].notification,
+      execution: this.workflowAppService.apps['flow-control'].execution,
     });
 
     if (successfulRun) {

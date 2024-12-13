@@ -6,7 +6,7 @@ export const multiplication = createAction({
   id: 'math_action_multiplication',
   name: 'Multiplication',
   description: 'Multiplies two numbers together.',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/apps/math.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/math.svg`,
   needsConnection: false,
   viewOptions: {
     saveButtonOptions: {

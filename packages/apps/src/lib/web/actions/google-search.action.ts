@@ -9,7 +9,7 @@ export const googleSearch = createAction({
   id: 'web_action_google-search',
   name: 'Google Search',
   description: 'Search the web using Google.',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/actions/web_action_google-search.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/actions/web_action_google-search.svg`,
   inputConfig: [
     createTextInputField({
       id: 'q',

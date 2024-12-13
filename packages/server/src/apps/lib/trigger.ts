@@ -1,8 +1,8 @@
 import {
   FieldConfig,
-  InjectedServices,
   InputConfig,
   NestedInputConfig,
+  RunTriggerArgs,
   filterDataByConditions,
   isValidMilliOrNull,
 } from '@lecca-io/toolkit';
@@ -16,7 +16,7 @@ import {
   WorkflowNodeForRunner,
 } from '../../modules/core/workflow-runner/workflow-runner.service';
 
-import { App, ConfigValue } from './app';
+import { App } from './app';
 import { OAuth2Connection } from './connection';
 
 export class Trigger {
@@ -507,6 +507,9 @@ export class Trigger {
           aiProviders: this.app.aiProviders,
           credits: this.app.credits,
           task: this.app.task,
+          knowledge: this.app.knowledge,
+          notification: this.app.notification,
+          execution: this.app.execution,
         }),
       };
     } else {
@@ -526,6 +529,9 @@ export class Trigger {
           aiProviders: this.app.aiProviders,
           credits: this.app.credits,
           task: this.app.task,
+          knowledge: this.app.knowledge,
+          notification: this.app.notification,
+          execution: this.app.execution,
         }),
       };
     }
@@ -1051,23 +1057,6 @@ export type WebhookAppTriggerConstructorArgs = TriggerConstructorArgs & {
     webhookBody: unknown;
     connectionMetadata: Record<string, any>;
   }) => boolean;
-};
-
-export type RunTriggerArgs<T, InputData = unknown> = {
-  inputData?: InputData;
-  configValue: ConfigValue<T>;
-  connection?: Partial<Connection>;
-  projectId: string;
-  workspaceId: string;
-  workflowId?: string;
-  testing?: boolean;
-  prisma: InjectedServices['prisma'];
-  http: InjectedServices['http'];
-  fileHandler: InjectedServices['fileHandler'];
-  s3: InjectedServices['s3'];
-  aiProviders: InjectedServices['aiProviders'];
-  credits: InjectedServices['credits'];
-  task: InjectedServices['task'];
 };
 
 export type TriggerResponse<T> = {

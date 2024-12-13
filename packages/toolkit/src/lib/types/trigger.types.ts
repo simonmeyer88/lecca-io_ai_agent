@@ -8,7 +8,6 @@ export type RunTriggerArgs<ConfigValue, InputData = unknown> = {
   projectId: string;
   workspaceId: string;
   workflowId?: string;
-  executionId: string | undefined;
   testing?: boolean;
   prisma: InjectedServices['prisma'];
   http: InjectedServices['http'];
@@ -18,4 +17,6 @@ export type RunTriggerArgs<ConfigValue, InputData = unknown> = {
   credits: InjectedServices['credits'];
   task: InjectedServices['task'];
   knowledge: InjectedServices['knowledge'];
+  notification: InjectedServices['notification'];
+  execution: InjectedServices['execution'];
 };

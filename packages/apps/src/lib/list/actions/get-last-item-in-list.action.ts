@@ -5,7 +5,7 @@ export const getLastItem = createAction({
   id: 'list_action_get-last-item',
   name: 'Get Last Item in List',
   description: 'Gets the last item from a list of values',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/apps/list.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/list.svg`,
   needsConnection: false,
   viewOptions: {
     saveButtonOptions: {

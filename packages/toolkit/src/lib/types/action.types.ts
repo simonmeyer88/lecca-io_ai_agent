@@ -18,4 +18,6 @@ export type RunActionArgs<ConfigValue> = {
   credits: InjectedServices['credits'];
   task: InjectedServices['task'];
   knowledge: InjectedServices['knowledge'];
+  notification: InjectedServices['notification'];
+  execution: InjectedServices['execution'];
 };

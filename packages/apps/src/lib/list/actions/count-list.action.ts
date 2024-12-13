@@ -5,7 +5,7 @@ export const countList = createAction({
   id: 'list_action_count',
   name: 'Count list items',
   description: 'Counts the number of items in a list',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/apps/list.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/list.svg`,
   needsConnection: false,
   viewOptions: {
     saveButtonOptions: {

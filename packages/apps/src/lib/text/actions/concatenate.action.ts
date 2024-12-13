@@ -5,7 +5,7 @@ export const concatenate = createAction({
   id: 'text_action_concatenate',
   name: 'Concatenate Text',
   description: 'Concatenates two more texts together',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/apps/text.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/text.svg`,
   viewOptions: {
     saveButtonOptions: {
       replaceSaveAndTestButton: {

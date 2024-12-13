@@ -6,7 +6,7 @@ export const findItem = createAction({
   name: 'Find Item in List',
   description:
     'Finds a specified item in a list of values and returns the item and its index',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/apps/list.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/list.svg`,
   needsConnection: false,
   viewOptions: {
     saveButtonOptions: {

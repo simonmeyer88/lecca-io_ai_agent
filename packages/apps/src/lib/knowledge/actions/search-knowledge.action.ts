@@ -11,7 +11,7 @@ export const searchKnowledge = createAction({
   id: 'knowledge_action_search-knowledge',
   name: 'Search Knowledge',
   description: 'Search your knowledge notebooks.',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/actions/knowledge_action_search-knowledge.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/actions/knowledge_action_search-knowledge.svg`,
   needsConnection: false,
 
   inputConfig: [

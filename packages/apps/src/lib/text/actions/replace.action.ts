@@ -8,7 +8,7 @@ import { z } from 'zod';
 export const replace = createAction({
   id: 'text_action_replace',
   name: 'Replace',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/apps/text.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/text.svg`,
   description: 'Replaces search results.',
   viewOptions: {
     saveButtonOptions: {

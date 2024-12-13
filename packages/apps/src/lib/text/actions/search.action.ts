@@ -8,7 +8,7 @@ import { z } from 'zod';
 export const search = createAction({
   id: 'text_action_search',
   name: 'Search Text',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/apps/text.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/text.svg`,
   viewOptions: {
     saveButtonOptions: {
       replaceSaveAndTestButton: {

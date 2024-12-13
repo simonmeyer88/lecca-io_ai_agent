@@ -22,4 +22,14 @@ export type CreateActionArgs<T extends z.ZodObject<any, any>> = {
   mockRun: (args: RunActionArgs<z.infer<T>>) => Promise<any>;
   iconUrl?: string;
   availableForAgent?: boolean;
+  handleInterruptingResponse?: (args: {
+    runResponse: unknown;
+  }) => ActionResponse<unknown>;
+};
+
+export type ActionResponse<T> = {
+  success?: T;
+  failure?: unknown;
+  needsInput?: unknown;
+  scheduled?: unknown;
 };

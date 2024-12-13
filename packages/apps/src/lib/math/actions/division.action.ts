@@ -5,7 +5,7 @@ export const division = createAction({
   id: 'math_action_division',
   name: 'Division',
   description: 'Divides one number by another.',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/apps/math.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/math.svg`,
   needsConnection: false,
   viewOptions: {
     saveButtonOptions: {

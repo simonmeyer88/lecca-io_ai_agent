@@ -113,6 +113,23 @@ export type InjectedServices = {
       workspaceId: string;
     }) => Promise<boolean>;
   };
+  notification: {
+    create: (args: {
+      data: {
+        link: string;
+        title: string;
+        message: string;
+        workspaceUserId: string;
+      };
+    }) => Promise<void>;
+  };
+  execution: {
+    manuallyExecuteWorkflow: (args: {
+      workflowId: string;
+      skipQueue?: boolean;
+      inputData: any;
+    }) => Promise<{ id: string }>;
+  };
 };
 
 type MessageTaskProps = {

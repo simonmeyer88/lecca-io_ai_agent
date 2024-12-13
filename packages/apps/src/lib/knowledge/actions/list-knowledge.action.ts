@@ -5,7 +5,7 @@ export const listKnowledge = createAction({
   id: 'knowledge_action_list-knowledge',
   name: 'List Knowledge Notebooks',
   description: 'Lists all knowledge notebooks available to the project.',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/actions/knowledge_action_search-knowledge.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/actions/knowledge_action_search-knowledge.svg`,
   inputConfig: [
     createMarkdownField({
       id: 'markdown',

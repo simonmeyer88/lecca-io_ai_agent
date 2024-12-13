@@ -5,7 +5,7 @@ export const split = createAction({
   id: 'text_action_split',
   name: 'Split',
   description: 'Splits text be a delimiter',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/apps/text.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/text.svg`,
   viewOptions: {
     saveButtonOptions: {
       replaceSaveAndTestButton: {

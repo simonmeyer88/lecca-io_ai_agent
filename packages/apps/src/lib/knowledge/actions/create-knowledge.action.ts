@@ -9,7 +9,7 @@ export const createKnowledge = createAction({
   id: 'knowledge_action_create-knowledge',
   name: 'Create Knowledge Notebook',
   description: 'Creates a new knowledge notebook',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/actions/knowledge_action_search-knowledge.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/actions/knowledge_action_search-knowledge.svg`,
   inputConfig: [
     createTextInputField({
       id: 'name',

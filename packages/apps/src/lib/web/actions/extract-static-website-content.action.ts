@@ -9,7 +9,7 @@ export const extractStaticWebsiteContent = createAction({
   id: 'web_action_extract-static-website-content',
   name: 'Extract Static Website Content',
   description: 'Visits a static website and extracts data.',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/apps/web.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/web.svg`,
   inputConfig: [
     createTextInputField({
       id: 'url',

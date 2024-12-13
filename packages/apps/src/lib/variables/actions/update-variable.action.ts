@@ -11,7 +11,7 @@ export const updateVariable = createAction({
   id: 'variables_action_update-variables',
   name: 'Update Variable',
   description: "Updates a variable's value",
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/apps/variables.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/variables.svg`,
   needsConnection: false,
 
   inputConfig: [

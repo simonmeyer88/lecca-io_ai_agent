@@ -6,7 +6,7 @@ export const mathExpression = createAction({
   id: 'math_action_math',
   name: 'Evaluate Expression',
   description: 'Evaluate a mathematical expression',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/apps/math.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/math.svg`,
   needsConnection: false,
   viewOptions: {
     saveButtonOptions: {

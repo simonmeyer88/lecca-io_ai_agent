@@ -1,15 +1,16 @@
 import {
+  ActionResponse,
   FieldConfig,
-  InjectedServices,
   InputConfig,
   NestedInputConfig,
+  RunActionArgs,
 } from '@lecca-io/toolkit';
 import { BadRequestException, ForbiddenException } from '@nestjs/common';
 import { Connection } from '@prisma/client';
 import { CoreTool } from 'ai';
 import { z } from 'zod';
 
-import { App, ConfigValue } from './app';
+import { App } from './app';
 import { OAuth2Connection } from './connection';
 import { NodeViewOptions } from './trigger';
 
@@ -26,6 +27,10 @@ export class Action {
     this.availableForAgent = args.availableForAgent ?? true;
     this.needsConnection = args.needsConnection ?? args.app.needsConnection;
     this.iconUrl = args.iconUrl;
+
+    if (args.handleInterruptingResponse) {
+      this.handleInterruptingResponse = args.handleInterruptingResponse;
+    }
   }
 
   app: App;
@@ -65,20 +70,11 @@ export class Action {
    *
    * that way, the execution can be paused and resumed later.
    */
-  handleInterruptingResponse({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  handleInterruptingResponse?: ({
     runResponse,
   }: {
     runResponse: unknown;
-  }): ActionResponse<unknown> {
-    if (this.isInterruptingAction) {
-      throw new Error(
-        'You must override the handleInterruptingResponse method',
-      );
-    }
-
-    throw new Error('This method is only used for interrupting actions');
-  }
+  }) => ActionResponse<unknown>;
 
   /**
    * Swaps out the variables and references.
@@ -201,7 +197,7 @@ export class Action {
           agentId: args.agentId,
           workspaceId: args.workspaceId,
           executionId: args.executionId,
-          connection,
+          connection: connection,
           prisma: this.app.prisma,
           http: this.app.http,
           fileHandler: this.app.fileHandler,
@@ -209,6 +205,9 @@ export class Action {
           aiProviders: this.app.aiProviders,
           credits: this.app.credits,
           task: this.app.task,
+          knowledge: this.app.knowledge,
+          notification: this.app.notification,
+          execution: this.app.execution,
         }),
       };
     } else {
@@ -227,9 +226,12 @@ export class Action {
         aiProviders: this.app.aiProviders,
         credits: this.app.credits,
         task: this.app.task,
+        knowledge: this.app.knowledge,
+        notification: this.app.notification,
+        execution: this.app.execution,
       });
 
-      if (this.isInterruptingAction) {
+      if (this.handleInterruptingResponse) {
         //These have unique response objects when they pause the execution
         return this.handleInterruptingResponse({ runResponse });
       } else {
@@ -596,36 +598,9 @@ export type ActionConstructorArgs = {
   availableForAgent: boolean;
   needsConnection: boolean;
   iconUrl?: string;
-};
-
-export type RunActionArgs<T> = {
-  configValue: ConfigValue<T>;
-  connection?: Partial<Connection>;
-  projectId: string;
-  workflowId: string | undefined;
-  workspaceId: string;
-  executionId: string | undefined;
-  agentId: string | undefined;
-  testing?: boolean;
-  prisma: InjectedServices['prisma'];
-  http: InjectedServices['http'];
-  fileHandler: InjectedServices['fileHandler'];
-  s3: InjectedServices['s3'];
-  aiProviders: InjectedServices['aiProviders'];
-  credits: InjectedServices['credits'];
-  task: InjectedServices['task'];
-};
-
-/**
- * The typical response for an action is success or failure.
- * But for interrupting actions, you'd have different responses like needsInput or scheduled.
- * If you add a new interrupting action, you'd add a new key here.
- */
-export type ActionResponse<T> = {
-  success?: T;
-  failure?: unknown;
-  needsInput?: unknown;
-  scheduled?: unknown;
+  handleInterruptingResponse?: (args: {
+    runResponse: unknown;
+  }) => ActionResponse<unknown>;
 };
 
 type PrepareAndRunActionArgs = {

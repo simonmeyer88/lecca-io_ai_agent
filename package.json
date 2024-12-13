@@ -7,7 +7,7 @@
     "start:tunnel": "dotenv -- cross-var ngrok http --domain=tunnel.lecca.io %PORT%",
     "start:stripe": "dotenv -- cross-var stripe listen --forward-to %SERVER_URL%/webhooks/stripe"
   },
-  "private": true,
+  "private": false,
   "prepare": "husky install",
   "dependencies": {
     "@ai-sdk/anthropic": "^1.0.2",
@@ -155,6 +155,7 @@
     "@nx/workspace": "20.1.3",
     "@playwright/test": "^1.36.0",
     "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^11.0.1",
     "@semantic-release/npm": "^12.0.1",

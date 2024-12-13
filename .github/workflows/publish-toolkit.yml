@@ -1,4 +1,4 @@
-name: Publish Toolkit Package
+name: Publish Apps and Toolkit
 
 on:
   release:
@@ -26,7 +26,10 @@ jobs:
       - name: Build toolkit
         run: pnpm nx build toolkit
 
-      - name: Publish toolkit using NX
+      - name: Build apps
+        run: pnpm nx build apps
+
+      - name: Publish apps and toolkit using NX
         run: npx nx release publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

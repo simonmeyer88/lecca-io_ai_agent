@@ -6,10 +6,9 @@
   },
   "main": "./src/index.js",
   "types": ".src/index.d.ts",
-  "license": "Custom: Apache-2.0 with Commons Clause",
+  "license": "Apache-2.0 with Commons Clause",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lecca-io/lecca.io.git",
-    "directory": "packages/toolkit"
+    "url": "https://github.com/lecca-digital/lecca-io"
   }
 }

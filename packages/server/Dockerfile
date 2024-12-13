@@ -7,6 +7,9 @@ COPY package.json pnpm-lock.yaml ./
 COPY nx.json tsconfig.base.json ./
 COPY jest.preset.js eslint.config.js ./
 COPY packages/server ./packages/server
+COPY packages/toolkit ./packages/toolkit
+COPY packages/apps ./packages/apps
+
 
 # Install pnpm and other global dependencies
 RUN npm install -g pnpm @nestjs/cli nx

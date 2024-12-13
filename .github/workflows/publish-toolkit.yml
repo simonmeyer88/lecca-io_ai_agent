@@ -1,4 +1,4 @@
-name: Release Toolkit Package
+name: Publish Toolkit Package
 
 on:
   release:

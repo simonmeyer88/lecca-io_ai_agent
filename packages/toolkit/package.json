@@ -5,7 +5,7 @@
     "access": "public"
   },
   "main": "./src/index.js",
-  "types": ".src/index.d.ts",
+  "types": "./src/index.d.ts",
   "license": "Apache-2.0 with Commons Clause",
   "repository": {
     "type": "git",

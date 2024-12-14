@@ -120,20 +120,7 @@ function setServerConfigProperty({
    * so it's nice to have some values nested.
    */
 
-  if (key.startsWith('INTEGRATION_')) {
-    /**
-     * All integrations need to be prefixed with 'INTEGRATION_'.
-     * For example, 'INTEGRATION_GMAIL_CLIENT_ID'.
-     */
-
-    const integrationName = key.split('_').slice(1).join('_');
-
-    if (integrationName) {
-      (ServerConfig['INTEGRATIONS'] as Record<string, string>)[
-        integrationName
-      ] = value;
-    }
-  } else if (key.startsWith('MAIL_')) {
+  if (key.startsWith('MAIL_')) {
     /**
      * All mail options need to be prefixed with 'MAIL_'.
      */
@@ -154,34 +141,13 @@ function setServerConfigProperty({
  */
 function setServerConfigDefaultsForMissingValues() {
   Object.entries(ServerConfig).forEach(([key, value]) => {
-    if (key === 'INTEGRATIONS') {
-      const integrations = ServerConfig['INTEGRATIONS'] as Record<
-        string,
-        string
-      >;
-
-      Object.entries(integrations).forEach(
-        ([integrationKey, integrationValue]) => {
-          if (integrationValue === undefined) {
-            const envValue = process.env[`INTEGRATION_${integrationKey}`];
-            if (envValue !== undefined) {
-              setServerConfigProperty({
-                key: `INTEGRATION_${integrationKey}`,
-                value: envValue,
-              });
-            }
-          }
-        },
-      );
-    } else {
-      if (value === undefined) {
-        const envValue = process.env[key];
-        if (envValue !== undefined) {
-          setServerConfigProperty({
-            key,
-            value: envValue,
-          });
-        }
+    if (value === undefined) {
+      const envValue = process.env[key];
+      if (envValue !== undefined) {
+        setServerConfigProperty({
+          key,
+          value: envValue,
+        });
       }
     }
   });

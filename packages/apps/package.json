@@ -4,12 +4,12 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./src/index.js",
-  "types": "./src/index.d.ts",
-  "license": "Apache-2.0 with Commons Clause",
   "dependencies": {
     "@lecca-io/toolkit": "*"
   },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "license": "Apache-2.0 with Commons Clause",
   "repository": {
     "type": "git",
     "url": "https://github.com/lecca-digital/lecca-io"

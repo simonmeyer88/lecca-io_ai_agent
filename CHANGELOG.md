@@ -1,3 +1,10 @@
+## [0.4.7](https://github.com/lecca-digital/lecca-io/compare/v0.4.6...v0.4.7) (2024-12-14)
+
+
+### Bug Fixes
+
+* Update main.js path in server docker ([879db8e](https://github.com/lecca-digital/lecca-io/commit/879db8edb3c3524a9b2b720b6b396d204021898c))
+
 ## [0.4.6](https://github.com/lecca-digital/lecca-io/compare/v0.4.5...v0.4.6) (2024-12-14)
 
 

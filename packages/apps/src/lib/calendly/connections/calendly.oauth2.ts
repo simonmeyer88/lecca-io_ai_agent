@@ -6,8 +6,8 @@ export const calendlyOAuth2 = createOAuth2Connection({
   description: 'Connect to Calendly using OAuth2',
   authorizeUrl: 'https://auth.calendly.com/oauth/authorize',
   tokenUrl: 'https://auth.calendly.com/oauth/token',
-  clientId: process.env.INTEGRATION_CALENDLY_CLIENT_ID,
-  clientSecret: process.env.INTEGRATION_CALENDLY_CLIENT_SECRET,
+  getClientId: () => process.env.INTEGRATION_CALENDLY_CLIENT_ID,
+  getClientSecret: () => process.env.INTEGRATION_CALENDLY_CLIENT_SECRET,
   scopes: ['default'],
   scopeDelimiter: ' ',
 });

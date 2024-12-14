@@ -7,8 +7,8 @@ export const notionOAuth2 = createOAuth2Connection({
   inputConfig: [],
   authorizeUrl: 'https://api.notion.com/v1/oauth/authorize',
   tokenUrl: 'https://api.notion.com/v1/oauth/token',
-  clientId: process.env.INTEGRATION_NOTION_CLIENT_ID,
-  clientSecret: process.env.INTEGRATION_NOTION_CLIENT_SECRET,
+  getClientId: () => process.env.INTEGRATION_NOTION_CLIENT_ID,
+  getClientSecret: () => process.env.INTEGRATION_NOTION_CLIENT_SECRET,
   scopes: [],
   extraAuthParams: {
     owner: 'user',

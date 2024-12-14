@@ -6,8 +6,8 @@ export const googleSheetsOAuth2 = createOAuth2Connection({
   description: 'Connect using OAuth2',
   authorizeUrl: 'https://accounts.google.com/o/oauth2/v2/auth',
   tokenUrl: 'https://oauth2.googleapis.com/token',
-  clientId: process.env.INTEGRATION_GOOGLE_SHEETS_CLIENT_ID,
-  clientSecret: process.env.INTEGRATION_GOOGLE_SHEETS_CLIENT_SECRET,
+  getClientId: () => process.env.INTEGRATION_GOOGLE_SHEETS_CLIENT_ID,
+  getClientSecret: () => process.env.INTEGRATION_GOOGLE_SHEETS_CLIENT_SECRET,
   scopes: [
     'https://www.googleapis.com/auth/spreadsheets',
     'https://www.googleapis.com/auth/drive.readonly',

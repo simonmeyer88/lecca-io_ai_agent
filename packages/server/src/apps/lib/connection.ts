@@ -79,8 +79,8 @@ export class OAuth2Connection extends Connection {
 
     this.authorizeUrl = args.authorizeUrl;
     this.tokenUrl = args.tokenUrl;
-    this.clientId = args.clientId;
-    this.clientSecret = args.clientSecret;
+    this.clientId = args.getClientId();
+    this.clientSecret = args.getClientSecret();
     this.scopes = args.scopes || [];
     this.scopeDelimiter = args.scopeDelimiter || ',';
     this.authorizationMethod = args.authorizationMethod || 'body';
@@ -504,8 +504,8 @@ export type ConnectionConstructorArgs = {
 export type OAuth2ConnectionConstructorArgs = ConnectionConstructorArgs & {
   authorizeUrl: string;
   tokenUrl: string;
-  clientId: string;
-  clientSecret: string;
+  getClientId: () => string | undefined;
+  getClientSecret: () => string | undefined;
   scopes: string[];
   scopeDelimiter?: string;
   authorizationMethod?: OAuth2AuthorizationMethod;

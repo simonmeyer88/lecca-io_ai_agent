@@ -14,8 +14,8 @@ export type CreateOAuth2ConnectionArgs = {
   description: string;
   authorizeUrl: string;
   tokenUrl: string;
-  clientId: string | undefined;
-  clientSecret: string | undefined;
+  getClientId: () => string | undefined;
+  getClientSecret: () => string | undefined;
   scopes: string[];
   scopeDelimiter?: string;
   inputConfig?: InputConfig;

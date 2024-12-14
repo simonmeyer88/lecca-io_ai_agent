@@ -1,18 +1,10 @@
 # @lecca-io/toolkit
 
-This package is part of the [Lecca.io](https://github.com/lecca-digital/lecca-io) project.
+@lecca-io/toolkit is used in the [Lecca.io](https://github.com/lecca-digital/lecca-io) platform.
 
-## Usage
+This library contains helper functions to build your own apps, actions, and triggers that can be used by your AI agents and workflow automations.
 
-This package providers helper functions to easily create new apps, actions, and triggers for Lecca.io.
-
-## Building
-
-Run `pnpm nx build toolkit` to build the library.
-
-## Running unit tests
-
-Run `pnpm nx test toolkit` to execute the unit tests via [Jest](https://jestjs.io).
+To learn more about developing your own apps and/or contributing, go to our [developer documentation](https://www.lecca.io/docs/development)
 
 ## License
 
@@ -20,5 +12,5 @@ This package is part of the Lecca.io project and is licensed under "Apache Licen
 
 For full license details, please refer to:
 
-The main project repository: https://github.com/lecca-io/lecca.io
+The main project repository: https://github.com/lecca-digital/lecca.io
 The complete LICENSE file in the root of the main repository

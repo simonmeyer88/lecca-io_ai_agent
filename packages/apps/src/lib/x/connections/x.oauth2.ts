@@ -7,8 +7,8 @@ export const xOAuth2 = createOAuth2Connection({
   inputConfig: [],
   authorizeUrl: 'https://twitter.com/i/oauth2/authorize',
   tokenUrl: 'https://api.x.com/2/oauth2/token',
-  clientId: process.env.INTEGRATION_X_CLIENT_ID,
-  clientSecret: process.env.INTEGRATION_X_CLIENT_SECRET,
+  getClientId: () => process.env.INTEGRATION_X_CLIENT_ID,
+  getClientSecret: () => process.env.INTEGRATION_X_CLIENT_SECRET,
   scopes: [
     'tweet.read',
     'tweet.write',

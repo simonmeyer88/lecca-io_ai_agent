@@ -6,8 +6,8 @@ export const dropboxOAuth2 = createOAuth2Connection({
   description: 'Connect to Dropbox using OAuth2.',
   authorizeUrl: 'https://www.dropbox.com/oauth2/authorize',
   tokenUrl: 'https://api.dropboxapi.com/oauth2/token',
-  clientId: process.env.INTEGRATION_DROPBOX_CLIENT_ID,
-  clientSecret: process.env.INTEGRATION_DROPBOX_CLIENT_SECRET,
+  getClientId: () => process.env.INTEGRATION_DROPBOX_CLIENT_ID,
+  getClientSecret: () => process.env.INTEGRATION_DROPBOX_CLIENT_SECRET,
   scopes: [
     'files.metadata.write',
     'files.metadata.read',

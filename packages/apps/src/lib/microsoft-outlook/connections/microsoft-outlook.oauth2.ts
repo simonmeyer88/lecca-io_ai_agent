@@ -8,8 +8,9 @@ export const microsoftOutlookOAuth2 = createOAuth2Connection({
   authorizeUrl:
     'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
   tokenUrl: 'https://login.microsoftonline.com/common/oauth2/v2.0/token',
-  clientId: process.env.INTEGRATION_MICROSOFT_OUTLOOK_CLIENT_ID,
-  clientSecret: process.env.INTEGRATION_MICROSOFT_OUTLOOK_CLIENT_SECRET,
+  getClientId: () => process.env.INTEGRATION_MICROSOFT_OUTLOOK_CLIENT_ID,
+  getClientSecret: () =>
+    process.env.INTEGRATION_MICROSOFT_OUTLOOK_CLIENT_SECRET,
   scopes: [
     'Mail.Send',
     'Mail.ReadWrite',

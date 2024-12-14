@@ -7,8 +7,8 @@ export const zohoBooksOAuth2US = createOAuth2Connection({
   inputConfig: [],
   authorizeUrl: `https://accounts.zoho.com/oauth/v2/auth`,
   tokenUrl: `https://accounts.zoho.com/oauth/v2/token`,
-  clientId: process.env.INTEGRATION_ZOHO_BOOKS_CLIENT_ID,
-  clientSecret: process.env.INTEGRATION_ZOHO_BOOKS_CLIENT_SECRET,
+  getClientId: () => process.env.INTEGRATION_ZOHO_BOOKS_CLIENT_ID,
+  getClientSecret: () => process.env.INTEGRATION_ZOHO_BOOKS_CLIENT_SECRET,
   scopes: ['ZohoBooks.fullaccess.ALL'],
   extraAuthParams: {
     prompt: 'consent',

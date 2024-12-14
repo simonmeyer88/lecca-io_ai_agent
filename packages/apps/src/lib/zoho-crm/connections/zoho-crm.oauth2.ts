@@ -7,8 +7,8 @@ export const zohoCrmOAuth2US = createOAuth2Connection({
   inputConfig: [],
   authorizeUrl: `https://accounts.zoho.com/oauth/v2/auth`,
   tokenUrl: `https://accounts.zoho.com/oauth/v2/token`,
-  clientId: process.env.INTEGRATION_ZOHO_CRM_CLIENT_ID,
-  clientSecret: process.env.INTEGRATION_ZOHO_CRM_CLIENT_SECRET,
+  getClientId: () => process.env.INTEGRATION_ZOHO_CRM_CLIENT_ID,
+  getClientSecret: () => process.env.INTEGRATION_ZOHO_CRM_CLIENT_SECRET,
   scopes: [
     'ZohoCRM.users.ALL',
     'ZohoCRM.org.ALL',

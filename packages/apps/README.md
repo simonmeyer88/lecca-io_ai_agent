@@ -1,11 +1,16 @@
-# apps
+# @lecca-io/apps
 
-This library was generated with [Nx](https://nx.dev).
+@lecca-io/apps is used in the [Lecca.io](https://github.com/lecca-digital/lecca-io) platform.
 
-## Building
+This libary contains all the apps provided by Lecca.io that can be used with you AI agents and in your workflow automations.
 
-Run `nx build apps` to build the library.
+To learn more about developing your own apps and/or contributing, go to our [developer documentation](https://www.lecca.io/docs/development)
 
-## Running unit tests
+## License
 
-Run `nx test apps` to execute the unit tests via [Jest](https://jestjs.io).
+This package is part of the Lecca.io project and is licensed under "Apache License with the Commons Clause".
+
+For full license details, please refer to:
+
+The main project repository: https://github.com/lecca-digital/lecca.io
+The complete LICENSE file in the root of the main repository

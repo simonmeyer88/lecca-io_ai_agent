@@ -6,8 +6,8 @@ export const linkedinOAuth2 = createOAuth2Connection({
   description: 'Connect using OAuth2',
   authorizeUrl: 'https://www.linkedin.com/oauth/v2/authorization',
   tokenUrl: 'https://www.linkedin.com/oauth/v2/accessToken',
-  clientId: process.env.INTEGRATION_LINKEDIN_CLIENT_ID,
-  clientSecret: process.env.INTEGRATION_LINKEDIN_CLIENT_SECRET,
+  getClientId: () => process.env.INTEGRATION_LINKEDIN_CLIENT_ID,
+  getClientSecret: () => process.env.INTEGRATION_LINKEDIN_CLIENT_SECRET,
   scopes: [
     'r_basicprofile',
     'w_member_social',

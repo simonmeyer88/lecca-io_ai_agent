@@ -6,8 +6,8 @@ export const hubspotOAuth2 = createOAuth2Connection({
   description: 'Connect to HubSpot using OAuth2',
   authorizeUrl: 'https://app.hubspot.com/oauth/authorize',
   tokenUrl: 'https://api.hubapi.com/oauth/v1/token',
-  clientId: process.env.INTEGRATION_HUBSPOT_CLIENT_ID,
-  clientSecret: process.env.INTEGRATION_HUBSPOT_CLIENT_SECRET,
+  getClientId: () => process.env.INTEGRATION_HUBSPOT_CLIENT_ID,
+  getClientSecret: () => process.env.INTEGRATION_HUBSPOT_CLIENT_SECRET,
   scopes: [
     'crm.lists.read',
     'crm.lists.write',

@@ -1,3 +1,11 @@
+## [0.4.8](https://github.com/lecca-digital/lecca-io/compare/v0.4.7...v0.4.8) (2024-12-14)
+
+
+### Bug Fixes
+
+* Add monorepo deps in package.json for build ([36501a4](https://github.com/lecca-digital/lecca-io/commit/36501a4d234dbd93d9e42b38fc4edbc2dabf7218))
+* Add monorepo deps in package.json for build ([6b042a9](https://github.com/lecca-digital/lecca-io/commit/6b042a90508be96974e68d871863a9580ef69aa0))
+
 ## [0.4.7](https://github.com/lecca-digital/lecca-io/compare/v0.4.6...v0.4.7) (2024-12-14)
 
 

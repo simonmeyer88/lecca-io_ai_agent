@@ -1,3 +1,10 @@
+## [0.4.10](https://github.com/lecca-digital/lecca-io/compare/v0.4.9...v0.4.10) (2024-12-14)
+
+
+### Bug Fixes
+
+* Update publish yml to only publish libs ([e7c3548](https://github.com/lecca-digital/lecca-io/commit/e7c354868313de04b31f867610d193e92651398d))
+
 ## [0.4.9](https://github.com/lecca-digital/lecca-io/compare/v0.4.8...v0.4.9) (2024-12-14)
 
 

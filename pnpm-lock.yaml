@@ -47,6 +47,12 @@ importers:
       '@hookform/resolvers':
         specifier: ^3.3.4
         version: 3.9.1(react-hook-form@7.53.2(react@18.3.1))
+      '@lecca-io/apps':
+        specifier: '*'
+        version: 0.4.7
+      '@lecca-io/toolkit':
+        specifier: '*'
+        version: 0.4.7
       '@nestjs/axios':
         specifier: ^3.1.2
         version: 3.1.2(@nestjs/common@10.4.9(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(axios@1.7.7)(rxjs@7.8.1)
@@ -2075,6 +2081,12 @@ packages:
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
+
+  '@lecca-io/apps@0.4.7':
+    resolution: {integrity: sha512-HJ3C0iWd1vD0tZZW9bW6DA6hbkZp6vjK4yhkii3Ml+Wwv3dAcUSjBxC+H1JiEkwwE+lX7e/YFZQDEmMQjpTWPA==}
+
+  '@lecca-io/toolkit@0.4.7':
+    resolution: {integrity: sha512-lzYy0rzZW8YrrIRl+jAVHx1Mr/lgpfyAJycAnWCc/f5jMxwuVzDbku83cWNMGKOGmEsZlkg6IMrUdPANtBmuAA==}
 
   '@leichtgewicht/ip-codec@2.0.5':
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
@@ -15132,6 +15144,12 @@ snapshots:
   '@jsonjoy.com/util@1.5.0(tslib@2.8.1)':
     dependencies:
       tslib: 2.8.1
+
+  '@lecca-io/apps@0.4.7':
+    dependencies:
+      '@lecca-io/toolkit': 0.4.7
+
+  '@lecca-io/toolkit@0.4.7': {}
 
   '@leichtgewicht/ip-codec@2.0.5': {}
 

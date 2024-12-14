@@ -1,3 +1,10 @@
+## [0.4.9](https://github.com/lecca-digital/lecca-io/compare/v0.4.8...v0.4.9) (2024-12-14)
+
+
+### Bug Fixes
+
+* **apps:** Make clientId and clientSecret getters ([e7b7f32](https://github.com/lecca-digital/lecca-io/commit/e7b7f32d8f5463a679f9f913b3b3ecd761e78702))
+
 ## [0.4.8](https://github.com/lecca-digital/lecca-io/compare/v0.4.7...v0.4.8) (2024-12-14)
 
 

@@ -1,3 +1,10 @@
+## [0.4.6](https://github.com/lecca-digital/lecca-io/compare/v0.4.5...v0.4.6) (2024-12-14)
+
+
+### Bug Fixes
+
+* Update types path in lib package.json for docker to work ([1070490](https://github.com/lecca-digital/lecca-io/commit/1070490078865640cf6a32da3c3c6a9d1d47275c))
+
 ## [0.4.5](https://github.com/lecca-digital/lecca-io/compare/v0.4.4...v0.4.5) (2024-12-13)
 
 

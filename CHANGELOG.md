@@ -1,3 +1,10 @@
+# [0.5.0](https://github.com/lecca-digital/lecca-io/compare/v0.4.10...v0.5.0) (2024-12-14)
+
+
+### Features
+
+* Update apps package ([a4abf52](https://github.com/lecca-digital/lecca-io/commit/a4abf524b9b335623a01d6e619d7a6e0d53977be))
+
 ## [0.4.10](https://github.com/lecca-digital/lecca-io/compare/v0.4.9...v0.4.10) (2024-12-14)
 
 

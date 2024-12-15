@@ -1,8 +1,4 @@
-import {
-  createDynamicSelectInputField,
-  createScheduleTrigger,
-  parseDateToISO,
-} from '@lecca-io/toolkit';
+import { createScheduleTrigger, parseDateToISO } from '@lecca-io/toolkit';
 import {
   createDateTimeInputField,
   createMultiSelectInputField,
@@ -30,10 +26,11 @@ export const recurringSchedule = createScheduleTrigger({
         missingStatus: 'warning',
       },
     }),
-    createDynamicSelectInputField({
+    {
       id: 'rrule',
       label: 'Repeats',
       hideCustomTab: true,
+      inputType: 'select',
       description: 'Repeating frequency',
       occurenceType: 'dynamic',
       loadOptions: {
@@ -54,7 +51,7 @@ export const recurringSchedule = createScheduleTrigger({
         missingMessage: 'Repeat is required',
         missingStatus: 'warning',
       },
-    }),
+    },
     createSelectInputField({
       id: 'customRepeatPeriod',
       label: 'Repeat Period',

@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 
+import { cn } from '../utils/cn';
+
 export function GoogleSignIn() {
   useEffect(() => {
     const script = document.createElement('script');
@@ -28,5 +30,12 @@ export function GoogleSignIn() {
     };
   }, []);
 
-  return <div id="buttonDiv" className="mx-auto"></div>;
+  return (
+    <div
+      id="buttonDiv"
+      className={cn('mx-auto', {
+        hidden: !import.meta.env.VITE_GOOGLE_CLIENT_ID,
+      })}
+    ></div>
+  );
 }

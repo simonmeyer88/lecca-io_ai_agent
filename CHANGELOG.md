@@ -1,3 +1,15 @@
+# [0.6.0](https://github.com/lecca-digital/lecca-io/compare/v0.5.0...v0.6.0) (2024-12-16)
+
+
+### Bug Fixes
+
+* **apps:** Fix recurring schedule trigger inputConfig ([9076461](https://github.com/lecca-digital/lecca-io/commit/907646193abd5d2aad223813b42a44f877bbf673))
+
+
+### Features
+
+* **server:** Remove needsConnection property from app constructor args ([aa776f7](https://github.com/lecca-digital/lecca-io/commit/aa776f767df2469df798be502c7fec6ac8624266))
+
 # [0.5.0](https://github.com/lecca-digital/lecca-io/compare/v0.4.10...v0.5.0) (2024-12-14)
 
 

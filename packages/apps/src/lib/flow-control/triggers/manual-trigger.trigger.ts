@@ -9,7 +9,6 @@ export const manualTrigger = createManualTrigger<ConfigValue, Response>({
   name: 'Manually Run',
   description:
     'Manually run this workflow as a user, within another workflow, or when requested by an agent.',
-  needsConnection: false,
   availableForAgent: false,
   iconUrl:
     'https://lecca-io.s3.us-east-2.amazonaws.com/assets/triggers/flow-control_trigger_manual.svg',

@@ -5,7 +5,6 @@ export const replyToPost = createAction({
   id: 'x_action_reply-to-text-post',
   name: 'Reply to Post',
   description: 'Reply to a post on X',
-  needsConnection: true,
   aiSchema: z.object({
     tweetId: z.string().min(1).describe('The ID of the tweet to reply to.'),
     text: z.string().min(1).describe('The text content of reply.'),

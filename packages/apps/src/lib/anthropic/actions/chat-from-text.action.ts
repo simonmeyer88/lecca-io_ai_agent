@@ -12,7 +12,6 @@ export const chatFromText = createAction({
   id: 'anthropic_action_chat-from-text',
   name: 'Chat from Text',
   description: 'Chat with an AI model using text input',
-  needsConnection: true,
   inputConfig: [
     shared.fields.dynamicSelectModel,
     {

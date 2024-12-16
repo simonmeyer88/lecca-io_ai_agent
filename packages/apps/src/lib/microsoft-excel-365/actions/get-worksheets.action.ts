@@ -14,7 +14,6 @@ export const getWorksheets = createAction({
       .describe('The ID of the workbook to get worksheets from'),
   }),
   inputConfig: [shared.fields.dynamicSelectWorkbooks],
-  needsConnection: true,
   run: async ({ configValue, connection, workspaceId, http }) => {
     const url = `https://graph.microsoft.com/v1.0/me/drive/items/${configValue.workbookId}/workbook/worksheets`;
 

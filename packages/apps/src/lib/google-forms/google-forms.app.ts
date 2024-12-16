@@ -13,5 +13,4 @@ export const googleForms = createApp({
   actions: [],
   triggers: [newFormResponse],
   connections: [googleFormsOAuth2],
-  needsConnection: true,
 });

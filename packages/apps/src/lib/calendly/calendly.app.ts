@@ -13,5 +13,4 @@ export const calendly = createApp({
   actions: [listOrganizationEvents, listUserEvents],
   triggers: [],
   connections: [calendlyOAuth2],
-  needsConnection: true,
 });

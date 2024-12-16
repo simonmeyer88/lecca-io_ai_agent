@@ -8,7 +8,6 @@ export const listenForWebhook = createCustomWebhookTrigger({
   name: 'Listen for Webhook',
   description:
     'Listen for a POST, PUT, or GET request to a custom webhook URL.',
-  needsConnection: false,
   iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/triggers/flow-control_trigger_listen-for-webhook.svg`,
   availableForAgent: false,
   inputConfig: [

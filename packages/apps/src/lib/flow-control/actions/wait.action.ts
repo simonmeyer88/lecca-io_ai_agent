@@ -11,7 +11,6 @@ export const wait = createAction({
   name: 'Wait',
   description: 'Pauses the execution for a period of time before continuing.',
   iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/actions/flow-control_action_wait.svg`,
-  needsConnection: false,
   availableForAgent: false,
   viewOptions: {
     saveButtonOptions: {

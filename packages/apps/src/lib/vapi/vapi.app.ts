@@ -14,5 +14,4 @@ export const vapi = createApp({
   actions: [makePhoneCall, getPhoneCall, listAssistants, listPhoneNumbers],
   triggers: [],
   connections: [vapiApiKey],
-  needsConnection: true,
 });

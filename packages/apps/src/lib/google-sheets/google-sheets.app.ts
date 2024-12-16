@@ -42,5 +42,4 @@ export const googleSheets = createApp({
   ],
   triggers: [newRowAdded, newSpreadsheet, newSpreadsheetInFolder, newSheet],
   connections: [googleSheetsOAuth2],
-  needsConnection: true,
 });

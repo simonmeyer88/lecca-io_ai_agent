@@ -13,5 +13,4 @@ export const paradigmVendo = createApp({
   actions: [getAppointment],
   triggers: [],
   connections: [paradigmVendoKeyPair],
-  needsConnection: true,
 });

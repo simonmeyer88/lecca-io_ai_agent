@@ -12,8 +12,6 @@ export const updateCell = createAction({
   id: 'google-sheets_action_update-cell',
   name: 'Update Cell',
   description: 'Updates a specific cell in the specified sheet.',
-  needsConnection: true,
-
   aiSchema: z.object({
     spreadsheet: z.string().min(1).describe('The ID of the spreadsheet'),
     sheet: z.string().min(1).describe('The name of the sheet'),

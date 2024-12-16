@@ -7,7 +7,6 @@ export const subtraction = createAction({
   name: 'Subtraction',
   description: 'Subtracts one number from another.',
   iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/math.svg`,
-  needsConnection: false,
   viewOptions: {
     saveButtonOptions: {
       replaceSaveAndTestButton: {

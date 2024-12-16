@@ -10,7 +10,6 @@ export const saveToKnowledge = createAction({
   id: 'knowledge_action_save-to-knowledge',
   name: 'Save to Knowledge',
   description: 'Saves text to a knowledge notebook',
-  needsConnection: false,
   iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/actions/knowledge_action_search-knowledge.svg`,
 
   inputConfig: [

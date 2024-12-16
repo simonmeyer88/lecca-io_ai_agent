@@ -23,5 +23,4 @@ export const hubspot = createApp({
   ],
   triggers: [],
   connections: [hubspotOAuth2],
-  needsConnection: true,
 });

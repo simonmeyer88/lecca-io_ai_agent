@@ -6,7 +6,6 @@ export const addition = createAction({
   name: 'Addition',
   description: 'Add two numbers together.',
   iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/math.svg`,
-  needsConnection: false,
   viewOptions: {
     saveButtonOptions: {
       replaceSaveAndTestButton: {

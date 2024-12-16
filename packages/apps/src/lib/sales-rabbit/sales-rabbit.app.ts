@@ -9,5 +9,4 @@ export const salesRabbit = createApp({
   actions: [],
   triggers: [],
   connections: [],
-  needsConnection: true,
 });

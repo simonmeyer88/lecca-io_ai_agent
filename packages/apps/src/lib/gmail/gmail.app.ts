@@ -38,5 +38,4 @@ export const gmail = createApp({
   ],
   triggers: [emailReceived],
   connections: [gmailOAuth2],
-  needsConnection: true,
 });

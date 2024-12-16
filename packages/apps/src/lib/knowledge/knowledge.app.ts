@@ -14,7 +14,6 @@ export const knowledge = createApp({
   actions: [searchKnowledge, saveToKnowledge, listKnowledge, createKnowledge],
   triggers: [],
   connections: [],
-  needsConnection: false,
   isPublished:
     !!process.env.PINECONE_API_KEY &&
     !!process.env.PINECONE_API_KEY &&

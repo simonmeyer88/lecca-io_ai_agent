@@ -5,7 +5,6 @@ export const listUsers = createAction({
   id: 'zoho-crm_action_list-users',
   name: 'List Users',
   description: 'Retrieve a list of users.',
-  needsConnection: true,
   inputConfig: [
     createNumberInputField({
       id: 'page',

@@ -12,5 +12,4 @@ export const date = createApp({
   actions: [getCurrentDate, modifyDate, formatDate],
   triggers: [],
   connections: [],
-  needsConnection: false,
 });

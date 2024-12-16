@@ -21,5 +21,4 @@ export const linkedin = createApp({
   ],
   triggers: [],
   connections: [linkedinOAuth2],
-  needsConnection: true,
 });

@@ -7,7 +7,6 @@ export const findItem = createAction({
   description:
     'Finds a specified item in a list of values and returns the item and its index',
   iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/list.svg`,
-  needsConnection: false,
   viewOptions: {
     saveButtonOptions: {
       replaceSaveAndTestButton: {

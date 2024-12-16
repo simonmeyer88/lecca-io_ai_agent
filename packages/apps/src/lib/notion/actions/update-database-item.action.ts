@@ -8,7 +8,6 @@ export const updateDatabaseItem = createAction({
   id: 'notion_action_update-database-item',
   name: 'Update Database Page',
   description: 'Updates an existing page in a Notion database',
-  needsConnection: true,
   aiSchema: z.object({
     page: z.string().describe('The ID of the page to update.'),
     properties: z.array(

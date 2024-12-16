@@ -12,5 +12,4 @@ export const youtube = createApp({
   actions: [searchVideos],
   triggers: [],
   connections: [youtubeOAuth2],
-  needsConnection: true,
 });

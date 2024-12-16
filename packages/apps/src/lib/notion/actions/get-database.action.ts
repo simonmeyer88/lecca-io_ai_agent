@@ -12,7 +12,6 @@ export const getDatabase = createAction({
     databaseId: z.string(),
   }),
   inputConfig: [shared.fields.dynamicSelectDatabase],
-  needsConnection: true,
   run: async ({ connection, configValue }) => {
     const notionLib = shared.notionLib({
       accessToken: connection.accessToken,

@@ -27,7 +27,6 @@ export const getAppointment = createAction({
       },
     }),
   ],
-  needsConnection: true,
   run: async ({ configValue, connection, workspaceId, http }) => {
     const url = `https://api.paradigmvendo.com/v2/appointment/${configValue.id}`;
 

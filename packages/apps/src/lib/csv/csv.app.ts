@@ -10,5 +10,4 @@ export const csv = createApp({
   actions: [convertCsvToJson],
   triggers: [],
   connections: [],
-  needsConnection: false,
 });

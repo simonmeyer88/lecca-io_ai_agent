@@ -12,5 +12,4 @@ export const web = createApp({
   actions: [googleSearch, extractStaticWebsiteContent, extractWebsiteContent],
   triggers: [],
   connections: [],
-  needsConnection: false,
 });

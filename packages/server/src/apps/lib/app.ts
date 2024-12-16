@@ -44,7 +44,7 @@ export class App {
     this.description = args.description;
     this.logoUrl = args.logoUrl;
     this.isPublished = args.isPublished ?? true;
-    this.needsConnection = args.needsConnection ?? true;
+    this.needsConnection = !!(args._connections ?? []).length;
     this.availableForAgent = args.availableForAgent ?? true;
     this.verifyWebhookRequest = args.verifyWebhookRequest;
     this.parseWebhookEventType = args.parseWebhookEventType;
@@ -714,7 +714,6 @@ export type AppContructorArgs = {
   description: string;
   logoUrl: string;
   isPublished: boolean;
-  needsConnection: boolean;
   availableForAgent: boolean;
   _actions: CreateAppArgs['actions'];
   _triggers: CreateAppArgs['triggers'];

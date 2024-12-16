@@ -12,5 +12,4 @@ export const googleSlides = createApp({
   actions: [],
   triggers: [],
   connections: [googleSlidesOAuth2],
-  needsConnection: true,
 });

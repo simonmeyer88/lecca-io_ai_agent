@@ -7,7 +7,6 @@ export const appendPage = createAction({
   id: 'notion_action_append-to-page',
   name: 'Append to Page',
   description: 'Appends content to an existing page.',
-  needsConnection: true,
   inputConfig: [
     shared.fields.dynamicSelectPage,
     createTextInputField({

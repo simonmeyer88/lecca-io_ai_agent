@@ -28,5 +28,4 @@ export const notion = createApp({
   ],
   triggers: [pageUpdated, newDatabaseItem, updatedDatabaseItem],
   connections: [notionOAuth2],
-  needsConnection: true,
 });

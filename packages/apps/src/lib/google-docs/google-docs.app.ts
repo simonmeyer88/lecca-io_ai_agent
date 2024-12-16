@@ -31,5 +31,4 @@ export const googleDocs = createApp({
   ],
   triggers: [newDocumentInFolder, newDocument],
   connections: [googleDocsOAuth2],
-  needsConnection: true,
 });

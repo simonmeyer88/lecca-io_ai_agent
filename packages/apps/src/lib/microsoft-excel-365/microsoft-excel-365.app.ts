@@ -13,5 +13,4 @@ export const microsoftExcel365 = createApp({
   actions: [getWorksheets],
   triggers: [],
   connections: [microsoftExcel365OAuth2],
-  needsConnection: true,
 });

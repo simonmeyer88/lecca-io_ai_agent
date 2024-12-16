@@ -24,5 +24,4 @@ export const googleCalendar = createApp({
   ],
   triggers: [newCalendarEvent],
   connections: [googleCalendarOAuth2],
-  needsConnection: true,
 });

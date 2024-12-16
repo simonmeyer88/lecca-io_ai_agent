@@ -55,7 +55,6 @@ export const convertCsvToJson = createAction({
       .enum(['true', 'false'])
       .describe('true if the csv text has header row'),
   }),
-  needsConnection: false,
   viewOptions: {
     saveButtonOptions: {
       replaceSaveAndTestButton: {

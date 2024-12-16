@@ -14,5 +14,4 @@ export const math = createApp({
   actions: [mathExpression, addition, subtraction, division, multiplication],
   triggers: [],
   connections: [],
-  needsConnection: false,
 });

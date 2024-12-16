@@ -13,7 +13,6 @@ export const schedule = createAction({
   id: 'flow-control_action_schedule',
   name: 'Schedule',
   description: 'Pauses the execution and resumes at the scheduled time.',
-  needsConnection: false,
   iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/actions/flow-control_action_schedule.svg`,
   availableForAgent: false,
   viewOptions: {

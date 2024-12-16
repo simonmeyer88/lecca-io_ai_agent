@@ -13,5 +13,4 @@ export const x = createApp({
   actions: [createPost, replyToPost],
   triggers: [],
   connections: [xOAuth2],
-  needsConnection: true,
 });

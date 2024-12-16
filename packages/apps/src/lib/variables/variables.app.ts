@@ -13,5 +13,4 @@ export const variables = createApp({
   actions: [updateVariable, listVariables, getVariable],
   triggers: [],
   connections: [],
-  needsConnection: false,
 });

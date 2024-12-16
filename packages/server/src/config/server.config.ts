@@ -281,5 +281,9 @@ export const ServerConfig = {
   DEFAULT_EMBEDDING_MODEL:
     process.env.DEFAULT_EMBEDDING_MODEL ?? 'text-embedding-3-small',
 
+  /**
+   * When a user signs up, this workflow ID will be triggered.
+   * Make sure it has a webhook trigger.
+   */
   NEW_USER_WORKFLOW_ID: process.env.NEW_USER_WORKFLOW_ID,
 };

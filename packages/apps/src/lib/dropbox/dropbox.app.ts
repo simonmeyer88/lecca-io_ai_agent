@@ -23,5 +23,4 @@ export const dropbox = createApp({
   ],
   triggers: [],
   connections: [dropboxOAuth2],
-  needsConnection: true,
 });

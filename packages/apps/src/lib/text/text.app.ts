@@ -13,5 +13,4 @@ export const text = createApp({
   actions: [concatenate, replace, search, split],
   triggers: [],
   connections: [],
-  needsConnection: false,
 });

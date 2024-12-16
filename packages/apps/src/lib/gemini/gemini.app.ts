@@ -12,5 +12,4 @@ export const gemini = createApp({
   actions: [chatFromText],
   triggers: [],
   connections: [geminiApiKey],
-  needsConnection: true,
 });

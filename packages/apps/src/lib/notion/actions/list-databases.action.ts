@@ -8,7 +8,6 @@ export const listDatabases = createAction({
   id: 'notion_action_list-databases',
   name: 'List Databases',
   description: 'Lists all databases in a Notion workspace',
-  needsConnection: true,
   inputConfig: [],
   aiSchema: z.object({}),
 

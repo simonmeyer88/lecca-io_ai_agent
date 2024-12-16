@@ -52,5 +52,4 @@ export const slack = createApp({
       event: webhookBody?.event?.type ?? '',
     };
   },
-  needsConnection: true,
 });

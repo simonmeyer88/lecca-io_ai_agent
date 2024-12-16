@@ -6,7 +6,6 @@ export const getFirstItem = createAction({
   name: 'Get First Item in List',
   description: 'Gets the first item from a list of values',
   iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/list.svg`,
-  needsConnection: false,
   viewOptions: {
     saveButtonOptions: {
       replaceSaveAndTestButton: {

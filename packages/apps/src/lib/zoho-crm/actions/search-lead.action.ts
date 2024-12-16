@@ -9,7 +9,6 @@ export const searchLeads = createAction({
   id: 'zoho-crm_action_search-leads',
   name: 'Search Leads',
   description: 'Search for leads in ZohoCRM based on various search criteria.',
-  needsConnection: true,
   inputConfig: [
     {
       id: 'markdown',

@@ -12,8 +12,6 @@ export const searchKnowledge = createAction({
   name: 'Search Knowledge',
   description: 'Search your knowledge notebooks.',
   iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/actions/knowledge_action_search-knowledge.svg`,
-  needsConnection: false,
-
   inputConfig: [
     createDynamicSelectInputField({
       id: 'knowledgeId',

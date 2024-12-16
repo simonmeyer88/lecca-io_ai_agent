@@ -14,5 +14,4 @@ export const list = createApp({
   actions: [findItem, combineLists, getLastItem, getFirstItem, countList],
   triggers: [],
   connections: [],
-  needsConnection: false,
 });

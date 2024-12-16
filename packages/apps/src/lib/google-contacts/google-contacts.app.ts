@@ -15,5 +15,4 @@ export const googleContacts = createApp({
   actions: [createContact, listContacts, getContact],
   triggers: [],
   connections: [googleContactsOAuth2],
-  needsConnection: true,
 });

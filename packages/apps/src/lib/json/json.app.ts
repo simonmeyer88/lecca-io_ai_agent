@@ -11,5 +11,4 @@ export const json = createApp({
   actions: [jsonStringify, jsonParse],
   triggers: [],
   connections: [],
-  needsConnection: false,
 });

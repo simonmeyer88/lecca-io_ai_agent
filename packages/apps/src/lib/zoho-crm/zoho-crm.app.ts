@@ -27,5 +27,4 @@ export const zohoCrm = createApp({
   ],
   triggers: [newContact, newLead],
   connections: [zohoCrmOAuth2US],
-  needsConnection: true,
 });

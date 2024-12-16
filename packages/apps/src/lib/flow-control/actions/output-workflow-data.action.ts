@@ -11,7 +11,6 @@ export const outputWorkflowData = createAction({
   name: 'Output Workflow Data',
   description: 'Outputs data that can be used by an agent or another workflow.',
   iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/actions/flow-control_action_output-workflow-data.svg`,
-  needsConnection: false,
   availableForAgent: false,
   viewOptions: {
     saveButtonOptions: {

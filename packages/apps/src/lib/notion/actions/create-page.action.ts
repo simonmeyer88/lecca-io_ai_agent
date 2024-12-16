@@ -7,7 +7,6 @@ export const createPage = createAction({
   id: 'notion_action_create-page',
   name: 'Create Page',
   description: 'Creates a new page in Notion.',
-  needsConnection: true,
   aiSchema: z.object({
     page: z.string().min(1).describe('The ID of the parent page'),
     title: z.string().min(1).describe('The title of the new page'),

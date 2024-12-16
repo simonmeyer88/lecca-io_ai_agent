@@ -77,5 +77,4 @@ export const updateContact = createAction({
       updated: true,
     };
   },
-  needsConnection: true,
 });

@@ -61,7 +61,6 @@ export class WorkflowAppsService {
         _connections: value.connections,
         isPublished: value.isPublished,
         availableForAgent: value.availableForAgent,
-        needsConnection: value.needsConnection,
         parseWebhookEventType: value.parseWebhookEventType,
         verifyWebhookRequest: value.verifyWebhookRequest,
         prisma: this.prisma,

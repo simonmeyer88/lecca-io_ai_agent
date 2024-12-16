@@ -5,7 +5,6 @@ export const sendDraft = createAction({
   id: 'microsoft-outlook_action_send-draft',
   name: 'Send Draft',
   description: 'Send a draft from Outlook',
-  needsConnection: true,
   aiSchema: z.object({
     draftId: z.string().min(1).describe('The ID of the draft to send'),
   }),

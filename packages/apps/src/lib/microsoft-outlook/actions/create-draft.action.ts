@@ -9,7 +9,6 @@ export const createDraft = createAction({
   id: 'microsoft-outlook_action_create-draft',
   name: 'Create Draft',
   description: 'Create a draft email using Outlook',
-  needsConnection: true,
   inputConfig: [
     createTextInputField({
       label: 'Recipients',

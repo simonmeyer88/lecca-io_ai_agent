@@ -12,5 +12,4 @@ export const zohoBooks = createApp({
   actions: [],
   triggers: [],
   connections: [zohoBooksOAuth2US],
-  needsConnection: true,
 });

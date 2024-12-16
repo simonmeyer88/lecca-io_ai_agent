@@ -5,7 +5,6 @@ export const addUser = createAction({
   id: 'zoho-crm_action_add-user',
   name: 'Add User',
   description: 'Add a new user to ZohoCRM.',
-  needsConnection: true,
   inputConfig: [
     createTextInputField({
       id: 'firstName',

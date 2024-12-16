@@ -24,5 +24,4 @@ export const ai = createApp({
   ],
   triggers: [],
   connections: [],
-  needsConnection: false,
 });

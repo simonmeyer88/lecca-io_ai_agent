@@ -7,7 +7,6 @@ export const upsertLead = createAction({
   id: 'zoho-crm_action_upsert-lead',
   name: 'Upsert Lead',
   description: 'Create a new lead or update an existing lead.',
-  needsConnection: true,
   inputConfig: [
     createTextInputField({
       id: 'leadId',

@@ -12,8 +12,6 @@ export const updateVariable = createAction({
   name: 'Update Variable',
   description: "Updates a variable's value",
   iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/variables.svg`,
-  needsConnection: false,
-
   inputConfig: [
     shared.fields.dynamicGetVariable,
     createJsonInputField({

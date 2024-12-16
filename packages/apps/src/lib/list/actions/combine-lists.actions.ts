@@ -6,7 +6,6 @@ export const combineLists = createAction({
   name: 'Combine Lists',
   description: 'Combines multiple lists into a single list',
   iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/list.svg`,
-  needsConnection: false,
   viewOptions: {
     saveButtonOptions: {
       replaceSaveAndTestButton: {

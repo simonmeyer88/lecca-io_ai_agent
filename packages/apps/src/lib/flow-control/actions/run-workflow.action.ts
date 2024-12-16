@@ -6,7 +6,6 @@ export const runWorkflow = createAction({
   name: 'Run Workflow',
   description: 'Trigger one of your workflows.',
   iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/actions/flow-control_action_run-workflow.svg`,
-  needsConnection: false,
   viewOptions: {
     saveButtonOptions: {
       replaceSaveAndTestButton: {

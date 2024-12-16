@@ -7,7 +7,6 @@ export const renameSpreadsheet = createAction({
   id: 'google-sheets_action_rename-spreadsheet',
   name: 'Rename Spreadsheet',
   description: 'Renames the title of an existing Google Sheets document.',
-  needsConnection: true,
   inputConfig: [
     shared.fields.dynamicSelectSpreadSheets,
     createTextInputField({

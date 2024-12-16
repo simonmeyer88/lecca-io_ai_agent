@@ -13,5 +13,4 @@ export const anthropic = createApp({
   actions: [chatFromText],
   triggers: [],
   connections: [anthropicApiKey],
-  needsConnection: true,
 });

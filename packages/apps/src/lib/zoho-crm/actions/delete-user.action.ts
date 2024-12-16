@@ -7,7 +7,6 @@ export const deleteUser = createAction({
   id: 'zoho-crm_action_delete-user',
   name: 'Delete User',
   description: 'Delete a user from by user ID.',
-  needsConnection: true,
   inputConfig: [shared.fields.dynamicGetUsers],
   aiSchema: z.object({
     userId: z

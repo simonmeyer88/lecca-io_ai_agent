@@ -10,5 +10,4 @@ export const phone = createApp({
   actions: [makePhoneCall],
   triggers: [],
   connections: [],
-  needsConnection: true,
 });

@@ -30,5 +30,4 @@ export const flowControl = createApp({
   ],
   triggers: [manualTrigger, recurringSchedule, listenForWebhook],
   connections: [],
-  needsConnection: false,
 });

@@ -10,5 +10,4 @@ export const ParadigmVendo = createApp({
   actions: [],
   triggers: [],
   connections: [],
-  needsConnection: true,
 });

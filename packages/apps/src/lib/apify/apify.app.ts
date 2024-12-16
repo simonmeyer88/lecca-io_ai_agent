@@ -13,5 +13,4 @@ export const apify = createApp({
   actions: [runTask, listTasks, getDatasetItems],
   triggers: [],
   connections: [apifyApiKey],
-  needsConnection: true,
 });

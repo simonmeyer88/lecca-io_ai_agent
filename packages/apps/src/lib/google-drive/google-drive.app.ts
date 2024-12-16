@@ -37,5 +37,4 @@ export const googleDrive = createApp({
   ],
   triggers: [newFileInFolder, newFile],
   connections: [googleDriveOAuth2],
-  needsConnection: true,
 });

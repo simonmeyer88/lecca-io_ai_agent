@@ -15,5 +15,4 @@ export const microsoftOutlook = createApp({
   actions: [createDraft, sendDraft],
   triggers: [emailReceived],
   connections: [microsoftOutlookOAuth2],
-  needsConnection: true,
 });

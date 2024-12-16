@@ -12,5 +12,4 @@ export const openai = createApp({
   actions: [chatFromText],
   triggers: [],
   connections: [openaiApiKey],
-  needsConnection: true,
 });

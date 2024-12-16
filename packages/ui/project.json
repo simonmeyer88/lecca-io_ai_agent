@@ -4,6 +4,17 @@
   "sourceRoot": "packages/ui/src",
   "projectType": "application",
   "tags": [],
-  "// targets": "to see all targets run: nx show project ui --web",
-  "targets": {}
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "npx tailwindcss -i ./src/tailwind/tailwind.input.css -o ./src/tailwind/tailwind.output.css --watch",
+          "vite --host"
+        ],
+        "parallel": true,
+        "cwd": "packages/ui"
+      }
+    }
+  }
 }

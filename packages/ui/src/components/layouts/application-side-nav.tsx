@@ -281,7 +281,7 @@ export function Credits({ isCollapsed }: { isCollapsed: boolean }) {
         }}
       >
         <div className="flex items-center space-x-2">
-          <Icons.logo className="size-6 border rounded-full p-1" />
+          <Icons.creditCard className="size-6 border rounded-full p-1" />
           <div className="flex flex-col">
             <span className="text-[10px] text-muted-foreground">Credits</span>
             <span className="text-xs font-semibold">

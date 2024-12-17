@@ -29,22 +29,19 @@ type Props = {
 
 export function Chat(props: Props) {
   const { aiProviders } = useUser();
-  const preventScroll = useRef(false);
-  const prevScrollTopRef = useRef(0);
   const [imageData, setImageData] = useState<string[]>([]);
   const [isLoadingResponse, setIsLoadingResponse] = useState(false);
   const activeTaskId = useMemo(() => props.taskId ?? v4(), [props.taskId]);
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setRerender] = useState(0);
-
   //Used to hold state and manage rendering for some parts of the chat
   const messageMeta = useRef<MessageMeta>(new MessageMeta(setRerender));
-
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToBottom = useCallback((args?: { force?: boolean }) => {
     const container = messagesEndRef.current;
-    if (container && (args?.force || !preventScroll.current)) {
+    if (container && args?.force) {
       setTimeout(() => {
         container.scrollTo({
           top: container.scrollHeight,
@@ -205,26 +202,32 @@ export function Chat(props: Props) {
   } = useChat({
     onError: (error) => {
       let message = '';
+      let statusCode = 200;
       try {
         message = JSON.parse(error.message).message;
+        statusCode = JSON.parse(error.message).statusCode;
       } catch {
         message = error.message;
       }
 
-      setMessages([
-        ...messages,
-        {
-          id: v4(),
-          role: 'system',
-          content: message,
-        },
-      ]);
+      /**
+       * If status code is 401, then the error handler useEffect will re-auth and try again.
+       * If it's not 401, then it's not an auth issue and the error should be added to the messages so
+       * the user can see it.
+       */
+      if (statusCode !== 401) {
+        setMessages([
+          ...messages,
+          {
+            id: v4(),
+            role: 'system',
+            content: message,
+          },
+        ]);
+      }
     },
     api: `${import.meta.env.VITE_SERVER_URL}/agents/${props.agent.id}/tasks/${props.taskId ?? activeTaskId}/stream-message`,
-    keepLastMessageOnError: true,
     experimental_prepareRequestBody: ({ messages }) => {
-      preventScroll.current = false; // Reset the prevent scroll state
-      prevScrollTopRef.current = 0; // Reset the scroll top state
       const preparedMessages = prepareMessagesToSend({ messages });
       return { messages: preparedMessages } as any;
     },
@@ -232,8 +235,6 @@ export function Chat(props: Props) {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
     },
     onFinish: () => {
-      preventScroll.current = false; // Reset the prevent scroll state
-      prevScrollTopRef.current = 0; // Reset the scroll top state
       if (!props.taskId) {
         //This is a new task, so we need to update the URL
         window.history.pushState(
@@ -355,14 +356,16 @@ export function Chat(props: Props) {
         const parsedError = JSON.parse((error as any).message);
         if (parsedError.statusCode === 401) {
           api.auth.refreshToken().then(() => {
-            reload();
+            if (messages[messages.length - 1].role !== 'system') {
+              reload();
+            }
           });
         }
       } catch {
         //Error will be displayed in chat ui as system message
       }
     }
-  }, [error, reload]);
+  }, [error, messages, reload]);
 
   useEffect(() => {
     if (props.defaultMessages) {
@@ -374,28 +377,9 @@ export function Chat(props: Props) {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, scrollToBottom]);
-
-  useEffect(() => {
-    // If we scroll up, then we should prevent auto-scrolling
-    const container = messagesEndRef.current;
-
-    const handleScroll = () => {
-      if (container) {
-        const currentScrollTop = container.scrollTop;
-
-        // If current scroll position is less than previous, user is scrolling up
-        if (currentScrollTop < prevScrollTopRef.current) {
-          preventScroll.current = true;
-        }
-
-        prevScrollTopRef.current = currentScrollTop;
-      }
-    };
-
-    container?.addEventListener('scroll', handleScroll);
-    return () => container?.removeEventListener('scroll', handleScroll);
-  }, []);
+    //Add message to the dependency array to auto scroll, but I couldn't figure out how to get it stop scrolling when you scroll up.
+    //even with the useEffect below that handle's the scroll.
+  }, [scrollToBottom]);
 
   if (!agents || !workspaceUsers || !knowledge || !apps || !workflows) {
     return <Loader />;

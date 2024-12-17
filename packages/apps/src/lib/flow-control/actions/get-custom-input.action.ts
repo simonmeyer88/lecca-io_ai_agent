@@ -7,7 +7,7 @@ export const getCustomInput = createAction({
   id: 'flow-control_action_get-custom-input',
   name: 'Get Input Data',
   description: 'Wait for a user to provide custom input data to resume.',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/actions/flow-control_action_get-custom-input.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/actions/flow-control_action_get-custom-input.svg`,
   availableForAgent: false,
   viewOptions: {
     showManualInputButton: true,

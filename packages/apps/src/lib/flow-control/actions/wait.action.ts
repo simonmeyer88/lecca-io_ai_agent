@@ -10,7 +10,7 @@ export const wait = createAction({
   id: 'flow-control_action_wait',
   name: 'Wait',
   description: 'Pauses the execution for a period of time before continuing.',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/actions/flow-control_action_wait.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/actions/flow-control_action_wait.svg`,
   availableForAgent: false,
   viewOptions: {
     saveButtonOptions: {

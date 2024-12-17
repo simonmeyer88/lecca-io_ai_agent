@@ -5,7 +5,7 @@ export const runWorkflow = createAction({
   id: 'flow-control_action_run-workflow',
   name: 'Run Workflow',
   description: 'Trigger one of your workflows.',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/actions/flow-control_action_run-workflow.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/actions/flow-control_action_run-workflow.svg`,
   viewOptions: {
     saveButtonOptions: {
       replaceSaveAndTestButton: {

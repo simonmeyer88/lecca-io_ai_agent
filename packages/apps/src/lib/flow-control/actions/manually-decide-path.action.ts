@@ -11,7 +11,7 @@ export const manuallyDecidePaths = createAction({
   id: 'flow-control_action_manually-decide-paths',
   name: 'Manually Decide Path',
   description: 'Wait for a user to manually decide which path to take.',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/actions/flow-control_action_manually-decide-paths.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/actions/flow-control_action_manually-decide-paths.svg`,
   availableForAgent: false,
   viewOptions: {
     showManualInputButton: true,

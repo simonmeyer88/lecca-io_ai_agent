@@ -10,7 +10,7 @@ export const outputWorkflowData = createAction({
   id: 'flow-control_action_output-workflow-data',
   name: 'Output Workflow Data',
   description: 'Outputs data that can be used by an agent or another workflow.',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/actions/flow-control_action_output-workflow-data.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/actions/flow-control_action_output-workflow-data.svg`,
   availableForAgent: false,
   viewOptions: {
     saveButtonOptions: {

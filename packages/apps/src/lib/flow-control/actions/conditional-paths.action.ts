@@ -6,7 +6,7 @@ export const conditionalPaths = createAction({
   name: 'Conditional Paths',
   description: 'Create conditions to determine the path(s) to take.',
   availableForAgent: false,
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/actions/flow-control_action_conditional-paths.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/actions/flow-control_action_conditional-paths.svg`,
   inputConfig: [
     {
       id: 'conditionalPathsLeccaFilters',

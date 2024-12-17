@@ -11,7 +11,7 @@ export const pause = createAction<any>({
   id: 'flow-control_action_pause',
   name: 'Pause',
   description: 'Pauses the execution until it is manually continued.',
-  iconUrl: `${process.env.INTEGRATION_ICON_BASE_URL}/actions/flow-control_action_pause.svg`,
+  iconUrl: `https://lecca-io.s3.us-east-2.amazonaws.com/assets/actions/flow-control_action_pause.svg`,
   availableForAgent: false,
   viewOptions: {
     showManualInputButton: true,

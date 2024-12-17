@@ -49,7 +49,7 @@ export const ServerConfig = {
   COMMERCIAL_KEY: process.env.COMMERCIAL_KEY,
 
   /**
-   * The name of the platform. This is used for white labeling the platform.
+   * The name of the platform. This is used for white labeling the platform
    * You must have a commercial license to change this value.
    */
   PLATFORM_NAME: process.env.PLATFORM_NAME || 'Lecca.io',
@@ -173,18 +173,6 @@ export const ServerConfig = {
    * So all embedding models must either have a dimension of 1536 or be able to convert to 1536.
    */
   PINECONE_INDEX_NAME: process.env.PINECONE_INDEX_NAME,
-
-  /**
-   * Stripe keys are for handling payments on the platform.
-   * Only relevant for the cloud version.
-   */
-  STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
-
-  /**
-   * Stripe keys are for handling payments on the platform.
-   * Only relevant for the cloud version.
-   */
-  STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
 
   /**
    * The Serper API key is used for searching the web.

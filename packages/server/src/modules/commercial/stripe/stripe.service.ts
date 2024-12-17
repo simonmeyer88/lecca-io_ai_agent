@@ -19,8 +19,8 @@ export class StripeService {
     private readonly prisma: PrismaService,
     private readonly credits: CreditsService,
   ) {
-    if (ServerConfig.STRIPE_SECRET_KEY) {
-      this.stripe = new Stripe(ServerConfig.STRIPE_SECRET_KEY, {
+    if (process.env.STRIPE_SECRET_KEY) {
+      this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
         apiVersion: '2024-11-20.acacia',
       });
     } else {
@@ -115,7 +115,7 @@ export class StripeService {
       event = this.stripe.webhooks.constructEvent(
         rawBody,
         signature,
-        ServerConfig.STRIPE_WEBHOOK_SECRET,
+        process.env.STRIPE_WEBHOOK_SECRET,
       );
     } catch (err) {
       console.error('Error handling stripe event:', err.message);

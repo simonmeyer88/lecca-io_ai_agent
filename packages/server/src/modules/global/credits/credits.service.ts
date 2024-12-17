@@ -5,7 +5,6 @@ import {
 } from '@nestjs/common';
 import { BillingPlanType } from '@prisma/client';
 
-import { ServerConfig } from '../../../config/server.config';
 import { JwtUser } from '../../../types/jwt-user.type';
 import {
   AiProvider,
@@ -611,8 +610,8 @@ export class CreditsService {
 
   isBillingEnabled = () => {
     return (
-      ServerConfig.STRIPE_SECRET_KEY != null &&
-      ServerConfig.STRIPE_WEBHOOK_SECRET != null
+      process.env.STRIPE_SECRET_KEY != null &&
+      process.env.STRIPE_WEBHOOK_SECRET != null
     );
   };
 

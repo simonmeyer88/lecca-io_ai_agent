@@ -47,10 +47,10 @@ export class DiscoveryService {
     //This is for the Calling feature of the platform. We use VAPI.
     const CALLING = ServerConfig.VAPI_API_KEY != null;
 
-    //This is for the Billing feature of the platform. We use Stripe.
+    //This is for the Billing feature of the platform. Only used by Lecca.io
     const BILLING =
-      ServerConfig.STRIPE_SECRET_KEY != null &&
-      ServerConfig.STRIPE_WEBHOOK_SECRET != null;
+      process.env.STRIPE_SECRET_KEY != null &&
+      process.env.STRIPE_WEBHOOK_SECRET != null;
 
     //This is for the Workflows feature of the platform.
     const WORKFLOWS = true;

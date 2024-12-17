@@ -67,7 +67,7 @@ export const ServerConfig = {
   /**
    * The URL of the web app client
    */
-  CLIENT_URL: process.env.CLIENT_URL || 'http://localhost:5173',
+  CLIENT_URL: process.env.CLIENT_URL,
 
   /**
    * The email options for the nodemailer mail service configuration.

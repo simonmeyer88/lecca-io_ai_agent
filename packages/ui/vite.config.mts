@@ -3,35 +3,36 @@ import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 
-export default defineConfig({
-  root: __dirname,
-  cacheDir: '../../node_modules/.vite/packages/ui',
-  server: {
-    port: 5173,
-    host: 'localhost',
-  },
-  preview: {
-    port: 5173,
-    host: 'localhost',
-  },
-  plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '');
+  const PORT = Number(new URL(env.VITE_CLIENT_URL).port);
+
+  return {
+    root: __dirname,
+    cacheDir: '../../node_modules/.vite/packages/ui',
+    server: {
+      port: PORT,
+      host: 'localhost',
     },
-  },
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [ nxViteTsPaths() ],
-  // },
-  build: {
-    outDir: '../../dist/packages/ui',
-    emptyOutDir: true,
-    reportCompressedSize: true,
-    commonjsOptions: {
-      transformMixedEsModules: true,
+    preview: {
+      port: PORT,
+      host: 'localhost',
     },
-  },
+    plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+      },
+    },
+    build: {
+      outDir: '../../dist/packages/ui',
+      emptyOutDir: true,
+      reportCompressedSize: true,
+      commonjsOptions: {
+        transformMixedEsModules: true,
+      },
+    },
+  };
 });

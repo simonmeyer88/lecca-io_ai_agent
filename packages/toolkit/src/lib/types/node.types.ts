@@ -19,7 +19,7 @@ export type WorkflowNode = {
   isListeningForWebhooksTest?: boolean;
 };
 
-export type ExecutionNodeForRunner = WorkflowNode & {
+export type ExecutionNode = WorkflowNode & {
   /**
    * `RUNNING` - Action is running normally
    *

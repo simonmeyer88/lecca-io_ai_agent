@@ -225,7 +225,7 @@ export class TasksService {
       });
 
       if (shouldStream) {
-        const result = await streamText({
+        const result = streamText({
           model: llmProviderClient,
           toolChoice: 'auto',
           tools,

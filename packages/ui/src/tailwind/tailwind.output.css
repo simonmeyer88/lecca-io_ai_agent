@@ -2638,11 +2638,6 @@ body {
   background-color: rgb(251 146 60 / 0.1);
 }
 
-.bg-pink-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 72 153 / var(--tw-bg-opacity));
-}
-
 .bg-popover {
   background-color: hsl(var(--popover));
 }
@@ -2707,16 +2702,6 @@ body {
 .bg-yellow-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(234 179 8 / var(--tw-bg-opacity));
-}
-
-.bg-pink-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 168 212 / var(--tw-bg-opacity));
-}
-
-.bg-pink-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(252 231 243 / var(--tw-bg-opacity));
 }
 
 .bg-gradient-to-r {

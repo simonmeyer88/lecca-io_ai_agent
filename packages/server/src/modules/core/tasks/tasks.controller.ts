@@ -110,7 +110,11 @@ export class AgentTasksController {
       if (typeof result === 'string' || Array.isArray(result)) {
         return response.status(200).json(result);
       } else {
-        return result.pipeDataStreamToResponse(response);
+        return result.pipeDataStreamToResponse(response, {
+          getErrorMessage(error) {
+            return error?.toString();
+          },
+        });
       }
     } catch (error) {
       return response.status(500).json({ error: error.message });

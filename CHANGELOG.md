@@ -1,3 +1,11 @@
+# [0.8.0](https://github.com/lecca-digital/lecca-io/compare/v0.7.0...v0.8.0) (2024-12-17)
+
+
+### Features
+
+* **server:** Add DEV_EMAIL_DOMAIN server config item for dev module ([7538769](https://github.com/lecca-digital/lecca-io/commit/753876986fe65b47a39e5609a3cfe26c9268b61a))
+* **ui:** Remove old logo and replace with credit card on left rail ([35bd59d](https://github.com/lecca-digital/lecca-io/commit/35bd59d7b42826746823b063decd77ce4819236e))
+
 # [0.7.0](https://github.com/lecca-digital/lecca-io/compare/v0.6.0...v0.7.0) (2024-12-17)
 
 

@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+import { ServerConfig } from '../../../config/server.config';
 import { BelongsTo } from '../../../decorators/belongs-to.decorator';
 import { Expansion } from '../../../decorators/expansion.decorator';
 import { FilterBy } from '../../../decorators/filter-by.decorator';
@@ -128,7 +129,7 @@ export class WorkflowTemplatesController {
     @Param('workflowTemplateId') workflowTemplateId: string,
     @Expansion('workflowTemplates') expansion: WorkflowTemplateExpansionDto,
   ) {
-    if (!user.email.includes('@lecca.io')) {
+    if (!user.email.includes(ServerConfig.DEV_EMAIL_DOMAIN)) {
       throw new ForbiddenException('Only Lecca employees can share globally');
     }
 

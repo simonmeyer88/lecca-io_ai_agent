@@ -270,6 +270,13 @@ export const ServerConfig = {
     process.env.DEFAULT_EMBEDDING_MODEL ?? 'text-embedding-3-small',
 
   /**
+   * Dev email domain used for testing, debugging, and development.
+   * These funtions and endpoints are available in the dev module.
+   * Make sure to include the '@' symbol.
+   */
+  DEV_EMAIL_DOMAIN: process.env.DEV_EMAIL_DOMAIN || '@lecca.io',
+
+  /**
    * When a user signs up, this workflow ID will be triggered.
    * Make sure it has a webhook trigger.
    */

@@ -1,3 +1,18 @@
+# [0.7.0](https://github.com/lecca-digital/lecca-io/compare/v0.6.0...v0.7.0) (2024-12-17)
+
+
+### Bug Fixes
+
+* **apps:** Replace integration base url env with hardcoded string ([fff7c83](https://github.com/lecca-digital/lecca-io/commit/fff7c83437d12e853f2b9a93c61773e3ce093358))
+* **ui:** Fix tailwind config to work with monorepo migration ([feb1711](https://github.com/lecca-digital/lecca-io/commit/feb171135d10fb194877e57cf58e99365ef13672))
+* **ui:** Prevent auth errors from showing up in system messages in ui ([1a93ccf](https://github.com/lecca-digital/lecca-io/commit/1a93ccf50c239dc7af154e330fbd19eca3f89cef))
+
+
+### Features
+
+* **server:** Add error handler to ai chat stream ([b87e01a](https://github.com/lecca-digital/lecca-io/commit/b87e01a6fd17bfa9b367313f44fe7a56a99f1807))
+* **ui:** Hide google sign in if no google client id ([ea7b792](https://github.com/lecca-digital/lecca-io/commit/ea7b79285398e709b877a16db1ea54ba0007e2a2))
+
 # [0.6.0](https://github.com/lecca-digital/lecca-io/compare/v0.5.0...v0.6.0) (2024-12-16)
 
 

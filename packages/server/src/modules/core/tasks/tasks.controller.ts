@@ -112,7 +112,11 @@ export class AgentTasksController {
       } else {
         return result.pipeDataStreamToResponse(response, {
           getErrorMessage(error) {
-            return error?.toString();
+            if (typeof error === 'object') {
+              return JSON.stringify(error);
+            } else {
+              return error?.toString();
+            }
           },
         });
       }

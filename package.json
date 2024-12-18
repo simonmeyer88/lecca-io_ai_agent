@@ -16,8 +16,8 @@
   "private": false,
   "prepare": "husky install",
   "dependencies": {
-    "@lecca-io/toolkit": "0.11.2",
-    "@lecca-io/apps": "0.11.2",
+    "@lecca-io/toolkit": "0.10.0",
+    "@lecca-io/apps": "0.10.0",
     "@ai-sdk/anthropic": "^1.0.2",
     "@ai-sdk/google": "^1.0.3",
     "@ai-sdk/openai": "^1.0.4",

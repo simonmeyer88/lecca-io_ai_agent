@@ -4,10 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@lecca-io/toolkit': 0.10.0
-  '@lecca-io/apps': 0.10.0
-
 importers:
 
   .:

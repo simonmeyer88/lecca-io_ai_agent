@@ -30,12 +30,12 @@ packagePaths.forEach((packagePath) => {
     // If this is the root package.json, update the dependencies
     // This is a hack to get the @lecca-io packages to always be the same version as the root package
     if (packagePath === 'package.json') {
-      if (packageJson.dependencies) {
-        if (packageJson.dependencies['@lecca-io/toolkit']) {
-          packageJson.dependencies['@lecca-io/toolkit'] = newVersion;
+      if (packageJson.pnpm && packageJson.pnpm.overrides) {
+        if (packageJson.pnpm.overrides['@lecca-io/toolkit']) {
+          packageJson.pnpm.overrides['@lecca-io/toolkit'] = newVersion;
         }
-        if (packageJson.dependencies['@lecca-io/apps']) {
-          packageJson.dependencies['@lecca-io/apps'] = newVersion;
+        if (packageJson.pnpm.overrides['@lecca-io/apps']) {
+          packageJson.pnpm.overrides['@lecca-io/apps'] = newVersion;
         }
       }
     }

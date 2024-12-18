@@ -1,5 +1,4 @@
-import { Connection } from '@prisma/client';
-
+import { ConnectionData } from './connection.types';
 import { InjectedServices } from './services.types';
 
 export const INPUT_TYPES = [
@@ -182,7 +181,7 @@ export type FieldConfig = BaseFieldConfig & {
    * This function will be called from the client to get dynamic options from the server
    */
   _getDynamicValues?: (args: {
-    connection: Partial<Connection>;
+    connection: ConnectionData;
     extraOptions: Record<string, any> | undefined;
     projectId: string;
     workspaceId: string;

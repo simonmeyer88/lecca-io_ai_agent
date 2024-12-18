@@ -16,7 +16,7 @@ RUN npm install -g pnpm nx
 RUN pnpm install --frozen-lockfile
 
 # Build UI
-RUN pnpm exec nx run ui:build
+RUN pnpm exec nx run ui:build --verbose
 
 # Production stage
 FROM nginx:alpine

@@ -5,21 +5,31 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig, loadEnv } from 'vite';
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode, command }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  const PORT = Number(new URL(env.VITE_CLIENT_URL).port);
+  const defaultPort = 5173;
 
+  let serverConfig = {}
+
+  if (command === 'serve') {
+    const PORT = Number(new URL(env.VITE_CLIENT_URL).port) || defaultPort;
+
+    serverConfig = {
+      server: {
+        port: PORT,
+        host: 'localhost',
+      },
+      preview: {
+        port: PORT,
+        host: 'localhost',
+      },
+    }
+  }
+  
   return {
     root: __dirname,
     cacheDir: '../../node_modules/.vite/packages/ui',
-    server: {
-      port: PORT,
-      host: 'localhost',
-    },
-    preview: {
-      port: PORT,
-      host: 'localhost',
-    },
+    ...serverConfig,
     plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
     resolve: {
       alias: {

@@ -1,3 +1,10 @@
+# [0.9.0](https://github.com/lecca-digital/lecca-io/compare/v0.8.0...v0.9.0) (2024-12-18)
+
+
+### Features
+
+* **ui:** Update favicon to use new logo ([347dc3e](https://github.com/lecca-digital/lecca-io/commit/347dc3ebb8358cfa9d659cd4a5d9b4f5d17ff33e))
+
 # [0.8.0](https://github.com/lecca-digital/lecca-io/compare/v0.7.0...v0.8.0) (2024-12-17)
 
 

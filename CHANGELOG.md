@@ -1,3 +1,11 @@
+## [0.11.5](https://github.com/lecca-digital/lecca-io/compare/v0.11.4...v0.11.5) (2024-12-18)
+
+
+### Bug Fixes
+
+* Set [@lecca-io](https://github.com/lecca-io) packages to latest ([de7326e](https://github.com/lecca-digital/lecca-io/commit/de7326e78f01d5feaebec9276ef01bcb2ec68c2e))
+* Set [@lecca-io](https://github.com/lecca-io) packages to latest ([e582888](https://github.com/lecca-digital/lecca-io/commit/e582888e676f261f60be8ebff4a3c549cda20c57))
+
 ## [0.11.4](https://github.com/lecca-digital/lecca-io/compare/v0.11.3...v0.11.4) (2024-12-18)
 
 

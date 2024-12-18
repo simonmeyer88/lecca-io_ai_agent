@@ -1,6 +1,6 @@
 {
   "name": "lecca-io",
-  "version": "0.10.0",
+  "version": "0.11.1",
   "license": "Apache-2.0 with Commons Clause",
   "repository": {
     "type": "git",
@@ -236,8 +236,8 @@
   },
   "pnpm": {
     "overrides": {
-      "@lecca-io/toolkit": "0.10.0",
-      "@lecca-io/apps": "0.10.0"
+      "@lecca-io/toolkit": "0.11.1",
+      "@lecca-io/apps": "0.11.1"
     }
   },
   "prisma": {

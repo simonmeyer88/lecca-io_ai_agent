@@ -1,3 +1,10 @@
+## [0.11.1](https://github.com/lecca-digital/lecca-io/compare/v0.11.0...v0.11.1) (2024-12-18)
+
+
+### Bug Fixes
+
+* Test pnpm-lock overrides for ci ([b52f2e1](https://github.com/lecca-digital/lecca-io/commit/b52f2e195d8ac17a037277057b46ed7c12b644b8))
+
 # [0.11.0](https://github.com/lecca-digital/lecca-io/compare/v0.10.0...v0.11.0) (2024-12-18)
 
 

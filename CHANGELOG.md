@@ -1,3 +1,10 @@
+## [0.11.4](https://github.com/lecca-digital/lecca-io/compare/v0.11.3...v0.11.4) (2024-12-18)
+
+
+### Bug Fixes
+
+* Add --no-frozen-lockfile ([7c9ad2a](https://github.com/lecca-digital/lecca-io/commit/7c9ad2ae8049b8e6fe5154aeddcbfc36bd3f4390))
+
 ## [0.11.3](https://github.com/lecca-digital/lecca-io/compare/v0.11.2...v0.11.3) (2024-12-18)
 
 

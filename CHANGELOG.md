@@ -1,3 +1,10 @@
+## [0.11.6](https://github.com/lecca-digital/lecca-io/compare/v0.11.5...v0.11.6) (2024-12-18)
+
+
+### Bug Fixes
+
+* Update conditions on deploy yml ([f2d065e](https://github.com/lecca-digital/lecca-io/commit/f2d065e8e86ace4a54693d2cc6c1a2eff286f3e2))
+
 ## [0.11.5](https://github.com/lecca-digital/lecca-io/compare/v0.11.4...v0.11.5) (2024-12-18)
 
 

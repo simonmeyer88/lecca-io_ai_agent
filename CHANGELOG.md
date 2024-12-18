@@ -1,3 +1,15 @@
+# [0.10.0](https://github.com/lecca-digital/lecca-io/compare/v0.9.0...v0.10.0) (2024-12-18)
+
+
+### Bug Fixes
+
+* **server:** Stringify the pipe stream error when ai chat streaming ([d382a2f](https://github.com/lecca-digital/lecca-io/commit/d382a2fd22c27a6845c06cf3761c1a561701bcdf))
+
+
+### Features
+
+* **apps:** Add brave search and serper dev apps ([1f42e1f](https://github.com/lecca-digital/lecca-io/commit/1f42e1f94e2070edb1092e1d6639dc54e30d99f1))
+
 # [0.9.0](https://github.com/lecca-digital/lecca-io/compare/v0.8.0...v0.9.0) (2024-12-18)
 
 

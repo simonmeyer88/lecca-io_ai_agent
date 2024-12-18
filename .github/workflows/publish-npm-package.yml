@@ -21,7 +21,11 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 9
-      - run: pnpm install --frozen-lockfile
+          # pnpm install --frozen-lockfile 
+          # Not using frozen lockfile because we need to install the
+          # latest version of @lecca-io libs so we update the version during the ci.
+          # This is a workaround until we have a better solution.
+      - run: pnpm install 
 
       - name: Build toolkit
         run: pnpm nx build toolkit

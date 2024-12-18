@@ -5,7 +5,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@lecca-io/toolkit": "*"
+    "@lecca-io/toolkit": "latest"
   },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",

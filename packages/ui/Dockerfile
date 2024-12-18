@@ -17,7 +17,7 @@ RUN npm install -g pnpm nx
 # Not using frozen lockfile because we need to install the
 # latest version of @lecca-io libs so we update the version during the ci.
 # This is a workaround until we have a better solution.
-RUN pnpm install 
+RUN pnpm install --no-frozen-lockfile 
 
 # Build UI
 RUN pnpm exec nx run ui:build --verbose

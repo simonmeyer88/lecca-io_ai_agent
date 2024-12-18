@@ -19,7 +19,7 @@ RUN npm install -g pnpm @nestjs/cli nx
 # Not using frozen lockfile because we need to install the
 # latest version of @lecca-io libs so we update the version during the ci.
 # This is a workaround until we have a better solution.
-RUN pnpm install 
+RUN pnpm install --no-frozen-lockfile
 
 # Build server
 RUN pnpm exec nx run server:build 

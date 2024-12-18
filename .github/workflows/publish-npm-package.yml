@@ -25,7 +25,7 @@ jobs:
           # Not using frozen lockfile because we need to install the
           # latest version of @lecca-io libs so we update the version during the ci.
           # This is a workaround until we have a better solution.
-      - run: pnpm install 
+      - run: pnpm install --no-frozen-lockfile
 
       - name: Build toolkit
         run: pnpm nx build toolkit

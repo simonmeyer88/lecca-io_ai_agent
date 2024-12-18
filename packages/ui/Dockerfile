@@ -13,11 +13,7 @@ COPY packages/ui ./packages/ui
 RUN npm install -g pnpm nx
 
 # Install dependencies
-# RUN pnpm install --frozen-lockfile 
-# Not using frozen lockfile because we need to install the
-# latest version of @lecca-io libs so we update the version during the ci.
-# This is a workaround until we have a better solution.
-RUN pnpm install --no-frozen-lockfile 
+RUN pnpm install --frozen-lockfile 
 
 # Build UI
 RUN pnpm exec nx run ui:build --verbose

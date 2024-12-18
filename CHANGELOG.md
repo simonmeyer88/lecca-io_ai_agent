@@ -1,3 +1,11 @@
+## [0.11.2](https://github.com/lecca-digital/lecca-io/compare/v0.11.1...v0.11.2) (2024-12-18)
+
+
+### Bug Fixes
+
+* Update Docker and github action to do normal install no lock ([e1f26f9](https://github.com/lecca-digital/lecca-io/commit/e1f26f90431969e97968836be00fd6e8e3b9c9f7))
+* Update Docker and github action to do normal install no lock ([33a9548](https://github.com/lecca-digital/lecca-io/commit/33a95482b0370ff6cf0f35638c3b9bd28b2e7d6b))
+
 ## [0.11.1](https://github.com/lecca-digital/lecca-io/compare/v0.11.0...v0.11.1) (2024-12-18)
 
 

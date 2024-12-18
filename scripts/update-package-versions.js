@@ -27,6 +27,19 @@ packagePaths.forEach((packagePath) => {
     // Update the version
     packageJson.version = newVersion;
 
+    // If this is the root package.json, update the dependencies
+    // This is a hack to get the @lecca-io packages to always be the same version as the root package
+    if (packagePath === 'package.json') {
+      if (packageJson.dependencies) {
+        if (packageJson.dependencies['@lecca-io/toolkit']) {
+          packageJson.dependencies['@lecca-io/toolkit'] = newVersion;
+        }
+        if (packageJson.dependencies['@lecca-io/apps']) {
+          packageJson.dependencies['@lecca-io/apps'] = newVersion;
+        }
+      }
+    }
+
     // Write back to file
     fs.writeFileSync(fullPath, JSON.stringify(packageJson, null, 2) + '\n');
 

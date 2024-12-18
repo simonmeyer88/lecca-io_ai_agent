@@ -1,4 +1,4 @@
-name: Publish Apps and Toolkit
+name: Publish NPM Packages
 
 on:
   release:

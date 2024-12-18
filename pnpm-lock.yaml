@@ -49,7 +49,7 @@ importers:
         version: 3.9.1(react-hook-form@7.54.1(react@18.3.1))
       '@lecca-io/apps':
         specifier: '*'
-        version: 0.7.0
+        version: 0.10.0
       '@lecca-io/toolkit':
         specifier: '*'
         version: 0.7.0
@@ -2074,8 +2074,8 @@ packages:
     peerDependencies:
       tslib: '2'
 
-  '@lecca-io/apps@0.7.0':
-    resolution: {integrity: sha512-MsJfo1eu+I5JcTbOg9A337i6DYjLDFeDUvkAVeBkwHwIBGCjxmPWEMc3r1KYWpEbyL12eFnbXbPBJxgoOTzoiQ==}
+  '@lecca-io/apps@0.10.0':
+    resolution: {integrity: sha512-Nf+jQq3AqOagrchzqoQckNq1dPWZizjag1HPFwmj4EoJ/8YOjYYoUAZl3xLysMuIMpRnI+L+8zkFO0hMCGoFRA==}
 
   '@lecca-io/toolkit@0.7.0':
     resolution: {integrity: sha512-amk0tGhgsr/v1qupxGl8natkTiyuoGEPhK96elBvx36l7zs/7L7QbYqOD2GBEOVkDg4Yuh/WWFrBfhon8BIgag==}
@@ -15310,7 +15310,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@lecca-io/apps@0.7.0':
+  '@lecca-io/apps@0.10.0':
     dependencies:
       '@lecca-io/toolkit': 0.7.0
 

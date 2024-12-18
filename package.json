@@ -8,6 +8,8 @@
   },
   "scripts": {
     "vercel-build": "nx build ui",
+    "start:server": "nx serve server",
+    "start:ui": "nx serve ui",
     "start:tunnel": "dotenv -- cross-var ngrok http --domain=tunnel.lecca.io %PORT%",
     "start:stripe": "dotenv -- cross-var stripe listen --forward-to %SERVER_URL%/webhooks/stripe"
   },

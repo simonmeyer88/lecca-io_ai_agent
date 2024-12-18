@@ -32,6 +32,7 @@ export class Trigger {
     this.needsConnection = args.needsConnection ?? args.app.needsConnection;
     this.iconUrl = args.iconUrl;
     this.strategy = args.strategy;
+    this.viewOptions = args.viewOptions;
   }
 
   app: App;
@@ -1035,6 +1036,7 @@ export type TriggerConstructorArgs = {
   availableForAgent: boolean;
   needsConnection: boolean;
   iconUrl: string | undefined;
+  viewOptions: NodeViewOptions | undefined;
 };
 
 export type LengthBasedPollTriggerConstructorArgs = TriggerConstructorArgs;

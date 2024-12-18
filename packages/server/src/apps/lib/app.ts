@@ -77,6 +77,7 @@ export class App {
           mockRun: action.mockRun,
           needsConnection: action.needsConnection,
           iconUrl: action.iconUrl,
+          viewOptions: action.viewOptions,
         }),
     );
 
@@ -102,6 +103,7 @@ export class App {
         needsConnection: trigger.needsConnection,
         iconUrl: trigger.iconUrl,
         strategy: trigger.strategy,
+        viewOptions: trigger.viewOptions,
       };
 
       switch (trigger.strategy) {

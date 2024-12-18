@@ -3,6 +3,7 @@ import { createApp } from '@lecca-io/toolkit';
 import { ai } from './lib/ai/ai.app';
 import { anthropic } from './lib/anthropic/anthropic.app';
 import { apify } from './lib/apify/apify.app';
+import { braveSearch } from './lib/brave-search/brave-search.app';
 import { calendly } from './lib/calendly/calendly.app';
 import { csv } from './lib/csv/csv.app';
 import { date } from './lib/date/date.app';
@@ -30,6 +31,7 @@ import { openai } from './lib/openai/openai.app';
 import { paradigmVendo } from './lib/paradigm-vendo/paradigm-vendo.app';
 import { phone } from './lib/phone/phone.app';
 import { salesRabbit } from './lib/sales-rabbit/sales-rabbit.app';
+import { serper } from './lib/serper/serper.app';
 import { slack } from './lib/slack/slack.app';
 import { text } from './lib/text/text.app';
 import { vapi } from './lib/vapi/vapi.app';
@@ -44,6 +46,7 @@ const apps: Record<string, ReturnType<typeof createApp>> = {
   [ai.id]: ai,
   [anthropic.id]: anthropic,
   [apify.id]: apify,
+  [braveSearch.id]: braveSearch,
   [calendly.id]: calendly,
   [csv.id]: csv,
   [date.id]: date,
@@ -71,6 +74,7 @@ const apps: Record<string, ReturnType<typeof createApp>> = {
   [paradigmVendo.id]: paradigmVendo,
   [phone.id]: phone,
   [salesRabbit.id]: salesRabbit,
+  [serper.id]: serper,
   [slack.id]: slack,
   [text.id]: text,
   [vapi.id]: vapi,
@@ -86,6 +90,7 @@ export {
   ai,
   anthropic,
   apify,
+  braveSearch,
   calendly,
   csv,
   date,
@@ -112,6 +117,7 @@ export {
   paradigmVendo,
   phone,
   salesRabbit,
+  serper,
   slack,
   text,
   vapi,

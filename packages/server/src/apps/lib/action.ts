@@ -27,6 +27,7 @@ export class Action {
     this.availableForAgent = args.availableForAgent ?? true;
     this.needsConnection = args.needsConnection ?? args.app.needsConnection;
     this.iconUrl = args.iconUrl;
+    this.viewOptions = args.viewOptions;
 
     if (args.handleInterruptingResponse) {
       this.handleInterruptingResponse = args.handleInterruptingResponse;
@@ -48,17 +49,7 @@ export class Action {
   /**
    * Options to configure how the node looks in the builder.
    */
-  viewOptions: null | NodeViewOptions = null;
-
-  /**
-   * An action that interrupts the execution.
-   *
-   * Some examples are:
-   * Requiring user input.
-   * Scheduling to continue at a later time.
-   * Waiting for a webhook.
-   */
-  isInterruptingAction = false;
+  viewOptions: null | NodeViewOptions;
 
   /**
    * Only used if isInterruptingAction is true.
@@ -598,6 +589,7 @@ export type ActionConstructorArgs = {
   availableForAgent: boolean;
   needsConnection: boolean;
   iconUrl?: string;
+  viewOptions: NodeViewOptions | undefined;
   handleInterruptingResponse?: (args: {
     runResponse: unknown;
   }) => ActionResponse<unknown>;

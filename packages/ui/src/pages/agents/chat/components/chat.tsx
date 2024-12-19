@@ -207,7 +207,8 @@ export function Chat(props: Props) {
       let message = '';
       let statusCode = 200;
       try {
-        message = JSON.parse(error.message).message;
+        message =
+          JSON.parse(error.message).message ?? JSON.parse(error.message).error;
         statusCode = JSON.parse(error.message).statusCode;
       } catch {
         message = error.message;

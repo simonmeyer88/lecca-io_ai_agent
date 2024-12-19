@@ -55,12 +55,19 @@ export const ServerConfig = {
   PLATFORM_NAME: process.env.PLATFORM_NAME || 'Lecca.io',
 
   /**
+
+   * 
    * Used for the ngrok tunnel URL. This is used for testing integrations locally that don't support localhost.
    * Espcially Webhook. For the best experience, you should use the ngrok tunnel URL instead of localhost.
+   * 
+   * Also used for local oauth2 callback. If you want to use any app like gmail, slack, notion, .etc
+   * then you need to set this to the ngrok tunnel url so you can authenticate while developing locally.
+   * If you are running a production build (docker image), then the SERVER_URL will be used instead.
    *
-   * To run the tunnel configure your ngrok connection using the script they provide when creating an account
-   * Then update the package.json start:tunnel script with your port and domain.
+   * To run the tunnel configure your ngrok connection using the script they provide when creating an account.
    * Then use the following command: `pnpm start:tunnel`
+   * 
+   * https://ngrok.com/
    */
   NGROK_TUNNEL_URL: process.env.NGROK_TUNNEL_URL,
 

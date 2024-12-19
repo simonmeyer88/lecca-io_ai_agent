@@ -366,7 +366,7 @@ export class WorkflowAppsService {
       throw new NotFoundException(`Connection (${connectionId}) not found`);
     }
 
-    return connection.connectApp({
+    return await connection.connectApp({
       workspaceId: workspaceId,
       configValue: value,
       res,

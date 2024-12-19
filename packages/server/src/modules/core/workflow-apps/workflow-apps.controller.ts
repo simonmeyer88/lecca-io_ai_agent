@@ -91,7 +91,7 @@ export class WorkflowAppsController {
 
   @Post(':appId/connections/:connectionId/connect')
   @Roles()
-  connectApp(
+  async connectApp(
     @User() user: JwtUser,
     @Param('appId') appId: string,
     @Param('connectionId') connectionId: string,
@@ -100,7 +100,7 @@ export class WorkflowAppsController {
     @Body() value: Record<string, any>,
   ) {
     try {
-      return this.workflowAppsService.connectApp({
+      return await this.workflowAppsService.connectApp({
         appId,
         connectionId,
         workspaceId: user.workspaceId,

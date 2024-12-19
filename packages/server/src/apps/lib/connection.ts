@@ -23,7 +23,7 @@ export class Connection {
   inputConfig: InputConfig;
   connectionType: ConnectionType;
 
-  connectApp(args: {
+  async connectApp(args: {
     workspaceId: string;
     configValue: any;
     res: Response;
@@ -31,15 +31,21 @@ export class Connection {
   }) {
     switch (this.connectionType) {
       case 'apiKey':
-        return (this as unknown as ApiKeyConnection).connectApiKeyApp(args);
-      case 'basic':
-        return (this as unknown as BasicAuthConnection).connectBasicAuthApp(
+        return await (this as unknown as ApiKeyConnection).connectApiKeyApp(
           args,
         );
+      case 'basic':
+        return await (
+          this as unknown as BasicAuthConnection
+        ).connectBasicAuthApp(args);
       case 'keyPair':
-        return (this as unknown as KeyPairConnection).connectKeyPairApp(args);
+        return await (this as unknown as KeyPairConnection).connectKeyPairApp(
+          args,
+        );
       case 'oauth2':
-        return (this as unknown as OAuth2Connection).sendAuthorizeUrl(args);
+        return await (this as unknown as OAuth2Connection).sendAuthorizeUrl(
+          args,
+        );
     }
   }
 
@@ -138,6 +144,14 @@ export class OAuth2Connection extends Connection {
   pkce: boolean;
 
   async generateAuthorizeUrl(args: GenerateAuthorizeUrlArgs): Promise<string> {
+    if (ServerConfig.ENVIRONMENT === 'development') {
+      if (!ServerConfig.NGROK_TUNNEL_URL) {
+        throw new Error(
+          'NGROK_TUNNEL_URL environment variable is required for OAuth2 connections in development. This is because most OAuth2 providers require a public URL for the callback, not localhost.',
+        );
+      }
+    }
+
     const statePayload: OAuth2CallbackState = {
       name: args.configValue?.name,
       appId: this.app.id,

@@ -5,16 +5,12 @@ import { ExecutionsService } from '../executions/executions.service';
 import { KnowledgeService } from '../knowledge/knowledge.service';
 import { WorkflowAppsService } from '../workflow-apps/workflow-apps.service';
 
-import {
-  AgentMessageController,
-  AgentTasksController,
-  TasksController,
-} from './tasks.controller';
+import { AgentTasksController, TasksController } from './tasks.controller';
 import { TasksService } from './tasks.service';
 
 @Module({
   imports: [],
-  controllers: [TasksController, AgentTasksController, AgentMessageController],
+  controllers: [TasksController, AgentTasksController],
   exports: [TasksService],
   providers: [
     TasksService,

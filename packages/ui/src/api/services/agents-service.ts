@@ -4,7 +4,6 @@ import {
   UpdateAgentType,
   agentSchema,
 } from '../../models/agent/agent-model';
-import { MessageTaskType } from '../../models/task/task-model';
 import { ApiLibrary, ApiLibraryConfig, appQueryClient } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 
@@ -37,26 +36,6 @@ export default class AgentsService extends ApiLibraryHelper {
         ]);
       },
       config,
-    });
-  }
-
-  message({
-    agentId,
-    data,
-    config,
-  }: {
-    agentId: string;
-    data: MessageTaskType;
-    config?: ApiLibraryConfig;
-  }) {
-    return super.apiFetch({
-      path: `/agents/${agentId}/message`,
-      httpMethod: 'post',
-      mockConfig: {
-        schema: null,
-      },
-      config,
-      data: data,
     });
   }
 

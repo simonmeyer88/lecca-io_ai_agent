@@ -126,35 +126,6 @@ export class AgentTasksController {
   }
 }
 
-@Controller('agents/:agentId/message')
-@ApiTags('Tasks')
-@ApiBearerAuth()
-export class AgentMessageController {
-  constructor(private readonly tasksService: TasksService) {}
-
-  @Post()
-  @BelongsTo({ owner: 'either', key: 'agentId', roles: ['MAINTAINER'] })
-  async message(
-    @User() user: JwtUser,
-    @Param('agentId') agentId: string,
-    @Body() data: MessageTaskDto,
-    @Res() response: Response,
-  ) {
-    /**
-     * This generates a message response that can later be saved on a task.
-     * Used for the start of a new conversation before a taskId exists.
-     */
-
-    const result = await this.tasksService.messageAgent({
-      messages: data.messages,
-      workspaceId: user.workspaceId,
-      agentId: agentId,
-    });
-
-    return result.pipeDataStreamToResponse(response);
-  }
-}
-
 @Controller('tasks')
 @ApiTags('Tasks')
 @ApiBearerAuth()

@@ -1,3 +1,16 @@
+# [0.12.0](https://github.com/lecca-digital/lecca-io/compare/v0.11.6...v0.12.0) (2024-12-19)
+
+
+### Bug Fixes
+
+* **server:** Update polling services to check if credits are enabled ([3ec3dab](https://github.com/lecca-digital/lecca-io/commit/3ec3dab7724f858e015e5a645200bfdfe09dbc01))
+* **ui:** Add agent.tools to canStream check ([4d0b375](https://github.com/lecca-digital/lecca-io/commit/4d0b37517fb1d53a85b5db0fe7a43d31e9790ccd))
+
+
+### Features
+
+* **server:** Remove s3 error log when deleting nothing ([18be80b](https://github.com/lecca-digital/lecca-io/commit/18be80b6a63891e6563cf330eb2e4eda2ba09ca8))
+
 ## [0.11.6](https://github.com/lecca-digital/lecca-io/compare/v0.11.5...v0.11.6) (2024-12-18)
 
 

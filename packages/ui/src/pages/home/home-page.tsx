@@ -35,6 +35,16 @@ export default function HomePage() {
     apiLibraryArgs: {},
   });
 
+  const { data: templates } = useApiQuery({
+    service: 'workflowTemplates',
+    method: 'getSharedList',
+    apiLibraryArgs: {
+      config: {
+        sharedToType: 'global',
+      },
+    },
+  });
+
   return (
     <ScrollArea>
       <main className="w-full max-w-full flex flex-col items-center justify-start mb-20 overflow-x-auto">
@@ -119,17 +129,19 @@ export default function HomePage() {
           <HomeSectionRecentWorkflows />
         </HomeSection>
 
-        <HomeSection className="flex flex-col items-center my-8">
-          <div className="flex justify-between items-center w-full">
-            <h2 className="text-2xl font-bold space-x-2 mb-4">
-              Popular Templates
-            </h2>
-            <Button variant={'link'} size="sm" className="p-0 h-2">
-              <Link to="/workflow-templates">View all</Link>
-            </Button>
-          </div>
-          <TemplateCarousel />
-        </HomeSection>
+        {templates && templates.length > 0 && (
+          <HomeSection className="flex flex-col items-center my-8">
+            <div className="flex justify-between items-center w-full">
+              <h2 className="text-2xl font-bold space-x-2 mb-4">
+                Popular Templates
+              </h2>
+              <Button variant={'link'} size="sm" className="p-0 h-2">
+                <Link to="/workflow-templates">View all</Link>
+              </Button>
+            </div>
+            <TemplateCarousel />
+          </HomeSection>
+        )}
 
         <HomeSection className="flex flex-col items-center my-8">
           <div className="flex justify-between items-center w-full">

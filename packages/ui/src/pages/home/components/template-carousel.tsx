@@ -20,11 +20,9 @@ export function TemplateCarousel() {
       },
     },
   });
-  //   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
 
   return (
     <Carousel
-      //   setApi={setCarouselApi}
       opts={{
         loop: true,
       }}

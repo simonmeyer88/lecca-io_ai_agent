@@ -61,6 +61,7 @@ export function Chat(props: Props) {
       return true;
     } else if (llmModel?.canStreamText && !llmModel?.canStreamTools) {
       if (
+        props.agent.tools?.length ||
         props.agent.agentKnowledge?.length ||
         props.agent.agentActions?.length ||
         props.agent.agentWorkflows?.length ||
@@ -82,13 +83,15 @@ export function Chat(props: Props) {
     aiProviders,
     props.agent.agentActions?.length,
     props.agent.agentKnowledge?.length,
-    props.agent.agentPhoneAccess,
+    props.agent.agentPhoneAccess?.outboundCallsEnabled,
     props.agent.agentSubAgents?.length,
     props.agent.agentVariables?.length,
-    props.agent.agentWebAccess,
+    props.agent.agentWebAccess?.webSearchEnabled,
+    props.agent.agentWebAccess?.websiteAccessEnabled,
     props.agent.agentWorkflows?.length,
     props.agent.llmModel,
     props.agent.llmProvider,
+    props.agent.tools?.length,
   ]);
 
   const hasToolsButCannotUseThem = useMemo(() => {
@@ -435,12 +438,14 @@ export function Chat(props: Props) {
                 />
               ))}
               {isLoadingResponse && (
-                <MessageAgentCard
-                  agent={props.agent}
-                  createdAt={new Date()}
-                  status="loading"
-                  textContent=""
-                />
+                <div className="px-10">
+                  <MessageAgentCard
+                    agent={props.agent}
+                    createdAt={new Date()}
+                    status="loading"
+                    textContent=""
+                  />
+                </div>
               )}
             </div>
           )}

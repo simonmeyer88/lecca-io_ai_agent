@@ -139,7 +139,8 @@ export class DiscoveryService {
           let reason = '';
           switch (feature as keyof Features) {
             case 'AGENTS':
-              reason = 'OPENAI_API_Key or ANTHROPIC_API_KEY must be set';
+              reason =
+                'OPENAI_API_KEY or ANTHROPIC_API_KEY or GEMINI_API_KEY must be set. Or run ollama locally';
               break;
             case 'KNOWLEDGE':
               reason =

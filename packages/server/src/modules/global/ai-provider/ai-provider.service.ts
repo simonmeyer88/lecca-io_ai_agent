@@ -121,19 +121,28 @@ export class AiProviderService {
       switch (aiProvider) {
         case 'openai':
           apiKey = ServerConfig.OPENAI_API_KEY;
+          if (!apiKey) {
+            throw new BadRequestException('OPENAI_API_KEY is missing.');
+          }
           break;
         case 'anthropic':
           apiKey = ServerConfig.ANTHROPIC_API_KEY;
+          if (!apiKey) {
+            throw new BadRequestException('ANTHROPIC_API_KEY is missing.');
+          }
           break;
         case 'gemini':
           apiKey = ServerConfig.GEMINI_API_KEY;
+          if (!apiKey) {
+            throw new BadRequestException('GEMINI_API_KEY is missing.');
+          }
           break;
         case 'ollama':
           apiKey = null;
           break;
         default:
           throw new BadRequestException(
-            `The ${aiProvider} AI Provider is not supported for LLM`,
+            `The ${aiProvider} provider is not supported as an LLM provider`,
           );
       }
     }
@@ -209,13 +218,16 @@ export class AiProviderService {
       switch (aiProvider) {
         case 'openai':
           apiKey = ServerConfig.OPENAI_API_KEY;
+          if (!apiKey) {
+            throw new BadRequestException('OPENAI_API_KEY is missing.');
+          }
           break;
         case 'ollama':
           apiKey = null;
           break;
         default:
           throw new BadRequestException(
-            `The ${aiProvider} AI Provider is not supported for Embedding`,
+            `The ${aiProvider} provider is not supported as an embedding provider`,
           );
       }
     }

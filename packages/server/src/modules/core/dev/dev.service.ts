@@ -101,8 +101,12 @@ export class DevService {
   };
 
   updateWorkspaceCredits = async (data: DevUpdateWorkspaceCreditDto) => {
-    //Absolute the data.credits. If they were negative, they will be positive now.
-    data.credits = Math.abs(data.credits);
+    //Since this is a "charge", we make credits negative to add them to the workspace.
+    if (data.credits > 0) {
+      data.credits = -data.credits;
+    } else {
+      data.credits = Math.abs(data.credits);
+    }
 
     return await this.creditsService.updateWorkspaceCredits({
       creditsUsed: data.credits,

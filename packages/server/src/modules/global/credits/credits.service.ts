@@ -677,11 +677,7 @@ export class CreditsService {
             id: creditIt,
           },
           {
-            workflow: {
-              project: {
-                FK_workspaceId: workspaceId,
-              },
-            },
+            FK_workspaceId: workspaceId,
           },
         ],
       },

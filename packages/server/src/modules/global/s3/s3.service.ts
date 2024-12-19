@@ -241,8 +241,8 @@ export class S3ManagerService {
           ? listedObjects.NextContinuationToken
           : undefined;
       } while (continuationToken);
-    } catch (error) {
-      console.error('Error deleting old files:', error);
+    } catch {
+      //No files to delete
     }
   }
 

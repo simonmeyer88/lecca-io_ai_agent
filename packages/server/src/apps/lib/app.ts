@@ -284,30 +284,21 @@ export class App {
   /**
    * If the app needs a connection to work
    */
-  needsConnection;
+  needsConnection: boolean;
 
   /**
    * If the app is available for the agent to use
    */
   availableForAgent: boolean;
 
-  /**
-   * Return `false` if app doesn't support webhook triggers or if the webhook request is invalid
-   */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  verifyWebhookRequest(args: {
+  verifyWebhookRequest: (args: {
     webhookBody: unknown;
     webhookHeaders: Record<string, string>;
-  }): boolean {
-    throw new Error(`Verify webhook request not implemented for ${this.name}.`);
-  }
+  }) => boolean;
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  parseWebhookEventType(args: { webhookBody: unknown }): {
+  parseWebhookEventType: (args: { webhookBody: unknown }) => {
     event: unknown;
-  } {
-    throw new Error(`Parse webhook event not implemented for ${this.name}.`);
-  }
+  };
 
   connections: Connection[];
   connectionMap: Record<string, Connection>;

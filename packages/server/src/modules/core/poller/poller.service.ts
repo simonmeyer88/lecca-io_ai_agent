@@ -28,53 +28,73 @@ export class PollerService {
   //Every 15 minute
   @Cron('0,15,30,45 * * * *')
   async workflowTriggerPollerBusinessTier() {
-    // Get all workflows with poll strategy
-    const workflows = await this.#getWorkflowsByStrategyAndPaymentPlan({
-      strategy: 'poll',
-      plan: 'business',
-    });
+    if (!this.credits.isBillingEnabled()) {
+      //If billing is not enabled, we don't want to run this. We'll use the other workflow trigger pollers
+      return;
+    } else {
+      // Get all workflows with poll strategy
+      const workflows = await this.#getWorkflowsByStrategyAndPaymentPlan({
+        strategy: 'poll',
+        plan: 'business',
+      });
 
-    await this.#checkPollerWorkflowsForExecution({ workflows });
+      await this.#checkPollerWorkflowsForExecution({ workflows });
+    }
   }
 
   //Every 15 minutes
   @Cron('0,15,30,45 * * * *')
   async workflowTriggerPollerTeamTier() {
-    // Get all workflows with poll strategy
-    const workflows = await this.#getWorkflowsByStrategyAndPaymentPlan({
-      strategy: 'poll',
-      plan: 'team',
-    });
+    if (!this.credits.isBillingEnabled()) {
+      //If billing is not enabled, we don't want to run this. We'll use the other workflow trigger pollers
+      return;
+    } else {
+      // Get all workflows with poll strategy
+      const workflows = await this.#getWorkflowsByStrategyAndPaymentPlan({
+        strategy: 'poll',
+        plan: 'team',
+      });
 
-    await this.#checkPollerWorkflowsForExecution({ workflows });
+      await this.#checkPollerWorkflowsForExecution({ workflows });
+    }
   }
 
   //Every 15 minutes
   @Cron('0,15,30,45 * * * *')
   async workflowTriggerPollerProfessionalTier() {
-    // Get all workflows with poll strategy
-    const workflows = await this.#getWorkflowsByStrategyAndPaymentPlan({
-      strategy: 'poll',
-      plan: 'professional',
-    });
+    if (!this.credits.isBillingEnabled()) {
+      //If billing is not enabled, we don't want to run this. We'll use the other workflow trigger pollers
+      return;
+    } else {
+      // Get all workflows with poll strategy
+      const workflows = await this.#getWorkflowsByStrategyAndPaymentPlan({
+        strategy: 'poll',
+        plan: 'professional',
+      });
 
-    await this.#checkPollerWorkflowsForExecution({ workflows });
+      await this.#checkPollerWorkflowsForExecution({ workflows });
+    }
   }
 
   //Every hour
   @Cron('0 * * * *')
   async workflowTriggerPollerFreeTier() {
-    // Get all workflows with poll strategy
-    const workflows = await this.#getWorkflowsByStrategyAndPaymentPlan({
-      strategy: 'poll',
-      plan: 'free',
-    });
+    if (!this.credits.isBillingEnabled()) {
+      //If billing is not enabled, we don't want to run this. We'll use the other workflow trigger pollers
+      return;
+    } else {
+      // Get all workflows with poll strategy
+      const workflows = await this.#getWorkflowsByStrategyAndPaymentPlan({
+        strategy: 'poll',
+        plan: 'free',
+      });
 
-    await this.#checkPollerWorkflowsForExecution({ workflows });
+      await this.#checkPollerWorkflowsForExecution({ workflows });
+    }
   }
 
-  //Every 15 minutes
-  @Cron('0,15,30,45 * * * *')
+  //Every 10 seconds or whatever is set in ServerConfig
+  @Cron(ServerConfig.CRON_TRIGGER_POLLING_INTERVAL || '*/5 * * * *')
   async workflowTriggerForNoBillingPlatform() {
     // This is used for local development that doesn't use billing.
     if (this.credits.isBillingEnabled()) {

@@ -264,7 +264,8 @@ export const ServerConfig = {
   /**
    * The embedding model used with the embedding provider.
    *
-   * Make sure the model supports the dimension of 1536.
+   * Make sure the model supports the dimension of 1536 since that's the
+   * pinecone index size we're using at the moment.
    */
   DEFAULT_EMBEDDING_MODEL:
     process.env.DEFAULT_EMBEDDING_MODEL ?? 'text-embedding-3-small',
@@ -281,4 +282,12 @@ export const ServerConfig = {
    * Make sure it has a webhook trigger.
    */
   NEW_USER_WORKFLOW_ID: process.env.NEW_USER_WORKFLOW_ID,
+
+  /**
+   * This will be used as your polling interval for polling triggers.
+   * If no value is set, it will default to 5 minutes.
+   *
+   * Make sure the value is a string in cron format.
+   */
+  CRON_TRIGGER_POLLING_INTERVAL: process.env.CRON_TRIGGER_POLLING_INTERVAL,
 };

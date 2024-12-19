@@ -1,3 +1,12 @@
+# [0.13.0](https://github.com/lecca-digital/lecca-io/compare/v0.12.0...v0.13.0) (2024-12-19)
+
+
+### Features
+
+* Add SKIP_EMAIL_VERIFICATION env variable and logic to skip ([ccaf098](https://github.com/lecca-digital/lecca-io/commit/ccaf098d726a7100008d8660407d51349f057efd))
+* Remove unecessary vite google client id in example env file ([ac4490b](https://github.com/lecca-digital/lecca-io/commit/ac4490b0c7de764803e74acb9512e7ad628bf95c))
+* **server:** Add error handling for missing NGROK_TUNNEL_URL in development ([82b99ce](https://github.com/lecca-digital/lecca-io/commit/82b99ce5460abcaf415a0e43b637dd8b0ab461bb))
+
 # [0.12.0](https://github.com/lecca-digital/lecca-io/compare/v0.11.6...v0.12.0) (2024-12-19)
 
 

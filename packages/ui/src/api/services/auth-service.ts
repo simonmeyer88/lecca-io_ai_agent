@@ -79,7 +79,11 @@ export default class AuthService extends ApiLibraryHelper {
     return response;
   }
 
-  signupWithEmail<T = boolean>({ email, password, name }: CreateUserType) {
+  signupWithEmail<T = { result: boolean; verified: boolean }>({
+    email,
+    password,
+    name,
+  }: CreateUserType) {
     return this.apiFetch<T>({
       path: `${this.path}/signup`,
       httpMethod: 'post',

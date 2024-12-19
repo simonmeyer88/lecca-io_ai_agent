@@ -9,12 +9,14 @@ import { GoogleSignIn } from '../../components/google-sign-in';
 import { Button, buttonVariants } from '../../components/ui/button';
 import { Form } from '../../components/ui/form';
 import { Input } from '../../components/ui/input';
+import { useUser } from '../../hooks/useUser';
 import { CreateUserType, createUserSchema } from '../../models/user-model';
 import { cn } from '../../utils/cn';
 
 export function WelcomePage() {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { initializeUserContextData } = useUser();
 
   const form = useForm<CreateUserType>({
     resolver: zodResolver(createUserSchema),
@@ -31,10 +33,25 @@ export function WelcomePage() {
     const { data: successfulSignup, error } =
       await api.auth.signupWithEmail(values);
 
-    if (successfulSignup) {
-      navigate(`/confirm-email?email=${form.getValues().email}`, {
-        replace: true,
-      });
+    if (successfulSignup?.result) {
+      const email = values.email;
+      const password = values.password;
+
+      if (successfulSignup?.verified) {
+        const { data: loggedInSuccessfully } = await api.auth.loginWithEmail({
+          email,
+          password,
+        });
+
+        if (loggedInSuccessfully) {
+          await initializeUserContextData();
+          navigate('/', { replace: true });
+        } else {
+          navigate(`/login`);
+        }
+      } else {
+        navigate(`/confirm-email?email=${email}`, { replace: true });
+      }
     } else if (error) {
       form.setError('email', {
         type: 'manual',

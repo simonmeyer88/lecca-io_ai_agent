@@ -13,7 +13,7 @@ export const ServerConfig = {
   /**
    * The port the server will run on.
    */
-  PORT: process.env.PORT || 9094,
+  PORT: process.env.PORT,
 
   /**
    * Secret key used for signing and verifying JWT tokens.
@@ -276,6 +276,12 @@ export const ServerConfig = {
    * Make sure to include the '@' symbol.
    */
   DEV_EMAIL_DOMAIN: process.env.DEV_EMAIL_DOMAIN || '@lecca.io',
+
+  /**
+   * If set to `'true'`, upon account creation, the email will automatically
+   * be marked as verified. This is useful for development and testing.
+   */
+  SKIP_EMAIL_VERIFICATION: process.env.SKIP_EMAIL_VERIFICATION === 'true',
 
   /**
    * When a user signs up, this workflow ID will be triggered.

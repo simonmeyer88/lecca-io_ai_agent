@@ -7,12 +7,16 @@ import { defineConfig, loadEnv } from 'vite';
 
 export default defineConfig(({ mode, command }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  const defaultPort = 5173;
-
-  let serverConfig = {}
+  let serverConfig = {};
 
   if (command === 'serve') {
-    const PORT = Number(new URL(env.VITE_CLIENT_URL).port) || defaultPort;
+    if (!env.VITE_CLIENT_URL) {
+      throw new Error(
+        'VITE_CLIENT_URL environment variable is required for the ui vite server to run',
+      );
+    }
+
+    const PORT = Number(new URL(env.VITE_CLIENT_URL).port);
 
     serverConfig = {
       server: {
@@ -23,9 +27,9 @@ export default defineConfig(({ mode, command }) => {
         port: PORT,
         host: 'localhost',
       },
-    }
+    };
   }
-  
+
   return {
     root: __dirname,
     cacheDir: '../../node_modules/.vite/packages/ui',

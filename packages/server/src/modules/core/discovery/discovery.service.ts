@@ -146,6 +146,7 @@ export class DiscoveryService {
                 'Missing S3 or Pinecone configuration or OPENAI_API_KEY not set';
               break;
             case 'BILLING': {
+              //Not used except by Lecca.io cloud
               break;
             }
             case 'CALLING':

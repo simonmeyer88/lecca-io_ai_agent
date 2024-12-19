@@ -97,8 +97,11 @@ export class AuthController {
   async standardSignup(@Body() body: CreateUserDto) {
     const user = await this.userService.create({
       data: body,
-      forceVerifyEmail: ServerConfig.ENVIRONMENT === 'development',
+      forceVerifyEmail:
+        ServerConfig.ENVIRONMENT === 'development' ||
+        ServerConfig.SKIP_EMAIL_VERIFICATION,
     });
+
     await this.workspaceService.create({
       createdByUserId: user.id,
       defaultCreatedWorkspace: true,
@@ -107,7 +110,17 @@ export class AuthController {
       },
     });
 
-    return this.authService.sendVerificationEmail({ userId: user.id });
+    if (
+      ServerConfig.ENVIRONMENT === 'development' ||
+      ServerConfig.SKIP_EMAIL_VERIFICATION
+    ) {
+      return { result: true, verified: true };
+    } else {
+      return {
+        result: this.authService.sendVerificationEmail({ userId: user.id }),
+        verified: false,
+      };
+    }
   }
 
   /**

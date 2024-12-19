@@ -137,7 +137,8 @@ function SetupWorkspaceStep({ nextStep }: { nextStep: () => void }) {
           Welcome to Lecca.io
         </Card.Title>
         <Card.Description className="">
-          Before you start automating, let's get your workspace setup.
+          Before you start building agents and automations, let's get your
+          workspace setup.
         </Card.Description>
       </Card.Header>
       <Card.Content className="space-y-4">
@@ -208,22 +209,14 @@ function CreateWorkflowStep({ previousStep }: { previousStep: () => void }) {
     <Card className="border-none bg-background">
       <Card.Header>
         <Card.Title className="leading-0 text-lg md:text-xl">
-          Build your first automation
+          Build something great.
         </Card.Title>
         <Card.Description>
-          <strong>Workflows</strong> and <strong>Agents</strong> are automation
-          tools you can use within projects.
+          Start by creating a workflow or an agent to help you accomplish tasks.
         </Card.Description>
         <Card.Description>
-          You'll be asked to create a project first.
-        </Card.Description>
-        <Card.Description>
-          Projects allow you to control user access to your workflows, agents,
-          connections to apps, knowledge notebooks, and define custom variables.
-        </Card.Description>
-        <Card.Description>
-          As your team grows, leveraging projects will help you keep your
-          automation tools organized.
+          Keep in mind that agents can run workflows and workflows can message
+          agents. Using them together is what makes Lecca.io so powerful.
         </Card.Description>
         <br />
         <Card.Description>
@@ -238,27 +231,6 @@ function CreateWorkflowStep({ previousStep }: { previousStep: () => void }) {
         </Card.Description>
       </Card.Header>
       <Card.Content className="space-y-4">
-        <OnboardingTile
-          title="Create Workflow"
-          Icon={Icons.workflow}
-          description="Start with a trigger, then add actions to automate your tasks."
-          onClick={() => {
-            onboardMutation.mutateAsync(
-              {
-                data: {
-                  onboarded: true,
-                },
-              },
-              {
-                onSuccess: () => {
-                  workspace!.onboarded = true;
-                  setWorkspace(workspace!);
-                },
-              },
-            );
-          }}
-          DialogContent={<SelectProjectForWorkflowForm />}
-        />
         <OnboardingTile
           title="Create Agent"
           Icon={Icons.agent}
@@ -279,6 +251,27 @@ function CreateWorkflowStep({ previousStep }: { previousStep: () => void }) {
             );
           }}
           DialogContent={<SelectProjectForAgentForm />}
+        />
+        <OnboardingTile
+          title="Create Workflow"
+          Icon={Icons.workflow}
+          description="Start with a trigger, then add actions to automate your tasks."
+          onClick={() => {
+            onboardMutation.mutateAsync(
+              {
+                data: {
+                  onboarded: true,
+                },
+              },
+              {
+                onSuccess: () => {
+                  workspace!.onboarded = true;
+                  setWorkspace(workspace!);
+                },
+              },
+            );
+          }}
+          DialogContent={<SelectProjectForWorkflowForm />}
         />
       </Card.Content>
       <Card.Footer className="flex justify-between space-x-2">

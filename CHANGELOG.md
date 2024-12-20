@@ -1,3 +1,17 @@
+# [0.14.0](https://github.com/lecca-digital/lecca-io/compare/v0.13.0...v0.14.0) (2024-12-19)
+
+
+### Bug Fixes
+
+* **server:** Fix credit service check workspace ownership ([4317860](https://github.com/lecca-digital/lecca-io/commit/43178609e93b563921d9c4710aa35c07e9abc8cd))
+
+
+### Features
+
+* **server:** Add helpful error message for missing ai api keys ([537d0e4](https://github.com/lecca-digital/lecca-io/commit/537d0e4598281bac0f7175280ba336ec0d1eec07))
+* **ui:** Hide templates carousel if there are no templates ([a832bdc](https://github.com/lecca-digital/lecca-io/commit/a832bdc6cb9999f47619a6787cd39e0af7df41a6))
+* **ui:** Parse chat error message improvements ([a0fa4a0](https://github.com/lecca-digital/lecca-io/commit/a0fa4a0c3cd71e88a4b20c2ee138c1c6f5c8432c))
+
 # [0.13.0](https://github.com/lecca-digital/lecca-io/compare/v0.12.0...v0.13.0) (2024-12-19)
 
 

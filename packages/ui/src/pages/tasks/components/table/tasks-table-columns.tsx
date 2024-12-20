@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 
 import { DataTableColumnHeader } from '../../../../components/data-table/data-table-column-header';
 import { Task } from '../../../../models/task/task-model';
-import { timeAgo, toLocaleStringOrUndefined } from '../../../../utils/dates';
+import {
+  timeAgo,
+  toLocaleDateStringOrUndefined,
+  toLocaleStringOrUndefined,
+} from '../../../../utils/dates';
 
 import { DataTableRowActions } from './tasks-table-row-actions';
 
@@ -45,6 +49,25 @@ export const columns: ColumnDef<Task>[] = [
     },
   },
   {
+    id: 'Last Activity',
+    accessorFn: (row) => row.updatedAt,
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Last Activity" />
+    ),
+    cell: ({ getValue }) => {
+      return (
+        <div className="flex -space-y-0.5 flex-col">
+          <span className="max-w-[500px] truncate font-medium">
+            {toLocaleStringOrUndefined(getValue() as Date)}
+          </span>
+          <span className="max-w-[500px] truncate font-xs text-muted-foreground">
+            {timeAgo(getValue() as Date)}
+          </span>
+        </div>
+      );
+    },
+  },
+  {
     id: 'Created',
     accessorFn: (row) => row.createdAt,
     header: ({ column }) => (
@@ -54,7 +77,7 @@ export const columns: ColumnDef<Task>[] = [
       return (
         <div className="flex -space-y-0.5 flex-col">
           <span className="max-w-[500px] truncate font-medium">
-            {toLocaleStringOrUndefined(getValue() as Date)}
+            {toLocaleDateStringOrUndefined(getValue() as Date)}
           </span>
           <span className="max-w-[500px] truncate font-xs text-muted-foreground">
             {timeAgo(getValue() as Date)}

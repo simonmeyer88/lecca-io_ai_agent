@@ -1225,11 +1225,6 @@ body {
   height: 2.5rem;
 }
 
-.size-12 {
-  width: 3rem;
-  height: 3rem;
-}
-
 .size-14 {
   width: 3.5rem;
   height: 3.5rem;
@@ -1288,6 +1283,11 @@ body {
 .size-9 {
   width: 2.25rem;
   height: 2.25rem;
+}
+
+.size-12 {
+  width: 3rem;
+  height: 3rem;
 }
 
 .h-1 {

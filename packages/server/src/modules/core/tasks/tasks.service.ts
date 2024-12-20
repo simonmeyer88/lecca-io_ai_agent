@@ -1501,7 +1501,7 @@ export class TasksService {
         | CoreAssistantMessage['content'];
     }[];
   }) => {
-    return await this.prisma.taskMessage.createMany({
+    await this.prisma.taskMessage.createMany({
       data: messages.map((message, index): any => {
         return {
           ...message,
@@ -1510,6 +1510,15 @@ export class TasksService {
           FK_taskId: taskId,
         };
       }),
+    });
+
+    return await this.prisma.task.update({
+      where: {
+        id: taskId,
+      },
+      data: {
+        updatedAt: new Date().toISOString(),
+      },
     });
   };
 }

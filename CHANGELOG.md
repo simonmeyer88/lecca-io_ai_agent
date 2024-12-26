@@ -1,3 +1,10 @@
+# [0.15.0](https://github.com/lecca-digital/lecca-io/compare/v0.14.0...v0.15.0) (2024-12-26)
+
+
+### Features
+
+* Add recent conversations home page section ([2383415](https://github.com/lecca-digital/lecca-io/commit/238341546ad617928fa289e098afcd792e944066))
+
 # [0.14.0](https://github.com/lecca-digital/lecca-io/compare/v0.13.0...v0.14.0) (2024-12-19)
 
 

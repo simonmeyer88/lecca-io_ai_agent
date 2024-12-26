@@ -27,26 +27,6 @@ packagePaths.forEach((packagePath) => {
     // Update the version
     packageJson.version = newVersion;
 
-    // If this is the root package.json, update the dependencies
-    // This is a hack to get the @lecca-io packages to always be the same version as the root package
-    if (packagePath === 'package.json') {
-      if (packageJson.dependencies) {
-
-          //Not using newVersion because this script runs before the new version is published
-          //So during the publish step -> pnpm install, it would fail because the version didn't exist.
-          //If we do latest, then it will always get the latest version at the time the
-          //docker containers are created. So even though this is fragile, the docker images
-          //and all the packages will always be in sync. 
-
-        if (packageJson.dependencies['@lecca-io/toolkit']) {
-          packageJson.dependencies['@lecca-io/toolkit'] = "latest" //newVersion;
-        }
-        if (packageJson.dependencies['@lecca-io/apps']) {
-          packageJson.dependencies['@lecca-io/apps'] = "latest" //newVersion;
-        }
-      }
-    }
-
     // Write back to file
     fs.writeFileSync(fullPath, JSON.stringify(packageJson, null, 2) + '\n');
 

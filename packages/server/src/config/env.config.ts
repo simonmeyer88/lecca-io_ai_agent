@@ -1,9 +1,6 @@
 import { SSM } from '@aws-sdk/client-ssm';
-import * as dotenv from 'dotenv';
 
 import { ServerConfig } from './server.config';
-
-dotenv.config();
 
 /**
  * This file is responsible for loading the ServerConfig from the environment variables.

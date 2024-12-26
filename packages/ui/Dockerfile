@@ -3,6 +3,14 @@ FROM node:20.6.0-alpine AS builder
 
 WORKDIR /app
 
+# Set environment variables for build
+# We can do this because this docker image is just so people
+# can quickly use the app locally. If they are actually deploying
+# to a server, they need to build the image themselves with the
+# correct client url and server url.
+ENV VITE_CLIENT_URL=http://localhost:5173
+ENV VITE_SERVER_URL=http://localhost:9094
+
 # Copy workspace configuration and root config files
 COPY package.json pnpm-lock.yaml ./
 COPY nx.json tsconfig.base.json ./

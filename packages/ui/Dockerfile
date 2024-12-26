@@ -33,7 +33,7 @@ FROM nginx:alpine
 COPY --from=builder /app/dist/packages/ui /usr/share/nginx/html
 
 # Copy nginx config if you have custom configuration
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY packages/ui/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 

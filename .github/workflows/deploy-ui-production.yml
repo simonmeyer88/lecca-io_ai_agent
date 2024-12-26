@@ -2,7 +2,7 @@ name: Build Docker Image & Deploy to Vercel
 
 on:
   workflow_run:
-    workflows: ["Publish NPM Packages"]
+    workflows: ['Publish NPM Packages']
     types:
       - completed
 
@@ -32,7 +32,7 @@ jobs:
         env:
           VERSION: ${{ github.ref_name }}
         run: |
-          docker build -t ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:$VERSION -f packages/ui/Dockerfile .
+          docker build --platform linux/amd64,linux/arm64 -t ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:$VERSION -f packages/ui/Dockerfile .
           docker tag ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:$VERSION ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:latest
           docker push ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:$VERSION
           docker push ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:latest

@@ -16,7 +16,7 @@ cp .env.example .env
 POSTGRES_PASSWORD=$(openssl rand -hex 16)
 
 # Read database values from .env.example
-POSTGRES_USERNAME=$(grep POSTGRES_USERNAME .env.example | cut -d '=' -f2)
+POSTGRES_USER=$(grep POSTGRES_USER .env.example | cut -d '=' -f2)
 POSTGRES_HOST=$(grep POSTGRES_HOST .env.example | cut -d '=' -f2)
 POSTGRES_PORT=$(grep POSTGRES_PORT .env.example | cut -d '=' -f2)
 POSTGRES_DB=$(grep POSTGRES_DB .env.example | cut -d '=' -f2)
@@ -25,7 +25,7 @@ POSTGRES_DB=$(grep POSTGRES_DB .env.example | cut -d '=' -f2)
 POSTGRES_PASSWORD=$(openssl rand -hex 16)
 
 # Construct DATABASE_URL using values from .env.example
-DATABASE_URL="postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}?schema=public"
+DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}?schema=public"
 
 if [ "$(uname)" = "Darwin" ]; then
     sed -i '' -e 's|AUTH_JWT_SECRET=|AUTH_JWT_SECRET='"$(openssl rand -hex 32)"'|g' .env

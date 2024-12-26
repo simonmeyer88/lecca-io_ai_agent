@@ -20,13 +20,13 @@ $CRYPTO_ENCRYPTION_KEY = -join ((48..57) + (97..122) | Get-Random -Count 32 | Fo
 
 # Read database values from .env.example
 $envExample = Get-Content .env.example
-$POSTGRES_USERNAME = ($envExample | Select-String "POSTGRES_USERNAME=").ToString().Split("=")[1]
+$POSTGRES_USER = ($envExample | Select-String "POSTGRES_USER=").ToString().Split("=")[1]
 $POSTGRES_HOST = ($envExample | Select-String "POSTGRES_HOST=").ToString().Split("=")[1]
 $POSTGRES_PORT = ($envExample | Select-String "POSTGRES_PORT=").ToString().Split("=")[1]
 $POSTGRES_DB = ($envExample | Select-String "POSTGRES_DB=").ToString().Split("=")[1]
 
 # Construct DATABASE_URL
-$DATABASE_URL = "postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}?schema=public"
+$DATABASE_URL = "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}?schema=public"
 
 # Read the entire .env file
 $envContent = Get-Content .env -Raw

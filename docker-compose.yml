@@ -17,12 +17,12 @@ services:
     env_file:
       - .env
     networks:
-      - lecca
+      - lecca-io-network
     depends_on:
       postgres:
         condition: service_healthy
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@postgres:${POSTGRES_PORT}/${POSTGRES_DB}
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:${POSTGRES_PORT}/${POSTGRES_DB}
 
   postgres:
     container_name: lecca-io-db
@@ -34,21 +34,20 @@ services:
       - .env
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - lecca
+      - lecca-io-network
     healthcheck:
-      test:
-        ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USERNAME} -d ${POSTGRES_DB}']
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
       interval: 5s
       timeout: 5s
       retries: 5
 
 networks:
-  lecca:
+  lecca-io-network:
 
 volumes:
   postgres_data:

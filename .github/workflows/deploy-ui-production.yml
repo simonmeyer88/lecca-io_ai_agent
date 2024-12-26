@@ -32,13 +32,15 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
-        env:
-          VERSION: ${{ github.ref_name }}
-        run: |
-          docker build --platform linux/amd64,linux/arm64 -t ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:$VERSION -f packages/ui/Dockerfile .
-          docker tag ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:$VERSION ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:latest
-          docker push ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:$VERSION
-          docker push ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:latest
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: packages/ui/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:${{ github.ref_name }}
+            ${{ env.UI_REGISTRY }}/${{ env.UI_IMAGE_NAME }}:latest
 
   deploy-to-vercel:
     name: Deploy to Vercel

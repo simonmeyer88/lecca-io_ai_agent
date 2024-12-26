@@ -1,3 +1,11 @@
+# [0.16.0](https://github.com/lecca-digital/lecca-io/compare/v0.15.0...v0.16.0) (2024-12-26)
+
+
+### Features
+
+* Add setup-env.ps1 script for quick onboarding ([8052f92](https://github.com/lecca-digital/lecca-io/commit/8052f92a706415af47380b4ac54e9c6cc26d2659))
+* Update postgres_username env ([31abd00](https://github.com/lecca-digital/lecca-io/commit/31abd00cfa94df4756b4a0613aed29edc8c8a3cf))
+
 # [0.15.0](https://github.com/lecca-digital/lecca-io/compare/v0.14.0...v0.15.0) (2024-12-26)
 
 

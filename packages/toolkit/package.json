@@ -4,6 +4,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "license": "Apache-2.0 with Commons Clause",

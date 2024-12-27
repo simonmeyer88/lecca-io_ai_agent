@@ -159,7 +159,10 @@ export function CreateConnectionForm({
                             }
                           }
                           items={workflowApps!
-                            .filter((app) => app.isPublished)
+                            .filter(
+                              (app) =>
+                                app.isPublished && app.connections?.length,
+                            )
                             .map((app) => ({
                               label: app.name,
                               value: app.id,

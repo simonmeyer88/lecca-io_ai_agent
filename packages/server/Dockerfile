@@ -25,6 +25,9 @@ FROM node:20.6.0-alpine
 
 WORKDIR /app
 
+# Set the environment variable indicating the app is running in Docker
+ENV IS_DOCKER=true
+
 # Copy built files and necessary runtime files
 COPY --from=builder /app/dist/packages/server ./dist/packages/server
 COPY --from=builder /app/node_modules ./node_modules

@@ -149,7 +149,11 @@ export const ServerConfig = {
   /**
    * If you are using ollama, you can override the base URL here.
    */
-  OLLAMA_BASE_URL: process.env.OLLAMA_BASE_URL ?? 'http://127.0.0.1:11434/api',
+  OLLAMA_BASE_URL:
+    process.env.OLLAMA_BASE_URL ??
+    (process.env.IS_DOCKER
+      ? 'http://host.docker.internal:11434/api'
+      : 'http://127.0.0.1:11434/api'),
 
   /**
    * Used for running AI actions on the platform.

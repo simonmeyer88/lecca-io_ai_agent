@@ -109,7 +109,8 @@ export function Chat(props: Props) {
         props.agent.agentSubAgents?.length ||
         props.agent.agentWebAccess?.webSearchEnabled ||
         props.agent.agentWebAccess?.websiteAccessEnabled ||
-        props.agent.agentVariables?.length
+        props.agent.agentVariables?.length ||
+        props.agent.tools?.length
       ) {
         return true;
       }
@@ -128,6 +129,7 @@ export function Chat(props: Props) {
     props.agent.agentWorkflows?.length,
     props.agent.llmModel,
     props.agent.llmProvider,
+    props.agent.tools?.length,
   ]);
 
   const { data: agents } = useApiQuery({

@@ -171,8 +171,8 @@ export const ChatInput = ({
         ) : null}
         {hasToolsButCannotUseThem && (
           <div className="flex items-center justify-center text-muted-foreground text-sm animate-pulse mb-2 text-center mt-1">
-            This AI model does not support using tools. Remove all knowledge,
-            actions, workflows, sub agents, and other abilities.
+            This AI model does not support using tools. Remove all tools before
+            messaging your agent.
           </div>
         )}
         <AutosizeTextarea

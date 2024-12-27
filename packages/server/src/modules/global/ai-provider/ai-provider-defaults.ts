@@ -24,6 +24,26 @@ export const DEFAULT_PROVIDERS: AiProviders = {
           output: 1000,
         },
       },
+      'o1-preview': {
+        vision: true,
+        tools: false,
+        canStreamText: true,
+        canStreamTools: false,
+        creditConversionData: {
+          input: 40,
+          output: 10,
+        },
+      },
+      'o1-mini': {
+        vision: true,
+        tools: true,
+        canStreamText: true,
+        canStreamTools: true,
+        creditConversionData: {
+          input: 200,
+          output: 50,
+        },
+      },
     },
     embeddingModels: {
       'text-embedding-ada-002': {
@@ -114,6 +134,17 @@ export const DEFAULT_PROVIDERS: AiProviders = {
   gemini: {
     appConnectionId: 'gemini_connection_api-key',
     languageModels: {
+      'gemini-2.0-flash-exp': {
+        vision: true,
+        tools: true,
+        canStreamText: true,
+        canStreamTools: true,
+        creditConversionData: {
+          input: 4000,
+          output: 1000,
+        },
+        //8192 output
+      },
       'gemini-1.5-flash': {
         vision: true,
         tools: false,

@@ -1,3 +1,10 @@
+# [0.17.0](https://github.com/lecca-digital/lecca-io/compare/v0.16.0...v0.17.0) (2024-12-26)
+
+
+### Features
+
+* Add nginx to dockerfile for SPA routing ([b7b25f4](https://github.com/lecca-digital/lecca-io/commit/b7b25f43f39acd63f81ecb10b6f2f5732ee91804))
+
 # [0.16.0](https://github.com/lecca-digital/lecca-io/compare/v0.15.0...v0.16.0) (2024-12-26)
 
 

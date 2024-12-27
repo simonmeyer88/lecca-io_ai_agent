@@ -1,3 +1,10 @@
+# [0.18.0](https://github.com/lecca-digital/lecca-io/compare/v0.17.0...v0.18.0) (2024-12-27)
+
+
+### Features
+
+* Add IS_DOCKER env in docker build to determine localhost ([92e8545](https://github.com/lecca-digital/lecca-io/commit/92e854542f2471b0924f94e14a9bcd1f47d99cbf))
+
 # [0.17.0](https://github.com/lecca-digital/lecca-io/compare/v0.16.0...v0.17.0) (2024-12-26)
 
 

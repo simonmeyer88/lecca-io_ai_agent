@@ -25,23 +25,15 @@ export function HomeSectionRecentExecutions() {
     );
   }
 
+  if (!slicedExecutions.length) {
+    return null;
+  }
+
   return (
     <div className="w-full flex flex-col space-y-6">
-      <h2 className="text-lg font-semibold space-x-2">
+      <h2 className="text-2xl font-semibold space-x-2 flex items-center">
+        <Icons.executions className="size-6" />
         <span>Recent Executions</span>
-        <Tooltip>
-          <Tooltip.Trigger>
-            <Icons.questionMarkCircled className="size-4 text-muted-foreground" />
-          </Tooltip.Trigger>
-          <Tooltip.Content>
-            <div className="text-sm">
-              <p>
-                These are the recent executions for the workflows of the
-                projects you belong to.
-              </p>
-            </div>
-          </Tooltip.Content>
-        </Tooltip>
       </h2>
       <DataTable
         columns={columns}

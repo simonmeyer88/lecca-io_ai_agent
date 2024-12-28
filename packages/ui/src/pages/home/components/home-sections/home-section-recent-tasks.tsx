@@ -7,7 +7,6 @@ import { SelectProjectForWorkflowForm } from '../../../../components/forms/selec
 import { Icons } from '../../../../components/icons';
 import { TableLoader } from '../../../../components/loaders/table-loader';
 import { Dialog } from '../../../../components/ui/dialog';
-import { Tooltip } from '../../../../components/ui/tooltip';
 import { columns } from '../../../tasks/components/table/tasks-table-columns';
 
 export function HomeSectionRecentTasks() {
@@ -38,19 +37,10 @@ export function HomeSectionRecentTasks() {
   }
 
   return (
-    <div className="w-full flex flex-col space-y-6 my-8">
+    <div className="w-full flex flex-col space-y-6">
       <h2 className="text-2xl font-bold space-x-2 flex items-center">
-        <Icons.messageAgent className="size-8" />
+        <Icons.messageAgent className="size-6" />
         <span>Recent Conversations</span>
-        <Tooltip>
-          <Tooltip.Trigger>
-            <Icons.infoCircle className="size-4 text-muted-foreground" />
-          </Tooltip.Trigger>
-          <Tooltip.Content>
-            These are recent conversations from agents in projects you belong
-            to.
-          </Tooltip.Content>
-        </Tooltip>
       </h2>
       <DataTable
         columns={columns}

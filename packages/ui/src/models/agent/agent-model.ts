@@ -16,6 +16,7 @@ export const agentSchema = z.object({
     .optional()
     .transform((val) => newDateOrUndefined(val)),
   name: z.string(),
+  iconUrl: z.string().optional(),
   description: z.string().optional(),
   instructions: z.string().optional(),
   temperature: z.number().optional(),

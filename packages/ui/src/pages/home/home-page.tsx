@@ -19,7 +19,9 @@ import { WorkspaceInvitation } from '../../models/workspace-invitation-model';
 import { Workspace } from '../../models/workspace-model';
 
 import { HomeSection } from './components/home-section';
+import { HomeSectionAgents } from './components/home-sections/home-section-agents';
 import { HomeSectionNoAgentOrWorkflow } from './components/home-sections/home-section-no-agent-or-workflow';
+import { HomeSectionRecentExecutions } from './components/home-sections/home-section-recent-executions';
 import { HomeSectionRecentTasks } from './components/home-sections/home-section-recent-tasks';
 import { LearningContentCarousel } from './components/learning-content-carousel';
 import { TemplateCarousel } from './components/template-carousel';
@@ -126,12 +128,17 @@ export default function HomePage() {
           </div>
         </HomeSection>
 
+        <HomeSection className="mb-10">
+          <HomeSectionAgents />
+        </HomeSection>
+
         <HomeSection>
           <HomeSectionNoAgentOrWorkflow />
         </HomeSection>
 
-        <HomeSection>
+        <HomeSection className="gap-10 flex flex-col 2xl:flex-row overflow-x-auto">
           <HomeSectionRecentTasks />
+          <HomeSectionRecentExecutions />
         </HomeSection>
 
         {templates && templates.length > 0 && (

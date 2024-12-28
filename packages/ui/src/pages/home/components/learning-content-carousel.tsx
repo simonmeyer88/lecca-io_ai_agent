@@ -1,5 +1,4 @@
 import { Card } from '../../../components/ui/card';
-import { Carousel } from '../../../components/ui/carousel';
 import { YoutubeIframe } from '../../../components/youtube-iframe';
 
 type LearningItem = {
@@ -48,26 +47,17 @@ const learningItems: LearningItem[] = [
 
 export function LearningContentCarousel() {
   return (
-    <Carousel opts={{}} className="w-full sm:w-[calc(100%-50px)]">
-      <Carousel.Content>
-        {learningItems.map((item) => (
-          <Carousel.Item
-            key={item.url}
-            className="md:basis-1/2 xl:basis-1/2 2xl:basis-1/3 3xl:basis-1/4"
-          >
-            <LearningContentCard item={item} />
-          </Carousel.Item>
-        ))}
-      </Carousel.Content>
-      <Carousel.Previous className="hidden sm:flex" />
-      <Carousel.Next className="hidden sm:flex" />
-    </Carousel>
+    <div className="flex max-w-full gap-6 overflow-x-auto">
+      {learningItems.map((item) => (
+        <LearningContentCard item={item} />
+      ))}
+    </div>
   );
 }
 
 const LearningContentCard = ({ item }: { item: LearningItem }) => {
   return (
-    <Card>
+    <Card className="!min-w-[340px]">
       <Card.Header>
         <Card.Title>{item.title}</Card.Title>
         <Card.Description>{item.description}</Card.Description>

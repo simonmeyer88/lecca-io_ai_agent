@@ -1,3 +1,12 @@
+# [0.19.0](https://github.com/lecca-digital/lecca-io/compare/v0.18.0...v0.19.0) (2024-12-28)
+
+
+### Features
+
+* **apps:** Create embedding and pinecone vector query and upsert ([1143ea0](https://github.com/lecca-digital/lecca-io/commit/1143ea05b34b8e1438f76342d5e395a07539945a))
+* **server:** Add new llm models, o1, o1-mini, flash-2.0-exp ([578a29a](https://github.com/lecca-digital/lecca-io/commit/578a29a2ed9327ef9a973d4121db28d368681ba5))
+* **ui:** Add agents and recent executions to homepage ([9158046](https://github.com/lecca-digital/lecca-io/commit/915804626162318d8543a47d5b7342f81d3402b2))
+
 # [0.18.0](https://github.com/lecca-digital/lecca-io/compare/v0.17.0...v0.18.0) (2024-12-27)
 
 

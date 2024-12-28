@@ -39,7 +39,6 @@ export function HomeSectionRecentTasks() {
   return (
     <div className="w-full flex flex-col space-y-6">
       <h2 className="text-2xl font-bold space-x-2 flex items-center">
-        <Icons.messageAgent className="size-6" />
         <span>Recent Conversations</span>
       </h2>
       <DataTable

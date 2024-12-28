@@ -6,6 +6,7 @@ import { Icons } from '../../../../components/icons';
 import { TableLoader } from '../../../../components/loaders/table-loader';
 import { Avatar } from '../../../../components/ui/avatar';
 import { Dialog } from '../../../../components/ui/dialog';
+import { Tooltip } from '../../../../components/ui/tooltip';
 
 export function HomeSectionAgents() {
   const { data: agents, isLoading: isLoadingAgents } = useApiQuery({
@@ -34,25 +35,38 @@ export function HomeSectionAgents() {
   return (
     <div className="w-full flex flex-col space-y-6">
       <h2 className="text-2xl font-bold space-x-2 flex items-center">
-        <Icons.agent className="size-6" />
         <span>Agents</span>
       </h2>
-      <div className="flex overflow-x-auto space-x-4">
+      <div className="flex space-x-4 overflow-x-auto py-2">
         {agents.map((agent) => (
-          <Link
-            to={`/agents/${agent.id}`}
-            className="relative rounded-full hover:brightness-125"
-          >
-            <Avatar className="size-16 border">
-              <Avatar.Image
-                src={agent.iconUrl ?? undefined}
-                alt="Agent icon url"
-              />
-              <Avatar.Fallback className="text-lg">
-                {agent.name![0].toUpperCase()}
-              </Avatar.Fallback>
-            </Avatar>
-          </Link>
+          <div key={agent.id}>
+            <Link
+              to={`/agents/${agent.id}`}
+              className="flex flex-col items-center rounded-full hover:brightness-125"
+            >
+              <Avatar className="size-16 border">
+                <Avatar.Image
+                  src={agent.profileImageUrl ?? undefined}
+                  alt="Agent icon url"
+                />
+                <Avatar.Fallback className="text-lg">
+                  {agent.name![0].toUpperCase()}
+                </Avatar.Fallback>
+              </Avatar>
+            </Link>
+            <p className="text-xs mt-2 text-muted-foreground text-center">
+              {agent.name!.length > 10 ? (
+                <Tooltip>
+                  <Tooltip.Trigger className="line-clamp-1">{`${agent.name!.substring(0, 10)}...`}</Tooltip.Trigger>
+                  <Tooltip.Content className="line-clamp-1" side="bottom">
+                    {agent.name}
+                  </Tooltip.Content>
+                </Tooltip>
+              ) : (
+                agent.name
+              )}
+            </p>
+          </div>
         ))}
         <Dialog>
           <Dialog.Trigger className="cursor-pointer">
@@ -61,6 +75,7 @@ export function HomeSectionAgents() {
                 <Icons.plus className="size-8 text-muted-foreground" />
               </Avatar.Fallback>
             </Avatar>
+            <div className="h-5"></div>
           </Dialog.Trigger>
           <Dialog.Content>
             <SelectProjectForAgentForm />

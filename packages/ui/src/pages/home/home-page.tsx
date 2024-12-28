@@ -136,7 +136,7 @@ export default function HomePage() {
           <HomeSectionNoAgentOrWorkflow />
         </HomeSection>
 
-        <HomeSection className="gap-10 flex flex-col 2xl:flex-row overflow-x-auto">
+        <HomeSection className="gap-10 flex flex-col 3xl:flex-row overflow-x-auto">
           <HomeSectionRecentTasks />
           <HomeSectionRecentExecutions />
         </HomeSection>

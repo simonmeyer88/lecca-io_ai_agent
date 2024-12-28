@@ -22,6 +22,7 @@ import { AgentFilterByDto } from './dto/agent-filter-by.dto';
 import { AgentIncludeTypeDto } from './dto/agent-include-type.dto';
 import { CreateAgentDto } from './dto/create-agent.dto';
 import { UpdateAgentDto } from './dto/update-agent.dto';
+import { UpdateProfileImageDto } from './dto/update-profile-image.dto';
 
 @Controller('projects/:projectId/agents')
 @ApiTags('Agents')
@@ -106,6 +107,21 @@ export class AgentsController {
   delete(@Param('agentId') agentId: string) {
     return this.agentsService.delete({
       agentId,
+    });
+  }
+
+  @Post(':agentId/profile-image-post-url')
+  @BelongsTo({ owner: 'either', key: 'agentId', roles: ['MAINTAINER'] })
+  getPresignedPostUrlForProfileImage(
+    @Param('agentId') agentId: string,
+    @User() user: JwtUser,
+    @Body() data: UpdateProfileImageDto,
+  ) {
+    //This doesn't update the profile image, it just returns a presigned post url to upload a new profile image
+    return this.agentsService.getPresignedPostUrlForProfileImage({
+      fileName: data.fileName,
+      agentId,
+      workspaceId: user.workspaceId,
     });
   }
 }

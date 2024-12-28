@@ -10,6 +10,7 @@ import { v4 } from 'uuid';
 import { ServerConfig } from '../../../config/server.config';
 import { JwtUser } from '../../../types/jwt-user.type';
 import { PrismaService } from '../../global/prisma/prisma.service';
+import { S3ManagerService } from '../../global/s3/s3.service';
 import { WorkflowNodeForRunner } from '../workflow-runner/workflow-runner.service';
 import { WorkflowsService } from '../workflows/workflows.service';
 
@@ -24,6 +25,7 @@ export class AgentsService {
   constructor(
     private prisma: PrismaService,
     private workflowsService: WorkflowsService,
+    private s3Manager: S3ManagerService,
   ) {}
 
   async create({
@@ -187,6 +189,7 @@ export class AgentsService {
         id: true,
         name: true,
         description: expansion?.description ?? false,
+        profileImageUrl: expansion?.profileImageUrl ?? false,
         createdAt: expansion?.createdAt ?? false,
         updatedAt: expansion?.updatedAt ?? false,
         instructions: expansion?.instructions ?? false,
@@ -710,6 +713,7 @@ export class AgentsService {
         id: true,
         name: true,
         description: expansion?.description ?? false,
+        profileImageUrl: expansion?.profileImageUrl ?? false,
         createdAt: expansion?.createdAt ?? false,
         updatedAt: expansion?.updatedAt ?? false,
         instructions: expansion?.instructions ?? false,
@@ -1591,6 +1595,32 @@ export class AgentsService {
         //For now we always validate those at run time
       }),
     );
+  }
+
+  async getPresignedPostUrlForProfileImage({
+    fileName,
+    agentId,
+    workspaceId,
+  }: {
+    fileName: string;
+    agentId: string;
+    workspaceId: string;
+  }) {
+    let fileNameExtension = fileName.split('.').pop();
+    if (!fileNameExtension || fileNameExtension.length === 0) {
+      fileNameExtension = undefined;
+    } else {
+      fileNameExtension = fileNameExtension.toLocaleLowerCase();
+    }
+
+    return this.s3Manager.getPresignedPostUrl({
+      filePath: `workspaces/${workspaceId}/agents/${agentId}/profile-image/profile-image${fileNameExtension ? `.${fileNameExtension}` : ''}`,
+      fileName: fileName,
+      options: {
+        ExpirationMinutes: 5,
+        publicRead: true,
+      },
+    });
   }
 
   async checkProjectHasAccessToAllVariablesInObject({

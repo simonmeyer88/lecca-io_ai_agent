@@ -7,7 +7,7 @@ import { ApiLibrary, ApiLibraryConfig, appQueryClient } from '../api-library';
 import { ApiLibraryHelper } from '../api-library-helpers';
 
 export default class WorkflowTemplatesService extends ApiLibraryHelper {
-  protected schema = null;
+  protected schema = workflowTemplateSchema;
   protected path = '/workflow-templates';
   protected serviceName = 'workflowTemplates' as keyof ApiLibrary;
 
@@ -33,7 +33,8 @@ export default class WorkflowTemplatesService extends ApiLibraryHelper {
       httpMethod: 'get',
       path: `${this.path}/shared?sharedToType=${args.config.sharedToType}`,
       mockConfig: {
-        schema: null,
+        schema: workflowTemplateSchema,
+        isArray: true,
       },
     });
   }

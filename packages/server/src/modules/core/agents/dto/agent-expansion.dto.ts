@@ -15,6 +15,10 @@ export class AgentExpansionDto {
 
   @IsOptional()
   @IsBoolean()
+  profileImageUrl?: boolean;
+
+  @IsOptional()
+  @IsBoolean()
   instructions?: boolean;
 
   @IsOptional()

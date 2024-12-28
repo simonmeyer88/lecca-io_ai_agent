@@ -2,11 +2,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { api } from '../../../../api/api-library';
 import useApiMutation from '../../../../api/use-api-mutation';
+import { AvatarUploader } from '../../../../components/avatar-uploader';
 import { Icons } from '../../../../components/icons';
 import { Button } from '../../../../components/ui/button';
 import { Form } from '../../../../components/ui/form';
 import { Input } from '../../../../components/ui/input';
+import { useToast } from '../../../../hooks/useToast';
 import {
   Agent,
   UpdateAgentType,
@@ -19,9 +22,11 @@ type NewChatWelcomeProps = {
 };
 
 export function NewChatWelcome({ agent }: NewChatWelcomeProps) {
+  const { toast } = useToast();
   const [isEditingName, setIsEditingName] = useState(false);
   const nameTextSpanRef = useRef<HTMLSpanElement | null>(null);
   const [nameInputWidth, setNameInputWidth] = useState('auto');
+  const profileImageUrlRef = useRef<string>();
 
   const [isEditingDescription, setIsEditingDescription] = useState(false);
   const descriptionTextSpanRef = useRef<HTMLSpanElement | null>(null);
@@ -113,6 +118,51 @@ export function NewChatWelcome({ agent }: NewChatWelcomeProps) {
         onSubmit={(e) => e.preventDefault()}
       >
         <Form.Content className="space-y-1 p-0 sm:px-10 flex flex-col justify-center items-center -mr-8">
+          <AvatarUploader
+            src={agent?.profileImageUrl}
+            fallback={agent?.name}
+            className="mr-7 mb-2 size-12"
+            getUploadUrl={async (fileName: string) => {
+              const presignedUploadUrl =
+                await api.agents.getPresignedPostUrlForProfileImage({
+                  id: agent!.id!,
+                  fileName: fileName,
+                });
+
+              if (presignedUploadUrl) {
+                profileImageUrlRef.current =
+                  presignedUploadUrl.data!.presignedPostData.url +
+                  presignedUploadUrl.data!.presignedPostData.fields.key;
+              }
+
+              return presignedUploadUrl.data?.presignedPostData;
+            }}
+            uploadCallback={(status) => {
+              if (status) {
+                toast({
+                  title: 'Profile image saved',
+                });
+
+                console.log(
+                  'profileImageUrlRef.current',
+                  profileImageUrlRef.current + '?' + new Date().getTime(),
+                );
+
+                saveAgentMutation.mutate({
+                  id: agent.id,
+                  data: {
+                    profileImageUrl:
+                      profileImageUrlRef.current + '?' + new Date().getTime(),
+                  },
+                });
+              } else {
+                toast({
+                  title: 'Profile image failed to save',
+                  variant: 'destructive',
+                });
+              }
+            }}
+          />
           <Form.Field
             control={form.control}
             name="name"

@@ -16,7 +16,7 @@ export const agentSchema = z.object({
     .optional()
     .transform((val) => newDateOrUndefined(val)),
   name: z.string(),
-  iconUrl: z.string().optional(),
+  profileImageUrl: z.string().optional(),
   description: z.string().optional(),
   instructions: z.string().optional(),
   temperature: z.number().optional(),
@@ -127,6 +127,7 @@ export const createAgentSchema = agentSchema
   })
   .extend({
     description: z.string().optional(),
+    profileImageUrl: z.string().optional(),
     instructions: z.string().optional(),
     temperature: z.number().optional(),
     maxTokens: z.number().optional(),
@@ -156,6 +157,7 @@ export const updateAgentSchema = agentSchema
   .pick({
     name: true,
     description: true,
+    profileImageUrl: true,
     instructions: true,
     temperature: true,
     maxTokens: true,

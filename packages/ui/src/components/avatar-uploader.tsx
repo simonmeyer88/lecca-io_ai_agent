@@ -1,6 +1,8 @@
 import React from 'react';
 import Resizer from 'react-image-file-resizer';
 
+import { cn } from '../utils/cn';
+
 import { Icons } from './icons';
 import { Avatar } from './ui/avatar';
 import { Button } from './ui/button';
@@ -10,6 +12,7 @@ export function AvatarUploader({
   fallback,
   getUploadUrl,
   uploadCallback,
+  className,
 }: {
   src?: string | null;
   fallback?: string;
@@ -17,6 +20,7 @@ export function AvatarUploader({
     fileName: string,
   ) => Promise<{ url: string; fields: Record<string, string> } | undefined>;
   uploadCallback: (uploadStatus: boolean) => void;
+  className?: string;
 }) {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -77,9 +81,12 @@ export function AvatarUploader({
   };
 
   return (
-    <Avatar className="size-24 rounded-full border relative">
+    <Avatar
+      className={cn('size-24 rounded-full border relative group', className)}
+      onClick={() => inputRef.current?.click()}
+    >
       <Avatar.Image src={src ?? undefined} />
-      <Avatar.Fallback className="text-3xl">{fallback?.[0]}</Avatar.Fallback>
+      <Avatar.Fallback className="text-2xl">{fallback?.[0]}</Avatar.Fallback>
       <input
         type="file"
         ref={inputRef}
@@ -90,7 +97,7 @@ export function AvatarUploader({
         size="icon"
         variant="ghost"
         type="button"
-        className="absolute -right-1 -top-1 border rounded-full bg-background p-0 size-7"
+        className="absolute -right-2 -top-2 border rounded-full bg-background p-0 size-7 opacity-0 group-hover:opacity-100"
         onClick={() => inputRef.current?.click()}
       >
         <Icons.pencil />

@@ -47,6 +47,7 @@ export default class AgentsService extends ApiLibraryHelper {
           expansion: [
             'createdAt',
             'updatedAt',
+            'profileImageUrl',
             'description',
             'project',
             'connections',
@@ -73,6 +74,7 @@ export default class AgentsService extends ApiLibraryHelper {
           expansion: [
             'createdAt',
             'updatedAt',
+            'profileImageUrl',
             'description',
             'project',
             'instructions',
@@ -119,6 +121,30 @@ export default class AgentsService extends ApiLibraryHelper {
       id,
       data,
       config,
+    });
+  }
+
+  getPresignedPostUrlForProfileImage({
+    id,
+    fileName,
+    config,
+  }: {
+    id: string;
+    fileName: string;
+    config?: ApiLibraryConfig;
+  }) {
+    return super.apiFetch<{
+      presignedPostData: { url: string; fields: Record<string, string> };
+      pathUrl: string;
+    }>({
+      httpMethod: 'post',
+      path: `${this.path}/${id}/profile-image-post-url`,
+      data: { fileName },
+      config,
+      mockConfig: {
+        isArray: false,
+        schema: null,
+      },
     });
   }
 

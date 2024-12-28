@@ -47,9 +47,9 @@ const learningItems: LearningItem[] = [
 
 export function LearningContentCarousel() {
   return (
-    <div className="flex max-w-full gap-6 overflow-x-auto">
+    <div className="flex max-w-full gap-6 overflow-x-auto py-2">
       {learningItems.map((item) => (
-        <LearningContentCard item={item} />
+        <LearningContentCard key={item.title} item={item} />
       ))}
     </div>
   );

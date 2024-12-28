@@ -32,7 +32,6 @@ export function HomeSectionRecentExecutions() {
   return (
     <div className="w-full flex flex-col space-y-6">
       <h2 className="text-2xl font-semibold space-x-2 flex items-center">
-        <Icons.executions className="size-6" />
         <span>Recent Executions</span>
       </h2>
       <DataTable

@@ -1,6 +1,7 @@
 import {
   IsArray,
   IsBoolean,
+  IsNotEmpty,
   IsNumber,
   IsOptional,
   IsString,
@@ -21,6 +22,11 @@ export class CreateAgentDto {
   @IsOptional()
   @MaxLength(1000)
   description: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @IsOptional()
+  profileImageUrl?: string;
 
   @IsOptional()
   @IsString()

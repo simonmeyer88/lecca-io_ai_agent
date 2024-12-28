@@ -347,8 +347,9 @@ model Agent {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  name        String  @db.VarChar(100)
-  description String? @db.VarChar(1000)
+  name            String  @db.VarChar(100)
+  description     String? @db.VarChar(1000)
+  profileImageUrl String? @db.VarChar(255)
 
   llmProvider String
   llmModel    String

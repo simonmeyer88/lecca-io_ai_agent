@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRef } from 'react';
 import { v4 } from 'uuid';
 
-import { api } from '../../../../api/api-library';
+import { api, appQueryClient } from '../../../../api/api-library';
 import useApiQuery from '../../../../api/use-api-query';
 import { Loader } from '../../../../components/loaders/loader';
 import { useUser } from '../../../../hooks/useUser';
@@ -248,6 +248,8 @@ export function Chat(props: Props) {
           '',
           `/projects/${props.projectId}/agents/${props.agent.id}/tasks/${activeTaskId}`,
         );
+
+        appQueryClient.invalidateQueries({ queryKey: ['tasks', 'getList'] });
       }
     },
   });
@@ -339,6 +341,8 @@ export function Chat(props: Props) {
             '',
             `/projects/${props.projectId}/agents/${props.agent.id}/tasks/${activeTaskId}`,
           );
+
+          appQueryClient.invalidateQueries({ queryKey: ['tasks', 'getList'] });
         }
       }
     }

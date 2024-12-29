@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useParams } from 'react-router-dom';
 
 import NavigationBar from '../../components/layouts/application-nav';
 import { useApplicationSideNav } from '../../hooks/useApplicationSideNav';
@@ -17,10 +17,12 @@ import {
 } from '../ui/resizable';
 import { Tooltip } from '../ui/tooltip';
 
+import { AgentSideNav } from './agent-side-nav';
 import { ApplicationSideNav } from './application-side-nav';
 
 export default function ApplicationLayout() {
   const { isCollapsed, setIsCollapsed } = useApplicationSideNav();
+  const { agentId } = useParams();
   const { workspaceUser: user, workspace } = useUser();
 
   if (user?.roles.includes('OWNER') && !workspace?.onboarded) {
@@ -37,6 +39,12 @@ export default function ApplicationLayout() {
           shadowOpacity=".5"
         >
           <ResizablePanelGroup direction={'horizontal'}>
+            {agentId && <AgentSideNav />}
+
+            {/* We would comment this out, but there's a weird bug where if the
+            sidenav is collapsed in the agentSideNav view (agentId params) and then
+            navigate to a non agent page, the application side nav is collapsed, but the 
+            isCollapsed boolean is false. So I will render it, but add a class to hide it.*/}
             <ApplicationSideNav />
             <div className="relative w-[1px] hidden sm:block h-full bg-[hsl(var(--border))]">
               <Button

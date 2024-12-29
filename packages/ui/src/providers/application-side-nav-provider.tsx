@@ -43,6 +43,8 @@ export const ApplicationSideNavProvider = ({
     const resize = () => {
       if (window.innerWidth < 1280) {
         setIsCollapsed(true);
+      } else {
+        setIsCollapsed(false);
       }
     };
     window.addEventListener('resize', resize);

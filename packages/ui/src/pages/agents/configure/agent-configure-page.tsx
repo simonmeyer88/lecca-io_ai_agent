@@ -7,7 +7,6 @@ import { api, appQueryClient } from '../../../api/api-library';
 import useApiMutation from '../../../api/use-api-mutation';
 import PageLayout from '../../../components/layouts/page-layout';
 import { PageLoader } from '../../../components/loaders/page-loader';
-import { useOnborda } from '../../../components/onboarda/OnbordaContext';
 import { Button } from '../../../components/ui/button';
 import { Form } from '../../../components/ui/form';
 import { Skeleton } from '../../../components/ui/skeleton';
@@ -35,10 +34,9 @@ import { AgentBuilderWorkflowContent } from './agent-builder-workflow-content';
 
 export function AgentConfigurePage() {
   const { toast } = useToast();
-  const { workspaceUser, enabledFeatures, aiProviders } = useUser();
+  const { enabledFeatures, aiProviders } = useUser();
   const [searchParams, setSearchParams] = useSearchParams();
   const defaultName = searchParams.get('defaultName');
-  const { startOnborda } = useOnborda();
 
   const form = useForm<UpdateAgentType>({
     resolver: zodResolver(createAgentSchema),
@@ -166,17 +164,6 @@ export function AgentConfigurePage() {
     searchParams.set('tab', value);
     setSearchParams(searchParams);
   };
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (
-        window.innerWidth > 700 &&
-        !workspaceUser?.user?.toursCompleted?.includes('agents-overview')
-      ) {
-        startOnborda('agents-overview');
-      }
-    }, 500);
-  }, [startOnborda, workspaceUser?.user?.toursCompleted]);
 
   useEffect(() => {
     //Have to use this ugly mess because we can't use the useApiQuery hook on this component because the agentId might not exist yet.

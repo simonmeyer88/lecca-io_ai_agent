@@ -1,6 +1,6 @@
 import { IconProps } from '@radix-ui/react-icons/dist/types';
 import React, { useEffect, useMemo, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import useApiMutation from '../../api/use-api-mutation';
 import { useApplicationSideNav } from '../../hooks/useApplicationSideNav';
@@ -21,6 +21,7 @@ import { Tooltip } from '../ui/tooltip';
 import WorkspaceSelector from './workspace-selector';
 
 export function ApplicationSideNav() {
+  const { agentId } = useParams();
   const { isCollapsed } = useApplicationSideNav();
   const { startOnborda } = useOnborda();
   const { workspaceUser } = useUser();
@@ -58,6 +59,9 @@ export function ApplicationSideNav() {
       className={cn(
         'transition-all duration-500 ease-in-out hidden sm:flex flex-col justify-between min-w-[50px] bg-popover',
         `${isCollapsed ? 'max-w-[50px]' : 'max-w-[245px]'} `,
+        {
+          '!hidden': agentId,
+        },
       )}
     >
       <div>
@@ -235,7 +239,7 @@ export function AdditionalSideNavContent({
           ),
         },
         {
-          title: 'Discord',
+          title: 'Community',
           to: 'https://discord.gg/86wrJnN7',
           newTab: true,
           icon: (props: any) => (

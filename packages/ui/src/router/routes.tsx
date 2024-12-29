@@ -189,18 +189,7 @@ export const AppRoutes = () => {
               {/* PROJECT AGENTS */}
               <Route path="agents">
                 <Route index element={<ProjectAgentsPage />} />
-                <Route
-                  path="new"
-                  element={
-                    <AgentConfigurePage />
-                    //Uncomment and build out when we want a UI builder for agents
-                    // <ReactFlowProvider>
-                    //   <ProjectAgentProvider>
-                    //     <AgentBuilderPage />
-                    //   </ProjectAgentProvider>
-                    // </ReactFlowProvider>
-                  }
-                />
+                <Route path="new" element={<AgentConfigurePage />} />
                 <Route path=":agentId">
                   <Route
                     index
@@ -210,12 +199,6 @@ export const AppRoutes = () => {
                           <AgentChatPage />
                         </ProjectWorkflowProvider>
                       </ReactFlowProvider>
-                      //Uncomment and build out when we want a UI builder for agents
-                      //   <ReactFlowProvider>
-                      //     <ProjectAgentProvider>
-                      //       <AgentBuilderPage />
-                      //     </ProjectAgentProvider>
-                      //   </ReactFlowProvider>
                     }
                   />
 

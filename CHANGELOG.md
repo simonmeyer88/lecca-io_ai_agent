@@ -1,3 +1,10 @@
+# [0.21.0](https://github.com/lecca-digital/lecca-io/compare/v0.20.0...v0.21.0) (2024-12-29)
+
+
+### Features
+
+* **ui:** Add agent ui improvements ([7f8ecab](https://github.com/lecca-digital/lecca-io/commit/7f8ecab00f27970d96ec7297b1ee362b417c14de))
+
 # [0.20.0](https://github.com/lecca-digital/lecca-io/compare/v0.19.0...v0.20.0) (2024-12-28)
 
 

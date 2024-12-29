@@ -1,3 +1,10 @@
+# [0.20.0](https://github.com/lecca-digital/lecca-io/compare/v0.19.0...v0.20.0) (2024-12-28)
+
+
+### Features
+
+* Give agents profileImage and update home page ([d7449a4](https://github.com/lecca-digital/lecca-io/commit/d7449a4d192cd7a8c284ca112f3580d9e3717636))
+
 # [0.19.0](https://github.com/lecca-digital/lecca-io/compare/v0.18.0...v0.19.0) (2024-12-28)
 
 

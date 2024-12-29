@@ -86,7 +86,17 @@ export const MessageUserCard = ({
       );
     } else if (agentAsMessageUser) {
       name = agentAsMessageUser.name;
-      icon = (
+      icon = agentAsMessageUser.profileImageUrl ? (
+        <Avatar className="size-9 border mr-1">
+          <Avatar.Image
+            src={agentAsMessageUser.profileImageUrl ?? undefined}
+            alt="Agent icon url"
+          />
+          <Avatar.Fallback className="text-lg">
+            {agentAsMessageUser.name![0].toUpperCase()}
+          </Avatar.Fallback>
+        </Avatar>
+      ) : (
         <div className="border rounded-md p-1.5 mr-1">
           <Icons.messageAgent className="size-5" />
         </div>

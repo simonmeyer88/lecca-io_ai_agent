@@ -9,6 +9,7 @@ import { Avatar } from '../../../../components/ui/avatar';
 import { Dialog } from '../../../../components/ui/dialog';
 import { Popover } from '../../../../components/ui/popover';
 import { Agent } from '../../../../models/agent/agent-model';
+import { WorkflowApp } from '../../../../models/workflow/workflow-app-model';
 import { toLocaleDateStringOrUndefined } from '../../../../utils/dates';
 import { AppOverviewContent } from '../../../apps/components/app-overview-content';
 
@@ -19,30 +20,37 @@ export const columns: ColumnDef<Agent>[] = [
     id: 'Name',
     accessorFn: (row) => row.name,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Name" />
+      <DataTableColumnHeader column={column} title="Name" className="pl-10" />
     ),
     cell: ({ getValue, row }) => {
-      const description = row.original.description;
+      const agent = row.original;
 
       return (
         <div className="flex items-center space-x-4">
-          <Link
-            to={`/projects/${row.original.project?.id}/agents/${row.original.id}`}
-          >
+          <Link to={`/projects/${agent.project?.id}/agents/${agent.id}`}>
             <div className="flex space-x-2 text-blue-400 hover:underline">
-              <span className="max-w-[500px] truncate ">
-                {getValue() as string}
-              </span>
+              <div className="flex items-center space-x-4 max-w-[500px]">
+                <Avatar className="size-8 border">
+                  <Avatar.Image
+                    src={agent.profileImageUrl ?? undefined}
+                    alt="Agent icon url"
+                  />
+                  <Avatar.Fallback className="text-muted-foreground">
+                    <Icons.agent className="size-5" />
+                  </Avatar.Fallback>
+                </Avatar>
+                <span className="truncate">{getValue() as string}</span>
+              </div>
             </div>
           </Link>
-          {description && (
+          {agent.description && (
             <Popover>
               <Popover.Trigger>
                 <Icons.infoCircle className="w-4 h-4 text-muted-foreground hover:text-primary" />
               </Popover.Trigger>
               <Popover.Content>
                 <div className="p-4 text-sm">
-                  <p>{description}</p>
+                  <p>{agent.description}</p>
                 </div>
               </Popover.Content>
             </Popover>
@@ -52,13 +60,18 @@ export const columns: ColumnDef<Agent>[] = [
     },
   },
   {
-    id: 'Apps',
+    id: 'Tools',
     accessorFn: (row) => row.connections,
     enableSorting: false,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="" className="border-r" />
+      <DataTableColumnHeader
+        column={column}
+        title="Tools"
+        className="border-r"
+      />
     ),
-    cell: ({ getValue }) => {
+    cell: ({ row }) => {
+      const agent = row.original;
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const { data: apps, isLoading: isLoadingApps } = useApiQuery({
         service: 'workflowApps',
@@ -66,44 +79,36 @@ export const columns: ColumnDef<Agent>[] = [
         apiLibraryArgs: {},
       });
 
-      const { data: connections, isLoading: isLoadingConnections } =
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        useApiQuery({
-          service: 'connections',
-          method: 'getList',
-          apiLibraryArgs: {
-            config: {
-              params: {
-                includeType: ['all'],
-              },
-            },
-          },
-        });
-
-      const agentConnections = getValue() as Agent['connections'];
-
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      const workflowApps = useMemo(() => {
-        const fullAgentConnections = connections?.filter((connection) =>
-          agentConnections?.some(
-            (agentConnection) => agentConnection.id === connection.id,
-          ),
+      const mappedApps = useMemo(() => {
+        if (!apps) {
+          return {};
+        }
+
+        return apps.reduce(
+          (acc, app) => {
+            acc[app.id] = app;
+            return acc;
+          },
+          {} as { [key: string]: WorkflowApp },
         );
+      }, [apps]);
 
-        return fullAgentConnections?.map((connection) => {
-          const app = apps?.find((app) => app.id === connection.workflowAppId);
-          return app;
-        });
-      }, [agentConnections, apps, connections]);
-
-      if (isLoadingApps || isLoadingConnections || !workflowApps) {
+      if (isLoadingApps) {
         return null;
       }
 
       return (
         <Avatar.Group limit={3} className="items-center mr-4">
           <Avatar.GroupList>
-            {workflowApps!.map((app, index) => {
+            {agent.toolIds!.map((toolId, index) => {
+              const appId = toolId.split('_action_')[0];
+
+              const app = mappedApps[appId];
+              const action = app?.actions.find((a) => a.id === toolId);
+
+              const imgUrl = action?.iconUrl ?? app?.logoUrl;
+
               return (
                 <Avatar
                   key={app!.id + index}
@@ -112,7 +117,7 @@ export const columns: ColumnDef<Agent>[] = [
                   <Dialog>
                     <Dialog.Trigger asChild>
                       <Avatar.Image
-                        src={app!.logoUrl ?? undefined}
+                        src={imgUrl}
                         className="rounded-none object-contain size-5"
                       />
                     </Dialog.Trigger>
@@ -124,21 +129,7 @@ export const columns: ColumnDef<Agent>[] = [
               );
             })}
           </Avatar.GroupList>
-          <Popover>
-            <Popover.Trigger asChild>
-              <Avatar.OverflowIndicator className="border cursor-pointer object-contain size-9" />
-            </Popover.Trigger>
-            <Popover.Content>
-              <div className="p-4 text-sm">
-                <p>
-                  {workflowApps
-                    .slice(3)!
-                    .map((app) => app!.name)
-                    .join(', ')}
-                </p>
-              </div>
-            </Popover.Content>
-          </Popover>
+          <Avatar.OverflowIndicator className="border cursor-pointer object-contain size-9" />
         </Avatar.Group>
       );
     },

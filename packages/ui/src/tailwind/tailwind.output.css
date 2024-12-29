@@ -4073,11 +4073,6 @@ body {
   --tw-ring-offset-width: 2px;
 }
 
-.hover\:brightness-125:hover {
-  --tw-brightness: brightness(1.25);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
 .hover\:before\:translate-x-\[0\%\]:hover::before {
   content: var(--tw-content);
   --tw-translate-x: 0%;
@@ -4254,6 +4249,10 @@ body {
 
 .group:hover .group-hover\:animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.group:hover .group-hover\:border-primary {
+  border-color: hsl(var(--primary));
 }
 
 .group:hover .group-hover\:bg-muted {
@@ -5122,6 +5121,12 @@ body {
 
   .\32xl\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1920px) {
+  .\34xl\:flex-row {
+    flex-direction: row;
   }
 }
 

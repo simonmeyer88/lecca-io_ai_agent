@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { Icons } from '../../../../components/icons';
 import { MarkdownViewer } from '../../../../components/markdown-viewer';
+import { Avatar } from '../../../../components/ui/avatar';
 import { Agent } from '../../../../models/agent/agent-model';
 
 import { MessageCardWrapper } from './message-card-wrapper';
@@ -25,9 +26,21 @@ export const MessageAgentCard = ({
     <MessageCardWrapper text={textContent} createdAt={createdAt}>
       <Link to={`/redirect?redirect=/agents/${agent.id}`}>
         <div className="flex items-center space-x-2">
-          <div className="border rounded-md p-1.5 mr-1">
-            <Icons.messageAgent className="size-5" />
-          </div>
+          {agent.profileImageUrl ? (
+            <Avatar className="size-9 border mr-1">
+              <Avatar.Image
+                src={agent.profileImageUrl ?? undefined}
+                alt="Agent icon url"
+              />
+              <Avatar.Fallback className="text-lg">
+                {agent.name![0].toUpperCase()}
+              </Avatar.Fallback>
+            </Avatar>
+          ) : (
+            <div className="border rounded-md p-1.5 mr-1">
+              <Icons.messageAgent className="size-5" />
+            </div>
+          )}
           <div className="flex items-center space-x-1.5 text-sm">
             <span className="font-medium">{agent.name}</span>
             {status === 'loading' && (

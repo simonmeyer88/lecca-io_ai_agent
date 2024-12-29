@@ -42,14 +42,14 @@ export function HomeSectionAgents() {
           <div key={agent.id}>
             <Link
               to={`/agents/${agent.id}`}
-              className="flex flex-col items-center rounded-full hover:brightness-125"
+              className="flex flex-col items-center rounded-full cursor-pointer group"
             >
-              <Avatar className="size-16 border">
+              <Avatar className="size-16 border group-hover:border-primary">
                 <Avatar.Image
                   src={agent.profileImageUrl ?? undefined}
                   alt="Agent icon url"
                 />
-                <Avatar.Fallback className="text-lg">
+                <Avatar.Fallback className="text-lg text-muted-foreground group-hover:text-primary">
                   {agent.name![0].toUpperCase()}
                 </Avatar.Fallback>
               </Avatar>

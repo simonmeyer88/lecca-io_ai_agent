@@ -21,7 +21,7 @@ export function TemplateCarousel() {
   return (
     templates?.length &&
     apps && (
-      <div className="flex max-w-full gap-6 overflow-x-auto py-2">
+      <div className="flex max-w-full gap-6 overflow-x-auto overflow-y-hidden py-2">
         {templates.map((template) => (
           <WorkflowTemplateCard
             apps={apps}

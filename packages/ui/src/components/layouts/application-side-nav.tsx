@@ -221,7 +221,51 @@ export function AdditionalSideNavContent({
           title: 'Docs',
           to: 'https://lecca.io/docs/overview',
           newTab: true,
-          icon: Icons.infoCircle,
+          icon: (props: any) => (
+            <img
+              src="/icons/lecca-digital.png"
+              alt="Lecca Digital"
+              style={{
+                backgroundColor: 'white',
+                borderRadius: '50%',
+                padding: '.5px',
+              }}
+              {...props}
+            />
+          ),
+        },
+        {
+          title: 'Discord',
+          to: 'https://discord.gg/86wrJnN7',
+          newTab: true,
+          icon: (props: any) => (
+            <img
+              src="/icons/discord.svg"
+              className="size-4"
+              alt="Discord"
+              {...props}
+            />
+          ),
+        },
+        {
+          title: 'Github',
+          to: 'https://github.com/lecca-digital/lecca-io',
+          newTab: true,
+          icon: (props: any) => (
+            <div>
+              <img
+                src="/icons/github.svg"
+                className="size-4"
+                style={{
+                  backgroundColor: 'white',
+                  borderRadius: '50%',
+                  padding: '.5px',
+                }}
+                alt="Github"
+                {...props}
+              />
+            </div>
+          ),
         },
         {
           title: 'Settings',
@@ -516,6 +560,9 @@ export function Nav({ links, isCollapsed, isSheet, className }: NavProps) {
                   </DropdownMenu.Trigger>
                   {link.dropdownMenuContent}
                 </DropdownMenu>
+              )}
+              {link.newTab && (
+                <Icons.externalLink className="absolute right-0 top-0 h-4 w-4 mr-2 mt-2" />
               )}
             </Link>
           );

@@ -10,7 +10,7 @@ import { shared } from '../shared/google-drive.shared';
 export const shareFile = createAction({
   id: 'google-drive_action_share-file',
   name: 'Share File',
-  description: `Share a file that ${process.env.PLATFORM_NAME} has created.`,
+  description: `Share a file that this platform has created.`,
   inputConfig: [
     shared.fields.dynamicSelectFile,
     createSelectInputField({

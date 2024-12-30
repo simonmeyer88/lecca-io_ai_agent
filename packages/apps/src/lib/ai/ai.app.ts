@@ -11,7 +11,7 @@ import { translateText } from './actions/translate-text.action';
 export const ai = createApp({
   id: 'ai',
   name: 'AI',
-  description: `AI actions offered by ${process.env.PLATFORM_NAME}`,
+  description: `Pre-configured AI actions`,
   logoUrl: 'https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/ai.svg',
   actions: [
     messageAgent,

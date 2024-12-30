@@ -6,7 +6,7 @@ import { shared } from '../shared/google-drive.shared';
 export const moveFolder = createAction({
   id: 'google-drive_action_move-folder',
   name: 'Move Folder',
-  description: `Moves a folder created by ${process.env.PLATFORM_NAME} into another folder.`,
+  description: `Moves a folder created by this platform into another folder.`,
   inputConfig: [
     {
       ...shared.fields.dynamicSelectFolder,

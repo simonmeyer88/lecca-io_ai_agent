@@ -6,7 +6,7 @@ import { jsonStringify } from './actions/json-stringify.action';
 export const json = createApp({
   id: 'json',
   name: 'JSON Tools',
-  description: `JSON tools offered by ${process.env.PLATFORM_NAME}`,
+  description: `JSON tools to manage JSON data`,
   logoUrl: 'https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/json.svg',
   actions: [jsonStringify, jsonParse],
   triggers: [],

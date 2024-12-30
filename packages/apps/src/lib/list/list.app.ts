@@ -9,7 +9,7 @@ import { getLastItem } from './actions/get-last-item-in-list.action';
 export const list = createApp({
   id: 'list',
   name: 'List Tools',
-  description: `List (array) tools offered by ${process.env.PLATFORM_NAME}`,
+  description: `List (array) tools to manage list data`,
   logoUrl: 'https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/list.svg',
   actions: [findItem, combineLists, getLastItem, getFirstItem, countList],
   triggers: [],

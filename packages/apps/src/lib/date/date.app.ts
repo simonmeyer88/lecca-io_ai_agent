@@ -7,7 +7,7 @@ import { modifyDate } from './actions/modify-date.action';
 export const date = createApp({
   id: 'date',
   name: 'Date Tools',
-  description: `Date tools offered by ${process.env.PLATFORM_NAME}`,
+  description: `Date tools to manage dates`,
   logoUrl: 'https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/date.svg',
   actions: [getCurrentDate, modifyDate, formatDate],
   triggers: [],

@@ -6,7 +6,7 @@ import { shared } from '../shared/google-sheets.shared';
 export const shareSpreadsheet = createAction({
   id: 'google-sheets_action_share-spreadsheet',
   name: 'Share Spreadsheet',
-  description: `Share a spreadsheet that ${process.env.PLATFORM_NAME} has created.`,
+  description: `Share a spreadsheet that this platform has created.`,
   aiSchema: z.object({
     spreadsheet: z
       .string()

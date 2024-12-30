@@ -6,7 +6,7 @@ import { shared } from '../shared/google-drive.shared';
 export const deleteFile = createAction({
   id: 'google-drive_action_delete-file',
   name: 'Delete File',
-  description: `Delete a file created by ${process.env.PLATFORM_NAME}.`,
+  description: `Delete a file created by this platform.`,
   aiSchema: z.object({
     file: z.string().min(1).describe('The ID of the file to delete'),
   }),
@@ -16,7 +16,7 @@ export const deleteFile = createAction({
       inputType: 'markdown',
       label: '',
       description: '',
-      markdown: `You will only be able to delete files that were created by ${process.env.PLATFORM_NAME}.`,
+      markdown: `You will only be able to delete files that were created by this platform.`,
     },
     shared.fields.dynamicSelectFile,
   ],

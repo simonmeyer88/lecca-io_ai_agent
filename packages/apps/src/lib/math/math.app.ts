@@ -9,7 +9,7 @@ import { subtraction } from './actions/subtraction.action';
 export const math = createApp({
   id: 'math',
   name: 'Math',
-  description: `Math tools offered by ${process.env.PLATFORM_NAME}`,
+  description: `Math tools to do math operations`,
   logoUrl: 'https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/math.svg',
   actions: [mathExpression, addition, subtraction, division, multiplication],
   triggers: [],

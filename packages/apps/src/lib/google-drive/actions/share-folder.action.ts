@@ -10,7 +10,7 @@ import { shared } from '../shared/google-drive.shared';
 export const shareFolder = createAction({
   id: 'google-drive_action_share-folder',
   name: 'Share Folder',
-  description: `Share a folder that ${process.env.PLATFORM_NAME} has created.`,
+  description: `Share a folder that this platform has created.`,
   aiSchema: z.object({
     folder: z.string().min(1).describe('The ID of the folder to share'),
     role: z

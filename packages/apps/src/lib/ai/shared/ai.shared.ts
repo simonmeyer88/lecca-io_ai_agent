@@ -17,7 +17,6 @@ export const shared = {
         }));
       },
       description: 'The AI provider to use for generating responses.',
-      defaultValue: process.env.OPENAI_API_KEY ? 'openai' : undefined,
       required: {
         missingMessage: 'Provider is required',
         missingStatus: 'warning',
@@ -32,7 +31,6 @@ export const shared = {
         forceRefresh: true,
         dependsOn: ['provider'],
       },
-      defaultValue: process.env.OPENAI_API_KEY ? 'gpt-4o-mini' : undefined,
       description: 'The model to use for generating responses.',
       _getDynamicValues: async ({ extraOptions, aiProviders }) => {
         const { provider } = extraOptions;

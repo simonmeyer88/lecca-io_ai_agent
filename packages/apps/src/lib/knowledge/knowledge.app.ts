@@ -14,12 +14,4 @@ export const knowledge = createApp({
   actions: [searchKnowledge, saveToKnowledge, listKnowledge, createKnowledge],
   triggers: [],
   connections: [],
-  isPublished:
-    !!process.env.PINECONE_API_KEY &&
-    !!process.env.PINECONE_API_KEY &&
-    !!process.env.OPENAI_API_KEY &&
-    !!process.env.S3_ACCESS_KEY_ID &&
-    !!process.env.S3_SECRET_ACCESS_KEY &&
-    !!process.env.S3_BUCKET_ID &&
-    !!process.env.S3_REGION,
 });

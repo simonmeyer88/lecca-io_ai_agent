@@ -75,7 +75,7 @@ export function HomeSectionAgents() {
                 <Icons.plus className="size-8 text-muted-foreground" />
               </Avatar.Fallback>
             </Avatar>
-            <div className="h-5"></div>
+            <div className="h-6"></div>
           </Dialog.Trigger>
           <Dialog.Content>
             <SelectProjectForAgentForm />

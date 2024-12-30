@@ -187,7 +187,11 @@ export function AgentSideNavContent({
   }
 
   return (
-    <div className="h-[calc(100dvh-100px)] overflow-y-auto">
+    <div
+      className={cn('overflow-y-auto', {
+        'h-[calc(100dvh-100px)]': !isCollapsed,
+      })}
+    >
       <Nav
         isCollapsed={isCollapsed}
         isSheet={isSheet}

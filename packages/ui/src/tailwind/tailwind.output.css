@@ -1476,6 +1476,14 @@ body {
   height: 1px;
 }
 
+.h-\[calc\(100dvh-110px\)\] {
+  height: calc(100dvh - 110px);
+}
+
+.h-\[calc\(100dvh-120px\)\] {
+  height: calc(100dvh - 120px);
+}
+
 .\!max-h-\[500px\] {
   max-height: 500px !important;
 }

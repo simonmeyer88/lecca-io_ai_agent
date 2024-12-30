@@ -5,7 +5,6 @@ import { v4 } from 'uuid';
 
 import { api, appQueryClient } from '../../../../api/api-library';
 import useApiQuery from '../../../../api/use-api-query';
-import { Loader } from '../../../../components/loaders/loader';
 import { useUser } from '../../../../hooks/useUser';
 import { Agent } from '../../../../models/agent/agent-model';
 import { AiProvider } from '../../../../models/ai-provider-model';
@@ -392,7 +391,7 @@ export function Chat(props: Props) {
   }, [scrollToBottom]);
 
   if (!agents || !workspaceUsers || !knowledge || !apps || !workflows) {
-    return <Loader />;
+    return null;
   }
 
   return (

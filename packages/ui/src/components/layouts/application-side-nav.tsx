@@ -345,7 +345,13 @@ export function Credits({ isCollapsed }: { isCollapsed: boolean }) {
   ) : null;
 }
 
-export function UserSettings({ isCollapsed }: { isCollapsed: boolean }) {
+export function UserSettings({
+  isCollapsed,
+  className,
+}: {
+  isCollapsed: boolean;
+  className?: string;
+}) {
   const {
     workspaceUser,
     workspaceUserPreferences,
@@ -370,7 +376,7 @@ export function UserSettings({ isCollapsed }: { isCollapsed: boolean }) {
           )}
         >
           <div className="flex items-center space-x-2">
-            <Avatar className="size-6 border">
+            <Avatar className={cn('size-6 border', className)}>
               <Avatar.Image
                 src={workspaceUser?.profileImageUrl ?? undefined}
                 alt="User Profile Image"

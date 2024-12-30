@@ -143,11 +143,6 @@ export function NewChatWelcome({ agent }: NewChatWelcomeProps) {
                   title: 'Profile image saved',
                 });
 
-                console.log(
-                  'profileImageUrlRef.current',
-                  profileImageUrlRef.current + '?' + new Date().getTime(),
-                );
-
                 saveAgentMutation.mutate({
                   id: agent.id,
                   data: {

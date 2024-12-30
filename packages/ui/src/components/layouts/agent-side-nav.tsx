@@ -1,11 +1,14 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
+import useApiMutation from '../../api/use-api-mutation';
 import useApiQuery from '../../api/use-api-query';
 import { useApplicationSideNav } from '../../hooks/useApplicationSideNav';
+import { useToast } from '../../hooks/useToast';
 import { cn } from '../../utils/cn';
 import { Icons } from '../icons';
 import { Avatar } from '../ui/avatar';
 import { Button } from '../ui/button';
+import { DropdownMenu } from '../ui/dropdown-menu';
 import { ResizablePanel } from '../ui/resizable';
 import { Separator } from '../ui/separator';
 import { Skeleton } from '../ui/skeleton';
@@ -40,7 +43,7 @@ export function AgentSideNav() {
       <div>
         <div className="flex items-center px-4 sm:px-2 py-1 w-full">
           {agent ? (
-            <div className="w-full flex justify-between items-center pt-3">
+            <div className="w-full flex justify-between items-center pt-5">
               <Link to={`/agents/${agentId}`}>
                 <div
                   className={cn('flex items-center space-x-2 w-full', {
@@ -143,7 +146,9 @@ export function AgentSideNavContent({
   isCollapsed: boolean;
   isSheet?: boolean;
 }) {
-  const { agentId, projectId } = useParams();
+  const { taskId, agentId, projectId } = useParams();
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
   const { data: tasks, isLoading: isLoadingTasks } = useApiQuery({
     service: 'tasks',
@@ -157,11 +162,16 @@ export function AgentSideNavContent({
     },
   });
 
+  const deleteMutation = useApiMutation({
+    service: 'tasks',
+    method: 'delete',
+  });
+
   if (isLoadingTasks && !isCollapsed) {
     // Only show spinner when the left rail is open
     return (
-      <div className="h-full flex items-center justify-centerj">
-        <Icons.spinner className="animate-spin" />
+      <div className="flex items-center justify-center h-[20dvh]">
+        <Icons.spinner className="animate-spin text-muted-foreground" />
       </div>
     );
   }
@@ -181,15 +191,44 @@ export function AgentSideNavContent({
       <Nav
         isCollapsed={isCollapsed}
         isSheet={isSheet}
+        className="space-y-0"
         links={
           isCollapsed
             ? []
             : (tasks?.map((task) => {
                 return {
-                  title: task.name,
+                  // title: task.name,
+                  // truncate title at 20 characters if the title has more than 20 characters
+                  title:
+                    task.name.substring(0, 20) +
+                    (task.name.length > 20 ? '...' : ''),
                   to: `/projects/${projectId}/agents/${agentId}/tasks/${task.id}`,
                   // eslint-disable-next-line react/jsx-no-useless-fragment
                   icon: () => <></>,
+                  dropdownMenuContent: (
+                    <DropdownMenu.Content side="right">
+                      <DropdownMenu.Item
+                        onSelect={async () => {
+                          await deleteMutation.mutateAsync(
+                            { id: task.id },
+                            {
+                              onSuccess: () => {
+                                toast({ title: 'Conversation deleted' });
+                                if (taskId === task.id) {
+                                  // Redirect to the agent's page if the current task is deleted
+                                  navigate(
+                                    `/projects/${projectId}/agents/${agentId}`,
+                                  );
+                                }
+                              },
+                            },
+                          );
+                        }}
+                      >
+                        Delete
+                      </DropdownMenu.Item>
+                    </DropdownMenu.Content>
+                  ),
                 };
               }) ?? [])
         }

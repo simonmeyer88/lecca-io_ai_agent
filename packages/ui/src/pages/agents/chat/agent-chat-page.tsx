@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import useApiQuery from '../../../api/use-api-query';
+import { UserSettings } from '../../../components/layouts/application-side-nav';
 import PageLayout from '../../../components/layouts/page-layout';
 import { Loader } from '../../../components/loaders/loader';
 import { FormattedTaskMessage } from '../../../models/task/formatted-task-message-model';
@@ -19,7 +20,7 @@ export function AgentChatPage() {
       id: agentId!,
     },
   });
-  const { data: task } = useApiQuery({
+  const { data: task, isLoading: isLoadingTask } = useApiQuery({
     service: 'tasks',
     method: 'getById',
     apiLibraryArgs: {
@@ -37,7 +38,7 @@ export function AgentChatPage() {
     return null;
   }, [agentId, task?.messages]);
 
-  if (isLoadingAgent && !formattedTaskMessage?.length) {
+  if ((isLoadingAgent || isLoadingTask) && !formattedTaskMessage?.length) {
     return <Loader />;
   }
 
@@ -47,16 +48,15 @@ export function AgentChatPage() {
 
   return (
     <PageLayout
-      titleButton={<NavAgentSelector />}
       title={agent.name}
+      titleButton={<NavAgentSelector />}
       breadcrumbs={[
         {
           href: `/`,
           label: 'Overview',
         },
       ]}
-      className="!px-0"
-      actions={[]}
+      actions={[<UserSettings isCollapsed className="size-8" />]}
     >
       <div className="flex space-x-0 lg:space-x-8 w-full">
         <Chat

@@ -1,3 +1,17 @@
+# [0.23.0](https://github.com/lecca-digital/lecca-io/compare/v0.22.0...v0.23.0) (2024-12-30)
+
+
+### Bug Fixes
+
+* **apps:** Add knowledge app ([6ff9b30](https://github.com/lecca-digital/lecca-io/commit/6ff9b308e8b4b1fcb60d27d89a033cb5beed0089))
+* **apps:** Remove env variables in names because they won't exist ([95c9151](https://github.com/lecca-digital/lecca-io/commit/95c915113113bf5119907b0241cd358e692c3341))
+
+
+### Features
+
+* **server:** Prevent execution and task deletion when billing disabled ([1329a67](https://github.com/lecca-digital/lecca-io/commit/1329a67513ff8de3f821d211d73e756b73af08c3))
+* **ui:** Add ability to delete conversation ([4baedd0](https://github.com/lecca-digital/lecca-io/commit/4baedd092485044cfbb78333fe329df708c41ff3))
+
 # [0.22.0](https://github.com/lecca-digital/lecca-io/compare/v0.21.0...v0.22.0) (2024-12-29)
 
 

@@ -1,3 +1,10 @@
+# [0.22.0](https://github.com/lecca-digital/lecca-io/compare/v0.21.0...v0.22.0) (2024-12-29)
+
+
+### Features
+
+* **ui:** New side nav for agent UI ([089ec2a](https://github.com/lecca-digital/lecca-io/commit/089ec2aa564e6724685f4cc9db7a140d1a6389c7))
+
 # [0.21.0](https://github.com/lecca-digital/lecca-io/compare/v0.20.0...v0.21.0) (2024-12-29)
 
 

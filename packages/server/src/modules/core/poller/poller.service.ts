@@ -129,6 +129,11 @@ export class PollerService {
   //Every 24 hours
   @Cron('0 0 * * *')
   async deleteExecutionHistory() {
+    if (!this.credits.isBillingEnabled()) {
+      //If billing is not enabled, we don't want to run this.
+      return;
+    }
+
     const workspaces = await this.#getWorkspaceWithBillingType();
 
     workspaces.forEach(async (workspace) => {
@@ -180,6 +185,11 @@ export class PollerService {
   //Every 24 hours
   @Cron('0 0 * * *')
   async deleteAgentTaskHistory() {
+    if (!this.credits.isBillingEnabled()) {
+      //If billing is not enabled, we don't want to run this.
+      return;
+    }
+
     const workspaces = await this.#getWorkspaceWithBillingType();
 
     workspaces.forEach(async (workspace) => {

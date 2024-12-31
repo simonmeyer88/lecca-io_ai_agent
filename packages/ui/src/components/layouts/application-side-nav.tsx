@@ -117,23 +117,22 @@ export function MainSideNavContent({
               icon: Icons.project,
               idSelector: 'onboarding-step2',
             },
-            !enabledFeatures.WORKFLOWS
-              ? null
-              : {
-                  title: 'Workflows',
-                  to: '/workflows',
-                  icon: Icons.workflow,
-                  idSelector: 'onboarding-step3',
-                },
             !enabledFeatures.AGENTS
               ? null
               : {
                   title: 'Agents',
                   to: '/agents',
                   icon: Icons.agent,
+                  idSelector: 'onboarding-step3',
+                },
+            !enabledFeatures.WORKFLOWS
+              ? null
+              : {
+                  title: 'Workflows',
+                  to: '/workflows',
+                  icon: Icons.workflow,
                   idSelector: 'onboarding-step4',
                 },
-
             !enabledFeatures.KNOWLEDGE
               ? null
               : {

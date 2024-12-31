@@ -48,28 +48,6 @@ export const tours: Tour[] = [
         pointerPadding: 0,
       },
       {
-        icon: <Icons.workflow className="inline mb-0.5 size-4 mr-1" />,
-        title: 'Workflows',
-        content: (
-          <div className="flex flex-col">
-            <Card.Description className="text-primary">
-              Workflows are a sequence of tasks that are executed in a specific
-              order.
-              <br />
-              <br />
-              You can configure triggers so they run automatically, on a
-              schedule, or manually.
-              <br />
-              <br />
-              <YoutubeIframe src="https://www.youtube.com/embed/csDLgJSMg-A?si=1c1zBpdwo4peTX7y" />
-            </Card.Description>
-          </div>
-        ),
-        selector: '#onboarding-step3',
-        side: 'right-top',
-        pointerPadding: 0,
-      },
-      {
         icon: <Icons.agent className="inline mb-0.5 size-4 mr-1" />,
         title: 'Agents',
         content: (
@@ -84,6 +62,28 @@ export const tours: Tour[] = [
               <br />
               <br />
               <YoutubeIframe src="https://www.youtube.com/embed/kBk-swoAkY8?si=eVBmxzN0w_KVW22_" />
+            </Card.Description>
+          </div>
+        ),
+        selector: '#onboarding-step3',
+        side: 'right-top',
+        pointerPadding: 0,
+      },
+      {
+        icon: <Icons.workflow className="inline mb-0.5 size-4 mr-1" />,
+        title: 'Workflows',
+        content: (
+          <div className="flex flex-col">
+            <Card.Description className="text-primary">
+              Workflows are a sequence of tasks that are executed in a specific
+              order.
+              <br />
+              <br />
+              You can configure triggers so they run automatically, on a
+              schedule, or manually.
+              <br />
+              <br />
+              <YoutubeIframe src="https://www.youtube.com/embed/csDLgJSMg-A?si=1c1zBpdwo4peTX7y" />
             </Card.Description>
           </div>
         ),

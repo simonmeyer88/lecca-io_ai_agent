@@ -1,3 +1,10 @@
+# [0.24.0](https://github.com/lecca-digital/lecca-io/compare/v0.23.0...v0.24.0) (2024-12-31)
+
+
+### Features
+
+* **ui:** Move agent to top over workflow ([d618c71](https://github.com/lecca-digital/lecca-io/commit/d618c7110c1af92784b23c1e8883cdf78c26ed69))
+
 # [0.23.0](https://github.com/lecca-digital/lecca-io/compare/v0.22.0...v0.23.0) (2024-12-30)
 
 

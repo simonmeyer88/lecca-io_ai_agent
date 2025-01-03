@@ -1,3 +1,10 @@
+# [0.25.0](https://github.com/lecca-digital/lecca-io/compare/v0.24.0...v0.25.0) (2025-01-03)
+
+
+### Features
+
+* **app:** Update lecca-io libs ([6bd35d5](https://github.com/lecca-digital/lecca-io/commit/6bd35d5c896ec38f9985bc3ec2746803d77b5661))
+
 # [0.24.0](https://github.com/lecca-digital/lecca-io/compare/v0.23.0...v0.24.0) (2024-12-31)
 
 

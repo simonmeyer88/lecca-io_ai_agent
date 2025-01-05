@@ -29,6 +29,7 @@ import { microsoftOutlook } from './lib/microsoft-outlook/microsoft-outlook.app'
 import { notion } from './lib/notion/notion.app';
 import { openai } from './lib/openai/openai.app';
 import { paradigmVendo } from './lib/paradigm-vendo/paradigm-vendo.app';
+import { perplexityAi } from './lib/perplexity/perplexity-ai.app';
 import { phone } from './lib/phone/phone.app';
 import { pinecone } from './lib/pinecone/pinecone.app';
 import { salesRabbit } from './lib/sales-rabbit/sales-rabbit.app';
@@ -73,6 +74,7 @@ const apps: Record<string, ReturnType<typeof createApp>> = {
   [notion.id]: notion,
   [openai.id]: openai,
   [paradigmVendo.id]: paradigmVendo,
+  [perplexityAi.id]: perplexityAi,
   [phone.id]: phone,
   [pinecone.id]: pinecone,
   [salesRabbit.id]: salesRabbit,
@@ -119,6 +121,7 @@ export {
   paradigmVendo,
   phone,
   pinecone,
+  perplexityAi,
   salesRabbit,
   serper,
   slack,

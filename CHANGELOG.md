@@ -1,3 +1,10 @@
+# [0.26.0](https://github.com/lecca-digital/lecca-io/compare/v0.25.0...v0.26.0) (2025-01-06)
+
+
+### Features
+
+* **apps:** Add Perplexity AI ([0af8d00](https://github.com/lecca-digital/lecca-io/commit/0af8d00062fcb9ad86aa4eb6148c0275aa4cf992))
+
 # [0.25.0](https://github.com/lecca-digital/lecca-io/compare/v0.24.0...v0.25.0) (2025-01-03)
 
 

@@ -117,7 +117,11 @@ export function CreateWorkspaceForm(props: CreateWorkspaceFormProps) {
                 )}
               />
             </Form.Content>
-            <Form.Footer className="space-x-2 flex justify-end">
+            <Form.Footer className="space-x-4 flex justify-end w-full">
+              <Form.Description className="text-xs text-muted-foreground">
+                Only your original workspace will receive credits on the free
+                tier.
+              </Form.Description>
               <Button
                 type="button"
                 onClick={form.handleSubmit(onSubmit)}

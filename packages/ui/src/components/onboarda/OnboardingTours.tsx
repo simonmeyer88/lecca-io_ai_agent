@@ -9,24 +9,6 @@ export const tours: Tour[] = [
     tour: 'application-overview',
     steps: [
       {
-        icon: <Icons.dashboard className="inline mb-0.5 mr-1" />,
-        title: 'Overview',
-        content: (
-          <div className="flex flex-col">
-            <Card.Description className="text-primary">
-              The Overview page gives you an insight into your workspace.
-              <br />
-              <br />
-              You can view recent workflows you've worked on, how many many
-              projects, active workflows, and agents.
-            </Card.Description>
-          </div>
-        ),
-        selector: '#onboarding-step1',
-        side: 'right-top',
-        pointerPadding: 0,
-      },
-      {
         icon: <Icons.project className="inline mb-0.5 size-4 mr-1" />,
         title: 'Projects',
         content: (

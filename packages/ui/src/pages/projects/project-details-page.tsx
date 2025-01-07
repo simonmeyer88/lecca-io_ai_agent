@@ -197,14 +197,14 @@ export function ProjectDetailsPage() {
       titleButton={<NavProjectSelector />}
       className="space-y-8 pb-8"
     >
-      {enabledFeatures.WORKFLOWS && (
+      {enabledFeatures.AGENTS && (
         <>
-          <ProjectDetailsSectionRecentWorkflows projectId={projectId!} />
+          <ProjectDetailsSectionRecentAgents projectId={projectId!} />
           <Separator />
         </>
       )}
-      {enabledFeatures.AGENTS && (
-        <ProjectDetailsSectionRecentAgents projectId={projectId!} />
+      {enabledFeatures.WORKFLOWS && (
+        <ProjectDetailsSectionRecentWorkflows projectId={projectId!} />
       )}
     </PageLayout>
   );

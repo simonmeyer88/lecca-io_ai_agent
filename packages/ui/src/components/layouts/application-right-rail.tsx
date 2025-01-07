@@ -46,18 +46,7 @@ export function MainRightRailContent() {
           <Icons.panelRightClose className="size-5" />
         </Button>
       )}
-      <Rail
-        items={
-          [
-            //We'll put favorites here once we're ready to implement.
-            // {
-            //   title: 'Overview',
-            //   to: '/',
-            //   icon: Icons.agent,
-            // },
-          ].filter(Boolean) as any
-        }
-      />
+      <Rail items={[].filter(Boolean) as any} />
       <div className="w-full px-1.5 mb-3">
         <Separator />
       </div>

@@ -92,7 +92,11 @@ export default function WorkspaceSelector({
             )}
           </Button>
         </Popover.Trigger>
-        <Popover.Content className="w-[250px] p-0">
+        <Popover.Content
+          className="w-[250px] p-0 mt-3"
+          side="right"
+          sideOffset={16}
+        >
           <Command>
             <Command.List>
               {workspaces.length > 5 && <Command.Input placeholder="Search" />}

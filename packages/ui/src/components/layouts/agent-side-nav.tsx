@@ -14,7 +14,7 @@ import { Separator } from '../ui/separator';
 import { Skeleton } from '../ui/skeleton';
 import { Tooltip } from '../ui/tooltip';
 
-import { Nav } from './application-side-nav';
+import { MainSideNavContent, Nav } from './application-side-nav';
 
 export function AgentSideNav() {
   const { agentId, projectId } = useParams();
@@ -176,67 +176,69 @@ export function AgentSideNavContent({
     );
   }
 
-  if (tasks?.length === 0 && !isCollapsed) {
-    return (
-      <div className="w-full px-4 sm:px-2 flex justify-between items-center pt-1 h-[20dvh]">
-        <span className="text-center w-full text-muted-foreground text-xs text-nowrap">
-          No Conversations
-        </span>
-      </div>
-    );
-  }
-
   return (
     <div
-      className={cn('overflow-y-auto', {
+      className={cn('overflow-y-auto flex flex-col justify-between', {
         'h-[calc(100dvh-100px)]': !isCollapsed,
       })}
     >
-      <Nav
-        isCollapsed={isCollapsed}
-        isSheet={isSheet}
-        className="space-y-0"
-        links={
-          isCollapsed
-            ? []
-            : (tasks?.map((task) => {
-                return {
-                  // title: task.name,
-                  // truncate title at 20 characters if the title has more than 20 characters
-                  title:
-                    task.name.substring(0, 20) +
-                    (task.name.length > 20 ? '...' : ''),
-                  to: `/projects/${projectId}/agents/${agentId}/tasks/${task.id}`,
-                  // eslint-disable-next-line react/jsx-no-useless-fragment
-                  icon: () => <></>,
-                  dropdownMenuContent: (
-                    <DropdownMenu.Content side="right">
-                      <DropdownMenu.Item
-                        onSelect={async () => {
-                          await deleteMutation.mutateAsync(
-                            { id: task.id },
-                            {
-                              onSuccess: () => {
-                                toast({ title: 'Conversation deleted' });
-                                if (taskId === task.id) {
-                                  // Redirect to the agent's page if the current task is deleted
-                                  navigate(
-                                    `/projects/${projectId}/agents/${agentId}`,
-                                  );
-                                }
+      {tasks?.length === 0 && !isCollapsed ? (
+        <div className="w-full px-4 sm:px-2 flex justify-between items-center pt-1 h-[20dvh]">
+          <span className="text-center w-full text-muted-foreground text-xs text-nowrap">
+            No Conversations
+          </span>
+        </div>
+      ) : (
+        <Nav
+          isCollapsed={isCollapsed}
+          isSheet={isSheet}
+          className="space-y-0"
+          links={
+            isCollapsed
+              ? []
+              : (tasks?.map((task) => {
+                  return {
+                    // title: task.name,
+                    // truncate title at 20 characters if the title has more than 20 characters
+                    title:
+                      task.name.substring(0, 20) +
+                      (task.name.length > 20 ? '...' : ''),
+                    to: `/projects/${projectId}/agents/${agentId}/tasks/${task.id}`,
+                    // eslint-disable-next-line react/jsx-no-useless-fragment
+                    icon: () => <></>,
+                    dropdownMenuContent: (
+                      <DropdownMenu.Content side="right">
+                        <DropdownMenu.Item
+                          onSelect={async () => {
+                            await deleteMutation.mutateAsync(
+                              { id: task.id },
+                              {
+                                onSuccess: () => {
+                                  toast({ title: 'Conversation deleted' });
+                                  if (taskId === task.id) {
+                                    // Redirect to the agent's page if the current task is deleted
+                                    navigate(
+                                      `/projects/${projectId}/agents/${agentId}`,
+                                    );
+                                  }
+                                },
                               },
-                            },
-                          );
-                        }}
-                      >
-                        Delete
-                      </DropdownMenu.Item>
-                    </DropdownMenu.Content>
-                  ),
-                };
-              }) ?? [])
-        }
-      />
+                            );
+                          }}
+                        >
+                          Delete
+                        </DropdownMenu.Item>
+                      </DropdownMenu.Content>
+                    ),
+                  };
+                }) ?? [])
+          }
+        />
+      )}
+      <div>
+        <Separator />
+        <MainSideNavContent isCollapsed={isCollapsed} isOnAgentSideNav />
+      </div>
     </div>
   );
 }

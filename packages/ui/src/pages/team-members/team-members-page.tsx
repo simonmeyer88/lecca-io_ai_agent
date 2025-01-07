@@ -14,15 +14,26 @@ import { Card } from '../../components/ui/card';
 import { Dialog } from '../../components/ui/dialog';
 import { DropdownMenu } from '../../components/ui/dropdown-menu';
 import { Input } from '../../components/ui/input';
+import { ListView } from '../../components/ui/list-view';
 import { Skeleton } from '../../components/ui/skeleton';
 import { useToast } from '../../hooks/useToast';
 import { useUser } from '../../hooks/useUser';
+import { WorkspaceInvitation } from '../../models/workspace-invitation-model';
 
 export function TeamMembersPage() {
-  const { workspaceUser: currentWorkspaceUser } = useUser();
+  const { workspaceUser: currentWorkspaceUser, enabledFeatures } = useUser();
   const [search, setSearch] = useState('');
   const { toast } = useToast();
   const [isRemoving, setIsRemoving] = useState(false);
+
+  const {
+    data: workspaceInvitations,
+    isLoading: isLoadingWorkspaceInvitations,
+  } = useApiQuery({
+    service: 'workspaceInvitations',
+    method: 'getMe',
+    apiLibraryArgs: {},
+  });
 
   const removeMutation = useApiMutation({
     service: 'workspaces',
@@ -39,6 +50,11 @@ export function TeamMembersPage() {
       title="Team Members"
       subtitle="Collaborate on projects as a team."
       actions={
+        (!isLoadingWorkspaceInvitations &&
+          enabledFeatures?.TEAMS &&
+          workspaceInvitations?.length !== 0 && (
+            <WorkspaceInvitationsDialog invitations={workspaceInvitations!} />
+          ),
         currentWorkspaceUser?.roles.includes('MAINTAINER')
           ? [
               <Dialog>
@@ -53,7 +69,7 @@ export function TeamMembersPage() {
                 </Dialog.Content>
               </Dialog>,
             ]
-          : []
+          : [])
       }
       className="space-y-6"
     >
@@ -175,5 +191,108 @@ export function TeamMembersPage() {
         </>
       )}
     </PageLayout>
+  );
+}
+
+function WorkspaceInvitationsDialog({
+  invitations,
+}: {
+  invitations: WorkspaceInvitation[];
+}) {
+  const { toast } = useToast();
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isAccepting, setIsAccepting] = useState(false);
+
+  const deleteMutation = useApiMutation({
+    service: 'workspaceInvitations',
+    method: 'delete',
+  });
+
+  const acceptMutation = useApiMutation({
+    service: 'workspaceInvitations',
+    method: 'acceptInvitation',
+  });
+
+  return (
+    <Dialog>
+      <Dialog.Trigger asChild>
+        <Button
+          variant={'expandIconOutline'}
+          Icon={Icons.eyeOpen}
+          iconPlacement="right"
+        >
+          Invitations
+        </Button>
+      </Dialog.Trigger>
+      <Dialog.Content>
+        <ListView className="p-6 max-h-[500px] h-full">
+          <ListView.Header>
+            <ListView.Title>Workspace Invitations</ListView.Title>
+            <ListView.Description>
+              Manage your workspace invitations.
+            </ListView.Description>
+          </ListView.Header>
+          <ListView.Body>
+            {invitations.map((invitation) => (
+              <ListView.Row
+                key={invitation.id}
+                className="flex justify-between items-center"
+              >
+                <ListView.Title>{invitation.workspace.name}</ListView.Title>
+                <div className="flex space-x-2 items-center">
+                  <Button
+                    variant="ghost"
+                    size={'sm'}
+                    loading={isDeleting}
+                    disabled={isDeleting || isAccepting}
+                    onClick={async () => {
+                      setIsDeleting(true);
+                      await deleteMutation.mutateAsync(
+                        { id: invitation.id },
+                        {
+                          onSuccess: () => {
+                            toast({
+                              title: 'Workspace invitation deleted',
+                            });
+                          },
+                          onSettled: () => {
+                            setIsDeleting(false);
+                          },
+                        },
+                      );
+                    }}
+                  >
+                    Delete
+                  </Button>
+                  <Button
+                    size={'sm'}
+                    loading={isAccepting}
+                    disabled={isAccepting || isDeleting}
+                    onClick={async () => {
+                      setIsAccepting(true);
+                      await acceptMutation.mutateAsync(
+                        { id: invitation.id },
+                        {
+                          onSuccess: () => {
+                            toast({
+                              title: 'Workspace invitation accepted',
+                            });
+                          },
+                          onSettled: () => {
+                            setIsAccepting(false);
+                          },
+                        },
+                      );
+                    }}
+                  >
+                    Accept
+                  </Button>
+                </div>
+              </ListView.Row>
+            ))}
+          </ListView.Body>
+        </ListView>
+      </Dialog.Content>
+    </Dialog>
   );
 }

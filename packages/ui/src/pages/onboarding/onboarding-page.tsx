@@ -6,7 +6,6 @@ import useApiQuery from '../../api/use-api-query';
 import { CreateConnectionForm } from '../../components/forms/create-connection-form';
 import { JoinWorkspaceForm } from '../../components/forms/join-workspace-form';
 import { SelectProjectForAgentForm } from '../../components/forms/select-project-for-agent-form';
-import { SelectProjectForWorkflowForm } from '../../components/forms/select-project-for-workflow-form';
 import { Icons } from '../../components/icons';
 import { Button } from '../../components/ui/button';
 import { Card } from '../../components/ui/card';
@@ -212,11 +211,11 @@ function CreateWorkflowStep({ previousStep }: { previousStep: () => void }) {
           Build something great.
         </Card.Title>
         <Card.Description>
-          Start by creating a workflow or an agent to help you accomplish tasks.
+          Start by creating an agent to help you accomplish tasks.
         </Card.Description>
         <Card.Description>
-          Keep in mind that agents can run workflows and workflows can message
-          agents. Using them together is what makes Lecca.io so powerful.
+          Agents can run workflows, search knowledge, and use custom tools you
+          provide them. This is what makes Lecca.io so powerful.
         </Card.Description>
         <br />
         <Card.Description>
@@ -251,27 +250,6 @@ function CreateWorkflowStep({ previousStep }: { previousStep: () => void }) {
             );
           }}
           DialogContent={<SelectProjectForAgentForm />}
-        />
-        <OnboardingTile
-          title="Create Workflow"
-          Icon={Icons.workflow}
-          description="Start with a trigger, then add actions to automate your tasks."
-          onClick={() => {
-            onboardMutation.mutateAsync(
-              {
-                data: {
-                  onboarded: true,
-                },
-              },
-              {
-                onSuccess: () => {
-                  workspace!.onboarded = true;
-                  setWorkspace(workspace!);
-                },
-              },
-            );
-          }}
-          DialogContent={<SelectProjectForWorkflowForm />}
         />
       </Card.Content>
       <Card.Footer className="flex justify-between space-x-2">

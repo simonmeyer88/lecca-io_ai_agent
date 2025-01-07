@@ -53,7 +53,7 @@ export function AgentChatPage() {
       breadcrumbs={[
         {
           href: `/`,
-          label: 'Overview',
+          label: 'Agents',
         },
       ]}
       actions={[<UserSettings isCollapsed className="size-8" />]}

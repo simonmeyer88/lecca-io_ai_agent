@@ -65,7 +65,7 @@ export function ApplicationSideNav() {
       )}
     >
       <div>
-        <div className="flex items-center px-4 sm:px-2 py-1.5">
+        <div className="flex items-center px-4 sm:px-2 pb-1.5 pt-3">
           <WorkspaceSelector
             className="hidden sm:flex"
             isCollapsed={isCollapsed}
@@ -86,9 +86,15 @@ export function ApplicationSideNav() {
 export function MainSideNavContent({
   isCollapsed,
   isSheet,
+  isOnAgentSideNav,
 }: {
   isCollapsed: boolean;
   isSheet?: boolean;
+  /**
+   * Used to hide certain side nav links
+   * on the agent page to prevent too much clutter
+   */
+  isOnAgentSideNav?: boolean;
 }) {
   const { enabledFeatures } = useUser();
 
@@ -105,18 +111,14 @@ export function MainSideNavContent({
         isSheet={isSheet}
         links={
           [
-            {
-              title: 'Overview',
-              to: '/',
-              icon: Icons.dashboard,
-              idSelector: 'onboarding-step1',
-            },
-            {
-              title: 'Projects',
-              to: '/projects',
-              icon: Icons.project,
-              idSelector: 'onboarding-step2',
-            },
+            isOnAgentSideNav
+              ? null
+              : {
+                  title: 'Projects',
+                  to: '/projects',
+                  icon: Icons.project,
+                  idSelector: 'onboarding-step2',
+                },
             !enabledFeatures.AGENTS
               ? null
               : {
@@ -141,7 +143,7 @@ export function MainSideNavContent({
                   icon: Icons.knowledge,
                   idSelector: 'onboarding-step5',
                 },
-            !enabledFeatures.CONNECTIONS
+            !enabledFeatures.CONNECTIONS || isOnAgentSideNav
               ? null
               : {
                   title: 'Connections',
@@ -149,7 +151,7 @@ export function MainSideNavContent({
                   icon: Icons.link,
                   idSelector: 'onboarding-step6',
                 },
-            !enabledFeatures.VARIABLES
+            !enabledFeatures.VARIABLES || isOnAgentSideNav
               ? null
               : {
                   title: 'Variables',
@@ -165,7 +167,7 @@ export function MainSideNavContent({
                   icon: Icons.chat,
                   idSelector: 'onboarding-step8',
                 },
-            !enabledFeatures.WORKFLOWS
+            !enabledFeatures.WORKFLOWS || isOnAgentSideNav
               ? null
               : {
                   title: 'Executions',
@@ -173,13 +175,15 @@ export function MainSideNavContent({
                   icon: Icons.executions,
                   idSelector: 'onboarding-step9',
                 },
-            {
-              title: 'Team',
-              to: '/team-members',
-              icon: Icons.users,
-              idSelector: 'onboarding-step10',
-            },
-            !enabledFeatures.CONNECTIONS
+            isOnAgentSideNav
+              ? null
+              : {
+                  title: 'Team',
+                  to: '/team-members',
+                  icon: Icons.users,
+                  idSelector: 'onboarding-step10',
+                },
+            !enabledFeatures.CONNECTIONS || isOnAgentSideNav
               ? null
               : {
                   title: 'Apps',
@@ -187,13 +191,15 @@ export function MainSideNavContent({
                   icon: Icons.app,
                   idSelector: 'onboarding-step11',
                 },
-            {
-              title: 'Templates',
-              to: '/workflow-templates',
-              icon: Icons.templates,
-              idSelector: 'onboarding-step12',
-            },
-            !enabledFeatures.BILLING
+            isOnAgentSideNav
+              ? null
+              : {
+                  title: 'Templates',
+                  to: '/workflow-templates',
+                  icon: Icons.templates,
+                  idSelector: 'onboarding-step12',
+                },
+            !enabledFeatures.BILLING || isOnAgentSideNav
               ? null
               : {
                   title: 'Credit Usage',
@@ -239,7 +245,7 @@ export function AdditionalSideNavContent({
         },
         {
           title: 'Community',
-          to: 'https://discord.gg/86wrJnN7',
+          to: 'https://discord.gg/gGScyB8a',
           newTab: true,
           icon: (props: any) => (
             <img
@@ -248,26 +254,6 @@ export function AdditionalSideNavContent({
               alt="Discord"
               {...props}
             />
-          ),
-        },
-        {
-          title: 'Github',
-          to: 'https://github.com/lecca-digital/lecca-io',
-          newTab: true,
-          icon: (props: any) => (
-            <div>
-              <img
-                src="/icons/github.svg"
-                className="size-4"
-                style={{
-                  backgroundColor: 'white',
-                  borderRadius: '50%',
-                  padding: '.5px',
-                }}
-                alt="Github"
-                {...props}
-              />
-            </div>
           ),
         },
         {

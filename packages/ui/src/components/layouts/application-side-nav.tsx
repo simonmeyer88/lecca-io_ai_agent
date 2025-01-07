@@ -75,7 +75,9 @@ export function ApplicationSideNav() {
       </div>
       <div>
         <Credits isCollapsed={isCollapsed} />
-        <UserSettings isCollapsed={isCollapsed} />
+        <div className="mb-2">
+          <UserSettings isCollapsed={isCollapsed} />
+        </div>
         <Separator />
         <AdditionalSideNavContent isCollapsed={isCollapsed} />
       </div>
@@ -350,7 +352,7 @@ export function UserSettings({
   return (
     <DropdownMenu>
       <DropdownMenu.Trigger
-        className={cn('flex flex-col px-2 mb-2 space-y-3 w-full group')}
+        className={cn('flex flex-col px-2 space-y-3 w-full group')}
       >
         <div
           className={cn(

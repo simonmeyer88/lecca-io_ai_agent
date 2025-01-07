@@ -3,10 +3,8 @@ import { useParams } from 'react-router-dom';
 
 import useApiQuery from '../../../api/use-api-query';
 import { UserSettings } from '../../../components/layouts/application-side-nav';
-import PageLayout from '../../../components/layouts/page-layout';
 import { Loader } from '../../../components/loaders/loader';
 import { FormattedTaskMessage } from '../../../models/task/formatted-task-message-model';
-import { NavAgentSelector } from '../../projects/components/nav-selectors/nav-agent-selector';
 
 import { Chat } from './components/chat';
 import { formatSavedMessagesToStreamedMessageFormat } from './utils/format-saved-messages-to-streamed-message-format';
@@ -47,27 +45,21 @@ export function AgentChatPage() {
   }
 
   return (
-    <PageLayout
-      title={agent.name}
-      titleButton={<NavAgentSelector />}
-      breadcrumbs={[
-        {
-          href: `/`,
-          label: 'Agents',
-        },
-      ]}
-      actions={[<UserSettings isCollapsed className="size-8" />]}
-    >
-      <div className="flex space-x-0 lg:space-x-8 w-full">
-        <Chat
-          agent={agent}
-          taskId={taskId}
-          projectId={projectId!}
-          defaultMessages={
-            formattedTaskMessage as unknown as FormattedTaskMessage[]
-          }
-        />
-      </div>
-    </PageLayout>
+    <div>
+      <nav className="w-full flex items-center justify-between py-1">
+        <div></div>
+        <div className="flex items-center">
+          <UserSettings isCollapsed={false} className="size-8" />
+        </div>
+      </nav>
+      <Chat
+        agent={agent}
+        taskId={taskId}
+        projectId={projectId!}
+        defaultMessages={
+          formattedTaskMessage as unknown as FormattedTaskMessage[]
+        }
+      />
+    </div>
   );
 }

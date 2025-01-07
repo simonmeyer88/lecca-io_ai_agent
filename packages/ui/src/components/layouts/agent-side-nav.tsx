@@ -43,7 +43,7 @@ export function AgentSideNav() {
       <div>
         <div className="flex items-center px-4 sm:px-2 py-1 w-full">
           {agent ? (
-            <div className="w-full flex justify-between items-center pt-5">
+            <div className="w-full flex justify-between items-center pt-2">
               <Link to={`/agents/${agentId}`}>
                 <div
                   className={cn('flex items-center space-x-2 w-full', {
@@ -180,6 +180,7 @@ export function AgentSideNavContent({
     <div
       className={cn('overflow-y-auto flex flex-col justify-between', {
         'h-[calc(100dvh-100px)]': !isCollapsed,
+        'h-[calc(100dvh-130px)]': isCollapsed,
       })}
     >
       {tasks?.length === 0 && !isCollapsed ? (
@@ -236,7 +237,7 @@ export function AgentSideNavContent({
         />
       )}
       <div>
-        <Separator />
+        <Separator className="mb-4" />
         <MainSideNavContent isCollapsed={isCollapsed} isOnAgentSideNav />
       </div>
     </div>

@@ -32,8 +32,6 @@ export function NewChatWelcome({ agent }: NewChatWelcomeProps) {
   const descriptionTextSpanRef = useRef<HTMLSpanElement | null>(null);
   const [descriptionInputWidth, setDescriptionInputWidth] = useState('auto');
 
-  // const [isEditingInstructions, setIsEditingInstructions] = useState(false);
-
   const saveAgentMutation = useApiMutation({
     service: 'agents',
     method: 'update',
@@ -121,7 +119,7 @@ export function NewChatWelcome({ agent }: NewChatWelcomeProps) {
           <AvatarUploader
             src={agent?.profileImageUrl}
             fallback={agent?.name}
-            className="mr-7 mb-2 size-12"
+            className="mr-7 mb-5 size-20"
             getUploadUrl={async (fileName: string) => {
               const presignedUploadUrl =
                 await api.agents.getPresignedPostUrlForProfileImage({

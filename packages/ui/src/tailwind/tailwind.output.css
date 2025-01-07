@@ -1480,6 +1480,18 @@ body {
   height: 1px;
 }
 
+.h-\[calc\(100dvh-200px\)\] {
+  height: calc(100dvh - 200px);
+}
+
+.h-\[calc\(100dvh-120px\)\] {
+  height: calc(100dvh - 120px);
+}
+
+.h-\[calc\(100dvh-130px\)\] {
+  height: calc(100dvh - 130px);
+}
+
 .\!max-h-\[500px\] {
   max-height: 500px !important;
 }
@@ -3102,6 +3114,18 @@ body {
   padding-top: 2rem;
 }
 
+.pb-0 {
+  padding-bottom: 0px;
+}
+
+.pb-0\.5 {
+  padding-bottom: 0.125rem;
+}
+
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -3188,6 +3212,16 @@ body {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.\!text-xl {
+  font-size: 1.25rem !important;
+  line-height: 1.75rem !important;
+}
+
+.\!text-2xl {
+  font-size: 1.5rem !important;
+  line-height: 2rem !important;
 }
 
 .font-bold {

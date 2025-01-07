@@ -109,9 +109,13 @@ export const columns: ColumnDef<Agent>[] = [
 
               const imgUrl = action?.iconUrl ?? app?.logoUrl;
 
+              if (!app) {
+                return null;
+              }
+
               return (
                 <Avatar
-                  key={app!.id + index}
+                  key={app.id + index}
                   className="flex items-center justify-center border rounded-full bg-background cursor-pointer"
                 >
                   <Dialog>
@@ -122,7 +126,7 @@ export const columns: ColumnDef<Agent>[] = [
                       />
                     </Dialog.Trigger>
                     <Dialog.Content>
-                      <AppOverviewContent app={app!} />
+                      <AppOverviewContent app={app} />
                     </Dialog.Content>
                   </Dialog>
                 </Avatar>

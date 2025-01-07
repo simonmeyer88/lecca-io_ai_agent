@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { Icons } from '../../../../components/icons';
 import { AutosizeTextarea } from '../../../../components/ui/autosize-textarea';
@@ -39,6 +39,8 @@ export const ChatInput = ({
   stop: () => void;
   hasToolsButCannotUseThem: boolean;
 }) => {
+  const [initialRender, setInitialRender] = React.useState(true);
+
   const handleKeyPress = useCallback(
     (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
       if (event.key === 'Enter' && !event.shiftKey) {
@@ -113,6 +115,18 @@ export const ChatInput = ({
     [setImageData],
   );
 
+  useEffect(() => {
+    setTimeout(() => {
+      /**
+       * A hack to prevent the chat input to take focus when it it rerendered.
+       * It is rerendered when the user is updating the name, description, avatar, or
+       * any advanced settings on the agent. We don't the the focus to be taken away
+       * while they're in the middle of typing something not in the chat input.
+       */
+      setInitialRender(false);
+    }, 100);
+  }, []);
+
   return (
     <div
       className={cn('', {
@@ -177,7 +191,7 @@ export const ChatInput = ({
         )}
         <AutosizeTextarea
           autoComplete="off"
-          autoFocus
+          autoFocus={initialRender}
           disabled={isLoading}
           value={input}
           onChange={handleInputChange}

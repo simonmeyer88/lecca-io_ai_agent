@@ -184,7 +184,7 @@ export function AgentConfigureToolbar({
         edgeTypes={edgeTypes}
         className="hidden"
       />
-      <div className="flex gap-2 flex-wrap">
+      <div className="flex gap-2 flex-wrap pb-3">
         <ToolsDropdown
           agent={agent}
           projectId={projectId}

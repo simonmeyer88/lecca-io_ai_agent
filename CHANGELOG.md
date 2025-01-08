@@ -1,3 +1,15 @@
+# [0.28.0](https://github.com/lecca-digital/lecca-io/compare/v0.27.1...v0.28.0) (2025-01-08)
+
+
+### Bug Fixes
+
+* **server:** Fix refresh token response status ([387c616](https://github.com/lecca-digital/lecca-io/commit/387c6169e09f711948a8fa68cf2d8ad21a1de578))
+
+
+### Features
+
+* Add CMD K search and don't delete conversations on paid plans ([b545a03](https://github.com/lecca-digital/lecca-io/commit/b545a0303d4797ad189c24abe7315a9d7cba3684))
+
 ## [0.27.1](https://github.com/lecca-digital/lecca-io/compare/v0.27.0...v0.27.1) (2025-01-07)
 
 

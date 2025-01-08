@@ -401,7 +401,7 @@ export class Trigger {
        */
 
       try {
-        const status = error.response?.status;
+        const status = error.status ?? error.response?.status;
         //if error status is 401, call this.refreshToken
         if (status === 401 && this.needsConnection) {
           const connection = await this.app.connection.findOne({
@@ -589,7 +589,7 @@ export class Trigger {
             aiProviders: this.app.aiProviders,
           });
         } catch (err) {
-          const status = err.response?.status;
+          const status = err.status ?? err.response?.status;
           if (status === 401 && connection) {
             const appConnection =
               this.app.connectionMap[connection.connectionId];
@@ -680,7 +680,8 @@ export class Trigger {
             aiProviders: this.app.aiProviders,
           });
         } catch (err) {
-          const status = err.response?.status;
+          const status = err.status ?? err.response?.status;
+
           if (status === 401 && connection) {
             const appConnection =
               this.app.connectionMap[connection.connectionId];

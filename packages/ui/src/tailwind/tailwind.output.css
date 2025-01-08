@@ -3347,11 +3347,6 @@ body {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.text-green-400 {
-  --tw-text-opacity: 1;
-  color: rgb(74 222 128 / var(--tw-text-opacity));
-}
-
 .underline {
   text-decoration-line: underline;
 }
@@ -4992,10 +4987,6 @@ body {
 
   .md\:top-8 {
     top: 2rem;
-  }
-
-  .md\:block {
-    display: block;
   }
 
   .md\:w-\[300px\] {

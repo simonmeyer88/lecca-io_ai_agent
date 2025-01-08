@@ -1035,7 +1035,7 @@ export const DynamicFieldsComponent = ({
         <SharedLabelAndTooltip
           description={fieldConfig.description}
           label={fieldConfig.label}
-          requiredForAgent={fieldConfig.inputType === 'map'}
+          requiredForAgent={!!agentId && fieldConfig.inputType === 'map'}
         />
         {DynamicRefreshButton}
       </div>

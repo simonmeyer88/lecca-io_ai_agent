@@ -24,7 +24,7 @@ export const sendDraft = createAction({
         });
 
         const messages = await Promise.all(
-          response.data.drafts.map(async (draft) => {
+          response.data.drafts?.map(async (draft) => {
             const messageResponse = await gmail.users.drafts.get({
               userId: 'me',
               id: draft.id,
@@ -42,7 +42,7 @@ export const sendDraft = createAction({
               label: subject,
               value: draft.id,
             };
-          }),
+          }) ?? [],
         );
 
         return messages;

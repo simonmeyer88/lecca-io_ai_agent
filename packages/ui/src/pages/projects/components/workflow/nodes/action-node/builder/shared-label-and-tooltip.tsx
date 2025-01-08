@@ -41,21 +41,34 @@ export const SharedLabelAndTooltip = ({
           </Tooltip.Content>
         </Tooltip>
       )}
-      {requiredForAgent && (
-        <Tooltip delayDuration={delayDuration}>
-          <Tooltip.Trigger onClick={(e) => e.preventDefault()}>
-            <Icons.agent className="text-red-500 size-4 ml-2 animate-pulse" />
-          </Tooltip.Trigger>
-          <Tooltip.Content>
-            <p className={cn('max-w-[400px]')}>
-              Agent's cannot fill out this input field. Please provide all
-              necessary values. If you want the values to be more dynamic based
-              on certain data, consider building a workflow tool where you can
-              pass data from one action to another.
-            </p>
-          </Tooltip.Content>
-        </Tooltip>
-      )}
+      {requiredForAgent !== undefined ? (
+        requiredForAgent ? (
+          <Tooltip delayDuration={delayDuration}>
+            <Tooltip.Trigger onClick={(e) => e.preventDefault()}>
+              <Icons.agent className="text-red-500 size-4 ml-2 animate-pulse" />
+            </Tooltip.Trigger>
+            <Tooltip.Content>
+              <p className={cn('max-w-[400px]')}>
+                Agent's cannot fill out this input field. Please provide all
+                necessary values. If you want the values to be more dynamic
+                based on certain data, consider building a workflow tool where
+                you can pass data from one action to another.
+              </p>
+            </Tooltip.Content>
+          </Tooltip>
+        ) : // <Tooltip delayDuration={delayDuration}>
+        //   <Tooltip.Trigger onClick={(e) => e.preventDefault()}>
+        //     <Icons.agent className="text-blue-400 size-4 ml-2" />
+        //   </Tooltip.Trigger>
+        //   <Tooltip.Content>
+        //     <p className={cn('max-w-[400px]')}>
+        //       Agents will fill out this field if left empty.
+        //     </p>
+        //   </Tooltip.Content>
+        // </Tooltip>
+        //This doesn't look very good, so I'm going to remove it for now
+        null
+      ) : null}
     </Form.Label>
   );
 };

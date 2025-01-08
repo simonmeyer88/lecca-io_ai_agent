@@ -345,6 +345,7 @@ function DynamicFormItem({
                   label={fieldOverrides.label ?? fieldConfig.label}
                   hideTooltip={fieldOverrides.hideTooltip}
                   small={isNestedFieldConfig}
+                  requiredForAgent={agentId ? false : undefined}
                 />
               )}
               <Form.Control>
@@ -380,6 +381,7 @@ function DynamicFormItem({
                   label={fieldConfig.label}
                   hideTooltip={fieldOverrides.hideTooltip}
                   small={isNestedFieldConfig}
+                  requiredForAgent={agentId ? false : undefined}
                 />
               )}
               <Tabs.List
@@ -465,6 +467,7 @@ function DynamicFormItem({
                   label={fieldOverrides.label ?? fieldConfig.label}
                   hideTooltip={fieldOverrides.hideTooltip}
                   small={isNestedFieldConfig}
+                  requiredForAgent={agentId ? false : undefined}
                 />
               )}
               <Tabs.List
@@ -524,6 +527,7 @@ function DynamicFormItem({
                   label={fieldConfig.label}
                   hideTooltip={fieldOverrides.hideTooltip}
                   small={isNestedFieldConfig}
+                  requiredForAgent={agentId ? false : undefined}
                 />
               )}
               <Tabs.List
@@ -607,6 +611,7 @@ function DynamicFormItem({
                   label={fieldConfig.label}
                   hideTooltip={fieldOverrides.hideTooltip}
                   small={isNestedFieldConfig}
+                  requiredForAgent={agentId ? false : undefined}
                 />
               )}
               <Tabs.List
@@ -688,6 +693,7 @@ function DynamicFormItem({
                   label={fieldOverrides.label ?? fieldConfig.label}
                   hideTooltip={fieldOverrides.hideTooltip}
                   small={isNestedFieldConfig}
+                  requiredForAgent={agentId ? false : undefined}
                 />
               )}
               <Tabs.List
@@ -831,6 +837,7 @@ function DynamicFormItem({
                   label={fieldOverrides.label ?? fieldConfig.label}
                   hideTooltip={fieldOverrides.hideTooltip}
                   small={isNestedFieldConfig}
+                  requiredForAgent={agentId ? false : undefined}
                 />
               )}
               <Tabs.List
@@ -942,6 +949,7 @@ function DynamicFormItem({
                     label={fieldOverrides.label ?? fieldConfig.label}
                     hideTooltip={fieldOverrides.hideTooltip}
                     small={isNestedFieldConfig}
+                    requiredForAgent={agentId ? false : undefined}
                   />
                 )}
                 <div className="flex justify-between items-end">
@@ -1052,6 +1060,7 @@ function DynamicFormItem({
                   label={fieldOverrides.label ?? fieldConfig.label}
                   hideTooltip={fieldOverrides.hideTooltip}
                   small={isNestedFieldConfig}
+                  requiredForAgent={agentId ? false : undefined}
                 />
               )}
               <Tabs.List
@@ -1133,6 +1142,7 @@ function DynamicFormItem({
                     label={fieldOverrides.label ?? fieldConfig.label}
                     hideTooltip={fieldOverrides.hideTooltip}
                     small={isNestedFieldConfig}
+                    requiredForAgent={agentId ? false : undefined}
                   />
                 )}
                 <div className="flex justify-between items-end">
@@ -1270,6 +1280,7 @@ function DynamicFormItem({
                       label={fieldOverrides.label ?? fieldConfig.label}
                       hideTooltip={fieldOverrides.hideTooltip}
                       small={isNestedFieldConfig}
+                      requiredForAgent={agentId ? false : undefined}
                     />
                   )}
                 </div>
@@ -1294,7 +1305,7 @@ function DynamicFormItem({
                   label={fieldOverrides.label ?? fieldConfig.label}
                   hideTooltip={fieldOverrides.hideTooltip}
                   small={isNestedFieldConfig}
-                  requiredForAgent={!!agentId}
+                  requiredForAgent={agentId ? true : undefined}
                 />
               )}
               <Form.Control>
@@ -1442,6 +1453,7 @@ function DynamicFormItem({
                   label={fieldOverrides.label ?? fieldConfig.label}
                   hideTooltip={fieldOverrides.hideTooltip}
                   small={isNestedFieldConfig}
+                  requiredForAgent={agentId ? true : undefined}
                 />
                 {DynamicRefreshButton}
               </div>
@@ -1544,6 +1556,7 @@ function DynamicFormItem({
                   label={fieldOverrides.label ?? fieldConfig.label}
                   hideTooltip={fieldOverrides.hideTooltip}
                   small={isNestedFieldConfig}
+                  requiredForAgent={agentId ? true : undefined}
                 />
                 {DynamicRefreshButton}
               </div>
@@ -1619,6 +1632,7 @@ function DynamicFormItem({
                   label={fieldOverrides.label ?? fieldConfig.label}
                   hideTooltip={fieldOverrides.hideTooltip}
                   small={isNestedFieldConfig}
+                  requiredForAgent={agentId ? false : undefined}
                 />
               )}
               <Form.Control>

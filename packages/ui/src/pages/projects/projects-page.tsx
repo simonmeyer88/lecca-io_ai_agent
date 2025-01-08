@@ -23,7 +23,7 @@ export default function ProjectsPage() {
   return (
     <PageLayout
       title="Projects"
-      subtitle="Manage your automation and AI tools within your projects"
+      subtitle="Manage your agents and workflows within your projects"
       actions={[
         ...(projectInvitations?.length
           ? [<ProjectInvitationsDialog invitations={projectInvitations} />]

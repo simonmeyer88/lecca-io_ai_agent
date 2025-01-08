@@ -26,12 +26,6 @@ export function GlobalSearch() {
     apiLibraryArgs: {},
   });
 
-  const { data: workflows } = useApiQuery({
-    service: 'workflows',
-    method: 'getList',
-    apiLibraryArgs: {},
-  });
-
   const { data: agents } = useApiQuery({
     service: 'agents',
     method: 'getList',
@@ -47,18 +41,8 @@ export function GlobalSearch() {
       resultObject.Agents = agents ?? [];
     }
 
-    if (enabledFeatures.WORKFLOWS) {
-      resultObject.Workflows = workflows ?? [];
-    }
-
     return resultObject;
-  }, [
-    projects,
-    enabledFeatures.AGENTS,
-    enabledFeatures.WORKFLOWS,
-    agents,
-    workflows,
-  ]);
+  }, [projects, enabledFeatures.AGENTS, agents]);
 
   const RenderResultGroups = React.useMemo(() => {
     return Object.entries(setFilteredResultGroups).map(([key, value]) => {
@@ -107,7 +91,7 @@ export function GlobalSearch() {
   }, []);
 
   return (
-    <div className="hidden md:block">
+    <div className="hidden">
       <div className="relative">
         <Input
           type="search"

@@ -196,67 +196,54 @@ export class PollerService {
       const planType = workspace.billing?.planType;
 
       let days = 0;
-      switch (planType) {
-        case 'free':
-          days = 3;
-          break;
-        case 'professional':
-          days = 7;
-          break;
-        case 'team':
-          days = 7;
-          break;
-        case 'business':
-          days = 30;
-          break;
-        default:
-          days = 3; //If they aren't subscribed to a plan, default to 7 days because it's free plan
-          break;
-      }
 
-      const date = new Date();
-      date.setDate(date.getDate() - days);
+      if (planType === 'free') {
+        days = 3;
 
-      await this.prisma.taskMessage.deleteMany({
-        where: {
-          AND: [
-            {
-              task: {
+        const date = new Date();
+        date.setDate(date.getDate() - days);
+
+        await this.prisma.taskMessage.deleteMany({
+          where: {
+            AND: [
+              {
+                task: {
+                  agent: {
+                    project: {
+                      FK_workspaceId: workspace.id,
+                    },
+                  },
+                },
+              },
+              {
+                createdAt: {
+                  lte: date,
+                },
+              },
+            ],
+          },
+        });
+
+        //Delete all tasks with no messages
+        await this.prisma.task.deleteMany({
+          where: {
+            AND: [
+              {
                 agent: {
                   project: {
                     FK_workspaceId: workspace.id,
                   },
                 },
               },
-            },
-            {
-              createdAt: {
-                lte: date,
-              },
-            },
-          ],
-        },
-      });
-
-      //Delete all tasks with no messages
-      await this.prisma.task.deleteMany({
-        where: {
-          AND: [
-            {
-              agent: {
-                project: {
-                  FK_workspaceId: workspace.id,
+              {
+                messages: {
+                  none: {},
                 },
               },
-            },
-            {
-              messages: {
-                none: {},
-              },
-            },
-          ],
-        },
-      });
+            ],
+          },
+        });
+      }
     });
   }
 

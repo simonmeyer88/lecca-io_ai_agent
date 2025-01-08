@@ -1,3 +1,10 @@
+## [0.27.1](https://github.com/lecca-digital/lecca-io/compare/v0.27.0...v0.27.1) (2025-01-07)
+
+
+### Bug Fixes
+
+* Update lockfile ([eae6fff](https://github.com/lecca-digital/lecca-io/commit/eae6fff6b551bcc45c6e4b3331eda7d11dda2c4e))
+
 # [0.27.0](https://github.com/lecca-digital/lecca-io/compare/v0.26.0...v0.27.0) (2025-01-07)
 
 

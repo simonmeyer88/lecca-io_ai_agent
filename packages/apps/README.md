@@ -2,7 +2,7 @@
 
 @lecca-io/apps is used in the [Lecca.io](https://github.com/lecca-digital/lecca-io) platform.
 
-This libary contains all the apps provided by Lecca.io that can be used with you AI agents and in your workflow automations.
+This library contains all the apps provided by Lecca.io that can be used with you AI agents and in your workflow automations.
 
 To learn more about developing your own apps and/or contributing, go to our [developer documentation](https://www.lecca.io/docs/development)
 

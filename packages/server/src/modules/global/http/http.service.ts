@@ -50,7 +50,6 @@ export class HttpService {
     } catch (error) {
       console.error({
         method: options.method,
-        url: options.url,
         workspaceId: options.workspaceId || null,
         error: error.response?.data || error.message,
         status: error.response?.status || 500,

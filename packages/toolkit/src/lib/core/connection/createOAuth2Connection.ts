@@ -17,6 +17,10 @@ export type CreateOAuth2ConnectionArgs = {
   getClientId: () => string | undefined;
   getClientSecret: () => string | undefined;
   scopes: string[];
+  /**
+   * Default's to a comma.
+   * Override the string to change the delimiter.
+   */
   scopeDelimiter?: string;
   inputConfig?: InputConfig;
   authorizationMethod?: OAuth2AuthorizationMethod;

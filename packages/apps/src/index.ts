@@ -1,6 +1,7 @@
 import { createApp } from '@lecca-io/toolkit';
 
 import { ai } from './lib/ai/ai.app';
+import { airtable } from './lib/airtable/airtable.app';
 import { anthropic } from './lib/anthropic/anthropic.app';
 import { apify } from './lib/apify/apify.app';
 import { braveSearch } from './lib/brave-search/brave-search.app';
@@ -46,6 +47,7 @@ import { zohoCrm } from './lib/zoho-crm/zoho-crm.app';
 
 const apps: Record<string, ReturnType<typeof createApp>> = {
   [ai.id]: ai,
+  [airtable.id]: airtable,
   [anthropic.id]: anthropic,
   [apify.id]: apify,
   [braveSearch.id]: braveSearch,

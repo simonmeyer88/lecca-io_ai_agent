@@ -2,13 +2,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/",
-      "headers": [
-        {
-          "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
-        }
-      ]
+      "destination": "/"
     }
   ],
   "builds": [
@@ -18,6 +12,17 @@
       "config": {
         "distDir": "dist/packages/ui"
       }
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        }
+      ]
     }
   ]
 }

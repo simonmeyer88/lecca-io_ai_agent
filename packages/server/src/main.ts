@@ -4,11 +4,15 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { initServerConfiguration } from './config/env.config';
 import { ServerConfig } from './config/server.config';
+import { tracerInitialization } from './modules/commercial/tracking/tracer-initialization';
 import { AppModule } from './modules/core/app/app.module';
 import { PrismaClientExceptionFilter } from './modules/global/prisma/prisma.filter';
 
 async function bootstrap() {
   await initServerConfiguration();
+
+  tracerInitialization.init();
+  tracerInitialization.start();
 
   const app = await NestFactory.create(AppModule, {
     cors: true,

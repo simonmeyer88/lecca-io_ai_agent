@@ -76,7 +76,7 @@ export function WorkspaceBillingPage() {
               <SubscriptionCard
                 title={'Starter'}
                 description={
-                  '1 User, 1 Project, 60 Minute Polling Trigger, 500 credits a month, Execution History 3 days, and Agent Conversation History 3 days.'
+                  '1 User. 1 Project. 60 Minute Polling Trigger. 250 credits a month. Execution History 3 days. Agent task history 3 days.'
                 }
                 price={`$0`}
                 priceId={null}

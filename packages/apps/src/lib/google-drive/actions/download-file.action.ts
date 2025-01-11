@@ -61,7 +61,7 @@ export const downloadFile = createAction({
     });
 
     const url = await s3.getSignedRetrievalUrl(filePath, {
-      expiresInMinutes: 1440,
+      expiresInMinutes: 1440, //24 hours
     });
 
     return {

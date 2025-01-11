@@ -44,6 +44,18 @@ export type InjectedServices = {
       filePath: string;
       fileName: string;
     }) => Promise<string>;
+    getPresignedPutUrl: (args: {
+      filePath: string;
+      fileName: string;
+      options?: {
+        ContentType?: string | null;
+        ExpirationMinutes?: number;
+        publicRead?: boolean;
+      };
+    }) => Promise<{
+      presignedUrl: string;
+      pathUrl: string;
+    }>;
   };
   aiProviders: {
     providers: Record<string, any>; //TODO

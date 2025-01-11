@@ -10,6 +10,7 @@ import {
   createConnectionSchema,
 } from '../../models/connections-model';
 import { WorkflowApp } from '../../models/workflow/workflow-app-model';
+import { cn } from '../../utils/cn';
 import { Icons } from '../icons';
 import { Button } from '../ui/button';
 import { ComboBox } from '../ui/combo-box';
@@ -190,8 +191,12 @@ export function CreateConnectionForm({
                       form.setValue('connectionId', connectionId)
                     }
                   >
-                    <Tabs.List className="mb-2">
-                      {selectedWorkflowApp?.connections.map((connection) => {
+                    <Tabs.List
+                      className={cn('mb-2', {
+                        hidden: selectedWorkflowApp.connections.length === 1,
+                      })}
+                    >
+                      {selectedWorkflowApp.connections.map((connection) => {
                         return (
                           <Tabs.Trigger
                             key={connection.id}

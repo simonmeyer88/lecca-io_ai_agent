@@ -100,6 +100,42 @@ export class S3ManagerService {
     };
   }
 
+  public async getPresignedPutUrl({
+    filePath,
+    fileName,
+    options,
+  }: {
+    filePath: string;
+    fileName: string;
+    options?: {
+      ContentType?: string | null;
+      ExpirationMinutes?: number;
+      publicRead?: boolean;
+    };
+  }) {
+    const key = createPath(env_prefix, filePath);
+
+    const command = new PutObjectCommand({
+      Bucket: this.#AWS_S3_BUCKET_ID,
+      Key: key,
+      ContentType:
+        options?.ContentType ??
+        (fileName
+          ? getContentTypeFromFileName(fileName)
+          : 'application/octet-stream'),
+      ACL: options?.publicRead ? 'public-read' : undefined,
+    });
+
+    const url = await getSignedUrl(this.#s3Client, command, {
+      expiresIn: 60 * (options?.ExpirationMinutes ?? 1),
+    });
+
+    return {
+      presignedUrl: url,
+      pathUrl: key,
+    };
+  }
+
   public async getSignedRetrievalUrl(
     filePath: string,
     options?: { expiresInMinutes?: number },

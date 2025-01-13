@@ -5,6 +5,7 @@ import { useApplicationSideNav } from '../../hooks/useApplicationSideNav';
 import { useUser } from '../../hooks/useUser';
 import { ErrorBoundary } from '../error-boundary/error-boundary';
 import { Icons } from '../icons';
+import { MobileUiPopup } from '../mobile-ui-popup';
 import { OnboardingCard } from '../onboarda/OnboardingCard';
 import { tours } from '../onboarda/OnboardingTours';
 import Onborda from '../onboarda/Onborda';
@@ -68,6 +69,7 @@ export default function ApplicationLayout() {
               <NavigationBar />
               <div className="relative flex flex-col flex-1 space-y-4 h-full max-h-full">
                 <ErrorBoundary>
+                  <MobileUiPopup />
                   <Outlet />
                 </ErrorBoundary>
               </div>

@@ -925,6 +925,10 @@ body {
   margin: 1rem;
 }
 
+.m-8 {
+  margin: 2rem;
+}
+
 .-mx-1 {
   margin-left: -0.25rem;
   margin-right: -0.25rem;
@@ -1911,6 +1915,10 @@ body {
 .max-w-min {
   max-width: -moz-min-content;
   max-width: min-content;
+}
+
+.max-w-\[90dvw\] {
+  max-width: 90dvw;
 }
 
 .flex-1 {

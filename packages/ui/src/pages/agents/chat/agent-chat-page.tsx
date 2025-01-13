@@ -48,7 +48,7 @@ export function AgentChatPage() {
     <div>
       <nav className="w-full flex items-center justify-between py-1">
         <div></div>
-        <div className="flex items-center">
+        <div className="hidden sm:flex items-center">
           <UserSettings isCollapsed={false} className="size-8" />
         </div>
       </nav>

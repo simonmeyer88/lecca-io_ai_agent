@@ -100,6 +100,102 @@ export class DevService {
     });
   };
 
+  getWorkspacesByEmail = async ({ email }: { email: string }) => {
+    return await this.prisma.workspace.findMany({
+      where: {
+        workspaceUsers: {
+          some: {
+            user: {
+              email,
+            },
+          },
+        },
+      },
+      select: {
+        id: true,
+        createdAt: true,
+        createdByWorkspaceUser: {
+          select: {
+            id: true,
+            user: {
+              select: {
+                id: true,
+                name: true,
+                email: true,
+              },
+            },
+          },
+        },
+        workspaceUsers: {
+          select: {
+            id: true,
+            user: {
+              select: {
+                id: true,
+                email: true,
+                name: true,
+              },
+            },
+          },
+        },
+        billing: {
+          select: {
+            stripeCustomerId: true,
+            planType: true,
+            status: true,
+          },
+        },
+        connections: {
+          select: {
+            _count: true,
+          },
+        },
+        knowledge: {
+          select: {
+            _count: true,
+          },
+        },
+        variables: {
+          select: {
+            _count: true,
+          },
+        },
+        usage: {
+          select: {
+            allottedCredits: true,
+            purchasedCredits: true,
+            refreshedAt: true,
+          },
+        },
+        projects: {
+          select: {
+            _count: true,
+            workflows: {
+              select: {
+                _count: true,
+                executions: {
+                  select: {
+                    _count: true,
+                  },
+                },
+              },
+            },
+            agents: {
+              select: {
+                _count: true,
+                tasks: {
+                  select: {
+                    _count: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    });
+  };
+
   updateWorkspaceCredits = async (data: DevUpdateWorkspaceCreditDto) => {
     //Since this is a "charge", we make credits negative to add them to the workspace.
     if (data.credits > 0) {

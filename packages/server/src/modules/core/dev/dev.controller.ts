@@ -4,6 +4,7 @@ import {
   ForbiddenException,
   Get,
   Post,
+  Query,
 } from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
 
@@ -30,12 +31,30 @@ export class DevController {
   @Get('workspaces')
   @Roles()
   getWorkspaces(@User() user: JwtUser) {
-    if (!user.email.includes(ServerConfig.DEV_EMAIL_DOMAIN)) {
+    if (!user.email.endsWith(ServerConfig.DEV_EMAIL_DOMAIN)) {
       throw new ForbiddenException(
         'You are not allowed to perform this action',
       );
     } else {
       return this.devService.getWorkspaces();
+    }
+  }
+
+  @Get('workspaces-by-email')
+  @Roles()
+  getWorkspacesByEmail(@User() user: JwtUser, @Query('email') email?: string) {
+    /** Retrieves all workspaces for a given user by email */
+
+    if (!user.email.endsWith(ServerConfig.DEV_EMAIL_DOMAIN)) {
+      throw new ForbiddenException(
+        'You are not allowed to perform this action',
+      );
+    } else {
+      if (!email) {
+        throw new ForbiddenException('Email is required');
+      }
+
+      return this.devService.getWorkspacesByEmail({ email });
     }
   }
 
@@ -45,7 +64,7 @@ export class DevController {
     @User() user: JwtUser,
     @Body() body: DevUpdateWorkspaceCreditDto,
   ) {
-    if (!user.email.includes(ServerConfig.DEV_EMAIL_DOMAIN)) {
+    if (!user.email.endsWith(ServerConfig.DEV_EMAIL_DOMAIN)) {
       throw new ForbiddenException(
         'You are not allowed to perform this action',
       );

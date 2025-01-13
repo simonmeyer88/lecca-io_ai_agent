@@ -1,3 +1,11 @@
+# [0.30.0](https://github.com/lecca-digital/lecca-io/compare/v0.29.0...v0.30.0) (2025-01-13)
+
+
+### Features
+
+* **apps:** Add surgemsg integration ([5a6e3cf](https://github.com/lecca-digital/lecca-io/commit/5a6e3cf466479d0f76bbbfcbf3121a1f3836ced0))
+* **ui:** Add mobile ui popup to push users to use desktop ([ac3a03c](https://github.com/lecca-digital/lecca-io/commit/ac3a03cfd700a79ec1d84913a72194bf7206efe2))
+
 # [0.29.0](https://github.com/lecca-digital/lecca-io/compare/v0.28.0...v0.29.0) (2025-01-13)
 
 

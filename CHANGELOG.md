@@ -1,3 +1,22 @@
+# [0.29.0](https://github.com/lecca-digital/lecca-io/compare/v0.28.0...v0.29.0) (2025-01-13)
+
+
+### Bug Fixes
+
+* Add security header ([779dece](https://github.com/lecca-digital/lecca-io/commit/779dece2ab94bde5bdea5846ef020c0140cb74e8))
+* Remove url from http logs ([543a18f](https://github.com/lecca-digital/lecca-io/commit/543a18ff88afc1cd4199dcf1e1be9552056d1519))
+* Update the starter plan description ([1b3a553](https://github.com/lecca-digital/lecca-io/commit/1b3a5530b4344d2b91fb3be021df2952fef1057a))
+* Update vercel.json headers property ([2000881](https://github.com/lecca-digital/lecca-io/commit/2000881a44ad07d8c6223886305b1ec23cd4a381))
+
+
+### Features
+
+* Add dev service to retrieve workspace details by email ([ca9424a](https://github.com/lecca-digital/lecca-io/commit/ca9424aafe518ed1559bee4bb668d949dfc98291))
+* **apps:** Add Airtable app and basic actions ([04a3410](https://github.com/lecca-digital/lecca-io/commit/04a3410b78327a5e6db70ba6e91d1a76dd818ba8))
+* **apps:** Anchor browser actions ([f22c92b](https://github.com/lecca-digital/lecca-io/commit/f22c92b4f1cc882824a9ffb9568f759dd71b66e5))
+* **apps:** Codesandbox javascript and python apps ([3caa39c](https://github.com/lecca-digital/lecca-io/commit/3caa39cea27868c753d41fed89d0b37aa7a62e4b))
+* **server:** Added tracking logic for commerical use ([3f67a63](https://github.com/lecca-digital/lecca-io/commit/3f67a63270b47e739a10f925b3fce99bb253f220))
+
 # [0.28.0](https://github.com/lecca-digital/lecca-io/compare/v0.27.1...v0.28.0) (2025-01-08)
 
 

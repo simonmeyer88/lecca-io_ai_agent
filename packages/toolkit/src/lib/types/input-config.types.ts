@@ -15,6 +15,7 @@ export const INPUT_TYPES = [
   'number',
   'json',
   'map',
+  'code',
 
   // markdown is a special input type that is used to render markdown
   'markdown',

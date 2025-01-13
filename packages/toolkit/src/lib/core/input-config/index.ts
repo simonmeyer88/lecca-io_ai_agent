@@ -13,3 +13,4 @@ export * from './createSelectInputField';
 export * from './createSwitchInputField';
 export * from './createTextInputField';
 export * from './createMarkdownField';
+export * from './createCodeInputField';

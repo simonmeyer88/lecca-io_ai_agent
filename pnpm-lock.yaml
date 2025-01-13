@@ -32,6 +32,9 @@ importers:
       '@aws-sdk/s3-request-presigner':
         specifier: ^3.699.0
         version: 3.714.0
+      '@codesandbox/sdk':
+        specifier: ^0.1.0
+        version: 0.1.0
       '@commitlint/cli':
         specifier: 19.6.0
         version: 19.6.0(@types/node@22.10.2)(typescript@5.7.2)
@@ -1623,6 +1626,10 @@ packages:
 
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
+
+  '@codesandbox/sdk@0.1.0':
+    resolution: {integrity: sha512-x1OqePrcmp6tSs37UeRdLsutOEUI9lGEC3M02ZJDl6YtVPnJHgBfHc9hMJuDYpbXIJPTtYprLMRPQD4jDevE7A==}
+    hasBin: true
 
   '@colors/colors@1.5.0':
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
@@ -15343,6 +15350,8 @@ snapshots:
       '@babel/helper-validator-identifier': 7.25.9
 
   '@bcoe/v8-coverage@0.2.3': {}
+
+  '@codesandbox/sdk@0.1.0': {}
 
   '@colors/colors@1.5.0':
     optional: true

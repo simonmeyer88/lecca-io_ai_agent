@@ -1670,6 +1670,41 @@ function DynamicFormItem({
             </Form.Item>
           );
         }
+        case 'code': {
+          return (
+            <Form.Item>
+              {(!useGroupLabel || isNestedFieldConfig) && (
+                <SharedLabelAndTooltip
+                  required={!!fieldConfig.required && !agentId}
+                  description={fieldConfig.description}
+                  label={fieldOverrides.label ?? fieldConfig.label}
+                  hideTooltip={fieldOverrides.hideTooltip}
+                  small={isNestedFieldConfig}
+                  requiredForAgent={agentId ? false : undefined}
+                />
+              )}
+              <Form.Control>
+                <DynamicInput
+                  projectId={projectId}
+                  onChange={field.onChange}
+                  defaultValue={field.value}
+                  required={
+                    !!form.register(formName, {
+                      required: !!fieldConfig.required && !agentId,
+                    }).required
+                  }
+                  placeholder={
+                    fieldOverrides.placeholder ?? fieldConfig.placeholder
+                  }
+                  node={node}
+                  readOnly={readOnly}
+                  agentId={agentId}
+                />
+              </Form.Control>
+              <Form.Message />
+            </Form.Item>
+          );
+        }
         default:
           throw new Error(
             `${fieldConfig.inputType} is not a valid field type. Add it to dynamic-form-field.tsx`,

@@ -10,6 +10,8 @@
     "vercel-build": "nx build ui",
     "start:server": "nx serve server",
     "start:ui": "nx serve ui",
+    "watch:toolkit": "nx build toolkit --watch",
+    "watch:apps": "nx build apps --watch",
     "start:tunnel": "dotenv -- cross-var ngrok http --domain=tunnel.lecca.io %PORT%",
     "start:stripe": "dotenv -- cross-var stripe listen --forward-to %SERVER_URL%/webhooks/stripe"
   },
@@ -24,6 +26,7 @@
     "@aws-sdk/client-ssm": "^3.699.0",
     "@aws-sdk/s3-presigned-post": "^3.699.0",
     "@aws-sdk/s3-request-presigner": "^3.699.0",
+    "@codesandbox/sdk": "^0.1.0",
     "@commitlint/cli": "19.6.0",
     "@commitlint/config-conventional": "19.6.0",
     "@dagrejs/dagre": "^1.1.4",

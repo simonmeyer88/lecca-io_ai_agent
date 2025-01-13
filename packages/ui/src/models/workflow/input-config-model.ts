@@ -26,6 +26,7 @@ export const UNIQUE_INPUT_TYPES = [
   'static-input-config',
   'multi-select', //Not putting this into common until we have a better multi select
   'json',
+  'code',
 ] as const;
 
 export const inputTypeSchema = z.enum([

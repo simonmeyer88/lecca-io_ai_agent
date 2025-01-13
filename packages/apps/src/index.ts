@@ -7,6 +7,7 @@ import { anthropic } from './lib/anthropic/anthropic.app';
 import { apify } from './lib/apify/apify.app';
 import { braveSearch } from './lib/brave-search/brave-search.app';
 import { calendly } from './lib/calendly/calendly.app';
+import { codesandbox } from './lib/codesandbox/codesandbox.app';
 import { csv } from './lib/csv/csv.app';
 import { date } from './lib/date/date.app';
 import { dropbox } from './lib/dropbox/dropbox.app';
@@ -54,6 +55,7 @@ const apps: Record<string, ReturnType<typeof createApp>> = {
   [apify.id]: apify,
   [braveSearch.id]: braveSearch,
   [calendly.id]: calendly,
+  [codesandbox.id]: codesandbox,
   [csv.id]: csv,
   [date.id]: date,
   [dropbox.id]: dropbox,

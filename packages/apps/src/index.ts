@@ -38,6 +38,7 @@ import { pinecone } from './lib/pinecone/pinecone.app';
 import { salesRabbit } from './lib/sales-rabbit/sales-rabbit.app';
 import { serper } from './lib/serper/serper.app';
 import { slack } from './lib/slack/slack.app';
+import { surgemsg } from './lib/surgemsg/surgemsg.app';
 import { text } from './lib/text/text.app';
 import { vapi } from './lib/vapi/vapi.app';
 import { variables } from './lib/variables/variables.app';
@@ -86,6 +87,7 @@ const apps: Record<string, ReturnType<typeof createApp>> = {
   [salesRabbit.id]: salesRabbit,
   [serper.id]: serper,
   [slack.id]: slack,
+  [surgemsg.id]: surgemsg,
   [text.id]: text,
   [vapi.id]: vapi,
   [variables.id]: variables,

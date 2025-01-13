@@ -122,6 +122,7 @@ export class Action {
                   error?.response?.message ||
                   error?.response?.data ||
                   error?.response?.data?.errorDetails ||
+                  error?.response?.error ||
                   error.message ||
                   `Something went wrong while running action: ${this.name}}`,
               };
@@ -134,6 +135,7 @@ export class Action {
             error?.response?.message ||
             error?.response?.data ||
             error?.response?.data?.errorDetails ||
+            error?.response?.error ||
             error.message ||
             `Something went wrong while running action: ${this.name}}`,
         };
@@ -143,6 +145,7 @@ export class Action {
             error?.response?.message ||
             error?.response?.data ||
             error?.response?.data?.errorDetails ||
+            error?.response?.error ||
             error.message ||
             `Something went wrong while retrying the action: ${this.name}}`,
         };

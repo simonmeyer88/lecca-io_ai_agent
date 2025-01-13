@@ -11,7 +11,7 @@ export const anchorBrowser = createApp({
   description:
     'Anchor provides a seamless way to define, deploy, and maintain browser automations.',
   logoUrl:
-    'https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/anchor-browser.svg',
+    'https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/anchor-browser.png',
   actions: [
     getWebpageContent,
     askWebpage,

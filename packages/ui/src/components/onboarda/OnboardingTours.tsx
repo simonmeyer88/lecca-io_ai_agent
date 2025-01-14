@@ -249,17 +249,20 @@ export const tours: Tour[] = [
     tour: 'agents-overview',
     steps: [
       {
-        icon: <Icons.agent className="inline mb-0.5 mr-1" />,
-        title: 'Agent Profile',
+        icon: <Icons.hammer className="inline mb-0.5 mr-1" />,
+        title: 'Tools',
         content: (
           <div className="flex flex-col">
             <Card.Description className="text-primary">
-              Configure the name, description, web & phone access, and
-              instructions of your agent.
+              Enable web search, email, calendar, phone calling, or other tools
+              that your Agent can use to complete tasks.
+              <br />
+              <br />
+              <YoutubeIframe src="https://www.youtube.com/embed/981hUqVIzhQ?si=8PlsMIyPp59dvabP" />
             </Card.Description>
           </div>
         ),
-        selector: '#onboarding-agent-profile-tab',
+        selector: '#onboarding-agents-overview-tool',
         side: 'bottom-left',
         pointerPadding: 0,
       },
@@ -269,111 +272,120 @@ export const tours: Tour[] = [
         content: (
           <div className="flex flex-col">
             <Card.Description className="text-primary">
-              Give your Agent access to knowledge notebooks.
-              <br />
-              <br />
-              This allows them to search through vasts amount of custom data to
-              better assist you.
+              You can also give your Agent access to{' '}
+              <em>
+                <strong>Search Knowledge</strong>
+              </em>{' '}
+              you've uploaded to your knowledge notebooks.
             </Card.Description>
           </div>
         ),
-        selector: '#onboarding-agent-knowledge-tab',
-        side: 'bottom-left',
-        pointerPadding: 0,
-      },
-      {
-        icon: <Icons.link className="inline mb-0.5 mr-1" />,
-        title: 'Connections',
-        content: (
-          <div className="flex flex-col">
-            <Card.Description className="text-primary">
-              Enable access to your integrations.
-              <br />
-              <br />
-              Once you have enabled a connection, you can enable pre-built
-              actions in the <strong>Actions</strong> tab.
-            </Card.Description>
-          </div>
-        ),
-        selector: '#onboarding-agent-connections-tab',
-        side: 'bottom-left',
-        pointerPadding: 0,
-      },
-      {
-        icon: <Icons.app className="inline mb-0.5 mr-1" />,
-        title: 'Actions',
-        content: (
-          <div className="flex flex-col">
-            <Card.Description className="text-primary">
-              Enable pre-built actions for you Agent.
-              <br />
-              <br />
-              Once your agent has access to some actions, you can prompt it to
-              perform those actions via chat or through the{' '}
-              <strong>Message Agent</strong> action in the{' '}
-              <strong>Workflow Builder</strong>.
-            </Card.Description>
-          </div>
-        ),
-        selector: '#onboarding-agent-actions-tab',
-        side: 'bottom-left',
-        pointerPadding: 0,
-      },
-      {
-        icon: <Icons.workflow className="inline mb-0.5 mr-1" />,
-        title: 'Workflows',
-        content: (
-          <div className="flex flex-col">
-            <Card.Description className="text-primary">
-              Workflows are pre-built sequences of actions that your agent can
-              use as tools.
-              <br />
-              <br />
-              For a workflow to be available to an agent, it must have a trigger
-              of <strong>Manually Run</strong>. And if you want the workflow to
-              return a response to the Agent, you must use the{' '}
-              <strong>Output Workflow Data</strong> action in the workflow.
-            </Card.Description>
-          </div>
-        ),
-        selector: '#onboarding-agent-workflows-tab',
+        selector: '#onboarding-agents-overview-tool',
         side: 'bottom-left',
         pointerPadding: 0,
       },
       {
         icon: <Icons.agent className="inline mb-0.5 mr-1" />,
-        title: 'Sub-Agents',
+        title: 'Message Agents',
         content: (
           <div className="flex flex-col">
             <Card.Description className="text-primary">
-              Allow your Agent to message sub-agents.
-              <br />
-              <br />
-              To avoid giving a single Agent too many tools or complicated its
-              instructions, you can let your Agent delegate tasks to other
-              Agents.
+              You can message other agents in your project. This is useful for
+              delegating tasks to an Agent that is more equipped to solve a
+              given task.
             </Card.Description>
           </div>
         ),
-        selector: '#onboarding-agent-sub-agents-tab',
+        selector: '#onboarding-agents-overview-tool',
         side: 'bottom-left',
         pointerPadding: 0,
       },
       {
-        icon: <Icons.gear className="inline mb-0.5 mr-1 size-5" />,
+        icon: <Icons.agent className="inline mb-0.5 mr-1" />,
+        title: 'Run Workflows',
+        content: (
+          <div className="flex flex-col">
+            <Card.Description className="text-primary">
+              If you build workflows you can enable your agents to run them.
+            </Card.Description>
+          </div>
+        ),
+        selector: '#onboarding-agents-overview-tool',
+        side: 'bottom-left',
+        pointerPadding: 0,
+      },
+      {
+        icon: <Icons.zap className="inline mb-0.5 mr-1" />,
+        title: 'Triggers',
+        content: (
+          <div className="flex flex-col">
+            <Card.Description className="text-primary">
+              Add a trigger to your Agent to run it automatically. You can
+              configure a recurring schedule or an event from an integration.
+              <br />
+              <br />
+              <YoutubeIframe src="https://www.youtube.com/embed/OMh9NMXSuWk?si=2IJAYcqku7lQbrxr" />
+            </Card.Description>
+          </div>
+        ),
+        selector: '#onboarding-agents-overview-trigger',
+        side: 'bottom-left',
+        pointerPadding: 0,
+      },
+      {
+        icon: <Icons.zap className="inline mb-0.5 mr-1" />,
+        title: 'Triggers via Workflow',
+        content: (
+          <div className="flex flex-col">
+            <Card.Description className="text-primary">
+              You can also trigger your Agent from a workflow using the{' '}
+              <em>
+                <strong>Message Agent</strong>
+              </em>{' '}
+              action.
+              <br />
+              <br />
+              Workflow triggers are more configurable than agent triggers at the
+              moment. You can add conditions, webhook triggers, and more.
+            </Card.Description>
+          </div>
+        ),
+        selector: '#onboarding-agents-overview-trigger',
+        side: 'bottom-left',
+        pointerPadding: 0,
+      },
+      {
+        icon: <Icons.settings2 className="inline mb-0.5 mr-1" />,
         title: 'Advanced Settings',
         content: (
           <div className="flex flex-col">
             <Card.Description className="text-primary">
-              Specify the LLM Model, tweak the model's settings, and more.
-              <br />
-              <br />
-              You can also select your OpenAI connection (must create one first)
-              to use your own API Key.
+              Here you can give your Agent instructions on how to behave, handle
+              errors, and use tools. You can also select your preferred LLM
+              provider and model, and even connect your own API key.
             </Card.Description>
           </div>
         ),
-        selector: '#onboarding-agent-advanced-tab',
+        selector: '#onboarding-agents-overview-advanced-settings',
+        side: 'bottom-left',
+        pointerPadding: 20,
+      },
+      {
+        icon: <Icons.images className="inline mb-0.5 mr-1" />,
+        title: 'Content',
+        content: (
+          <div className="flex flex-col">
+            <Card.Description className="text-primary">
+              Upload images, link to images, or even just paste an image from
+              your clipboard to the chat.
+              <br />
+              <br />
+              The LLM model you're using must support images for this content
+              feature to work.
+            </Card.Description>
+          </div>
+        ),
+        selector: '#onboarding-agents-overview-add-content',
         side: 'bottom-left',
         pointerPadding: 0,
       },

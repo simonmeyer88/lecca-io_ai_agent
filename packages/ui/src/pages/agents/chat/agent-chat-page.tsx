@@ -1,16 +1,23 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import useApiQuery from '../../../api/use-api-query';
 import { UserSettings } from '../../../components/layouts/application-side-nav';
 import { Loader } from '../../../components/loaders/loader';
+import { useOnborda } from '../../../components/onboarda/OnbordaContext';
+import { useUser } from '../../../hooks/useUser';
 import { FormattedTaskMessage } from '../../../models/task/formatted-task-message-model';
 
 import { Chat } from './components/chat';
 import { formatSavedMessagesToStreamedMessageFormat } from './utils/format-saved-messages-to-streamed-message-format';
 
 export function AgentChatPage() {
+  const { workspaceUser } = useUser();
   const { projectId, agentId, taskId } = useParams();
+  const { startOnborda } = useOnborda();
+  const [alreadyShowedAgentOverview, setAlreadyShowedAgentOverview] =
+    useState(false);
+
   const { data: agent, isLoading: isLoadingAgent } = useApiQuery({
     service: 'agents',
     method: 'getById',
@@ -35,6 +42,25 @@ export function AgentChatPage() {
     }
     return null;
   }, [agentId, task?.messages]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (
+        !alreadyShowedAgentOverview &&
+        window.innerWidth > 700 &&
+        !workspaceUser?.user?.toursCompleted?.includes('agents-overview') &&
+        !isLoadingAgent
+      ) {
+        setAlreadyShowedAgentOverview(true);
+        startOnborda('agents-overview');
+      }
+    }, 500);
+  }, [
+    alreadyShowedAgentOverview,
+    isLoadingAgent,
+    startOnborda,
+    workspaceUser?.user?.toursCompleted,
+  ]);
 
   if ((isLoadingAgent || isLoadingTask) && !formattedTaskMessage?.length) {
     return <Loader />;

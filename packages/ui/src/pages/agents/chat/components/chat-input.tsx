@@ -142,7 +142,7 @@ export const ChatInput = ({
           <DropdownMenu>
             <DropdownMenu.Trigger>
               <Tooltip>
-                <Tooltip.Trigger>
+                <Tooltip.Trigger id="onboarding-agents-overview-add-content">
                   <Button variant={'ghost'} size="icon" disabled={!!imageData}>
                     <Icons.plusCircled className={cn('size-6')} />
                   </Button>

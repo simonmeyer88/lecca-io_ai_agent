@@ -64,7 +64,7 @@ export function ProjectDetailsSectionRecentWorkflows(props: Props) {
       <DataTable
         columns={columns}
         isLoading={false}
-        data={workflows}
+        data={workflows.filter((workflow) => !workflow.isInternal)}
         hideToolbar={workflows.length < 10}
         hideTablePagination={workflows.length < 10}
         defaultPageSize={10}

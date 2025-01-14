@@ -10,7 +10,7 @@ export const codesandbox = createApp({
   logoUrl:
     'https://lecca-io.s3.us-east-2.amazonaws.com/assets/apps/codesandbox.svg',
   description:
-    'CodeSandbox SDK enables you to quickly create and run isolated sandboxes securely.',
+    'CodeSandbox enables you to quickly create and run isolated sandboxes securely.',
   actions: [runJavascript, runPython],
   triggers: [],
   connections: [codesandboxApiKey],

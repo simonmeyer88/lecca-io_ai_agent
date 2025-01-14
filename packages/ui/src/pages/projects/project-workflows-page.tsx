@@ -93,13 +93,14 @@ export function ProjectWorkflowsPage() {
           {workflows
             ?.filter(
               (workflow) =>
-                workflow.name
+                !workflow.isInternal &&
+                (workflow.name
                   .toLocaleLowerCase()
                   .includes(search.toLocaleLowerCase()) ||
-                (workflow.description &&
-                  workflow.description
-                    .toLocaleLowerCase()
-                    .includes(search.toLocaleLowerCase())),
+                  (workflow.description &&
+                    workflow.description
+                      .toLocaleLowerCase()
+                      .includes(search.toLocaleLowerCase()))),
             )
             .map((workflow) => (
               <WorkflowCard

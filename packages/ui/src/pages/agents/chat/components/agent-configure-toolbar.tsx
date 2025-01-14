@@ -270,7 +270,11 @@ function ToolsDropdown({
     <>
       <DropdownMenu>
         <DropdownMenu.Trigger asChild>
-          <Button variant="ghost" className="space-x-2">
+          <Button
+            variant="ghost"
+            className="space-x-2"
+            id="onboarding-agents-overview-tool"
+          >
             <span>Tools</span>
             <Icons.plus className="size-4" />
           </Button>
@@ -367,7 +371,11 @@ function TriggersDropdown({
     <>
       <DropdownMenu>
         <DropdownMenu.Trigger asChild>
-          <Button variant="ghost" className="space-x-2">
+          <Button
+            variant="ghost"
+            className="space-x-2"
+            id="onboarding-agents-overview-trigger"
+          >
             <span>Triggers</span>
             <Icons.plus className="size-4" />
           </Button>
@@ -460,7 +468,9 @@ function AdvancedSettingsDropdown({ agent }: { agent: Agent }) {
           className="!border-none w-full flex flex-col space-y-8 "
         >
           <Accordion.Trigger className="text-muted-foreground flex items-center justify-center">
-            Advanced Settings
+            <span id="onboarding-agents-overview-advanced-settings">
+              Advanced Settings
+            </span>
           </Accordion.Trigger>
           <Accordion.Content>
             <AgentBuilderAdvancedSettingsContent agent={agent} />

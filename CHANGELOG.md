@@ -1,3 +1,10 @@
+# [0.31.0](https://github.com/lecca-digital/lecca-io/compare/v0.30.0...v0.31.0) (2025-01-14)
+
+
+### Features
+
+* **ui:** Agent onboarding tour ([4cd4578](https://github.com/lecca-digital/lecca-io/commit/4cd4578b5b256eaddededc9a4d1a617edb9e39f2))
+
 # [0.30.0](https://github.com/lecca-digital/lecca-io/compare/v0.29.0...v0.30.0) (2025-01-13)
 
 

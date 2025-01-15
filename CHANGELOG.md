@@ -1,3 +1,10 @@
+## [0.31.3](https://github.com/lecca-digital/lecca-io/compare/v0.31.2...v0.31.3) (2025-01-15)
+
+
+### Bug Fixes
+
+* Attempt to fix apps and toolkit deps on deploy 3 ([19177d6](https://github.com/lecca-digital/lecca-io/commit/19177d65bc4782f230b53b4e283b310fde7c93be))
+
 ## [0.31.2](https://github.com/lecca-digital/lecca-io/compare/v0.31.1...v0.31.2) (2025-01-15)
 
 

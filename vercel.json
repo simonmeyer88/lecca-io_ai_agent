@@ -10,7 +10,9 @@
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist/packages/ui"
+        "distDir": "dist/packages/ui",
+        "installCommand": "pnpm up @lecca-io/apps@$VERSION @lecca-io/toolkit@$VERSION && pnpm install",
+        "buildCommand": "pnpm run vercel-build"
       }
     }
   ],

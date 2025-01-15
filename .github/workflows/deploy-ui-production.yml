@@ -61,10 +61,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Get Version
+        id: get_version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v20
+        env:
+          VERSION: ${{ env.VERSION }}
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: '--prod'
+          vercel-args: '--prod --build-env VERSION=${{ env.VERSION }}'

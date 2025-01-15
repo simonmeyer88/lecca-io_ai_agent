@@ -1,11 +1,11 @@
 {
   "name": "@lecca-io/apps",
-  "version": "0.31.0",
+  "version": "0.31.1",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@lecca-io/toolkit": "latest"
+    "@lecca-io/toolkit": "0.31.1"
   },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",

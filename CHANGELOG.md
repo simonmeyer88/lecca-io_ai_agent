@@ -1,3 +1,11 @@
+## [0.31.1](https://github.com/lecca-digital/lecca-io/compare/v0.31.0...v0.31.1) (2025-01-15)
+
+
+### Bug Fixes
+
+* **apps:** Fix linkedin create-text-post ([fdc2532](https://github.com/lecca-digital/lecca-io/commit/fdc253217980f064bcfe92819ddb56758a8ced2b))
+* Attempt to fix apps and toolkit deps on deploy ([261a8ab](https://github.com/lecca-digital/lecca-io/commit/261a8ab9c25b4a1e98172eb911408758e3fd376a))
+
 # [0.31.0](https://github.com/lecca-digital/lecca-io/compare/v0.30.0...v0.31.0) (2025-01-14)
 
 

@@ -1,3 +1,10 @@
+## [0.31.6](https://github.com/lecca-digital/lecca-io/compare/v0.31.5...v0.31.6) (2025-01-15)
+
+
+### Bug Fixes
+
+* Trigger another build for testing ([ac4391b](https://github.com/lecca-digital/lecca-io/commit/ac4391b1e29ee05901810dc28a3d81e842a08cf5))
+
 ## [0.31.5](https://github.com/lecca-digital/lecca-io/compare/v0.31.4...v0.31.5) (2025-01-15)
 
 

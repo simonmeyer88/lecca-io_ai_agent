@@ -37,3 +37,30 @@ jobs:
         run: pnpm nx run-many --target=nx-release-publish --projects=apps,toolkit
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Add this verification step at the end
+      - name: Wait for NPM packages to be available
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "Waiting for NPM packages to be available..."
+          timeout=300  # 5 minutes timeout
+          interval=10  # Check every 10 seconds
+
+          until curl -s "https://registry.npmjs.org/@lecca-io/apps/$VERSION" | grep -q "version" || [ $timeout -le 0 ]; do
+            echo "Package @lecca-io/apps@$VERSION not yet available, waiting..."
+            sleep $interval
+            timeout=$((timeout - interval))
+          done
+
+          until curl -s "https://registry.npmjs.org/@lecca-io/toolkit/$VERSION" | grep -q "version" || [ $timeout -le 0 ]; do
+            echo "Package @lecca-io/toolkit@$VERSION not yet available, waiting..."
+            sleep $interval
+            timeout=$((timeout - interval))
+          done
+
+          if [ $timeout -le 0 ]; then
+            echo "Timeout waiting for packages to be available"
+            exit 1
+          fi
+
+          echo "Packages are available, first workflow complete"

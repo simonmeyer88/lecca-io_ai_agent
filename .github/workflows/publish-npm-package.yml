@@ -24,10 +24,8 @@ jobs:
 
       - name: Update Dependencies and Install
         run: |
-          npm pkg set dependencies.@lecca-io/apps=latest
-          npm pkg set dependencies.@lecca-io/toolkit=latest
-          rm pnpm-lock.yaml
-          pnpm install
+          pnpm up @lecca-io/apps@latest @lecca-io/toolkit@latest
+          pnpm install --frozen-lockfile
 
       - name: Build toolkit
         run: pnpm nx build toolkit

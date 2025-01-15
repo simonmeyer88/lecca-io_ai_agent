@@ -34,10 +34,8 @@ jobs:
 
       - name: Update Dependencies and Install
         run: |
-          npm pkg set dependencies.@lecca-io/apps=${{ env.VERSION }}
-          npm pkg set dependencies.@lecca-io/toolkit=${{ env.VERSION }}
-          rm pnpm-lock.yaml
-          pnpm install
+          pnpm up @lecca-io/apps@${{ env.VERSION }} @lecca-io/toolkit@${{ env.VERSION }}
+          pnpm install --frozen-lockfile
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3

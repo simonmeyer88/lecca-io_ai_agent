@@ -6,6 +6,8 @@ import {
 } from '@lecca-io/toolkit';
 import { z } from 'zod';
 
+import { shared } from '../shared/linkedin.shared';
+
 export const createTextPost = createAction({
   id: 'linkedin_action_create-text-post',
   name: 'Create Text Post',
@@ -101,8 +103,11 @@ export const createTextPost = createAction({
   run: async ({ configValue, connection, workspaceId, http }) => {
     const url = 'https://api.linkedin.com/rest/posts';
 
-    // Get person ID implementation goes here
-    const personId = ''; // Implementation needed
+    const personId = await shared.getPersonId({
+      accessToken: connection.accessToken,
+      workspaceId,
+      http,
+    });
 
     const {
       canReshare,

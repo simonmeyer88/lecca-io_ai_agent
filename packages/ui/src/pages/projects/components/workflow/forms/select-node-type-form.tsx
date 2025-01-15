@@ -521,15 +521,18 @@ export function SelectNodeTypeForm({
                       autoFocus
                       value={searchQuery}
                       onKeyDown={(e) => {
+                        //Focus first item on these keys
                         if (e.key === 'Tab') {
                           e.preventDefault();
                           firstSubTriggerRef.current?.focus();
-                        }
-                        //Else if key is down arrow, focus on the first item as well
-                        else if (e.key === 'ArrowDown') {
+                        } else if (e.key === 'ArrowDown') {
+                          e.preventDefault();
+                          firstSubTriggerRef.current?.focus();
+                        } else if (e.key === 'Enter') {
                           e.preventDefault();
                           firstSubTriggerRef.current?.focus();
                         }
+
                         e.stopPropagation();
                       }}
                       onChange={(e) => filterApps(e)}

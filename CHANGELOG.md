@@ -1,3 +1,10 @@
+## [0.31.5](https://github.com/lecca-digital/lecca-io/compare/v0.31.4...v0.31.5) (2025-01-15)
+
+
+### Bug Fixes
+
+* Update vercel.json script for deploy ([1f8cb44](https://github.com/lecca-digital/lecca-io/commit/1f8cb440766fa8e9bfbeac2a6995125e2c1a2f56))
+
 ## [0.31.4](https://github.com/lecca-digital/lecca-io/compare/v0.31.3...v0.31.4) (2025-01-15)
 
 

@@ -17,11 +17,17 @@ jobs:
           node-version: '20.8.1'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install Dependencies
+      - name: Setup PNPM
         uses: pnpm/action-setup@v2
         with:
           version: 9
-      - run:  pnpm install --frozen-lockfile
+
+      - name: Update Dependencies and Install
+        run: |
+          npm pkg set dependencies.@lecca-io/apps=latest
+          npm pkg set dependencies.@lecca-io/toolkit=latest
+          rm pnpm-lock.yaml
+          pnpm install
 
       - name: Build toolkit
         run: pnpm nx build toolkit

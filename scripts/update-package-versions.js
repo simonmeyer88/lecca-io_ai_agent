@@ -27,6 +27,15 @@ packagePaths.forEach((packagePath) => {
     // Update the version
     packageJson.version = newVersion;
 
+    // Update @lecca-io dependencies if they exist
+    if (packageJson.dependencies) {
+      Object.keys(packageJson.dependencies).forEach((dep) => {
+        if (dep.startsWith('@lecca-io/')) {
+          packageJson.dependencies[dep] = newVersion;
+        }
+      });
+    }
+
     // Write back to file
     fs.writeFileSync(fullPath, JSON.stringify(packageJson, null, 2) + '\n');
 

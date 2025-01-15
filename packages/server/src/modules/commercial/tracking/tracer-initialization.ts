@@ -27,11 +27,6 @@ class TracerInitialization {
       }),
     });
 
-    // Set up shutdown handler
-    process.on('SIGTERM', () => {
-      this.shutdown();
-    });
-
     return this;
   }
 
@@ -51,8 +46,7 @@ class TracerInitialization {
       this.sdk
         .shutdown()
         .then(() => console.info('Tracing terminated'))
-        .catch((error) => console.error('Error terminating tracing', error))
-        .finally(() => process.exit(0));
+        .catch((error) => console.error('Error terminating tracing', error));
     }
   }
 

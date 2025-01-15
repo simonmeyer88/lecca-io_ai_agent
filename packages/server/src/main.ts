@@ -62,6 +62,13 @@ async function bootstrap() {
   const { httpAdapter } = app.get(HttpAdapterHost);
   app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter));
 
+  // Proper shutdown handling
+  process.on('SIGTERM', async () => {
+    tracerInitialization.shutdown();
+    await app.close();
+    process.exit(0);
+  });
+
   await app.listen(ServerConfig.PORT);
 
   console.info(`\nServer is running on ${ServerConfig.SERVER_URL}`);

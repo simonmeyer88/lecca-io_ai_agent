@@ -249,7 +249,7 @@ export function AdditionalSideNavContent({
         },
         {
           title: 'Community',
-          to: 'https://discord.gg/gGScyB8a',
+          to: 'https://discord.gg/yvfhuCNq',
           newTab: true,
           icon: (props: any) => (
             <img

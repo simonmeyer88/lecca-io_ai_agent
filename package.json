@@ -1,6 +1,6 @@
 {
   "name": "lecca-io",
-  "version": "0.31.3",
+  "version": "0.31.4",
   "license": "Apache-2.0 with Commons Clause",
   "repository": {
     "type": "git",
@@ -32,8 +32,8 @@
     "@dagrejs/dagre": "^1.1.4",
     "@faker-js/faker": "^8.4.1",
     "@hookform/resolvers": "^3.3.4",
-    "@lecca-io/apps": "0.31.3",
-    "@lecca-io/toolkit": "0.31.3",
+    "@lecca-io/apps": "0.31.4",
+    "@lecca-io/toolkit": "0.31.4",
     "@nestjs/axios": "^3.1.2",
     "@nestjs/common": "^10.4.8",
     "@nestjs/config": "^3.3.0",

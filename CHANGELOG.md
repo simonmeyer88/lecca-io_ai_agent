@@ -1,3 +1,10 @@
+## [0.31.4](https://github.com/lecca-digital/lecca-io/compare/v0.31.3...v0.31.4) (2025-01-15)
+
+
+### Bug Fixes
+
+* Add wait for npm publish to be published before completing workflow ([68e506c](https://github.com/lecca-digital/lecca-io/commit/68e506c30b938caef0135a2ad695369cd92a857f))
+
 ## [0.31.3](https://github.com/lecca-digital/lecca-io/compare/v0.31.2...v0.31.3) (2025-01-15)
 
 

@@ -1,3 +1,11 @@
+## [0.31.7](https://github.com/lecca-digital/lecca-io/compare/v0.31.6...v0.31.7) (2025-01-17)
+
+
+### Bug Fixes
+
+* Fix tracking initialization ([284bd18](https://github.com/lecca-digital/lecca-io/commit/284bd18f2060b6346a066d67d8afc5b122b8a7eb))
+* Update discord link ([863df5e](https://github.com/lecca-digital/lecca-io/commit/863df5e95590e5ff21a958ddfd85f138baf998ff))
+
 ## [0.31.6](https://github.com/lecca-digital/lecca-io/compare/v0.31.5...v0.31.6) (2025-01-15)
 
 

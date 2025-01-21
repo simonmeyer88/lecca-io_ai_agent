@@ -785,6 +785,10 @@ body {
   bottom: 0.5rem;
 }
 
+.bottom-5 {
+  bottom: 1.25rem;
+}
+
 .bottom-full {
   bottom: 100%;
 }
@@ -843,6 +847,10 @@ body {
 
 .right-4 {
   right: 1rem;
+}
+
+.right-5 {
+  right: 1.25rem;
 }
 
 .top-0 {
@@ -911,6 +919,10 @@ body {
 
 .\!m-0 {
   margin: 0px !important;
+}
+
+.m-0 {
+  margin: 0px;
 }
 
 .m-1 {
@@ -1098,6 +1110,10 @@ body {
 
 .mr-4 {
   margin-right: 1rem;
+}
+
+.mr-5 {
+  margin-right: 1.25rem;
 }
 
 .mr-7 {
@@ -1412,6 +1428,10 @@ body {
   height: 56px;
 }
 
+.h-\[650px\] {
+  height: 650px;
+}
+
 .h-\[calc\(100dvh-100px\)\] {
   height: calc(100dvh - 100px);
 }
@@ -1498,6 +1518,10 @@ body {
 
 .max-h-\[calc\(100\%-15px\)\] {
   max-height: calc(100% - 15px);
+}
+
+.max-h-\[calc\(100dvh-100px\)\] {
+  max-height: calc(100dvh - 100px);
 }
 
 .max-h-\[calc\(40dvh-135px\)\] {
@@ -1702,6 +1726,10 @@ body {
 
 .w-\[280px\] {
   width: 280px;
+}
+
+.w-\[425px\] {
+  width: 425px;
 }
 
 .w-\[48px\] {
@@ -2848,6 +2876,11 @@ body {
   padding: 1px;
 }
 
+.\!px-2 {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
 .\!py-2 {
   padding-top: 0.5rem !important;
   padding-bottom: 0.5rem !important;
@@ -2866,11 +2899,6 @@ body {
 .px-1\.5 {
   padding-left: 0.375rem;
   padding-right: 0.375rem;
-}
-
-.px-10 {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
 }
 
 .px-14 {
@@ -2956,6 +2984,16 @@ body {
 .py-\[7px\] {
   padding-top: 7px;
   padding-bottom: 7px;
+}
+
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 
 .pb-1 {

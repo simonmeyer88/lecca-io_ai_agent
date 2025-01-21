@@ -48,7 +48,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="container relative h-dvh flex flex-col items-center justify-center">
+    <div className="container relative h-dvh flex flex-col items-center justify-center overflow-y-auto">
       <Link
         to="/welcome"
         className={cn(
@@ -59,7 +59,12 @@ export default function LoginPage() {
         Signup
       </Link>
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-        <div className="flex flex-col space-y-2 text-center">
+        <div className="flex flex-col items-center space-y-2 text-center">
+          <img
+            src="branding/logo.png"
+            className="size-20"
+            alt="Lecca.io Logo"
+          />
           <h1 className="text-2xl font-semibold tracking-tight">Login</h1>
           <p className="text-sm text-muted-foreground">
             Welcome back to Lecca.io

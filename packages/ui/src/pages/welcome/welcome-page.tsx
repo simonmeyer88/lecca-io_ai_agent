@@ -73,8 +73,13 @@ export function WelcomePage() {
       >
         Login
       </Link>
-      <div className="w-full sm:w-[350px] space-y-4">
-        <div className="flex flex-col space-y-2 text-center">
+      <div className="w-full sm:w-[350px] space-y-4 overflow-y-auto py-10 px-1">
+        <div className="flex flex-col items-center space-y-2 text-center">
+          <img
+            src="branding/logo.png"
+            className="size-20"
+            alt="Lecca.io Logo"
+          />
           <h1 className="text-2xl font-semibold tracking-tight">
             Create an account
           </h1>

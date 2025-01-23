@@ -207,15 +207,15 @@ export const DEFAULT_PROVIDERS: AiProviders = {
     embeddingModels: {},
     platformCredentialEnvVar: 'GEMINI_API_KEY',
   },
-  togetherai: {
-    appConnectionId: 'togetherai_connection_api-key',
+  'together-ai': {
+    appConnectionId: 'together-ai_connection_api-key',
     languageModels: {
       // Will be set at runtime
     },
     embeddingModels: {
       // Will be set at runtime
     },
-    platformCredentialEnvVar: 'TOGETHERAI_API_KEY',
+    platformCredentialEnvVar: 'TOGETHER_AI_API_KEY',
     fetchLanguageModels: async ({ http, workspaceId, connection }) => {
       const response = await http.request({
         method: 'GET',
@@ -246,6 +246,38 @@ export const DEFAULT_PROVIDERS: AiProviders = {
         },
         {} as Record<string, AiLanguageModelData>,
       );
+    },
+  },
+  'perplexity-ai': {
+    appConnectionId: 'perplexity-ai_connection_api-key',
+    languageModels: {
+      'sonar-pro': {
+        vision: false,
+        tools: false,
+        canStreamText: false,
+        canStreamTools: false,
+        creditConversionData: null,
+        //200k context length
+      },
+      sonar: {
+        vision: false,
+        tools: false,
+        canStreamText: false,
+        canStreamTools: false,
+        creditConversionData: null,
+        //127k context length
+      },
+    },
+    embeddingModels: {
+      // Will be set at runtime
+    },
+    platformCredentialEnvVar: 'PERPLEXITY_AI_API_KEY',
+    validateConfiguration: (args) => {
+      if (args.frequency_penalty <= 0) {
+        args.frequency_penalty = 0.01;
+      }
+
+      return args;
     },
   },
   ollama: {

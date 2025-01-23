@@ -3,7 +3,8 @@ export type AiProvider =
   | 'ollama'
   | 'gemini'
   | 'anthropic'
-  | 'togetherai'
+  | 'together-ai'
+  | 'perplexity'
   | 'huggingface';
 
 export type AiProviders = Partial<{

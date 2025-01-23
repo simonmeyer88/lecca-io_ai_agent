@@ -18,7 +18,7 @@ export const MessageSystemCard = ({
             <Icons.alertCircle className="size-5 text-red-500" />
           </div>
           <div className="flex items-center space-x-1.5 text-sm">
-            <span className="font-medium">System Message</span>
+            <span className="font-medium">Server Message</span>
           </div>
         </div>
       </div>

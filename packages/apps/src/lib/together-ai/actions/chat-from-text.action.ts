@@ -6,10 +6,10 @@ import {
 import { generateText } from 'ai';
 import { z } from 'zod';
 
-import { shared } from '../shared/togetherai.shared';
+import { shared } from '../shared/together-ai.shared';
 
 export const chatFromText = createAction({
-  id: 'togetherai_action_chat-from-text',
+  id: 'together-ai_action_chat-from-text',
   name: 'Chat from Text',
   description: 'Chat with an AI model using text input',
   inputConfig: [

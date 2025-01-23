@@ -32,7 +32,7 @@ import { microsoftOutlook } from './lib/microsoft-outlook/microsoft-outlook.app'
 import { notion } from './lib/notion/notion.app';
 import { openai } from './lib/openai/openai.app';
 import { paradigmVendo } from './lib/paradigm-vendo/paradigm-vendo.app';
-import { perplexityAi } from './lib/perplexity/perplexity-ai.app';
+import { perplexityAi } from './lib/perplexity-ai/perplexity-ai.app';
 import { phone } from './lib/phone/phone.app';
 import { pinecone } from './lib/pinecone/pinecone.app';
 import { salesRabbit } from './lib/sales-rabbit/sales-rabbit.app';
@@ -40,7 +40,7 @@ import { serper } from './lib/serper/serper.app';
 import { slack } from './lib/slack/slack.app';
 import { surgemsg } from './lib/surgemsg/surgemsg.app';
 import { text } from './lib/text/text.app';
-import { togetherai } from './lib/togetherai/togetherai.app';
+import { togetherAi } from './lib/together-ai/together-ai.app';
 import { vapi } from './lib/vapi/vapi.app';
 import { variables } from './lib/variables/variables.app';
 import { web } from './lib/web/web.app';
@@ -90,7 +90,7 @@ const apps: Record<string, ReturnType<typeof createApp>> = {
   [slack.id]: slack,
   [surgemsg.id]: surgemsg,
   [text.id]: text,
-  [togetherai.id]: togetherai,
+  [togetherAi.id]: togetherAi,
   [vapi.id]: vapi,
   [variables.id]: variables,
   [web.id]: web,

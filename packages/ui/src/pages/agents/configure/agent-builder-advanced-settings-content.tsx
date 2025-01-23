@@ -80,7 +80,7 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
         false, //Legacy
       llmProvider: agent.llmProvider,
       llmModel: agent.llmModel,
-      llmConnectionId: agent.llmConnection?.id,
+      llmConnectionId: agent.llmConnection?.id ?? null,
       maxToolRoundtrips: agent.maxToolRoundtrips,
       frequencyPenalty: agent.frequencyPenalty,
       presencePenalty: agent.presencePenalty,
@@ -199,7 +199,7 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
                   <Select
                     onValueChange={(value: AiProvider) => {
                       field.onChange(value);
-                      form.resetField('llmConnectionId');
+                      form.setValue('llmConnectionId', null);
                       form.setValue(
                         'llmModel',
                         Object.keys(
@@ -271,7 +271,10 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
                       </Select.Content>
                     </Select>
                   )}
-                  {loadedModels && Object.keys(loadedModels).length === 0 ? (
+                  {loadedModels &&
+                  Object.keys(loadedModels).length === 0 &&
+                  !aiProviders[watchProvider as AiProvider]
+                    ?.platformCredentialsEnabled ? (
                     <Form.Description className="pt-1 ml-1">
                       Add your API key to list available models.
                     </Form.Description>
@@ -355,7 +358,12 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
                     </div>
                   )}
                   <Form.Description className="pt-1 ml-1 space-x-1 items-center">
-                    <span>Use your API key instead of credits.</span>
+                    {!aiProviders[watchProvider as AiProvider]
+                      ?.platformCredentialsEnabled ? (
+                      <span>This provider requires an API key.</span>
+                    ) : (
+                      <span>Use your API key instead of credits.</span>
+                    )}
                     <Tooltip>
                       <Tooltip.Trigger type="button">
                         <Icons.infoCircle className="size-3" />

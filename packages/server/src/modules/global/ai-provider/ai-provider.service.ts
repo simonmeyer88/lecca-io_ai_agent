@@ -103,6 +103,12 @@ export class AiProviderService {
       throw new BadRequestException('AI Provider is required');
     }
 
+    if (!this.providers[aiProvider]) {
+      throw new BadRequestException(
+        `The ${aiProvider} provider is not supported`,
+      );
+    }
+
     let apiKey: string | null;
     if (llmConnection) {
       //We'll use their model and api key if they have it.
@@ -120,32 +126,20 @@ export class AiProviderService {
       apiKey = llmConnection.apiKey;
     } else {
       //We'll use our own model and api key if they don't have it. (We'll use their credits)
-      switch (aiProvider) {
-        case 'openai':
-          apiKey = ServerConfig.OPENAI_API_KEY;
-          if (!apiKey) {
-            throw new BadRequestException('OPENAI_API_KEY is missing.');
-          }
-          break;
-        case 'anthropic':
-          apiKey = ServerConfig.ANTHROPIC_API_KEY;
-          if (!apiKey) {
-            throw new BadRequestException('ANTHROPIC_API_KEY is missing.');
-          }
-          break;
-        case 'gemini':
-          apiKey = ServerConfig.GEMINI_API_KEY;
-          if (!apiKey) {
-            throw new BadRequestException('GEMINI_API_KEY is missing.');
-          }
-          break;
-        case 'ollama':
-          apiKey = null;
-          break;
-        default:
-          throw new BadRequestException(
-            `The ${aiProvider} provider is not supported as an LLM provider`,
-          );
+      apiKey = process.env[this.providers[aiProvider].platformCredentialEnvVar];
+      const platformCredentialsEnabled =
+        this.providers[aiProvider].platformCredentialsEnabled;
+
+      if (!platformCredentialsEnabled) {
+        throw new BadRequestException(
+          `This AI provider (${aiProvider}) requires you to add your own credentials. In the advanced settings, select your own connection from the dropdown.`,
+        );
+      }
+
+      if (!apiKey && aiProvider !== 'ollama') {
+        throw new BadRequestException(
+          `The ${aiProvider} provider does not have the proper environment variables set up to use the platform credentials.`,
+        );
       }
     }
 
@@ -167,9 +161,17 @@ export class AiProviderService {
         })(llmModel, {
           structuredOutputs: false,
         });
-      case 'togetherai':
+      case 'together-ai':
         return createTogetherAI({
           apiKey,
+        })(llmModel, {
+          user: workspaceId,
+        });
+      case 'perplexity-ai':
+        return createOpenAI({
+          compatibility: 'compatible',
+          apiKey,
+          baseURL: 'https://api.perplexity.ai',
         })(llmModel, {
           user: workspaceId,
         });
@@ -461,7 +463,8 @@ export type AiProvider =
   | 'ollama'
   | 'anthropic'
   | 'gemini'
-  | 'togetherai';
+  | 'together-ai'
+  | 'perplexity-ai';
 
 export type AiProviders = {
   [key in AiProvider]: AiProviderData;
@@ -489,6 +492,16 @@ export type AiProviderData = {
     workspaceId: string;
     connection: ConnectionData;
   }) => Promise<{ [key: string]: AiLanguageModelData }>;
+
+  /**
+   * Validates and modifies the configuration for the model if needed.
+   *
+   * For example, perplexity needs a frequency_penalty to be greater than 0. So we can return 0.01 if it's less than 0.
+   * Or if there's something really wrong, we can throw a descriptive error to help the user know how to fix their configuration.
+   */
+  validateConfiguration?: (args: { frequency_penalty?: number | null }) => {
+    frequency_penalty?: number | null;
+  };
 };
 
 export type AiLanguageModelData = {

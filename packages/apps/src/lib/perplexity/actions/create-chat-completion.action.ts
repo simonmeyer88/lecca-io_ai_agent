@@ -18,6 +18,14 @@ export const createChatCompletion = createAction({
       hideCustomTab: true,
       selectOptions: [
         {
+          value: 'sonar-pro',
+          label: 'Sonar Pro',
+        },
+        {
+          value: 'sonar',
+          label: 'Sonar',
+        },
+        {
           value: 'llama-3.1-sonar-small-128k-online',
           label: 'Sonar Small (8B)',
         },

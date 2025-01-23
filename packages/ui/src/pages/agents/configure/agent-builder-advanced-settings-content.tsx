@@ -360,7 +360,9 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
                   <Form.Description className="pt-1 ml-1 space-x-1 items-center">
                     {!aiProviders[watchProvider as AiProvider]
                       ?.platformCredentialsEnabled ? (
-                      <span>This provider requires an API key.</span>
+                      <span className={cn({ 'text-red-500': !field.value })}>
+                        This provider requires an API key.
+                      </span>
                     ) : (
                       <span>Use your API key instead of credits.</span>
                     )}

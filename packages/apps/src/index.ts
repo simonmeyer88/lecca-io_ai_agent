@@ -10,6 +10,7 @@ import { calendly } from './lib/calendly/calendly.app';
 import { codesandbox } from './lib/codesandbox/codesandbox.app';
 import { csv } from './lib/csv/csv.app';
 import { date } from './lib/date/date.app';
+import { deepseek } from './lib/deepseek/deepseek.app';
 import { dropbox } from './lib/dropbox/dropbox.app';
 import { flowControl } from './lib/flow-control/flow-control.app';
 import { gemini } from './lib/gemini/gemini.app';
@@ -60,6 +61,7 @@ const apps: Record<string, ReturnType<typeof createApp>> = {
   [codesandbox.id]: codesandbox,
   [csv.id]: csv,
   [date.id]: date,
+  [deepseek.id]: deepseek,
   [dropbox.id]: dropbox,
   [flowControl.id]: flowControl,
   [gemini.id]: gemini,

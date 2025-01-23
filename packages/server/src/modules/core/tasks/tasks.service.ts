@@ -160,11 +160,13 @@ export class TasksService {
         taskId,
       });
 
-      //HACK: frequency penalty can be -2 to 2 for open ai, but perplexity needs it to be > 0
       const provider =
         this.aiProviderService.providers[agent.llmProvider as AiProvider];
 
       if (provider?.validateConfiguration) {
+        // Frequency penalty can be -2 to 2 for open ai, but perplexity needs it to be > 0
+        //So this validateConfiguration function can be added to a provider to modify the configuration
+        //or throw a descriptive error if the configuration is invalid.
         const response = provider.validateConfiguration({
           frequency_penalty: agent.frequencyPenalty,
         });

@@ -268,9 +268,7 @@ export const DEFAULT_PROVIDERS: AiProviders = {
         //127k context length
       },
     },
-    embeddingModels: {
-      // Will be set at runtime
-    },
+    embeddingModels: {},
     platformCredentialEnvVar: 'PERPLEXITY_AI_API_KEY',
     validateConfiguration: (args) => {
       if (args.frequency_penalty <= 0) {
@@ -279,6 +277,27 @@ export const DEFAULT_PROVIDERS: AiProviders = {
 
       return args;
     },
+  },
+  deepseek: {
+    appConnectionId: 'deepseek_connection_api-key',
+    languageModels: {
+      'deepseek-chat': {
+        vision: false,
+        tools: true,
+        canStreamText: true,
+        canStreamTools: true,
+        creditConversionData: null,
+      },
+      'deepseek-reasoner': {
+        vision: false,
+        tools: false,
+        canStreamText: false,
+        canStreamTools: false,
+        creditConversionData: null,
+      },
+    },
+    embeddingModels: {},
+    platformCredentialEnvVar: 'DEEPSEEK_API_KEY',
   },
   ollama: {
     appConnectionId: null,

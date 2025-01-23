@@ -1,4 +1,5 @@
 import { createAnthropic } from '@ai-sdk/anthropic';
+import { createDeepSeek } from '@ai-sdk/deepseek';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { createOpenAI } from '@ai-sdk/openai';
 import { createTogetherAI } from '@ai-sdk/togetherai';
@@ -175,6 +176,12 @@ export class AiProviderService {
         })(llmModel, {
           user: workspaceId,
         });
+      case 'deepseek':
+        return createDeepSeek({
+          apiKey,
+        })(llmModel, {
+          user: workspaceId,
+        }) as any;
       case 'ollama': {
         return createOllama({
           baseURL: ServerConfig.OLLAMA_BASE_URL,
@@ -464,7 +471,8 @@ export type AiProvider =
   | 'anthropic'
   | 'gemini'
   | 'together-ai'
-  | 'perplexity-ai';
+  | 'perplexity-ai'
+  | 'deepseek';
 
 export type AiProviders = {
   [key in AiProvider]: AiProviderData;

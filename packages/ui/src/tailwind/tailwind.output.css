@@ -2169,10 +2169,6 @@ body {
   justify-content: space-between;
 }
 
-.justify-evenly {
-  justify-content: space-evenly;
-}
-
 .justify-stretch {
   justify-content: stretch;
 }

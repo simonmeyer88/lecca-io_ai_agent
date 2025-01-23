@@ -40,6 +40,7 @@ import { serper } from './lib/serper/serper.app';
 import { slack } from './lib/slack/slack.app';
 import { surgemsg } from './lib/surgemsg/surgemsg.app';
 import { text } from './lib/text/text.app';
+import { togetherai } from './lib/togetherai/togetherai.app';
 import { vapi } from './lib/vapi/vapi.app';
 import { variables } from './lib/variables/variables.app';
 import { web } from './lib/web/web.app';
@@ -89,6 +90,7 @@ const apps: Record<string, ReturnType<typeof createApp>> = {
   [slack.id]: slack,
   [surgemsg.id]: surgemsg,
   [text.id]: text,
+  [togetherai.id]: togetherai,
   [vapi.id]: vapi,
   [variables.id]: variables,
   [web.id]: web,

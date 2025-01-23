@@ -40,10 +40,16 @@ export const upsertContact = createAction({
       email,
     )}`;
 
-    const properties = contactProperties.map(({ field, value }) => ({
-      property: field,
-      value,
-    }));
+    const properties = contactProperties
+      .filter(({ value }) => {
+        value = value.trim();
+
+        return value.length > 0;
+      })
+      .map(({ field, value }) => ({
+        property: field,
+        value,
+      }));
 
     const data = { properties };
 

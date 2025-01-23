@@ -1,6 +1,7 @@
 import { QueryClient } from '@tanstack/react-query';
 
 import AgentsService from './services/agents-service';
+import AiProvidersService from './services/ai-provider-service';
 import AuthService from './services/auth-service';
 import BillingService from './services/billing-service';
 import ConnectionsService from './services/connections-service';
@@ -76,6 +77,7 @@ export class ApiLibrary {
     this.billing = new BillingService(defaultConstructor);
     this.knowledge = new KnowledgeService(defaultConstructor);
     this.credits = new CreditsService(defaultConstructor);
+    this.aiProviders = new AiProvidersService(defaultConstructor);
   }
 
   auth: AuthService;
@@ -100,6 +102,7 @@ export class ApiLibrary {
   billing: BillingService;
   knowledge: KnowledgeService;
   credits: CreditsService;
+  aiProviders: AiProvidersService;
 }
 
 const apiInstance = new ApiLibrary({

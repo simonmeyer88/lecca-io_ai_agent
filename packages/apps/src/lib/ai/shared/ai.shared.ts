@@ -29,21 +29,98 @@ export const shared = {
       hideCustomTab: true,
       loadOptions: {
         forceRefresh: true,
-        dependsOn: ['provider'],
+        dependsOn: ['provider', '__internal__llmConnectionId'],
       },
       description: 'The model to use for generating responses.',
-      _getDynamicValues: async ({ extraOptions, aiProviders }) => {
-        const { provider } = extraOptions;
+      _getDynamicValues: async ({
+        extraOptions,
+        aiProviders,
+        http,
+        workspaceId,
+        prisma,
+        projectId,
+      }) => {
+        const { provider, __internal__llmConnectionId } = extraOptions;
         if (!provider) {
           throw new Error('Provider is required before selecting a model');
         }
 
-        const models = aiProviders.providers[provider].languageModels ?? {};
+        /**
+         * 1. If using credit, fetch the models we have defined in the ai-provider.service constructor or in the ai-provider-defaults.
+         * 2. If using their own connection, fetch the models from the provider's fetchLanguageModels function.
+         * 3. If the provider does not have a fetchLanguageModels function, use the models defined in the ai-provider.service constructor or in the ai-provider-defaults.
+         */
 
-        return Object.keys(models).map((model) => ({
-          value: model,
-          label: model,
-        }));
+        if (__internal__llmConnectionId === 'credits') {
+          return Object.keys(
+            aiProviders.providers[provider]?.languageModels ?? {},
+          ).map((model) => ({
+            value: model,
+            label: model,
+          }));
+        } else if (aiProviders.providers[provider]?.fetchLanguageModels) {
+          const projectHasAccessToConnection =
+            await prisma.connection.findFirst({
+              where: {
+                AND: [
+                  {
+                    FK_workspaceId: workspaceId,
+                  },
+                  {
+                    id: __internal__llmConnectionId,
+                  },
+                  {
+                    OR: [
+                      {
+                        FK_projectId: projectId,
+                      },
+                      {
+                        FK_projectId: null,
+                      },
+                    ],
+                  },
+                ],
+              },
+              select: {
+                id: true,
+                connectionId: true,
+                apiKey: true,
+              },
+            });
+
+          if (!projectHasAccessToConnection) {
+            throw new Error('Project does not have access to the connection');
+          }
+
+          const appConnectionId =
+            aiProviders.providers[provider]?.appConnectionId;
+
+          if (projectHasAccessToConnection.connectionId !== appConnectionId) {
+            throw new Error('Connection is not the correct AI Provider type');
+          }
+
+          aiProviders.decryptCredentials({
+            data: projectHasAccessToConnection,
+          });
+
+          return Object.keys(
+            (await aiProviders.providers[provider].fetchLanguageModels({
+              connection: projectHasAccessToConnection,
+              http,
+              workspaceId,
+            })) ?? {},
+          ).map((model) => ({
+            value: model,
+            label: model,
+          }));
+        } else {
+          return Object.keys(
+            aiProviders.providers[provider].languageModels ?? {},
+          ).map((model) => ({
+            value: model,
+            label: model,
+          }));
+        }
       },
       required: {
         missingMessage: 'Model is required',
@@ -61,12 +138,6 @@ export const shared = {
       hideCustomTab: true,
       description:
         'Use your own connection credentials for this AI Provider. Select "Use Platform" to use the platform credits.',
-      selectOptions: [
-        {
-          value: 'credits',
-          label: 'Use Platform Credits',
-        },
-      ],
       _getDynamicValues: async ({
         projectId,
         workspaceId,
@@ -78,37 +149,58 @@ export const shared = {
         const appConnectionId =
           aiProviders.providers[provider]?.appConnectionId;
 
-        const connections = await prisma.connection.findMany({
-          where: {
-            AND: [
-              {
-                FK_workspaceId: workspaceId,
-              },
-              {
-                connectionId: appConnectionId,
-              },
-              {
-                OR: [
+        const connections = appConnectionId
+          ? await prisma.connection.findMany({
+              where: {
+                AND: [
                   {
-                    FK_projectId: projectId,
+                    FK_workspaceId: workspaceId,
                   },
                   {
-                    FK_projectId: null,
+                    connectionId: appConnectionId,
+                  },
+                  {
+                    OR: [
+                      {
+                        FK_projectId: projectId,
+                      },
+                      {
+                        FK_projectId: null,
+                      },
+                    ],
                   },
                 ],
               },
-            ],
-          },
-          select: {
-            id: true,
-            name: true,
-          },
-        });
+              select: {
+                id: true,
+                name: true,
+              },
+            })
+          : [];
 
-        return connections.map((c) => ({
-          label: c.name,
-          value: c.id,
-        }));
+        const connectionOptions: {
+          label: string;
+          value: string;
+        }[] = [];
+
+        const platformCredentialsEnabled =
+          aiProviders.providers[provider]?.platformCredentialsEnabled;
+
+        if (platformCredentialsEnabled) {
+          connectionOptions.push({
+            value: 'credits',
+            label: 'Use Platform Credits',
+          });
+        }
+
+        connectionOptions.push(
+          ...connections.map((c) => ({
+            label: c.name,
+            value: c.id,
+          })),
+        );
+
+        return connectionOptions;
       },
       required: {
         missingMessage: 'Agent is required',

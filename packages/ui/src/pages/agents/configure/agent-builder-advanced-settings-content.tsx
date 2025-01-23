@@ -2,23 +2,30 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { api } from '../../../api/api-library';
 import useApiMutation from '../../../api/use-api-mutation';
 import useApiQuery from '../../../api/use-api-query';
+import { CreateConnectionForm } from '../../../components/forms/create-connection-form';
 import { Icons } from '../../../components/icons';
 import { Button } from '../../../components/ui/button';
+import { Dialog } from '../../../components/ui/dialog';
 import { Form } from '../../../components/ui/form';
 import { Select } from '../../../components/ui/select';
 import { Skeleton } from '../../../components/ui/skeleton';
 import { Slider } from '../../../components/ui/slider';
 import { Textarea } from '../../../components/ui/textarea';
 import { Tooltip } from '../../../components/ui/tooltip';
+import { useToast } from '../../../hooks/useToast';
 import { useUser } from '../../../hooks/useUser';
 import {
   Agent,
   UpdateAgentType,
   createAgentSchema,
 } from '../../../models/agent/agent-model';
-import { AiProvider } from '../../../models/ai-provider-model';
+import {
+  AiLanguageModelData,
+  AiProvider,
+} from '../../../models/ai-provider-model';
 import { Connection } from '../../../models/connections-model';
 import { cn } from '../../../utils/cn';
 import { debounce } from '../../../utils/debounce';
@@ -29,6 +36,12 @@ type PropType = {
 
 export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
   const { aiProviders } = useUser();
+  const { toast } = useToast();
+  const [loadedModels, setLoadedModels] = useState<Record<
+    string,
+    AiLanguageModelData
+  > | null>(null);
+  const [isLoadingModels, setIsLoadingModels] = useState(false);
 
   const { data: connections, isLoading: isLoadingConnections } = useApiQuery({
     service: 'connections',
@@ -82,6 +95,7 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
   });
 
   const watchProvider = form.watch('llmProvider');
+  const watchLlmConnection = form.watch('llmConnectionId');
 
   useEffect(() => {
     const handleSave = debounce((values) => {
@@ -126,6 +140,31 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
       }
     }
   }, [aiProviders, connections, watchProvider]);
+
+  useEffect(() => {
+    if (watchProvider) {
+      setIsLoadingModels(true);
+
+      api.aiProviders
+        .getProviderModels({
+          providerId: form.getValues('llmProvider') as AiProvider,
+          connectionId: form.getValues('llmConnectionId') ?? 'credits',
+        })
+        .then(({ data, error }) => {
+          if (data) {
+            setLoadedModels(data);
+          } else if (error) {
+            toast({
+              title: error,
+              variant: 'destructive',
+            });
+          }
+        })
+        .finally(() => {
+          setIsLoadingModels(false);
+        });
+    }
+  }, [form, watchProvider, watchLlmConnection, toast]);
 
   return (
     <Form {...form}>
@@ -201,43 +240,46 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
               render={({ field }) => (
                 <Form.Item className="space-y-1 flex-1">
                   <Form.Label>LLM Model</Form.Label>
-                  <Select
-                    {...form.register('llmModel', {
-                      required: 'Please select an LLM model',
-                    })}
-                    onValueChange={(value) => {
-                      field.onChange(value);
-                    }}
-                  >
-                    <Select.Trigger>
-                      <Select.Value
-                        placeholder={
-                          field.value
-                            ? Object.keys(
-                                aiProviders[
-                                  (form.getValues('llmProvider') ??
-                                    '') as AiProvider
-                                ]?.languageModels ?? {},
-                              ).find((model) => model === field.value)
-                            : 'Select an LLM model'
-                        }
-                      />
-                    </Select.Trigger>
-                    <Select.Content>
-                      {Object.keys(
-                        aiProviders[
-                          (form.getValues('llmProvider') ?? '') as AiProvider
-                        ]?.languageModels ?? {},
-                      )?.map((model) => (
-                        <Select.Item key={model} value={model}>
-                          {model}
-                        </Select.Item>
-                      ))}
-                    </Select.Content>
-                  </Select>
-                  <Form.Description className="pt-1 ml-1">
-                    LLM Model Agent will use.
-                  </Form.Description>
+                  {isLoadingModels ? (
+                    <Skeleton className="h-9 w-full" />
+                  ) : (
+                    <Select
+                      {...form.register('llmModel', {
+                        required: 'Please select an LLM model',
+                      })}
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                      }}
+                    >
+                      <Select.Trigger>
+                        <Select.Value
+                          placeholder={
+                            field.value
+                              ? Object.keys(loadedModels ?? {}).find(
+                                  (model) => model === field.value,
+                                )
+                              : 'Select an LLM model'
+                          }
+                        />
+                      </Select.Trigger>
+                      <Select.Content>
+                        {Object.keys(loadedModels ?? {})?.map((model) => (
+                          <Select.Item key={model} value={model}>
+                            {model}
+                          </Select.Item>
+                        ))}
+                      </Select.Content>
+                    </Select>
+                  )}
+                  {loadedModels && Object.keys(loadedModels).length === 0 ? (
+                    <Form.Description className="pt-1 ml-1">
+                      Add your API key to list available models.
+                    </Form.Description>
+                  ) : (
+                    <Form.Description className="pt-1 ml-1">
+                      LLM Model Agent will use.
+                    </Form.Description>
+                  )}
                   <Form.Message />
                 </Form.Item>
               )}
@@ -259,6 +301,7 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
                   ) : (
                     <div className="flex space-x-2">
                       <Select
+                        key={`llm-connection-${field.value}`}
                         onValueChange={(value) => {
                           field.onChange(value);
                         }}
@@ -286,7 +329,7 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
                           ))}
                         </Select.Content>
                       </Select>
-                      {field.value && (
+                      {field.value ? (
                         <Button
                           className="flex space-x-1"
                           type="button"
@@ -299,6 +342,15 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
                           <span className="text-xs">Clear</span>
                           <Icons.x className="size-3" />
                         </Button>
+                      ) : (
+                        <Dialog>
+                          <Dialog.Trigger>
+                            <Icons.plusCircled className="h-7 w-6 p-1" />{' '}
+                          </Dialog.Trigger>
+                          <Dialog.Content>
+                            <CreateConnectionForm />
+                          </Dialog.Content>
+                        </Dialog>
                       )}
                     </div>
                   )}
@@ -330,7 +382,7 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
               return (
                 <Form.Item>
                   <div className="flex justify-between">
-                    <Form.Label tooltip="To prevent your agent from making too many calls to your apps, you can set a limit. Set to 0 to disable this and only allow your agent to make a single call at a time.">
+                    <Form.Label tooltip="To prevent your agent from making using too many tools at once, you can set a limit. Set to 0 to disable this and only allow your agent to use one tool per query.">
                       Maximum Tool Roundtrips
                     </Form.Label>
                     <div className="text-muted-foreground text-sm">

@@ -2,6 +2,8 @@ import type { PrismaClient } from '@prisma/client';
 import { LanguageModelV1, Message } from 'ai';
 import { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
 
+import { ConnectionData } from './connection.types';
+
 export type InjectedServices = {
   http: {
     request: (args: HttpRequestArgs) => Promise<AxiosResponse<any, any>>;
@@ -58,13 +60,14 @@ export type InjectedServices = {
     }>;
   };
   aiProviders: {
-    providers: Record<string, any>; //TODO
+    providers: Record<string, any>;
     getAiLlmProviderClient: ({
       aiProvider,
       llmModel,
       llmConnection,
       workspaceId,
     }) => LanguageModelV1;
+    decryptCredentials: (args: { data: ConnectionData }) => void;
   };
   credits: {
     checkIfWorkspaceHasLlmCredits: (args: {

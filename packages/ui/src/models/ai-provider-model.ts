@@ -1,4 +1,10 @@
-export type AiProvider = 'openai' | 'ollama';
+export type AiProvider =
+  | 'openai'
+  | 'ollama'
+  | 'gemini'
+  | 'anthropic'
+  | 'togetherai'
+  | 'huggingface';
 
 export type AiProviders = Partial<{
   [key in AiProvider]: AiProviderData;
@@ -8,6 +14,7 @@ export type AiProviderData = {
   appConnectionId: string | null;
   languageModels: { [key: string]: AiLanguageModelData };
   embeddingModels: { [key: string]: AiEmbeddingModelData };
+  platformCredentialsEnabled: boolean;
 };
 
 export type AiLanguageModelData = {

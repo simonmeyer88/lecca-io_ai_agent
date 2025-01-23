@@ -1,4 +1,6 @@
-import { AiProviders } from './ai-provider.service';
+import openai from 'openai';
+
+import { AiLanguageModelData, AiProviders } from './ai-provider.service';
 
 export const DEFAULT_PROVIDERS: AiProviders = {
   openai: {
@@ -80,6 +82,39 @@ export const DEFAULT_PROVIDERS: AiProviders = {
         },
       },
     },
+    platformCredentialEnvVar: 'OPENAI_API_KEY',
+    fetchLanguageModels: async ({ connection }) => {
+      const OPEN_AI = new openai({
+        apiKey: connection.apiKey,
+        maxRetries: 1,
+        timeout: 60000,
+      });
+
+      const { data } = await OPEN_AI.models.list();
+
+      if (!data) {
+        throw new Error('Failed to fetch models from OpenAI');
+      }
+
+      //Turn the models array into a { [modelId]: model } object
+      return data.reduce(
+        (acc, model) => {
+          const modelData: AiLanguageModelData = {
+            //There is currently no way to actually determine this from the API
+            //So we will set everything to true and let the user figure it out
+            canStreamText: true,
+            canStreamTools: true,
+            tools: true,
+            vision: true,
+            creditConversionData: null,
+          };
+
+          acc[model.id] = modelData;
+          return acc;
+        },
+        {} as Record<string, AiLanguageModelData>,
+      );
+    },
   },
   anthropic: {
     appConnectionId: 'anthropic_connection_api-key',
@@ -130,6 +165,7 @@ export const DEFAULT_PROVIDERS: AiProviders = {
       },
     },
     embeddingModels: {},
+    platformCredentialEnvVar: 'ANTHROPIC_API_KEY',
   },
   gemini: {
     appConnectionId: 'gemini_connection_api-key',
@@ -169,6 +205,48 @@ export const DEFAULT_PROVIDERS: AiProviders = {
       },
     },
     embeddingModels: {},
+    platformCredentialEnvVar: 'GEMINI_API_KEY',
+  },
+  togetherai: {
+    appConnectionId: 'togetherai_connection_api-key',
+    languageModels: {
+      // Will be set at runtime
+    },
+    embeddingModels: {
+      // Will be set at runtime
+    },
+    platformCredentialEnvVar: 'TOGETHERAI_API_KEY',
+    fetchLanguageModels: async ({ http, workspaceId, connection }) => {
+      const response = await http.request({
+        method: 'GET',
+        url: `https://api.together.xyz/v1/models`,
+        headers: {
+          Authorization: `Bearer ${connection.apiKey}`,
+        },
+        workspaceId,
+      });
+
+      const models = response.data.filter((model) => model.type === 'chat');
+
+      //Turn the models array into a { [modelId]: model } object
+      return models.reduce(
+        (acc, model) => {
+          const modelData: AiLanguageModelData = {
+            //There is currently no way to actually determine this from the API
+            //So we will set everything to true and let the user figure it out
+            canStreamText: true,
+            canStreamTools: true,
+            tools: true,
+            vision: true,
+            creditConversionData: null,
+          };
+
+          acc[model.id] = modelData;
+          return acc;
+        },
+        {} as Record<string, AiLanguageModelData>,
+      );
+    },
   },
   ollama: {
     appConnectionId: null,
@@ -178,5 +256,6 @@ export const DEFAULT_PROVIDERS: AiProviders = {
     embeddingModels: {
       // Will be set at runtime
     },
+    platformCredentialEnvVar: undefined,
   },
 };

@@ -1,6 +1,8 @@
 import { createAnthropic } from '@ai-sdk/anthropic';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { createOpenAI } from '@ai-sdk/openai';
+import { createTogetherAI } from '@ai-sdk/togetherai';
+import { ConnectionData } from '@lecca-io/toolkit';
 import {
   BadRequestException,
   ForbiddenException,
@@ -12,6 +14,8 @@ import { createOllama } from 'ollama-ai-provider';
 
 import { ServerConfig } from '../../../config/server.config';
 import { CryptoService } from '../crypto/crypto.service';
+import { HttpService } from '../http/http.service';
+import { PrismaService } from '../prisma/prisma.service';
 
 import { DEFAULT_PROVIDERS } from './ai-provider-defaults';
 import {
@@ -21,23 +25,17 @@ import {
 
 @Injectable()
 export class AiProviderService {
-  constructor(private cryptoService: CryptoService) {
+  constructor(
+    private readonly cryptoService: CryptoService,
+    private readonly prisma: PrismaService,
+    private readonly http: HttpService,
+  ) {
     this.providers = {
       ...DEFAULT_PROVIDERS,
     };
 
     Object.keys(this.providers).forEach((provider: AiProvider) => {
       switch (provider) {
-        case 'openai':
-          if (!ServerConfig.OPENAI_API_KEY) {
-            delete this.providers[provider];
-          }
-          break;
-        case 'anthropic':
-          if (!ServerConfig.ANTHROPIC_API_KEY) {
-            delete this.providers[provider];
-          }
-          break;
         case 'ollama':
           ollamaIsRunning().then((isRunning) => {
             if (isRunning) {
@@ -60,20 +58,24 @@ export class AiProviderService {
                   };
                 });
               });
+              this.providers[provider].platformCredentialsEnabled = true;
             } else {
               delete this.providers.ollama;
             }
           });
           break;
-        case 'gemini':
-          if (!ServerConfig.GEMINI_API_KEY) {
-            delete this.providers[provider];
+        default:
+          /**
+           * If the proper environment variables are set, then the user can use the platform credentials.
+           * Otherwise, they will have to add their own credentials. If platformCredentialsEnabled is set to true,
+           * then all the models need to have `creditConversionData` or else an error will be thrown.
+           */
+          if (!process.env[this.providers[provider].platformCredentialEnvVar]) {
+            this.providers[provider].platformCredentialsEnabled = false;
+          } else {
+            this.providers[provider].platformCredentialsEnabled = true;
           }
           break;
-        default:
-          throw new BadRequestException(
-            `You forgot to check if ${provider} provider is available in AI Provider constructor`,
-          );
       }
     });
   }
@@ -164,6 +166,12 @@ export class AiProviderService {
           apiKey,
         })(llmModel, {
           structuredOutputs: false,
+        });
+      case 'togetherai':
+        return createTogetherAI({
+          apiKey,
+        })(llmModel, {
+          user: workspaceId,
         });
       case 'ollama': {
         return createOllama({
@@ -312,7 +320,108 @@ export class AiProviderService {
     return this.providers[aiProvider]?.languageModels[modelName];
   };
 
-  decryptCredentials({ data }: { data: Partial<Connection> }) {
+  getLanguageModelsByProviderAndConnectionId = async ({
+    aiProvider,
+    connectionId,
+  }: {
+    aiProvider: AiProvider;
+    connectionId: string;
+  }) => {
+    if (!this.providers[aiProvider]) {
+      throw new BadRequestException(
+        `The ${aiProvider} provider is not supported`,
+      );
+    }
+
+    if (connectionId === 'credits' || !connectionId) {
+      return this.providers[aiProvider].languageModels;
+    } else if (this.providers[aiProvider].fetchLanguageModels) {
+      const connection = await this.prisma.connection.findFirst({
+        where: {
+          id: connectionId,
+        },
+        select: {
+          apiKey: true,
+          FK_workspaceId: true,
+        },
+      });
+
+      this.decryptCredentials({
+        data: connection,
+      });
+
+      try {
+        return await this.providers[aiProvider].fetchLanguageModels({
+          connection,
+          http: this.http,
+          workspaceId: connection.FK_workspaceId,
+        });
+      } catch {
+        throw new BadRequestException(
+          `Failed to fetch language models for ${aiProvider} provider`,
+        );
+      }
+    } else {
+      return this.providers[aiProvider].languageModels;
+    }
+  };
+
+  async checkWorkspaceUserHasAccessToConnection({
+    workspaceId,
+    workspaceUserId,
+    connectionId,
+  }: {
+    workspaceId: string;
+    workspaceUserId: string;
+    connectionId: string;
+  }) {
+    const connection = await this.prisma.connection.findFirst({
+      where: {
+        AND: [
+          {
+            id: connectionId,
+          },
+          {
+            FK_workspaceId: workspaceId,
+          },
+        ],
+      },
+      select: {
+        project: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+
+    if (!connection?.project) {
+      //If the connection does not belong to a project,
+      //then it belongs to the workspace.
+      return true;
+    } else {
+      const userBelongsToProject = await this.prisma.project.findFirst({
+        where: {
+          AND: [
+            {
+              id: connection.project.id,
+            },
+            {
+              workspaceUsers: {
+                some: {
+                  id: workspaceUserId,
+                },
+              },
+            },
+          ],
+        },
+      });
+
+      return !!userBelongsToProject;
+    }
+  }
+
+  decryptCredentials({ data }: { data: ConnectionData }) {
     try {
       if (data.accessToken) {
         data.accessToken = this.cryptoService.decrypt(data.accessToken);
@@ -347,7 +456,12 @@ export class AiProviderService {
   }
 }
 
-export type AiProvider = 'openai' | 'ollama' | 'anthropic' | 'gemini';
+export type AiProvider =
+  | 'openai'
+  | 'ollama'
+  | 'anthropic'
+  | 'gemini'
+  | 'togetherai';
 
 export type AiProviders = {
   [key in AiProvider]: AiProviderData;
@@ -357,6 +471,24 @@ export type AiProviderData = {
   appConnectionId: string | null;
   languageModels: { [key: string]: AiLanguageModelData };
   embeddingModels: { [key: string]: AiEmbeddingModelData };
+
+  /**
+   * If you want to allow the user to use the platform credentials,
+   * then set the environment variable name here.
+   */
+  platformCredentialEnvVar: string | undefined;
+
+  /**
+   * This is set at runtime to determine if proper the platform credentials are setup
+   * so that the user doesn't have to add their own credentials to use this provider.
+   */
+  platformCredentialsEnabled?: boolean | undefined;
+
+  fetchLanguageModels?: (args: {
+    http: HttpService;
+    workspaceId: string;
+    connection: ConnectionData;
+  }) => Promise<{ [key: string]: AiLanguageModelData }>;
 };
 
 export type AiLanguageModelData = {
@@ -367,13 +499,13 @@ export type AiLanguageModelData = {
   creditConversionData: {
     input: number;
     output: number;
-  };
+  } | null;
 };
 
 export type AiEmbeddingModelData = {
   creditConversionData: {
     perEmbedding: number;
-  };
+  } | null;
   dimensionOptions: {
     /**
      * If default dimension is unknown, we will try the

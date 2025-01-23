@@ -72,10 +72,11 @@ export function Chat(props: Props) {
       ) {
         return false;
       } else {
-        //If they can't stream tools, but they don't have any, then they can stream.
+        //If they can stream text and they can't stream tools, but they don't have any, then they can stream.
         return true;
       }
     } else {
+      //If they can't stream text and can't stream tools, then they can't stream.
       return false;
     }
   }, [
@@ -113,6 +114,10 @@ export function Chat(props: Props) {
       ) {
         return true;
       }
+    } else if (!llmModel) {
+      //If the llmModel is dynamically retrieved, then it's not going to be on the aiProviders[provider] object.
+      //Therefore, we can't determine if they can stream tools or not. So we will default to false to hide the has tools but cannot use them popup.
+      return false;
     }
 
     return false;

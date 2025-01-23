@@ -170,25 +170,6 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
     <Form {...form}>
       <form className="w-full">
         <Form.Content className="space-y-8">
-          <Form.Field
-            control={form.control}
-            name="instructions"
-            render={({ field }) => (
-              <Form.Item>
-                <Form.Label>Instructions</Form.Label>
-                <Form.Control>
-                  <Textarea
-                    placeholder="e.g. You are a helpful assistant"
-                    className="placeholder:opacity-70 placeholder:italic"
-                    rows={10}
-                    {...field}
-                  />
-                </Form.Control>
-                <Form.Message />
-              </Form.Item>
-            )}
-          />
-
           <div className="flex flex-wrap gap-8">
             <Form.Field
               control={form.control}
@@ -382,6 +363,25 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
               )}
             />
           </div>
+
+          <Form.Field
+            control={form.control}
+            name="instructions"
+            render={({ field }) => (
+              <Form.Item>
+                <Form.Label>Instructions</Form.Label>
+                <Form.Control>
+                  <Textarea
+                    placeholder="e.g. You are a helpful assistant. Anytime I receive an email, I want you to draft a response using the tools I provide you."
+                    className="placeholder:opacity-70 placeholder:italic"
+                    rows={10}
+                    {...field}
+                  />
+                </Form.Control>
+                <Form.Message />
+              </Form.Item>
+            )}
+          />
 
           <Form.Field
             control={form.control}

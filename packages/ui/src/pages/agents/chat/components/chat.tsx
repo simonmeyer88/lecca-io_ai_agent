@@ -100,7 +100,7 @@ export function Chat(props: Props) {
         props.agent.llmModel ?? ''
       ];
 
-    if (!llmModel?.tools) {
+    if (llmModel && !llmModel.tools) {
       if (
         props.agent.agentKnowledge?.length ||
         props.agent.agentActions?.length ||

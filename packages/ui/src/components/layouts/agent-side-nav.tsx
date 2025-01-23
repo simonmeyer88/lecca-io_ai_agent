@@ -130,7 +130,7 @@ export function AgentSideNav() {
                 hidden: isCollapsed,
               })}
             >
-              Back
+              Home
             </span>
           </div>
         </Link>

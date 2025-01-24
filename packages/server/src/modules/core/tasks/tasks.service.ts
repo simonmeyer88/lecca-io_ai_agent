@@ -704,6 +704,7 @@ export class TasksService {
       });
     }
 
+    //New way we do tools. All others are legacy.
     const actionTools = await this.#getActionTools({
       agentId: agent.id,
       workspaceId: workspaceId,
@@ -1377,11 +1378,16 @@ export class TasksService {
           }
           return acc;
         }, {} as any);
+      } else if (typeof obj === 'string' && obj.trim() === '') {
+        return null;
       }
+
       return obj;
     };
 
-    return cleanObject(value);
+    const cleanedObject = cleanObject(value);
+
+    return cleanedObject;
   };
 
   #generateDynamicConfigValueAiSchema = ({

@@ -51,7 +51,7 @@ export class HttpService {
       console.error({
         method: options.method,
         workspaceId: options.workspaceId || null,
-        error: error.response?.data || error.message,
+        error: JSON.stringify(error.response?.data || error.message, null, 2),
         status: error.response?.status || 500,
       });
       throw new HttpException(

@@ -12,6 +12,7 @@ import { csv } from './lib/csv/csv.app';
 import { date } from './lib/date/date.app';
 import { deepseek } from './lib/deepseek/deepseek.app';
 import { dropbox } from './lib/dropbox/dropbox.app';
+import { firecrawl } from './lib/firecrawl/firecrawl.app';
 import { flowControl } from './lib/flow-control/flow-control.app';
 import { gemini } from './lib/gemini/gemini.app';
 import { gmail } from './lib/gmail/gmail.app';
@@ -63,6 +64,7 @@ const apps: Record<string, ReturnType<typeof createApp>> = {
   [date.id]: date,
   [deepseek.id]: deepseek,
   [dropbox.id]: dropbox,
+  [firecrawl.id]: firecrawl,
   [flowControl.id]: flowControl,
   [gemini.id]: gemini,
   [gmail.id]: gmail,

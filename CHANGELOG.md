@@ -1,3 +1,20 @@
+# [0.32.0](https://github.com/lecca-digital/lecca-io/compare/v0.31.7...v0.32.0) (2025-01-24)
+
+
+### Bug Fixes
+
+* Fix tool check popup ([fb9f8eb](https://github.com/lecca-digital/lecca-io/commit/fb9f8eb316e57a4434a9b90f5e870ef9940123b8))
+
+
+### Features
+
+* Add Deepseek support ([ec7649f](https://github.com/lecca-digital/lecca-io/commit/ec7649f0311ba28e60ce91cebbc7496eb0c33ec5))
+* Add logo to login and signup page ([b3d93d4](https://github.com/lecca-digital/lecca-io/commit/b3d93d49113dabf0d2374b8567eeb5fad8e64eaa))
+* Add perplexity as a supported agent model ([6aca1be](https://github.com/lecca-digital/lecca-io/commit/6aca1be0e75372b92e3a983644a904c5aad6996c))
+* Add togetherai app and support for non platform credit ai proivders ([9366799](https://github.com/lecca-digital/lecca-io/commit/93667997dae0ce7f659f9860697aa646fde48561))
+* **apps:** Add Firecrawl ([4bea0c8](https://github.com/lecca-digital/lecca-io/commit/4bea0c8de4eedb275b32e03db078da2e8a9c3995))
+* **apps:** Update perplexity models ([cd09cfd](https://github.com/lecca-digital/lecca-io/commit/cd09cfd9db6a2a58005420c8ad9cd73d35ea0f9a))
+
 ## [0.31.7](https://github.com/lecca-digital/lecca-io/compare/v0.31.6...v0.31.7) (2025-01-17)
 
 

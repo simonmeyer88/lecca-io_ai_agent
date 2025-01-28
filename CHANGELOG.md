@@ -1,3 +1,11 @@
+# [0.33.0](https://github.com/lecca-digital/lecca-io/compare/v0.32.0...v0.33.0) (2025-01-28)
+
+
+### Features
+
+* **apps:** Firecrawl extract ([c47258c](https://github.com/lecca-digital/lecca-io/commit/c47258ceee1f1c3211f4e4bfa431ed3965b7ef08))
+* Update discord link ([1ffb132](https://github.com/lecca-digital/lecca-io/commit/1ffb13241a5e64457cd08bca775d1a0209e87d66))
+
 # [0.32.0](https://github.com/lecca-digital/lecca-io/compare/v0.31.7...v0.32.0) (2025-01-24)
 
 

@@ -9,7 +9,7 @@ class TracerInitialization {
   sdk: opentelemetry.NodeSDK | null = null;
 
   init() {
-    if (!ServerConfig.ENABLE_TRACING) {
+    if (!ServerConfig.ENABLE_TRACING || !ServerConfig.COMMERCIAL_KEY) {
       return;
     }
 
@@ -17,7 +17,9 @@ class TracerInitialization {
 
     const serviceName = this.#getServiceName();
 
-    const traceExporter = new OTLPTraceExporter();
+    const traceExporter = new OTLPTraceExporter({
+      url: process.env.OTEL_EXPORTER_OTLP_ENDPOINT,
+    });
 
     this.sdk = new opentelemetry.NodeSDK({
       traceExporter,
@@ -27,17 +29,22 @@ class TracerInitialization {
       }),
     });
 
+    console.info('Tracing initialized');
+
     return this;
   }
 
   start() {
-    if (!ServerConfig.ENABLE_TRACING) {
+    if (!ServerConfig.ENABLE_TRACING || !ServerConfig.COMMERCIAL_KEY) {
       return;
     }
 
     if (!this.sdk) {
       throw new Error('Tracer must be initialized before starting');
     }
+
+    console.info('Tracing started');
+
     return this.sdk.start();
   }
 
@@ -54,6 +61,10 @@ class TracerInitialization {
     if (!process.env.OTEL_EXPORTER_OTLP_HEADERS) {
       throw new Error(
         'OTEL_EXPORTER_OTLP_HEADERS environment variable is required to enable tracing.',
+      );
+    } else if (!process.env.OTEL_EXPORTER_OTLP_ENDPOINT) {
+      throw new Error(
+        'OTEL_EXPORTER_OTLP_ENDPOINT environment variable is required to enable tracing.',
       );
     }
   }

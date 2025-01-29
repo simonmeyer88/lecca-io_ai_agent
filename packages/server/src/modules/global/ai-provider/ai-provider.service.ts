@@ -3,6 +3,7 @@ import { createDeepSeek } from '@ai-sdk/deepseek';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { createOpenAI } from '@ai-sdk/openai';
 import { createTogetherAI } from '@ai-sdk/togetherai';
+import { createXai } from '@ai-sdk/xai';
 import { ConnectionData } from '@lecca-io/toolkit';
 import {
   BadRequestException,
@@ -178,6 +179,12 @@ export class AiProviderService {
         });
       case 'deepseek':
         return createDeepSeek({
+          apiKey,
+        })(llmModel, {
+          user: workspaceId,
+        }) as any;
+      case 'xai':
+        return createXai({
           apiKey,
         })(llmModel, {
           user: workspaceId,
@@ -472,7 +479,8 @@ export type AiProvider =
   | 'gemini'
   | 'together-ai'
   | 'perplexity-ai'
-  | 'deepseek';
+  | 'deepseek'
+  | 'xai';
 
 export type AiProviders = {
   [key in AiProvider]: AiProviderData;

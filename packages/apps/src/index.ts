@@ -47,6 +47,7 @@ import { vapi } from './lib/vapi/vapi.app';
 import { variables } from './lib/variables/variables.app';
 import { web } from './lib/web/web.app';
 import { x } from './lib/x/x.app';
+import { xai } from './lib/xai/xai.app';
 import { youtube } from './lib/youtube/youtube.app';
 import { zohoBooks } from './lib/zoho-books/zoho-books.app';
 import { zohoCrm } from './lib/zoho-crm/zoho-crm.app';
@@ -99,6 +100,7 @@ const apps: Record<string, ReturnType<typeof createApp>> = {
   [variables.id]: variables,
   [web.id]: web,
   [x.id]: x,
+  [xai.id]: xai,
   [youtube.id]: youtube,
   [zohoBooks.id]: zohoBooks,
   [zohoCrm.id]: zohoCrm,

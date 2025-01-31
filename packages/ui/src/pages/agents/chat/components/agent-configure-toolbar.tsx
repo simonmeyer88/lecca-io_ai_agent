@@ -222,6 +222,7 @@ function ToolsDropdown({
   const { setNodes, getNodes } = useReactFlow();
   const { saveAgent } = useProjectWorkflow();
   const { toast } = useToast();
+  const [defaultOpen, setDefaultOpen] = useState(false);
 
   const handleAddActionTool = (values: {
     appId: string;
@@ -266,6 +267,12 @@ function ToolsDropdown({
     (n) => n.actionId,
   );
 
+  useEffect(() => {
+    setTimeout(() => {
+      setDefaultOpen(true);
+    }, 100);
+  }, []);
+
   return (
     <>
       <DropdownMenu>
@@ -299,6 +306,7 @@ function ToolsDropdown({
             apps={apps}
             projectId={projectId}
             tool={tool}
+            defaultOpen={defaultOpen}
           />
         );
       })}
@@ -320,6 +328,7 @@ function TriggersDropdown({
   const { setNodes, getNodes } = useReactFlow();
   const { saveAgent } = useProjectWorkflow();
   const { toast } = useToast();
+  const [defaultOpen, setDefaultOpen] = useState(false);
 
   const handleAddTrigger = (values: {
     appId: string;
@@ -367,6 +376,12 @@ function TriggersDropdown({
     formatNodesForSaving(getNodes()) as SavedTriggerNode[]
   ).filter((n) => n.triggerId);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setDefaultOpen(true);
+    }, 100);
+  }, []);
+
   return (
     <>
       <DropdownMenu>
@@ -400,6 +415,7 @@ function TriggersDropdown({
             apps={apps}
             projectId={projectId}
             trigger={trigger}
+            defaultOpen={defaultOpen}
           />
         );
       })}
@@ -486,24 +502,14 @@ const AgentActionButton = ({
   projectId,
   agent,
   apps,
+  defaultOpen,
 }: {
   tool: SavedActionNode;
   projectId: string;
   agent: Agent;
   apps: Record<string, WorkflowApp>;
+  defaultOpen: boolean;
 }) => {
-  const [defaultOpen, setDefaultOpen] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setDefaultOpen(true);
-    }, 1000);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, []);
-
   const nodeData = useMemo(() => {
     const loadedData = loadNodesFromSavedState({
       savedNodes: [tool],
@@ -566,24 +572,14 @@ const AgentTriggerButton = ({
   projectId,
   agent,
   apps,
+  defaultOpen,
 }: {
   trigger: SavedTriggerNode;
   projectId: string;
   agent: Agent;
   apps: Record<string, WorkflowApp>;
+  defaultOpen: boolean;
 }) => {
-  const [defaultOpen, setDefaultOpen] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setDefaultOpen(true);
-    }, 1000);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, []);
-
   const nodeData = useMemo(() => {
     const loadedData = loadNodesFromSavedState({
       savedNodes: [trigger],

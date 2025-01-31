@@ -22,7 +22,6 @@ export function SelectNodeTypeForm({
     actionId?: string;
     triggerId?: string;
   }) => void;
-  onDelete?: () => void;
   placeholderType: 'trigger' | 'action';
   entity: 'workflow' | 'agent';
 }) {

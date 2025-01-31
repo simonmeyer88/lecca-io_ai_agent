@@ -1,14 +1,10 @@
 import React from 'react';
-import { Edge, NodeProps, useReactFlow } from 'reactflow';
+import { NodeProps } from 'reactflow';
 
 import { DropdownMenu } from '../../../../../../components/ui/dropdown-menu';
 import { useProjectWorkflow } from '../../../../../../hooks/useProjectWorkflow';
 import { SelectNodeTypeForm } from '../../forms/select-node-type-form';
 import { useUpdateFlow } from '../../hooks/useUpdateFlow';
-
-const canDelete = (id: string, edges: Edge[]) => {
-  return edges.some((edge: Edge) => edge.source === id);
-};
 
 export const PlaceholderNodePopover = ({
   children,
@@ -19,8 +15,7 @@ export const PlaceholderNodePopover = ({
   placeholderType: 'trigger' | 'action';
 }) => {
   const { saveWorkflow, hasRenderedInitialData } = useProjectWorkflow();
-  const { getEdges } = useReactFlow();
-  const { replacePlaceholder, deleteNode } = useUpdateFlow();
+  const { replacePlaceholder } = useUpdateFlow();
 
   const handleSubmit = (args: {
     appId: string;
@@ -40,10 +35,6 @@ export const PlaceholderNodePopover = ({
     saveWorkflow?.();
   };
 
-  const handleDelete = () => {
-    deleteNode({ nodeId: id });
-  };
-
   return (
     <DropdownMenu
       defaultOpen={hasRenderedInitialData || placeholderType === 'trigger'}
@@ -58,7 +49,6 @@ export const PlaceholderNodePopover = ({
         <SelectNodeTypeForm
           placeholderType={placeholderType}
           onSubmit={handleSubmit}
-          onDelete={canDelete(id, getEdges()) ? handleDelete : undefined}
           entity="workflow"
         />
       </DropdownMenu.Content>

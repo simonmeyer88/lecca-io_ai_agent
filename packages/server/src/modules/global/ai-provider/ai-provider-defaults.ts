@@ -26,6 +26,16 @@ export const DEFAULT_PROVIDERS: AiProviders = {
           output: 1000,
         },
       },
+      o1: {
+        vision: true,
+        tools: false,
+        canStreamText: true,
+        canStreamTools: false,
+        creditConversionData: {
+          input: 40,
+          output: 10,
+        },
+      },
       'o1-preview': {
         vision: true,
         tools: false,

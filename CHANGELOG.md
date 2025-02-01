@@ -1,3 +1,18 @@
+# [0.34.0](https://github.com/lecca-digital/lecca-io/compare/v0.33.0...v0.34.0) (2025-02-01)
+
+
+### Bug Fixes
+
+* Add OTEL_EXPORTER_OTLP_ENDPOINT to get tracing to correct location ([0225d9c](https://github.com/lecca-digital/lecca-io/commit/0225d9c08f9adcd7c70b27f49a6ccfb5584affb1))
+
+
+### Features
+
+* Add agents app ([a6e5f51](https://github.com/lecca-digital/lecca-io/commit/a6e5f51eb46c57f5973cc6e6783f380656732288))
+* Add new o1 model ([cbd72ae](https://github.com/lecca-digital/lecca-io/commit/cbd72ae9730da9806d00a0eee2ea849619fe4e29))
+* **apps:** Add xAI grok model support ([1637af3](https://github.com/lecca-digital/lecca-io/commit/1637af3807dd02359788dbf2889c1809b68a96b6))
+* Auto open tool and trigger agent config ([61f06ee](https://github.com/lecca-digital/lecca-io/commit/61f06eee7250341543585ba109a63ef9815c4655))
+
 # [0.33.0](https://github.com/lecca-digital/lecca-io/compare/v0.32.0...v0.33.0) (2025-01-28)
 
 

@@ -605,6 +605,7 @@ export class WorkflowRunnerService {
         workspaceId: execution.workflow.project.workspace.id,
         projectId: execution.workflow.project.id,
         agentId: undefined,
+        taskId: undefined,
       });
     } else {
       response = await trigger.prepareAndRunTrigger({

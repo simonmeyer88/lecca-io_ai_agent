@@ -353,6 +353,8 @@ export class App {
     workflowId: string;
     projectId: string;
     workspaceId: string;
+    executionId: string;
+    taskId: string;
   }): Record<string, CoreTool<any, any>> {
     const tools: Record<string, CoreTool<any, any>> = {};
 
@@ -367,6 +369,8 @@ export class App {
         workflowId: args.workflowId,
         projectId: args.projectId,
         workspaceId: args.workspaceId,
+        executionId: args.executionId,
+        taskId: args.taskId,
         connectionDescription: args.connectionDescription,
         configValueAgentId: undefined,
         configValueKnowledgeId: undefined,

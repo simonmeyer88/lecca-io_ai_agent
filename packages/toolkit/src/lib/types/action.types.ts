@@ -5,10 +5,11 @@ export type RunActionArgs<ConfigValue> = {
   configValue: ConfigValue;
   connection?: ConnectionData;
   projectId: string;
-  workflowId: string | undefined;
   workspaceId: string;
+  workflowId: string | undefined;
   executionId: string | undefined;
   agentId: string | undefined;
+  taskId: string | undefined;
   testing?: boolean;
   prisma: InjectedServices['prisma'];
   http: InjectedServices['http'];

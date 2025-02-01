@@ -371,6 +371,7 @@ export class WebhookService {
         nodeId,
       } as any,
       executionId,
+      taskId: undefined,
       agentId: undefined,
       projectId: undefined,
       workflowId: undefined,

@@ -1,51 +1,18 @@
-import {
-  createAction,
-  createDynamicSelectInputField,
-  createTextInputField,
-} from '@lecca-io/toolkit';
+import { createAction, createTextInputField } from '@lecca-io/toolkit';
 import { v4 } from 'uuid';
 import { z } from 'zod';
+
+import { shared } from '../shared/agents.shared';
 
 export const messageAgent = createAction({
   id: 'agents_action_message-agent',
   name: 'Message Agent',
   description: 'Message one of your agents.',
   inputConfig: [
-    createDynamicSelectInputField({
-      id: 'agentId',
-      label: 'Agent',
+    {
+      ...shared.fields.dynamicSelectAgent,
       description: 'The agent to message within same project.',
-      placeholder: 'Select an agent',
-      hideCustomTab: true,
-      _getDynamicValues: async ({ projectId, agentId, prisma }) => {
-        const projectAgents = await prisma.agent.findMany({
-          where: {
-            FK_projectId: projectId,
-          },
-          select: {
-            id: true,
-            name: true,
-          },
-        });
-
-        if (agentId) {
-          return projectAgents
-            .filter((agent) => agent.id !== agentId)
-            .map((agent) => ({
-              label: agent.name,
-              value: agent.id,
-            }));
-        }
-        return projectAgents.map((agent) => ({
-          label: agent.name,
-          value: agent.id,
-        }));
-      },
-      required: {
-        missingMessage: 'Agent is required',
-        missingStatus: 'warning',
-      },
-    }),
+    },
     createTextInputField({
       id: 'data',
       label: 'Message',
@@ -64,7 +31,6 @@ export const messageAgent = createAction({
       placeholder: 'Add optional identifier',
     }),
   ],
-
   aiSchema: z.object({
     data: z.string().min(1).describe('The data to forward to the agent'),
     customIdentifier: z
@@ -74,9 +40,8 @@ export const messageAgent = createAction({
       .describe(
         'A value to create or reference a conversation with. If not provided the conversation cannot be referenced in the future.',
       ),
-    agentId: z.string(),
+    agentId: z.string().describe('The ID of the agent to message.'),
   }),
-
   run: async ({
     configValue,
     projectId,
@@ -88,6 +53,10 @@ export const messageAgent = createAction({
   }) => {
     if (!configValue.data) {
       throw new Error(`No data provided to send to agent`);
+    }
+
+    if (!configValue.agentId) {
+      throw new Error(`No agentId provided to send to agent`);
     }
 
     const agentExistsInProject = await prisma.agent.findFirst({
@@ -151,7 +120,6 @@ export const messageAgent = createAction({
       response: messageResult as string,
     };
   },
-
   mockRun: async () => {
     return {
       taskLink: `${process.env.CLIENT_URL}/path/to/agent/task`,

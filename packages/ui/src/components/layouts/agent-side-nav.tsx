@@ -123,7 +123,7 @@ export function AgentSideNav() {
       <div>
         <Separator />
         <Link to="/">
-          <div className="flex items-center px-4 sm:px-2 py-2 w-full space-x-2">
+          <div className="flex items-center  py-2 w-full space-x-2 px-4">
             <Icons.chevronLeft className="size-4" />
             <span
               className={cn('text-muted-foreground text-xs text-nowrap', {

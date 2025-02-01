@@ -156,11 +156,12 @@ export class Action {
   async runAction(args: {
     configValue: unknown;
     nodeId: string;
-    workflowId: string | undefined;
-    agentId: string | undefined;
     workspaceId: string;
     projectId: string;
+    workflowId: string | undefined;
+    agentId: string | undefined;
     executionId: string | undefined;
+    taskId: string | undefined;
     shouldMock?: boolean;
   }): Promise<ActionResponse<unknown>> {
     let connection: Partial<Connection>;
@@ -191,6 +192,7 @@ export class Action {
           agentId: args.agentId,
           workspaceId: args.workspaceId,
           executionId: args.executionId,
+          taskId: args.taskId,
           connection: connection,
           prisma: this.app.prisma,
           http: this.app.http,
@@ -212,6 +214,7 @@ export class Action {
         agentId: args.agentId,
         workspaceId: args.workspaceId,
         executionId: args.executionId,
+        taskId: args.taskId,
         connection,
         prisma: this.app.prisma,
         http: this.app.http,
@@ -503,7 +506,12 @@ export class Action {
       overrideConfig?: Record<string, any>;
     } & Pick<
       PrepareAndRunActionArgs,
-      'agentId' | 'projectId' | 'workflowId' | 'workspaceId'
+      | 'agentId'
+      | 'projectId'
+      | 'workflowId'
+      | 'workspaceId'
+      | 'taskId'
+      | 'executionId'
     >,
   ): CoreTool<any, any> {
     return {
@@ -549,6 +557,14 @@ export class Action {
 
         if (args.workspaceId) {
           otherArgs.workspaceId = args.workspaceId;
+        }
+
+        if (args.executionId) {
+          otherArgs.executionId = args.executionId;
+        }
+
+        if (args.taskId) {
+          otherArgs.taskId = args.taskId;
         }
 
         if (args.configValueAgentId) {
@@ -607,6 +623,7 @@ type PrepareAndRunActionArgs = {
   workspaceId: string;
   projectId: string;
   executionId: string | undefined;
+  taskId: string | undefined;
   shouldMock?: boolean;
   testing?: boolean;
 };

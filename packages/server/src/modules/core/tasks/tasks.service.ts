@@ -659,6 +659,8 @@ export class TasksService {
           projectId: agent.FK_projectId,
           workspaceId: workspaceId,
           workflowId: undefined, //undefined since the workflow isn't actually calling it, the agent is.
+          executionId: undefined,
+          taskId: taskId,
           agentId: agent.id,
         }),
       };
@@ -716,6 +718,7 @@ export class TasksService {
       agentId: agent.id,
       workspaceId: workspaceId,
       projectId: agent.FK_projectId,
+      taskId: taskId,
       tools: agent.tools as WorkflowNodeForRunner[],
     });
 
@@ -1003,6 +1006,8 @@ export class TasksService {
         workflowId: undefined,
         agentId,
         workspaceId,
+        executionId: undefined,
+        taskId: undefined,
         overrideDescription,
         configValueAgentId: undefined,
         configValueWorkflowId: undefined,
@@ -1062,6 +1067,8 @@ export class TasksService {
         workflowId: undefined,
         agentId,
         workspaceId,
+        executionId: undefined,
+        taskId: undefined,
         overrideDescription,
         configValueAgentId: undefined,
         configValueWorkflowId: workflow.id,
@@ -1096,10 +1103,11 @@ export class TasksService {
       tools[`subagent-${subAgent.id}`] = messageAgentAction.toToolJSON({
         projectId,
         workflowId: undefined,
-
         //In this case, the agentId (parentAgentId) is calling the configValueAgentId.
         agentId: parentAgentId,
         workspaceId,
+        executionId: undefined,
+        taskId: undefined,
         overrideDescription: `${subAgent.name}${subAgent.description ? ` - ${subAgent.description}` : ''}`,
         configValueAgentId: subAgent.id,
         configValueKnowledgeId: undefined,
@@ -1140,6 +1148,8 @@ export class TasksService {
           workflowId: undefined,
           agentId,
           workspaceId,
+          executionId: undefined,
+          taskId: undefined,
           configValueAgentId: undefined,
           configValueWorkflowId: undefined,
           configValueKnowledgeId: undefined,
@@ -1161,6 +1171,8 @@ export class TasksService {
           workflowId: undefined,
           agentId,
           workspaceId,
+          executionId: undefined,
+          taskId: undefined,
           configValueAgentId: undefined,
           configValueWorkflowId: undefined,
           configValueKnowledgeId: undefined,
@@ -1182,6 +1194,8 @@ export class TasksService {
         workflowId: undefined,
         agentId,
         workspaceId,
+        executionId: undefined,
+        taskId: undefined,
         configValueAgentId: undefined,
         configValueWorkflowId: undefined,
         configValueKnowledgeId: undefined,
@@ -1217,6 +1231,8 @@ export class TasksService {
         workflowId: undefined,
         agentId,
         workspaceId,
+        executionId: undefined,
+        taskId: undefined,
         configValueAgentId: undefined,
         configValueWorkflowId: undefined,
         configValueKnowledgeId: undefined,
@@ -1233,11 +1249,13 @@ export class TasksService {
     tools,
     agentId,
     workspaceId,
+    taskId,
   }: {
     tools: WorkflowNodeForRunner[];
     projectId: string;
     agentId: string;
     workspaceId: string;
+    taskId: string;
   }) => {
     if (!tools) {
       return {};
@@ -1298,6 +1316,8 @@ export class TasksService {
             workflowId: undefined,
             agentId,
             workspaceId,
+            taskId,
+            executionId: undefined,
             overrideConfig: cleanedUserInput,
             overrideDescription: `${tool.name}${tool.description ? ` - ${tool.description}` : ''}`,
             connectionDescription: undefined, //We should remove connectionDescription

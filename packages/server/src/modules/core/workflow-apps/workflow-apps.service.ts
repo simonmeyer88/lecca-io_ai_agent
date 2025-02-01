@@ -305,6 +305,7 @@ export class WorkflowAppsService {
         testing: true,
         agentId: undefined,
         executionId: undefined,
+        taskId: undefined,
       });
     } else if (triggerId) {
       const trigger = app.triggerMap[triggerId];

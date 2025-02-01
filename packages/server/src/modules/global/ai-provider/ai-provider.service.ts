@@ -529,6 +529,12 @@ export type AiLanguageModelData = {
     input: number;
     output: number;
   } | null;
+
+  /**
+   * Some models don't support temperature.
+   * If set to false, the temperature value will not be passed into the ai request.
+   */
+  canUseTemperature?: boolean;
 };
 
 export type AiEmbeddingModelData = {

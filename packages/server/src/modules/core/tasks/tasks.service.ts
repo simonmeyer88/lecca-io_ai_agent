@@ -154,7 +154,7 @@ export class TasksService {
         workspaceId: workspaceId,
       });
 
-      const tools = await this.getAgentTools({
+      let tools = await this.getAgentTools({
         agent: agent,
         workspaceId,
         taskId,
@@ -162,6 +162,7 @@ export class TasksService {
 
       const provider =
         this.aiProviderService.providers[agent.llmProvider as AiProvider];
+      const model = provider.languageModels[agent.llmModel];
 
       if (provider?.validateConfiguration) {
         // Frequency penalty can be -2 to 2 for open ai, but perplexity needs it to be > 0
@@ -174,6 +175,13 @@ export class TasksService {
         agent.frequencyPenalty = response.frequency_penalty;
       }
 
+      if (model?.canUseTemperature === false) {
+        agent.temperature = null;
+      }
+      if (model?.tools === false) {
+        tools = {};
+      }
+
       if (shouldStream) {
         const result = streamText({
           model: llmProviderClient,
@@ -184,7 +192,6 @@ export class TasksService {
           maxRetries: agent.maxRetries == null ? undefined : agent.maxRetries,
           frequencyPenalty:
             agent.frequencyPenalty == null ? undefined : agent.frequencyPenalty,
-          // maxTokens: Math.min(4096, agent.maxTokens ?? 4096), //4096 is the max output tokens for openai
           maxSteps:
             agent.maxToolRoundtrips == null
               ? undefined

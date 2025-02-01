@@ -1,5 +1,6 @@
 import { createApp } from '@lecca-io/toolkit';
 
+import { agents } from './lib/agents/agents.app';
 import { ai } from './lib/ai/ai.app';
 import { airtable } from './lib/airtable/airtable.app';
 import { anchorBrowser } from './lib/anchor-browser/anchor-browser.app';
@@ -53,6 +54,7 @@ import { zohoBooks } from './lib/zoho-books/zoho-books.app';
 import { zohoCrm } from './lib/zoho-crm/zoho-crm.app';
 
 const apps: Record<string, ReturnType<typeof createApp>> = {
+  [agents.id]: agents,
   [ai.id]: ai,
   [airtable.id]: airtable,
   [anchorBrowser.id]: anchorBrowser,

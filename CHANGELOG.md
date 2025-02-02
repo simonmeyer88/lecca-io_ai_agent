@@ -1,3 +1,13 @@
+# [0.35.0](https://github.com/lecca-digital/lecca-io/compare/v0.34.0...v0.35.0) (2025-02-02)
+
+
+### Features
+
+* Add search bar for projects, agents, and tasks ([2657a5c](https://github.com/lecca-digital/lecca-io/commit/2657a5c232d4a386ee3befc9d2a3e9c63996b9a7))
+* Add taskId as argument in actions run ([5a076f9](https://github.com/lecca-digital/lecca-io/commit/5a076f906e8cb43eebb4490057fb090a6fc00662))
+* Preparing ai config for o3 temperature bug ([507d479](https://github.com/lecca-digital/lecca-io/commit/507d479525e26862785e6866f99a0d0d1d79fe60))
+* Task naming ([975b6b8](https://github.com/lecca-digital/lecca-io/commit/975b6b8573feba1b8df0857dcac344d2904878e6))
+
 # [0.34.0](https://github.com/lecca-digital/lecca-io/compare/v0.33.0...v0.34.0) (2025-02-01)
 
 

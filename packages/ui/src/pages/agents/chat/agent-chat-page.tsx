@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import useApiQuery from '../../../api/use-api-query';
 import { UserSettings } from '../../../components/layouts/application-side-nav';
@@ -7,6 +7,7 @@ import { Loader } from '../../../components/loaders/loader';
 import { useOnborda } from '../../../components/onboarda/OnbordaContext';
 import { useUser } from '../../../hooks/useUser';
 import { FormattedTaskMessage } from '../../../models/task/formatted-task-message-model';
+import { NavAgentSelector } from '../../projects/components/nav-selectors/nav-agent-selector';
 
 import { Chat } from './components/chat';
 import { formatSavedMessagesToStreamedMessageFormat } from './utils/format-saved-messages-to-streamed-message-format';
@@ -73,7 +74,14 @@ export function AgentChatPage() {
   return (
     <div>
       <nav className="w-full flex items-center justify-between py-1">
-        <div></div>
+        <div>
+          <div className="mx-2 sm:mx-4 flex items-center space-x-1">
+            <Link to={`/agents/${agentId}`}>
+              <span>{agent.name}</span>
+            </Link>
+            <NavAgentSelector />
+          </div>
+        </div>
         <div className="hidden sm:flex items-center">
           <UserSettings isCollapsed={false} className="size-8" />
         </div>

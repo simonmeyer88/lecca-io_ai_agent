@@ -6,7 +6,7 @@ import { useApplicationSideNav } from '../../hooks/useApplicationSideNav';
 import { useToast } from '../../hooks/useToast';
 import { cn } from '../../utils/cn';
 import { Icons } from '../icons';
-import { Avatar } from '../ui/avatar';
+import { AgentGlobalSearch } from '../ui/agent-global-search';
 import { Button } from '../ui/button';
 import { DropdownMenu } from '../ui/dropdown-menu';
 import { ResizablePanel } from '../ui/resizable';
@@ -43,34 +43,12 @@ export function AgentSideNav() {
       <div>
         <div className="flex items-center px-4 sm:px-2 py-1 w-full">
           {agent ? (
-            <div className="w-full flex justify-between items-center pt-2">
-              <Link to={`/agents/${agentId}`}>
-                <div
-                  className={cn('flex items-center space-x-2 w-full', {
-                    'px-2': !isCollapsed,
-                    'px-1': isCollapsed,
-                  })}
-                >
-                  <Avatar className="size-6 border">
-                    <Avatar.Image
-                      src={agent?.profileImageUrl ?? undefined}
-                      alt={`${agent.name} Profile Image`}
-                    />
-                    <Avatar.Fallback>
-                      {agent?.name![0].toUpperCase()}
-                    </Avatar.Fallback>
-                  </Avatar>
-                  <span
-                    className={cn('text-nowrap truncate', {
-                      hidden: isCollapsed,
-                    })}
-                  >
-                    {/* Truncate after 10 characters */}
-                    {agent.name.substring(0, 18) +
-                      (agent.name.length! > 18 ? '...' : '')}
-                  </span>
-                </div>
-              </Link>
+            <div className="w-full flex justify-between items-center pt-1">
+              <AgentGlobalSearch
+                projectId={agent.project?.id}
+                agentId={agent.id}
+                isCollapsed={isCollapsed}
+              />
               <Button
                 variant="ghost"
                 asChild

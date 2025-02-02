@@ -12,7 +12,6 @@ import { useOnborda } from '../onboarda/OnbordaContext';
 import { Avatar } from '../ui/avatar';
 import { buttonVariants } from '../ui/button';
 import { DropdownMenu } from '../ui/dropdown-menu';
-import { GlobalSearch } from '../ui/global-search';
 import { ResizablePanel } from '../ui/resizable';
 import { Select } from '../ui/select';
 import { Separator } from '../ui/separator';
@@ -75,7 +74,6 @@ export function ApplicationSideNav() {
         <MainSideNavContent isCollapsed={isCollapsed} />
       </div>
       <div>
-        <GlobalSearch />
         <Credits isCollapsed={isCollapsed} />
         <div className="mb-2">
           <UserSettings isCollapsed={isCollapsed} />

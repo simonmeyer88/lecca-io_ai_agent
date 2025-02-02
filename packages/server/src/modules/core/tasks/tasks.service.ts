@@ -13,6 +13,8 @@ import {
   CoreMessage,
   CoreTool,
   CoreToolMessage,
+  LanguageModelUsage,
+  LanguageModelV1,
   generateText,
   streamText,
 } from 'ai';
@@ -101,6 +103,7 @@ export class TasksService {
       return await this.messageTask({
         ...args,
         taskId: newTask.id,
+        shouldRenameTask: true,
       });
     }
   };
@@ -114,6 +117,7 @@ export class TasksService {
     workspaceId,
     shouldStream = true,
     simpleResponse = true,
+    shouldRenameTask,
   }: MessageTaskProps) => {
     try {
       const taskWithAgentId = await this.prisma.task.findUnique({
@@ -182,6 +186,16 @@ export class TasksService {
         tools = {};
       }
 
+      let nameTaskUsage: LanguageModelUsage | null = null;
+      if (shouldRenameTask) {
+        nameTaskUsage = await this.nameTask({
+          taskId: taskId,
+          llmProviderClient,
+          messagesForContext: messagesForContext as CoreMessage[],
+          taskNamingInstructions: agent.taskNamingInstructions,
+        });
+      }
+
       if (shouldStream) {
         const result = streamText({
           model: llmProviderClient,
@@ -224,6 +238,11 @@ export class TasksService {
             });
 
             if (agent.llmConnection == null) {
+              if (nameTaskUsage) {
+                result.usage.promptTokens += nameTaskUsage.promptTokens;
+                result.usage.completionTokens += nameTaskUsage.completionTokens;
+              }
+
               const creditsUsed =
                 this.creditsService.transformLlmTokensToCredits({
                   data: {
@@ -298,6 +317,11 @@ export class TasksService {
         });
 
         if (agent.llmConnection == null) {
+          if (nameTaskUsage) {
+            result.usage.promptTokens += nameTaskUsage.promptTokens;
+            result.usage.completionTokens += nameTaskUsage.completionTokens;
+          }
+
           const creditsUsed = this.creditsService.transformLlmTokensToCredits({
             data: {
               inputTokens: result.usage.promptTokens,
@@ -735,6 +759,47 @@ export class TasksService {
     return tools;
   };
 
+  nameTask = async ({
+    taskId,
+    llmProviderClient,
+    messagesForContext,
+    taskNamingInstructions,
+  }: {
+    taskId: string;
+    llmProviderClient: LanguageModelV1;
+    messagesForContext: CoreMessage[];
+    taskNamingInstructions: string | null;
+  }): Promise<LanguageModelUsage | null> => {
+    try {
+      const result = await generateText({
+        model: llmProviderClient,
+        toolChoice: 'none',
+        system: `Generate a succinct name for this task based on the messages provided to you. Only output the name. ${taskNamingInstructions?.trim() ? `Additional naming instructions: ${taskNamingInstructions}` : ''}`,
+        messages: messagesForContext as CoreMessage[],
+        maxRetries: 1,
+        maxTokens: 25,
+      });
+
+      //name can be a maximum of 100 characters
+      const newName =
+        result.text.length > 100
+          ? result.text.slice(0, 97) + '...'
+          : result.text;
+
+      await this.update({
+        taskId,
+        data: {
+          name: newName,
+        },
+      });
+
+      return result.usage;
+    } catch (err) {
+      console.error(err);
+      return null;
+    }
+  };
+
   checkWorkspaceUserHasAccessToTask = async ({
     workspaceUserId,
     taskId,
@@ -970,6 +1035,7 @@ export class TasksService {
             outboundCallsEnabled: true,
           },
         },
+        taskNamingInstructions: true,
       },
     });
 
@@ -1608,4 +1674,6 @@ type MessageTaskProps = {
    * If false, the entire repsonse message array including tools and text responses will be returned.
    */
   simpleResponse?: boolean;
+
+  shouldRenameTask?: boolean;
 };

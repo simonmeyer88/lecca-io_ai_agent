@@ -201,10 +201,10 @@ export function AgentSideNavContent({
                 : (tasks?.map((task) => {
                     return {
                       // title: task.name,
-                      // truncate title at 20 characters if the title has more than 20 characters
+                      // truncate title at 30 characters if the title has more than 30 characters
                       title:
-                        task.name.substring(0, 20) +
-                        (task.name.length > 20 ? '...' : ''),
+                        task.name.substring(0, 28) +
+                        (task.name.length > 28 ? '...' : ''),
                       to: `/projects/${projectId}/agents/${agentId}/tasks/${task.id}`,
                       // eslint-disable-next-line react/jsx-no-useless-fragment
                       icon: () => <></>,

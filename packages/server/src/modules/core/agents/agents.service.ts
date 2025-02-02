@@ -205,6 +205,7 @@ export class AgentsService {
         tools: expansion?.tools ?? false,
         toolIds: expansion?.toolIds ?? false,
         triggerIds: expansion?.triggerIds ?? false,
+        taskNamingInstructions: expansion?.taskNamingInstructions ?? false,
         llmModel: expansion?.llmModel ?? false,
         llmProvider: expansion?.llmProvider ?? false,
         llmConnection: expansion?.llmConnection
@@ -730,6 +731,7 @@ export class AgentsService {
         triggers: expansion?.triggers ?? false,
         toolIds: expansion?.toolIds ?? false,
         triggerIds: expansion?.triggerIds ?? false,
+        taskNamingInstructions: expansion?.taskNamingInstructions ?? false,
         llmModel: expansion?.llmModel ?? false,
         llmProvider: expansion?.llmProvider ?? false,
         llmConnection: expansion?.llmConnection

@@ -101,6 +101,7 @@ export default class AgentsService extends ApiLibraryHelper {
             'llmProvider',
             'triggerIds',
             'toolIds',
+            'taskNamingInstructions',
           ],
           ...config?.params,
         },

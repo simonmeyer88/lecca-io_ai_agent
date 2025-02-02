@@ -549,10 +549,7 @@ export function Nav({ links, isCollapsed, isSheet, className }: NavProps) {
                 <DropdownMenu>
                   <DropdownMenu.Trigger
                     className={cn(
-                      'invisible group-hover:visible flex ml-auto items-center justify-center h-full w-8 right-0 rounded-r-md',
-                      {
-                        'visible bg-muted': location.pathname === link.to,
-                      },
+                      'absolute bg-muted right-2 invisible group-hover:visible flex ml-auto items-center justify-center h-full w-8 rounded-r-md',
                     )}
                   >
                     <Icons.dotsHorizontal className="h-4 w-4" />

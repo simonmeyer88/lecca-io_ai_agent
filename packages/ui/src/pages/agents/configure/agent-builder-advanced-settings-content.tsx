@@ -64,6 +64,7 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
       name: agent.name,
       description: agent.description,
       instructions: agent.instructions,
+      taskNamingInstructions: agent.taskNamingInstructions,
       connectionIds: agent.connections?.map((c) => c.id) ?? [], //Legacy
       knowledgeIds: agent.agentKnowledge?.map((k) => k.id) ?? [], //Legacy
       actionIds: agent.agentActions?.map((a) => a.id) ?? [], //Legacy
@@ -103,6 +104,7 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
         id: agent.id,
         data: {
           instructions: values.instructions,
+          taskNamingInstructions: values.taskNamingInstructions,
           llmProvider: values.llmProvider,
           llmModel: values.llmModel,
           llmConnectionId: values.llmConnectionId,
@@ -369,7 +371,9 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
             name="instructions"
             render={({ field }) => (
               <Form.Item>
-                <Form.Label>Instructions</Form.Label>
+                <Form.Label tooltip="How should your agent behave? What is it's goal? When should it use certain tools? You may need to tweak these instructions until you get the behavior and outputs you expect from your agent.">
+                  Instructions
+                </Form.Label>
                 <Form.Control>
                   <Textarea
                     placeholder="e.g. You are a helpful assistant. Anytime I receive an email, I want you to draft a response using the tools I provide you."
@@ -547,6 +551,27 @@ export function AgentBuilderAdvancedSettingsContent({ agent }: PropType) {
                 </Form.Item>
               );
             }}
+          />
+
+          <Form.Field
+            control={form.control}
+            name="taskNamingInstructions"
+            render={({ field }) => (
+              <Form.Item>
+                <Form.Label tooltip="Your agent will name new tasks (conversations) using the first message as context. You can add extra instructions here to tell your agent how to name the task.">
+                  Task Naming Instructions
+                </Form.Label>
+                <Form.Control>
+                  <Textarea
+                    placeholder="e.g. When naming a task follow these additional instructions..."
+                    className="placeholder:opacity-70 placeholder:italic"
+                    rows={5}
+                    {...field}
+                  />
+                </Form.Control>
+                <Form.Message />
+              </Form.Item>
+            )}
           />
         </Form.Content>
       </form>

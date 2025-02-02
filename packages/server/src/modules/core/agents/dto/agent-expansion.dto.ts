@@ -120,4 +120,8 @@ export class AgentExpansionDto {
   @IsOptional()
   @IsBoolean()
   triggerIds?: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  taskNamingInstructions?: boolean;
 }

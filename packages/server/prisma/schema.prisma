@@ -370,6 +370,9 @@ model Agent {
   maxToolRoundtrips    Int     @default(5) //0 = Can only call one at a time
   messageLookbackLimit Int     @default(5)
 
+  //Naming Config
+  taskNamingInstructions String? @db.VarChar(1000)
+
   //NEW TOOL FIELDS
   tools    Json?          @db.JsonB
   triggers AgentTrigger[]

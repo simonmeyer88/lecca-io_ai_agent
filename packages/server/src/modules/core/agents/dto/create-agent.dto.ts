@@ -139,4 +139,9 @@ export class CreateAgentDto {
   @IsOptional()
   @IsArray()
   triggers?: PartialOrSavedAgentTrigger[];
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(1000)
+  taskNamingInstructions: string;
 }

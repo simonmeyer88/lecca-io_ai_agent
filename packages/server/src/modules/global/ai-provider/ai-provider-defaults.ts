@@ -26,6 +26,16 @@ export const DEFAULT_PROVIDERS: AiProviders = {
           output: 1000,
         },
       },
+      'o3-mini': {
+        vision: true,
+        tools: true,
+        canStreamText: true,
+        canStreamTools: true,
+        creditConversionData: {
+          input: 200,
+          output: 50,
+        },
+      },
       o1: {
         vision: true,
         tools: false,

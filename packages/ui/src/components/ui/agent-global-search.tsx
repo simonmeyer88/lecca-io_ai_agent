@@ -124,7 +124,14 @@ export function AgentGlobalSearch(props: Props) {
                     {key === 'Tasks' && (
                       <Icons.messageSquareText className="text-muted-foreground p-0.5" />
                     )}
-                    <span className="line-clamp-1">{result.name}</span>
+                    <span
+                      className="line-clamp-1"
+                      dangerouslySetInnerHTML={{
+                        //This is a hack. Css escapes all the bad characters but then there are backslashes everywhere.
+                        //So then we remove the back slashes. The only problem is you can never see a backslack in a combobox label now.
+                        __html: CSS.escape(result.name).replace(/\\/g, ''),
+                      }}
+                    ></span>
                   </div>
                   {key === 'Tasks' && (
                     <span className="text-xs text-muted-foreground pl-7">

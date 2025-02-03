@@ -268,10 +268,14 @@ function ToolsDropdown({
   );
 
   useEffect(() => {
+    //Set's it to false when switching between agents.
+    //there was a bug where if you switched between agents, it auto opened all the tools.
+    setDefaultOpen(false);
+
     setTimeout(() => {
       setDefaultOpen(true);
     }, 100);
-  }, []);
+  }, [agent.id]);
 
   return (
     <>

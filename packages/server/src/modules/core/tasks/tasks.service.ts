@@ -786,14 +786,17 @@ export class TasksService {
           ? result.text.slice(0, 97) + '...'
           : result.text;
 
-      await this.update({
-        taskId,
-        data: {
-          name: newName,
-        },
-      });
+      //If the generateText fails, it could return an empty string, so we check if the newName is not empty.
+      if (newName?.trim()) {
+        await this.update({
+          taskId,
+          data: {
+            name: newName,
+          },
+        });
+      }
 
-      return result.usage;
+      return result.usage ?? null;
     } catch (err) {
       console.error(err);
       return null;

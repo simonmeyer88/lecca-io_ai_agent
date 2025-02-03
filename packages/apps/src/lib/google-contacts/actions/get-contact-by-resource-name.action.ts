@@ -31,7 +31,6 @@ export const getContact = createAction({
   aiSchema: z.object({
     'resource-name': z
       .string()
-      .min(1)
       .describe('The resource name of the contact to retrieve'),
   }),
   run: async ({ configValue, connection }) => {

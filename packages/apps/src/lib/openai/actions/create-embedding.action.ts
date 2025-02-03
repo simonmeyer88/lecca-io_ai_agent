@@ -21,8 +21,8 @@ export const createEmbedding = createAction({
     }),
   ],
   aiSchema: z.object({
-    model: z.string().min(1).describe('The ID of the model to use'),
-    input: z.string().min(1).describe('The text to create embeddings for'),
+    model: z.string().describe('The ID of the model to use'),
+    input: z.string().describe('The text to create embeddings for'),
   }),
   run: async ({ configValue, connection, workspaceId, http }) => {
     const { model, input } = configValue;

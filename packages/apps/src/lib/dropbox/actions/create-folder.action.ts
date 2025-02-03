@@ -29,7 +29,7 @@ export const dropboxCreateFolder = createAction({
     } as FieldConfig,
   ],
   aiSchema: z.object({
-    folderName: z.string().min(1).describe('The name of the folder to create'),
+    folderName: z.string().describe('The name of the folder to create'),
     parentFolderPath: z
       .string()
       .nullable()

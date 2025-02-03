@@ -74,12 +74,11 @@ export const createDraftReply = createAction({
   aiSchema: z.object({
     threadId: z
       .string()
-      .min(1)
       .describe('The thread ID of the email being replied to'),
     to: z.string().email().describe('The email address of the recipient'),
     cc: z.string().email().optional().describe('CC recipient email address'),
     bcc: z.string().email().optional().describe('BCC recipient email address'),
-    body: z.string().min(1).describe('The body of the reply'),
+    body: z.string().describe('The body of the reply'),
     bodyType: z
       .enum(['text', 'html'])
       .describe('The format of the body: text or HTML'),

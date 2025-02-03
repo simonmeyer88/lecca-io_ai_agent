@@ -49,7 +49,7 @@ export const convertCsvToJson = createAction({
     },
   ],
   aiSchema: z.object({
-    csv: z.string().min(1).describe('The csv text'),
+    csv: z.string().describe('The csv text'),
     delimiter: z.enum(['comma', 'tab']).describe('Delimiter of the csv text'),
     hasHeaders: z
       .enum(['true', 'false'])

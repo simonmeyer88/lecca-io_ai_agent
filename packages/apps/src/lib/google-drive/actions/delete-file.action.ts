@@ -8,7 +8,7 @@ export const deleteFile = createAction({
   name: 'Delete File',
   description: `Delete a file created by this platform.`,
   aiSchema: z.object({
-    file: z.string().min(1).describe('The ID of the file to delete'),
+    file: z.string().describe('The ID of the file to delete'),
   }),
   inputConfig: [
     {

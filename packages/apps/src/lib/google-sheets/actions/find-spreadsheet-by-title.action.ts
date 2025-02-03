@@ -22,7 +22,6 @@ export const findSpreadsheetByTitle = createAction({
   aiSchema: z.object({
     search: z
       .string()
-      .min(1)
       .describe(
         'A search query to find a spreadsheet by its title. This is required to search for a spreadsheet.',
       ),

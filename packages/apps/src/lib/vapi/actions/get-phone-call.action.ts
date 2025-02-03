@@ -6,7 +6,7 @@ export const getPhoneCall = createAction({
   name: 'Get Phone Call',
   description: 'Retrieve the details of an ongoing or completed phone call',
   aiSchema: z.object({
-    callId: z.string().min(1).describe('The ID of the phone call to retrieve'),
+    callId: z.string().describe('The ID of the phone call to retrieve'),
   }),
   inputConfig: [
     createTextInputField({

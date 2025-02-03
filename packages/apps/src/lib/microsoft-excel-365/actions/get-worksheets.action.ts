@@ -10,7 +10,6 @@ export const getWorksheets = createAction({
   aiSchema: z.object({
     workbookId: z
       .string()
-      .min(1)
       .describe('The ID of the workbook to get worksheets from'),
   }),
   inputConfig: [shared.fields.dynamicSelectWorkbooks],

@@ -30,8 +30,8 @@ export const createDocument = createAction({
     }),
   ],
   aiSchema: z.object({
-    'new-name': z.string().min(1).describe('The name of the new document'),
-    content: z.string().min(1).describe('The content of the new document'),
+    'new-name': z.string().describe('The name of the new document'),
+    content: z.string().describe('The content of the new document'),
   }),
   run: async ({ configValue, connection }) => {
     const googleDocs = shared.googleDocs({

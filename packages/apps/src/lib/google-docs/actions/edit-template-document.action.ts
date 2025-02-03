@@ -17,14 +17,11 @@ export const editTemplate = createAction({
   ],
 
   aiSchema: z.object({
-    document: z.string().min(1).describe('The ID of the template document'),
+    document: z.string().describe('The ID of the template document'),
     placeholders: z.array(
       z.object({
-        key: z.string().min(1).describe('The placeholder key'),
-        value: z
-          .string()
-          .min(1)
-          .describe('The value to replace the placeholder'),
+        key: z.string().describe('The placeholder key'),
+        value: z.string().describe('The value to replace the placeholder'),
       }),
     ),
   }),

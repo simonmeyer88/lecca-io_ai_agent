@@ -13,10 +13,7 @@ export const createTextPost = createAction({
   name: 'Create Text Post',
   description: 'Create a text post on LinkedIn.',
   aiSchema: z.object({
-    commentary: z
-      .string()
-      .min(1)
-      .describe('The text content of the LinkedIn post'),
+    commentary: z.string().describe('The text content of the LinkedIn post'),
     visibility: z
       .enum(['PUBLIC', 'CONNECTIONS', 'LOGGED_IN'])
       .describe(

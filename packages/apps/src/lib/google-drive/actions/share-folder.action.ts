@@ -12,11 +12,11 @@ export const shareFolder = createAction({
   name: 'Share Folder',
   description: `Share a folder that this platform has created.`,
   aiSchema: z.object({
-    folder: z.string().min(1).describe('The ID of the folder to share'),
+    folder: z.string().describe('The ID of the folder to share'),
     role: z
       .enum(['writer', 'commenter', 'reader'])
       .describe('The role of the user'),
-    email: z.string().email().min(1).describe('The email of the user'),
+    email: z.string().describe('The email of the user'),
   }),
   inputConfig: [
     shared.fields.dynamicSelectFolder,

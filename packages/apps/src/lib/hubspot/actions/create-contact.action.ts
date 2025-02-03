@@ -12,11 +12,10 @@ export const createContact = createAction({
     properties: z
       .array(
         z.object({
-          field: z.string().min(1).describe('The field to set'),
-          value: z.string().min(1).describe('The value to set'),
+          field: z.string().describe('The field to set'),
+          value: z.string().describe('The value to set'),
         }),
       )
-      .min(1)
       .describe('The field and value for that field'),
   }),
   run: async ({ configValue, connection, workspaceId, http }) => {

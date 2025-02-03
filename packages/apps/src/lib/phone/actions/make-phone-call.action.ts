@@ -12,7 +12,6 @@ export const makePhoneCall = createAction({
   aiSchema: z.object({
     customerPhoneNumber: z
       .string()
-      .min(1)
       .describe(
         'The phone number to call, including the country and area code e.g. +18019999999',
       ),

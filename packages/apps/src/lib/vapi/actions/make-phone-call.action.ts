@@ -53,17 +53,12 @@ export const makePhoneCall = createAction({
   ],
   aiSchema: z.object({
     name: z.string().optional().describe('Name to reference call'),
-    vapiAssistantId: z
-      .string()
-      .min(1)
-      .describe('The ID of the vapi assistant to use'),
+    vapiAssistantId: z.string().describe('The ID of the vapi assistant to use'),
     vapiPhoneNumberId: z
       .string()
-      .min(1)
       .describe('The ID of the vapi phone number to use'),
     customerPhoneNumber: z
       .string()
-      .min(1)
       .describe(
         'The phone number to call, including the county and area code e.g. +18019999999',
       ),

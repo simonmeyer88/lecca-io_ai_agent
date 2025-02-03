@@ -72,13 +72,12 @@ export const createDraft = createAction({
   aiSchema: z.object({
     recipientEmails: z
       .array(z.string())
-      .min(1)
       .describe('The email address of the recipient(s)'),
-    subject: z.string().min(1).describe('The subject of the email'),
+    subject: z.string().describe('The subject of the email'),
     contentType: z
       .enum(['HTML', 'Text'])
       .describe('The content type of the email'),
-    body: z.string().min(1).describe('The body of the email'),
+    body: z.string().describe('The body of the email'),
     ccRecipientEmails: z
       .array(z.string())
       .nullable()

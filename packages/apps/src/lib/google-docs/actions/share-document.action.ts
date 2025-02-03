@@ -12,11 +12,11 @@ export const shareDocument = createAction({
   name: 'Share Document',
   description: 'Share a document that has been created.',
   aiSchema: z.object({
-    document: z.string().min(1).describe('The ID of the document to share'),
+    document: z.string().describe('The ID of the document to share'),
     role: z
       .enum(['writer', 'commenter', 'reader'])
       .describe('The role of the user'),
-    email: z.string().email().min(1).describe('The email of the user'),
+    email: z.string().describe('The email of the user'),
   }),
   inputConfig: [
     shared.fields.dynamicSelectDocuments,

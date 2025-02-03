@@ -104,20 +104,17 @@ export const createEvent = createAction({
   ],
   aiSchema: z.object({
     calendarId: z.string().nullable().optional().describe('Calendar ID'),
-    summary: z.string().min(1).describe('Event summary'),
+    summary: z.string().describe('Event summary'),
     location: z.string().nullable().optional().describe('Event location'),
     description: z.string().nullable().optional().describe('Event description'),
     startDateTime: z
       .string()
-      .min(1)
       .describe('Event start time in ISO String format with timezone or UTC'),
     endDateTime: z
       .string()
-      .min(1)
       .describe('Event end time in ISO String format with timezone or UTC'),
     timeZone: z
       .string()
-      .min(1)
       .nullable()
       .optional()
       .describe(

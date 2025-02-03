@@ -23,18 +23,16 @@ export const updateContact = createAction({
   aiSchema: z.object({
     identifier: z
       .string()
-      .min(1)
       .describe(
         'The unique identifier of the contact (e.g., email or contact ID)',
       ),
     properties: z
       .array(
         z.object({
-          field: z.string().min(1).describe('The field to update'),
-          value: z.string().min(1).describe('The value to update'),
+          field: z.string().describe('The field to update'),
+          value: z.string().describe('The value to update'),
         }),
       )
-      .min(1)
       .describe('The field and value for the field to update'),
   }),
   run: async ({ configValue, connection, workspaceId, http }) => {

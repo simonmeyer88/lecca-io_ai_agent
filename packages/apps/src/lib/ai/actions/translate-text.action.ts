@@ -42,8 +42,8 @@ export const translateText = createAction({
   aiSchema: z.object({
     provider: z.string().describe('The AI provider to use'),
     model: z.string().describe('The ID of the model to use'),
-    language: z.string().min(1).describe('The language to translate to'),
-    textToTranslate: z.string().min(1).describe('The text to translate'),
+    language: z.string().describe('The language to translate to'),
+    textToTranslate: z.string().describe('The text to translate'),
   }),
   run: async ({
     configValue,

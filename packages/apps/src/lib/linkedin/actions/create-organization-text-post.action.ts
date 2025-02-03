@@ -15,12 +15,8 @@ export const createOrganizationTextPost = createAction({
   aiSchema: z.object({
     organizationId: z
       .string()
-      .min(1)
       .describe('The organization ID to post on behalf of.'),
-    commentary: z
-      .string()
-      .min(1)
-      .describe('The text content of the LinkedIn post'),
+    commentary: z.string().describe('The text content of the LinkedIn post'),
     visibility: z
       .enum(['PUBLIC', 'CONNECTIONS', 'LOGGED_IN'])
       .describe(

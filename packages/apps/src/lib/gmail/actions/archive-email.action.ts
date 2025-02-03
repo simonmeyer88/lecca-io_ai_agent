@@ -20,7 +20,7 @@ export const archiveEmail = createAction({
     }),
   ],
   aiSchema: z.object({
-    messageId: z.string().min(1).describe('The ID of the email to archive'),
+    messageId: z.string().describe('The ID of the email to archive'),
   }),
   run: async ({ configValue, connection }): Promise<boolean> => {
     const gmail = shared.gmail({

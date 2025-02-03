@@ -17,7 +17,6 @@ export const combineLists = createAction({
   aiSchema: z.object({
     listOfListItems: z
       .array(z.array(z.string()))
-      .min(1)
       .describe('List of lists to combine'),
   }),
   inputConfig: [

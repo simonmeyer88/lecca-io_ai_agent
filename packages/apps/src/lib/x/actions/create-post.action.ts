@@ -7,7 +7,7 @@ export const createPost = createAction({
   name: 'Create Post',
   description: 'Create a text post on X.',
   aiSchema: z.object({
-    text: z.string().min(1).describe('The text to post on X'),
+    text: z.string().describe('The text to post on X'),
   }),
   inputConfig: [
     createTextInputField({

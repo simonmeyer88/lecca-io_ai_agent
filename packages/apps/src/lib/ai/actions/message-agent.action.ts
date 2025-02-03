@@ -67,7 +67,7 @@ export const messageAgent = createAction({
   ],
 
   aiSchema: z.object({
-    data: z.string().min(1).describe('The data to forward to the agent'),
+    data: z.string().describe('The data to forward to the agent'),
     customIdentifier: z
       .string()
       .nullable()

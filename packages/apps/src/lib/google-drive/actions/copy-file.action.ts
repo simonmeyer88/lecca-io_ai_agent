@@ -8,8 +8,8 @@ export const copyFile = createAction({
   name: 'Copy File',
   description: 'Copies a file into a designated folder.',
   aiSchema: z.object({
-    file: z.string().min(1).describe('The ID of the file to copy'),
-    'file-name': z.string().min(1).describe('The name of the copied file'),
+    file: z.string().describe('The ID of the file to copy'),
+    'file-name': z.string().describe('The name of the copied file'),
     'parent-folder': z
       .string()
       .nullable()

@@ -24,11 +24,9 @@ export const getThreadMessages = createAction({
   aiSchema: z.object({
     channelId: z
       .string()
-      .min(1)
       .describe('The ID of the channel where the thread exists'),
     threadTs: z
       .string()
-      .min(1)
       .describe(
         'The timestamp of the original message in the thread (ts field)',
       ),

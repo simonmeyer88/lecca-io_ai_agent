@@ -10,7 +10,6 @@ export const findDocumentByTitle = createAction({
   aiSchema: z.object({
     search: z
       .string()
-      .min(1)
       .describe('A search query to find a document by its title'),
   }),
   inputConfig: [

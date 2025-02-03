@@ -108,13 +108,9 @@ export const saveToKnowledge = createAction({
       .describe(
         'The size of the chunk overlap. This is useful for ensuring context is not lost between chunks. Maxiumum is 50%.',
       ),
-    data: z
-      .string()
-      .min(1)
-      .describe('The data to save to the knowledge notebook'),
+    data: z.string().describe('The data to save to the knowledge notebook'),
     name: z
       .string()
-      .min(1)
       .describe('The name of the data entry helpful for searching'),
     chunkSize: z
       .number()

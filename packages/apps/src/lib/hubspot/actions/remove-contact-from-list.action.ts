@@ -11,7 +11,6 @@ export const removeContactFromList = createAction({
     email: z.string().email().describe('The email of the contact'),
     listId: z
       .string()
-      .min(1)
       .describe('The ID of the list to remove the contact from'),
   }),
   inputConfig: [

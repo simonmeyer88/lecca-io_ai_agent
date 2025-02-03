@@ -36,8 +36,8 @@ export const addGuestsToEvent = createAction({
   ],
   aiSchema: z.object({
     calendarId: z.string().nullable().optional().describe('Calendar ID'),
-    eventId: z.string().min(1).describe('Event ID'),
-    guestEmails: z.array(z.string().min(1)).describe('Guest Email'),
+    eventId: z.string().describe('Event ID'),
+    guestEmails: z.array(z.string()).describe('Guest Email'),
     sendNotifications: z
       .enum(['true', 'false'])
       .nullable()

@@ -12,14 +12,10 @@ export const getSheetData = createAction({
   name: 'Get Sheet Data',
   description: 'Reads data from a specified Google Sheets document and sheet.',
   aiSchema: z.object({
-    spreadsheet: z
-      .string()
-      .min(1)
-      .describe('The ID of the Google Sheets document.'),
-    sheet: z.string().min(1).describe('The sheet name.'),
+    spreadsheet: z.string().describe('The ID of the Google Sheets document.'),
+    sheet: z.string().describe('The sheet name.'),
     range: z
       .string()
-      .min(1)
       .describe(
         'The range of cells to read (e.g., "Sheet1!A1:D10"). Leave empty to read the entire sheet.',
       )

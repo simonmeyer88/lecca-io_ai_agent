@@ -10,9 +10,8 @@ export const sendMessageToChannel = createAction({
   aiSchema: z.object({
     channelId: z
       .string()
-      .min(1)
       .describe('The ID of the channel to send the message to'),
-    message: z.string().min(1).describe('The message to send to the channel'),
+    message: z.string().describe('The message to send to the channel'),
   }),
   inputConfig: [
     {

@@ -14,10 +14,7 @@ export const deleteSpreadsheet = createAction({
     },
   ],
   aiSchema: z.object({
-    spreadsheet: z
-      .string()
-      .min(1)
-      .describe('The ID of the spreadsheet to delete'),
+    spreadsheet: z.string().describe('The ID of the spreadsheet to delete'),
   }),
   run: async ({ configValue, connection }) => {
     const googleDrive = shared.googleDrive({

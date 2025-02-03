@@ -28,7 +28,7 @@ export const googleSearch = createAction({
   ],
 
   aiSchema: z.object({
-    q: z.string().min(1).describe('Search query for serper.dev API'),
+    q: z.string().describe('Search query for serper.dev API'),
   }),
 
   run: async ({

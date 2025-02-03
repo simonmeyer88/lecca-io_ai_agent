@@ -9,7 +9,7 @@ export const createFolder = createAction({
   name: 'New Folder',
   description: 'Creates a new folder.',
   aiSchema: z.object({
-    'folder-name': z.string().min(1).describe('The name of the new folder'),
+    'folder-name': z.string().describe('The name of the new folder'),
     'parent-folder': z
       .string()
       .nullable()

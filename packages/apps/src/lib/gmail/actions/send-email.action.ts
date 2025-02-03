@@ -83,10 +83,10 @@ export const sendEmail = createAction({
   ],
   aiSchema: z.object({
     to: z.string().email().describe('The email address of the recipient'),
-    subject: z.string().min(1).describe('The subject of the email'),
+    subject: z.string().describe('The subject of the email'),
     cc: z.string().email().optional().describe('CC recipient email address'),
     bcc: z.string().email().optional().describe('BCC recipient email address'),
-    body: z.string().min(1).describe('The body of the reply'),
+    body: z.string().describe('The body of the reply'),
     bodyType: z
       .enum(['text', 'html'])
       .describe('The format of the body: text or HTML'),

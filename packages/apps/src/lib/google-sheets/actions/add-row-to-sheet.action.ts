@@ -14,16 +14,16 @@ export const addRowToSheet = createAction({
     shared.fields.dynamicSelectHeadersMap,
   ],
   aiSchema: z.object({
-    spreadsheet: z.string().min(1).describe('The ID of the spreadsheet'),
-    sheet: z.string().min(1).describe('The name of the sheet'),
+    spreadsheet: z.string().describe('The ID of the spreadsheet'),
+    sheet: z.string().describe('The name of the sheet'),
     headerRowNumber: z
       .number()
       .describe('The row number the header columns are located on.'),
     mappings: z
       .array(
         z.object({
-          key: z.string().min(1).nullable().optional().describe('Not used'),
-          value: z.string().min(1).describe('the value to enter in the cell'),
+          key: z.string().nullable().optional().describe('Not used'),
+          value: z.string().describe('the value to enter in the cell'),
         }),
       )
       .describe('An array of values to add to the new row.'),

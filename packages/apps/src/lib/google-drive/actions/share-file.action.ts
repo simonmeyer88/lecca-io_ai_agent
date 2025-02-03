@@ -49,11 +49,11 @@ export const shareFile = createAction({
     }),
   ],
   aiSchema: z.object({
-    file: z.string().min(1).describe('The ID of the file to share'),
+    file: z.string().describe('The ID of the file to share'),
     role: z
       .enum(['writer', 'commenter', 'reader'])
       .describe('The role of the user'),
-    email: z.string().email().min(1).describe('The email of the user'),
+    email: z.string().describe('The email of the user'),
   }),
   run: async ({ configValue, connection }) => {
     const googleDrive = shared.googleDrive({

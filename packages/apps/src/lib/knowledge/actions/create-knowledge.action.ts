@@ -51,7 +51,7 @@ export const createKnowledge = createAction({
   ],
 
   aiSchema: z.object({
-    name: z.string().min(1).describe('The name of the new notebook'),
+    name: z.string().describe('The name of the new notebook'),
     description: z
       .string()
       .nullable()

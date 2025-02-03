@@ -48,7 +48,7 @@ export const summarizeText = createAction({
   aiSchema: z.object({
     provider: z.string().describe('The AI provider to use'),
     model: z.string().describe('The ID of the model to use'),
-    textToSummarize: z.string().min(1).describe('The text to summarize'),
+    textToSummarize: z.string().describe('The text to summarize'),
     summaryLength: z
       .enum([
         'a short sentence',

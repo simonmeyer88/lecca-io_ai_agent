@@ -18,7 +18,6 @@ export const mathExpression = createAction({
   aiSchema: z.object({
     expression: z
       .string()
-      .min(1)
       .describe('The mathematical expression to evaluate using mathjs syntax'),
   }),
   inputConfig: [

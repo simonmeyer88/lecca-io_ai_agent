@@ -20,10 +20,7 @@ export const createSpreadsheet = createAction({
     }),
   ],
   aiSchema: z.object({
-    title: z
-      .string()
-      .min(1)
-      .describe('The title of the new Google Sheets document.'),
+    title: z.string().describe('The title of the new Google Sheets document.'),
   }),
   run: async ({ configValue, connection }) => {
     const sheets = shared.googleSheets({

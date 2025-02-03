@@ -95,14 +95,12 @@ export const searchKnowledge = createAction({
     knowledgeId: z.string().describe('The knowledge notebook ID to search.'),
     searchQuery: z
       .string()
-      .min(1)
       .describe('The text to query the knowledge notebook (vector database).'),
     shouldLimit: z
       .enum(['true', 'false'])
       .describe('Whether to limit the number of results returned.'),
     limit: z
       .number()
-      .min(1)
       .nullable()
       .optional()
       .describe('The number of maximum results to return. Default is 3.'),

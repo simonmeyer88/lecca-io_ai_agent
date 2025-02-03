@@ -34,7 +34,7 @@ export const extractWebsiteContent = createAction({
   ],
 
   aiSchema: z.object({
-    url: z.string().min(1).describe('The URL of the website to visit'),
+    url: z.string().describe('The URL of the website to visit'),
   }),
 
   run: async ({

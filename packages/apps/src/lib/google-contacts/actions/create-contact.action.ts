@@ -8,7 +8,7 @@ export const createContact = createAction({
   name: 'Create Contact',
   description: 'Creates a new contact with provided details.',
   aiSchema: z.object({
-    name: z.string().min(1).describe('The name of the new contact.'),
+    name: z.string().describe('The name of the new contact.'),
     email: z
       .string()
       .email()

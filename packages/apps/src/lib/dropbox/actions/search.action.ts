@@ -22,10 +22,7 @@ export const dropboxSearch = createAction({
     shared.fields.dynamicListFolders,
   ],
   aiSchema: z.object({
-    query: z
-      .string()
-      .min(1)
-      .describe('The search query to find files or folders'),
+    query: z.string().describe('The search query to find files or folders'),
     path: z
       .string()
       .optional()

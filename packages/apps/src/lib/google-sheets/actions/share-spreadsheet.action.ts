@@ -8,14 +8,11 @@ export const shareSpreadsheet = createAction({
   name: 'Share Spreadsheet',
   description: `Share a spreadsheet that this platform has created.`,
   aiSchema: z.object({
-    spreadsheet: z
-      .string()
-      .min(1)
-      .describe('The ID of the spreadsheet to share'),
+    spreadsheet: z.string().describe('The ID of the spreadsheet to share'),
     role: z
       .enum(['writer', 'commenter', 'reader'])
       .describe('The role of the user'),
-    email: z.string().email().min(1).describe('The email of the user'),
+    email: z.string().describe('The email of the user'),
   }),
   inputConfig: [
     {

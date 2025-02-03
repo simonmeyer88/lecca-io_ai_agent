@@ -19,11 +19,8 @@ export const search = createAction({
   },
   description: 'Find text using a query.',
   aiSchema: z.object({
-    text: z.string().min(1).describe('text to search'),
-    query: z
-      .string()
-      .min(1)
-      .describe('Text string or regex string to search text'),
+    text: z.string().describe('text to search'),
+    query: z.string().describe('Text string or regex string to search text'),
     returnFirstResult: z
       .enum(['true', 'false'])
       .describe('If true, only returns the first result'),

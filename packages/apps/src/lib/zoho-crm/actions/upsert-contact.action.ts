@@ -18,11 +18,11 @@ export const upsertContact = createAction({
     fields: z
       .array(
         z.object({
-          field: z.string().min(1).describe('The field to update'),
-          value: z.string().min(1).describe('The value to update'),
+          field: z.string().describe('The field to update'),
+          value: z.string().describe('The value to update'),
         }),
       )
-      .min(1)
+
       .describe('The field and value for the field to update'),
   }),
   inputConfig: [

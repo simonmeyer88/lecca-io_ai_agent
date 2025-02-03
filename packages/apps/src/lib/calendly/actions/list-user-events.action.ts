@@ -65,7 +65,6 @@ const listUserEvents = createAction({
   aiSchema: z.object({
     userUri: z
       .string()
-      .min(1)
       .describe(
         'User URI of the Calendly account owner whose events you want to list',
       ),

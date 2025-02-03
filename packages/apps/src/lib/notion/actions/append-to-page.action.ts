@@ -21,8 +21,8 @@ export const appendPage = createAction({
     }),
   ],
   aiSchema: z.object({
-    page: z.string().min(1).describe('The ID of the page to append to'),
-    content: z.string().min(1).describe('The content to append to the page'),
+    page: z.string().describe('The ID of the page to append to'),
+    content: z.string().describe('The content to append to the page'),
   }),
   run: async ({ configValue, connection }) => {
     const notionLib = shared.notionLib({

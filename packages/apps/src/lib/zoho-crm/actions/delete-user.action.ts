@@ -9,10 +9,7 @@ export const deleteUser = createAction({
   description: 'Delete a user from by user ID.',
   inputConfig: [shared.fields.dynamicGetUsers],
   aiSchema: z.object({
-    userId: z
-      .string()
-      .min(1)
-      .describe('The ID of the user to delete from ZohoCRM'),
+    userId: z.string().describe('The ID of the user to delete from ZohoCRM'),
   }),
 
   run: async ({ configValue, connection, workspaceId, http }) => {

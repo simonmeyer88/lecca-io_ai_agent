@@ -20,10 +20,7 @@ export const findFolderByTitle = createAction({
     }),
   ],
   aiSchema: z.object({
-    search: z
-      .string()
-      .min(1)
-      .describe('A search query to find a folder by its title'),
+    search: z.string().describe('A search query to find a folder by its title'),
   }),
 
   run: async ({ configValue, connection }) => {

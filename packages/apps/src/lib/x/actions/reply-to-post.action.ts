@@ -6,8 +6,8 @@ export const replyToPost = createAction({
   name: 'Reply to Post',
   description: 'Reply to a post on X',
   aiSchema: z.object({
-    tweetId: z.string().min(1).describe('The ID of the tweet to reply to.'),
-    text: z.string().min(1).describe('The text content of reply.'),
+    tweetId: z.string().describe('The ID of the tweet to reply to.'),
+    text: z.string().describe('The text content of reply.'),
   }),
   inputConfig: [
     createTextInputField({

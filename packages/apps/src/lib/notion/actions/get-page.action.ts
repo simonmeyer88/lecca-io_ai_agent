@@ -9,7 +9,7 @@ export const getPage = createAction({
   description: "Fetches a page's contents",
   inputConfig: [shared.fields.dynamicSelectPage],
   aiSchema: z.object({
-    pageId: z.string().min(1).describe('The ID of the page to retrieve.'),
+    pageId: z.string().describe('The ID of the page to retrieve.'),
   }),
   run: async ({ connection, configValue }): Promise<any> => {
     const { pageId } = configValue;

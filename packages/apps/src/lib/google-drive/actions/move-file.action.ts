@@ -20,10 +20,9 @@ export const moveFile = createAction({
     },
   ],
   aiSchema: z.object({
-    file: z.string().min(1).describe('The ID of the file to move'),
+    file: z.string().describe('The ID of the file to move'),
     folder: z
       .string()
-      .min(1)
       .describe('The ID of the folder where the file will be moved to'),
   }),
   run: async ({ configValue, connection }) => {

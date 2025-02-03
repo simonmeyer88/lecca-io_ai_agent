@@ -41,7 +41,7 @@ export const braveSearchAction = createAction({
     }),
   ],
   aiSchema: z.object({
-    query: z.string().min(1).describe('Search query for serper.dev API'),
+    query: z.string().describe('Search query for serper.dev API'),
     count: z
       .number()
       .int()

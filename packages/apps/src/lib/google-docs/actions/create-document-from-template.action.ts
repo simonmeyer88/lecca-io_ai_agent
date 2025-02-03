@@ -9,15 +9,12 @@ export const createDocumentFromTemplate = createAction({
   description:
     'Creates a new document by filling out {{placeholders}} from a template document.',
   aiSchema: z.object({
-    document: z.string().min(1).describe('The ID of the template document'),
-    'new-name': z.string().min(1).describe('The name of the new document'),
+    document: z.string().describe('The ID of the template document'),
+    'new-name': z.string().describe('The name of the new document'),
     placeholders: z.array(
       z.object({
-        key: z.string().min(1).describe('The placeholder key'),
-        value: z
-          .string()
-          .min(1)
-          .describe('The value to replace the placeholder'),
+        key: z.string().describe('The placeholder key'),
+        value: z.string().describe('The value to replace the placeholder'),
       }),
     ),
   }),

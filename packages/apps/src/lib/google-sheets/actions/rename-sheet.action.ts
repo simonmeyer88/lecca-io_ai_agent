@@ -23,12 +23,9 @@ export const renameSheet = createAction({
     }),
   ],
   aiSchema: z.object({
-    spreadsheet: z
-      .string()
-      .min(1)
-      .describe('The ID of the Google Sheets document.'),
-    sheet: z.string().min(1).describe('The ID of the sheet to be updated.'),
-    newTitle: z.string().min(1).describe('The new title for the sheet.'),
+    spreadsheet: z.string().describe('The ID of the Google Sheets document.'),
+    sheet: z.string().describe('The ID of the sheet to be updated.'),
+    newTitle: z.string().describe('The new title for the sheet.'),
   }),
   run: async ({ configValue, connection }) => {
     const sheets = shared.googleSheets({

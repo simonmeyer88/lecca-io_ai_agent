@@ -45,13 +45,11 @@ export const labelEmail = createAction({
   aiSchema: z.object({
     messageId: z
       .string()
-      .min(1)
       .describe(
         "The ID of the message (email) to label. If you don't have it, ask for it or retrieve it.",
       ),
     labelId: z
       .string()
-      .min(1)
       .describe(
         "The ID of the gmail label to apply. If you don't have it, ask for it or retrieve it.",
       ),

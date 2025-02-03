@@ -51,9 +51,9 @@ export const extractWithAi = createAction({
   aiSchema: z.object({
     provider: z.string().describe('The AI provider to use'),
     model: z.string().describe('The ID of the model to use'),
-    textToAnalyze: z.string().min(1).describe('Text to extract data from'),
+    textToAnalyze: z.string().describe('Text to extract data from'),
     fieldsToExtract: z
-      .array(z.string().min(1).describe('Name of the field to extract'))
+      .array(z.string().describe('Name of the field to extract'))
       .describe('List of fields to extract with instructions'),
     instructions: z
       .string()

@@ -8,9 +8,9 @@ export const createPage = createAction({
   name: 'Create Page',
   description: 'Creates a new page in Notion.',
   aiSchema: z.object({
-    page: z.string().min(1).describe('The ID of the parent page'),
-    title: z.string().min(1).describe('The title of the new page'),
-    content: z.string().min(1).describe('The content of the new page'),
+    page: z.string().describe('The ID of the parent page'),
+    title: z.string().describe('The title of the new page'),
+    content: z.string().describe('The content of the new page'),
   }),
   inputConfig: [
     shared.fields.dynamicSelectPage,

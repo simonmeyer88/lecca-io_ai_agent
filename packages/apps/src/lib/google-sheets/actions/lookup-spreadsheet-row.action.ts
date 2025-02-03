@@ -46,13 +46,10 @@ export const lookupSpreadsheetRow = createAction({
     },
   ],
   aiSchema: z.object({
-    spreadsheet: z.string().min(1).describe('The ID of the spreadsheet'),
-    sheet: z.string().min(1).describe('The name of the sheet'),
-    column: z.string().min(1).describe('The column index to search'),
-    queryValue: z
-      .string()
-      .min(1)
-      .describe('The value to search for in the column'),
+    spreadsheet: z.string().describe('The ID of the spreadsheet'),
+    sheet: z.string().describe('The name of the sheet'),
+    column: z.string().describe('The column index to search'),
+    queryValue: z.string().describe('The value to search for in the column'),
     bottomUp: z
       .enum(['yes', 'no'])
       .nullable()

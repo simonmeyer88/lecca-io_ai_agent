@@ -8,11 +8,8 @@ export const createSheet = createAction({
   name: 'Create Sheet',
   description: 'Creates a new sheet in an existing Google Sheets document.',
   aiSchema: z.object({
-    spreadsheet: z
-      .string()
-      .min(1)
-      .describe('The ID of the Google Sheets document.'),
-    sheetTitle: z.string().min(1).describe('The title of the new sheet.'),
+    spreadsheet: z.string().describe('The ID of the Google Sheets document.'),
+    sheetTitle: z.string().describe('The title of the new sheet.'),
   }),
   inputConfig: [
     shared.fields.dynamicSelectSpreadSheets,

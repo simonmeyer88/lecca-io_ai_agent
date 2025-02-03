@@ -13,25 +13,22 @@ export const updateEvent = createAction({
   description: 'Updates an event.',
   aiSchema: z.object({
     calendarId: z.string().nullable().optional().describe('Calendar ID'),
-    eventId: z.string().min(1).describe('Event ID'),
-    summary: z.string().min(1).nullable().optional().describe('Event summary'),
+    eventId: z.string().describe('Event ID'),
+    summary: z.string().nullable().optional().describe('Event summary'),
     location: z.string().nullable().optional().describe('Event location'),
     description: z.string().nullable().optional().describe('Event description'),
     startDateTime: z
       .string()
-      .min(1)
       .nullable()
       .optional()
       .describe('Event start time in ISO String format with timezone or UTC'),
     endDateTime: z
       .string()
-      .min(1)
       .nullable()
       .optional()
       .describe('Event end time in ISO String format with timezone or UTC'),
     timeZone: z
       .string()
-      .min(1)
       .nullable()
       .optional()
       .describe(

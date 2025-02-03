@@ -17,7 +17,6 @@ export const listFolders = createAction({
   aiSchema: z.object({
     path: z
       .string()
-      .min(1)
       .nullable()
       .optional()
       .describe(

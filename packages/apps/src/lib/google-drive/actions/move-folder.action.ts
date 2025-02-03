@@ -24,13 +24,9 @@ export const moveFolder = createAction({
     },
   ],
   aiSchema: z.object({
-    'folder-to-move': z
-      .string()
-      .min(1)
-      .describe('The ID of the folder to move'),
+    'folder-to-move': z.string().describe('The ID of the folder to move'),
     'target-folder': z
       .string()
-      .min(1)
       .describe('The ID of the folder where the folder will be moved to'),
   }),
 

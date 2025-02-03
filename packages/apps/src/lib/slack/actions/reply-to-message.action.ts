@@ -10,15 +10,13 @@ export const replyToMessage = createAction({
   aiSchema: z.object({
     channelId: z
       .string()
-      .min(1)
       .describe('The ID of the channel where the message was sent'),
     threadTs: z
       .string()
-      .min(1)
       .describe(
         'The timestamp of the message to reply to. Indicated by the ts field in the message object',
       ),
-    message: z.string().min(1).describe('The message to send as a reply'),
+    message: z.string().describe('The message to send as a reply'),
   }),
   inputConfig: [
     shared.fields.dynamicSelectChannel,

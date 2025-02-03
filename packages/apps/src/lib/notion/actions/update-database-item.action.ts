@@ -14,11 +14,10 @@ export const updateDatabaseItem = createAction({
       z.object({
         key: z
           .string()
-          .min(1)
           .describe(
             'The name of the property. Must match the name of the property in the database',
           ),
-        value: z.string().min(1).describe('The value of the property.'),
+        value: z.string().describe('The value of the property.'),
       }),
     ),
   }),

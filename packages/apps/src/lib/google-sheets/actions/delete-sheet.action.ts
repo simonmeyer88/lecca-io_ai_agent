@@ -18,10 +18,9 @@ export const deleteSheet = createAction({
     },
   ],
   aiSchema: z.object({
-    sheet: z.string().min(1).describe('The ID of the sheet to delete'),
+    sheet: z.string().describe('The ID of the sheet to delete'),
     spreadsheet: z
       .string()
-      .min(1)
       .describe('The ID of the spreadsheet that contains the sheet'),
   }),
   run: async ({ configValue, connection }) => {

@@ -20,7 +20,7 @@ export const getDocumentText = createAction({
     }),
   ],
   aiSchema: z.object({
-    documentId: z.string().min(1).describe('The Google Document ID'),
+    documentId: z.string().describe('The Google Document ID'),
   }),
   run: async ({ configValue, connection }) => {
     const docs = shared.googleDocs({

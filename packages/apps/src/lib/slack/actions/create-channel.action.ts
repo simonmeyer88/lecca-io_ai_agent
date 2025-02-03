@@ -21,8 +21,6 @@ export const createChannel = createAction({
   aiSchema: z.object({
     name: z
       .string()
-      .min(1)
-      .regex(/^[a-z0-9-]+$/)
       .describe(
         'The name of the new channel. Cannot contain capital letters, spaces, or punctuation. Use dashes to separate words.',
       ),

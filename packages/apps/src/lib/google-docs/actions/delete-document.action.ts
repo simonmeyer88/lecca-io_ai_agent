@@ -14,7 +14,7 @@ export const deleteDocument = createAction({
     },
   ],
   aiSchema: z.object({
-    document: z.string().min(1).describe('The ID of the document to delete'),
+    document: z.string().describe('The ID of the document to delete'),
   }),
   run: async ({ configValue, connection }) => {
     const googleDrive = shared.googleDrive({

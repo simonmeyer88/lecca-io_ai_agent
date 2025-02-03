@@ -131,7 +131,7 @@ export const createChatCompletion = createAction({
         role: z
           .enum(['user', 'system', 'assistant'])
           .describe('Role of the message sender'),
-        content: z.string().min(1).describe('The content of the message'),
+        content: z.string().describe('The content of the message'),
       }),
     ),
     max_tokens: z

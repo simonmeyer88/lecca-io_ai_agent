@@ -90,7 +90,7 @@ export const exportFile = createAction({
     }),
   ],
   aiSchema: z.object({
-    file: z.string().min(1).describe('The ID of the file to export'),
+    file: z.string().describe('The ID of the file to export'),
     format: z
       .enum([
         'application/pdf',

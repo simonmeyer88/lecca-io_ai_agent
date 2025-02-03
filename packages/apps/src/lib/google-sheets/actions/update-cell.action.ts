@@ -13,10 +13,10 @@ export const updateCell = createAction({
   name: 'Update Cell',
   description: 'Updates a specific cell in the specified sheet.',
   aiSchema: z.object({
-    spreadsheet: z.string().min(1).describe('The ID of the spreadsheet'),
-    sheet: z.string().min(1).describe('The name of the sheet'),
-    cellAddress: z.string().min(1).describe('The cell address, e.g., A1'),
-    value: z.string().min(1).describe('The value to set in the cell'),
+    spreadsheet: z.string().describe('The ID of the spreadsheet'),
+    sheet: z.string().describe('The name of the sheet'),
+    cellAddress: z.string().describe('The cell address, e.g., A1'),
+    value: z.string().describe('The value to set in the cell'),
   }),
 
   inputConfig: [

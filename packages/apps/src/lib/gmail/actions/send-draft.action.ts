@@ -54,7 +54,7 @@ export const sendDraft = createAction({
     }),
   ],
   aiSchema: z.object({
-    draftId: z.string().min(1).describe('The ID of the draft to send'),
+    draftId: z.string().describe('The ID of the draft to send'),
   }),
   run: async ({ configValue, connection }) => {
     const gmail = shared.gmail({

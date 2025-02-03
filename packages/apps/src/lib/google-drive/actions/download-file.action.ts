@@ -23,7 +23,7 @@ export const downloadFile = createAction({
     }),
   ],
   aiSchema: z.object({
-    file: z.string().min(1).describe('The ID of the file to download'),
+    file: z.string().describe('The ID of the file to download'),
   }),
   run: async ({ configValue, connection, workspaceId, s3 }) => {
     const googleDrive = shared.googleDrive({

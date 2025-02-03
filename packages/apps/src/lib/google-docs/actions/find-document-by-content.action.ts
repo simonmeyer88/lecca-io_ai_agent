@@ -10,7 +10,6 @@ export const findDocumentByContent = createAction({
   aiSchema: z.object({
     search: z
       .string()
-      .min(1)
       .describe('A search query to find a document by its content'),
   }),
   inputConfig: [

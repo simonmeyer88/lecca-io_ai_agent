@@ -9,11 +9,8 @@ export const sendMessageToUser = createAction({
   name: 'Send Message to User',
   description: 'Sends a message to a user',
   aiSchema: z.object({
-    userId: z
-      .string()
-      .min(1)
-      .describe('The ID of the user to send the message to'),
-    message: z.string().min(1).describe('The message to send to the user'),
+    userId: z.string().describe('The ID of the user to send the message to'),
+    message: z.string().describe('The message to send to the user'),
   }),
   inputConfig: [
     shared.fields.dynamicSelectUser,

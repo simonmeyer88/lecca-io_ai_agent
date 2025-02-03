@@ -60,10 +60,7 @@ export const formatDate = createAction({
     },
   ],
   aiSchema: z.object({
-    date: z
-      .string()
-      .min(1)
-      .describe('Time in ISO String format with timezone or UTC'),
+    date: z.string().describe('Time in ISO String format with timezone or UTC'),
     timeZone: z
       .string()
       .describe(

@@ -19,7 +19,7 @@ export const getTemporaryLink = createAction({
     }),
   ],
   aiSchema: z.object({
-    path: z.string().min(1).describe('The path of the file in Dropbox'),
+    path: z.string().describe('The path of the file in Dropbox'),
   }),
   run: async ({ configValue, connection, workspaceId, http }) => {
     const url = 'https://api.dropboxapi.com/2/files/get_temporary_link';

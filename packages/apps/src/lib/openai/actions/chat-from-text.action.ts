@@ -49,13 +49,13 @@ export const chatFromText = createAction({
     },
   ],
   aiSchema: z.object({
-    model: z.string().min(1).describe('The ID of the model to use'),
+    model: z.string().describe('The ID of the model to use'),
     messages: z.array(
       z.object({
         role: z
           .enum(['user', 'system', 'assistant'])
           .describe('Role of the message sender'),
-        content: z.string().min(1).describe('The content of the message'),
+        content: z.string().describe('The content of the message'),
       }),
     ),
     maxTokens: z

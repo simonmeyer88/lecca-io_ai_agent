@@ -23,7 +23,6 @@ export const getThreadMessages = createAction({
   aiSchema: z.object({
     threadId: z
       .string()
-      .min(1)
       .describe('The thread ID of the email to retrieve messages from'),
   }),
   run: async ({ configValue, connection }) => {

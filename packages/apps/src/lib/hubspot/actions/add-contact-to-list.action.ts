@@ -29,10 +29,7 @@ export const addContactToList = createAction({
   ],
   aiSchema: z.object({
     email: z.string().email().describe('The email of the contact'),
-    listId: z
-      .string()
-      .min(1)
-      .describe('The ID of the list to add the contact to'),
+    listId: z.string().describe('The ID of the list to add the contact to'),
   }),
   run: async ({ configValue, connection, workspaceId, http }) => {
     const { listId, email } = configValue;

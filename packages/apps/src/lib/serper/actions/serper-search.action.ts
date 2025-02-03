@@ -18,7 +18,7 @@ export const serperSearch = createAction({
     }),
   ],
   aiSchema: z.object({
-    query: z.string().min(1).describe('Search query for serper.dev API'),
+    query: z.string().describe('Search query for serper.dev API'),
   }),
   run: async ({ configValue, workspaceId, http, connection }) => {
     const { query } = configValue;

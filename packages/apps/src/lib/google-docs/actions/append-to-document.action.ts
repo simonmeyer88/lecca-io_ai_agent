@@ -8,11 +8,8 @@ export const appendToDocument = createAction({
   name: 'Append to Document',
   description: 'Appends text to an existing document.',
   aiSchema: z.object({
-    document: z.string().min(1).describe('The ID of the document to append to'),
-    content: z
-      .string()
-      .min(1)
-      .describe('The content to append to the document'),
+    document: z.string().describe('The ID of the document to append to'),
+    content: z.string().describe('The content to append to the document'),
   }),
   inputConfig: [
     {

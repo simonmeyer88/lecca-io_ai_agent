@@ -42,9 +42,8 @@ export const decideWithAi = createAction({
     model: z.string().describe('The ID of the model to use'),
     instructions: z
       .string()
-      .min(1)
       .describe('Instructions on how to select an option'),
-    options: z.array(z.string().min(1)).describe('An option AI can select'),
+    options: z.array(z.string()).describe('An option AI can select'),
   }),
 
   run: async ({

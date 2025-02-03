@@ -89,11 +89,11 @@ export const addUser = createAction({
     },
   ],
   aiSchema: z.object({
-    firstName: z.string().min(1).describe('The first name of the user to add'),
-    lastName: z.string().min(1).describe('The last name of the user to add'),
+    firstName: z.string().describe('The first name of the user to add'),
+    lastName: z.string().describe('The last name of the user to add'),
     email: z.string().email().describe('The email of the user to add'),
-    role: z.string().min(1).describe('The role ID to assign to the user'),
-    profile: z.string().min(1).describe('The profile ID to assign to the user'),
+    role: z.string().describe('The role ID to assign to the user'),
+    profile: z.string().describe('The profile ID to assign to the user'),
   }),
   run: async ({ configValue, connection, workspaceId, http }) => {
     const url = `https://www.zohoapis.com/crm/v2/users`;

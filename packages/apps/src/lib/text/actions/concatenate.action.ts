@@ -15,7 +15,7 @@ export const concatenate = createAction({
     },
   },
   aiSchema: z.object({
-    texts: z.array(z.string()).min(1).describe('texts to join'),
+    texts: z.array(z.string()).describe('texts to join'),
     separator: z
       .string()
       .nullable()

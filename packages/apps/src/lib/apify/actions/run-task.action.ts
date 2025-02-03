@@ -35,7 +35,7 @@ export const runTask = createAction({
     shared.fields.dynamicListTaskInputSchema,
   ],
   aiSchema: z.object({
-    taskId: z.string().min(1).describe('The ID of the task to run'),
+    taskId: z.string().describe('The ID of the task to run'),
     schema: z
       .object({})
       .nullable()

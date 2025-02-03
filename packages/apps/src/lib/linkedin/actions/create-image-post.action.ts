@@ -84,11 +84,8 @@ export const createImagePost = createAction({
     }),
   ],
   aiSchema: z.object({
-    commentary: z
-      .string()
-      .min(1)
-      .describe('The text content of the LinkedIn post'),
-    imageUrl: z.string().min(1).describe('The URL of the image to post'),
+    commentary: z.string().describe('The text content of the LinkedIn post'),
+    imageUrl: z.string().describe('The URL of the image to post'),
     visibility: z
       .enum(['PUBLIC', 'CONNECTIONS', 'LOGGED_IN'])
       .describe(

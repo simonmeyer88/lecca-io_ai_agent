@@ -67,7 +67,6 @@ export const listOrganizationEvents = createAction({
   aiSchema: z.object({
     organizationUri: z
       .string()
-      .min(1)
       .describe(
         'Organization URI of the Calendly account owner whose events you want to list',
       ),

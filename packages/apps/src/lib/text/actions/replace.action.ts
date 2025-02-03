@@ -19,11 +19,8 @@ export const replace = createAction({
     },
   },
   aiSchema: z.object({
-    text: z.string().min(1).describe('text to search'),
-    query: z
-      .string()
-      .min(1)
-      .describe('Text string or regex string to search text'),
+    text: z.string().describe('text to search'),
+    query: z.string().describe('Text string or regex string to search text'),
     replaceValue: z.string().describe('Value that will replace search results'),
     replaceFirstResult: z
       .enum(['true', 'false'])

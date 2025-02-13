@@ -29,8 +29,10 @@ export const formattedTaskSystemMessageSchema = z.object({
   role: z.literal('system'),
   content: z.string(),
   createdAt: z.date(),
+  parts: streamedTaskUserMessageSchema.shape.parts,
   data: z.any(),
 });
+
 export type FormattedTaskSystemMessage = z.infer<
   typeof formattedTaskSystemMessageSchema
 >;

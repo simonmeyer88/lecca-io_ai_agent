@@ -48,7 +48,7 @@ export function MessageCardWrapper({
   };
 
   return (
-    <div className={cn('relative group animate-fade-i', className)}>
+    <div className={cn('relative group animate-fade-in', className)}>
       {children}
       <div
         className={cn('flex invisible group-hover:visible items-center', {

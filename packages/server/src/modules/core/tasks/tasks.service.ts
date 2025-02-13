@@ -1610,6 +1610,7 @@ export class TasksService {
   }: {
     taskId: string;
     messages: {
+      parts: any; //won't be used, but vercel ai sdk streams parts. We don't want that to be saved to the db
       role: Message['role'];
       content:
         | Message['content']
@@ -1618,7 +1619,8 @@ export class TasksService {
     }[];
   }) => {
     await this.prisma.taskMessage.createMany({
-      data: messages.map((message, index): any => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      data: messages.map(({ parts, ...message }, index): any => {
         return {
           ...message,
           //Use the index to slightly offset the createdAt so that the messages are in order.

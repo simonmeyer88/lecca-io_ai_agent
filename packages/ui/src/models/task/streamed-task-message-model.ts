@@ -2,33 +2,6 @@ import { z } from 'zod';
 
 import { newDateOrUndefined } from '../../utils/dates';
 
-export const streamedTaskUserMessageSchema = z.object({
-  id: z.string(),
-  createdAt: z
-    .string()
-    .optional()
-    .transform((val) => newDateOrUndefined(val)),
-  role: z.literal('user'),
-  content: z.union([
-    z.string(),
-    z.array(
-      z.union([
-        z.object({
-          type: z.literal('text'),
-          text: z.string(),
-        }),
-        z.object({
-          type: z.literal('image'),
-          image: z.string(),
-        }),
-      ]),
-    ),
-  ]),
-});
-export type StreamedTaskUserMessage = z.infer<
-  typeof streamedTaskUserMessageSchema
->;
-
 export const streamedTaskAssistantMessageToolInvocationSchema = z.object({
   state: z.enum(['partial-call', 'call', 'result']),
   toolCallId: z.string(),
@@ -59,6 +32,18 @@ export const streamedTaskAssistantMessageSchema = z.object({
     .transform((val) => newDateOrUndefined(val)),
   role: z.literal('assistant'),
   content: z.string(),
+  parts: z.array(
+    z.union([
+      z.object({
+        type: z.literal('tool-invocation'),
+        toolInvocation: streamedTaskAssistantMessageToolInvocationSchema,
+      }),
+      z.object({
+        type: z.literal('text'),
+        text: z.string(),
+      }),
+    ]),
+  ),
   toolInvocations: z
     .array(streamedTaskAssistantMessageToolInvocationSchema)
     .nullable()
@@ -66,6 +51,46 @@ export const streamedTaskAssistantMessageSchema = z.object({
 });
 export type StreamedTaskAssistantMessage = z.infer<
   typeof streamedTaskAssistantMessageSchema
+>;
+
+export const streamedTaskUserMessageSchema = z.object({
+  id: z.string(),
+  createdAt: z
+    .string()
+    .optional()
+    .transform((val) => newDateOrUndefined(val)),
+  role: z.literal('user'),
+  parts: z.array(
+    z.union([
+      //User can't invoke a tool, but adding it to the union to the type matches the assistant message parts
+      z.object({
+        type: z.literal('tool-invocation'),
+        toolInvocation: streamedTaskAssistantMessageToolInvocationSchema,
+      }),
+      z.object({
+        type: z.literal('text'),
+        text: z.string(),
+      }),
+    ]),
+  ),
+  content: z.union([
+    z.string(),
+    z.array(
+      z.union([
+        z.object({
+          type: z.literal('text'),
+          text: z.string(),
+        }),
+        z.object({
+          type: z.literal('image'),
+          image: z.string(),
+        }),
+      ]),
+    ),
+  ]),
+});
+export type StreamedTaskUserMessage = z.infer<
+  typeof streamedTaskUserMessageSchema
 >;
 
 export const streamedTaskMessageSchema = z.union([

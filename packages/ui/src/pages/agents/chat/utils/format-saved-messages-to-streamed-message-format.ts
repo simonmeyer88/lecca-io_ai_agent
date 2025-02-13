@@ -28,7 +28,10 @@ export function formatSavedMessagesToStreamedMessageFormat({
 
   messages.forEach((message) => {
     if (message.role === 'user') {
-      formattedMessage.push(message);
+      formattedMessage.push({
+        ...message,
+        parts: [{ type: 'text', text: message.content }],
+      });
     } else if (message.role === 'assistant') {
       //Set the current assistant id
       currentAssistantId = message.data?.agentId ?? currentAgentId;
@@ -48,6 +51,15 @@ export function formatSavedMessagesToStreamedMessageFormat({
             if (Object.keys(toolInvocationMap).length) {
               // 1.a. Create a new assistant message with the tool invocations
               Object.values(toolInvocationMap).forEach((tools) => {
+                const toolInvocation = {
+                  state: tools.state!,
+                  toolCallId: tools.toolCallId!,
+                  toolName: tools.toolName!,
+                  args: tools.args!,
+                  result: tools.result!,
+                  data: tools.data,
+                };
+
                 const messageWithToolInvocations: FormattedTaskMessage = {
                   id: v4(),
                   role: 'assistant',
@@ -56,16 +68,13 @@ export function formatSavedMessagesToStreamedMessageFormat({
                     ...message.data,
                     agentId: currentAssistantId,
                   },
-                  toolInvocations: [
+                  parts: [
                     {
-                      state: tools.state!,
-                      toolCallId: tools.toolCallId!,
-                      toolName: tools.toolName!,
-                      args: tools.args!,
-                      result: tools.result!,
-                      data: tools.data,
+                      type: 'tool-invocation',
+                      toolInvocation,
                     },
                   ],
+                  toolInvocations: [toolInvocation],
                 };
 
                 // 1.b. Push the assistant message with the tool invocations
@@ -79,6 +88,7 @@ export function formatSavedMessagesToStreamedMessageFormat({
             // 2. Push the assistant response
             formattedMessage.push({
               ...message,
+              parts: [{ type: 'text', text: content.text }],
               content: content.text,
             });
           }

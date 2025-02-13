@@ -58,9 +58,9 @@ export const DEFAULT_PROVIDERS: AiProviders = {
       },
       'o1-mini': {
         vision: true,
-        tools: true,
+        tools: false,
         canStreamText: true,
-        canStreamTools: true,
+        canStreamTools: false,
         creditConversionData: {
           input: 200,
           output: 50,

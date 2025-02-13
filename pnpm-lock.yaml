@@ -60,11 +60,11 @@ importers:
         specifier: ^3.3.4
         version: 3.9.1(react-hook-form@7.54.1(react@18.3.1))
       '@lecca-io/apps':
-        specifier: 0.34.0
-        version: 0.34.0
+        specifier: 0.35.0
+        version: 0.35.0
       '@lecca-io/toolkit':
-        specifier: 0.34.0
-        version: 0.34.0
+        specifier: 0.35.0
+        version: 0.35.0
       '@nestjs/axios':
         specifier: ^3.1.2
         version: 3.1.3(@nestjs/common@10.4.15(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(axios@1.7.9)(rxjs@7.8.1)
@@ -237,8 +237,8 @@ importers:
         specifier: ^1.0.10
         version: 1.1.0(react@18.3.1)
       ai:
-        specifier: ^4.1.16
-        version: 4.1.16(react@18.3.1)(zod@3.24.1)
+        specifier: ^4.1.35
+        version: 4.1.35(react@18.3.1)(zod@3.24.1)
       axios:
         specifier: ^1.7.7
         version: 1.7.9
@@ -784,8 +784,8 @@ packages:
     resolution: {integrity: sha512-q1PJEZ0qD9rVR+8JFEd01/QM++csMT5UVwYXSN2u54BrVw/D8TZLTeg2FEfKK00DgAx0UtWd8XOhhwITP9BT5g==}
     engines: {node: '>=18'}
 
-  '@ai-sdk/react@1.1.8':
-    resolution: {integrity: sha512-buHm7hP21xEOksnRQtJX9fKbi7cAUwanEBa5niddTDibCDKd+kIXP2vaJGy8+heB3rff+XSW3BWlA8pscK+n1g==}
+  '@ai-sdk/react@1.1.12':
+    resolution: {integrity: sha512-7U5woW4J2v+bth5Ruta2hN+3xO3mxvZ/jtxIyhpzC+K61dvnnDg3nmy9leCZFlAlifTnZx9rKx5ggbZDwOh5Qg==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18 || ^19 || ^19.0.0-rc
@@ -802,8 +802,8 @@ packages:
     peerDependencies:
       zod: ^3.0.0
 
-  '@ai-sdk/ui-utils@1.1.8':
-    resolution: {integrity: sha512-nbok53K1EalO2sZjBLFB33cqs+8SxiL6pe7ekZ7+5f2MJTwdvpShl6d9U4O8fO3DnZ9pYLzaVC0XNMxnJt030Q==}
+  '@ai-sdk/ui-utils@1.1.12':
+    resolution: {integrity: sha512-2whKOSuCYg0PJG5Twuw5QIpikzv+0AH9k7gxjFg4syn2KB4qBrsxgGQFy4eTuxuHc1NrSQ0dObMh4K1nC4oF4A==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.0.0
@@ -2201,11 +2201,11 @@ packages:
     peerDependencies:
       tslib: '2'
 
-  '@lecca-io/apps@0.34.0':
-    resolution: {integrity: sha512-QGYaP6Tf1ZzEap/mzY5bp+AOqvHDnJkUTwmT9HjiLH5Q5W8kIEOOQSzVdD8VdGY2448zXGtu7dv9yb+uHpLNRw==}
+  '@lecca-io/apps@0.35.0':
+    resolution: {integrity: sha512-eaSp/OL1z4Wlh6T8CiENU5/RPcm095pD6gAF+0p/fwsB8n5MaKXEsFgpxHSPob/SURz3O/j8v3UpB/AuS1j5hA==}
 
-  '@lecca-io/toolkit@0.34.0':
-    resolution: {integrity: sha512-FBLasRg8HcHM1ARKHClQ1PAC/Eeeo9HKSwbbzyobjz9Z6eCxwtkTbTQc0V/JSBw8AIWHw+L+INuzs62uxHFsrQ==}
+  '@lecca-io/toolkit@0.35.0':
+    resolution: {integrity: sha512-BUypbO5xvALSku/Noy644sSVjw5tj/WCdrtLdRqmlIhCseZLuvIb6Z7A1pB9oMVwAbSUF8o2O21dsJaRplspWw==}
 
   '@leichtgewicht/ip-codec@2.0.5':
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
@@ -5965,8 +5965,8 @@ packages:
     resolution: {integrity: sha512-gOsf2YwSlleG6IjRYG2A7k0HmBMEo6qVNk9Bp/EaLgAJT5ngH6PXbqa4ItvnEwCm/velL5jAnQgsHsWnjhGmvw==}
     engines: {node: '>=18'}
 
-  ai@4.1.16:
-    resolution: {integrity: sha512-4l8Dl2+reG210/l19E/D9NrpfumJuiyih7EehVm1wdMhz4/rSLjVewxkcmdcTczPee3/axB5Rp5h8q5hyIYB/g==}
+  ai@4.1.35:
+    resolution: {integrity: sha512-eGI66makWRBfP8c9qm0n/1Q1u4kuYI+Mm7dGQSoZdpEGj8mXMhCTRcgvBV2hgzSvgm6P6JRJgP+IR/Hn6b4ZRQ==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18 || ^19 || ^19.0.0-rc
@@ -12771,8 +12771,8 @@ packages:
   swagger-ui-dist@5.18.2:
     resolution: {integrity: sha512-J+y4mCw/zXh1FOj5wGJvnAajq6XgHOyywsa9yITmwxIlJbMqITq3gYRZHaeqLVH/eV/HOPphE6NjF+nbSNC5Zw==}
 
-  swr@2.3.0:
-    resolution: {integrity: sha512-NyZ76wA4yElZWBHzSgEJc28a0u6QZvhb6w0azeL2k7+Q1gAzVK+IqQYXhVOC/mzi+HZIozrZvBVeSeOZNR2bqA==}
+  swr@2.3.2:
+    resolution: {integrity: sha512-RosxFpiabojs75IwQ316DGoDRmOqtiAj0tg8wCcbEu4CiLZBs/a9QNtHV7TUfDXmmlgqij/NqzKq/eLelyv9xA==}
     peerDependencies:
       react: ^16.11.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -13972,11 +13972,11 @@ snapshots:
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/react@1.1.8(react@18.3.1)(zod@3.24.1)':
+  '@ai-sdk/react@1.1.12(react@18.3.1)(zod@3.24.1)':
     dependencies:
       '@ai-sdk/provider-utils': 2.1.6(zod@3.24.1)
-      '@ai-sdk/ui-utils': 1.1.8(zod@3.24.1)
-      swr: 2.3.0(react@18.3.1)
+      '@ai-sdk/ui-utils': 1.1.12(zod@3.24.1)
+      swr: 2.3.2(react@18.3.1)
       throttleit: 2.1.0
     optionalDependencies:
       react: 18.3.1
@@ -13989,7 +13989,7 @@ snapshots:
       '@ai-sdk/provider-utils': 2.1.0(zod@3.24.1)
       zod: 3.24.1
 
-  '@ai-sdk/ui-utils@1.1.8(zod@3.24.1)':
+  '@ai-sdk/ui-utils@1.1.12(zod@3.24.1)':
     dependencies:
       '@ai-sdk/provider': 1.0.7
       '@ai-sdk/provider-utils': 2.1.6(zod@3.24.1)
@@ -16092,11 +16092,11 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@lecca-io/apps@0.34.0':
+  '@lecca-io/apps@0.35.0':
     dependencies:
-      '@lecca-io/toolkit': 0.34.0
+      '@lecca-io/toolkit': 0.35.0
 
-  '@lecca-io/toolkit@0.34.0':
+  '@lecca-io/toolkit@0.35.0':
     dependencies:
       tslib: 2.8.1
 
@@ -21213,12 +21213,12 @@ snapshots:
       clean-stack: 5.2.0
       indent-string: 5.0.0
 
-  ai@4.1.16(react@18.3.1)(zod@3.24.1):
+  ai@4.1.35(react@18.3.1)(zod@3.24.1):
     dependencies:
       '@ai-sdk/provider': 1.0.7
       '@ai-sdk/provider-utils': 2.1.6(zod@3.24.1)
-      '@ai-sdk/react': 1.1.8(react@18.3.1)(zod@3.24.1)
-      '@ai-sdk/ui-utils': 1.1.8(zod@3.24.1)
+      '@ai-sdk/react': 1.1.12(react@18.3.1)(zod@3.24.1)
+      '@ai-sdk/ui-utils': 1.1.12(zod@3.24.1)
       '@opentelemetry/api': 1.9.0
       jsondiffpatch: 0.6.0
     optionalDependencies:
@@ -29273,7 +29273,7 @@ snapshots:
     dependencies:
       '@scarf/scarf': 1.4.0
 
-  swr@2.3.0(react@18.3.1):
+  swr@2.3.2(react@18.3.1):
     dependencies:
       dequal: 2.0.3
       react: 18.3.1

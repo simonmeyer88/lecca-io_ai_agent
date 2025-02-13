@@ -16,7 +16,7 @@ import { MessageMeta } from '../utils/message-meta';
 import { AgentConfigureToolbar } from './agent-configure-toolbar';
 import { ChatInput } from './chat-input';
 import { MessageAgentCard } from './message-agent-card';
-import { MessageCard } from './message-card';
+import { MessageGroup } from './message-card';
 import { NewChatWelcome } from './new-chat-welcome';
 
 type Props = {
@@ -231,6 +231,7 @@ export function Chat(props: Props) {
           {
             id: v4(),
             role: 'system',
+            parts: [{ type: 'text', text: message }],
             content: message,
           },
         ]);
@@ -434,16 +435,16 @@ export function Chat(props: Props) {
             </div>
           ) : (
             <div className="py-16 space-y-4 ">
-              {messages?.map((m, index) => (
-                <MessageCard
-                  key={m.id}
+              {messages?.map((m, messageIndex) => (
+                <MessageGroup
+                  key={messageIndex}
                   message={m as FormattedTaskMessage}
                   agent={props.agent}
                   agents={agents}
                   workspaceUsers={workspaceUsers}
                   knowledge={knowledge}
                   mappedApps={mappedApps}
-                  messageIndex={index}
+                  messageIndex={messageIndex}
                   messageMeta={messageMeta.current}
                   workflows={workflows}
                 />

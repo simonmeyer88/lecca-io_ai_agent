@@ -5,14 +5,14 @@ export class MessageMeta {
     this.setState = setState;
   }
 
-  data: MessageToolRef = {};
+  data: MessageToolRef = [];
   setState: React.Dispatch<React.SetStateAction<number>>;
   forceRefresh = () => {
     this.setState((prev) => prev + 1);
   };
 }
 
-export type MessageToolRef = Record<
-  number,
-  { type: 'start' | 'end' | 'between'; count?: number; isWorking?: boolean }
->;
+export type MessageToolRef = {
+  position: 'start' | 'end' | 'between';
+  type: 'tool-invocation' | 'text';
+}[][];

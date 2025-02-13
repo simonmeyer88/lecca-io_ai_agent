@@ -1,3 +1,18 @@
+# [0.36.0](https://github.com/lecca-digital/lecca-io/compare/v0.35.0...v0.36.0) (2025-02-13)
+
+
+### Bug Fixes
+
+* Agent search and auto open tool fix ([d97cc88](https://github.com/lecca-digital/lecca-io/commit/d97cc888d12fa86908dd40ff983be188f148363d))
+* Prevent naming task as empty string ([656b98e](https://github.com/lecca-digital/lecca-io/commit/656b98e494ed4d12651113bb9dc680113035b9d3))
+* Remove .min property from all AI string schemas ([e84e81f](https://github.com/lecca-digital/lecca-io/commit/e84e81f36197a0b25307eabc3c8d4b728cc939c1))
+* Render tools using message parts with ai sdk ([4a3813b](https://github.com/lecca-digital/lecca-io/commit/4a3813b3638c3869c94df8b7573230962a7134bb))
+
+
+### Features
+
+* Add o3-mini ([db0f2f0](https://github.com/lecca-digital/lecca-io/commit/db0f2f07e702f10f7f3a4ee0ec7d86c63f8514de))
+
 # [0.35.0](https://github.com/lecca-digital/lecca-io/compare/v0.34.0...v0.35.0) (2025-02-02)
 
 

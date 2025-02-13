@@ -71,7 +71,7 @@ const rawBodyParsingRoutes: Array<RouteInfo> = [
       throttlers: [
         {
           limit: 120,
-          ttl: 60,
+          ttl: 60 * 1000,
         },
       ],
     }),

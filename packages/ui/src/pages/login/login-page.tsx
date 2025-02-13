@@ -36,6 +36,11 @@ export default function LoginPage() {
     } else if (error) {
       if (error === 'Email not verified') {
         navigate(`/confirm-email?email=${email}`, { replace: true });
+      } else if (error.includes('Too Many Requests')) {
+        toast({
+          title: 'Too many requests, please try again later.',
+          variant: 'destructive',
+        });
       } else {
         toast({
           title: 'Invalid credentials',

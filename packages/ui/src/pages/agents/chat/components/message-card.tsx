@@ -111,8 +111,6 @@ function MessageCard({
         messageMeta.data[messageIndex - 1].length - 1
       ];
 
-    console.log('this is running');
-
     if (previousPartInMessage) {
       if (previousPartInMessage.type === 'tool-invocation') {
         //If the previous part is a tool invocation, we need to mark this as an between or end.
@@ -183,6 +181,9 @@ function MessageCard({
     agents,
     knowledge,
     mappedApps,
+    workflows,
+    workspaceUser,
+    workspaceUsers,
     message.createdAt,
     message.data,
     message.role,
@@ -190,9 +191,6 @@ function MessageCard({
     messageMeta,
     part,
     partIndex,
-    workflows,
-    workspaceUser,
-    workspaceUsers,
   ]);
 
   return Content;

@@ -1,3 +1,10 @@
+# [0.37.0](https://github.com/lecca-digital/lecca-io/compare/v0.36.0...v0.37.0) (2025-02-13)
+
+
+### Features
+
+* Throttle auth routes ([cdc853d](https://github.com/lecca-digital/lecca-io/commit/cdc853d300f46d77785d4a6e7cad654322344a5d))
+
 # [0.36.0](https://github.com/lecca-digital/lecca-io/compare/v0.35.0...v0.36.0) (2025-02-13)
 
 

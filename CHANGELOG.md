@@ -1,3 +1,11 @@
+## [0.37.1](https://github.com/lecca-digital/lecca-io/compare/v0.37.0...v0.37.1) (2025-02-13)
+
+
+### Bug Fixes
+
+* Add toolkit prisma type dep ([03fbed2](https://github.com/lecca-digital/lecca-io/commit/03fbed2fa78fe536fb2e1ba8d05f2ce58b1ff9e8))
+* Remove log ([3f17648](https://github.com/lecca-digital/lecca-io/commit/3f17648aefef30188a2b2e1b92675b43b03e5113))
+
 # [0.37.0](https://github.com/lecca-digital/lecca-io/compare/v0.36.0...v0.37.0) (2025-02-13)
 
 

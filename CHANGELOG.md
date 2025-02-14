@@ -1,3 +1,10 @@
+## [0.37.4](https://github.com/lecca-digital/lecca-io/compare/v0.37.3...v0.37.4) (2025-02-14)
+
+
+### Bug Fixes
+
+* Add onlyBuiltDependencies for pnpm breaking change ([50bac97](https://github.com/lecca-digital/lecca-io/commit/50bac97ed690b9fee6aba0ae0b0d2845244d3596))
+
 ## [0.37.3](https://github.com/lecca-digital/lecca-io/compare/v0.37.2...v0.37.3) (2025-02-14)
 
 

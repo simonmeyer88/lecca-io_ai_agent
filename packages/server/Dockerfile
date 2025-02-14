@@ -17,6 +17,9 @@ RUN npm install -g pnpm @nestjs/cli nx
 # Install dependencies
 RUN pnpm install --frozen-lockfile 
 
+# Generate Prisma Client (Add this line)
+RUN npx prisma generate --schema=./packages/server/prisma/schema.prisma
+
 # Build server
 RUN pnpm exec nx run server:build 
 

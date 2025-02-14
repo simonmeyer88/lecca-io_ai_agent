@@ -1,3 +1,4 @@
+import type { PrismaClient } from '@prisma/client';
 import { LanguageModelV1, Message } from 'ai';
 import { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
 
@@ -7,7 +8,7 @@ export type InjectedServices = {
   http: {
     request: (args: HttpRequestArgs) => Promise<AxiosResponse<any, any>>;
   };
-  prisma: any; //TODO, PrismaClient from @prisma/client is breaking the build for some reason. Fix later
+  prisma: PrismaClient;
   fileHandler: {
     downloadFile<T extends boolean>({
       url,

@@ -1,3 +1,10 @@
+## [0.37.3](https://github.com/lecca-digital/lecca-io/compare/v0.37.2...v0.37.3) (2025-02-14)
+
+
+### Bug Fixes
+
+* Update dockerfile to generate prisma files now. Still not sure why we needed to add this ([4ecb479](https://github.com/lecca-digital/lecca-io/commit/4ecb479291143c00977a2d8afcd5c581256bde3f))
+
 ## [0.37.2](https://github.com/lecca-digital/lecca-io/compare/v0.37.1...v0.37.2) (2025-02-14)
 
 

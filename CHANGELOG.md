@@ -1,3 +1,10 @@
+## [0.37.2](https://github.com/lecca-digital/lecca-io/compare/v0.37.1...v0.37.2) (2025-02-14)
+
+
+### Bug Fixes
+
+* Temp hack to get build working ([ef2e2eb](https://github.com/lecca-digital/lecca-io/commit/ef2e2eb4048b5be5641d363374b5003ae57fec41))
+
 ## [0.37.1](https://github.com/lecca-digital/lecca-io/compare/v0.37.0...v0.37.1) (2025-02-13)
 
 
